@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestContext;
 import org.testng.SkipException;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
@@ -107,33 +108,37 @@ public class TestBase {
    @BeforeTest
    @Parameters({"udid"})
    public synchronized void BeforeTest(@Optional String udid, ITestContext iTestContext)  {
-	   DeviceinfoProvider deviceinfoProvider = new DeviceinfoProvider(udid);
+//	   Map<String, String> testParams = iTestContext.getCurrentXmlTest().getAllParameters();
 	   if(udid != null) {
-		   iTestContext.setAttribute("udid", udid);
-		   
-		   AppiumManager appiumManager = new AppiumManager();
-		   
-		   int devicePort = deviceManager.getDevicePort(udid);
-		   String deviceName = deviceinfoProvider.getDeviceName();
-		   
-		   iTestContext.setAttribute("deviceName", deviceName);
-		   
-		   if(appiumManager.isPortBusy(devicePort) == true) {
-			   log.warn("device Busy : " + deviceName + ", udid : "+ udid+ ", devicePort : "+ devicePort);
-			   throw new SkipException("device Busy : "+ " : " + deviceName + "_" +udid); 
+		   if(!udid.equalsIgnoreCase("auto")) {
+			   DeviceinfoProvider deviceinfoProvider = new DeviceinfoProvider(udid);
+			   AppiumManager appiumManager = new AppiumManager();
+			   
+			   String deviceName = deviceinfoProvider.getDeviceName();
+			   
+			   iTestContext.setAttribute("udid", udid);
+			   iTestContext.setAttribute("deviceName", deviceName);
+			   
+			   int devicePort = deviceManager.getDevicePort(udid);
+			   if(appiumManager.isPortBusy(devicePort) == true) {
+				   log.warn("device Busy : " + deviceName + ", udid : "+ udid+ ", devicePort : "+ devicePort);
+				   throw new SkipException("device Busy : "+ " : " + deviceName + "_" +udid); 
+			   }
 		   }
 	   }
    }
   
    @Parameters({"udid"})
-   @AfterTest
+   @AfterMethod
    public synchronized void AfterTest(@Optional String udid, ITestContext Testctx)  {
 	   AppiumManager appiumManager = new AppiumManager();
 	   
-	   int _port = deviceManager.getDevicePort(udid);
-	   
-	   if(appiumManager.isPortBusy(_port) == true) {
-		   appiumManager.killPort(_port);
+	   if(udid != null) {
+		   int _port = deviceManager.getDevicePort(udid);
+		   
+		   if(appiumManager.isPortBusy(_port) == true) {
+			   appiumManager.killPort(_port);
+		   }
 	   }
    }
    
@@ -157,7 +162,7 @@ public class TestBase {
 		   
 		   //Create Session
 		   try {
-			   tlDriverFactory.setDriver(server, udid);
+			   tlDriverFactory.setDriver(server, Testctx);
 			   
 			   driverMap.put(Thread.currentThread().getId(),tlDriverFactory.getDriver());
 			
