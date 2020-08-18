@@ -22,7 +22,7 @@ public class AppiumManager{
 	
 	protected AppiumDriverLocalService server;
 
-	public AppiumDriverLocalService AppiumService() {
+	public synchronized AppiumDriverLocalService AppiumService() {
 		
 		AppiumServiceBuilder serviceBuilder = new AppiumServiceBuilder();
 		
@@ -36,11 +36,18 @@ public class AppiumManager{
 		HashMap<String, String> environment = new HashMap<String, String>();
 		environment.put("PATH", "/usr/local/bin:" + System.getenv("PATH"));
 		serviceBuilder.withEnvironment(environment);
-		
 		server = AppiumDriverLocalService.buildService(serviceBuilder);
 		server.clearOutPutStreams();
 		
 		return server;
+	}
+	
+	public static void main(String[] args) {
+		
+		AppiumManager appiumManager = new AppiumManager();
+		
+		appiumManager.killPort(8227);
+		
 	}
 	
 	public boolean isPortBusy(int port) {

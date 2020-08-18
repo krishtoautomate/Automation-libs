@@ -49,6 +49,7 @@ public class JsonFileReader {
 	public synchronized String getFilePath() {
 		return filePath;
 	}
+	
 	public synchronized void setFilePath(String filePath) {
 		this.filePath = filePath;
 	}

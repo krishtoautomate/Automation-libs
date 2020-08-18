@@ -21,7 +21,7 @@ public class test {
 		
 		String platForm = "Android";
 		
-		String udid = "R3CN20C5BKF";
+		String udid = "R58N70GGVZH";
 		
 
 //		"androidInstallTimeout": 150000,

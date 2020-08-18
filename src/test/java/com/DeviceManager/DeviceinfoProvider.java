@@ -30,6 +30,12 @@ public class DeviceinfoProvider{
 		return brand;
 	}
 	
+	public synchronized void uninstall_WDA() {
+		if(!runCommandThruProcess(Constants.ANDROID_HOME+"/platform-tools/adb -s " + this.udid
+        + " shell getprop net.bt.name").contains("Android"))
+			runCommandThruProcess("/usr/local/bin/ideviceinstaller -u "+this.udid+" -U com.facebook.WebDriverAgentRunner.xctrunner");
+	}
+	
 	public synchronized String getOs() {
 		if(runCommandThruProcess(Constants.ANDROID_HOME+"/platform-tools/adb -s " + this.udid
                 + " shell getprop net.bt.name").contains("Android")) 
@@ -52,7 +58,7 @@ public class DeviceinfoProvider{
                     + " shell getprop ro.product.brand").replaceAll("\n", "") +" "+
                     runCommandThruProcess(Constants.ANDROID_HOME+"/platform-tools/adb -s " + this.udid
    	                     + " shell getprop ro.product.model")
-   	              .replaceAll("\n", "");
+   	              .replaceAll("\n", "") + " "+this.udid;
 			this.deviceName = device;
 		}else {
 			String deviceModel = getDeviceModel();
@@ -100,6 +106,8 @@ public class DeviceinfoProvider{
 				this.deviceName = "iPhone XR";
 			else if("iPhone12,1".equalsIgnoreCase(deviceModel))
 				this.deviceName = "iPhone 11";
+			else if("iPhone12,3".equalsIgnoreCase(deviceModel))
+				this.deviceName = "iPhone 11 Pro";
 			
 			else
 				this.deviceName = deviceModel;

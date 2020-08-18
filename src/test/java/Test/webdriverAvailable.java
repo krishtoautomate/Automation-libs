@@ -10,7 +10,7 @@ public class webdriverAvailable {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		String installedApps = runCommandThruProcess("/usr/local/bin/ideviceinstaller -u 00008030-000C58193410802E -l");
+		String installedApps = runCommandThruProcess("/usr/local/bin/ideviceinstaller -u 00008030-001A550A2643802E -l");
 		
 		System.out.println(installedApps);
 		
@@ -21,7 +21,7 @@ public class webdriverAvailable {
 		}
 		
 		if(!deviceBusy)
-			runCommandThruProcess("/usr/local/bin/ideviceinstaller -u 00008030-000C58193410802E -U com.facebook.WebDriverAgentRunner.xctrunner");
+			runCommandThruProcess("/usr/local/bin/ideviceinstaller -u 00008030-001A550A2643802E -U com.facebook.WebDriverAgentRunner.xctrunner");
 		
 		
 			

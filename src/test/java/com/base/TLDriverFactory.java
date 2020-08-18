@@ -80,6 +80,8 @@ public class TLDriverFactory{
 		    		}
 		        }else if("iOS".equalsIgnoreCase(platForm)) {
 		        	
+		        	deviceinfoProvider.uninstall_WDA();
+		        	
 		        	//load capabilites from json File
 		        	desiredCapabilities = capabilitiesManager.loadJSONCapabilities(Constants.IOS_CAPABILITIES , "IOS");
 		        	
@@ -96,7 +98,7 @@ public class TLDriverFactory{
         return tlDriver.get();
     }
     
-    private void sleep(int milliseconds) {
+    public void sleep(int milliseconds) {
     	try {
 			Thread.sleep(milliseconds);
 		} catch (InterruptedException e) {
