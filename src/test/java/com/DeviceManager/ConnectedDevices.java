@@ -25,7 +25,8 @@ public class ConnectedDevices {
 //		ObjectMapper mapper = new ObjectMapper();
 //		Object jsonObject = mapper.readValue(deviceInfo.getDevices().toString(), Object.class);
 //		String prettyJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonObject);
-		log.info(deviceInfo.getDevices());
+		System.out.println(deviceInfo.getDevices());
+		
 	}
 	
 	public JSONArray getIOSDevices() throws Exception {
@@ -74,7 +75,7 @@ public class ConnectedDevices {
 		 
 		 DeviceinfoProvider deviceinfoProvider = new DeviceinfoProvider(deviceID);
 		 
-	     String brand = "Apple";
+	     String brand = deviceinfoProvider.getBrand();
 	     String os = deviceinfoProvider.getOs();
 	     String osVersion = deviceinfoProvider.getPlatformVersion();
 	     String deviceModel = deviceinfoProvider.getDeviceModel();

@@ -26,14 +26,24 @@ public class DeviceinfoProvider{
 	}
 	
 	public synchronized String getBrand() {
-		this.brand = "Apple";
+		if(runCommandThruProcess(Constants.ANDROID_HOME+"/platform-tools/adb -s " + this.udid
+		        + " shell getprop net.bt.name").contains("Android"))
+			this.brand = "Android";
+		else
+			this.brand = "Apple";
 		return brand;
 	}
 	
 	public synchronized void uninstall_WDA() {
-		if(!runCommandThruProcess(Constants.ANDROID_HOME+"/platform-tools/adb -s " + this.udid
-        + " shell getprop net.bt.name").contains("Android"))
+		if(runCommandThruProcess(Constants.ANDROID_HOME+"/platform-tools/adb -s " + this.udid
+        + " shell getprop net.bt.name").contains("Android")) {
+			//ignore
+			runCommandThruProcess("/usr/local/share/android-sdk/platform-tools/adb -s "+this.udid+" uninstall io.appium.uiautomator2.server");
+			runCommandThruProcess("/usr/local/share/android-sdk/platform-tools/adb -s "+this.udid+" uninstall io.appium.uiautomator2.server.test");
+			runCommandThruProcess("/usr/local/share/android-sdk/platform-tools/adb -s "+this.udid+" uninstall io.appium.settings");
+		}else {
 			runCommandThruProcess("/usr/local/bin/ideviceinstaller -u "+this.udid+" -U com.facebook.WebDriverAgentRunner.xctrunner");
+		}
 	}
 	
 	public synchronized String getOs() {
@@ -108,7 +118,6 @@ public class DeviceinfoProvider{
 				this.deviceName = "iPhone 11";
 			else if("iPhone12,3".equalsIgnoreCase(deviceModel))
 				this.deviceName = "iPhone 11 Pro";
-			
 			else
 				this.deviceName = deviceModel;
 						 
@@ -155,9 +164,6 @@ public class DeviceinfoProvider{
 			
 		return deviceModel;
 	}
-//	public synchronized String getDeviceColour() {
-//		return deviceColour;
-//	}
 
 	private String runCommandThruProcess(String command) {
 	    BufferedReader br;
@@ -171,8 +177,7 @@ public class DeviceinfoProvider{
 	         allLine = allLine + "" + line + "\n";
 	     }
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			// ignore
 		}
 	     return allLine;
 	 }

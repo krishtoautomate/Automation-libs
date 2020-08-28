@@ -144,6 +144,8 @@ public class TestBase {
 	   String platFormVersion = "";
 
 	   if(udid != null ) {
+		   
+		   
 		   server = appiumManager.AppiumService();
 		   
 		   if(server.isRunning())
@@ -182,7 +184,6 @@ public class TestBase {
 			   udid = ((AppiumDriver<MobileElement>) driver).getCapabilities().getCapability("udid").toString();
 		   
 		   DeviceinfoProvider deviceinfoProvider = new DeviceinfoProvider(udid);
-		   
 		   deviceName = deviceinfoProvider.getDeviceName() + " : "+ udid;
 		   platForm = deviceinfoProvider.getPlatformName();
 		   platFormVersion = deviceinfoProvider.getPlatformVersion();

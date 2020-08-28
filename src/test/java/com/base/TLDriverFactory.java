@@ -54,44 +54,44 @@ public class TLDriverFactory{
     	String deviceName = deviceinfoProvider.getDeviceName();
     	String platForm = deviceinfoProvider.getPlatformName();
     	
-    	
-		    	if("Android".equalsIgnoreCase(platForm)) {
-		    		while(retry > 0 ) {
-		        		try {
-				    		//adb shell dumpsys window windows | grep -E 'mCurrentFocus'
-				        	//adb -s BPN0218515003355 shell getprop
-				        	
-				        	//load capabilites from json File
-				        	desiredCapabilities = capabilitiesManager.loadJSONCapabilities(Constants.ANDROID_CAPABILITIES , "ANDROID");
-				        	
-							desiredCapabilities.setCapability("deviceName",deviceName);
-							desiredCapabilities.setCapability(MobileCapabilityType.UDID, udid);
-							desiredCapabilities.setCapability("systemPort", devicePort);//sysPort	
-							
-							tlDriver.set(new AndroidDriver<MobileElement>(new URL(server.getUrl().toString()), desiredCapabilities));
-				//    		tlDriver.set(new AndroidDriver<MobileElement>(new URL("http://192.168.0.54:4444/wd/hub"), desiredCapabilities));
-							break;
-		        		} catch (Exception e) {
-		        		   //Decrement Retry interval
-		    		       retry--;
-		    		       log.info("\nAttempted: " + (60-retry) + ". Failure to find device("+udid+"), Retrying.....\n"+e);
-		    		       sleep(interval);
-		        		}
-		    		}
-		        }else if("iOS".equalsIgnoreCase(platForm)) {
-		        	
-		        	deviceinfoProvider.uninstall_WDA();
+    	if("Android".equalsIgnoreCase(platForm)) {
+    		
+    		while(retry > 0 ) {
+        		try {
+		    		//adb shell dumpsys window windows | grep -E 'mCurrentFocus'
+		        	//adb -s BPN0218515003355 shell getprop
 		        	
 		        	//load capabilites from json File
-		        	desiredCapabilities = capabilitiesManager.loadJSONCapabilities(Constants.IOS_CAPABILITIES , "IOS");
+		        	desiredCapabilities = capabilitiesManager.loadJSONCapabilities(Constants.ANDROID_CAPABILITIES , "ANDROID");
 		        	
-		        	desiredCapabilities.setCapability("deviceName", deviceName);
-		        	desiredCapabilities.setCapability("udid", udid);
-		        	desiredCapabilities.setCapability("wdaLocalPort", devicePort);
-		        	
-					tlDriver.set(new AppiumDriver<MobileElement>(new URL(server.getUrl().toString()), desiredCapabilities)); 
-		//        	tlDriver.set(new AppiumDriver<MobileElement>(new URL("http://192.168.0.54:4444/wd/hub"), desiredCapabilities));
-		        }
+					desiredCapabilities.setCapability("deviceName",deviceName);
+					desiredCapabilities.setCapability(MobileCapabilityType.UDID, udid);
+					desiredCapabilities.setCapability("systemPort", devicePort);//sysPort	
+					
+					tlDriver.set(new AndroidDriver<MobileElement>(new URL(server.getUrl().toString()), desiredCapabilities));
+		//    		tlDriver.set(new AndroidDriver<MobileElement>(new URL("http://192.168.0.54:4444/wd/hub"), desiredCapabilities));
+					break;
+        		} catch (Exception e) {
+        		   //Decrement Retry interval
+    		       retry--;
+    		       log.info("\nAttempted: " + (60-retry) + ". Failure to find device("+udid+"), Retrying.....\n"+e);
+    		       sleep(interval);
+        		}
+    		}
+        }else if("iOS".equalsIgnoreCase(platForm)) {
+        	
+        	deviceinfoProvider.uninstall_WDA();
+        	
+        	//load capabilites from json File
+        	desiredCapabilities = capabilitiesManager.loadJSONCapabilities(Constants.IOS_CAPABILITIES , "IOS");
+        	
+        	desiredCapabilities.setCapability("deviceName", deviceName);
+        	desiredCapabilities.setCapability("udid", udid);
+        	desiredCapabilities.setCapability("wdaLocalPort", devicePort);
+        	
+			tlDriver.set(new AppiumDriver<MobileElement>(new URL(server.getUrl().toString()), desiredCapabilities)); 
+//        	tlDriver.set(new AppiumDriver<MobileElement>(new URL("http://192.168.0.54:4444/wd/hub"), desiredCapabilities));
+        }
     }
  
     public synchronized WebDriver getDriver() {

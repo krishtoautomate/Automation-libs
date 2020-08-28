@@ -210,6 +210,15 @@
    "colour":"Red",
    "devicePort":8326
  },
+ 
+ {
+   "name":"iPhone 11",
+   "udid":"00008030-001240223CBA802E",
+   "platformName":"iOS",
+   "platformVersion":"13.3",
+   "colour":"Unknown",
+   "devicePort":8327
+ },
  {
    "name":"Samsung S8",
    "udid":"988b9b304b4e4a374a",
@@ -429,6 +438,44 @@
    "platformVersion":"10.0",
    "colour":"Black",
    "devicePort":8227
+ }
+ 
+ ,
+  {
+   "name":"TCL 10 Pro",
+   "udid":"67965c96",
+   "platformName":"Android",
+   "platformVersion":"10.0",
+   "colour":"Black",
+   "devicePort":8228
+ }
+ 
+ ,
+  {
+   "name":"LG Velvet",
+   "udid":"LMG900UM1b759d9d",
+   "platformName":"Android",
+   "platformVersion":"10.0",
+   "colour":"PinkGold",
+   "devicePort":8229
+ }
+ ,
+  {
+   "name":"Samsung S20 5G",
+   "udid":"R5CN30JLFYH",
+   "platformName":"Android",
+   "platformVersion":"10.0",
+   "colour":"White",
+   "devicePort":8230
+ },
+ 
+ {
+   "name":"LG K20",
+   "udid":"LMX120L7IB9PP7V899",
+   "platformName":"Android",
+   "platformVersion":"10.0",
+   "colour":"Black",
+   "devicePort":8231
  }
 
 ]

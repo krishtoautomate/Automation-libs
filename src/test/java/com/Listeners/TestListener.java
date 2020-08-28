@@ -110,7 +110,6 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener 
 		Logger log = ((TestBase) testClass).getLog();
 		log.warn("Test Skipped : "+ tr.getMethod().getMethodName() + " : "+ udid+"_"+deviceName);
 		
-		
 		ExtentTest test = ((TestBase) testClass).getExtentTest();
 		ExtentReports extent = ((TestBase) testClass).getExtentReports();
 		try {
@@ -124,8 +123,6 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener 
 	public void onStart(ISuite suite) {
 		// TODO Auto-generated method stub
 		reporter.initialize();//Emailable Report
-		
-		
 	}
 
 	@Override
@@ -133,7 +130,7 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener 
 		String emailReport = Constants.EMAIL_REPORT;
 		File file = new File(emailReport);
         if(file.delete()) {
-        	//delete if exists}
+        	//delete if exists
         }
 		reporter.writeResults(emailReport);
 		
