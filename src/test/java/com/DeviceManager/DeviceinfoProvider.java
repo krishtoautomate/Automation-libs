@@ -28,7 +28,9 @@ public class DeviceinfoProvider{
 	public synchronized String getBrand() {
 		if(runCommandThruProcess(Constants.ANDROID_HOME+"/platform-tools/adb -s " + this.udid
 		        + " shell getprop net.bt.name").contains("Android"))
-			this.brand = "Android";
+			this.brand = runCommandThruProcess("/usr/local/share/android-sdk/platform-tools/adb -s " +
+					this.udid +
+		             " shell getprop ro.product.brand").replaceAll("\n", "");
 		else
 			this.brand = "Apple";
 		return brand;
@@ -48,14 +50,10 @@ public class DeviceinfoProvider{
 	
 	public synchronized String getOs() {
 		if(runCommandThruProcess(Constants.ANDROID_HOME+"/platform-tools/adb -s " + this.udid
-                + " shell getprop net.bt.name").contains("Android")) 
-			
-			this.os = runCommandThruProcess(Constants.ANDROID_HOME+"/platform-tools/adb -s " + this.udid
-                    + " shell getprop net.bt.name");
+                + " shell getprop net.bt.name").contains("Android"))
+			this.os = "Android";
 		else
-			
-			this.os = runCommandThruProcess(
-		    		 "/usr/local/bin/ideviceinfo -u" + this.udid + "  -k ProductName") .replaceAll("\\s+", "");
+			this.os = "iPhone OS";
 			
 		return os;
 	}
@@ -118,6 +116,8 @@ public class DeviceinfoProvider{
 				this.deviceName = "iPhone 11";
 			else if("iPhone12,3".equalsIgnoreCase(deviceModel))
 				this.deviceName = "iPhone 11 Pro";
+			else if("iPhone12,8".equalsIgnoreCase(deviceModel))
+				this.deviceName = "iPhone SE 2";
 			else
 				this.deviceName = deviceModel;
 						 
@@ -161,7 +161,6 @@ public class DeviceinfoProvider{
 		    		 "/usr/local/bin/ideviceinfo -u" + this.udid + "  -k ProductType")
 		              .replaceAll("\\s+", "");
 		
-			
 		return deviceModel;
 	}
 
@@ -171,15 +170,15 @@ public class DeviceinfoProvider{
 		try {
 			br = getBufferedReader(command);
 		
-	     String line;
+			String line;
 	     
-	     while ((line = br.readLine()) != null) {
-	         allLine = allLine + "" + line + "\n";
-	     }
+		    while ((line = br.readLine()) != null) {
+		        allLine = allLine + "" + line + "\n";
+		    }
 		} catch (IOException e) {
 			// ignore
 		}
-	     return allLine;
+	    return allLine;
 	 }
 	
 	 private BufferedReader getBufferedReader(String command) throws IOException {

@@ -30,8 +30,8 @@ public class InvokedSuiteListener extends TestListenerAdapter implements ISuiteL
 		DeviceinfoProviderOld deviceInfo = new DeviceinfoProviderOld();
 		
 		try {
-			deviceInfo.setDevices(devices.getIOSDevices());
-			deviceInfo.setDevices(devices.getAndroidDevices());
+			deviceInfo.setDevices(devices.getAllIOSDevicesInfo());
+			deviceInfo.setDevices(devices.getAllAndroidDevicesInfo());
 		} catch (Exception e) {
 			// ignore
 		}
