@@ -1,165 +1,186 @@
 package com.DeviceManager;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.Utilities.Utilities;
+
 public class ConnectedDevices {
 	
 	private static Logger log = Logger.getLogger(Class.class.getName());
+	
+	Utilities utilities = new Utilities();
 	
 	public static void main(String[] args) throws Exception {
 		
 		ConnectedDevices devices = new ConnectedDevices();
 		DeviceinfoProviderOld deviceInfo = new DeviceinfoProviderOld();
 		
-		deviceInfo.setDevices(devices.getIOSDevices());
-		deviceInfo.setDevices(devices.getAndroidDevices());
-		//log.info(deviceInfo.getDevices());
+//		deviceInfo.setDevices(devices.getAllIOSDevicesInfo());
+//		deviceInfo.setDevices(devices.getAllAndroidDevicesInfo());
 		
-//		ObjectMapper mapper = new ObjectMapper();
-//		Object jsonObject = mapper.readValue(deviceInfo.getDevices().toString(), Object.class);
-//		String prettyJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonObject);
-		System.out.println(deviceInfo.getDevices());
+		System.out.println("---------------------------------------------------------------------------------------------------------------------");
+		System.out.printf("%30s %30s %20s %6s %10s", "UDID", "DEVICE NAME", "OS", "OS-VERSION", "BRAND");
+		System.out.println("\n-------------------------------------------------------------------------------------------------------------------");
+		
+	    for(String udid: devices.getIdevices()){
+	    	DeviceinfoProvider deviceinfoProvider = new DeviceinfoProvider(udid);
+	        System.out.format("%30s %30s %20s %6s %10s",
+	        		udid, deviceinfoProvider.getDeviceName(), deviceinfoProvider.getOs(), deviceinfoProvider.getPlatformVersion(), deviceinfoProvider.getBrand());
+	        System.out.println();
+	    }
+	    System.out.println("----------------------------------------------------------------------------------------------------------------------");
 		
 	}
 	
-	public JSONArray getIOSDevices() throws Exception {
-		 JSONObject deviceObj = new JSONObject();
-		 JSONArray devicesArray = new JSONArray();
-		 String output = runCommandThruProcess("/usr/local/bin/idevice_id -l");
-		 String[] lines = output.split("\n");
+	private void startADB() {
+		utilities.runCommandThruProcess("/usr/local/share/android-sdk/platform-tools/adb start-server");
+	}
+	
+	/*
+	 * List all ios devices
+	 */
+	public ArrayList<String> getIdevices() {
+		 
+		ArrayList<String> deviceList = new ArrayList<String>();
+		
+		String output = utilities.runCommandThruProcess("/usr/local/bin/idevice_id -l");
+		 
+		String[] lines = output.split("\n");
 	        
-         for (int i = 0; i < lines.length; i++) {
-             lines[i] = lines[i].replaceAll("device", "");
-             String deviceID = lines[i];
-             deviceObj = getDeviceIosInfo(deviceID);
-//             devices.add(deviceInfo.toString());
-             devicesArray.put(deviceObj);
-         }
-         return devicesArray;
-	 }
-	 
-	 public JSONArray getAndroidDevices() throws Exception {
+	    for (String device : lines) {
+	    	deviceList.add(device); 
+	    }
+	    
+	    return deviceList;
+	}
+	
+	/*
+	 * List all Android devices
+	 */
+	public ArrayList<String> getADBdevices() {
+		 
+		ArrayList<String> deviceList = new ArrayList<String>();
+		 	
+		startADB(); // start adb service
+		
+		String output = utilities.runCommandThruProcess("/usr/local/share/android-sdk/platform-tools/adb devices");
+		
+		String[] lines = output.split("\n");
+		
+	    for (int i = 1; i < lines.length; i++) {
+	    	lines[i] = lines[i].split("\\s+")[0];
+
+            deviceList.add(lines[i]);
+	    }
+	    
+		return deviceList;
+	}
+	
+	public JSONArray getAllIOSDevicesInfo() {
+		 JSONObject deviceInfo = new JSONObject();
+		 JSONArray devices = new JSONArray();
+		 
+		 ArrayList<String> deviceList = getIdevices();
+		 
+		 for (String device : deviceList) {
+		        deviceInfo = getAndroidDeviceInfo(device);
+		        devices.put(deviceInfo);
+		 }
+         return devices;
+	}
+	
+	public JSONArray getAllAndroidDevicesInfo() {
 		 
 		JSONObject deviceInfo = new JSONObject();
 		JSONArray devices = new JSONArray();
-		 	
-		startADB(); // start adb service
-		String output = runCommandThruProcess("/usr/local/share/android-sdk/platform-tools/adb devices");
-		String[] lines = output.split("\n");
 		
-		if (lines.length <= 1) {
-		    //stopADB();
-		} else {
-		    for (int i = 1; i < lines.length; i++) {
-		        lines[i] = lines[i].replaceAll("\\s+", "");
+		ArrayList<String> deviceList = getADBdevices();
+				
+	    for (String device : deviceList) {
+	        deviceInfo = getAndroidDeviceInfo(device);
+	        devices.put(deviceInfo);
+	    }
 		
-		        if (lines[i].contains("device")) {
-		            lines[i] = lines[i].replaceAll("device", "");
-		            String deviceID = lines[i];
-		            deviceInfo = getAndroidDeviceInfo(deviceID);
-		            devices.put(deviceInfo);
-		        }
-		    }
-		}
 		return devices;
 	}
 	 
-	 public JSONObject getDeviceIosInfo(String deviceID) throws InterruptedException, IOException {
+	public JSONObject getDeviceIosInfo(String deviceID) {
 		 
-		 DeviceinfoProvider deviceinfoProvider = new DeviceinfoProvider(deviceID);
+		DeviceinfoProvider deviceinfoProvider = new DeviceinfoProvider(deviceID);
 		 
-	     String brand = deviceinfoProvider.getBrand();
-	     String os = deviceinfoProvider.getOs();
-	     String osVersion = deviceinfoProvider.getPlatformVersion();
-	     String deviceModel = deviceinfoProvider.getDeviceModel();
+	    String brand = deviceinfoProvider.getBrand();
+	    String os = deviceinfoProvider.getOs();
+	    String osVersion = deviceinfoProvider.getPlatformVersion();
+	    String deviceModel = deviceinfoProvider.getDeviceModel();
+	    String deviceName = deviceinfoProvider.getDeviceName();
 	     
-	     String deviceName = deviceinfoProvider.getDeviceName();
-	     
-	     boolean isDevice = true;
+	    JSONObject adbDevices = new JSONObject();
+	    adbDevices.put("udid",deviceID);
+	    adbDevices.put("name",deviceName);
+	    adbDevices.put("os",os);
+	    adbDevices.put("osVersion",osVersion);
+	    adbDevices.put("brand",brand);
+	    adbDevices.put("deviceModel",deviceModel);
 	    
-	     JSONObject adbDevices = new JSONObject();
-	     adbDevices.put("name",deviceName);
-	     adbDevices.put("osVersion",osVersion);
-	     adbDevices.put("brand",brand);
-	     adbDevices.put("udid",deviceID);
-	     adbDevices.put("isDevice",isDevice);
-	     adbDevices.put("deviceModel",deviceModel);
-	     adbDevices.put("os",os);
-	     
-	     return adbDevices;
-	 }
-	 
-	 
-	
-	
-	private void startADB() throws Exception {
-	    String output = runCommandThruProcess("/usr/local/share/android-sdk/platform-tools/adb start-server");
-	    String[] lines = output.split("\n");
-	    if (lines[0].contains("internal or external command")) {
-	        System.out.println("Please set ANDROID_HOME in your system variables");
-	    }
+	    return adbDevices;
 	}
+	 
 	
-	private JSONObject getAndroidDeviceInfo(String deviceID) throws InterruptedException, IOException {
+	
+	private JSONObject getAndroidDeviceInfo(String deviceID)  {
 		
 		DeviceinfoProvider deviceinfoProvider = new DeviceinfoProvider(deviceID);
 		
-		 String deviceModel = deviceinfoProvider.getDeviceModel();
-	     String brand = deviceinfoProvider.getBrand();
-	     String osVersion = deviceinfoProvider.getPlatformVersion();
-	     String deviceName = brand + " " + deviceModel;
-	     String apiLevel =
-	             runCommandThruProcess("/usr/local/share/android-sdk/platform-tools/adb -s " + deviceID
-	                     + " shell getprop ro.build.version.sdk")
-	                     .replaceAll("\n", "");
-	     String deviceManufacturer = runCommandThruProcess("/usr/local/share/android-sdk/platform-tools/adb -s " +
-	             deviceID +
-	             " shell getprop ro.product.manufacturer")
-	    		 .replaceAll("\n", "");
-	
-	     boolean isDevice = true;
+		String deviceModel = deviceinfoProvider.getDeviceModel();
+		String brand = deviceinfoProvider.getBrand();
+	    String osVersion = deviceinfoProvider.getPlatformVersion();
+	    String deviceName = brand + " " + deviceModel;
+	    String os = deviceinfoProvider.getOs();
 	    
-	     JSONObject adbDevices = new JSONObject();
-	     adbDevices.put("name",deviceName);
-	     adbDevices.put("osVersion",osVersion);
-	     adbDevices.put("apiLevel",apiLevel);
-	     adbDevices.put("brand",brand);
-	     adbDevices.put("udid",deviceID);
-	     adbDevices.put("isDevice",isDevice);
-	     adbDevices.put("deviceModel",deviceModel);
-	     adbDevices.put("deviceManufacturer",deviceManufacturer);
-	     adbDevices.put("os","android");
-	     
-	     return adbDevices;
+	    JSONObject adbDevices = new JSONObject();
+	    adbDevices.put("udid",deviceID);
+	    adbDevices.put("name",deviceName);
+	    adbDevices.put("os",os);
+	    adbDevices.put("osVersion",osVersion);
+	    adbDevices.put("brand",brand);
+	    adbDevices.put("deviceModel",deviceModel);
+	    
+	    return adbDevices;
 	 }
 	
-	private String runCommandThruProcess(String command)
-         throws InterruptedException, IOException {
-	     BufferedReader br = getBufferedReader(command);
-	     String line;
-	     String allLine = "";
-	     while ((line = br.readLine()) != null) {
-	         allLine = allLine + "" + line + "\n";
-	     }
-	     return allLine;
-	 }
-	
-	 private BufferedReader getBufferedReader(String command) throws IOException {
-	     
-	     final Process process =  Runtime.getRuntime()
-	    	      .exec(command);
-	     
-	     InputStream is = process.getInputStream();
-	     InputStreamReader isr = new InputStreamReader(is);
-	     return new BufferedReader(isr);
-	 }
+//	private String runCommandThruProcess(String command) {
+//	     BufferedReader br = getBufferedReader(command);
+//	     String line = "";
+//	     String allLine = "";
+//	     try {
+//			while ((line = br.readLine()) != null) {
+//				allLine = allLine + "" + line + "\n";
+//			}
+//		} catch (IOException e) {
+//			log.info("command failed!");
+//		}
+//	    return allLine;
+//	 }
+//	
+//	 private BufferedReader getBufferedReader(String command) {
+//	     
+//		 Process process = null;
+//		 try {
+//			 process = Runtime.getRuntime()
+//				      .exec(command);
+//		 } catch (IOException e) {
+//			log.info("Runtime command failed!");
+//		 }
+//	     
+//	     InputStream is = process.getInputStream();
+//	     InputStreamReader isr = new InputStreamReader(is);
+//	     
+//	     return new BufferedReader(isr);
+//	 }
 
 }
 

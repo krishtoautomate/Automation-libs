@@ -219,6 +219,55 @@
    "colour":"Unknown",
    "devicePort":8327
  },
+ 
+  {
+   "name":"iPhone XS",
+   "udid":"00008020-001C494121C0802E",
+   "platformName":"iOS",
+   "platformVersion":"14.0",
+   "colour":"Black",
+   "devicePort":8328
+ },
+ {
+   "name":"iPhone 7",
+   "udid":"96fe2b13b088073ee34500de06c01f26a74c002e",
+   "platformName":"iOS",
+   "platformVersion":"14.0",
+   "colour":"White",
+   "devicePort":8329
+ },
+ {
+   "name":"iPhone 7",
+   "udid":"db724c52790135f3bc25e4421d5eb633874be986",
+   "platformName":"iOS",
+   "platformVersion":"14.0",
+   "colour":"White",
+   "devicePort":8330
+ },
+ {
+   "name":"iPhone SE 2",
+   "udid":"00008030-0014605C0A50402E",
+   "platformName":"iOS",
+   "platformVersion":"14.0",
+   "colour":"White",
+   "devicePort":8331
+ },
+ {
+   "name":"iPad 7 Pro",
+   "udid":"72f6647f8e436ef054d8e469827dd47ede96bdba",
+   "platformName":"iOS",
+   "platformVersion":"14.0",
+   "colour":"White",
+   "devicePort":8332
+ },
+ {
+   "name":"iPhone SE 2",
+   "udid":"00008030-001E48AC3A47802E",
+   "platformName":"iOS",
+   "platformVersion":"14.0",
+   "colour":"White",
+   "devicePort":8333
+ },
  {
    "name":"Samsung S8",
    "udid":"988b9b304b4e4a374a",
@@ -476,6 +525,62 @@
    "platformVersion":"10.0",
    "colour":"Black",
    "devicePort":8231
+ },
+ 
+ {
+   "name":"Galaxy Note 20 5G",
+   "udid":"RFCN70BQCJX",
+   "platformName":"Android",
+   "platformVersion":"10.0",
+   "colour":"Pink Gold",
+   "devicePort":8232
+ },
+ 
+ {
+   "name":"One Plus 8",
+   "udid":"06a49bf4",
+   "platformName":"Android",
+   "platformVersion":"10.0",
+   "colour":"White",
+   "devicePort":8233
+ },
+  {
+   "name":"A7 Pro",
+   "udid":"A7PRO205077289",
+   "platformName":"Android",
+   "platformVersion":"10.0",
+   "colour":"White",
+   "devicePort":8234
  }
+ ,
+  {
+   "name":"Huawei Y9 Prime",
+   "udid":"SLVNW20811004208",
+   "platformName":"Android",
+   "platformVersion":"10.0",
+   "colour":"White",
+   "devicePort":8235
+ }
+ ,
+  {
+   "name":"Huawei MediaPad T3 10",
+   "udid":"D8TNU20317105075",
+   "platformName":"Android",
+   "platformVersion":"10.0",
+   "colour":"White",
+   "devicePort":8236
+ },
+ {
+   "name":"Nokia 8236",
+   "udid":"N0AA003657K70900229",
+   "platformName":"Android",
+   "platformVersion":"10.0",
+   "colour":"White",
+   "devicePort":8237
+ }
+ 
+ 
+ 
+ 
 
 ]

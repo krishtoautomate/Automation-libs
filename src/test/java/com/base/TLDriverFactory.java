@@ -90,7 +90,7 @@ public class TLDriverFactory{
         	desiredCapabilities.setCapability("wdaLocalPort", devicePort);
         	
 			tlDriver.set(new AppiumDriver<MobileElement>(new URL(server.getUrl().toString()), desiredCapabilities)); 
-//        	tlDriver.set(new AppiumDriver<MobileElement>(new URL("http://192.168.0.54:4444/wd/hub"), desiredCapabilities));
+//        	tlDriver.set(new AppiumDriver<MobileElement>(new URL("http://127.0.0.1:4723/wd/hub"), desiredCapabilities));
         }
     }
  

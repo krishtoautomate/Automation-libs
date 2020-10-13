@@ -134,7 +134,7 @@ public class TestBase {
    @SuppressWarnings("unchecked")
    @BeforeMethod
    @Parameters({"udid"})
-   public synchronized void BeforeClass (@Optional String udid, ITestContext Testctx, Method method) {
+   public synchronized void BeforeClass (@Optional String udid, ITestContext iTestContext, Method method) {
 	  
 	   AppiumManager appiumManager = new AppiumManager();
 	   
@@ -144,7 +144,6 @@ public class TestBase {
 	   String platFormVersion = "";
 
 	   if(udid != null ) {
-		   
 		   
 		   server = appiumManager.AppiumService();
 		   
@@ -169,7 +168,7 @@ public class TestBase {
 		   
 		   //Create Session
 		   try {
-			   tlDriverFactory.setDriver(server, Testctx);
+			   tlDriverFactory.setDriver(server, iTestContext);
 			   
 			   driverMap.put(Thread.currentThread().getId(),tlDriverFactory.getDriver());
 			
@@ -183,6 +182,7 @@ public class TestBase {
 		   if("Auto".equalsIgnoreCase(udid))
 			   udid = ((AppiumDriver<MobileElement>) driver).getCapabilities().getCapability("udid").toString();
 		   
+		   iTestContext.setAttribute("udid", udid);
 		   DeviceinfoProvider deviceinfoProvider = new DeviceinfoProvider(udid);
 		   deviceName = deviceinfoProvider.getDeviceName() + " : "+ udid;
 		   platForm = deviceinfoProvider.getPlatformName();
@@ -200,7 +200,7 @@ public class TestBase {
 			    { "<b>OsVersion : </b>", platFormVersion },
 			    
 			};
-			
+		   
 			test.info(MarkupHelper.createTable(data));
 			
 	   }else {

@@ -2,6 +2,8 @@ package com.Listeners;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -13,6 +15,7 @@ import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
 
 import com.DeviceManager.DeviceInfo;
+import com.DeviceManager.DeviceinfoProvider;
 import com.ReportManager.ReportBuilder;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -28,16 +31,16 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener 
 	
 	@Override
 	public synchronized void onTestSuccess(ITestResult tr) {
-		// TODO Auto-generated method stub
-		
 		/*
 		 * get device details
 		 */
 		Map<String, String> testParams = tr.getTestContext().getCurrentXmlTest().getAllParameters();
-		DeviceInfo deviceManager = new DeviceInfo();
 		String udid = testParams.get("udid");
-		String deviceName = deviceManager.getDeviceName(udid);
-		String platForm = deviceManager.getPlatformName(udid);
+		DeviceinfoProvider deviceinfoProvider = new DeviceinfoProvider(udid);
+		String deviceName = deviceinfoProvider.getDeviceName();
+		String platForm = deviceinfoProvider.getPlatformName();
+		String buildNo = System.getenv("BUILD_NUMBER");
+		String environment = System.getenv("ENVIRONMENT");
 		
 		Object testClass = tr.getInstance();
 		ExtentTest test = ((TestBase) testClass).getExtentTest();
@@ -49,20 +52,26 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener 
         test.assignCategory(deviceName);
         test.assignCategory("Passed");
         
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+		LocalDateTime now = LocalDateTime.now();
+		String date_time = dtf.format(now);
+        
+      //Emailable Test Summary
+//		reporter.report(date_time, "MBM", buildNo, environment, tr.getMethod().getMethodName(), deviceName, platForm, "PASS", tr.getThrowable().toString());
 	}
 
 	@Override
 	public synchronized void onTestFailure(ITestResult tr) {
-		// TODO Auto-generated method stub
-		DeviceInfo deviceManager = new DeviceInfo();
-		
 		/*
 		 * get device details
-		 */
+		*/
 		Map<String, String> testParams = tr.getTestContext().getCurrentXmlTest().getAllParameters();
 		String udid = testParams.get("udid");
-		String deviceName = deviceManager.getDeviceName(udid);
-		String platForm = deviceManager.getPlatformName(udid);
+		DeviceinfoProvider deviceinfoProvider = new DeviceinfoProvider(udid);
+		String deviceName = deviceinfoProvider.getDeviceName();
+		String platForm = deviceinfoProvider.getPlatformName();
+		String buildNo = System.getenv("BUILD_NUMBER");
+		String environment = System.getenv("ENVIRONMENT");
 		
 		Object testClass = tr.getInstance();
 		WebDriver driver = ((TestBase) testClass).getDriver();
@@ -87,24 +96,27 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener 
 	        test.assignCategory(platForm);
 	        test.assignCategory(deviceName);
 			test.assignCategory("Failed");
+			
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+			LocalDateTime now = LocalDateTime.now();
+			String date_time = dtf.format(now);
 				
 			//Emailable Test Summary
-			reporter.report(tr.getMethod().getMethodName(), deviceName, "FAIL", tr.getThrowable().toString());
+//			reporter.report(date_time, "MBM", buildNo, environment, tr.getMethod().getMethodName(), deviceName, platForm, "FAIL", tr.getThrowable().toString());
 			
 		}
 	}
 
 	@Override
 	public synchronized void onTestSkipped(ITestResult tr) {
-		// TODO Auto-generated method stub
-		
 		/*
 		 * get device details
 		 */
 		DeviceInfo deviceManager = new DeviceInfo();
 		Map<String, String> testParams = tr.getTestContext().getCurrentXmlTest().getAllParameters();
 		String udid = testParams.get("udid");
-		String deviceName = deviceManager.getDeviceName(udid);
+		DeviceinfoProvider deviceinfoProvider = new DeviceinfoProvider(udid);
+		String deviceName = deviceinfoProvider.getDeviceName();
 		
 		Object testClass = tr.getInstance();
 		Logger log = ((TestBase) testClass).getLog();
@@ -121,7 +133,6 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener 
 
 	@Override
 	public void onStart(ISuite suite) {
-		// TODO Auto-generated method stub
 		reporter.initialize();//Emailable Report
 	}
 
@@ -132,10 +143,9 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener 
         if(file.delete()) {
         	//delete if exists
         }
-		reporter.writeResults(emailReport);
-		
-	}
-
-	
+        String buildNo = System.getenv("BUILD_NUMBER");
+        if(buildNo != null)
+			reporter.writeResults(emailReport);
+	}	
 	
 }

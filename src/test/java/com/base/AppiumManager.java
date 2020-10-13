@@ -46,7 +46,7 @@ public class AppiumManager{
 		
 		AppiumManager appiumManager = new AppiumManager();
 		
-		appiumManager.killPort(8227);
+		appiumManager.killPort(8302);
 		
 	}
 	

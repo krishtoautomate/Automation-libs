@@ -49,19 +49,26 @@ public class MBM {
 		desiredCapabilities.setCapability("noReset", true);
 		desiredCapabilities.setCapability("fullReset", false);
 		
-		desiredCapabilities.setCapability("appPackage", "ca.bell.selfserve.mybellmobile.preprod");
-		desiredCapabilities.setCapability("appActivity", "ca.bell.selfserve.mybellmobile.ui.splash.view.SplashActivity");
+//		desiredCapabilities.setCapability("appWaitDuration", 5);
+//		desiredCapabilities.setCapability("androidDeviceReadyTimeout", 5);
 		
-//		desiredCapabilities.setCapability("appPackage", "ca.virginmobile.myaccount.virginmobile.preprod");
-//		desiredCapabilities.setCapability("appActivity", "ca.virginmobile.myaccount.virginmobile.ui.splash.view.SplashActivity");
+//		desiredCapabilities.setCapability("avdReadyTimeout", 5);
+		
+		
+		
+//		desiredCapabilities.setCapability("appPackage", "ca.bell.selfserve.mybellmobile.preprod");
+//		desiredCapabilities.setCapability("appActivity", "ca.bell.selfserve.mybellmobile.ui.splash.view.SplashActivity");
+		
+		desiredCapabilities.setCapability("appPackage", "ca.virginmobile.myaccount.virginmobile.preprod");//5sec
+		desiredCapabilities.setCapability("appActivity", "ca.virginmobile.myaccount.virginmobile.ui.splash.view.SplashActivity");
 		
 		driver = new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:4723/wd/hub"), desiredCapabilities);
 //		driver = new AndroidDriver<MobileElement>(new URL(server.getUrl().toString()), desiredCapabilities);
 		
 		System.out.println(dtf.format(LocalDateTime.now())); 
 		
-		wait = new WebDriverWait(driver, 25);
-		driver.manage().timeouts().implicitlyWait(25, TimeUnit.SECONDS);
+		wait = new WebDriverWait(driver, 5);
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(loginUser));
 		driver.findElement(loginUser).sendKeys("automation5");
@@ -82,6 +89,7 @@ public class MBM {
 		//Click 'More' button
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(more_btn));
 		driver.findElement(more_btn).click();
+//		((AndroidDriver<MobileElement>) driver).findElementByAndroidUIAutomator("new UiSelector().resourceId(\"id/more\")").click();
 		System.out.println(dtf.format(LocalDateTime.now()) + " : More button : Clicked");
 		
 		
