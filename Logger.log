@@ -1,0 +1,288 @@
+10-09-2020 16:43:07.007 Lucky_PROD_Suite - TestBase.java : setupSuit INFO  [main] 90 - created Folder for Report: /Users/krish/Automation/Automation-libs/test-output/10092020
+10-09-2020 16:43:10.010 base.TLDriverFactory - TLDriverFactory.java : setDriver INFO  [TestNG-tests-2] 77 - 
+Attempted: 56. Failure to find device(R58N70GGVZH), Retrying.....
+org.openqa.selenium.SessionNotCreatedException: Unable to create a new remote session. Please check the server log for more details. Original error: An unknown server-side error occurred while processing the command. Original error: Could not find 'adb' in PATH. Please set the ANDROID_HOME or ANDROID_SDK_ROOT environment variables to the corect Android SDK root directory path.
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'A05SA619.bell.corp.bce.ca', ip: 'fd00:688f:2ed1:1682:4dd2:3a34:1b51:cb49%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.6', java.version: '1.8.0_251'
+Driver info: driver.version: AndroidDriver
+remote stacktrace: UnknownError: An unknown server-side error occurred while processing the command. Original error: Could not find 'adb' in PATH. Please set the ANDROID_HOME or ANDROID_SDK_ROOT environment variables to the corect Android SDK root directory path.
+    at getResponseForW3CError (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/errors.js:804:9)
+    at asyncHandler (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/protocol.js:388:37)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'A05SA619.bell.corp.bce.ca', ip: 'fd00:688f:2ed1:1682:4dd2:3a34:1b51:cb49%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.6', java.version: '1.8.0_251'
+Driver info: driver.version: AndroidDriver
+10-09-2020 16:43:11.011 base.TLDriverFactory - TLDriverFactory.java : setDriver INFO  [TestNG-tests-2] 77 - 
+Attempted: 57. Failure to find device(R58N70GGVZH), Retrying.....
+org.openqa.selenium.SessionNotCreatedException: Unable to create a new remote session. Please check the server log for more details. Original error: An unknown server-side error occurred while processing the command. Original error: Could not find 'adb' in PATH. Please set the ANDROID_HOME or ANDROID_SDK_ROOT environment variables to the corect Android SDK root directory path.
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'A05SA619.bell.corp.bce.ca', ip: 'fd00:688f:2ed1:1682:4dd2:3a34:1b51:cb49%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.6', java.version: '1.8.0_251'
+Driver info: driver.version: AndroidDriver
+remote stacktrace: UnknownError: An unknown server-side error occurred while processing the command. Original error: Could not find 'adb' in PATH. Please set the ANDROID_HOME or ANDROID_SDK_ROOT environment variables to the corect Android SDK root directory path.
+    at getResponseForW3CError (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/errors.js:804:9)
+    at asyncHandler (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/protocol.js:388:37)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'A05SA619.bell.corp.bce.ca', ip: 'fd00:688f:2ed1:1682:4dd2:3a34:1b51:cb49%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.6', java.version: '1.8.0_251'
+Driver info: driver.version: AndroidDriver
+10-09-2020 16:43:12.012 base.TLDriverFactory - TLDriverFactory.java : setDriver INFO  [TestNG-tests-2] 77 - 
+Attempted: 58. Failure to find device(R58N70GGVZH), Retrying.....
+org.openqa.selenium.SessionNotCreatedException: Unable to create a new remote session. Please check the server log for more details. Original error: An unknown server-side error occurred while processing the command. Original error: Could not find 'adb' in PATH. Please set the ANDROID_HOME or ANDROID_SDK_ROOT environment variables to the corect Android SDK root directory path.
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'A05SA619.bell.corp.bce.ca', ip: 'fd00:688f:2ed1:1682:4dd2:3a34:1b51:cb49%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.6', java.version: '1.8.0_251'
+Driver info: driver.version: AndroidDriver
+remote stacktrace: UnknownError: An unknown server-side error occurred while processing the command. Original error: Could not find 'adb' in PATH. Please set the ANDROID_HOME or ANDROID_SDK_ROOT environment variables to the corect Android SDK root directory path.
+    at getResponseForW3CError (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/errors.js:804:9)
+    at asyncHandler (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/protocol.js:388:37)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'A05SA619.bell.corp.bce.ca', ip: 'fd00:688f:2ed1:1682:4dd2:3a34:1b51:cb49%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.6', java.version: '1.8.0_251'
+Driver info: driver.version: AndroidDriver
+10-09-2020 16:43:13.013 base.TLDriverFactory - TLDriverFactory.java : setDriver INFO  [TestNG-tests-2] 77 - 
+Attempted: 59. Failure to find device(R58N70GGVZH), Retrying.....
+org.openqa.selenium.SessionNotCreatedException: Unable to create a new remote session. Please check the server log for more details. Original error: An unknown server-side error occurred while processing the command. Original error: Could not find 'adb' in PATH. Please set the ANDROID_HOME or ANDROID_SDK_ROOT environment variables to the corect Android SDK root directory path.
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'A05SA619.bell.corp.bce.ca', ip: 'fd00:688f:2ed1:1682:4dd2:3a34:1b51:cb49%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.6', java.version: '1.8.0_251'
+Driver info: driver.version: AndroidDriver
+remote stacktrace: UnknownError: An unknown server-side error occurred while processing the command. Original error: Could not find 'adb' in PATH. Please set the ANDROID_HOME or ANDROID_SDK_ROOT environment variables to the corect Android SDK root directory path.
+    at getResponseForW3CError (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/errors.js:804:9)
+    at asyncHandler (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/protocol.js:388:37)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'A05SA619.bell.corp.bce.ca', ip: 'fd00:688f:2ed1:1682:4dd2:3a34:1b51:cb49%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.6', java.version: '1.8.0_251'
+Driver info: driver.version: AndroidDriver
+10-09-2020 16:43:14.014 base.TLDriverFactory - TLDriverFactory.java : setDriver INFO  [TestNG-tests-2] 77 - 
+Attempted: 60. Failure to find device(R58N70GGVZH), Retrying.....
+org.openqa.selenium.SessionNotCreatedException: Unable to create a new remote session. Please check the server log for more details. Original error: An unknown server-side error occurred while processing the command. Original error: Could not find 'adb' in PATH. Please set the ANDROID_HOME or ANDROID_SDK_ROOT environment variables to the corect Android SDK root directory path.
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'A05SA619.bell.corp.bce.ca', ip: 'fd00:688f:2ed1:1682:4dd2:3a34:1b51:cb49%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.6', java.version: '1.8.0_251'
+Driver info: driver.version: AndroidDriver
+remote stacktrace: UnknownError: An unknown server-side error occurred while processing the command. Original error: Could not find 'adb' in PATH. Please set the ANDROID_HOME or ANDROID_SDK_ROOT environment variables to the corect Android SDK root directory path.
+    at getResponseForW3CError (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/errors.js:804:9)
+    at asyncHandler (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/protocol.js:388:37)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'A05SA619.bell.corp.bce.ca', ip: 'fd00:688f:2ed1:1682:4dd2:3a34:1b51:cb49%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.6', java.version: '1.8.0_251'
+Driver info: driver.version: AndroidDriver
+10-09-2020 16:43:15.015 Lucky_PROD_Suite - TestBase.java : BeforeClass ERROR [TestNG-tests-2] 178 - session failed : null
+10-09-2020 16:43:16.016 Lucky_PROD_Suite - TestListener.java : onTestSkipped WARN  [TestNG-tests-2] 123 - Test Skipped : PlaystoreUpdateScript : R58N70GGVZH_samsung SM-A515W R58N70GGVZH
+10-09-2020 16:43:46.046 Lucky_PROD_Suite - TestBase.java : BeforeClass INFO  [TestNG-tests-1] 194 - Test Details : TestFlightUpdateScript : ios : iPhone 11 Pro : 00008030-001A550A2643802E
+10-09-2020 16:44:12.012 Lucky_PROD_Suite - TestBase.java : BeforeClass INFO  [TestNG-tests-1] 194 - Test Details : TestFlightUpdateScript : ios : iPhone 11 Pro : 00008030-001A550A2643802E
+10-09-2020 16:44:23.023 Lucky_PROD_Suite - TestBase.java : BeforeClass INFO  [TestNG-tests-2] 194 - Test Details : PlaystoreUpdateScript : Android : samsung SM-A515W R58N70GGVZH : R58N70GGVZH
+10-09-2020 16:44:50.050 Lucky_PROD_Suite - BaseObjs.java : logmessage INFO  [TestNG-tests-2] 193 - Left Navigate Button clicked
+10-09-2020 16:44:55.055 Lucky_PROD_Suite - BaseObjs.java : logmessage INFO  [TestNG-tests-2] 193 - 'My apps & games' link clicked
+10-09-2020 16:45:09.009 Lucky_PROD_Suite - BaseObjs.java : logmessage INFO  [TestNG-tests-2] 193 - 'UPDATE ALL' button clicked
+10-09-2020 16:45:11.011 Lucky_PROD_Suite - TestListener.java : onTestFailure ERROR [TestNG-tests-2] 82 - Test failed : PlaystoreUpdateScript : R58N70GGVZH_samsung SM-A515W R58N70GGVZH
+10-09-2020 16:46:46.046 Lucky_PROD_Suite - BaseObjs.java : logmessage INFO  [TestNG-tests-1] 193 - Verification Success : 'Apps' Vs 'Apps'
+10-09-2020 16:46:51.051 Lucky_PROD_Suite - TestFlight.java : TestFlightUpdateScript INFO  [TestNG-tests-1] 73 - Total 'UPDATE' or 'INSTALL' buttons : 2
+10-09-2020 16:47:52.052 Lucky_PROD_Suite - BaseObjs.java : logmessage INFO  [TestNG-tests-1] 193 - UPDATE- button clicked
+10-09-2020 16:47:53.053 Lucky_PROD_Suite - BaseObjs.java : logmessage INFO  [TestNG-tests-1] 193 - UPDATE- button clicked
+10-09-2020 16:48:00.000 Lucky_PROD_Suite - MobileActions.java : toggleWifiON INFO  [TestNG-tests-1] 380 - WIFI OFF
+10-09-2020 16:48:01.001 Lucky_PROD_Suite - MobileActions.java : toggleWifiON INFO  [TestNG-tests-1] 390 - App Restarted
+10-09-2020 16:48:01.001 Lucky_PROD_Suite - TestFlight.java : TestFlightUpdateScript INFO  [TestNG-tests-1] 86 - BUILD_NUMBER : null
+10-09-2020 16:48:01.001 Lucky_PROD_Suite - TestListener.java : onTestFailure ERROR [TestNG-tests-1] 82 - Test failed : TestFlightUpdateScript : auto_ERROR:Deviceautonotfound!
+10-09-2020 16:48:02.002 Lucky_PROD_Suite - TestBase.java : endSuit INFO  [main] 270 - /Users/krish/Automation/Automation-libs/test-output/10092020/AUTOMATION_REPORT.html
+10-09-2020 16:48:33.033 Lucky_PROD_Suite - TestBase.java : BeforeClass INFO  [TestNG-tests-2] 194 - Test Details : PlaystoreUpdateScript : Android : samsung SM-A515W R58N70GGVZH : R58N70GGVZH
+10-09-2020 16:48:35.035 Lucky_PROD_Suite - TestBase.java : BeforeClass INFO  [TestNG-tests-1] 194 - Test Details : TestFlightUpdateScript : ios : iPhone 11 Pro : 00008030-001A550A2643802E
+10-09-2020 16:49:02.002 Lucky_PROD_Suite - BaseObjs.java : logmessage INFO  [TestNG-tests-2] 193 - Left Navigate Button clicked
+10-09-2020 16:49:07.007 Lucky_PROD_Suite - BaseObjs.java : logmessage INFO  [TestNG-tests-2] 193 - 'My apps & games' link clicked
+10-09-2020 16:49:23.023 Lucky_PROD_Suite - BaseObjs.java : logmessage INFO  [TestNG-tests-2] 193 - 'UPDATE ALL' button is NOT FOUND
+10-09-2020 16:49:24.024 Lucky_PROD_Suite - TestBase.java : AfterClass INFO  [TestNG-tests-2] 233 - app close
+10-09-2020 16:49:24.024 Lucky_PROD_Suite - TestBase.java : AfterClass INFO  [TestNG-tests-2] 238 - THE END
+10-09-2020 16:49:24.024 Lucky_PROD_Suite - TestBase.java : AfterClass INFO  [TestNG-tests-2] 242 - TLdriver quit - done
+10-09-2020 16:51:08.008 Lucky_PROD_Suite - BaseObjs.java : logmessage INFO  [TestNG-tests-1] 193 - Verification Success : 'Apps' Vs 'Apps'
+10-09-2020 16:54:26.026 Lucky_PROD_Suite - TestFlight.java : TestFlightUpdateScript INFO  [TestNG-tests-1] 82 - No 'UPDATE' or 'INSTALL' buttons found
+10-09-2020 16:54:26.026 Lucky_PROD_Suite - TestFlight.java : TestFlightUpdateScript INFO  [TestNG-tests-1] 85 - BUILD_NUMBER : null
+10-09-2020 16:54:27.027 Lucky_PROD_Suite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 233 - app close
+10-09-2020 16:54:27.027 Lucky_PROD_Suite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 238 - THE END
+10-09-2020 16:54:27.027 Lucky_PROD_Suite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 242 - TLdriver quit - done
+10-09-2020 16:54:29.029 Lucky_PROD_Suite - TestBase.java : endSuit INFO  [main] 270 - /Users/krish/Automation/Automation-libs/test-output/10092020/AUTOMATION_REPORT.html
+10-13-2020 13:46:46.046 MySuite - TestBase.java : setupSuit INFO  [main] 90 - created Folder for Report: /Users/krish/Automation/Automation-libs/test-output/10132020
+10-13-2020 13:47:28.028 MySuite - TestBase.java : BeforeClass INFO  [TestNG-tests-1] 194 - Test Details : TestFlightUpdateScript : ios : iPhone 11 Pro : 00008030-001A550A2643802E
+10-13-2020 13:50:31.031 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-1] 197 - 'Apps' header text -  Not Found in 'TestFlight' app
+10-13-2020 13:50:31.031 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 233 - app close
+10-13-2020 13:50:31.031 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 238 - THE END
+10-13-2020 13:50:31.031 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 242 - TLdriver quit - done
+10-13-2020 13:50:36.036 base.TLDriverFactory - TLDriverFactory.java : setDriver INFO  [TestNG-tests-1] 77 - 
+Attempted: 56. Failure to find device(R58N70GGVZH), Retrying.....
+org.openqa.selenium.SessionNotCreatedException: Unable to create a new remote session. Please check the server log for more details. Original error: An unknown server-side error occurred while processing the command. Original error: Could not find 'adb' in PATH. Please set the ANDROID_HOME or ANDROID_SDK_ROOT environment variables to the corect Android SDK root directory path.
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'D1RCZ4.bell.corp.bce.ca', ip: 'fd00:688f:2ed1:1682:b9bd:8fd1:e9ac:1390%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.6', java.version: '1.8.0_251'
+Driver info: driver.version: AndroidDriver
+remote stacktrace: UnknownError: An unknown server-side error occurred while processing the command. Original error: Could not find 'adb' in PATH. Please set the ANDROID_HOME or ANDROID_SDK_ROOT environment variables to the corect Android SDK root directory path.
+    at getResponseForW3CError (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/errors.js:804:9)
+    at asyncHandler (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/protocol.js:388:37)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'D1RCZ4.bell.corp.bce.ca', ip: 'fd00:688f:2ed1:1682:b9bd:8fd1:e9ac:1390%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.6', java.version: '1.8.0_251'
+Driver info: driver.version: AndroidDriver
+10-13-2020 13:50:37.037 base.TLDriverFactory - TLDriverFactory.java : setDriver INFO  [TestNG-tests-1] 77 - 
+Attempted: 57. Failure to find device(R58N70GGVZH), Retrying.....
+org.openqa.selenium.SessionNotCreatedException: Unable to create a new remote session. Please check the server log for more details. Original error: An unknown server-side error occurred while processing the command. Original error: Could not find 'adb' in PATH. Please set the ANDROID_HOME or ANDROID_SDK_ROOT environment variables to the corect Android SDK root directory path.
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'D1RCZ4.bell.corp.bce.ca', ip: 'fd00:688f:2ed1:1682:b9bd:8fd1:e9ac:1390%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.6', java.version: '1.8.0_251'
+Driver info: driver.version: AndroidDriver
+remote stacktrace: UnknownError: An unknown server-side error occurred while processing the command. Original error: Could not find 'adb' in PATH. Please set the ANDROID_HOME or ANDROID_SDK_ROOT environment variables to the corect Android SDK root directory path.
+    at getResponseForW3CError (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/errors.js:804:9)
+    at asyncHandler (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/protocol.js:388:37)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'D1RCZ4.bell.corp.bce.ca', ip: 'fd00:688f:2ed1:1682:b9bd:8fd1:e9ac:1390%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.6', java.version: '1.8.0_251'
+Driver info: driver.version: AndroidDriver
+10-13-2020 13:50:38.038 base.TLDriverFactory - TLDriverFactory.java : setDriver INFO  [TestNG-tests-1] 77 - 
+Attempted: 58. Failure to find device(R58N70GGVZH), Retrying.....
+org.openqa.selenium.SessionNotCreatedException: Unable to create a new remote session. Please check the server log for more details. Original error: An unknown server-side error occurred while processing the command. Original error: Could not find 'adb' in PATH. Please set the ANDROID_HOME or ANDROID_SDK_ROOT environment variables to the corect Android SDK root directory path.
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'D1RCZ4.bell.corp.bce.ca', ip: 'fd00:688f:2ed1:1682:b9bd:8fd1:e9ac:1390%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.6', java.version: '1.8.0_251'
+Driver info: driver.version: AndroidDriver
+remote stacktrace: UnknownError: An unknown server-side error occurred while processing the command. Original error: Could not find 'adb' in PATH. Please set the ANDROID_HOME or ANDROID_SDK_ROOT environment variables to the corect Android SDK root directory path.
+    at getResponseForW3CError (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/errors.js:804:9)
+    at asyncHandler (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/protocol.js:388:37)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'D1RCZ4.bell.corp.bce.ca', ip: 'fd00:688f:2ed1:1682:b9bd:8fd1:e9ac:1390%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.6', java.version: '1.8.0_251'
+Driver info: driver.version: AndroidDriver
+10-13-2020 13:50:39.039 base.TLDriverFactory - TLDriverFactory.java : setDriver INFO  [TestNG-tests-1] 77 - 
+Attempted: 59. Failure to find device(R58N70GGVZH), Retrying.....
+org.openqa.selenium.SessionNotCreatedException: Unable to create a new remote session. Please check the server log for more details. Original error: An unknown server-side error occurred while processing the command. Original error: Could not find 'adb' in PATH. Please set the ANDROID_HOME or ANDROID_SDK_ROOT environment variables to the corect Android SDK root directory path.
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'D1RCZ4.bell.corp.bce.ca', ip: 'fd00:688f:2ed1:1682:b9bd:8fd1:e9ac:1390%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.6', java.version: '1.8.0_251'
+Driver info: driver.version: AndroidDriver
+remote stacktrace: UnknownError: An unknown server-side error occurred while processing the command. Original error: Could not find 'adb' in PATH. Please set the ANDROID_HOME or ANDROID_SDK_ROOT environment variables to the corect Android SDK root directory path.
+    at getResponseForW3CError (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/errors.js:804:9)
+    at asyncHandler (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/protocol.js:388:37)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'D1RCZ4.bell.corp.bce.ca', ip: 'fd00:688f:2ed1:1682:b9bd:8fd1:e9ac:1390%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.6', java.version: '1.8.0_251'
+Driver info: driver.version: AndroidDriver
+10-13-2020 13:50:40.040 base.TLDriverFactory - TLDriverFactory.java : setDriver INFO  [TestNG-tests-1] 77 - 
+Attempted: 60. Failure to find device(R58N70GGVZH), Retrying.....
+org.openqa.selenium.SessionNotCreatedException: Unable to create a new remote session. Please check the server log for more details. Original error: An unknown server-side error occurred while processing the command. Original error: Could not find 'adb' in PATH. Please set the ANDROID_HOME or ANDROID_SDK_ROOT environment variables to the corect Android SDK root directory path.
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'D1RCZ4.bell.corp.bce.ca', ip: 'fd00:688f:2ed1:1682:b9bd:8fd1:e9ac:1390%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.6', java.version: '1.8.0_251'
+Driver info: driver.version: AndroidDriver
+remote stacktrace: UnknownError: An unknown server-side error occurred while processing the command. Original error: Could not find 'adb' in PATH. Please set the ANDROID_HOME or ANDROID_SDK_ROOT environment variables to the corect Android SDK root directory path.
+    at getResponseForW3CError (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/errors.js:804:9)
+    at asyncHandler (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/protocol.js:388:37)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'D1RCZ4.bell.corp.bce.ca', ip: 'fd00:688f:2ed1:1682:b9bd:8fd1:e9ac:1390%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.6', java.version: '1.8.0_251'
+Driver info: driver.version: AndroidDriver
+10-13-2020 13:50:41.041 MySuite - TestBase.java : BeforeClass ERROR [TestNG-tests-1] 178 - session failed : null
+10-13-2020 13:50:41.041 MySuite - TestBase.java : endSuit INFO  [main] 270 - /Users/krish/Automation/Automation-libs/test-output/10132020/AUTOMATION_REPORT.html
+10-13-2020 13:58:40.040 Lucky_PROD_Suite - TestBase.java : BeforeClass INFO  [TestNG-tests-1] 194 - Test Details : TestFlightUpdateScript : ios : iPhone 11 Pro : 00008030-001A550A2643802E
+10-13-2020 14:01:14.014 Lucky_PROD_Suite - BaseObjs.java : logmessage INFO  [TestNG-tests-1] 197 - Verification Success : 'Apps' Vs 'Apps'
+10-13-2020 14:04:31.031 Lucky_PROD_Suite - TestFlight.java : TestFlightUpdateScript INFO  [TestNG-tests-1] 82 - No 'UPDATE' or 'INSTALL' buttons found
+10-13-2020 14:04:31.031 Lucky_PROD_Suite - TestFlight.java : TestFlightUpdateScript INFO  [TestNG-tests-1] 85 - BUILD_NUMBER : null
+10-13-2020 14:04:32.032 Lucky_PROD_Suite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 233 - app close
+10-13-2020 14:04:32.032 Lucky_PROD_Suite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 238 - THE END
+10-13-2020 14:04:32.032 Lucky_PROD_Suite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 242 - TLdriver quit - done
+10-13-2020 14:04:35.035 Lucky_PROD_Suite - TestBase.java : endSuit INFO  [main] 270 - /Users/krish/Automation/Automation-libs/test-output/10132020/AUTOMATION_REPORT.html
+10-13-2020 14:05:38.038 MySuite - TestBase.java : BeforeClass INFO  [TestNG-tests-1] 194 - Test Details : TestFlightUpdateScript : ios : iPhone 11 Pro : 00008030-001A550A2643802E
+10-13-2020 14:06:41.041 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-1] 197 - Verification Success : 'Apps' Vs 'Apps'
+10-13-2020 14:09:59.059 MySuite - TestFlight.java : TestFlightUpdateScript INFO  [TestNG-tests-1] 82 - No 'UPDATE' or 'INSTALL' buttons found
+10-13-2020 14:09:59.059 MySuite - TestFlight.java : TestFlightUpdateScript INFO  [TestNG-tests-1] 85 - BUILD_NUMBER : null
+10-13-2020 14:10:00.000 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 233 - app close
+10-13-2020 14:10:00.000 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 238 - THE END
+10-13-2020 14:10:00.000 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 242 - TLdriver quit - done
+10-13-2020 14:10:05.005 base.TLDriverFactory - TLDriverFactory.java : setDriver INFO  [TestNG-tests-1] 77 - 
+Attempted: 56. Failure to find device(R58N70GGVZH), Retrying.....
+org.openqa.selenium.SessionNotCreatedException: Unable to create a new remote session. Please check the server log for more details. Original error: An unknown server-side error occurred while processing the command. Original error: Could not find 'adb' in PATH. Please set the ANDROID_HOME or ANDROID_SDK_ROOT environment variables to the corect Android SDK root directory path.
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'D1RCZ4.bell.corp.bce.ca', ip: 'fd00:688f:2ed1:1682:b9bd:8fd1:e9ac:1390%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.6', java.version: '1.8.0_251'
+Driver info: driver.version: AndroidDriver
+remote stacktrace: UnknownError: An unknown server-side error occurred while processing the command. Original error: Could not find 'adb' in PATH. Please set the ANDROID_HOME or ANDROID_SDK_ROOT environment variables to the corect Android SDK root directory path.
+    at getResponseForW3CError (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/errors.js:804:9)
+    at asyncHandler (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/protocol.js:388:37)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'D1RCZ4.bell.corp.bce.ca', ip: 'fd00:688f:2ed1:1682:b9bd:8fd1:e9ac:1390%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.6', java.version: '1.8.0_251'
+Driver info: driver.version: AndroidDriver
+10-13-2020 14:10:06.006 base.TLDriverFactory - TLDriverFactory.java : setDriver INFO  [TestNG-tests-1] 77 - 
+Attempted: 57. Failure to find device(R58N70GGVZH), Retrying.....
+org.openqa.selenium.SessionNotCreatedException: Unable to create a new remote session. Please check the server log for more details. Original error: An unknown server-side error occurred while processing the command. Original error: Could not find 'adb' in PATH. Please set the ANDROID_HOME or ANDROID_SDK_ROOT environment variables to the corect Android SDK root directory path.
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'D1RCZ4.bell.corp.bce.ca', ip: 'fd00:688f:2ed1:1682:b9bd:8fd1:e9ac:1390%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.6', java.version: '1.8.0_251'
+Driver info: driver.version: AndroidDriver
+remote stacktrace: UnknownError: An unknown server-side error occurred while processing the command. Original error: Could not find 'adb' in PATH. Please set the ANDROID_HOME or ANDROID_SDK_ROOT environment variables to the corect Android SDK root directory path.
+    at getResponseForW3CError (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/errors.js:804:9)
+    at asyncHandler (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/protocol.js:388:37)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'D1RCZ4.bell.corp.bce.ca', ip: 'fd00:688f:2ed1:1682:b9bd:8fd1:e9ac:1390%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.6', java.version: '1.8.0_251'
+Driver info: driver.version: AndroidDriver
+10-13-2020 14:10:07.007 base.TLDriverFactory - TLDriverFactory.java : setDriver INFO  [TestNG-tests-1] 77 - 
+Attempted: 58. Failure to find device(R58N70GGVZH), Retrying.....
+org.openqa.selenium.SessionNotCreatedException: Unable to create a new remote session. Please check the server log for more details. Original error: An unknown server-side error occurred while processing the command. Original error: Could not find 'adb' in PATH. Please set the ANDROID_HOME or ANDROID_SDK_ROOT environment variables to the corect Android SDK root directory path.
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'D1RCZ4.bell.corp.bce.ca', ip: 'fd00:688f:2ed1:1682:b9bd:8fd1:e9ac:1390%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.6', java.version: '1.8.0_251'
+Driver info: driver.version: AndroidDriver
+remote stacktrace: UnknownError: An unknown server-side error occurred while processing the command. Original error: Could not find 'adb' in PATH. Please set the ANDROID_HOME or ANDROID_SDK_ROOT environment variables to the corect Android SDK root directory path.
+    at getResponseForW3CError (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/errors.js:804:9)
+    at asyncHandler (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/protocol.js:388:37)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'D1RCZ4.bell.corp.bce.ca', ip: 'fd00:688f:2ed1:1682:b9bd:8fd1:e9ac:1390%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.6', java.version: '1.8.0_251'
+Driver info: driver.version: AndroidDriver
+10-13-2020 14:10:08.008 base.TLDriverFactory - TLDriverFactory.java : setDriver INFO  [TestNG-tests-1] 77 - 
+Attempted: 59. Failure to find device(R58N70GGVZH), Retrying.....
+org.openqa.selenium.SessionNotCreatedException: Unable to create a new remote session. Please check the server log for more details. Original error: An unknown server-side error occurred while processing the command. Original error: Could not find 'adb' in PATH. Please set the ANDROID_HOME or ANDROID_SDK_ROOT environment variables to the corect Android SDK root directory path.
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'D1RCZ4.bell.corp.bce.ca', ip: 'fd00:688f:2ed1:1682:b9bd:8fd1:e9ac:1390%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.6', java.version: '1.8.0_251'
+Driver info: driver.version: AndroidDriver
+remote stacktrace: UnknownError: An unknown server-side error occurred while processing the command. Original error: Could not find 'adb' in PATH. Please set the ANDROID_HOME or ANDROID_SDK_ROOT environment variables to the corect Android SDK root directory path.
+    at getResponseForW3CError (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/errors.js:804:9)
+    at asyncHandler (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/protocol.js:388:37)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'D1RCZ4.bell.corp.bce.ca', ip: 'fd00:688f:2ed1:1682:b9bd:8fd1:e9ac:1390%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.6', java.version: '1.8.0_251'
+Driver info: driver.version: AndroidDriver
+10-13-2020 14:10:09.009 base.TLDriverFactory - TLDriverFactory.java : setDriver INFO  [TestNG-tests-1] 77 - 
+Attempted: 60. Failure to find device(R58N70GGVZH), Retrying.....
+org.openqa.selenium.SessionNotCreatedException: Unable to create a new remote session. Please check the server log for more details. Original error: An unknown server-side error occurred while processing the command. Original error: Could not find 'adb' in PATH. Please set the ANDROID_HOME or ANDROID_SDK_ROOT environment variables to the corect Android SDK root directory path.
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'D1RCZ4.bell.corp.bce.ca', ip: 'fd00:688f:2ed1:1682:b9bd:8fd1:e9ac:1390%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.6', java.version: '1.8.0_251'
+Driver info: driver.version: AndroidDriver
+remote stacktrace: UnknownError: An unknown server-side error occurred while processing the command. Original error: Could not find 'adb' in PATH. Please set the ANDROID_HOME or ANDROID_SDK_ROOT environment variables to the corect Android SDK root directory path.
+    at getResponseForW3CError (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/errors.js:804:9)
+    at asyncHandler (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/protocol.js:388:37)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'D1RCZ4.bell.corp.bce.ca', ip: 'fd00:688f:2ed1:1682:b9bd:8fd1:e9ac:1390%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.6', java.version: '1.8.0_251'
+Driver info: driver.version: AndroidDriver
+10-13-2020 14:10:10.010 MySuite - TestBase.java : BeforeClass ERROR [TestNG-tests-1] 178 - session failed : null
+10-13-2020 14:10:10.010 MySuite - TestBase.java : endSuit INFO  [main] 270 - /Users/krish/Automation/Automation-libs/test-output/10132020/AUTOMATION_REPORT.html
+10-13-2020 14:11:22.022 MySuite - TestBase.java : BeforeClass INFO  [TestNG-tests-2] 194 - Test Details : PlaystoreUpdateScript : Android : samsung SM-A515W R58N70GGVZH : R58N70GGVZH
+10-13-2020 14:11:23.023 MySuite - TestBase.java : BeforeClass INFO  [TestNG-tests-1] 194 - Test Details : TestFlightUpdateScript : ios : iPhone 11 Pro : 00008030-001A550A2643802E
+10-13-2020 14:11:50.050 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-2] 197 - Left Navigate Button clicked
+10-13-2020 14:11:55.055 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-2] 197 - 'My apps & games' link clicked
+10-13-2020 14:12:06.006 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-2] 197 - 'UPDATE ALL' button clicked
+10-13-2020 14:12:07.007 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-2] 233 - app close
+10-13-2020 14:12:07.007 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-2] 238 - THE END
+10-13-2020 14:12:07.007 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-2] 242 - TLdriver quit - done
+10-13-2020 14:12:26.026 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-1] 197 - Verification Success : 'Apps' Vs 'Apps'
+10-13-2020 14:15:43.043 MySuite - TestFlight.java : TestFlightUpdateScript INFO  [TestNG-tests-1] 82 - No 'UPDATE' or 'INSTALL' buttons found
+10-13-2020 14:15:43.043 MySuite - TestFlight.java : TestFlightUpdateScript INFO  [TestNG-tests-1] 85 - BUILD_NUMBER : null
+10-13-2020 14:15:44.044 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 233 - app close
+10-13-2020 14:15:44.044 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 238 - THE END
+10-13-2020 14:15:44.044 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 242 - TLdriver quit - done
+10-13-2020 14:15:47.047 MySuite - TestBase.java : endSuit INFO  [main] 270 - /Users/krish/Automation/Automation-libs/test-output/10132020/AUTOMATION_REPORT.html
+10-13-2020 14:26:13.013 MySuite - TestBase.java : BeforeClass INFO  [TestNG-tests-2] 194 - Test Details : PlaystoreUpdateScript : Android : samsung SM-A515W R58N70GGVZH : R58N70GGVZH
+10-13-2020 14:26:13.013 MySuite - TestBase.java : BeforeClass INFO  [TestNG-tests-1] 194 - Test Details : TestFlightUpdateScript : ios : iPhone 11 Pro : 00008030-001A550A2643802E
+10-13-2020 14:26:36.036 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-2] 197 - Left Navigate Button clicked
+10-13-2020 14:26:40.040 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-2] 197 - 'My apps & games' link clicked
+10-13-2020 14:26:57.057 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-2] 197 - 'UPDATE ALL' button is NOT FOUND
+10-13-2020 14:26:58.058 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-2] 233 - app close
+10-13-2020 14:26:58.058 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-2] 238 - THE END
+10-13-2020 14:26:58.058 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-2] 242 - TLdriver quit - done
+10-13-2020 14:27:17.017 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-1] 197 - Verification Success : 'Apps' Vs 'Apps'
+10-13-2020 14:30:33.033 MySuite - TestFlight.java : TestFlightUpdateScript INFO  [TestNG-tests-1] 82 - No 'UPDATE' or 'INSTALL' buttons found
+10-13-2020 14:30:33.033 MySuite - TestFlight.java : TestFlightUpdateScript INFO  [TestNG-tests-1] 85 - BUILD_NUMBER : null
+10-13-2020 14:30:34.034 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 233 - app close
+10-13-2020 14:30:34.034 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 238 - THE END
+10-13-2020 14:30:34.034 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 242 - TLdriver quit - done
+10-13-2020 14:30:36.036 MySuite - TestBase.java : endSuit INFO  [main] 270 - /Users/krish/Automation/Automation-libs/test-output/10132020/AUTOMATION_REPORT.html
+10-13-2020 14:38:06.006 lang.Class - RunnerWithAllConnectedDevices.java : main INFO  [main] 119 - <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="10" name="MySuite" parallel="tests">
+  <test thread-count="10" name="TestFlight_0" parallel="tests">
+    <parameter name="udid" value="00008030-001A550A2643802E"/>
+    <parameter name="platForm" value="IOS"/>
+    <classes>
+      <class name="other.testcases.TestFlight"/>
+    </classes>
+  </test> <!-- TestFlight_0 -->
+  <test thread-count="10" name="PlayStore_0" parallel="tests">
+    <parameter name="udid" value="R58N70GGVZH"/>
+    <parameter name="platForm" value="Android"/>
+    <classes>
+      <class name="other.testcases.PlayStore"/>
+    </classes>
+  </test> <!-- PlayStore_0 -->
+</suite> <!-- MySuite -->
+

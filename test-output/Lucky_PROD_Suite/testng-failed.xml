@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="10" guice-stage="DEVELOPMENT" name="Failed suite [Lucky_PROD_Suite]" parallel="tests">
+  <listeners>
+    <listener class-name="com.Listeners.TestListener"/>
+  </listeners>
+  <test thread-count="10" name="Android(failed)" parallel="tests">
+    <parameter name="app" value="Lucky"/>
+    <parameter name="port" value="4723"/>
+    <parameter name="p_Testdata" value="src/test/resources/Lucky_Database.txt"/>
+    <parameter name="udid" value="R58N70GGVZH"/>
+    <parameter name="env" value="NONE"/>
+    <parameter name="platForm" value="Android"/>
+    <classes>
+      <class name="other.testcases.PlayStore">
+        <methods>
+          <include name="setupSuit"/>
+          <include name="BeforeTest"/>
+          <include name="endSuit"/>
+          <include name="AfterClass"/>
+          <include name="BeforeClass"/>
+          <include name="PlaystoreUpdateScript"/>
+        </methods>
+      </class> <!-- other.testcases.PlayStore -->
+    </classes>
+  </test> <!-- Android(failed) -->
+  <test thread-count="10" name="ios(failed)" parallel="tests">
+    <parameter name="app" value="Lucky"/>
+    <parameter name="port" value="4723"/>
+    <parameter name="p_Testdata" value="src/test/resources/Lucky_Database.txt"/>
+    <parameter name="udid" value="auto"/>
+    <parameter name="env" value="NONE"/>
+    <parameter name="platForm" value="IOS"/>
+    <parameter name="deviceName" value="Bqat&#039;s iPhone"/>
+    <classes>
+      <class name="other.testcases.TestFlight">
+        <methods>
+          <include name="setupSuit"/>
+          <include name="BeforeTest"/>
+          <include name="endSuit"/>
+          <include name="AfterClass"/>
+          <include name="BeforeClass"/>
+          <include name="TestFlightUpdateScript"/>
+        </methods>
+      </class> <!-- other.testcases.TestFlight -->
+    </classes>
+  </test> <!-- ios(failed) -->
+</suite> <!-- Failed suite [Lucky_PROD_Suite] -->

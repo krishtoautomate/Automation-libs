@@ -569,7 +569,17 @@
    "platformVersion":"10.0",
    "colour":"White",
    "devicePort":8236
+ },
+ {
+   "name":"Nokia 8236",
+   "udid":"N0AA003657K70900229",
+   "platformName":"Android",
+   "platformVersion":"10.0",
+   "colour":"White",
+   "devicePort":8237
  }
+ 
+ 
  
  
 

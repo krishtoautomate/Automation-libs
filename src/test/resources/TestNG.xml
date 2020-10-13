@@ -10,20 +10,15 @@
 
      <test name="ios">
         <parameter name="platForm" value="IOS"/>
-        <parameter name="deviceName" value="Bqat's iPhone"/>
         <parameter name="udid" value="auto"/>
-        <parameter name="port" value="4723"/>
-        <parameter name="app" value="Lucky"/>
-        <parameter name="env" value="NONE"/>
-        <parameter name="p_Testdata" value="src/test/resources/Lucky_Database.txt"/>
         <classes>
-<!--         	<class name="other.testcases.testflightscript"/> -->
-      
+        	<class name="other.testcases.TestFlight"/>
+ 
 
         </classes>
     </test>
 
-    <test name="Android">
+    <!-- <test name="Android">
        <parameter name="platForm" value="Android"/>
        <parameter name="udid" value="R58N70GGVZH"/>
        <parameter name="port" value="4723"/>
@@ -32,10 +27,10 @@
        <parameter name="p_Testdata" value="src/test/resources/Lucky_Database.txt"/>
        <classes>
        
-          <class name="other.testcases.playstorescript"/>
+          <class name="other.testcases.PlayStore"/>
           
       </classes>
-   </test>
+   </test> -->
 
 
 </suite>

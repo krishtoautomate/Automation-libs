@@ -57,6 +57,10 @@ public class BaseObjs<T> {
 		this.test = test;
 	}
 	
+	protected BaseObjs(){
+		
+	}
+	
 	/**
 	* Clears the text Field
 	*/

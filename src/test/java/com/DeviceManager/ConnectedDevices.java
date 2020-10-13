@@ -1,32 +1,43 @@
 package com.DeviceManager;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.Utilities.Utilities;
+
 public class ConnectedDevices {
 	
 	private static Logger log = Logger.getLogger(Class.class.getName());
+	
+	Utilities utilities = new Utilities();
 	
 	public static void main(String[] args) throws Exception {
 		
 		ConnectedDevices devices = new ConnectedDevices();
 		DeviceinfoProviderOld deviceInfo = new DeviceinfoProviderOld();
 		
-		deviceInfo.setDevices(devices.getAllIOSDevicesInfo());
-		deviceInfo.setDevices(devices.getAllAndroidDevicesInfo());
+//		deviceInfo.setDevices(devices.getAllIOSDevicesInfo());
+//		deviceInfo.setDevices(devices.getAllAndroidDevicesInfo());
 		
+		System.out.println("---------------------------------------------------------------------------------------------------------------------");
+		System.out.printf("%30s %30s %20s %6s %10s", "UDID", "DEVICE NAME", "OS", "OS-VERSION", "BRAND");
+		System.out.println("\n-------------------------------------------------------------------------------------------------------------------");
+		
+	    for(String udid: devices.getIdevices()){
+	    	DeviceinfoProvider deviceinfoProvider = new DeviceinfoProvider(udid);
+	        System.out.format("%30s %30s %20s %6s %10s",
+	        		udid, deviceinfoProvider.getDeviceName(), deviceinfoProvider.getOs(), deviceinfoProvider.getPlatformVersion(), deviceinfoProvider.getBrand());
+	        System.out.println();
+	    }
+	    System.out.println("----------------------------------------------------------------------------------------------------------------------");
 		
 	}
 	
 	private void startADB() {
-	    runCommandThruProcess("/usr/local/share/android-sdk/platform-tools/adb start-server");
+		utilities.runCommandThruProcess("/usr/local/share/android-sdk/platform-tools/adb start-server");
 	}
 	
 	/*
@@ -36,7 +47,7 @@ public class ConnectedDevices {
 		 
 		ArrayList<String> deviceList = new ArrayList<String>();
 		
-		String output = runCommandThruProcess("/usr/local/bin/idevice_id -l");
+		String output = utilities.runCommandThruProcess("/usr/local/bin/idevice_id -l");
 		 
 		String[] lines = output.split("\n");
 	        
@@ -56,7 +67,7 @@ public class ConnectedDevices {
 		 	
 		startADB(); // start adb service
 		
-		String output = runCommandThruProcess("/usr/local/share/android-sdk/platform-tools/adb devices");
+		String output = utilities.runCommandThruProcess("/usr/local/share/android-sdk/platform-tools/adb devices");
 		
 		String[] lines = output.split("\n");
 		
@@ -121,6 +132,7 @@ public class ConnectedDevices {
 	
 	
 	private JSONObject getAndroidDeviceInfo(String deviceID)  {
+		
 		DeviceinfoProvider deviceinfoProvider = new DeviceinfoProvider(deviceID);
 		
 		String deviceModel = deviceinfoProvider.getDeviceModel();
@@ -140,35 +152,35 @@ public class ConnectedDevices {
 	    return adbDevices;
 	 }
 	
-	private String runCommandThruProcess(String command) {
-	     BufferedReader br = getBufferedReader(command);
-	     String line = "";
-	     String allLine = "";
-	     try {
-			while ((line = br.readLine()) != null) {
-				allLine = allLine + "" + line + "\n";
-			}
-		} catch (IOException e) {
-			log.info("command failed!");
-		}
-	    return allLine;
-	 }
-	
-	 private BufferedReader getBufferedReader(String command) {
-	     
-		 Process process = null;
-		 try {
-			 process = Runtime.getRuntime()
-				      .exec(command);
-		 } catch (IOException e) {
-			log.info("Runtime command failed!");
-		 }
-	     
-	     InputStream is = process.getInputStream();
-	     InputStreamReader isr = new InputStreamReader(is);
-	     
-	     return new BufferedReader(isr);
-	 }
+//	private String runCommandThruProcess(String command) {
+//	     BufferedReader br = getBufferedReader(command);
+//	     String line = "";
+//	     String allLine = "";
+//	     try {
+//			while ((line = br.readLine()) != null) {
+//				allLine = allLine + "" + line + "\n";
+//			}
+//		} catch (IOException e) {
+//			log.info("command failed!");
+//		}
+//	    return allLine;
+//	 }
+//	
+//	 private BufferedReader getBufferedReader(String command) {
+//	     
+//		 Process process = null;
+//		 try {
+//			 process = Runtime.getRuntime()
+//				      .exec(command);
+//		 } catch (IOException e) {
+//			log.info("Runtime command failed!");
+//		 }
+//	     
+//	     InputStream is = process.getInputStream();
+//	     InputStreamReader isr = new InputStreamReader(is);
+//	     
+//	     return new BufferedReader(isr);
+//	 }
 
 }
 

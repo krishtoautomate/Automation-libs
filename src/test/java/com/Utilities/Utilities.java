@@ -1,9 +1,13 @@
 package com.Utilities;
 
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.RandomAccessFile;
 import java.util.HashMap;
 import java.util.List;
@@ -39,6 +43,40 @@ public class Utilities  extends BaseObjs<Utilities>{
 	public Utilities(Logger log, ExtentTest test) {
 		super(log, test);		
 	}
+	
+	public Utilities() {
+		
+	}
+	
+	public String runCommandThruProcess(String command) {
+	     BufferedReader br = getBufferedReader(command);
+	     String line = "";
+	     String allLine = "";
+	     try {
+			while ((line = br.readLine()) != null) {
+				allLine = allLine + "" + line + "\n";
+			}
+		} catch (IOException e) {
+			log.info("command failed!");
+		}
+	    return allLine;
+	 }
+	
+	 private BufferedReader getBufferedReader(String command) {
+	     
+		 Process process = null;
+		 try {
+			 process = Runtime.getRuntime()
+				      .exec(command);
+		 } catch (IOException e) {
+			log.info("Runtime command failed!");
+		 }
+	     
+	     InputStream is = process.getInputStream();
+	     InputStreamReader isr = new InputStreamReader(is);
+	     
+	     return new BufferedReader(isr);
+	 }
 	
 	/**
 	* Random UUID/Number in String format

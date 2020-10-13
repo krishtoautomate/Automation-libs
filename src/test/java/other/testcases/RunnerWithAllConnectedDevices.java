@@ -3,6 +3,7 @@ package other.testcases;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.testng.TestNG;
 import org.testng.xml.XmlClass;
 import org.testng.xml.XmlSuite;
@@ -12,15 +13,17 @@ import com.DeviceManager.ConnectedDevices;
 
 public class RunnerWithAllConnectedDevices {
 
+	private static Logger log = Logger.getLogger(Class.class.getName());
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
 		ConnectedDevices devices = new ConnectedDevices();
 		
-		System.out.println(devices.getAllAndroidDevicesInfo());
-		System.out.println(devices.getAllIOSDevicesInfo());
-		System.out.println(devices.getIdevices().get(0));
-		System.out.println(devices.getADBdevices().get(0));
+//		System.out.println(devices.getAllAndroidDevicesInfo());
+//		System.out.println(devices.getAllIOSDevicesInfo());
+//		System.out.println(devices.getIdevices().get(0));
+//		System.out.println(devices.getADBdevices().get(0));
 		
 		
 		/*
@@ -30,67 +33,74 @@ public class RunnerWithAllConnectedDevices {
 		//Create an instance of XML Suite and assign a name for it. 
 	      XmlSuite mySuite = new XmlSuite(); 
 	      mySuite.setName("MySuite"); 
-	      mySuite.setParallel(XmlSuite.ParallelMode.TESTS);  
+	      mySuite.setParallel(XmlSuite.ParallelMode.TESTS);
 	      mySuite.setThreadCount(1);
 	      
-	      
-	      
-	      
-	      
+	      List<XmlTest> myTests = new ArrayList<XmlTest>();
 	      //*************************************************
 	      
 	      
 	      /*
 	       * Test1
 	       */
-	      //Create an instance of XmlTest and assign a name for it.  
-	      XmlTest myTest = new XmlTest(mySuite); 
-	      myTest.setName("MyTest");  
+	      ArrayList<String> iosDeviceList = devices.getIdevices();
 	      
-	      myTest.addParameter("platForm", "IOS");
-	      myTest.addParameter("udid", "xxxx");
-	      myTest.addParameter("env", "PROD");
-//	      myTest.addParameter("p_Testdata", "src/test/resources/AndroidTestData.txt");
+	      for(int i=0;i<iosDeviceList.size();i++) { 
+	    	  
+	    	//Create an instance of XmlTest and assign a name for it. 
+	    	  XmlTest iosTest = new XmlTest(mySuite);
+	    
+	    	  //Test name
+		      iosTest.setName("TestFlight_"+i);  
+		      
+		      //Test parameters
+		      iosTest.addParameter("platForm", "IOS");
+		      iosTest.addParameter("udid", devices.getIdevices().get(i));
+		      
+		    //Create classes
+		      List<XmlClass> myClasses = new ArrayList<XmlClass>();
+		      myClasses.add(new XmlClass("other.testcases.TestFlight"));  
+	
+		      //Add Classes
+		      iosTest.setXmlClasses(myClasses);
 	      
-	    //Create a list which can contain the classes that you want to run.
-	      List<XmlClass> myClasses = new ArrayList<XmlClass>();
-//	      myClasses.add(new XmlClass("other.testcases.PlayStore"));  
-	      myClasses.add(new XmlClass("other.testcases.TestFlight"));  
-
-	      //Assign that to the XmlTest Object created earlier. 
-	      myTest.setXmlClasses(myClasses);
-	      
-	      
+		      //Add Test
+		      myTests.add(iosTest); 
+	      }
 	      
 	      /*
 	       * Test2
 	       */
-	      XmlTest myTest2 = new XmlTest(mySuite); 
-	      myTest2.setName("MyTest2");
 	      
-	      myTest2.addParameter("platForm", "Android");
-	      myTest2.addParameter("udid", "xxxx");
-	      myTest2.addParameter("env", "PROD");
-//	      myTest2.addParameter("p_Testdata", "src/test/resources/AndroidTestData.txt");
+	      //get connected device list
+	      ArrayList<String> androidDeviceList = devices.getADBdevices();
 	      
-	      List<XmlClass> myClasses2 = new ArrayList<XmlClass>();
-	      myClasses2.add(new XmlClass("other.testcases.PlayStore")); 
-//	      myClasses.add(new XmlClass("other.testcases.TestFlight"));  
+	      for(int i=0;i<androidDeviceList.size();i++) {
+	    	  
+	    	  //Create Test
+	    	  XmlTest androidTests = new XmlTest(mySuite);
+		      
+	    	  //Name test
+	    	  androidTests.setName("PlayStore_"+i);
+	    	  
+	    	  //Add parameters
+	    	  androidTests.addParameter("platForm", "Android");
+	    	  androidTests.addParameter("udid", devices.getADBdevices().get(i));
+		      
+	    	  //Create classes
+		      List<XmlClass> myClasses2 = new ArrayList<XmlClass>();
+		      myClasses2.add(new XmlClass("other.testcases.PlayStore"));   
+		      
+		      //add classes
+		      androidTests.setXmlClasses(myClasses2);
+		      
+		      //add test to tests
+		      myTests.add(androidTests); 
 	      
-	      myTest2.setXmlClasses(myClasses2);
+	      }
+	     
 	      
-	      
-	      //********************Add all created tests***************************** 
-	      
-	    //Create a list of XmlTests and add the Xmltest you created earlier to it.
-	      List<XmlTest> myTests = new ArrayList<XmlTest>(); //add all tests to this in a loop
-	      
-	      myTests.add(myTest);   
-	      myTests.add(myTest2);  
-	      
-	      
-	      
-	    //*************************************************
+	    //*****************************************************************8
 	    /*
 	     * Common
 	     */
@@ -104,9 +114,9 @@ public class RunnerWithAllConnectedDevices {
 	      TestNG myTestNG = new TestNG();   
 	      myTestNG.setXmlSuites(mySuites);
 	      mySuite.setFileName("myTemp.xml"); 
-//	      mySuite.setThreadCount(1); 
+	      mySuite.setThreadCount(10);
 	      
-	      System.out.println(mySuite.toXml());
+	      log.info(mySuite.toXml());
 	      
 //	      myTestNG.run();
 

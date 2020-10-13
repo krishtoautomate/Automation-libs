@@ -57,7 +57,7 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener 
 		String date_time = dtf.format(now);
         
       //Emailable Test Summary
-		reporter.report(date_time, "MBM", buildNo, environment, tr.getMethod().getMethodName(), deviceName, platForm, "PASS", tr.getThrowable().toString());
+//		reporter.report(date_time, "MBM", buildNo, environment, tr.getMethod().getMethodName(), deviceName, platForm, "PASS", tr.getThrowable().toString());
 	}
 
 	@Override
@@ -102,7 +102,7 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener 
 			String date_time = dtf.format(now);
 				
 			//Emailable Test Summary
-			reporter.report(date_time, "MBM", buildNo, environment, tr.getMethod().getMethodName(), deviceName, platForm, "FAIL", tr.getThrowable().toString());
+//			reporter.report(date_time, "MBM", buildNo, environment, tr.getMethod().getMethodName(), deviceName, platForm, "FAIL", tr.getThrowable().toString());
 			
 		}
 	}
