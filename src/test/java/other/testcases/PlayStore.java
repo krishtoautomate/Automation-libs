@@ -2,6 +2,7 @@ package other.testcases;
 
 import org.testng.annotations.Test;
 
+import com.Utilities.ITestBase;
 import com.Utilities.Utilities;
 import com.aventstack.extentreports.Status;
 import com.base.TestBase;
@@ -9,7 +10,7 @@ import com.base.TestBase;
 import other.pages.PlayStoreApp;
 
 
-public class PlayStore extends TestBase{
+public class PlayStore extends TestBase implements ITestBase {
 	
 
 	@Test
@@ -21,7 +22,7 @@ public class PlayStore extends TestBase{
 		utils.sleep(2);
 		
 		//1.0 - 
-		if(utils.isElementDisplayed(playstoreapp.get_updates_refresh_btn())) {
+		if(isElementDisplayed(playstoreapp.get_updates_refresh_btn())) {
 			playstoreapp.get_updates_refresh_btn().click();
 			utils.logmessage(Status.PASS, "'updates refresh Button' is clicked");
 		}
@@ -36,7 +37,7 @@ public class PlayStore extends TestBase{
 		utils.logmessage(Status.PASS, "'My apps & games' link clicked");
 		
 		//4.0 - Click Update All button
-		if(utils.isElementDisplayed(playstoreapp.get_updateAll_btn())) {
+		if(isElementDisplayed(playstoreapp.get_updateAll_btn())) {
 			playstoreapp.get_updateAll_btn().click();
 			utils.sleep(2);
 			utils.logmessage(Status.PASS, "'UPDATE ALL' button clicked");

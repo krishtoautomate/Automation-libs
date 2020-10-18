@@ -6,9 +6,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Map;
 
-import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.ITestContext;
@@ -27,7 +25,7 @@ import io.appium.java_client.service.local.AppiumDriverLocalService;
  
 public class TLDriverFactory{
  
-	private static final Logger log = LogManager.getLogger(TLDriverFactory.class);
+	private static Logger log = Logger.getLogger(Class.class.getName());
 	
     private ThreadLocal<WebDriver> tlDriver = new ThreadLocal<>();
     

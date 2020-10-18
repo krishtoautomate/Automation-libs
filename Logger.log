@@ -286,3 +286,248 @@ Driver info: driver.version: AndroidDriver
   </test> <!-- PlayStore_0 -->
 </suite> <!-- MySuite -->
 
+10-17-2020 15:18:37.037 lang.Class - RunnerWithAllConnectedDevices.java : main INFO  [main] 119 - <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="10" name="MySuite" parallel="tests">
+  <test thread-count="10" name="TestFlight_0" parallel="tests">
+    <parameter name="udid" value=""/>
+    <parameter name="platForm" value="IOS"/>
+    <classes>
+      <class name="other.testcases.TestFlight"/>
+    </classes>
+  </test> <!-- TestFlight_0 -->
+  <test thread-count="10" name="PlayStore_0" parallel="tests">
+    <parameter name="udid" value="R58N70GGVZH"/>
+    <parameter name="platForm" value="Android"/>
+    <classes>
+      <class name="other.testcases.PlayStore"/>
+    </classes>
+  </test> <!-- PlayStore_0 -->
+</suite> <!-- MySuite -->
+
+10-17-2020 15:22:16.016 lang.Class - RunnerWithAllConnectedDevices.java : main INFO  [main] 119 - <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="10" name="MySuite" parallel="tests">
+  <test thread-count="10" name="TestFlight_0" parallel="tests">
+    <parameter name="udid" value=""/>
+    <parameter name="platForm" value="IOS"/>
+    <classes>
+      <class name="other.testcases.TestFlight"/>
+    </classes>
+  </test> <!-- TestFlight_0 -->
+  <test thread-count="10" name="PlayStore_0" parallel="tests">
+    <parameter name="udid" value="R58N70GGVZH"/>
+    <parameter name="platForm" value="Android"/>
+    <classes>
+      <class name="other.testcases.PlayStore"/>
+    </classes>
+  </test> <!-- PlayStore_0 -->
+</suite> <!-- MySuite -->
+
+10-17-2020 15:22:16.016 MySuite - TestBase.java : setupSuit INFO  [main] 90 - created Folder for Report: /Users/krish/Automation/Automation-libs/test-output/10172020
+10-17-2020 15:22:25.025 MySuite - TestBase.java : BeforeClass ERROR [TestNG-tests-1] 178 - session failed : Unable to create a new remote session. Please check the server log for more details. Original error: An unknown server-side error occurred while processing the command. Original error: '12.0' does not exist in the list of simctl SDKs. Only the following Simulator SDK versions are available on your system: 13.3, 7.0, 13.4, 14.0, 6.1, 13.6, 13.5, 13.7, 6.2
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'D1RCZ4.bell.corp.bce.ca', ip: 'fd00:688f:2ed1:1682:35f8:b2b0:b78c:9fdd%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.6', java.version: '1.8.0_251'
+Driver info: driver.version: AppiumDriver
+remote stacktrace: UnknownError: An unknown server-side error occurred while processing the command. Original error: '12.0' does not exist in the list of simctl SDKs. Only the following Simulator SDK versions are available on your system: 13.3, 7.0, 13.4, 14.0, 6.1, 13.6, 13.5, 13.7, 6.2
+    at getResponseForW3CError (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/errors.js:804:9)
+    at asyncHandler (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/protocol.js:388:37)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'D1RCZ4.bell.corp.bce.ca', ip: 'fd00:688f:2ed1:1682:35f8:b2b0:b78c:9fdd%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.6', java.version: '1.8.0_251'
+Driver info: driver.version: AppiumDriver
+10-17-2020 15:22:42.042 MySuite - TestBase.java : BeforeClass INFO  [TestNG-tests-2] 194 - Test Details : PlaystoreUpdateScript : Android : samsung SM-A515W R58N70GGVZH : R58N70GGVZH
+10-17-2020 15:23:09.009 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-2] 197 - Left Navigate Button clicked
+10-17-2020 15:23:15.015 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-2] 197 - 'My apps & games' link clicked
+10-17-2020 15:23:28.028 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-2] 197 - 'UPDATE ALL' button clicked
+10-17-2020 15:23:30.030 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-2] 233 - app close
+10-17-2020 15:23:30.030 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-2] 238 - THE END
+10-17-2020 15:23:30.030 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-2] 242 - TLdriver quit - done
+10-17-2020 15:23:32.032 MySuite - TestBase.java : endSuit INFO  [main] 270 - /Users/krish/Automation/Automation-libs/test-output/10172020/AUTOMATION_REPORT.html
+10-17-2020 15:28:06.006 lang.Class - RunnerWithAllConnectedDevices.java : main INFO  [main] 119 - <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="10" name="MySuite" parallel="tests">
+  <test thread-count="10" name="TestFlight_0" parallel="tests">
+    <parameter name="udid" value=""/>
+    <parameter name="platForm" value="IOS"/>
+    <classes>
+      <class name="other.testcases.TestFlight"/>
+    </classes>
+  </test> <!-- TestFlight_0 -->
+  <test thread-count="10" name="PlayStore_0" parallel="tests">
+    <parameter name="udid" value="R58N70GGVZH"/>
+    <parameter name="platForm" value="Android"/>
+    <classes>
+      <class name="other.testcases.PlayStore"/>
+    </classes>
+  </test> <!-- PlayStore_0 -->
+</suite> <!-- MySuite -->
+
+10-17-2020 15:28:08.008 MySuite - TestBase.java : BeforeClass ERROR [TestNG-tests-1] 178 - session failed : Unable to create a new remote session. Please check the server log for more details. Original error: An unknown server-side error occurred while processing the command. Original error: '12.0' does not exist in the list of simctl SDKs. Only the following Simulator SDK versions are available on your system: 13.3, 7.0, 13.4, 14.0, 6.1, 13.6, 13.5, 13.7, 6.2
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'D1RCZ4.bell.corp.bce.ca', ip: 'fd00:688f:2ed1:1682:35f8:b2b0:b78c:9fdd%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.6', java.version: '1.8.0_251'
+Driver info: driver.version: AppiumDriver
+remote stacktrace: UnknownError: An unknown server-side error occurred while processing the command. Original error: '12.0' does not exist in the list of simctl SDKs. Only the following Simulator SDK versions are available on your system: 13.3, 7.0, 13.4, 14.0, 6.1, 13.6, 13.5, 13.7, 6.2
+    at getResponseForW3CError (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/errors.js:804:9)
+    at asyncHandler (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/protocol.js:388:37)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'D1RCZ4.bell.corp.bce.ca', ip: 'fd00:688f:2ed1:1682:35f8:b2b0:b78c:9fdd%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.6', java.version: '1.8.0_251'
+Driver info: driver.version: AppiumDriver
+10-17-2020 15:28:17.017 MySuite - TestBase.java : BeforeClass INFO  [TestNG-tests-2] 194 - Test Details : PlaystoreUpdateScript : Android : samsung SM-A515W R58N70GGVZH : R58N70GGVZH
+10-17-2020 15:28:45.045 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-2] 197 - Left Navigate Button clicked
+10-17-2020 15:28:51.051 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-2] 197 - 'My apps & games' link clicked
+10-17-2020 15:29:07.007 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-2] 197 - 'UPDATE ALL' button is NOT FOUND
+10-17-2020 15:29:09.009 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-2] 233 - app close
+10-17-2020 15:29:09.009 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-2] 238 - THE END
+10-17-2020 15:29:09.009 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-2] 242 - TLdriver quit - done
+10-17-2020 15:29:11.011 MySuite - TestBase.java : endSuit INFO  [main] 270 - /Users/krish/Automation/Automation-libs/test-output/10172020/AUTOMATION_REPORT.html
+10-17-2020 15:29:38.038 lang.Class - RunnerWithAllConnectedDevices.java : main INFO  [main] 119 - <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="10" name="MySuite" parallel="tests">
+  <test thread-count="10" name="TestFlight_0" parallel="tests">
+    <parameter name="udid" value=""/>
+    <parameter name="platForm" value="IOS"/>
+    <classes>
+      <class name="other.testcases.TestFlight"/>
+    </classes>
+  </test> <!-- TestFlight_0 -->
+  <test thread-count="10" name="PlayStore_0" parallel="tests">
+    <parameter name="udid" value="R58N70GGVZH"/>
+    <parameter name="platForm" value="Android"/>
+    <classes>
+      <class name="other.testcases.PlayStore"/>
+    </classes>
+  </test> <!-- PlayStore_0 -->
+</suite> <!-- MySuite -->
+
+10-17-2020 15:32:28.028 lang.Class - RunnerWithAllConnectedDevices.java : main INFO  [main] 119 - <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="10" name="MySuite" parallel="tests">
+  <test thread-count="10" name="TestFlight_0" parallel="tests">
+    <parameter name="udid" value=""/>
+    <parameter name="platForm" value="IOS"/>
+    <classes>
+      <class name="other.testcases.TestFlight"/>
+    </classes>
+  </test> <!-- TestFlight_0 -->
+  <test thread-count="10" name="PlayStore_0" parallel="tests">
+    <parameter name="udid" value="R58N70GGVZH"/>
+    <parameter name="platForm" value="Android"/>
+    <classes>
+      <class name="other.testcases.PlayStore"/>
+    </classes>
+  </test> <!-- PlayStore_0 -->
+</suite> <!-- MySuite -->
+
+10-17-2020 15:32:46.046 lang.Class - RunnerWithAllConnectedDevices.java : main INFO  [main] 119 - <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="10" name="MySuite" parallel="tests">
+  <test thread-count="10" name="TestFlight_0" parallel="tests">
+    <parameter name="udid" value=""/>
+    <parameter name="platForm" value="IOS"/>
+    <classes>
+      <class name="other.testcases.TestFlight"/>
+    </classes>
+  </test> <!-- TestFlight_0 -->
+  <test thread-count="10" name="PlayStore_0" parallel="tests">
+    <parameter name="udid" value="R58N70GGVZH"/>
+    <parameter name="platForm" value="Android"/>
+    <classes>
+      <class name="other.testcases.PlayStore"/>
+    </classes>
+  </test> <!-- PlayStore_0 -->
+</suite> <!-- MySuite -->
+
+10-17-2020 15:32:54.054 lang.Class - RunnerWithAllConnectedDevices.java : main INFO  [main] 119 - <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="10" name="MySuite" parallel="tests">
+  <test thread-count="10" name="TestFlight_0" parallel="tests">
+    <parameter name="udid" value=""/>
+    <parameter name="platForm" value="IOS"/>
+    <classes>
+      <class name="other.testcases.TestFlight"/>
+    </classes>
+  </test> <!-- TestFlight_0 -->
+  <test thread-count="10" name="PlayStore_0" parallel="tests">
+    <parameter name="udid" value="R58N70GGVZH"/>
+    <parameter name="platForm" value="Android"/>
+    <classes>
+      <class name="other.testcases.PlayStore"/>
+    </classes>
+  </test> <!-- PlayStore_0 -->
+</suite> <!-- MySuite -->
+
+10-17-2020 15:36:29.029 lang.Class - RunnerWithAllConnectedDevices.java : main INFO  [main] 119 - <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="10" name="MySuite" parallel="tests">
+  <test thread-count="10" name="TestFlight_0" parallel="tests">
+    <parameter name="udid" value=""/>
+    <parameter name="platForm" value="IOS"/>
+    <classes>
+      <class name="other.testcases.TestFlight"/>
+    </classes>
+  </test> <!-- TestFlight_0 -->
+  <test thread-count="10" name="PlayStore_0" parallel="tests">
+    <parameter name="udid" value="R58N70GGVZH"/>
+    <parameter name="platForm" value="Android"/>
+    <classes>
+      <class name="other.testcases.PlayStore"/>
+    </classes>
+  </test> <!-- PlayStore_0 -->
+</suite> <!-- MySuite -->
+
+10-17-2020 15:38:47.047 lang.Class - RunnerWithAllConnectedDevices.java : main INFO  [main] 120 - <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="10" name="MySuite" parallel="tests">
+  <test thread-count="10" name="PlayStore_0" parallel="tests">
+    <parameter name="udid" value="R58N70GGVZH"/>
+    <parameter name="platForm" value="Android"/>
+    <classes>
+      <class name="other.testcases.PlayStore"/>
+    </classes>
+  </test> <!-- PlayStore_0 -->
+</suite> <!-- MySuite -->
+
+10-17-2020 15:40:16.016 lang.Class - RunnerWithAllConnectedDevices.java : main INFO  [main] 120 - <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="10" name="MySuite" parallel="tests">
+  <test thread-count="10" name="PlayStore_0" parallel="tests">
+    <parameter name="udid" value="R58N70GGVZH"/>
+    <parameter name="platForm" value="Android"/>
+    <classes>
+      <class name="other.testcases.PlayStore"/>
+    </classes>
+  </test> <!-- PlayStore_0 -->
+</suite> <!-- MySuite -->
+
+10-17-2020 15:40:43.043 lang.Class - RunnerWithAllConnectedDevices.java : main INFO  [main] 120 - <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="10" name="MySuite" parallel="tests">
+  <test thread-count="10" name="PlayStore_0" parallel="tests">
+    <parameter name="udid" value="R58N70GGVZH"/>
+    <parameter name="platForm" value="Android"/>
+    <classes>
+      <class name="other.testcases.PlayStore"/>
+    </classes>
+  </test> <!-- PlayStore_0 -->
+</suite> <!-- MySuite -->
+
+10-17-2020 15:41:28.028 lang.Class - RunnerWithAllConnectedDevices.java : main INFO  [main] 120 - <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="10" name="MySuite" parallel="tests">
+  <test thread-count="10" name="PlayStore_0" parallel="tests">
+    <parameter name="udid" value="R58N70GGVZH"/>
+    <parameter name="platForm" value="Android"/>
+    <classes>
+      <class name="other.testcases.PlayStore"/>
+    </classes>
+  </test> <!-- PlayStore_0 -->
+</suite> <!-- MySuite -->
+
+10-17-2020 15:41:39.039 MySuite - TestBase.java : BeforeClass INFO  [TestNG-tests-1] 194 - Test Details : PlaystoreUpdateScript : Android : samsung SM-A515W R58N70GGVZH : R58N70GGVZH
+10-17-2020 15:42:10.010 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-1] 197 - Left Navigate Button clicked
+10-17-2020 15:42:16.016 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-1] 197 - 'My apps & games' link clicked
+10-17-2020 15:42:34.034 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-1] 197 - 'UPDATE ALL' button is NOT FOUND
+10-17-2020 15:42:36.036 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 233 - app close
+10-17-2020 15:42:36.036 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 238 - THE END
+10-17-2020 15:42:36.036 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 242 - TLdriver quit - done
+10-17-2020 15:42:38.038 MySuite - TestBase.java : endSuit INFO  [main] 270 - /Users/krish/Automation/Automation-libs/test-output/10172020/AUTOMATION_REPORT.html

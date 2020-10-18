@@ -578,9 +578,14 @@
    "colour":"White",
    "devicePort":8237
  }
- 
- 
- 
- 
+,
 
+{
+    "name":"Samsung Galaxy A31",
+    "udid":"RF8N70XJA4P",
+    "platformName":"Android",
+    "platformVersion":"10.0",
+    "colour":"Prism Crush Blue",
+    "devicePort":8238
+ }
 ]

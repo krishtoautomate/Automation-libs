@@ -28,13 +28,8 @@ dependencies {
 
     // This dependency is used internally, and not exposed to consumers on their own compile classpath.
     //implementation 'com.google.guava:guava:27.0.1-jre'
-    
-    //implementation 'mysql:mysql-connector-java:5.1.13'
-   // compile 'mysql:mysql-connector-java:5.1.+'
-  // compile 'com.oracle:ojdbc14:10.+'
-    //compile 'oracle:ojdbc6:11.2.0.3'
+   
     compile "com.oracle.ojdbc:ojdbc8:19.3.0.0"
-	
 	
     testImplementation 'org.testng:testng:6.14.3'
     testImplementation 'org.assertj:assertj-core:2.0.0'
@@ -59,4 +54,72 @@ dependencies {
     
     implementation 'org.slf4j:slf4j-api:1.7.25'
     implementation 'org.slf4j:slf4j-jdk14:1.7.25'
+}
+
+group = 'Automation-libs'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from(components.java)
+        }
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xlint:unchecked"
+        }
+    }
+}
+
+allprojects { project ->
+    tasks.withType(Test) { testTask ->
+        afterSuite { desc, result ->
+            if (!desc.parent) { // will match the outermost suite
+                def output = "Results: ${result.resultType} (${result.testCount} tests, ${result.successfulTestCount} Passed, ${result.failedTestCount} Failures, ${result.skippedTestCount} Skipped)"
+                def startItem = '|  ', endItem = '  |'
+                def repeatLength = startItem.length() + output.length() + endItem.length()
+                println('\n' + ('-' * repeatLength) + '\n' + startItem + output + endItem + '\n' + ('-' * repeatLength))
+            }
+            //println("Failed Test Count : " + result.failedTestCount)
+            if (result.failedTestCount < result.successfulTestCount) {
+                ignoreFailures = true
+
+                println("failedTestCount : " + result.failedTestCount)
+            }else{
+                ignoreFailures = false
+
+                println("failedTestCount : " + result.failedTestCount)
+            }
+        }
+    }
+}
+
+test {
+
+	testLogging {
+		events "passed", "skipped", "failed"
+	}
+
+	testLogging.showStandardStreams = true
+	
+    useTestNG(){
+    
+        if (project.hasProperty('testNG')) { 
+        	suites 'src/test/resources/debugTestNG.xml' 
+        }
+         suites ''+System.getProperty('testNGsuiteXmlFile')
+        //suites 'src/test/resources/'+System.getProperty('testNGsuiteXmlFile')
+        //implimentation : gradle clean test -DtestNGsuiteXmlFile=src/test/resources/debugTestNG.xml
+        
+	    useDefaultListeners = true
+    }
+    ext.workingDirectory = 'test-output/${timestamp()}'
+    
 }

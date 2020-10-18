@@ -5,13 +5,14 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import com.Utilities.ITestBase;
 import com.base.TestBase;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 
 
-public class DataON extends TestBase{
+public class DataON extends TestBase implements ITestBase {
 	
 
 	@SuppressWarnings("unchecked")
