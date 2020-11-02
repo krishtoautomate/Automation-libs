@@ -14,8 +14,7 @@ import org.testng.ISuiteListener;
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
 
-import com.DeviceManager.DeviceInfo;
-import com.DeviceManager.DeviceinfoProvider;
+import com.DeviceManager.DeviceDAO;
 import com.ReportManager.ReportBuilder;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -36,7 +35,7 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener 
 		 */
 		Map<String, String> testParams = tr.getTestContext().getCurrentXmlTest().getAllParameters();
 		String udid = testParams.get("udid");
-		DeviceinfoProvider deviceinfoProvider = new DeviceinfoProvider(udid);
+		DeviceDAO deviceinfoProvider = new DeviceDAO(udid);
 		String deviceName = deviceinfoProvider.getDeviceName();
 		String platForm = deviceinfoProvider.getPlatformName();
 		String buildNo = System.getenv("BUILD_NUMBER");
@@ -67,7 +66,7 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener 
 		*/
 		Map<String, String> testParams = tr.getTestContext().getCurrentXmlTest().getAllParameters();
 		String udid = testParams.get("udid");
-		DeviceinfoProvider deviceinfoProvider = new DeviceinfoProvider(udid);
+		DeviceDAO deviceinfoProvider = new DeviceDAO(udid);
 		String deviceName = deviceinfoProvider.getDeviceName();
 		String platForm = deviceinfoProvider.getPlatformName();
 		String buildNo = System.getenv("BUILD_NUMBER");
@@ -112,10 +111,9 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener 
 		/*
 		 * get device details
 		 */
-		DeviceInfo deviceManager = new DeviceInfo();
 		Map<String, String> testParams = tr.getTestContext().getCurrentXmlTest().getAllParameters();
 		String udid = testParams.get("udid");
-		DeviceinfoProvider deviceinfoProvider = new DeviceinfoProvider(udid);
+		DeviceDAO deviceinfoProvider = new DeviceDAO(udid);
 		String deviceName = deviceinfoProvider.getDeviceName();
 		
 		Object testClass = tr.getInstance();

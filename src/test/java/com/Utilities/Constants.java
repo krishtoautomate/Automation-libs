@@ -33,6 +33,9 @@ public class Constants {
 	
 	 public static final String IOS_CAPABILITIES = USER_DIR+"/src/test/resources/capabilities.json";
 	 public static final String ANDROID_CAPABILITIES = USER_DIR+"/src/test/resources/capabilities.json";
+	 public static final String ANDROID_HOME = "/usr/local/share/android-sdk/";
+	 public static final String ADB = ANDROID_HOME+ "platform-tools/adb";
+	 
 	 public static final String CAPABILITIES = USER_DIR+"/build/capabilities.json";
 	 
 	 public static final String NODE_PATH = "/usr/local/bin/node";

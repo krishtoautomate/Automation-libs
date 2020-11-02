@@ -1,10 +1,7 @@
 package com.base;
 
 import java.io.File;
-import java.io.IOException;
 import java.lang.reflect.Method;
-import java.net.InetAddress;
-import java.text.ParseException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -21,8 +18,9 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
+import com.DeviceManager.DeviceDAO;
 import com.DeviceManager.DeviceInfo;
-import com.DeviceManager.DeviceinfoProvider;
+import com.DeviceManager.DeviceDAO;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
@@ -40,7 +38,8 @@ import io.appium.java_client.service.local.AppiumServerHasNotBeenStartedLocallyE
 */
 public class TestBase {
 
-   protected WebDriver driver;
+   @SuppressWarnings("rawtypes")
+   protected AppiumDriver driver;
    protected Map<Long, WebDriver> driverMap = new ConcurrentHashMap<Long, WebDriver>();
    protected WebDriverWait wait;
    protected TLDriverFactory tlDriverFactory = new TLDriverFactory();
@@ -76,7 +75,7 @@ public class TestBase {
 	* Executed once before all the tests
 	*/
    @BeforeSuite(alwaysRun=true)
-   public void setupSuit(ITestContext ctx) throws IOException, ParseException{
+   public void setupSuit(ITestContext ctx) {
 	   
 	   String suiteName = ctx.getCurrentXmlTest().getSuite().getName();
 	   
@@ -102,8 +101,8 @@ public class TestBase {
 	   
 	   //HOST INFO
 	   extent.setSystemInfo("OS", Constants.HOST_OS);
-	   extent.setSystemInfo("HostIPAddress", InetAddress.getLocalHost().getHostAddress());
-	   extent.setSystemInfo("Host Name", InetAddress.getLocalHost().getHostName());
+	   extent.setSystemInfo("HostIPAddress", Constants.HOST_IP_ADDRESS());
+	   extent.setSystemInfo("Host Name", Constants.HOST_NAME());
 	   	   
    }
    
@@ -112,7 +111,8 @@ public class TestBase {
    public synchronized void BeforeTest(@Optional String udid, ITestContext iTestContext)  {
 	   if(udid != null) {
 		   if(!udid.equalsIgnoreCase("auto")) {
-			   DeviceinfoProvider deviceinfoProvider = new DeviceinfoProvider(udid);
+			 
+			   DeviceDAO deviceinfoProvider = new DeviceDAO(udid);
 			   AppiumManager appiumManager = new AppiumManager();
 			   
 			   String deviceName = deviceinfoProvider.getDeviceName();
@@ -128,8 +128,6 @@ public class TestBase {
 		   }
 	   }
    }
-  
-   
    
    @SuppressWarnings("unchecked")
    @BeforeMethod
@@ -161,7 +159,11 @@ public class TestBase {
 				   
 				   retry--;
     		       log.info("\nAttempted: " + (60-retry) + ", Appium Failed to start, Retrying...\n"+e);
-    		       tlDriverFactory.sleep(interval);
+    		       try {
+    		    	   Thread.sleep(interval);
+    		       } catch (InterruptedException e1) {
+					// Ignore
+    		       }
     		       server = appiumManager.AppiumService();
 			   }
 		   }
@@ -172,7 +174,7 @@ public class TestBase {
 			   
 			   driverMap.put(Thread.currentThread().getId(),tlDriverFactory.getDriver());
 			
-			   driver = driverMap.get(Long.valueOf(Thread.currentThread().getId()));
+			   driver = (AppiumDriver<MobileElement>) driverMap.get(Long.valueOf(Thread.currentThread().getId()));
 			   
 		   } catch (Exception e) {
 			   log.error("session failed : "+e.getLocalizedMessage());
@@ -183,10 +185,10 @@ public class TestBase {
 			   udid = ((AppiumDriver<MobileElement>) driver).getCapabilities().getCapability("udid").toString();
 		   
 		   iTestContext.setAttribute("udid", udid);
-		   DeviceinfoProvider deviceinfoProvider = new DeviceinfoProvider(udid);
+		   DeviceDAO deviceinfoProvider = new DeviceDAO(udid);
 		   deviceName = deviceinfoProvider.getDeviceName() + " : "+ udid;
 		   platForm = deviceinfoProvider.getPlatformName();
-		   platFormVersion = deviceinfoProvider.getPlatformVersion();
+		   platFormVersion = deviceinfoProvider.getosVersion();
 	   
 		   //Report Content
 		   test = extent.createTest(methodName+"("+platForm+")").assignDevice(deviceName);
@@ -206,7 +208,6 @@ public class TestBase {
 	   }else {
 		   test = extent.createTest(methodName);
 		   test.info( "TestCase : "+ methodName);
-		   
 	   }
 	   
 	   
@@ -221,7 +222,7 @@ public class TestBase {
 	public synchronized void AfterClass(@Optional String udid, ITestContext Testctx) {
 		
 		if(driver != null) {
-			DeviceinfoProvider deviceinfoProvider = new DeviceinfoProvider(udid);
+			DeviceDAO deviceinfoProvider = new DeviceDAO(udid);
 			String platForm = deviceinfoProvider.getPlatformName();
 			try {
 				if("Android".equalsIgnoreCase(platForm)) {
@@ -271,8 +272,6 @@ public class TestBase {
 		} catch (Exception e) {
 			// ignore
 		}
-
-		
 	}
 	
 }

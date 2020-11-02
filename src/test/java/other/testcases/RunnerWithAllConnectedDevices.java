@@ -9,7 +9,7 @@ import org.testng.xml.XmlClass;
 import org.testng.xml.XmlSuite;
 import org.testng.xml.XmlTest;
 
-import com.DeviceManager.ConnectedDevices;
+import com.DeviceManager.DeviceDAO;
 
 public class RunnerWithAllConnectedDevices {
 
@@ -18,7 +18,7 @@ public class RunnerWithAllConnectedDevices {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		ConnectedDevices devices = new ConnectedDevices();
+		DeviceDAO deviceDAO = new DeviceDAO();
 		
 //		System.out.println(devices.getAllAndroidDevicesInfo());
 //		System.out.println(devices.getAllIOSDevicesInfo());
@@ -43,7 +43,7 @@ public class RunnerWithAllConnectedDevices {
 	      /*
 	       * Test1
 	       */
-	      ArrayList<String> iosDeviceList = devices.getIdevices();
+	      ArrayList<String> iosDeviceList = deviceDAO.getIdevices();
 	
 	      for(int i=0;i<iosDeviceList.size();i++) { 
 //	    	  if(devices.getIdevices().get(i).contains("\n")) {
@@ -55,7 +55,7 @@ public class RunnerWithAllConnectedDevices {
 			      
 			      //Test parameters
 			      iosTest.addParameter("platForm", "IOS");
-			      iosTest.addParameter("udid", devices.getIdevices().get(i));
+			      iosTest.addParameter("udid", iosDeviceList.get(i));
 			      
 			    //Create classes
 			      List<XmlClass> myClasses = new ArrayList<XmlClass>();
@@ -74,7 +74,7 @@ public class RunnerWithAllConnectedDevices {
 	       */
 	      
 	      //get connected device list
-	      ArrayList<String> androidDeviceList = devices.getADBdevices();
+	      ArrayList<String> androidDeviceList = deviceDAO.getADBdevices();
 	      
 	      for(int i=0;i<androidDeviceList.size();i++) {
 	    	  
@@ -86,7 +86,7 @@ public class RunnerWithAllConnectedDevices {
 	    	  
 	    	  //Add parameters
 	    	  androidTests.addParameter("platForm", "Android");
-	    	  androidTests.addParameter("udid", devices.getADBdevices().get(i));
+	    	  androidTests.addParameter("udid", androidDeviceList.get(i));
 		      
 	    	  //Create classes
 		      List<XmlClass> myClasses2 = new ArrayList<XmlClass>();

@@ -12,34 +12,19 @@ import org.testng.ITestNGMethod;
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
 
-import com.DeviceManager.ConnectedDevices;
-import com.DeviceManager.DeviceinfoProviderOld;
-
 public class InvokedSuiteListener extends TestListenerAdapter implements ISuiteListener {
-
+	
 	private static Logger log = Logger.getLogger(Class.class.getName());
 	
 	@Override
 	public void onFinish(ISuite suite) {
 		
 	}
+	
 	@Override
 	public void onStart(ISuite suite) {
 		
-		ConnectedDevices devices = new ConnectedDevices();
-		DeviceinfoProviderOld deviceInfo = new DeviceinfoProviderOld();
-		
-		try {
-			deviceInfo.setDevices(devices.getAllIOSDevicesInfo());
-			deviceInfo.setDevices(devices.getAllAndroidDevicesInfo());
-		} catch (Exception e) {
-			// ignore
-		}
-		
-		log.info(deviceInfo.getDevices());
-		
 	}
-
 	  
 	@Override
 	public void onFinish(ITestContext context) {
@@ -48,7 +33,7 @@ public class InvokedSuiteListener extends TestListenerAdapter implements ISuiteL
 	        ITestResult skippedTestCase = skippedTestCases.next();
 	        ITestNGMethod method = skippedTestCase.getMethod();
 	        if (context.getSkippedTests().getResults(method).size() > 0) {
-	        	log.info("Removing:" + skippedTestCase.getTestClass().toString());
+	            log.info("Removing:" + skippedTestCase.getTestClass().toString());
 	            skippedTestCases.remove();
 	        }
 	    }

@@ -62,6 +62,17 @@ public interface ITestBase {
 		return isSelected;
 	}
 	
+	/**
+	* Thread sleep for Certain Seconds
+	*/
+	public default void sleep(int seconds) {
+		try {
+			Thread.sleep(seconds * 1000);
+		} catch (InterruptedException e) {
+			//ignore
+		}
+	}
+	
 	/*
 	 * Execute Runtime command
 	 */
@@ -71,7 +82,6 @@ public interface ITestBase {
 	    Process process = null;
 	    
 		try {
-			
 			process = Runtime.getRuntime()
 				      .exec(command);
 			
@@ -90,6 +100,8 @@ public interface ITestBase {
 		}
 	    return allLine;
 	 }
+	
+	
 	
 	/*
 	 * Jenkins Build number

@@ -531,3 +531,113 @@ Driver info: driver.version: AppiumDriver
 10-17-2020 15:42:36.036 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 238 - THE END
 10-17-2020 15:42:36.036 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 242 - TLdriver quit - done
 10-17-2020 15:42:38.038 MySuite - TestBase.java : endSuit INFO  [main] 270 - /Users/krish/Automation/Automation-libs/test-output/10172020/AUTOMATION_REPORT.html
+10-30-2020 11:48:33.033 lang.Class - AppiumManager.java : killPort INFO  [main] 100 - port kill success
+10-30-2020 12:20:10.010 lang.Class - AppiumManager.java : killPort INFO  [main] 100 - port kill success
+10-30-2020 15:51:39.039 lang.Class - RunnerWithAllConnectedDevices.java : main INFO  [main] 120 - <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="10" name="MySuite" parallel="tests">
+  <test thread-count="10" name="TestFlight_0" parallel="tests">
+    <parameter name="udid" value="00008030-001A550A2643802E"/>
+    <parameter name="platForm" value="IOS"/>
+    <classes>
+      <class name="other.testcases.TestFlight"/>
+    </classes>
+  </test> <!-- TestFlight_0 -->
+  <test thread-count="10" name="PlayStore_0" parallel="tests">
+    <parameter name="udid" value="R58N70GGVZH"/>
+    <parameter name="platForm" value="Android"/>
+    <classes>
+      <class name="other.testcases.PlayStore"/>
+    </classes>
+  </test> <!-- PlayStore_0 -->
+</suite> <!-- MySuite -->
+
+10-30-2020 15:51:39.039 MySuite - TestBase.java : setupSuit INFO  [main] 91 - created Folder for Report: /Users/krish/Automation/Automation-libs/test-output/10302020
+10-30-2020 15:51:51.051 MySuite - TestBase.java : BeforeClass INFO  [TestNG-tests-2] 199 - Test Details : PlaystoreUpdateScript : Android : samsung SM-A515W R58N70GGVZH : R58N70GGVZH
+10-30-2020 15:52:14.014 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-2] 197 - Left Navigate Button clicked
+10-30-2020 15:52:17.017 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-2] 197 - 'My apps & games' link clicked
+10-30-2020 15:52:20.020 MySuite - TestBase.java : BeforeClass INFO  [TestNG-tests-1] 199 - Test Details : TestFlightUpdateScript : ios : iPhone 11 Pro : 00008030-001A550A2643802E
+10-30-2020 15:52:29.029 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-2] 197 - 'UPDATE ALL' button clicked
+10-30-2020 15:52:30.030 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-2] 237 - app close
+10-30-2020 15:52:30.030 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-2] 242 - THE END
+10-30-2020 15:52:30.030 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-2] 246 - TLdriver quit - done
+10-30-2020 15:53:23.023 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-1] 197 - Verification Success : 'Apps' Vs 'Apps'
+10-30-2020 15:53:27.027 MySuite - TestFlight.java : TestFlightUpdateScript INFO  [TestNG-tests-1] 74 - Total 'UPDATE' or 'INSTALL' buttons : 1
+10-30-2020 15:53:28.028 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-1] 197 - UPDATE- button clicked
+10-30-2020 15:53:34.034 MySuite - TestFlight.java : TestFlightUpdateScript INFO  [TestNG-tests-1] 86 - BUILD_NUMBER : null
+10-30-2020 15:53:35.035 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 237 - app close
+10-30-2020 15:53:35.035 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 242 - THE END
+10-30-2020 15:53:35.035 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 246 - TLdriver quit - done
+10-30-2020 15:53:37.037 MySuite - TestBase.java : endSuit INFO  [main] 274 - /Users/krish/Automation/Automation-libs/test-output/10302020/AUTOMATION_REPORT.html
+11-02-2020 11:59:57.057 lang.Class - RunnerWithAllConnectedDevices.java : main INFO  [main] 120 - <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="10" name="MySuite" parallel="tests">
+  <test thread-count="10" name="TestFlight_0" parallel="tests">
+    <parameter name="udid" value="c96e4f4016966c6b50c39e1168f5535ee1988f40"/>
+    <parameter name="platForm" value="IOS"/>
+    <classes>
+      <class name="other.testcases.TestFlight"/>
+    </classes>
+  </test> <!-- TestFlight_0 -->
+  <test thread-count="10" name="PlayStore_0" parallel="tests">
+    <parameter name="udid" value="R58N70GGVZH"/>
+    <parameter name="platForm" value="Android"/>
+    <classes>
+      <class name="other.testcases.PlayStore"/>
+    </classes>
+  </test> <!-- PlayStore_0 -->
+</suite> <!-- MySuite -->
+
+11-02-2020 11:59:57.057 MySuite - TestBase.java : setupSuit INFO  [main] 89 - created Folder for Report: /Users/krish/Automation/Automation-libs/test-output/11022020
+11-02-2020 12:00:19.019 MySuite - TestBase.java : BeforeClass INFO  [TestNG-tests-2] 196 - Test Details : PlaystoreUpdateScript : Android : samsung SM-A515W R58N70GGVZH : R58N70GGVZH
+11-02-2020 12:00:37.037 MySuite - TestBase.java : BeforeClass INFO  [TestNG-tests-1] 196 - Test Details : TestFlightUpdateScript : iOS : iPhone 8 : c96e4f4016966c6b50c39e1168f5535ee1988f40
+11-02-2020 12:00:41.041 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-2] 197 - Left Navigate Button clicked
+11-02-2020 12:00:44.044 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-2] 197 - 'My apps & games' link clicked
+11-02-2020 12:00:53.053 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-2] 197 - 'UPDATE ALL' button clicked
+11-02-2020 12:00:55.055 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-2] 234 - app close
+11-02-2020 12:00:55.055 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-2] 239 - THE END
+11-02-2020 12:00:55.055 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-2] 243 - TLdriver quit - done
+11-02-2020 12:01:40.040 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-1] 197 - Verification Success : 'Apps' Vs 'Apps'
+11-02-2020 12:01:45.045 MySuite - TestFlight.java : TestFlightUpdateScript INFO  [TestNG-tests-1] 74 - Total 'UPDATE' or 'INSTALL' buttons : 1
+11-02-2020 12:01:45.045 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-1] 197 - UPDATE- button clicked
+11-02-2020 12:01:50.050 MySuite - TestFlight.java : TestFlightUpdateScript INFO  [TestNG-tests-1] 86 - BUILD_NUMBER : null
+11-02-2020 12:01:51.051 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 234 - app close
+11-02-2020 12:01:51.051 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 239 - THE END
+11-02-2020 12:01:52.052 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 243 - TLdriver quit - done
+11-02-2020 12:01:54.054 MySuite - TestBase.java : endSuit INFO  [main] 271 - /Users/krish/Automation/Automation-libs/test-output/11022020/AUTOMATION_REPORT.html
+11-02-2020 12:44:10.010 lang.Class - RunnerWithAllConnectedDevices.java : main INFO  [main] 120 - <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="10" name="MySuite" parallel="tests">
+  <test thread-count="10" name="TestFlight_0" parallel="tests">
+    <parameter name="udid" value="c96e4f4016966c6b50c39e1168f5535ee1988f40"/>
+    <parameter name="platForm" value="IOS"/>
+    <classes>
+      <class name="other.testcases.TestFlight"/>
+    </classes>
+  </test> <!-- TestFlight_0 -->
+  <test thread-count="10" name="PlayStore_0" parallel="tests">
+    <parameter name="udid" value="R58N70GGVZH"/>
+    <parameter name="platForm" value="Android"/>
+    <classes>
+      <class name="other.testcases.PlayStore"/>
+    </classes>
+  </test> <!-- PlayStore_0 -->
+</suite> <!-- MySuite -->
+
+11-02-2020 12:44:20.020 MySuite - TestBase.java : BeforeClass INFO  [TestNG-tests-2] 196 - Test Details : PlaystoreUpdateScript : Android : samsung SM-A515W : R58N70GGVZH
+11-02-2020 12:44:25.025 MySuite - TestBase.java : BeforeClass INFO  [TestNG-tests-1] 196 - Test Details : TestFlightUpdateScript : iOS : iPhone 8 : c96e4f4016966c6b50c39e1168f5535ee1988f40
+11-02-2020 12:44:41.041 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-2] 197 - Left Navigate Button clicked
+11-02-2020 12:44:44.044 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-2] 197 - 'My apps & games' link clicked
+11-02-2020 12:45:00.000 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-2] 197 - 'UPDATE ALL' button is NOT FOUND
+11-02-2020 12:45:02.002 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-2] 234 - app close
+11-02-2020 12:45:02.002 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-2] 239 - THE END
+11-02-2020 12:45:02.002 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-2] 243 - TLdriver quit - done
+11-02-2020 12:45:28.028 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-1] 197 - Verification Success : 'Apps' Vs 'Apps'
+11-02-2020 12:45:33.033 MySuite - TestFlight.java : TestFlightUpdateScript INFO  [TestNG-tests-1] 74 - Total 'UPDATE' or 'INSTALL' buttons : 2
+11-02-2020 12:45:33.033 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-1] 197 - UPDATE- button clicked
+11-02-2020 12:45:34.034 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-1] 197 - UPDATE- button clicked
+11-02-2020 12:45:39.039 MySuite - TestFlight.java : TestFlightUpdateScript INFO  [TestNG-tests-1] 86 - BUILD_NUMBER : null
+11-02-2020 12:45:40.040 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 234 - app close
+11-02-2020 12:45:40.040 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 239 - THE END
+11-02-2020 12:45:40.040 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 243 - TLdriver quit - done
+11-02-2020 12:45:43.043 MySuite - TestBase.java : endSuit INFO  [main] 271 - /Users/krish/Automation/Automation-libs/test-output/11022020/AUTOMATION_REPORT.html

@@ -269,6 +269,22 @@
    "devicePort":8333
  },
  {
+    "name":"iPhone 11 Pro Max",
+    "udid":"00008030-0002112C1EC0402E",
+    "platformName":"iOS",
+    "platformVersion":"14.0.1",
+    "colour":"Green",
+    "devicePort":8334
+},
+{
+    "name":"iPhone 11 Pro Max",
+    "udid":"00008030-001C38593420402E",
+    "platformName":"iOS",
+    "platformVersion":"14.0.1",
+    "colour":"Black",
+    "devicePort":8335
+},
+ {
    "name":"Samsung S8",
    "udid":"988b9b304b4e4a374a",
    "platformName":"Android",
