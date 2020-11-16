@@ -203,7 +203,7 @@ public class BaseObjs<T> {
 			}else {	
 				test.pass(message, MediaEntityBuilder.createScreenCaptureFromPath(imgPath).build());		
 			}
-		} catch (IOException | WebDriverException e) {
+		} catch (WebDriverException e) {
 			if(Status == Status.FAIL){
 				test.fail(message);
 			}else {

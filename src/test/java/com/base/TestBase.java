@@ -20,12 +20,12 @@ import org.testng.annotations.Parameters;
 
 import com.DeviceManager.DeviceDAO;
 import com.DeviceManager.DeviceInfo;
-import com.DeviceManager.DeviceDAO;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
-import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
+import com.aventstack.extentreports.reporter.configuration.ViewName;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
@@ -44,7 +44,8 @@ public class TestBase {
    protected WebDriverWait wait;
    protected TLDriverFactory tlDriverFactory = new TLDriverFactory();
    protected static Logger log;
-   protected ExtentHtmlReporter htmlReporter;
+//   protected ExtentHtmlReporter htmlReporter;
+   protected ExtentSparkReporter htmlReporter;
    protected static ExtentReports extent;
    protected ExtentTest test;
    protected ScreenShotManager screenShotManager;
@@ -90,8 +91,21 @@ public class TestBase {
 	   }
 	   
 	   //extent report
-	   htmlReporter = new ExtentHtmlReporter(Constants.EXTENT_HTML_REPORT);
+//	   htmlReporter = new ExtentHtmlReporter(Constants.EXTENT_HTML_REPORT);
+	   
 	   extent = new ExtentReports();
+	   htmlReporter = new ExtentSparkReporter(Constants.EXTENT_HTML_REPORT).viewConfigurer()
+			    .viewOrder()
+			    .as(new ViewName[] { 
+				   ViewName.DASHBOARD, 
+				   ViewName.TEST, 
+//				   ViewName.TAG, 
+				   ViewName.AUTHOR, 
+				   ViewName.DEVICE, 
+				   ViewName.EXCEPTION, 
+				   ViewName.LOG 
+				})
+			  .apply();
 	   extent.attachReporter(htmlReporter);
 	   
 	   
@@ -186,7 +200,7 @@ public class TestBase {
 		   
 		   iTestContext.setAttribute("udid", udid);
 		   DeviceDAO deviceinfoProvider = new DeviceDAO(udid);
-		   deviceName = deviceinfoProvider.getDeviceName() + " : "+ udid;
+		   deviceName = ((AppiumDriver<MobileElement>) driver).getCapabilities().getCapability("deviceName").toString() + " : "+ udid;
 		   platForm = deviceinfoProvider.getPlatformName();
 		   platFormVersion = deviceinfoProvider.getosVersion();
 	   

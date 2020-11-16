@@ -641,3 +641,115 @@ Driver info: driver.version: AppiumDriver
 11-02-2020 12:45:40.040 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 239 - THE END
 11-02-2020 12:45:40.040 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 243 - TLdriver quit - done
 11-02-2020 12:45:43.043 MySuite - TestBase.java : endSuit INFO  [main] 271 - /Users/krish/Automation/Automation-libs/test-output/11022020/AUTOMATION_REPORT.html
+11-15-2020 14:07:50.050 lang.Class - TLDriverFactory.java : setDriver INFO  [TestNG-tests-1] 66 - 
+Attempted: 56. Failure to find device(Auto), Retrying.....
+org.openqa.selenium.SessionNotCreatedException: Unable to create a new remote session. Please check the server log for more details. Original error: An unknown server-side error occurred while processing the command. Original error: Device Auto was not in the list of connected devices
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'B06SES20', ip: 'fd00:688f:2ed1:1682:687a:9846:4e5a:134c%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.7', java.version: '1.8.0_251'
+Driver info: driver.version: AndroidDriver
+remote stacktrace: UnknownError: An unknown server-side error occurred while processing the command. Original error: Device Auto was not in the list of connected devices
+    at getResponseForW3CError (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/errors.js:804:9)
+    at asyncHandler (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/protocol.js:381:37)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'B06SES20', ip: 'fd00:688f:2ed1:1682:687a:9846:4e5a:134c%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.7', java.version: '1.8.0_251'
+Driver info: driver.version: AndroidDriver
+11-15-2020 14:07:51.051 lang.Class - TLDriverFactory.java : setDriver INFO  [TestNG-tests-1] 66 - 
+Attempted: 57. Failure to find device(Auto), Retrying.....
+org.openqa.selenium.SessionNotCreatedException: Unable to create a new remote session. Please check the server log for more details. Original error: An unknown server-side error occurred while processing the command. Original error: Device Auto was not in the list of connected devices
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'B06SES20', ip: 'fd00:688f:2ed1:1682:687a:9846:4e5a:134c%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.7', java.version: '1.8.0_251'
+Driver info: driver.version: AndroidDriver
+remote stacktrace: UnknownError: An unknown server-side error occurred while processing the command. Original error: Device Auto was not in the list of connected devices
+    at getResponseForW3CError (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/errors.js:804:9)
+    at asyncHandler (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/protocol.js:381:37)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'B06SES20', ip: 'fd00:688f:2ed1:1682:687a:9846:4e5a:134c%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.7', java.version: '1.8.0_251'
+Driver info: driver.version: AndroidDriver
+11-15-2020 14:07:52.052 lang.Class - TLDriverFactory.java : setDriver INFO  [TestNG-tests-1] 66 - 
+Attempted: 58. Failure to find device(Auto), Retrying.....
+org.openqa.selenium.SessionNotCreatedException: Unable to create a new remote session. Please check the server log for more details. Original error: An unknown server-side error occurred while processing the command. Original error: Device Auto was not in the list of connected devices
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'B06SES20', ip: 'fd00:688f:2ed1:1682:687a:9846:4e5a:134c%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.7', java.version: '1.8.0_251'
+Driver info: driver.version: AndroidDriver
+remote stacktrace: UnknownError: An unknown server-side error occurred while processing the command. Original error: Device Auto was not in the list of connected devices
+    at getResponseForW3CError (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/errors.js:804:9)
+    at asyncHandler (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/protocol.js:381:37)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'B06SES20', ip: 'fd00:688f:2ed1:1682:687a:9846:4e5a:134c%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.7', java.version: '1.8.0_251'
+Driver info: driver.version: AndroidDriver
+11-15-2020 14:07:54.054 lang.Class - TLDriverFactory.java : setDriver INFO  [TestNG-tests-1] 66 - 
+Attempted: 59. Failure to find device(Auto), Retrying.....
+org.openqa.selenium.SessionNotCreatedException: Unable to create a new remote session. Please check the server log for more details. Original error: An unknown server-side error occurred while processing the command. Original error: Device Auto was not in the list of connected devices
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'B06SES20', ip: 'fd00:688f:2ed1:1682:687a:9846:4e5a:134c%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.7', java.version: '1.8.0_251'
+Driver info: driver.version: AndroidDriver
+remote stacktrace: UnknownError: An unknown server-side error occurred while processing the command. Original error: Device Auto was not in the list of connected devices
+    at getResponseForW3CError (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/errors.js:804:9)
+    at asyncHandler (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/protocol.js:381:37)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'B06SES20', ip: 'fd00:688f:2ed1:1682:687a:9846:4e5a:134c%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.7', java.version: '1.8.0_251'
+Driver info: driver.version: AndroidDriver
+11-15-2020 14:07:55.055 lang.Class - TLDriverFactory.java : setDriver INFO  [TestNG-tests-1] 66 - 
+Attempted: 60. Failure to find device(Auto), Retrying.....
+org.openqa.selenium.SessionNotCreatedException: Unable to create a new remote session. Please check the server log for more details. Original error: An unknown server-side error occurred while processing the command. Original error: Device Auto was not in the list of connected devices
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'B06SES20', ip: 'fd00:688f:2ed1:1682:687a:9846:4e5a:134c%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.7', java.version: '1.8.0_251'
+Driver info: driver.version: AndroidDriver
+remote stacktrace: UnknownError: An unknown server-side error occurred while processing the command. Original error: Device Auto was not in the list of connected devices
+    at getResponseForW3CError (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/errors.js:804:9)
+    at asyncHandler (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/protocol.js:381:37)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'B06SES20', ip: 'fd00:688f:2ed1:1682:687a:9846:4e5a:134c%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.7', java.version: '1.8.0_251'
+Driver info: driver.version: AndroidDriver
+11-15-2020 14:07:56.056 Lucky_PROD_Suite - TestBase.java : BeforeClass ERROR [TestNG-tests-1] 179 - session failed : null
+11-15-2020 14:07:56.056 Lucky_PROD_Suite - TestListener.java : onTestSkipped WARN  [TestNG-tests-1] 121 - Test Skipped : TestFlightUpdateScript : Auto_ 
+11-15-2020 14:08:01.001 lang.Class - InvokedSuiteListener.java : onFinish INFO  [TestNG-tests-1] 36 - Removing:[TestClass name=class other.testcases.TestFlight]
+11-15-2020 14:08:01.001 Lucky_PROD_Suite - TestBase.java : endSuit INFO  [main] 270 - /Users/krish/Automation/Automation-libs/test-output/11152020/AUTOMATION_REPORT.html
+11-15-2020 14:13:04.004 Lucky_PROD_Suite - TestBase.java : BeforeClass INFO  [TestNG-tests-1] 195 - Test Details : TestFlightUpdateScript : iOS : iPhone 11 Pro : 00008030-001A550A2643802E
+11-15-2020 14:14:07.007 Lucky_PROD_Suite - BaseObjs.java : logmessage INFO  [TestNG-tests-1] 197 - Verification Success : 'Apps' Vs 'Apps'
+11-15-2020 14:17:35.035 Lucky_PROD_Suite - TestFlight.java : TestFlightUpdateScript INFO  [TestNG-tests-1] 83 - No 'UPDATE' or 'INSTALL' buttons found
+11-15-2020 14:17:35.035 Lucky_PROD_Suite - TestFlight.java : TestFlightUpdateScript INFO  [TestNG-tests-1] 86 - BUILD_NUMBER : null
+11-15-2020 14:17:36.036 Lucky_PROD_Suite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 233 - app close
+11-15-2020 14:17:36.036 Lucky_PROD_Suite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 238 - THE END
+11-15-2020 14:17:36.036 Lucky_PROD_Suite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 242 - TLdriver quit - done
+11-15-2020 14:17:43.043 Lucky_PROD_Suite - TestBase.java : endSuit INFO  [main] 270 - /Users/krish/Automation/Automation-libs/test-output/11152020/AUTOMATION_REPORT.html
+11-15-2020 14:23:16.016 Lucky_PROD_Suite - TestBase.java : BeforeClass INFO  [TestNG-tests-1] 198 - Test Details : TestFlightUpdateScript : iOS : iPhone 11 Pro : 00008030-001A550A2643802E
+11-15-2020 14:24:19.019 Lucky_PROD_Suite - BaseObjs.java : logmessage INFO  [TestNG-tests-1] 197 - Verification Success : 'Apps' Vs 'Apps'
+11-15-2020 14:27:46.046 Lucky_PROD_Suite - TestFlight.java : TestFlightUpdateScript INFO  [TestNG-tests-1] 83 - No 'UPDATE' or 'INSTALL' buttons found
+11-15-2020 14:27:46.046 Lucky_PROD_Suite - TestFlight.java : TestFlightUpdateScript INFO  [TestNG-tests-1] 86 - BUILD_NUMBER : null
+11-15-2020 14:27:47.047 Lucky_PROD_Suite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 236 - app close
+11-15-2020 14:27:47.047 Lucky_PROD_Suite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 241 - THE END
+11-15-2020 14:27:47.047 Lucky_PROD_Suite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 245 - TLdriver quit - done
+11-15-2020 14:27:54.054 Lucky_PROD_Suite - TestBase.java : endSuit INFO  [main] 273 - /Users/krish/Automation/Automation-libs/test-output/11152020/AUTOMATION_REPORT.html
+11-15-2020 14:31:11.011 Lucky_PROD_Suite - TestBase.java : BeforeClass INFO  [TestNG-tests-1] 198 - Test Details : TestFlightUpdateScript : iOS : ERROR:DeviceAutonotfound! : 00008030-001A550A2643802E
+11-15-2020 14:32:15.015 Lucky_PROD_Suite - BaseObjs.java : logmessage INFO  [TestNG-tests-1] 197 - Verification Success : 'Apps' Vs 'Apps'
+11-15-2020 14:35:43.043 Lucky_PROD_Suite - TestFlight.java : TestFlightUpdateScript INFO  [TestNG-tests-1] 83 - No 'UPDATE' or 'INSTALL' buttons found
+11-15-2020 14:35:43.043 Lucky_PROD_Suite - TestFlight.java : TestFlightUpdateScript INFO  [TestNG-tests-1] 86 - BUILD_NUMBER : null
+11-15-2020 14:35:44.044 Lucky_PROD_Suite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 236 - app close
+11-15-2020 14:35:44.044 Lucky_PROD_Suite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 241 - THE END
+11-15-2020 14:35:44.044 Lucky_PROD_Suite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 245 - TLdriver quit - done
+11-15-2020 14:35:51.051 Lucky_PROD_Suite - TestBase.java : endSuit INFO  [main] 273 - /Users/krish/Automation/Automation-libs/test-output/11152020/AUTOMATION_REPORT.html
+11-15-2020 17:59:55.055 DataManager.TestDataManager - TestDataManager.java : getJsonValue ERROR [main] 93 - Data file error..
+11-15-2020 18:00:36.036 DataManager.TestDataManager - TestDataManager.java : getJsonValue ERROR [main] 93 - Data file error..
+11-16-2020 09:11:08.008 Lucky_PROD_Suite - TestBase.java : setupSuit INFO  [main] 90 - created Folder for Report: /Users/krish/Automation/Automation-libs/test-output/11162020
+11-16-2020 09:11:16.016 Lucky_PROD_Suite - TestBase.java : BeforeClass ERROR [TestNG-tests-1] 194 - session failed : Unable to create a new remote session. Please check the server log for more details. Original error: An unknown server-side error occurred while processing the command. Original error: '12.0' does not exist in the list of simctl SDKs. Only the following Simulator SDK versions are available on your system: 14.2, 13.3, 7.0, 13.4, 14.0, 13.5, 13.6, 14.1, 7.1, 13.7, 6.1, 6.2
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'B06SES20', ip: 'fd00:688f:2ed1:1682:8924:6730:f779:9557%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.7', java.version: '1.8.0_251'
+Driver info: driver.version: AppiumDriver
+remote stacktrace: UnknownError: An unknown server-side error occurred while processing the command. Original error: '12.0' does not exist in the list of simctl SDKs. Only the following Simulator SDK versions are available on your system: 14.2, 13.3, 7.0, 13.4, 14.0, 13.5, 13.6, 14.1, 7.1, 13.7, 6.1, 6.2
+    at getResponseForW3CError (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/errors.js:804:9)
+    at asyncHandler (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/protocol.js:381:37)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'B06SES20', ip: 'fd00:688f:2ed1:1682:8924:6730:f779:9557%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.7', java.version: '1.8.0_251'
+Driver info: driver.version: AppiumDriver
+11-16-2020 09:11:16.016 Lucky_PROD_Suite - TestListener.java : onTestSkipped WARN  [TestNG-tests-1] 121 - Test Skipped : TestFlightUpdateScript : Auto_ERROR:DeviceAutonotfound!
+11-16-2020 09:11:17.017 lang.Class - InvokedSuiteListener.java : onFinish INFO  [TestNG-tests-1] 36 - Removing:[TestClass name=class other.testcases.TestFlight]
+11-16-2020 09:11:17.017 Lucky_PROD_Suite - TestBase.java : endSuit INFO  [main] 285 - /Users/krish/Automation/Automation-libs/test-output/11162020/AUTOMATION_REPORT.html
+11-16-2020 09:12:27.027 Lucky_PROD_Suite - TestBase.java : BeforeClass INFO  [TestNG-tests-1] 210 - Test Details : TestFlightUpdateScript : iOS : ERROR:DeviceAutonotfound! : 00008030-001A550A2643802E
+11-16-2020 09:13:30.030 Lucky_PROD_Suite - BaseObjs.java : logmessage INFO  [TestNG-tests-1] 197 - Verification Success : 'Apps' Vs 'Apps'
+11-16-2020 09:16:56.056 Lucky_PROD_Suite - TestFlight.java : TestFlightUpdateScript INFO  [TestNG-tests-1] 83 - No 'UPDATE' or 'INSTALL' buttons found
+11-16-2020 09:16:56.056 Lucky_PROD_Suite - TestFlight.java : TestFlightUpdateScript INFO  [TestNG-tests-1] 86 - BUILD_NUMBER : null
+11-16-2020 09:16:58.058 Lucky_PROD_Suite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 248 - app close
+11-16-2020 09:16:58.058 Lucky_PROD_Suite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 253 - THE END
+11-16-2020 09:16:58.058 Lucky_PROD_Suite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 257 - TLdriver quit - done
+11-16-2020 09:17:05.005 Lucky_PROD_Suite - TestBase.java : endSuit INFO  [main] 285 - /Users/krish/Automation/Automation-libs/test-output/11162020/AUTOMATION_REPORT.html

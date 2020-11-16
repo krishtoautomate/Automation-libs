@@ -80,11 +80,14 @@ public class DeviceDAO implements ITestBase{
 		return brand;
 	}
 	
+	//net.bt.name
 	public synchronized String getOs() {
-		if(runCommandThruProcess(Constants.IDEVICEINFO+" -u" + this.udid + " -k ProductName").contains("iPhone OS"))
-			this.os = "iPhone OS";
-		else
+		if(runCommandThruProcess(Constants.ADB+" -s " +
+				this.udid +
+	            " shell getprop net.bt.name").replaceAll("\n", "").contains("Android"))
 			this.os = "Android";
+		else
+			this.os = "iPhone OS";
 			
 		return os;
 	}

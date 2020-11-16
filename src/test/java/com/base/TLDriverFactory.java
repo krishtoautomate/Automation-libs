@@ -73,6 +73,7 @@ public class TLDriverFactory{
     		}
         }else if("iOS".equalsIgnoreCase(platForm)) {
         	
+//        	if(!"Auto".equalsIgnoreCase(udid))
         	deviceinfoProvider.uninstall_WDA();
         	
         	desiredCapabilities = capabilitiesManager.loadJSONCapabilities(Constants.IOS_CAPABILITIES , "IOS");

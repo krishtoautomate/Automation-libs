@@ -86,7 +86,7 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener 
 				test.fail("Failed Test case : " + tr.getMethod().getMethodName() + " -- " + tr.getThrowable(), 
 						MediaEntityBuilder.createScreenCaptureFromPath(ScreenShot).build());
 				
-			} catch (WebDriverException | IOException e) {			
+			} catch (WebDriverException e) {			
 				test.fail("Failed Test case : " + tr.getMethod().getMethodName() + "\n" + tr.getThrowable());
 				
 			}

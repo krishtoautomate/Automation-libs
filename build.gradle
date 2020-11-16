@@ -48,7 +48,7 @@ dependencies {
     implementation 'com.jcraft:jsch:0.1.54'
     testImplementation 'io.rest-assured:rest-assured:3.0.0'
     
-    implementation 'com.aventstack:extentreports:4.1.2'
+    implementation 'com.aventstack:extentreports:5.0.4'
     
     implementation 'com.google.guava:guava:21.0'
     
