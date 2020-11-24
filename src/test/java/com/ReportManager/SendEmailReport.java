@@ -4,12 +4,27 @@ package com.ReportManager;
 * Created by Krish on 21.07.2018.
 **/
 import java.io.IOException;
-import java.nio.file.*;
-import java.util.*;
-import java.util.zip.*;
-import javax.mail.*;  
-import javax.mail.internet.*;  
-import javax.activation.*;  
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Properties;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
+
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.BodyPart;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Multipart;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;  
 
 public class SendEmailReport {
 	public static void main(String [] args) throws IOException{  

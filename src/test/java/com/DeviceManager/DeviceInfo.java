@@ -8,7 +8,11 @@ import org.apache.log4j.Logger;
 import org.json.simple.parser.ParseException;
 
 import com.DataManager.JsonFileReader;
+import com.base.Constants;
 
+/*
+ * gets information from deviceInfo json file
+ */
 public class DeviceInfo {
 
 	private String deviceName;
@@ -18,9 +22,6 @@ public class DeviceInfo {
 	private int devicePort; //wdaPort or systemPort
 	
 	private static Logger log = Logger.getLogger(Class.class.getName());
-    
-	private static final String deviceInfo = "src/test/resources/" +"deviceInfo.json";
-	
 
 	/**
 	 * @return the deviceName
@@ -28,7 +29,7 @@ public class DeviceInfo {
 	public synchronized String getDeviceName(String deviceUdid) {
 		
 		try {
-			JsonFileReader JsonFileReader = new JsonFileReader(deviceInfo);
+			JsonFileReader JsonFileReader = new JsonFileReader(Constants.DEVICE_INFO);
 			
 			int index = JsonFileReader.getObjIndex("udid", deviceUdid);
 				
@@ -46,7 +47,7 @@ public class DeviceInfo {
 	public synchronized String getPlatformName(String deviceUdid) {
 		
 		try {
-			JsonFileReader JsonFileReader = new JsonFileReader(deviceInfo);
+			JsonFileReader JsonFileReader = new JsonFileReader(Constants.DEVICE_INFO);
 			
 			int index = JsonFileReader.getObjIndex("udid", deviceUdid);
 				
@@ -64,7 +65,7 @@ public class DeviceInfo {
 	public synchronized String getPlatformVersion(String deviceUdid) {
 		
 		try {
-			JsonFileReader JsonFileReader = new JsonFileReader(deviceInfo);
+			JsonFileReader JsonFileReader = new JsonFileReader(Constants.DEVICE_INFO);
 			
 			int index = JsonFileReader.getObjIndex("udid", deviceUdid);
 				
@@ -82,7 +83,7 @@ public class DeviceInfo {
 	public synchronized String getDeviceColour(String deviceUdid) {
 		
 		try {
-			JsonFileReader JsonFileReader = new JsonFileReader(deviceInfo);
+			JsonFileReader JsonFileReader = new JsonFileReader(Constants.DEVICE_INFO);
 			
 			int index = JsonFileReader.getObjIndex("udid", deviceUdid);
 				
@@ -99,7 +100,7 @@ public class DeviceInfo {
 	 */
 	public synchronized int getDevicePort(String deviceUdid) {
 		try {
-			JsonFileReader JsonFileReader = new JsonFileReader(deviceInfo);
+			JsonFileReader JsonFileReader = new JsonFileReader(Constants.DEVICE_INFO);
 			
 			int index = JsonFileReader.getObjIndex("udid", deviceUdid);
 				

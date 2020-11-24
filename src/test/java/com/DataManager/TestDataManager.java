@@ -16,14 +16,42 @@ public class TestDataManager {
 	private static final Logger log = LogManager.getLogger(TestDataManager.class);
 	
 	private String filePath;
+	private String className;
+	private String platformName;
 	
+
 	public TestDataManager(String PathtoJSONfile) {
-		this.setFilePath(PathtoJSONfile);
+		this.filePath = PathtoJSONfile;
 	}
 	
-	private void setFilePath(String filePath) {
+	public TestDataManager(String filePath, String className) {
 		this.filePath = filePath;
+		this.className = className;
 	}
+	
+	public TestDataManager(String filePath, String className, String platformName) {
+		this.filePath = filePath;
+		this.className = className;
+		this.platformName = platformName;
+	}
+	
+	public synchronized String getValue(String key) {
+		
+		JSONParser jsonParser = new JSONParser();
+		String value = null;
+        try {
+			JSONObject jsonTestData = (JSONObject)jsonParser.parse(new FileReader(filePath));
+			JSONObject currentTestData = (JSONObject)jsonTestData.get(className);
+			JSONObject userPassData = (JSONObject)currentTestData.get(platformName);
+			value = userPassData.get(key).toString();
+		} catch (IOException | ParseException e) {
+			log.error("Data file error..");
+		}
+        
+		return value;
+		
+	}
+	
 	
 	/*
 	 * get key by unique key 
@@ -52,24 +80,24 @@ public class TestDataManager {
 	/*
 	 * get key by index
 	 */
-	public synchronized String getJsonValue(int index, String key)  {
-		
-		String jsonValue = null;
-		
-		try {
-			Object obj = new JSONParser().parse(new FileReader(new File(filePath)));
-			JSONArray jsonArray = (JSONArray) obj;
-			
-			jsonValue = ((JSONObject)jsonArray.get(index)).get(key).toString();
-		} catch (Exception e) {
-			log.error("Data file error..");
-		}
-		
-		return jsonValue;
-	}
+//	public synchronized String getJsonValue(int index, String key)  {
+//		
+//		String jsonValue = null;
+//		
+//		try {
+//			Object obj = new JSONParser().parse(new FileReader(new File(filePath)));
+//			JSONArray jsonArray = (JSONArray) obj;
+//			
+//			jsonValue = ((JSONObject)jsonArray.get(index)).get(key).toString();
+//		} catch (Exception e) {
+//			log.error("Data file error..");
+//		}
+//		
+//		return jsonValue;
+//	}
 	
 	
-	public synchronized String getJsonValue(String className, int index, String key) {
+	public synchronized String getJsonValue(int index, String key) {
 		
 		String value = null;
 		

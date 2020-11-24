@@ -5,6 +5,7 @@ import java.util.List;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
+import com.Utilities.ITestBase;
 import com.Utilities.Utilities;
 import com.aventstack.extentreports.Status;
 import com.base.TestBase;
@@ -15,7 +16,7 @@ import io.appium.java_client.MobileElement;
 import other.pages.TestFlightApp;
 
 
-public class TestFlight extends TestBase{
+public class TestFlight extends TestBase implements ITestBase {
 	
 
 	@SuppressWarnings("unchecked")
@@ -31,7 +32,7 @@ public class TestFlight extends TestBase{
 			((AppiumDriver<MobileElement>) driver).activateApp("com.apple.TestFlight");
 		
 
-//		if(utils.isElementDisplayed(testFlightapp.get_password_inputField())) {
+//		if(isElementDisplayed(testFlightapp.get_password_inputField())) {
 //			testFlightapp.get_password_inputField().sendKeys("Volt123456");
 //			utils.logmessage(Status.INFO, "Password - provided");
 //			
@@ -39,27 +40,27 @@ public class TestFlight extends TestBase{
 //			utils.logmessage(Status.INFO, "Signin/OK button is Clicked");	
 //		}
 		
-//		if(utils.isElementDisplayed(testFlightApp.get_update_later_btn())) {
+//		if(isElementDisplayed(testFlightApp.get_update_later_btn())) {
 //			testFlightApp.get_update_later_btn().click();
 //			utils.logmessage(Status.INFO, "'Update Later' Button - is Clicked");
 //		}
 //		
-//		if(utils.isElementDisplayed(testFlightApp.get_remindMeLater_btn())) {
+//		if(isElementDisplayed(testFlightApp.get_remindMeLater_btn())) {
 //			testFlightApp.get_remindMeLater_btn().click();
 //			utils.logmessage(Status.INFO, "'Remind Me Later' Button - is Clicked");
 //		}
 		
-//		if(utils.isElementDisplayed(testFlightApp.get_alert())) {
+//		if(isElementDisplayed(testFlightApp.get_alert())) {
 //			testFlightApp.get_notNow_btn().click();
 //			utils.logmessage(Status.INFO, "'Not Now' Button - is Clicked");
 //		}
 		
-		if(utils.isElementDisplayed(testFlightApp.get_tryAgain_btn())) {
+		if(isElementDisplayed(testFlightApp.get_tryAgain_btn())) {
 			testFlightApp.get_tryAgain_btn().click();
 			utils.logmessage(Status.INFO, "'Try Again' Button - is Clicked");
 		}
 		
-		if(utils.isElementDisplayed(testFlightApp.get_continue_btn())) {
+		if(isElementDisplayed(testFlightApp.get_continue_btn())) {
 			testFlightApp.get_continue_btn().click();
 			utils.logmessage(Status.INFO, "Continue Button - is Clicked");
 		}
@@ -82,7 +83,7 @@ public class TestFlight extends TestBase{
 			log.info("No 'UPDATE' or 'INSTALL' buttons found");
 		}
 		
-		log.info("BUILD_NUMBER : "+utils.get_BuildNo());
+		log.info("BUILD_NUMBER : "+getBuildno());
 		
 		
 		

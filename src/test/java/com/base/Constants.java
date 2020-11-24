@@ -40,7 +40,12 @@ public class Constants {
 	 
 	 public static final String API_HOST = "api.virginmobile.ca";
 	 
-	 public static final String ANDROID_HOME = "/usr/local/share/android-sdk";
+	 public static final String DEVICE_INFO = USER_DIR+"/src/test/resources/deviceInfo.json";
+	 
+	 public static final String ANDROID_HOME = "/usr/local/share/android-sdk/";
+	 public static final String ADB = ANDROID_HOME+ "platform-tools/adb";
+	 public static final String IDEVICEINFO = "/usr/local/bin/ideviceinfo";
+	 public static final String IDEVICE_ID = "/usr/local/bin/idevice_id";
 
 	 public static final String BASE_URI = "https://"+Constants.API_HOST+"/channelvirginext";
 
@@ -49,6 +54,14 @@ public class Constants {
 	 public static final String HOST_IP_ADDRESS() {
 		try {
 			return InetAddress.getLocalHost().getHostAddress();
+		} catch (UnknownHostException e) {
+			return "Unknown Host";
+		}
+	 }
+	 
+	 public static final String HOST_NAME() {
+		try {
+			return InetAddress.getLocalHost().getHostName();
 		} catch (UnknownHostException e) {
 			return "Unknown Host";
 		}

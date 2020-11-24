@@ -9,7 +9,7 @@ import org.testng.xml.XmlClass;
 import org.testng.xml.XmlSuite;
 import org.testng.xml.XmlTest;
 
-import com.DeviceManager.ConnectedDevices;
+import com.DeviceManager.DeviceDAO;
 
 public class RunnerWithAllConnectedDevices {
 
@@ -18,7 +18,7 @@ public class RunnerWithAllConnectedDevices {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		ConnectedDevices devices = new ConnectedDevices();
+		DeviceDAO deviceDAO = new DeviceDAO();
 		
 //		System.out.println(devices.getAllAndroidDevicesInfo());
 //		System.out.println(devices.getAllIOSDevicesInfo());
@@ -43,29 +43,30 @@ public class RunnerWithAllConnectedDevices {
 	      /*
 	       * Test1
 	       */
-	      ArrayList<String> iosDeviceList = devices.getIdevices();
-	      
-	      for(int i=0;i<iosDeviceList.size();i++) { 
-	    	  
-	    	//Create an instance of XmlTest and assign a name for it. 
-	    	  XmlTest iosTest = new XmlTest(mySuite);
-	    
-	    	  //Test name
-		      iosTest.setName("TestFlight_"+i);  
-		      
-		      //Test parameters
-		      iosTest.addParameter("platForm", "IOS");
-		      iosTest.addParameter("udid", devices.getIdevices().get(i));
-		      
-		    //Create classes
-		      List<XmlClass> myClasses = new ArrayList<XmlClass>();
-		      myClasses.add(new XmlClass("other.testcases.TestFlight"));  
+	      ArrayList<String> iosDeviceList = deviceDAO.getIdevices();
 	
-		      //Add Classes
-		      iosTest.setXmlClasses(myClasses);
-	      
-		      //Add Test
-		      myTests.add(iosTest); 
+	      for(int i=0;i<iosDeviceList.size();i++) { 
+//	    	  if(devices.getIdevices().get(i).contains("\n")) {
+		    	//Create an instance of XmlTest and assign a name for it. 
+		    	  XmlTest iosTest = new XmlTest(mySuite);
+		    
+		    	  //Test name
+			      iosTest.setName("TestFlight_"+i);  
+			      
+			      //Test parameters
+			      iosTest.addParameter("platForm", "IOS");
+			      iosTest.addParameter("udid", iosDeviceList.get(i));
+			      
+			    //Create classes
+			      List<XmlClass> myClasses = new ArrayList<XmlClass>();
+			      myClasses.add(new XmlClass("other.testcases.TestFlight"));  
+		
+			      //Add Classes
+			      iosTest.setXmlClasses(myClasses);
+		      
+			      //Add Test
+			      myTests.add(iosTest); 
+//	    	  }
 	      }
 	      
 	      /*
@@ -73,7 +74,7 @@ public class RunnerWithAllConnectedDevices {
 	       */
 	      
 	      //get connected device list
-	      ArrayList<String> androidDeviceList = devices.getADBdevices();
+	      ArrayList<String> androidDeviceList = deviceDAO.getADBdevices();
 	      
 	      for(int i=0;i<androidDeviceList.size();i++) {
 	    	  
@@ -85,7 +86,7 @@ public class RunnerWithAllConnectedDevices {
 	    	  
 	    	  //Add parameters
 	    	  androidTests.addParameter("platForm", "Android");
-	    	  androidTests.addParameter("udid", devices.getADBdevices().get(i));
+	    	  androidTests.addParameter("udid", androidDeviceList.get(i));
 		      
 	    	  //Create classes
 		      List<XmlClass> myClasses2 = new ArrayList<XmlClass>();
@@ -118,7 +119,7 @@ public class RunnerWithAllConnectedDevices {
 	      
 	      log.info(mySuite.toXml());
 	      
-//	      myTestNG.run();
+	      myTestNG.run();
 
 	}
 
