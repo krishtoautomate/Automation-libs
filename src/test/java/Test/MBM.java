@@ -6,7 +6,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -18,6 +21,14 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
+
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class MBM {
 	
@@ -52,6 +63,7 @@ public class MBM {
 		desiredCapabilities.setCapability("autoLaunch", true);
 		desiredCapabilities.setCapability("noReset", true);
 		desiredCapabilities.setCapability("fullReset", false);
+		desiredCapabilities.setCapability("ignoreUnimportantViews", true);
 		
 //		desiredCapabilities.setCapability("appWaitDuration", 5);
 //		desiredCapabilities.setCapability("androidDeviceReadyTimeout", 5);
@@ -97,7 +109,45 @@ public class MBM {
 		System.out.println(dtf.format(LocalDateTime.now()) + " : More button : Clicked");
 		
 		
+		String pageName = "/Users/krish/Automation/Automation-libs/test-output/test";
+		
+		File dstFile = new File(pageName + ".png");
+		File srcFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		try {
+			FileUtils.moveFile(srcFile, dstFile);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		String pageXml = driver.getPageSource();
+		Path xmlPath = Paths.get(pageName + ".xml");
+		try {
+			Files.write(xmlPath, pageXml.getBytes());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
 
 	}
+	
+//	public static void takeScreenShotAndPageXml(Path folderPath, String pageName) {
+//		String platform = driver instanceof AndroidDriver ? "android" : "ios";
+//		File dstFile = folderPath.resolve(pageName + "-" + platform + ".png").toFile();
+//		File srcFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+//		try {
+//			FileUtils.moveFile(srcFile, dstFile);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		String pageXml = driver.getPageSource();
+//		Path xmlPath = folderPath.resolve(pageName + ".xml");
+//		try {
+//			Files.write(xmlPath, pageXml.getBytes());
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//	}
+
 
 }

@@ -58,7 +58,7 @@ public class Jira {
 		test.addProperty("testKey", testKey);
 		test.addProperty("start", start);
 		test.addProperty("finish", finish);
-		test.addProperty("status", "PASS");
+		test.addProperty("status", status);
 		test.addProperty("comment", comments);
 		
 		tests.add(test);

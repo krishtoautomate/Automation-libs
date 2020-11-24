@@ -200,7 +200,7 @@ public class TestBase {
 		   
 		   iTestContext.setAttribute("udid", udid);
 		   DeviceDAO deviceinfoProvider = new DeviceDAO(udid);
-		   deviceName = ((AppiumDriver<MobileElement>) driver).getCapabilities().getCapability("deviceName").toString() + " : "+ udid;
+		   deviceName = deviceinfoProvider.getDeviceName();
 		   platForm = deviceinfoProvider.getPlatformName();
 		   platFormVersion = deviceinfoProvider.getosVersion();
 	   

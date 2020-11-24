@@ -753,3 +753,5 @@ Driver info: driver.version: AppiumDriver
 11-16-2020 09:16:58.058 Lucky_PROD_Suite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 253 - THE END
 11-16-2020 09:16:58.058 Lucky_PROD_Suite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 257 - TLdriver quit - done
 11-16-2020 09:17:05.005 Lucky_PROD_Suite - TestBase.java : endSuit INFO  [main] 285 - /Users/krish/Automation/Automation-libs/test-output/11162020/AUTOMATION_REPORT.html
+11-16-2020 10:44:42.042 lang.Class - AppiumManager.java : killPort INFO  [main] 100 - port kill success
+11-19-2020 12:55:00.000 lang.Class - AppiumManager.java : killPort INFO  [main] 100 - port kill success
