@@ -25,7 +25,9 @@ public class CapabilitiesManager {
 	public synchronized DesiredCapabilities loadJSONCapabilities(String capabilitiesJson, String capabilitiesName) {
 		
 		File buildCapabilities = new File(Constants.CAPABILITIES);
-		if(buildCapabilities.exists()) 
+		String buildNo = System.getenv("BUILD_NUMBER");
+//		if(buildCapabilities.exists())
+		if(buildNo != null)
 			capabilitiesJson = Constants.CAPABILITIES;
 	
 		try {

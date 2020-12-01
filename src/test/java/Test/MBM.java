@@ -130,24 +130,6 @@ public class MBM {
 		
 
 	}
-	
-//	public static void takeScreenShotAndPageXml(Path folderPath, String pageName) {
-//		String platform = driver instanceof AndroidDriver ? "android" : "ios";
-//		File dstFile = folderPath.resolve(pageName + "-" + platform + ".png").toFile();
-//		File srcFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-//		try {
-//			FileUtils.moveFile(srcFile, dstFile);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		String pageXml = driver.getPageSource();
-//		Path xmlPath = folderPath.resolve(pageName + ".xml");
-//		try {
-//			Files.write(xmlPath, pageXml.getBytes());
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
 
 
 }

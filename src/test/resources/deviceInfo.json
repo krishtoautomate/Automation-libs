@@ -284,6 +284,46 @@
     "colour":"Black",
     "devicePort":8335
 },
+{
+    "name":"iPhone 12 Pro Max",
+    "udid":"00008101-00094D000ED8001E",
+    "platformName":"iOS",
+    "platformVersion":"14.0.1",
+    "colour":"White",
+    "devicePort":8336
+},
+{
+    "name":"iPhone 12",
+    "udid":"00008101-000425AC0CC0001E",
+    "platformName":"iOS",
+    "platformVersion":"14.0.1",
+    "colour":"Green",
+    "devicePort":8337
+},
+{
+    "name":"iPhone 12",
+    "udid":"00008101-000418E104A1401E",
+    "platformName":"iOS",
+    "platformVersion":"14.0.1",
+    "colour":"Blue",
+    "devicePort":8338
+},
+{
+    "name":"iPhone 12 Mini",
+    "udid":"00008101-000E71EC3C90001E",
+    "platformName":"iOS",
+    "platformVersion":"14.0.1",
+    "colour":"Blue",
+    "devicePort":8339
+},
+{
+    "name":"iPhone 12 Pro",
+    "udid":"00008101-000E71EC3C90001E",
+    "platformName":"iOS",
+    "platformVersion":"14.0.1",
+    "colour":"Black",
+    "devicePort":8340
+},
  {
    "name":"Samsung S8",
    "udid":"988b9b304b4e4a374a",
