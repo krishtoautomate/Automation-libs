@@ -318,12 +318,21 @@
 },
 {
     "name":"iPhone 12 Pro",
-    "udid":"00008101-000E71EC3C90001E",
+    "udid":"00008101-000128990250001E",
     "platformName":"iOS",
     "platformVersion":"14.0.1",
     "colour":"Black",
     "devicePort":8340
 },
+{
+    "name":"iPhone XS Max",
+    "udid":"00008020-001E19140AF8002E",
+    "platformName":"iOS",
+    "platformVersion":"12.0",
+    "colour":"Gold",
+    "devicePort":8341
+},
+
  {
    "name":"Samsung S8",
    "udid":"988b9b304b4e4a374a",

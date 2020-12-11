@@ -10,8 +10,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.ITestContext;
 
-import com.DeviceManager.DeviceInfo;
 import com.DeviceManager.DeviceDAO;
+import com.DeviceManager.DeviceInfo;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;

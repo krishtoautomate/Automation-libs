@@ -6,29 +6,16 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import com.DataManager.TestDataManager;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
-
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class MBM {
 	
@@ -56,7 +43,7 @@ public class MBM {
 		DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
 		
 		desiredCapabilities.setCapability("deviceName","Android");
-		desiredCapabilities.setCapability(MobileCapabilityType.UDID, "R58N70GGVZH");//device id //adb devices commnad
+		desiredCapabilities.setCapability(MobileCapabilityType.UDID, "4c4757534c573398");//device id //adb devices commnad
 		desiredCapabilities.setCapability("platformName", "Android");
 		desiredCapabilities.setCapability("platformVersion", "8.1.0");
 		desiredCapabilities.setCapability("automationName", "uiautomator2");
@@ -72,11 +59,11 @@ public class MBM {
 		
 		
 		
-		desiredCapabilities.setCapability("appPackage", "ca.bell.selfserve.mybellmobile.preprod");
-		desiredCapabilities.setCapability("appActivity", "ca.bell.selfserve.mybellmobile.ui.splash.view.SplashActivity");
+//		desiredCapabilities.setCapability("appPackage", "ca.bell.selfserve.mybellmobile");
+//		desiredCapabilities.setCapability("appActivity", "ca.bell.selfserve.mybellmobile.ui.splash.view.SplashActivity");
 		
-//		desiredCapabilities.setCapability("appPackage", "ca.virginmobile.myaccount.virginmobile.preprod");//5sec
-//		desiredCapabilities.setCapability("appActivity", "ca.virginmobile.myaccount.virginmobile.ui.splash.view.SplashActivity");
+		desiredCapabilities.setCapability("appPackage", "ca.virginmobile.myaccount.virginmobile");//5sec
+		desiredCapabilities.setCapability("appActivity", "ca.virginmobile.myaccount.virginmobile.ui.splash.view.SplashActivity");
 		
 		driver = new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:4723/wd/hub"), desiredCapabilities);
 //		driver = new AndroidDriver<MobileElement>(new URL(server.getUrl().toString()), desiredCapabilities);
@@ -91,8 +78,8 @@ public class MBM {
 		System.out.println("user : automation5");
 		
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(loginPwd));
-		driver.findElement(loginPwd).sendKeys("Quebec2021");
-		System.out.println("password : Quebec2021");
+		driver.findElement(loginPwd).sendKeys("Lucky1234$");
+		System.out.println("password : Lucky1234$");
 		
 //		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(keepMeLoginIn_btn));
 //		driver.findElement(keepMeLoginIn_btn).click();
@@ -109,22 +96,6 @@ public class MBM {
 		System.out.println(dtf.format(LocalDateTime.now()) + " : More button : Clicked");
 		
 		
-		String pageName = "/Users/krish/Automation/Automation-libs/test-output/test";
-		
-		File dstFile = new File(pageName + ".png");
-		File srcFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-		try {
-			FileUtils.moveFile(srcFile, dstFile);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		String pageXml = driver.getPageSource();
-		Path xmlPath = Paths.get(pageName + ".xml");
-		try {
-			Files.write(xmlPath, pageXml.getBytes());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		
 		
 		
