@@ -3,7 +3,6 @@ package other.testcases;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.testng.TestNG;
 import org.testng.annotations.Test;
 import org.testng.xml.XmlClass;
@@ -14,7 +13,7 @@ import com.DeviceManager.DeviceDAO;
 
 public class RunnerWithAllConnectedDevices {
 
-	private static Logger log = Logger.getLogger(Class.class.getName());
+//	private static Logger log = Logger.getLogger(Class.class.getName());
 
 	@Test
 	public void testrunner() {
@@ -109,7 +108,7 @@ public class RunnerWithAllConnectedDevices {
 		mySuite.setFileName("myTemp.xml");
 		mySuite.setThreadCount(10);
 
-		log.info(mySuite.toXml());
+		System.out.println(mySuite.toXml());
 
 		myTestNG.run();
 

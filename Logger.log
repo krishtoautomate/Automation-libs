@@ -1237,3 +1237,8 @@ Driver info: driver.version: IOSDriver
 01-08-2021 17:26:48.048 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-2] 254 - THE END
 01-08-2021 17:26:48.048 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-2] 258 - TLdriver quit - done
 01-08-2021 17:26:50.050 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-1] 216 - Verification Success : 'Apps' Vs 'Apps'
+01-08-2021 17:28:49.049 MySuite - TestFlight.java : TestFlightUpdateScript INFO  [TestNG-tests-1] 64 - No 'UPDATE' or 'INSTALL' buttons found
+01-08-2021 17:28:50.050 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 249 - app close
+01-08-2021 17:28:50.050 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 254 - THE END
+01-08-2021 17:28:50.050 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 258 - TLdriver quit - done
+01-08-2021 17:28:57.057 MySuite - TestBase.java : endSuit INFO  [TestNG-tests-1] 286 - /Users/krish/Automation/Automation-libs/test-output/01082021/AUTOMATION_REPORT.html
