@@ -78,7 +78,7 @@ public class TestFlight extends TestBase implements ITestBase {
 				all_btns.get(i).click();
 				utils.logmessage(Status.INFO,button + "- button clicked");
 			}
-			utils.sleep(5);
+			sleep(5);
 		} catch (Exception e) {
 			log.info("No 'UPDATE' or 'INSTALL' buttons found");
 		}

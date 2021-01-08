@@ -16,6 +16,7 @@ import com.DeviceManager.DeviceInfo;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
   
@@ -38,6 +39,7 @@ public class TLDriverFactory{
     	Map<String, String> testParams = Testctx.getCurrentXmlTest().getAllParameters();
     	
     	String udid = testParams.get("udid");
+    	String platForm = testParams.get("platForm");
     	
     	DeviceDAO deviceinfoProvider = new DeviceDAO(udid);
     	
@@ -45,7 +47,7 @@ public class TLDriverFactory{
     	devicePort = deviceManager.getDevicePort(udid);
     	
     	String deviceName = deviceinfoProvider.getDeviceName();
-    	String platForm = deviceinfoProvider.getPlatformName();
+//    	String platForm = deviceinfoProvider.getPlatformName();
     	
     	if("Android".equalsIgnoreCase(platForm)) {
     		
@@ -83,7 +85,7 @@ public class TLDriverFactory{
         	desiredCapabilities.setCapability("wdaLocalPort", devicePort);
         	
 			try {
-				tlDriver.set(new AppiumDriver<MobileElement>(new URL(server.getUrl().toString()), desiredCapabilities));
+				tlDriver.set(new IOSDriver<MobileElement>(new URL(server.getUrl().toString()), desiredCapabilities));
 			} catch (MalformedURLException e) {
 				log.error("AppiumDriver failed to start!");
 			}

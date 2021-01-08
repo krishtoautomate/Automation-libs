@@ -83,7 +83,7 @@ public class Jira {
 	        file.flush();
 
 	    } catch (IOException e) {
-	        e.printStackTrace();
+	    	//ignore
 	    }
 	}
 	

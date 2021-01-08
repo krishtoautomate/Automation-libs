@@ -332,6 +332,14 @@
     "colour":"Gold",
     "devicePort":8341
 },
+{
+    "name":"iPhone 12 Pro",
+    "udid":"00008101-001C15A20AD2001E",
+    "platformName":"iOS",
+    "platformVersion":"14.2.1",
+    "colour":"White",
+    "devicePort":8342
+},
 
  {
    "name":"Samsung S8",
@@ -642,9 +650,7 @@
    "platformVersion":"10.0",
    "colour":"White",
    "devicePort":8237
- }
-,
-
+ },
 {
     "name":"Samsung Galaxy A31",
     "udid":"RF8N70XJA4P",
@@ -652,5 +658,22 @@
     "platformVersion":"10.0",
     "colour":"Prism Crush Blue",
     "devicePort":8238
+ },
+ {
+    "name":"Motorola one hyper",
+    "udid":"ZY22BH4R8B",
+    "platformName":"Android",
+    "platformVersion":"10.0",
+    "colour":"Blue",
+    "devicePort":8239
+ },
+  {
+    "name":"Pixel 5",
+    "udid":"0B271FDD4003AS",
+    "platformName":"Android",
+    "platformVersion":"11.0",
+    "colour":"Black",
+    "devicePort":8240
  }
+ 
 ]

@@ -43,7 +43,7 @@ public class MBM {
 		DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
 		
 		desiredCapabilities.setCapability("deviceName","Android");
-		desiredCapabilities.setCapability(MobileCapabilityType.UDID, "4c4757534c573398");//device id //adb devices commnad
+		desiredCapabilities.setCapability(MobileCapabilityType.UDID, "ZY22BH4R8B");//device id //adb devices commnad
 		desiredCapabilities.setCapability("platformName", "Android");
 		desiredCapabilities.setCapability("platformVersion", "8.1.0");
 		desiredCapabilities.setCapability("automationName", "uiautomator2");
@@ -59,11 +59,11 @@ public class MBM {
 		
 		
 		
-//		desiredCapabilities.setCapability("appPackage", "ca.bell.selfserve.mybellmobile");
-//		desiredCapabilities.setCapability("appActivity", "ca.bell.selfserve.mybellmobile.ui.splash.view.SplashActivity");
+		desiredCapabilities.setCapability("appPackage", "ca.bell.selfserve.mybellmobile.dev");
+		desiredCapabilities.setCapability("appActivity", "ca.bell.selfserve.mybellmobile.ui.splash.view.SplashActivity");
 		
-		desiredCapabilities.setCapability("appPackage", "ca.virginmobile.myaccount.virginmobile");//5sec
-		desiredCapabilities.setCapability("appActivity", "ca.virginmobile.myaccount.virginmobile.ui.splash.view.SplashActivity");
+//		desiredCapabilities.setCapability("appPackage", "ca.virginmobile.myaccount.virginmobile");//5sec
+//		desiredCapabilities.setCapability("appActivity", "ca.virginmobile.myaccount.virginmobile.ui.splash.view.SplashActivity");
 		
 		driver = new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:4723/wd/hub"), desiredCapabilities);
 //		driver = new AndroidDriver<MobileElement>(new URL(server.getUrl().toString()), desiredCapabilities);
@@ -88,6 +88,13 @@ public class MBM {
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(LoginIn_btn));
 		driver.findElement(LoginIn_btn).click();
 		System.out.println(dtf.format(LocalDateTime.now()) + " : LogIn : Clicked");
+		
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		//Click 'More' button
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(more_btn));

@@ -19,7 +19,7 @@ public class PlayStore extends TestBase implements ITestBase {
 		Utilities utils = new Utilities(driver, log, test);
 		PlayStoreApp playstoreapp = new PlayStoreApp(driver, log, test);
 		
-		utils.sleep(2);
+		sleep(2);
 		
 		//1.0 - 
 		if(isElementDisplayed(playstoreapp.get_updates_refresh_btn())) {
@@ -39,7 +39,7 @@ public class PlayStore extends TestBase implements ITestBase {
 		//4.0 - Click Update All button
 		if(isElementDisplayed(playstoreapp.get_updateAll_btn())) {
 			playstoreapp.get_updateAll_btn().click();
-			utils.sleep(2);
+			sleep(2);
 			utils.logmessage(Status.PASS, "'UPDATE ALL' button clicked");
 		}else {
 			utils.logmessage(Status.PASS, "'UPDATE ALL' button is NOT FOUND");

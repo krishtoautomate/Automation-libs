@@ -213,7 +213,7 @@ public class TestBase {
 				{ "<b>Device : </b>", deviceName},
 			    { "<b>UDID : </b>", udid },
 			    { "<b>Platform : </b>", platForm },
-			    { "<b>OsVersion : </b>", platFormVersion },
+			    { "<b>OsVersion : </b>", platFormVersion }
 			    
 			};
 		   

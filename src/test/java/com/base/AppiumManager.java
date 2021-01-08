@@ -10,8 +10,11 @@ import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.testng.ITestResult;
+import org.testng.Reporter;
 
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
@@ -26,9 +29,36 @@ public class AppiumManager{
 		
 		AppiumServiceBuilder serviceBuilder = new AppiumServiceBuilder();
 		
+		ITestResult iTestResult = Reporter.getCurrentTestResult();
+		Map<String, String> testParams = iTestResult.getTestContext().getCurrentXmlTest().getAllParameters();
+		
+		Boolean isAppiumLogsON = false;
+		
+		//APPIUM-PORT
+		String p_port = testParams.get("PORT");
+		int port = 0;
+			
+		try {
+			port = Integer.parseInt(p_port);
+			String appiumLog = testParams.get("APPIUM_LOG");
+			if(appiumLog != null)
+				isAppiumLogsON = appiumLog.contains("true");
+		} catch (NumberFormatException e) {
+			// ignore
+		}
+		
 		serviceBuilder.withIPAddress(Constants.APPIUM_IP_ADDRESS);
-		serviceBuilder.usingAnyFreePort();
-	//	serviceBuilder.withLogFile(new File(System.getProperty("user.dir") +"appium.log"));
+		
+		if(port != 0) {
+			serviceBuilder.usingAnyFreePort();
+		}else {
+			serviceBuilder.usingPort(port);
+		}
+		
+		//APPIUM_LOG
+		if(isAppiumLogsON)
+			serviceBuilder.withLogFile(new File(System.getProperty("user.dir") +"appium.log"));
+		
 		serviceBuilder.usingDriverExecutable(new File(Constants.NODE_PATH));
 		serviceBuilder.withAppiumJS(new File(Constants.APPIUM_PATH));
 		   
@@ -37,8 +67,12 @@ public class AppiumManager{
 		environment.put("PATH", "/usr/local/bin:" + System.getenv("PATH"));
 		serviceBuilder.withEnvironment(environment);
 		server = AppiumDriverLocalService.buildService(serviceBuilder);
-		server.clearOutPutStreams();
 		
+		//APPIUM_LOG
+		if(!isAppiumLogsON)
+			server.clearOutPutStreams();
+		
+//		log.info("Appium server started!");
 		return server;
 	}
 	
