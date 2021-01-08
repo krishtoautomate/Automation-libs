@@ -2,6 +2,7 @@ package com.Utilities;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -20,6 +21,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -31,6 +33,7 @@ import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.mobileActions.MobileActions;
 
+import io.appium.java_client.android.AndroidDriver;
 import io.restassured.response.Response;
 
  
@@ -59,6 +62,22 @@ public class BaseObjs<T> {
 	
 	protected BaseObjs(){
 		
+	}
+	
+	public void dismissAlert() {
+		Boolean isAndroid = driver instanceof AndroidDriver ? true:false;
+		
+		if(!isAndroid) {
+			try {
+				HashMap<String, String> args = new HashMap<>();
+		        args.put("action", "dismiss");
+		        ((RemoteWebDriver) driver).executeScript("mobile: alert", args);
+		        
+				//driver.switchTo().alert().dismiss();
+			} catch (Exception e) {
+				// ignore
+			}
+		}
 	}
 	
 	/**

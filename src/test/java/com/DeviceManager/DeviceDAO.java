@@ -154,6 +154,14 @@ public class DeviceDAO implements ITestBase{
 				this.deviceName = "iPhone 11 Pro";
 			else if("iPhone12,8".equalsIgnoreCase(deviceModel))
 				this.deviceName = "iPhone SE 2";
+			else if("iPhone13,1".equalsIgnoreCase(deviceModel))
+				this.deviceName = "iPhone 12 Mini";
+			else if("iPhone13,2".equalsIgnoreCase(deviceModel))
+				this.deviceName = "iPhone 12";
+			else if("iPhone13,3".equalsIgnoreCase(deviceModel))
+				this.deviceName = "iPhone 12 Pro";
+			else if("iPhone13,4".equalsIgnoreCase(deviceModel))
+				this.deviceName = "iPhone 12 Pro Max";
 			else
 				this.deviceName = deviceModel;
 		}else {

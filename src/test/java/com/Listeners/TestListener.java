@@ -26,6 +26,7 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.base.Jira;
 import com.base.ScreenShotManager;
 import com.base.TestBase;
@@ -80,7 +81,7 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
 		LocalDateTime now = LocalDateTime.now();
 		String date_time = dtf.format(now);
         
-		reporter.report(date_time, "MBM", buildNo, environment, testName, deviceName, platForm, "PASS", "");
+		reporter.report(date_time, "LM", buildNo, environment, testName, deviceName, platForm, "PASS", "");
 		
 		
 		//Jira
@@ -136,6 +137,10 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
 				
 				test.fail("Failed Test case : " + testName + "\n" + testResult.getThrowable(), 
 						MediaEntityBuilder.createScreenCaptureFromPath(ScreenShot).build());
+				
+				String errorXML = driver.getPageSource();
+				test.info(MarkupHelper.createCodeBlock(errorXML));
+				
 			} catch (WebDriverException e) {
 				test.fail("Failed Test case : " + testName + "\n" + testResult.getThrowable());
 			}
@@ -151,7 +156,7 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
 			String date_time = dtf.format(now);
 				
 			//Emailable Test Summary
-			reporter.report(date_time, "MBM", buildNo, environment, testName, deviceName, platForm, "FAIL", testResult.getThrowable().toString());
+			reporter.report(date_time, "LM", buildNo, environment, testName, deviceName, platForm, "FAIL", testResult.getThrowable().toString());
 			
 		}
 		//Jira
@@ -210,11 +215,13 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
 		//Jira report
 		String buildNo = System.getenv("BUILD_NUMBER");
 		String jobName = System.getenv("JOB_NAME");
-		String excutionSummary = jobName+"-"+buildNo;//System.getenv("EXECUTION_SUMMARY");
-		String excutionDescription = "excutionDescription";//System.getenv("EXECUTION_DESCRIPTION");//JOB_NAME
+		String buildUrl =  System.getenv("BUILD_URL");
+		String testPlanKey = System.getenv("TEST_PLAN_KEY");
+		String excutionSummary = jobName+buildNo;
+		String excutionDescription = buildUrl;
 		String startDate = dateANDtime;
 		jiraReporter.setTestExecutionInfo("summary", excutionSummary);
-		jiraReporter.setTestExecutionInfo("testPlanKey", "MAEAUTO-311");
+		jiraReporter.setTestExecutionInfo("testPlanKey", testPlanKey);//"MAEAUTO-311"
 		jiraReporter.setTestExecutionInfo("description", excutionDescription);
 		jiraReporter.setTestExecutionInfo("startDate", startDate);
 		

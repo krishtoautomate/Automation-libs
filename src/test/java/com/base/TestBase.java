@@ -151,6 +151,7 @@ public class TestBase {
 	   AppiumManager appiumManager = new AppiumManager();
 	   
 	   String methodName = method.getName();
+	   String className = this.getClass().getName();
 	   String deviceName = "";
 	   String platForm = "";
 	   String platFormVersion = "";
@@ -209,11 +210,11 @@ public class TestBase {
 		   
 		   log.info("Test Details : "+ methodName + " : "+platForm+ " : " +deviceName);
 		   String[][] data = {
-				{ "<b>TestCase : </b>", methodName},
+				{ "<b>TestCase : </b>", className},
 				{ "<b>Device : </b>", deviceName},
 			    { "<b>UDID : </b>", udid },
 			    { "<b>Platform : </b>", platForm },
-			    { "<b>OsVersion : </b>", platFormVersion },
+			    { "<b>OsVersion : </b>", platFormVersion }
 			    
 			};
 		   

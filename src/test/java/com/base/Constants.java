@@ -30,7 +30,7 @@ public class Constants {
 	 public static final String APPENDED_REPORT = REPORT_DIR+ "appendedReports"  + ".html";
 	 public static final String EMAIL_REPORT = REPORT_DIR+ "EmailableReport"+ ".html";
 	
-	 public static final String CAPABILITIES = USER_DIR+"/build/capabilities.json";
+	 public static final String CAPABILITIES = USER_DIR+"/capabilities.json";
 	 public static final String IOS_CAPABILITIES = USER_DIR+"/src/test/resources/capabilities.json";
 	
 	 public static final String ANDROID_CAPABILITIES = USER_DIR+"/src/test/resources/capabilities.json";

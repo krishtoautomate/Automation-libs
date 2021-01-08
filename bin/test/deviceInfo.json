@@ -284,6 +284,63 @@
     "colour":"Black",
     "devicePort":8335
 },
+{
+    "name":"iPhone 12 Pro Max",
+    "udid":"00008101-00094D000ED8001E",
+    "platformName":"iOS",
+    "platformVersion":"14.0.1",
+    "colour":"White",
+    "devicePort":8336
+},
+{
+    "name":"iPhone 12",
+    "udid":"00008101-000425AC0CC0001E",
+    "platformName":"iOS",
+    "platformVersion":"14.0.1",
+    "colour":"Green",
+    "devicePort":8337
+},
+{
+    "name":"iPhone 12",
+    "udid":"00008101-000418E104A1401E",
+    "platformName":"iOS",
+    "platformVersion":"14.0.1",
+    "colour":"Blue",
+    "devicePort":8338
+},
+{
+    "name":"iPhone 12 Mini",
+    "udid":"00008101-000E71EC3C90001E",
+    "platformName":"iOS",
+    "platformVersion":"14.0.1",
+    "colour":"Blue",
+    "devicePort":8339
+},
+{
+    "name":"iPhone 12 Pro",
+    "udid":"00008101-000128990250001E",
+    "platformName":"iOS",
+    "platformVersion":"14.0.1",
+    "colour":"Black",
+    "devicePort":8340
+},
+{
+    "name":"iPhone XS Max",
+    "udid":"00008020-001E19140AF8002E",
+    "platformName":"iOS",
+    "platformVersion":"12.0",
+    "colour":"Gold",
+    "devicePort":8341
+},
+{
+    "name":"iPhone 12 Pro",
+    "udid":"00008101-001C15A20AD2001E",
+    "platformName":"iOS",
+    "platformVersion":"14.2.1",
+    "colour":"White",
+    "devicePort":8342
+},
+
  {
    "name":"Samsung S8",
    "udid":"988b9b304b4e4a374a",
@@ -593,9 +650,7 @@
    "platformVersion":"10.0",
    "colour":"White",
    "devicePort":8237
- }
-,
-
+ },
 {
     "name":"Samsung Galaxy A31",
     "udid":"RF8N70XJA4P",
@@ -603,5 +658,22 @@
     "platformVersion":"10.0",
     "colour":"Prism Crush Blue",
     "devicePort":8238
+ },
+ {
+    "name":"Motorola one hyper",
+    "udid":"ZY22BH4R8B",
+    "platformName":"Android",
+    "platformVersion":"10.0",
+    "colour":"Blue",
+    "devicePort":8239
+ },
+  {
+    "name":"Pixel 5",
+    "udid":"0B271FDD4003AS",
+    "platformName":"Android",
+    "platformVersion":"11.0",
+    "colour":"Black",
+    "devicePort":8240
  }
+ 
 ]
