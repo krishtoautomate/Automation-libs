@@ -1,5 +1,7 @@
 package other.testcases;
 
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.Utilities.ITestBase;
@@ -12,9 +14,13 @@ import other.pages.PlayStoreApp;
 
 public class PlayStore extends TestBase implements ITestBase {
 	
-
+	String className = this.getClass().getSimpleName();
+	
 	@Test
-	public void PlaystoreUpdateScript() {
+	@Parameters({"udid"})
+	public void PlaystoreUpdateScript(@Optional String udid) {
+		
+		test.getModel().setName(String.format("%s - %s", className, udid));
 		
 		Utilities utils = new Utilities(driver, log, test);
 		PlayStoreApp playstoreapp = new PlayStoreApp(driver, log, test);
