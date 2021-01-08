@@ -25,6 +25,7 @@ public class TestFlight extends TestBase implements ITestBase {
 	@Parameters({"udid"})
 	public void TestFlightUpdateScript(@Optional String udid) {
 		
+		test.getModel().setName(String.format("%s - %s", className, udid));
 		
 		Utilities utils = new Utilities(driver, log, test);
 		TestFlightApp testFlightApp = new TestFlightApp(driver, log, test);
