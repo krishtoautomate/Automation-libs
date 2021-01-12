@@ -1237,3 +1237,128 @@ Driver info: driver.version: IOSDriver
 01-08-2021 17:26:48.048 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-2] 254 - THE END
 01-08-2021 17:26:48.048 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-2] 258 - TLdriver quit - done
 01-08-2021 17:26:50.050 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-1] 216 - Verification Success : 'Apps' Vs 'Apps'
+01-08-2021 17:28:49.049 MySuite - TestFlight.java : TestFlightUpdateScript INFO  [TestNG-tests-1] 64 - No 'UPDATE' or 'INSTALL' buttons found
+01-08-2021 17:28:50.050 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 249 - app close
+01-08-2021 17:28:50.050 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 254 - THE END
+01-08-2021 17:28:50.050 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 258 - TLdriver quit - done
+01-08-2021 17:28:57.057 MySuite - TestBase.java : endSuit INFO  [TestNG-tests-1] 286 - /Users/krish/Automation/Automation-libs/test-output/01082021/AUTOMATION_REPORT.html
+01-11-2021 20:40:24.024 lang.Class - AppiumManager.java : isPortBusy INFO  [main] 96 - isPortBusy : false
+01-11-2021 20:43:04.004 lang.Class - AppiumManager.java : isPortBusy INFO  [main] 96 - isPortBusy : true
+01-11-2021 20:43:27.027 lang.Class - AppiumManager.java : isPortBusy INFO  [main] 95 - isPortBusy : true
+01-11-2021 20:43:27.027 lang.Class - AppiumManager.java : killPort INFO  [main] 137 - port kill success
+01-11-2021 20:43:33.033 lang.Class - AppiumManager.java : isPortBusy INFO  [main] 95 - isPortBusy : false
+01-11-2021 20:43:53.053 lang.Class - AppiumManager.java : isPortBusy INFO  [main] 95 - isPortBusy : true
+01-11-2021 20:43:53.053 lang.Class - AppiumManager.java : killPort INFO  [main] 137 - port kill success
+01-11-2021 20:44:28.028 lang.Class - AppiumManager.java : isPortBusy INFO  [main] 95 - isPortBusy : true
+01-11-2021 20:44:28.028 lang.Class - AppiumManager.java : killPort INFO  [main] 137 - port kill success
+01-11-2021 20:48:36.036 MySuite - TestBase.java : setupSuit INFO  [TestNG-tests-1] 91 - created Folder for Report: /Users/krish/Automation/Automation-libs/test-output/01112021
+01-11-2021 20:48:36.036 lang.Class - AppiumManager.java : isPortBusy INFO  [TestNG-tests-1] 95 - 8342 - isPortBusy : false
+01-11-2021 20:49:29.029 MySuite - TestBase.java : BeforeClass INFO  [TestNG-tests-1] 209 - Test Details : TestFlightUpdateScript : iOS : iPhone 12 Pro
+01-11-2021 20:50:03.003 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-1] 216 - Verification Success : 'Apps' Vs 'Apps'
+01-11-2021 20:52:02.002 MySuite - TestFlight.java : TestFlightUpdateScript INFO  [TestNG-tests-1] 64 - No 'UPDATE' or 'INSTALL' buttons found
+01-11-2021 20:52:03.003 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 247 - app close
+01-11-2021 20:52:03.003 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 252 - THE END
+01-11-2021 20:52:03.003 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 256 - TLdriver quit - done
+01-11-2021 20:52:05.005 lang.Class - AppiumManager.java : isPortBusy INFO  [TestNG-tests-1] 95 - 8342 - isPortBusy : false
+01-11-2021 20:52:05.005 MySuite - TestBase.java : endSuit INFO  [TestNG-tests-1] 281 - /Users/krish/Automation/Automation-libs/test-output/01112021/AUTOMATION_REPORT.html
+01-11-2021 20:53:03.003 lang.Class - AppiumManager.java : isPortBusy INFO  [TestNG-tests-1] 95 - 8342 - isPortBusy : true
+01-11-2021 20:53:03.003 MySuite - TestBase.java : BeforeTest WARN  [TestNG-tests-1] 139 - device Busy : iPhone 12 Pro, udid : 00008101-001C15A20AD2001E, devicePort : 8342
+01-11-2021 20:53:03.003 MySuite - TestBase.java : endSuit INFO  [TestNG-tests-1] 281 - /Users/krish/Automation/Automation-libs/test-output/01112021/AUTOMATION_REPORT.html
+01-11-2021 20:56:06.006 MySuite - TestBase.java : BeforeClass ERROR [TestNG-tests-1] 182 - session failed : Unable to create a new remote session. Please check the server log for more details. Original error: An unknown server-side error occurred while processing the command. Original error: The port #8342 is occupied by an other process. You can either quit that process or select another free port.
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'B06SES20', ip: 'fd00:688f:2ed1:1682:a5a8:1996:988:5dbd%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.7', java.version: '1.8.0_251'
+Driver info: driver.version: IOSDriver
+remote stacktrace: UnknownError: An unknown server-side error occurred while processing the command. Original error: The port #8342 is occupied by an other process. You can either quit that process or select another free port.
+    at getResponseForW3CError (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/errors.js:804:9)
+    at asyncHandler (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/protocol.js:381:37)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'B06SES20', ip: 'fd00:688f:2ed1:1682:a5a8:1996:988:5dbd%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.7', java.version: '1.8.0_251'
+Driver info: driver.version: IOSDriver
+01-11-2021 20:56:06.006 MySuite - TestBase.java : endSuit INFO  [TestNG-tests-1] 267 - /Users/krish/Automation/Automation-libs/test-output/01112021/AUTOMATION_REPORT.html
+01-11-2021 20:58:07.007 MySuite - TestBase.java : BeforeClass ERROR [TestNG-tests-1] 183 - session failed : Unable to create a new remote session. Please check the server log for more details. Original error: An unknown server-side error occurred while processing the command. Original error: The port #8342 is occupied by an other process. You can either quit that process or select another free port.
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'B06SES20', ip: 'fd00:688f:2ed1:1682:a5a8:1996:988:5dbd%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.7', java.version: '1.8.0_251'
+Driver info: driver.version: IOSDriver
+remote stacktrace: UnknownError: An unknown server-side error occurred while processing the command. Original error: The port #8342 is occupied by an other process. You can either quit that process or select another free port.
+    at getResponseForW3CError (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/errors.js:804:9)
+    at asyncHandler (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/protocol.js:381:37)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'B06SES20', ip: 'fd00:688f:2ed1:1682:a5a8:1996:988:5dbd%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.7', java.version: '1.8.0_251'
+Driver info: driver.version: IOSDriver
+01-11-2021 20:58:07.007 MySuite - TestBase.java : endSuit INFO  [TestNG-tests-1] 268 - /Users/krish/Automation/Automation-libs/test-output/01112021/AUTOMATION_REPORT.html
+01-11-2021 21:00:01.001 MySuite - TestBase.java : BeforeClass ERROR [TestNG-tests-1] 183 - session failed : java.lang.reflect.InvocationTargetException
+01-11-2021 21:00:01.001 MySuite - TestBase.java : endSuit INFO  [TestNG-tests-1] 268 - /Users/krish/Automation/Automation-libs/test-output/01112021/AUTOMATION_REPORT.html
+01-11-2021 21:04:07.007 MySuite - TestBase.java : BeforeClass ERROR [TestNG-tests-1] 182 - session failed : Unable to create a new remote session. Please check the server log for more details. Original error: An unknown server-side error occurred while processing the command. Original error: The port #8342 is occupied by an other process. You can either quit that process or select another free port.
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'B06SES20', ip: 'fd00:688f:2ed1:1682:a5a8:1996:988:5dbd%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.7', java.version: '1.8.0_251'
+Driver info: driver.version: IOSDriver
+remote stacktrace: UnknownError: An unknown server-side error occurred while processing the command. Original error: The port #8342 is occupied by an other process. You can either quit that process or select another free port.
+    at getResponseForW3CError (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/errors.js:804:9)
+    at asyncHandler (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/protocol.js:381:37)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'B06SES20', ip: 'fd00:688f:2ed1:1682:a5a8:1996:988:5dbd%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.7', java.version: '1.8.0_251'
+Driver info: driver.version: IOSDriver
+01-11-2021 21:04:07.007 MySuite - TestBase.java : endSuit INFO  [TestNG-tests-1] 268 - /Users/krish/Automation/Automation-libs/test-output/01112021/AUTOMATION_REPORT.html
+01-11-2021 21:07:07.007 MySuite - TestBase.java : BeforeClass ERROR [TestNG-tests-1] 182 - session failed : Unable to create a new remote session. Please check the server log for more details. Original error: An unknown server-side error occurred while processing the command. Original error: The port #8342 is occupied by an other process. You can either quit that process or select another free port.
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'B06SES20', ip: 'fd00:688f:2ed1:1682:a5a8:1996:988:5dbd%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.7', java.version: '1.8.0_251'
+Driver info: driver.version: IOSDriver
+remote stacktrace: UnknownError: An unknown server-side error occurred while processing the command. Original error: The port #8342 is occupied by an other process. You can either quit that process or select another free port.
+    at getResponseForW3CError (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/errors.js:804:9)
+    at asyncHandler (/usr/local/lib/node_modules/appium/node_modules/appium-base-driver/lib/protocol/protocol.js:381:37)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'B06SES20', ip: 'fd00:688f:2ed1:1682:a5a8:1996:988:5dbd%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.7', java.version: '1.8.0_251'
+Driver info: driver.version: IOSDriver
+01-11-2021 21:07:13.013 MySuite - TestBase.java : BeforeClass INFO  [TestNG-tests-2] 199 - Test Details : PlaystoreUpdateScript : Android : google Pixel 5
+01-11-2021 21:07:32.032 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-2] 216 - Left Navigate Button clicked
+01-11-2021 21:07:33.033 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-2] 216 - 'My apps & games' link clicked
+01-11-2021 21:07:38.038 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-2] 216 - 'UPDATE ALL' button clicked
+01-11-2021 21:07:39.039 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-2] 234 - app close
+01-11-2021 21:07:39.039 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-2] 239 - THE END
+01-11-2021 21:07:39.039 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-2] 243 - TLdriver quit - done
+01-11-2021 21:07:41.041 lang.Class - AppiumManager.java : isPortBusy INFO  [TestNG-tests-2] 95 - 8240 - isPortBusy : false
+01-11-2021 21:07:41.041 MySuite - TestBase.java : endSuit INFO  [TestNG-tests-1] 268 - /Users/krish/Automation/Automation-libs/test-output/01112021/AUTOMATION_REPORT.html
+01-11-2021 21:09:26.026 lang.Class - AppiumManager.java : isPortBusy INFO  [TestNG-tests-1] 95 - 8240 - isPortBusy : false
+01-11-2021 21:09:35.035 MySuite - TestBase.java : BeforeClass INFO  [TestNG-tests-1] 198 - Test Details : PlaystoreUpdateScript : Android : google Pixel 5
+01-11-2021 21:09:55.055 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-1] 216 - Left Navigate Button clicked
+01-11-2021 21:09:56.056 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-1] 216 - 'My apps & games' link clicked
+01-11-2021 21:10:10.010 lang.Class - AppiumManager.java : isPortBusy INFO  [main] 95 - 8100 - isPortBusy : false
+01-11-2021 21:10:12.012 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-1] 216 - 'UPDATE ALL' button is NOT FOUND
+01-11-2021 21:10:13.013 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 233 - app close
+01-11-2021 21:10:13.013 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 238 - THE END
+01-11-2021 21:10:13.013 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 242 - TLdriver quit - done
+01-11-2021 21:10:15.015 lang.Class - AppiumManager.java : isPortBusy INFO  [TestNG-tests-1] 95 - 8240 - isPortBusy : false
+01-11-2021 21:10:16.016 MySuite - TestBase.java : endSuit INFO  [TestNG-tests-1] 267 - /Users/krish/Automation/Automation-libs/test-output/01112021/AUTOMATION_REPORT.html
+01-11-2021 21:11:24.024 lang.Class - AppiumManager.java : isPortBusy INFO  [main] 95 - 8100 - isPortBusy : false
+01-11-2021 21:11:36.036 lang.Class - AppiumManager.java : isPortBusy INFO  [main] 95 - 8240 - isPortBusy : false
+01-11-2021 21:12:09.009 lang.Class - AppiumManager.java : isPortBusy INFO  [main] 95 - 8240 - isPortBusy : true
+01-11-2021 21:12:32.032 lang.Class - AppiumManager.java : isPortBusy INFO  [TestNG-tests-1] 95 - 8240 - isPortBusy : true
+01-11-2021 21:12:32.032 MySuite - TestBase.java : BeforeTest WARN  [TestNG-tests-1] 128 - device Busy : google Pixel 5, udid : 0B271FDD4003AS, devicePort : 8240
+01-11-2021 21:12:33.033 MySuite - TestBase.java : endSuit INFO  [TestNG-tests-1] 267 - /Users/krish/Automation/Automation-libs/test-output/01112021/AUTOMATION_REPORT.html
+01-11-2021 21:13:05.005 MySuite - TestBase.java : BeforeClass INFO  [TestNG-tests-1] 198 - Test Details : PlaystoreUpdateScript : Android : google Pixel 5
+01-11-2021 21:13:24.024 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-1] 216 - Left Navigate Button clicked
+01-11-2021 21:13:26.026 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-1] 216 - 'My apps & games' link clicked
+01-11-2021 21:13:42.042 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-1] 216 - 'UPDATE ALL' button is NOT FOUND
+01-11-2021 21:13:43.043 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 233 - app close
+01-11-2021 21:13:43.043 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 238 - THE END
+01-11-2021 21:13:43.043 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 242 - TLdriver quit - done
+01-11-2021 21:13:45.045 lang.Class - AppiumManager.java : isPortBusy INFO  [TestNG-tests-1] 95 - 8240 - isPortBusy : false
+01-11-2021 21:13:45.045 MySuite - TestBase.java : endSuit INFO  [TestNG-tests-1] 267 - /Users/krish/Automation/Automation-libs/test-output/01112021/AUTOMATION_REPORT.html
+01-11-2021 21:14:29.029 lang.Class - AppiumManager.java : isPortBusy INFO  [main] 95 - 8240 - isPortBusy : true
+01-11-2021 21:14:51.051 lang.Class - AppiumManager.java : isPortBusy INFO  [main] 95 - 8240 - isPortBusy : true
+01-11-2021 21:14:51.051 lang.Class - AppiumManager.java : killPort INFO  [main] 137 - port kill success
+01-11-2021 21:15:58.058 lang.Class - AppiumManager.java : isPortBusy INFO  [main] 95 - 8240 - isPortBusy : true
+01-11-2021 21:15:58.058 lang.Class - AppiumManager.java : killPort INFO  [main] 137 - 8240 - port kill success
+01-11-2021 21:16:06.006 lang.Class - AppiumManager.java : isPortBusy INFO  [main] 95 - 8240 - isPortBusy : true
+01-11-2021 21:16:06.006 lang.Class - AppiumManager.java : killPort INFO  [main] 137 - 8240 - port kill success
+01-11-2021 21:18:27.027 lang.Class - AppiumManager.java : isPortBusy INFO  [main] 95 - 8240 - isPortBusy : true
+01-11-2021 21:18:27.027 lang.Class - AppiumManager.java : killPort INFO  [main] 137 - 8240 - port kill success
+01-11-2021 21:20:29.029 MySuite - TestBase.java : BeforeClass INFO  [TestNG-tests-1] 198 - Test Details : PlaystoreUpdateScript : Android : google Pixel 5
+01-11-2021 21:20:47.047 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-1] 216 - Left Navigate Button clicked
+01-11-2021 21:20:48.048 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-1] 216 - 'My apps & games' link clicked
+01-11-2021 21:21:04.004 MySuite - BaseObjs.java : logmessage INFO  [TestNG-tests-1] 216 - 'UPDATE ALL' button is NOT FOUND
+01-11-2021 21:21:05.005 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 233 - app close
+01-11-2021 21:21:05.005 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 238 - THE END
+01-11-2021 21:21:05.005 MySuite - TestBase.java : AfterClass INFO  [TestNG-tests-1] 242 - TLdriver quit - done
+01-11-2021 21:21:07.007 lang.Class - AppiumManager.java : isPortBusy INFO  [TestNG-tests-1] 95 - 8240 - isPortBusy : false
+01-11-2021 21:21:07.007 MySuite - TestBase.java : endSuit INFO  [TestNG-tests-1] 267 - /Users/krish/Automation/Automation-libs/test-output/01112021/AUTOMATION_REPORT.html
