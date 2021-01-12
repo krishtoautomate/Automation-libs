@@ -80,16 +80,19 @@ public class AppiumManager{
 		
 		AppiumManager appiumManager = new AppiumManager();
 		
-		appiumManager.killPort(8302);
+		int port = 8240;
+		if(appiumManager.isPortBusy(port)) {
+			appiumManager.killPort(port);
+		}
 		
 	}
 	
 	public boolean isPortBusy(int port) {
 		
-		boolean isPortBusy = true;
+		boolean isPortBusy = false;
 
-		isPortBusy = (this.isRemotePortInUse("127.0.0.1", port) == false || this.isTcpPortAvailable(port) == true)?false:true;
-
+		isPortBusy = (!this.isRemotePortInUse("127.0.0.1", port) || this.isTcpPortAvailable(port))?false:true;
+		log.info(port+" - isPortBusy : "+ isPortBusy);
 		return isPortBusy;
 	}
 
@@ -131,10 +134,9 @@ public class AppiumManager{
 			stdInput = new BufferedReader(new 
 			        InputStreamReader(p1.getInputStream()));
 			
-			log.info("port kill success");
+			log.info(port + " - port kill success");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			log.info("failed to kill Port");
+			log.error("failed to kill Port");
 		} 
 	}
 }

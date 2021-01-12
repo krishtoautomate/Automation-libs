@@ -83,12 +83,13 @@ public class TLDriverFactory{
         	desiredCapabilities.setCapability("deviceName", deviceName);
         	desiredCapabilities.setCapability("udid", udid);
         	desiredCapabilities.setCapability("wdaLocalPort", devicePort);
-        	
+      
 			try {
 				tlDriver.set(new IOSDriver<MobileElement>(new URL(server.getUrl().toString()), desiredCapabilities));
 			} catch (MalformedURLException e) {
-				log.error("AppiumDriver failed to start!");
+				// ignore
 			}
+
         }
     }
  
