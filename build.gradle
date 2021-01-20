@@ -96,6 +96,7 @@ task createCapability(type: Exec) {
 							'"fullReset":false,\n'+
 							'"newCommandTimeout":60,\n'+
 							'"androidInstallTimeout":150000,\n'+
+							'"autoDismissAlerts":true,\n'+
 						    '"appPackage":"'+findProperty('appPackage')+'",\n'+
 						    '"appActivity":"'+findProperty('appActivity')+'"\n'+
 						'}\n'+
@@ -112,6 +113,7 @@ task createCapability(type: Exec) {
 						    '"useNewWDA":true,\n'+
 							'"newCommandTimeout":60,\n'+
 							'"useJSONSource":true,\n'+
+							'"autoDismissAlerts":true,\n'+
 						    '"bundleId":"'+findProperty('bundleId')+'",\n'+
 						    '"waitForQuiescence":false,\n'+
 						    '"wdaStartupRetries":5,\n'+
