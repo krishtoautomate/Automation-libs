@@ -86,11 +86,11 @@ public class AppiumManager {
 
 	}
 
-	public boolean isPortBusy(int port) {
-		boolean isPortBusy = !isTcpPortAvailable(port);
-		log.info(port + " - isPortBusy : " + isPortBusy);
-		return isPortBusy;
-	}
+//	public boolean isPortBusy(int port) {
+//		boolean isPortBusy = !isTcpPortAvailable(port);
+//		log.info(port + " - isPortBusy : " + isPortBusy);
+//		return isPortBusy;
+//	}
 
 	public boolean isRemotePortInUse(String hostName, int portNumber) {
 		try {
@@ -106,11 +106,33 @@ public class AppiumManager {
 	public boolean isTcpPortAvailable(int port) {
 		try (ServerSocket serverSocket = new ServerSocket()) {
 			serverSocket.setReuseAddress(false);
-			serverSocket.bind(new InetSocketAddress(InetAddress.getByName("localhost"), port), 1);
+			serverSocket.bind(new InetSocketAddress(InetAddress.getByName("127.0.0.1"), port), 1);
 			return true;
 		} catch (Exception ex) {
 			return false;
 		}
+	}
+
+	public boolean isPortBusy(int port) {
+		String s = null;
+		String pid = null;
+		boolean isBusy = false;
+		try {
+			Process p = Runtime.getRuntime().exec("lsof -t -i:" + port);
+
+			BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
+
+			while ((s = stdInput.readLine()) != null) {
+				pid = s.trim();
+			}
+			//log.info("PID : " + pid);
+			if (pid != null)
+				isBusy = true;
+		} catch (IOException e) {
+			isBusy = false;
+		}
+		log.info(port+" - isPortBusy : "+ isBusy);
+		return isBusy;
 	}
 
 	public void killPort(int port) {
@@ -124,7 +146,7 @@ public class AppiumManager {
 			while ((s = stdInput.readLine()) != null) {
 				_pid = s.trim();
 			}
-			//log.info("PID : "+_pid);
+			//log.info("PID : " + _pid);
 			Runtime.getRuntime().exec("kill -9 " + _pid);
 			Runtime.getRuntime().exec("fuser -k " + _pid + "/tcp");
 
