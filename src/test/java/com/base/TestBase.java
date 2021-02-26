@@ -18,6 +18,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
+import com.DataManager.TestDataManager;
 import com.DeviceManager.DeviceDAO;
 import com.DeviceManager.DeviceInfo;
 import com.aventstack.extentreports.ExtentReports;
@@ -142,6 +143,7 @@ public class TestBase {
 		String deviceName = "";
 		String platForm = "";
 		String platFormVersion = "";
+		int devicePort = deviceManager.getDevicePort(udid);
 
 		if (udid != null) {
 
@@ -179,10 +181,17 @@ public class TestBase {
 				driver = (AppiumDriver<MobileElement>) driverMap.get(Long.valueOf(Thread.currentThread().getId()));
 
 			} catch (Exception e) {
+				if (appiumManager.isPortBusy(devicePort)) {
+					appiumManager.killPort(devicePort);
+				}
+
 				log.error("session failed : " + e.getLocalizedMessage());
 				throw new SkipException("session failed : " + e.getLocalizedMessage());
 			}
 
+			/*
+			 * Test info
+			 */
 			if ("Auto".equalsIgnoreCase(udid))
 				udid = ((AppiumDriver<MobileElement>) driver).getCapabilities().getCapability("udid").toString();
 
@@ -192,13 +201,19 @@ public class TestBase {
 			platForm = deviceinfoProvider.getPlatformName();
 			platFormVersion = deviceinfoProvider.getosVersion();
 
+			Map<String, String> testParams = iTestContext.getCurrentXmlTest().getAllParameters();
+			String p_Testdata = testParams.get("p_Testdata");
+			TestDataManager testData = new TestDataManager(p_Testdata, className, platForm);
+			int index = driver instanceof AndroidDriver ? 0 : 1;
+			String testKey = testData.getJsonValue(index, "testKey");
+
 			// Report Content
 			test = extent.createTest(methodName + "(" + platForm + ")").assignDevice(deviceName);
 
 			log.info("Test Details : " + methodName + " : " + platForm + " : " + deviceName);
 			String[][] data = { { "<b>TestCase : </b>", className }, { "<b>Device : </b>", deviceName },
 					{ "<b>UDID : </b>", udid }, { "<b>Platform : </b>", platForm },
-					{ "<b>OsVersion : </b>", platFormVersion }
+					{ "<b>OsVersion : </b>", platFormVersion }, { "<b>Jira test-key : </b>", testKey }
 
 			};
 

@@ -340,6 +340,14 @@
     "colour":"White",
     "devicePort":8342
 },
+{
+    "name":"iPhone 12",
+    "udid":"00008101-001819220AC2001E",
+    "platformName":"iOS",
+    "platformVersion":"14.2.1",
+    "colour":"Green",
+    "devicePort":8343
+},
 
  {
    "name":"Samsung S8",
@@ -674,6 +682,57 @@
     "platformVersion":"11.0",
     "colour":"Black",
     "devicePort":8240
+ },
+ {
+    "name":"Samsung S21 5G",
+    "udid":"R5CR104V68R",
+    "platformName":"Android",
+    "platformVersion":"11.0",
+    "colour":"Rose-Gold",
+    "devicePort":8241
+ },
+ {
+    "name":"Galaxy Tab A 8",
+    "udid":"76ca8d7e",
+    "platformName":"Android",
+    "platformVersion":"11.0",
+    "colour":"Black",
+    "devicePort":8242
+ }
+ ,
+ {
+    "name":"Samsung S21 Ultra 5G",
+    "udid":"R5CR108J5JX",
+    "platformName":"Android",
+    "platformVersion":"11.0",
+    "colour":"Grey",
+    "devicePort":8243
+ }
+ ,
+ {
+    "name":"Samsung Z Fold2 5G",
+    "udid":"R3CR109VJ0L",
+    "platformName":"Android",
+    "platformVersion":"11.0",
+    "colour":"Grey",
+    "devicePort":8244
+ }
+  ,
+ {
+    "name":"Samsung S21 Plus",
+    "udid":"RFCR1004VJJ",
+    "platformName":"Android",
+    "platformVersion":"11.0",
+    "colour":"Violet",
+    "devicePort":8245
+ } ,
+ {
+    "name":"HUAWEI VOG-L04",
+    "udid":"URT7N19322000504",
+    "platformName":"Android",
+    "platformVersion":"11.0",
+    "colour":"Violet",
+    "devicePort":8246
  }
  
 ]

@@ -44,7 +44,7 @@ public class RunnerWithAllConnectedDevices {
 			XmlTest iosTest = new XmlTest(mySuite);
 
 			// Test name
-			iosTest.setName("TestFlight_" + i);
+			iosTest.setName("TestFlight_" + i+1);
 
 			// Test parameters
 			iosTest.addParameter("platForm", "IOS");
@@ -74,7 +74,7 @@ public class RunnerWithAllConnectedDevices {
 			XmlTest androidTests = new XmlTest(mySuite);
 
 			// Name test
-			androidTests.setName("PlayStore_" + i);
+			androidTests.setName("PlayStore_" + i+1);
 
 			// Add parameters
 			androidTests.addParameter("platForm", "Android");
