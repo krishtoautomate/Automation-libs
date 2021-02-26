@@ -8,7 +8,9 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -79,7 +81,7 @@ public class AppiumManager {
 
 		AppiumManager appiumManager = new AppiumManager();
 
-		int port = 8240;
+		int port = 8302;
 		if (appiumManager.isPortBusy(port)) {
 			appiumManager.killPort(port);
 		}
@@ -125,34 +127,39 @@ public class AppiumManager {
 			while ((s = stdInput.readLine()) != null) {
 				pid = s.trim();
 			}
-			//log.info("PID : " + pid);
+			// log.info("PID : " + pid);
 			if (pid != null)
 				isBusy = true;
 		} catch (IOException e) {
 			isBusy = false;
 		}
-		log.info(port+" - isPortBusy : "+ isBusy);
+		log.info(port + " - isPortBusy : " + isBusy);
 		return isBusy;
 	}
 
 	public void killPort(int port) {
-		String s = null;
-		String _pid = null;
-		try {
-			Process p = Runtime.getRuntime().exec("lsof -t -i:" + port);
+		List<String> list = new ArrayList<String>();
+		list.add("lsof -ti:" + port + " | xargs kill");
+		list.add("lsof -t -i:" + port);
+		for (String each : list) {
+			String s = null;
+			String _pid = null;
+			try {
+				Process p = Runtime.getRuntime().exec(each);// lsof -ti:8302 | xargs kill
 
-			BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
+				BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
 
-			while ((s = stdInput.readLine()) != null) {
-				_pid = s.trim();
+				while ((s = stdInput.readLine()) != null) {
+					_pid = s.trim();
+				}
+				// log.info("PID : " + _pid);
+				Runtime.getRuntime().exec("kill -9 " + _pid);
+				Runtime.getRuntime().exec("fuser -k " + _pid + "/tcp");
+
+				log.info(port + " - port kill success");
+			} catch (IOException e) {
+				log.error("failed to kill Port");
 			}
-			//log.info("PID : " + _pid);
-			Runtime.getRuntime().exec("kill -9 " + _pid);
-			Runtime.getRuntime().exec("fuser -k " + _pid + "/tcp");
-
-			log.info(port + " - port kill success");
-		} catch (IOException e) {
-			log.error("failed to kill Port");
 		}
 	}
 }
