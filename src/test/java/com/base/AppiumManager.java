@@ -139,8 +139,8 @@ public class AppiumManager {
 
 	public void killPort(int port) {
 		List<String> list = new ArrayList<String>();
-		list.add("lsof -ti:" + port + " | xargs kill");
-		list.add("lsof -t -i:" + port);
+		//list.add("/usr/sbin/lsof -ti:" + port + " | xargs kill");
+		list.add("/usr/sbin/lsof -t -i:" + port);
 		for (String each : list) {
 			String s = null;
 			String _pid = null;
@@ -154,7 +154,8 @@ public class AppiumManager {
 				}
 				// log.info("PID : " + _pid);
 				Runtime.getRuntime().exec("kill -9 " + _pid);
-				Runtime.getRuntime().exec("fuser -k " + _pid + "/tcp");
+				Runtime.getRuntime().exec("/usr/bin/fuser -k " + _pid + "/tcp");
+				Runtime.getRuntime().exec("/usr/sbin/lsof -ti:" + port + " | xargs kill");
 
 				log.info(port + " - port kill success");
 			} catch (IOException e) {
