@@ -348,6 +348,14 @@
     "colour":"Green",
     "devicePort":8343
 },
+{
+    "name":"iPhone 12 mini",
+    "udid":"00008101-00056D321AF1003A",
+    "platformName":"iOS",
+    "platformVersion":"14.2",
+    "colour":"Black",
+    "devicePort":8344
+},
 
  {
    "name":"Samsung S8",
@@ -733,6 +741,15 @@
     "platformVersion":"11.0",
     "colour":"Violet",
     "devicePort":8246
+ }
+ ,
+ {
+    "name":"Samsung Note20 ultra",
+    "udid":"R3CR10MH9KE",
+    "platformName":"Android",
+    "platformVersion":"11.0",
+    "colour":"Black",
+    "devicePort":8247
  }
  
 ]

@@ -100,76 +100,85 @@ public class DeviceDAO implements ITestBase {
 		return deviceModel.replaceAll("\\s+", "");
 	}
 
+	public static void main(String[] args) {
+		DeviceDAO deviceDAO = new DeviceDAO("00008101-001819220AC2001E");
+		System.out.println(deviceDAO.getDeviceName());
+	}
+
 	public synchronized String getDeviceName() {
+
 		if (this.getOs().equalsIgnoreCase("iPhone OS")) {
+
 			String deviceModel = getDeviceModel();
-			if ("iPhone6,1".equalsIgnoreCase(deviceModel))
-				this.deviceName = "iPhone 5s";
-			else if ("iPhone6,2".equalsIgnoreCase(deviceModel))
-				this.deviceName = "iPhone 5s";
-			else if ("iPhone7,1".equalsIgnoreCase(deviceModel))
-				this.deviceName = "iPhone 6 Plus";
-			else if ("iPhone7,2".equalsIgnoreCase(deviceModel))
-				this.deviceName = "iPhone 6";
-			else if ("iPhone8,1".equalsIgnoreCase(deviceModel))
-				this.deviceName = "iPhone 6s";
-			else if ("iPhone8,2".equalsIgnoreCase(deviceModel))
-				this.deviceName = "iPhone 6s Plus";
-			else if ("iPhone8,4".equalsIgnoreCase(deviceModel))
-				this.deviceName = "iPhone SE";
-			else if ("iPhone9,1".equalsIgnoreCase(deviceModel))
-				this.deviceName = "iPhone 7";
-			else if ("iPhone9,2".equalsIgnoreCase(deviceModel))
-				this.deviceName = "iPhone 7 Plus";
-			else if ("iPhone9,3".equalsIgnoreCase(deviceModel))
-				this.deviceName = "iPhone 7";
-			else if ("iPhone9,4".equalsIgnoreCase(deviceModel))
-				this.deviceName = "iPhone 7 Plus";
-			else if ("iPhone10,1".equalsIgnoreCase(deviceModel))
-				this.deviceName = "iPhone 8";
-			else if ("iPhone10,2".equalsIgnoreCase(deviceModel))
-				this.deviceName = "iPhone 8 Plus";
-			else if ("iPhone10,3".equalsIgnoreCase(deviceModel))
-				this.deviceName = "iPhone X";
-			else if ("iPhone10,4".equalsIgnoreCase(deviceModel))
-				this.deviceName = "iPhone 8";
-			else if ("iPhone10,5".equalsIgnoreCase(deviceModel))
-				this.deviceName = "iPhone 8 Plus";
-			else if ("iPhone10,6".equalsIgnoreCase(deviceModel))
-				this.deviceName = "iPhone X";
-			else if ("iPhone11,2".equalsIgnoreCase(deviceModel))
-				this.deviceName = "iPhone XS";
-			else if ("iPhone11,4".equalsIgnoreCase(deviceModel))
-				this.deviceName = "iPhone XS Max";
-			else if ("iPhone11,6".equalsIgnoreCase(deviceModel))
-				this.deviceName = "iPhone XS Max";
-			else if ("iPhone11,8".equalsIgnoreCase(deviceModel))
-				this.deviceName = "iPhone XR";
-			else if ("iPhone12,1".equalsIgnoreCase(deviceModel))
-				this.deviceName = "iPhone 11";
-			else if ("iPhone12,3".equalsIgnoreCase(deviceModel))
-				this.deviceName = "iPhone 11 Pro";
-			else if ("iPhone12,5".equalsIgnoreCase(deviceModel))
-				this.deviceName = "iPhone 11 Pro Max";
-			else if ("iPhone12,8".equalsIgnoreCase(deviceModel))
-				this.deviceName = "iPhone SE 2";
-			else if ("iPhone13,1".equalsIgnoreCase(deviceModel))
-				this.deviceName = "iPhone 12 Mini";
-			else if ("iPhone13,2".equalsIgnoreCase(deviceModel))
-				this.deviceName = "iPhone 12";
-			else if ("iPhone13,3".equalsIgnoreCase(deviceModel))
-				this.deviceName = "iPhone 12 Pro";
-			else if ("iPhone13,4".equalsIgnoreCase(deviceModel))
-				this.deviceName = "iPhone 12 Pro Max";
-			else
-				this.deviceName = deviceModel;
+
+			switch (deviceModel) {
+			case "iPhone6,1":
+				return "iPhone 5s";
+			case "iPhone6,2":
+				return "iPhone 5s";
+			case "iPhone7,1":
+				return "iPhone 6 Plus";
+			case "iPhone7,2":
+				return "iPhone 6";
+			case "iPhone8,1":
+				return "iPhone 6s";
+			case "iPhone8,2":
+				return "iPhone 6s Plus";
+			case "iPhone8,4":
+				return "iPhone SE";
+			case "iPhone9,1":
+				return "iPhone 7";
+			case "iPhone9,2":
+				return "iPhone 7 Plus";
+			case "iPhone9,3":
+				return "iPhone 7";
+			case "iPhone9,4":
+				return "iPhone 7 Plus";
+			case "iPhone10,1":
+				return "iPhone 8";
+			case "iPhone10,2":
+				return "iPhone 8 Plus";
+			case "iPhone10,3":
+				return "iPhone X";
+			case "iPhone10,4":
+				return "iPhone 8";
+			case "iPhone10,5":
+				return "iPhone 8 Plus";
+			case "iPhone10,6":
+				return "iPhone X";
+			case "iPhone11,2":
+				return "iPhone XS";
+			case "iPhone11,4":
+				return "iPhone XS Max";
+			case "iPhone11,6":
+				return "iPhone XS Max";
+			case "iPhone11,8":
+				return "iPhone XR";
+			case "iPhone12,1":
+				return "iPhone 11";
+			case "iPhone12,3":
+				return "iPhone 11 Pro";
+			case "iPhone12,5":
+				return "iPhone 11 Pro Max";
+			case "iPhone12,8":
+				return "iPhone SE 2";
+			case "iPhone13,1":
+				return "iPhone 12 Mini";
+			case "iPhone13,2":
+				return "iPhone 12";
+			case "iPhone13,3":
+				return "iPhone 12 Pro";
+			case "iPhone13,4":
+				return "iPhone 12 Pro Max";
+			default:
+				return deviceModel;
+			}
 		} else {
 			String device = getBrand() + " "
 					+ runCommandThruProcess(Constants.ADB + " -s " + this.udid + " shell getprop ro.product.model")
 							.replaceAll("\n", "");
 			this.deviceName = device;
 		}
-
 		return deviceName;
 	}
 
