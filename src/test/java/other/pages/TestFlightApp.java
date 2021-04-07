@@ -21,7 +21,7 @@ public class TestFlightApp extends BaseObjs<TestFlightApp> {
 	By update_later_btn = By.xpath("//XCUIElementTypeButton[@name='Later']");
 	By remindMeLater_btn = By.xpath("//XCUIElementTypeButton[@name='Remind Me Later']");
 
-	By all_btns = By.xpath("//XCUIElementTypeButton[@name='INSTALL' or @name='UPDATE']");
+	By all_btns = By.xpath("//XCUIElementTypeButton[@name='UPDATE']");
 	By apps_h1 = By.xpath("//XCUIElementTypeOther[@name='Apps']");
 	By open_btn = By.xpath("//XCUIElementTypeButton[@name='OPEN']");
 	By update_btn = By.xpath("//XCUIElementTypeButton[@name='UPDATE']");
