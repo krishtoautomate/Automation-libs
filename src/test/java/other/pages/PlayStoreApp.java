@@ -4,21 +4,19 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.testng.Assert;
 
 import com.Utilities.BaseObjs;
 import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.Status;
+
+import io.appium.java_client.MobileBy;
 
 
 public class PlayStoreApp extends BaseObjs<PlayStoreApp>{
 	
-	By navigate_btn = By.xpath("//android.view.ViewGroup/android.widget.FrameLayout/android.widget.ImageView[contains(@resource-id,'id/navigation_button')  or contains(@resource-id,'id/main_nav_item') or contains(@resource-id,'id/0_resource_name_obfuscated')]");
-	By myApps_and_games_btn = By.xpath("//*[contains(@text,'My apps & games')]");
+	By accountLogo = By.xpath("(//android.view.ViewGroup/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ImageView[contains(@resource-id, '0_resource_name_obfuscated')])[1]");
+	By myApps_and_games_btn = MobileBy.AccessibilityId("My apps & games");
 	
-	By updates_refresh_btn = By.xpath("//android.widget.ImageView[contains(@resource-id, 'updates_refresh_button')]");
-	By update_btn = By.xpath("//android.widget.Button[contains(@text,'UPDATE')]");
+	By updates_refresh_btn = MobileBy.AccessibilityId("Check for updates");
 	By updateAll_btn = By.xpath("//android.widget.Button[contains(@text,'UPDATE ALL') or contains(@text,'Update all')]"); 
 	
 	
@@ -26,61 +24,20 @@ public class PlayStoreApp extends BaseObjs<PlayStoreApp>{
 		super(driver, log, test);		
 	}
 	
-	public WebElement get_navigate_btn() {
-		WebElement ele = null;
-		try {
-			wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(navigate_btn));
-			ele = driver.findElement(navigate_btn);
-		} catch (Exception e) {
-			logmessage(Status.FAIL, "'navigate' button -  Not Found in 'PlayStore' app");
-			Assert.fail("'navigate' button -  Not Found in 'PlayStore' app");
-		}
-		return ele;
+	public WebElement get_accountLogo() {
+		return get_Element(accountLogo, "Account logo(right cornor) button");
 	}
 	
 	public WebElement get_myApps_and_games_btn() {
-		WebElement ele = null;
-		try {
-			wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(myApps_and_games_btn));
-			ele = driver.findElement(myApps_and_games_btn);
-		} catch (Exception e) {
-			logmessage(Status.FAIL, "'My apps & games' button -  Not Found in 'PlayStore' app");
-			Assert.fail("'My apps & games' button -  Not Found in 'PlayStore' app");
-		}
-		return ele;
+		return get_Element(myApps_and_games_btn, "'My apps & games' button");
 	}
 	
 	public WebElement get_updates_refresh_btn() {
-		WebElement ele = null;
-		try {
-			wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(updates_refresh_btn));
-			ele = driver.findElement(updates_refresh_btn);
-		} catch (Exception e) {
-			//ignore
-		}
-		return ele;
-	}
-	
-	public WebElement get_update_btn() {
-		WebElement ele = null;
-		try {
-			wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(update_btn));
-			ele = driver.findElement(update_btn);
-		} catch (Exception e) {
-			//ignore
-		}
-		return ele;
+		return verify_Element(updates_refresh_btn);
 	}
 	
 	public WebElement get_updateAll_btn() {
-		WebElement ele = null;
-		try {
-			wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(updateAll_btn));
-			ele = driver.findElement(updateAll_btn);
-		} catch (Exception e) {
-			//ignore
-		}
-		return ele;
+		return verify_Element(updateAll_btn);
 	}
 	
 }

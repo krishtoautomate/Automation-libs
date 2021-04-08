@@ -29,6 +29,8 @@ public class RunnerWithAllConnectedDevices {
 		XmlSuite mySuite = new XmlSuite();
 		mySuite.setName("MySuite");
 		mySuite.setParallel(XmlSuite.ParallelMode.TESTS);
+		mySuite.addListener("com.Listeners.InvokedSuiteListener");
+		mySuite.addListener("com.Listeners.TestListener");
 		mySuite.setThreadCount(1);
 
 		List<XmlTest> myTests = new ArrayList<XmlTest>();
