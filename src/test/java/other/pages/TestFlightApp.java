@@ -13,6 +13,8 @@ import com.Utilities.BaseObjs;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 
+import io.appium.java_client.MobileBy;
+
 public class TestFlightApp extends BaseObjs<TestFlightApp> {
 
 	// TestFlight
@@ -80,6 +82,11 @@ public class TestFlightApp extends BaseObjs<TestFlightApp> {
 			// ignore
 		}
 		return ele;
+	}
+	
+	By apps_back_btn = MobileBy.iOSNsPredicateString("type=='XCUIElementTypeButton' AND name=='BackButton' AND label=='Apps']");
+	public WebElement verify_apps_back_btn() {
+		return verify_Element(apps_back_btn);
 	}
 
 	public WebElement get_apps_h1() {

@@ -45,6 +45,11 @@ public class TestFlight extends TestBase implements ITestBase {
 			testFlightApp.get_continue_btn().click();
 			utils.logmessage(Status.INFO, "Continue Button - is Clicked");
 		}
+		
+		//for ipads
+		if(isElementDisplayed(testFlightApp.verify_apps_back_btn())) {
+			testFlightApp.verify_apps_back_btn().click();
+		}
 
 		// Verify title
 		utils.AssertContains(testFlightApp.get_apps_h1().getText(), "Apps");
