@@ -742,5 +742,14 @@
     "colour":"Violet",
     "devicePort":8246
  }
+ ,
+ {
+    "name":"Samsung Note20 ultra",
+    "udid":"R3CR10MH9KE",
+    "platformName":"Android",
+    "platformVersion":"11.0",
+    "colour":"Black",
+    "devicePort":8247
+ }
  
 ]

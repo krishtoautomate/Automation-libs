@@ -64,6 +64,30 @@ public class BaseObjs<T> {
 		
 	}
 	
+	protected WebElement get_Element(By locator, String elementDesc) {
+		WebElement ele = null;
+		try {
+			ele = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+		} catch (Exception e) {
+			String errorMessage = elementDesc + " - Not found in " + this.getClass().getName();
+			logmessage(Status.FAIL, errorMessage);
+			Assert.fail(errorMessage);
+		}
+		return ele;
+	}
+
+	protected WebElement verify_Element(By locator) {
+		WebElement ele = null;
+		try {
+			ele = new WebDriverWait(driver, 5).until(ExpectedConditions.presenceOfElementLocated(locator));
+		} catch (StaleElementReferenceException e) {
+			// ignore
+		} catch (Exception e) {
+			// ignore
+		}
+		return ele;
+	}
+	
 	public void dismissAlert() {
 		Boolean isAndroid = driver instanceof AndroidDriver ? true:false;
 		

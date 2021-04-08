@@ -27,25 +27,28 @@ public class PlayStore extends TestBase implements ITestBase {
 		
 		sleep(2);
 		
-		//1.0 - 
+		//1.0 - Click navigate button
+		playstoreapp.get_accountLogo().click();
+		utils.logmessage(Status.PASS, "Right Account logo Button clicked");
+		
+		sleep(2);
+		
+		//2.0 - Click 'My apps & games' link
+		playstoreapp.get_myApps_and_games_btn().click();
+		utils.logmessage(Status.PASS, "'My apps & games' link clicked");
+		
+		sleep(2);
+		
+		//3.0 - 
 		if(isElementDisplayed(playstoreapp.get_updates_refresh_btn())) {
 			playstoreapp.get_updates_refresh_btn().click();
 			utils.logmessage(Status.PASS, "'updates refresh Button' is clicked");
 		}
 		
-		//2.0 - Click navigate button
-		playstoreapp.get_navigate_btn().click();
-		playstoreapp.get_navigate_btn().click();
-		utils.logmessage(Status.PASS, "Left Navigate Button clicked");
-		
-		//3.0 - Click 'My apps & games' link
-		playstoreapp.get_myApps_and_games_btn().click();
-		utils.logmessage(Status.PASS, "'My apps & games' link clicked");
-		
 		//4.0 - Click Update All button
 		if(isElementDisplayed(playstoreapp.get_updateAll_btn())) {
 			playstoreapp.get_updateAll_btn().click();
-			sleep(2);
+			sleep(3);
 			utils.logmessage(Status.PASS, "'UPDATE ALL' button clicked");
 		}else {
 			utils.logmessage(Status.PASS, "'UPDATE ALL' button is NOT FOUND");
