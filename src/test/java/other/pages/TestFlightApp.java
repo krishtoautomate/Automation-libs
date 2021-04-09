@@ -83,8 +83,10 @@ public class TestFlightApp extends BaseObjs<TestFlightApp> {
 		}
 		return ele;
 	}
-	
-	By apps_back_btn = MobileBy.iOSNsPredicateString("type=='XCUIElementTypeButton' AND name=='BackButton' AND label=='Apps']");
+
+	By apps_back_btn = MobileBy
+			.iOSNsPredicateString("type=='XCUIElementTypeButton' AND name=='BackButton' AND label=='Apps'");
+
 	public WebElement verify_apps_back_btn() {
 		return verify_Element(apps_back_btn);
 	}
