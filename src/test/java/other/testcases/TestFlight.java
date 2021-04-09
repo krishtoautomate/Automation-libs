@@ -49,6 +49,7 @@ public class TestFlight extends TestBase implements ITestBase {
 		//for ipads
 		if(isElementDisplayed(testFlightApp.verify_apps_back_btn())) {
 			testFlightApp.verify_apps_back_btn().click();
+			utils.logmessage(Status.INFO, "App back Button - is Clicked");
 		}
 
 		// Verify title
