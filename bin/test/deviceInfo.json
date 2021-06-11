@@ -356,6 +356,14 @@
     "colour":"Black",
     "devicePort":8344
 },
+{
+    "name":"iPhone 11 Pro",
+    "udid":"00008030-000229A2117B802E",
+    "platformName":"iOS",
+    "platformVersion":"14.2",
+    "colour":"Black",
+    "devicePort":8345
+},
 
  {
    "name":"Samsung S8",

@@ -4,12 +4,11 @@ import java.io.File;
 import java.lang.reflect.Method;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestContext;
-import org.testng.ITestResult;
-import org.testng.Reporter;
 import org.testng.SkipException;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
@@ -18,7 +17,7 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
-import com.DataManager.TestDataManager;
+
 import com.DeviceManager.DeviceDAO;
 import com.DeviceManager.DeviceInfo;
 import com.aventstack.extentreports.ExtentReports;
@@ -27,6 +26,7 @@ import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 import com.aventstack.extentreports.reporter.configuration.ViewName;
+
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
@@ -36,7 +36,7 @@ import io.appium.java_client.service.local.AppiumServerHasNotBeenStartedLocallyE
 /**
  * Created by Krish on 06.06.2018.
  */
-public class TestBase {
+public class TestBaseDeeplinks {
 
   @SuppressWarnings("rawtypes")
   protected AppiumDriver driver;
@@ -44,6 +44,7 @@ public class TestBase {
   protected WebDriverWait wait;
   protected TLDriverFactory tlDriverFactory = new TLDriverFactory();
   protected static Logger log;
+  // protected ExtentHtmlReporter htmlReporter;
   protected ExtentSparkReporter htmlReporter;
   protected static ExtentReports extent;
   protected ExtentTest test;
@@ -203,22 +204,13 @@ public class TestBase {
       platForm = deviceinfoProvider.getPlatformName();
       platFormVersion = deviceinfoProvider.getosVersion();
 
-      Map<String, String> testParams = iTestContext.getCurrentXmlTest().getAllParameters();
-      String p_Testdata = testParams.get("p_Testdata");
-      TestDataManager testData = new TestDataManager(p_Testdata, className, platForm);
-      int index = driver instanceof AndroidDriver ? 0 : 1;
-      String testKey = testData.getJsonValue(index, "testKey");
-
-      ITestResult result = Reporter.getCurrentTestResult();
-      result.setAttribute("testKey", testKey);
-
       // Report Content
       test = extent.createTest(methodName + "(" + platForm + ")").assignDevice(deviceName);
 
-      log.info("Test Details : " + className + " : " + platForm + " : " + deviceName);
+      log.info("Test Details : " + methodName + " : " + platForm + " : " + deviceName);
       String[][] data = {{"<b>TestCase : </b>", className}, {"<b>Device : </b>", deviceName},
           {"<b>UDID : </b>", udid}, {"<b>Platform : </b>", platForm},
-          {"<b>OsVersion : </b>", platFormVersion}, {"<b>Jira test-key : </b>", testKey}};
+          {"<b>OsVersion : </b>", platFormVersion}};
 
       test.info(MarkupHelper.createTable(data));
 
