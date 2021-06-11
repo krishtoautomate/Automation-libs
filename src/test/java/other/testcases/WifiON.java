@@ -13,30 +13,30 @@ import io.appium.java_client.MobileElement;
 
 
 public class WifiON extends TestBase implements ITestBase {
-	
 
-	@SuppressWarnings("unchecked")
-	@Test
-	@Parameters({"platForm"})
-	public void Wifi_ON(@Optional String platForm)  {
-		
-		 if("ios".equalsIgnoreCase(platForm)) {
-			   try {
-				   //Turn-OFF WIFI
-				   ((AppiumDriver<MobileElement>) driver).activateApp("com.apple.shortcuts");
-					
-				   driver.findElement(By.xpath("//XCUIElementTypeCell[@name='Wifi ON']")).click();
-				   log.info("WIFI ON"); 
-				   
-				   //Restart app
-				   ((AppiumDriver<MobileElement>) driver).resetApp();
-				   
-				   log.info("App Restarted");
-				} catch (Exception e) {
-					// ignore
-				}
-		   }
-		
-		
-	}
+
+  @SuppressWarnings("unchecked")
+  @Test
+  @Parameters({"platForm"})
+  public void Wifi_ON(@Optional String platForm) {
+
+    if ("ios".equalsIgnoreCase(platForm)) {
+      try {
+        // Turn-OFF WIFI
+        ((AppiumDriver<MobileElement>) driver).activateApp("com.apple.shortcuts");
+
+        driver.findElement(By.xpath("//XCUIElementTypeCell[@name='Wifi ON']")).click();
+        log.info("WIFI ON");
+
+        // Restart app
+        ((AppiumDriver<MobileElement>) driver).resetApp();
+
+        log.info("App Restarted");
+      } catch (Exception e) {
+        // ignore
+      }
+    }
+
+
+  }
 }
