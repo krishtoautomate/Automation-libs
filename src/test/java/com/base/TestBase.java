@@ -96,7 +96,7 @@ public class TestBase {
     extent = new ExtentReports();
     htmlReporter = new ExtentSparkReporter(Constants.EXTENT_HTML_REPORT).viewConfigurer()
         .viewOrder().as(new ViewName[] {ViewName.TEST, ViewName.DEVICE, ViewName.AUTHOR,
-            ViewName.EXCEPTION, ViewName.LOG, ViewName.DASHBOARD})
+            ViewName.CATEGORY, ViewName.EXCEPTION, ViewName.LOG, ViewName.DASHBOARD})
         .apply();
     extent.attachReporter(htmlReporter);
 
