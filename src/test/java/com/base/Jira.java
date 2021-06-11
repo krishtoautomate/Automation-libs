@@ -164,7 +164,7 @@ public class Jira {
       req.body(jsonBody);
       req.post();
     } catch (Exception e) {
-      // TODO: handle exception
+      e.printStackTrace();
     }
 
   }
@@ -172,12 +172,13 @@ public class Jira {
   /*
    * Creates test execution and return the key as string
    */
-  public String create_Test_Exec(String summary, String description, String project_key, String testPlanKey) {
+  public String create_Test_Exec(String summary, String description, String testPlanKey) {
     // https://developer.atlassian.com/server/jira/platform/jira-rest-api-examples/
     String exec = "";
     try {
       String issue_type = "Test Execution";
       String jiraAuth = System.getenv("JIRA_AUTH");
+      String project_key = testPlanKey.substring(0, testPlanKey.indexOf("-"));
       JsonObject _mainObj = new JsonObject();
       JsonObject _key = new JsonObject();
       JsonObject _name = new JsonObject();
@@ -203,7 +204,6 @@ public class Jira {
       req.body(jsonBody);
       Response res = req.post();
       exec = res.getBody().jsonPath().getString("key");
-      System.out.println(exec);
     } catch (Exception e) {
       e.printStackTrace();
     }
