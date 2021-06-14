@@ -4,6 +4,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 
 public class Jira {
 
@@ -119,6 +122,86 @@ public class Jira {
     } catch (IOException e) {
       // ignore
     }
+  }
+
+  /*
+   * Updates test execution for individual test case
+   */
+  public void update_Test_Exec(String testExecutionKey, String testKey, String status, String start,
+      String finish) {
+    // https://docs.getxray.app/display/XRAY/Import+Execution+Results+-+REST
+    try {
+      String testPlanKey = System.getenv("TEST_PLAN_KEY");
+      String jiraAuth = System.getenv("JIRA_AUTH");
+
+      JsonObject _mainObj = new JsonObject();
+      JsonObject _testPlanKey = new JsonObject();
+      JsonObject _testKey_Status = new JsonObject();
+      JsonArray _tests = new JsonArray();
+
+      _testPlanKey.addProperty("testPlanKey", testPlanKey);
+      _testKey_Status.addProperty("testKey", testKey);
+      _testKey_Status.addProperty("status", status);
+      _testKey_Status.addProperty("start", start);
+      _testKey_Status.addProperty("finish", finish);
+      _tests.add(_testKey_Status);
+      _mainObj.addProperty("testExecutionKey", testExecutionKey);
+      _mainObj.add("tests", _tests);
+      _mainObj.add("info", _testPlanKey);
+
+      String jsonBody = _mainObj.toString();
+
+      RestAssured.baseURI = "https://jira.bell.corp.bce.ca/rest/raven/1.0/import/execution";
+      RequestSpecification req = RestAssured.given();
+      req.header("Content-Type", "application/json");
+      req.header("Authorization", "Basic " + jiraAuth);
+      req.body(jsonBody);
+      req.post();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+  }
+
+  /*
+   * Creates test execution and return the key as string
+   */
+  public String create_Test_Exec(String summary, String description, String testPlanKey) {
+    // https://developer.atlassian.com/server/jira/platform/jira-rest-api-examples/
+    String exec = "";
+    try {
+      String issue_type = "Test Execution";
+      String jiraAuth = System.getenv("JIRA_AUTH");
+      String project_key = testPlanKey.substring(0, testPlanKey.indexOf("-"));
+      JsonObject _mainObj = new JsonObject();
+      JsonObject _key = new JsonObject();
+      JsonObject _name = new JsonObject();
+      JsonObject _fields = new JsonObject();
+      JsonArray _testPlanKey = new JsonArray();
+
+      _key.addProperty("key", project_key);
+      _name.addProperty("name", issue_type);
+      _testPlanKey.add(testPlanKey);
+      _fields.addProperty("summary", summary);
+      _fields.add("issuetype", _name);
+      _fields.add("project", _key);
+      _fields.addProperty("description", description);
+      _fields.add("customfield_11368", _testPlanKey);
+      _mainObj.add("fields", _fields);
+
+      String jsonBody = _mainObj.toString();
+
+      RestAssured.baseURI = "https://jira.bell.corp.bce.ca/rest/api/2/issue";
+      RequestSpecification req = RestAssured.given();
+      req.header("Content-Type", "application/json");
+      req.header("Authorization", "Basic " + jiraAuth);
+      req.body(jsonBody);
+      Response res = req.post();
+      exec = res.getBody().jsonPath().getString("key");
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return exec;
   }
 
 }
