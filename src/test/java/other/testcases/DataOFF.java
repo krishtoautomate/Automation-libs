@@ -13,29 +13,29 @@ import io.appium.java_client.MobileElement;
 
 @Test
 public class DataOFF extends TestBase implements ITestBase {
-	
 
-	@SuppressWarnings("unchecked")
-	@Parameters({"platForm"})
-	public void Data_OFF(@Optional String platForm)  {
-		
-		 if("ios".equalsIgnoreCase(platForm)) {
-			   try {
-				//Turn-OFF wifi
-				   ((AppiumDriver<MobileElement>) driver).activateApp("com.apple.shortcuts");
-				   
-				   driver.findElement(By.xpath("//XCUIElementTypeCell[@name='Data OFF']")).click();
-				   log.info("Data OFF"); 
-				   
-				 //Restart app
-				   ((AppiumDriver<MobileElement>) driver).resetApp();
-				   
-				   log.info("App Restarted");
-				} catch (Exception e) {
-					// ignore
-				}
-		   }
-		
-		
-	}
+
+  @SuppressWarnings("unchecked")
+  @Parameters({"platForm"})
+  public void Data_OFF(@Optional String platForm) {
+
+    if ("ios".equalsIgnoreCase(platForm)) {
+      try {
+        // Turn-OFF wifi
+        ((AppiumDriver<MobileElement>) driver).activateApp("com.apple.shortcuts");
+
+        driver.findElement(By.xpath("//XCUIElementTypeCell[@name='Data OFF']")).click();
+        log.info("Data OFF");
+
+        // Restart app
+        ((AppiumDriver<MobileElement>) driver).resetApp();
+
+        log.info("App Restarted");
+      } catch (Exception e) {
+        // ignore
+      }
+    }
+
+
+  }
 }
