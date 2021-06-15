@@ -3,12 +3,10 @@ package other.testcases;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
 import com.Utilities.ITestBase;
 import com.Utilities.Utilities;
 import com.aventstack.extentreports.Status;
 import com.base.TestBase;
-
 import other.pages.PlayStoreApp;
 
 
@@ -34,8 +32,15 @@ public class PlayStore extends TestBase implements ITestBase {
     sleep(2);
 
     // 2.0 - Click 'My apps & games' link
-    playstoreapp.get_myApps_and_games_btn().click();
-    utils.logmessage(Status.PASS, "'My apps & games' link clicked");
+    if (isElementDisplayed(playstoreapp.verify_myApps_and_games_btn())) {
+      playstoreapp.get_myApps_and_games_btn().click();
+      utils.logmessage(Status.PASS, "'My apps & games' link clicked");
+    }
+
+    if (isElementDisplayed(playstoreapp.verify_manageAppsAndDevice_btn())) {
+      playstoreapp.get_manageAppsAndDevice_btn().click();
+      utils.logmessage(Status.PASS, "'Manage apps and device' link clicked");
+    }
 
     sleep(2);
 
@@ -46,13 +51,12 @@ public class PlayStore extends TestBase implements ITestBase {
     }
 
     // 4.0 - Click Update All button
-    if (isElementDisplayed(playstoreapp.get_updateAll_btn())) {
+    if (isElementDisplayed(playstoreapp.verify_updateAll_btn())) {
       playstoreapp.get_updateAll_btn().click();
       sleep(3);
       utils.logmessage(Status.PASS, "'UPDATE ALL' button clicked");
-    } else {
-      utils.logmessage(Status.PASS, "'UPDATE ALL' button is NOT FOUND");
     }
+    sleep(5);
 
 
   }
