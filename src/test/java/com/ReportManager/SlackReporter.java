@@ -56,7 +56,9 @@ public class SlackReporter {
 
   private SlackConfig get_Config() {
     SlackConfig config = new SlackConfig();
-    config.setProxyUrl("http://fastweb.int.bell.ca:8083");
+    String proxy_ip = System.getenv("PROXY_IP");
+    String proxy_port = System.getenv("PROXY_PORT");
+    config.setProxyUrl("http://" + proxy_ip + ":" + proxy_port);
     return config;
   }
 
