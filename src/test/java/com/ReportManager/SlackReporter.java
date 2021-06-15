@@ -2,6 +2,7 @@ package com.ReportManager;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.List;
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.MethodsClient;
@@ -12,42 +13,47 @@ import com.slack.api.methods.response.chat.ChatPostMessageResponse;
 public class SlackReporter {
 
 
-  public void send_Message_To_Channel(String message, String channel) {
+  public void send_Message_To_Channel(String message, String channels) {
     try {
       String authToken = System.getenv("SLACK_AUTH");
-      Slack slack = Slack.getInstance(get_Config());
+      List<String> recipients = Arrays.asList(channels.split("\\s*,\\s*"));
+      for (String recipient : recipients) {
+        Slack slack = Slack.getInstance(get_Config());
 
-      MethodsClient methods = slack.methods(authToken);
+        MethodsClient methods = slack.methods(authToken);
 
-      ChatPostMessageRequest request =
-          ChatPostMessageRequest.builder().channel(channel).text(message).build();
+        ChatPostMessageRequest request =
+            ChatPostMessageRequest.builder().channel(recipient).text(message).build();
 
-      methods.chatPostMessage(request);
+        methods.chatPostMessage(request);
+      }
     } catch (Exception e) {
       e.printStackTrace();
     }
 
   }
 
-  public void send_Failure_Data_To_Channel(String message, String ssPath, String channel) {
+  public void send_Failure_Data_To_Channel(String message, String ssPath, String channels) {
     try {
       String authToken = System.getenv("SLACK_AUTH");
-      Slack slack = Slack.getInstance(get_Config());
-      MethodsClient methods = slack.methods(authToken);
+      List<String> recipients = Arrays.asList(channels.split("\\s*,\\s*"));
+      for (String recipient : recipients) {
+        Slack slack = Slack.getInstance(get_Config());
+        MethodsClient methods = slack.methods(authToken);
 
-      ChatPostMessageRequest request =
-          ChatPostMessageRequest.builder().channel(channel).text(message).build();
+        ChatPostMessageRequest request =
+            ChatPostMessageRequest.builder().channel(recipient).text(message).build();
 
-      ChatPostMessageResponse response = methods.chatPostMessage(request);
+        ChatPostMessageResponse response = methods.chatPostMessage(request);
 
-      if (ssPath != null) {
-        FilesUploadRequest filerequest =
-            FilesUploadRequest.builder().channels(Arrays.asList(channel)).file(new File(ssPath))
-                .filename("FailureSS").threadTs(response.getTs()).build();
+        if (ssPath != null) {
+          FilesUploadRequest filerequest =
+              FilesUploadRequest.builder().channels(Arrays.asList(recipient)).file(new File(ssPath))
+                  .filename("FailureSS").threadTs(response.getTs()).build();
 
-        methods.filesUpload(filerequest);
+          methods.filesUpload(filerequest);
+        }
       }
-
     } catch (Exception e) {
       e.printStackTrace();
     }
