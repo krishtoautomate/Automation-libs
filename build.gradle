@@ -59,6 +59,8 @@ dependencies {
     
     
     implementation 'org.usb4java:usb4java-javax:1.2.0'
+    
+    implementation 'com.slack.api:slack-api-client:1.8.1'
 
     
    	   
