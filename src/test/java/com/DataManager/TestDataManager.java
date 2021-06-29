@@ -2,7 +2,6 @@ package com.DataManager;
 
 import java.io.FileReader;
 import java.io.IOException;
-
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.json.simple.JSONArray;
@@ -33,6 +32,12 @@ public class TestDataManager {
     this.filePath = filePath;
     this.className = className;
     this.platformName = platformName;
+  }
+
+  public TestDataManager(String filePath, String className, boolean isAndroid) {
+    this.filePath = filePath;
+    this.className = className;
+    this.platformName = isAndroid ? "Android" : "iOS";
   }
 
   public synchronized String getValue(String key) {

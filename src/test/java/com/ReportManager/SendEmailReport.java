@@ -10,7 +10,6 @@ import java.nio.file.Paths;
 import java.util.Properties;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
-
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
@@ -30,7 +29,7 @@ public class SendEmailReport {
   public static void main(String[] args) throws IOException {
 
     String to = "krish.pavulur@bell.ca";// change accordingly
-    final String user = "krish.pavulur@bell.ca";// change accordingly
+    final String user = "";// change accordingly
     final String password = "Bell1234";// change accordingly
 
     // 1) get the session object
@@ -45,6 +44,7 @@ public class SendEmailReport {
 
     // get Session
     Session session = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {
+      @Override
       protected PasswordAuthentication getPasswordAuthentication() {
         return new PasswordAuthentication(user, password);
       }
