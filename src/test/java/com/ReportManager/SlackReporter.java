@@ -3,6 +3,7 @@ package com.ReportManager;
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Logger;
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.MethodsClient;
@@ -12,6 +13,7 @@ import com.slack.api.methods.response.chat.ChatPostMessageResponse;
 
 public class SlackReporter {
 
+  private static Logger log = Logger.getLogger(SlackReporter.class.getName());
 
   public void send_Message_To_Channel(String message, String channels) {
     try {
@@ -28,7 +30,7 @@ public class SlackReporter {
         methods.chatPostMessage(request);
       }
     } catch (Exception e) {
-      e.printStackTrace();
+      log.info("Could not send message to slack channel due to: " + e.getLocalizedMessage());
     }
 
   }
@@ -55,7 +57,8 @@ public class SlackReporter {
         }
       }
     } catch (Exception e) {
-      e.printStackTrace();
+      log.info(
+          "Could not send failure details to slack channel due to: " + e.getLocalizedMessage());
     }
 
   }
