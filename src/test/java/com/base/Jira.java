@@ -2,6 +2,7 @@ package com.base;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.logging.Logger;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import io.restassured.RestAssured;
@@ -13,6 +14,7 @@ public class Jira {
   JsonObject info = new JsonObject();
   JsonObject textExecution = new JsonObject();
   JsonArray tests = new JsonArray();
+  private static Logger log = Logger.getLogger(Jira.class.getName());
 
   String summary;
   String description;
@@ -130,6 +132,7 @@ public class Jira {
   public void update_Test_Exec(String testExecutionKey, String testKey, String status, String start,
       String finish) {
     // https://docs.getxray.app/display/XRAY/Import+Execution+Results+-+REST
+    Response res = null;
     try {
       String testPlanKey = System.getenv("TEST_PLAN_KEY");
       String jiraAuth = System.getenv("JIRA_AUTH");
@@ -156,9 +159,10 @@ public class Jira {
       req.header("Content-Type", "application/json");
       req.header("Authorization", "Basic " + jiraAuth);
       req.body(jsonBody);
-      req.post();
+      res = req.post();
     } catch (Exception e) {
-      e.printStackTrace();
+      log.info("JIRA test case execution update failed for " + testKey + " due to: "
+          + e.getLocalizedMessage() + "\nResponse code for API request: " + res.getStatusCode());
     }
 
   }
@@ -169,6 +173,7 @@ public class Jira {
   public String create_Test_Exec(String summary, String description, String testPlanKey) {
     // https://developer.atlassian.com/server/jira/platform/jira-rest-api-examples/
     String exec = "";
+    Response res = null;
     try {
       String issue_type = "Test Execution";
       String jiraAuth = System.getenv("JIRA_AUTH");
@@ -196,10 +201,11 @@ public class Jira {
       req.header("Content-Type", "application/json");
       req.header("Authorization", "Basic " + jiraAuth);
       req.body(jsonBody);
-      Response res = req.post();
+      res = req.post();
       exec = res.getBody().jsonPath().getString("key");
     } catch (Exception e) {
-      e.printStackTrace();
+      log.info("JIRA execution creation failed due to: " + e.getLocalizedMessage()
+          + "\nResponse code for API request: " + res.getStatusCode());
     }
     return exec;
   }
