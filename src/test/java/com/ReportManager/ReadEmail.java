@@ -11,18 +11,26 @@ import javax.mail.Store;
 public class ReadEmail {
 
   public static void check(String host, String storeType, String user, String password) {
+
+    // System.setProperty("java.net.useSystemProxies", "false");
+
+
     try {
 
       // create properties field
       Properties properties = new Properties();
+
+      // properties.put("proxySet", true);
+      // properties.put("socksProxyHost", "fastweb.int.bell.ca");
+      // properties.put("socksProxyPort", "8083");
 
       properties.put("mail.pop3.host", host);
       properties.put("mail.pop3.port", "995");
       properties.put("mail.pop3.starttls.enable", "true");
 
       // properties.setProperty("proxySet", "true");
-      // properties.setProperty("mail.pop3.proxy.host", "fastweb.int.bell.ca");
-      // properties.setProperty("mail.pop3.proxy.port", "8083");
+      properties.setProperty("mail.pop3.socks.host", "fastweb.int.bell.ca");
+      properties.setProperty("mail.pop3.socks.port", "8083");
 
 
       // mail.smtp.proxy.host
@@ -82,8 +90,8 @@ public class ReadEmail {
 
     String host = "pop.gmail.com";// change accordingly
     String mailStoreType = "pop3";
-    String username = "krishpavulur@gmail.com";// change accordingly
-    String password = "";// change accordingly
+    String username = "bqatautomation@gmail.com";// change accordingly
+    String password = "Bellcode1$";// change accordingly
 
     check(host, mailStoreType, username, password);
 
