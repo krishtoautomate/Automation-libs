@@ -3,15 +3,12 @@ package com.base;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
-
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.ITestContext;
-
 import com.DeviceManager.DeviceDAO;
 import com.DeviceManager.DeviceInfo;
-
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
@@ -46,10 +43,12 @@ public class TLDriverFactory {
     int devicePort = 8100;
     devicePort = deviceManager.getDevicePort(udid);
 
-    String deviceName = deviceinfoProvider.getDeviceName();
+    // String deviceName = deviceinfoProvider.getDeviceName();
     // String platForm = deviceinfoProvider.getPlatformName();
 
     if ("Android".equalsIgnoreCase(platForm)) {
+
+      String deviceName = deviceinfoProvider.getDeviceName();
 
       while (retry > 0) {
         try {
@@ -84,7 +83,7 @@ public class TLDriverFactory {
       desiredCapabilities =
           capabilitiesManager.loadJSONCapabilities(Constants.IOS_CAPABILITIES, "IOS");
 
-      desiredCapabilities.setCapability("deviceName", deviceName);
+      desiredCapabilities.setCapability("deviceName", "Test Device");
       desiredCapabilities.setCapability("udid", udid);
       desiredCapabilities.setCapability("wdaLocalPort", devicePort);
 

@@ -1,7 +1,9 @@
 package com.DeviceManager;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
-
 import com.Utilities.ITestBase;
 import com.base.Constants;
 
@@ -98,10 +100,10 @@ public class DeviceDAO implements ITestBase {
     return deviceModel.replaceAll("\\s+", "");
   }
 
-  public static void main(String[] args) {
-    DeviceDAO deviceDAO = new DeviceDAO("00008101-001C15A20AD2001E");
-    System.out.println(deviceDAO.getDeviceName());
-  }
+  // public static void main(String[] args) {
+  // DeviceDAO deviceDAO = new DeviceDAO("00008101-001C15A20AD2001E");
+  // System.out.println(deviceDAO.getDeviceName());
+  // }
 
   public synchronized String getDeviceName() {
 
@@ -213,6 +215,42 @@ public class DeviceDAO implements ITestBase {
           Constants.ADB + " -s " + this.udid + " uninstall io.appium.uiautomator2.server.test");
       runCommandThruProcess(Constants.ADB + " -s " + this.udid + " uninstall io.appium.settings");
     }
+  }
+
+  public static void main(String[] args) throws IOException {
+
+    // xcrun xctrace list devices 2>&1 | grep '^i'
+    String[] command = {"xcrun", "xctrace", "list", "devices"};
+    ProcessBuilder pb = new ProcessBuilder(command);
+    pb.redirectErrorStream(true);
+    Process exec = pb.start();
+
+    BufferedReader br = new BufferedReader(new InputStreamReader(exec.getInputStream()));
+    String text = null;
+    while ((text = br.readLine()) != null) {
+      // text = text.trim();
+      // System.out.println(text);
+      text = text.replaceAll("== Devices ==", "");
+      // text = text.replaceAll("== Simulators ==", "");
+      // text = text.replaceAll("\\)", "");
+      String[] arr = text.split("\\) \\(");
+
+
+
+      // "tesxt is ----------------------" + text + "-----------------------------------");
+      if (text.length() > 1 && arr.length > 2) {
+
+        System.out.println(text);
+      }
+
+      if (text.contains("== Simulators ==")) {
+        return;
+      }
+
+    }
+
+
+
   }
 
 }
