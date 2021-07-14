@@ -145,14 +145,6 @@ public class TestBase {
     String platFormVersion = "";
     int devicePort = deviceManager.getDevicePort(udid);
 
-    Map<String, String> testParams = iTestContext.getCurrentXmlTest().getAllParameters();
-    String p_Testdata = testParams.get("p_Testdata");
-    TestDataManager testData = new TestDataManager(p_Testdata, className, platForm);
-    int index = driver instanceof AndroidDriver ? 0 : 1;
-    String testKey = testData.getJsonValue(index, "testKey");
-    ITestResult result = Reporter.getCurrentTestResult();
-    result.setAttribute("testKey", testKey);
-
     if (udid != null) {
 
       server = appiumManager.AppiumService();
@@ -212,6 +204,14 @@ public class TestBase {
       platFormVersion = deviceinfoProvider.getosVersion();
 
 
+
+      Map<String, String> testParams = iTestContext.getCurrentXmlTest().getAllParameters();
+      String p_Testdata = testParams.get("p_Testdata");
+      TestDataManager testData = new TestDataManager(p_Testdata, className, platForm);
+      int index = driver instanceof AndroidDriver ? 0 : 1;
+      String testKey = testData.getJsonValue(index, "testKey");
+      ITestResult result = Reporter.getCurrentTestResult();
+      result.setAttribute("testKey", testKey);
 
       // Report Content
       test = extent.createTest(methodName + "(" + platForm + ")").assignDevice(deviceName);

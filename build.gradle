@@ -54,13 +54,13 @@ dependencies {
    	implementation 'org.slf4j:slf4j-api:1.7.25'
     implementation 'org.slf4j:slf4j-jdk14:1.7.25'
     
-    compile "com.oracle.ojdbc:ojdbc8:19.3.0.0"
+    testImplementation "com.oracle.ojdbc:ojdbc8:19.3.0.0"
     
     
     
-    implementation 'org.usb4java:usb4java-javax:1.2.0'
+    testImplementation 'org.usb4java:usb4java-javax:1.2.0'
     
-    implementation 'com.slack.api:slack-api-client:1.8.1'
+    testImplementation 'com.slack.api:slack-api-client:1.8.1'
 
     
    	   
