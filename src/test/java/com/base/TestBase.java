@@ -207,7 +207,7 @@ public class TestBase {
 
       Map<String, String> testParams = iTestContext.getCurrentXmlTest().getAllParameters();
       String p_Testdata = testParams.get("p_Testdata");
-      TestDataManager testData = new TestDataManager(p_Testdata, className, platForm);
+      TestDataManager testData = new TestDataManager(p_Testdata);
       int index = driver instanceof AndroidDriver ? 0 : 1;
       String testKey = testData.getJsonValue(index, "testKey");
       ITestResult result = Reporter.getCurrentTestResult();

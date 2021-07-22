@@ -16,7 +16,8 @@ public class PlayStoreApp extends BaseObjs<PlayStoreApp> {
 
   By myApps_and_games_btn = MobileBy.AccessibilityId("My apps & games");
 
-  By manageAppsAndDevice_btn = MobileBy.AccessibilityId("Manage apps and device");
+  By manageAppsAndDevice_btn = MobileBy
+      .xpath("(//android.widget.FrameLayout/android.view.ViewGroup/android.widget.TextView)[1]");
 
   By updates_refresh_btn = MobileBy.AccessibilityId("Check for updates");
   By updateAll_btn = By.xpath(

@@ -32,10 +32,10 @@ public class PlayStore extends TestBase implements ITestBase {
     sleep(2);
 
     // 2.0 - Click 'My apps & games' link
-    if (isElementDisplayed(playstoreapp.verify_myApps_and_games_btn())) {
-      playstoreapp.get_myApps_and_games_btn().click();
-      utils.logmessage(Status.PASS, "'My apps & games' link clicked");
-    }
+    // if (isElementDisplayed(playstoreapp.verify_myApps_and_games_btn())) {
+    // playstoreapp.get_myApps_and_games_btn().click();
+    // utils.logmessage(Status.PASS, "'My apps & games' link clicked");
+    // }
 
     if (isElementDisplayed(playstoreapp.verify_manageAppsAndDevice_btn())) {
       playstoreapp.get_manageAppsAndDevice_btn().click();

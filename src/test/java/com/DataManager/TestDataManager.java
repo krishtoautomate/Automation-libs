@@ -8,6 +8,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.testng.ITestResult;
+import org.testng.Reporter;
 
 
 public class TestDataManager {
@@ -18,27 +20,25 @@ public class TestDataManager {
   private String className;
   private String platformName;
 
-
-  public TestDataManager(String PathtoJSONfile) {
-    this.filePath = PathtoJSONfile;
-  }
-
-  public TestDataManager(String filePath, String className) {
+  public TestDataManager(String filePath) {
+    ITestResult iTestResult = Reporter.getCurrentTestResult();
+    this.className = iTestResult.getInstanceName();
     this.filePath = filePath;
-    this.className = className;
   }
 
-  public TestDataManager(String filePath, String className, String platformName) {
-    this.filePath = filePath;
-    this.className = className;
-    this.platformName = platformName;
-  }
-
-  public TestDataManager(String filePath, String className, boolean isAndroid) {
-    this.filePath = filePath;
-    this.className = className;
-    this.platformName = isAndroid ? "Android" : "iOS";
-  }
+  // public TestDataManager(String filePath, String platformName) {
+  // ITestResult iTestResult = Reporter.getCurrentTestResult();
+  // this.filePath = filePath;
+  // this.className = iTestResult.getInstanceName();
+  // this.platformName = platformName;
+  // }
+  //
+  // public TestDataManager(String filePath, boolean isAndroid) {
+  // ITestResult iTestResult = Reporter.getCurrentTestResult();
+  // this.filePath = filePath;
+  // this.className = iTestResult.getInstanceName();
+  // this.platformName = isAndroid ? "Android" : "iOS";
+  // }
 
   public synchronized String getValue(String key) {
 
@@ -54,14 +54,13 @@ public class TestDataManager {
     }
 
     return value;
-
   }
 
 
   /*
    * get key by unique key
    */
-  public synchronized String getJsonValue(String className, String key) {
+  public synchronized String getJsonValue(String key) {
 
     JsonFileReader JsonFileReader = new JsonFileReader(filePath);
 
@@ -81,26 +80,6 @@ public class TestDataManager {
 
     return value;
   }
-
-  /*
-   * get key by index
-   */
-  // public synchronized String getJsonValue(int index, String key) {
-  //
-  // String jsonValue = null;
-  //
-  // try {
-  // Object obj = new JSONParser().parse(new FileReader(new File(filePath)));
-  // JSONArray jsonArray = (JSONArray) obj;
-  //
-  // jsonValue = ((JSONObject)jsonArray.get(index)).get(key).toString();
-  // } catch (Exception e) {
-  // log.error("Data file error..");
-  // }
-  //
-  // return jsonValue;
-  // }
-
 
   public synchronized String getJsonValue(int index, String key) {
 

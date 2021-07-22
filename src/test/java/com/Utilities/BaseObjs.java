@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
-
 /**
  * Created by Krish on 21.07.2018.
  */
@@ -26,13 +25,11 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.mobileActions.MobileActions;
-
 import io.appium.java_client.android.AndroidDriver;
 import io.restassured.response.Response;
 
@@ -333,7 +330,7 @@ public class BaseObjs<T> {
   public void VERIFY_API_STATUS(Response response) {
     if (response.getStatusCode() != HttpStatus.SC_OK) {
       test.fail(MarkupHelper.createCodeBlock(response.getBody().asString()));
-      Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
+      // Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
     } else {
       test.pass("RESPONSE STATUS_CODE : " + response.getStatusCode());
     }
@@ -342,7 +339,7 @@ public class BaseObjs<T> {
   public void VERIFY_API_CONTAINS(Response response, String message) {
     if ((response.getBody().asString().toLowerCase()).contains(message.toLowerCase()) == false) {
       test.fail(MarkupHelper.createCodeBlock(response.prettyPrint()));
-      Assert.assertTrue(response.getBody().asString().contains(message));
+      // Assert.assertTrue(response.getBody().asString().contains(message));
     } else {
       test.pass("Verification - RESPONSE contains : " + message);
     }

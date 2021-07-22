@@ -212,9 +212,9 @@ public class TestListenerRT extends TestListenerAdapter
     DeviceDAO deviceinfoProvider = new DeviceDAO(udid);
     String deviceName = deviceinfoProvider.getDeviceName();
     String className = testResult.getTestClass().getName();
-    String platForm = deviceinfoProvider.getPlatformName();
+    deviceinfoProvider.getPlatformName();
     String p_Testdata = testParams.get("p_Testdata");
-    TestDataManager testData = new TestDataManager(p_Testdata, className, platForm);
+    TestDataManager testData = new TestDataManager(p_Testdata);
     Object testClass = testResult.getInstance();
     WebDriver driver = ((TestBase) testClass).getDriver();
     int index = driver instanceof AndroidDriver ? 0 : 1;
