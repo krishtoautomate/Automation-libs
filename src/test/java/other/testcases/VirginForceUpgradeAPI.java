@@ -20,7 +20,7 @@ public class VirginForceUpgradeAPI extends TestBaseAPI implements ITestBase {
 
   @Test
   @Parameters({"p_Testdata"})
-  public void Force_Upgrade_API(@Optional String p_Testdata) {
+  public void Virgin_ForceUpgrade_API(@Optional String p_Testdata) {
 
     test.getModel().setName("Virgin Force-upgrade API");
 

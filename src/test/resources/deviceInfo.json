@@ -759,5 +759,33 @@
     "colour":"Black",
     "devicePort":8247
  }
+ ,
+ {
+    "name":"Pixel 5",
+    "udid":"13201FDD4001SR",
+    "platformName":"Android",
+    "platformVersion":"12.0",
+    "colour":"Black",
+    "devicePort":8248
+ }
+ ,
+ {
+    "name":"Motorola one 5G ace",
+    "udid":"ZY22BXDT3X",
+    "platformName":"Android",
+    "platformVersion":"10.0",
+    "colour":"Black",
+    "devicePort":8249
+ }
+ 
+ ,
+ {
+    "name":"Pixel 4A",
+    "udid":"15141JEC201224",
+    "platformName":"Android",
+    "platformVersion":"11.0",
+    "colour":"Black",
+    "devicePort":8250
+ }
  
 ]
