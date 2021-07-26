@@ -50,11 +50,11 @@ public class LoginObjects extends BaseObjs<LoginObjects> {
     authScheme.setPassword(password);
     // RestAssured.authentication = authScheme;
 
-    String[][] data = {{"<b>Request : </b>", "BUP Login"}, {"<b>User : </b>", userName},
-        {"<b>Password : </b>", password}, {"<b>Request url : </b>", RestAssured.basePath},
-        {"<b>Request TYPE : </b>", "<i>GET</i>"}};
-
-    test.info(MarkupHelper.createTable(data));
+    // String[][] data = {{"<b>Request : </b>", "BUP Login"}, {"<b>User : </b>", userName},
+    // {"<b>Password : </b>", password}, {"<b>Request url : </b>", RestAssured.basePath},
+    // {"<b>Request TYPE : </b>", "<i>GET</i>"}};
+    //
+    // test.info(MarkupHelper.createTable(data));
 
     Response response = null;
     try {
@@ -84,7 +84,7 @@ public class LoginObjects extends BaseObjs<LoginObjects> {
 
     try {
       response = given().header("Content-Type", "application/json").header("Accept", "*/*")
-          .header("Cache-Control", "no-cache").header("Host", "api.luckymobile.ca")
+          // .header("Cache-Control", "no-cache").header("Host", "api.luckymobile.ca")
           .header("Accept-Encoding", "gzip, deflate").header("Connection", "keep-alive")
           .header("cache-control", "no-cache").body("{\"SubId2\":" + subId + ",\"Brand\":\"L\"}")
           .when().post(basePath);

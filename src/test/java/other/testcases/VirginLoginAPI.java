@@ -15,7 +15,7 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import other.pages.LoginObjects;
 
-public class BellLoginAPI extends TestBaseAPI implements ITestBase {
+public class VirginLoginAPI extends TestBaseAPI implements ITestBase {
 
   String className = this.getClass().getName();
 
@@ -25,16 +25,16 @@ public class BellLoginAPI extends TestBaseAPI implements ITestBase {
 
   @Test
   @Parameters({"p_Testdata"})
-  public void Bell_Login(@Optional String p_Testdata) throws FileNotFoundException {
+  public void MVM_Login(@Optional String p_Testdata) throws FileNotFoundException {
 
-    test.getModel().setName("MBM");
+    test.getModel().setName("MVM");
 
-    test.info(MarkupHelper.createLabel("MBM", ExtentColor.BLUE));
+    test.info(MarkupHelper.createLabel("MVM", ExtentColor.RED));
 
     RestAssured.proxy("fastweb.int.bell.ca", 8083);
     RestAssured.useRelaxedHTTPSValidation();
 
-    RestAssured.baseURI = "https://apigate.bell.ca/channelbellcaext";
+    RestAssured.baseURI = "https://api.virginmobile.ca/channelvirginext";
 
     LoginObjects loginObjects = new LoginObjects(log, test);
 
@@ -42,7 +42,6 @@ public class BellLoginAPI extends TestBaseAPI implements ITestBase {
     ArrayList<String> list = new ArrayList<String>();
     while (s.hasNext()) {
       list.add(s.next());
-
     }
     s.close();
 
@@ -52,9 +51,6 @@ public class BellLoginAPI extends TestBaseAPI implements ITestBase {
       p_mdn = parts[0].trim();
       p_userid = parts[1].trim();
       p_password = parts[2].trim();
-
-      // test.getModel().setName("MBM"); // : " + p_mdn + " : {" + p_userid + ":" + p_password +
-      // "}");
 
       String[][] data = {{"<b>Request : </b>", "BUP Login"}, {"<b>MDN/BAN : </b>", p_mdn},
           {"<b>User : </b>", p_userid}, {"<b>Password : </b>", p_password},};
