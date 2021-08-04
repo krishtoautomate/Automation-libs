@@ -29,7 +29,7 @@ public class RunnerWithAllConnectedDevices {
     mySuite.setParallel(XmlSuite.ParallelMode.TESTS);
     mySuite.addListener("com.Listeners.InvokedSuiteListener");
     mySuite.addListener("com.Listeners.TestListener");
-    mySuite.setThreadCount(1);
+    mySuite.setThreadCount(15);
 
     List<XmlTest> myTests = new ArrayList<XmlTest>();
     // *************************************************
@@ -119,6 +119,8 @@ public class RunnerWithAllConnectedDevices {
     myTestNG.setXmlSuites(mySuites);
     mySuite.setFileName("myTemp.xml");
     mySuite.setThreadCount(10);
+    mySuite.addListener("com.Listeners.InvokedSuiteListener");
+    mySuite.addListener("com.Listeners.TestListener");
 
     System.out.println(mySuite.toXml());
 

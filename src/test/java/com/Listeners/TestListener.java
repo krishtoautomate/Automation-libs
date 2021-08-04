@@ -7,7 +7,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Map;
 import java.util.TimeZone;
-
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
@@ -18,11 +17,9 @@ import org.testng.ISuiteListener;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
-
 import com.DeviceManager.DeviceDAO;
 import com.ReportManager.ReportBuilder;
 import com.Utilities.Constants;
-import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
@@ -61,10 +58,10 @@ public class TestListener extends TestListenerAdapter
         testResult.getTestContext().getCurrentXmlTest().getAllParameters();
     String udid = testParams.get("udid");
     DeviceDAO deviceinfoProvider = new DeviceDAO(udid);
-    String deviceName = deviceinfoProvider.getDeviceName();
+    deviceinfoProvider.getDeviceName();
     String platForm = deviceinfoProvider.getPlatformName();
-    String buildNo = System.getenv("BUILD_NUMBER");
-    String environment = System.getenv("ENVIRONMENT");
+    System.getenv("BUILD_NUMBER");
+    System.getenv("ENVIRONMENT");
     String testName = testResult.getMethod().getMethodName();
 
     Object testClass = testResult.getInstance();
@@ -74,16 +71,15 @@ public class TestListener extends TestListenerAdapter
 
     // Categories
     test.assignCategory(platForm);
-    test.assignCategory(deviceName);
-    test.assignCategory("Passed");
 
     // DB update
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
     LocalDateTime now = LocalDateTime.now();
-    String date_time = dtf.format(now);
+    dtf.format(now);
 
-    reporter.report(date_time, "LM", buildNo, environment, testName, deviceName, platForm, "PASS",
-        "");
+    // reporter.report(date_time, "LM", buildNo, environment, testName, deviceName, platForm,
+    // "PASS",
+    // "");
 
     // Jira
     Date date = new Date();
@@ -122,8 +118,8 @@ public class TestListener extends TestListenerAdapter
     DeviceDAO deviceinfoProvider = new DeviceDAO(udid);
     String deviceName = deviceinfoProvider.getDeviceName();
     String platForm = deviceinfoProvider.getPlatformName();
-    String buildNo = System.getenv("BUILD_NUMBER");
-    String environment = System.getenv("ENVIRONMENT");
+    System.getenv("BUILD_NUMBER");
+    System.getenv("ENVIRONMENT");
     String testName = testResult.getMethod().getMethodName();
 
     Object testClass = testResult.getInstance();
@@ -149,17 +145,16 @@ public class TestListener extends TestListenerAdapter
 
       // Categories
       test.assignCategory(platForm);
-      test.assignCategory(deviceName);
-      test.assignCategory("Failed");
 
       // DB
       DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
       LocalDateTime now = LocalDateTime.now();
-      String date_time = dtf.format(now);
+      dtf.format(now);
 
       // Emailable Test Summary
-      reporter.report(date_time, "LM", buildNo, environment, testName, deviceName, platForm, "FAIL",
-          testResult.getThrowable().toString());
+      // reporter.report(date_time, "LM", buildNo, environment, testName, deviceName, platForm,
+      // "FAIL",
+      // testResult.getThrowable().toString());
 
     }
     // Jira
@@ -198,14 +193,14 @@ public class TestListener extends TestListenerAdapter
     log.warn("Test Skipped : " + testResult.getMethod().getMethodName() + " : " + udid + "_"
         + deviceName);
 
-    ExtentTest test = ((TestBase) testClass).getExtentTest();
-    ExtentReports extent = ((TestBase) testClass).getExtentReports();
-
-    try {
-      extent.removeTest(test);
-    } catch (Exception e) {
-      // ignore
-    }
+    // ExtentTest test = ((TestBase) testClass).getExtentTest();
+    // ExtentReports extent = ((TestBase) testClass).getExtentReports();
+    //
+    // try {
+    // extent.removeTest(test);
+    // } catch (Exception e) {
+    // // ignore
+    // }
   }
 
   @Override
