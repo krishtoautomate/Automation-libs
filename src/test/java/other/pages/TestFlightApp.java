@@ -1,16 +1,13 @@
 package other.pages;
 
 import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-
 import com.Utilities.BaseObjs;
 import com.aventstack.extentreports.ExtentTest;
-
 import io.appium.java_client.MobileBy;
 
 public class TestFlightApp extends BaseObjs<TestFlightApp> {
@@ -22,7 +19,7 @@ public class TestFlightApp extends BaseObjs<TestFlightApp> {
   By remindMeLater_btn = By.xpath("//XCUIElementTypeButton[@name='Remind Me Later']");
 
   By all_btns = By.xpath("//XCUIElementTypeButton[@name='UPDATE']");
-  By apps_h1 = By.xpath("//XCUIElementTypeOther[@name='Apps']");
+  By apps_h1 = MobileBy.iOSNsPredicateString("label == 'Apps' AND visible =1");
   By open_btn = By.xpath("//XCUIElementTypeButton[@name='OPEN']");
   By update_btn = By.xpath("//XCUIElementTypeButton[@name='UPDATE']");
   By install_btn = By.xpath("//XCUIElementTypeButton[@name='INSTALL']");
@@ -71,6 +68,7 @@ public class TestFlightApp extends BaseObjs<TestFlightApp> {
     return ele;
   }
 
+  @Override
   public WebElement get_remindMeLater_btn() {
     WebElement ele = null;
     try {
