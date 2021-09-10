@@ -28,11 +28,9 @@ public class RunnerWithAllConnectedDevices {
     mySuite.setName("MySuite");
     mySuite.setParallel(XmlSuite.ParallelMode.TESTS);
     mySuite.addListener("com.Listeners.InvokedSuiteListener");
-    mySuite.addListener("com.Listeners.TestListener");
-    mySuite.setThreadCount(15);
+    mySuite.setThreadCount(1);
 
     List<XmlTest> myTests = new ArrayList<XmlTest>();
-    // *************************************************
 
     /*
      * Test1
@@ -104,7 +102,6 @@ public class RunnerWithAllConnectedDevices {
       }
     }
 
-    // *****************************************************************
     /*
      * Common
      */
@@ -118,7 +115,6 @@ public class RunnerWithAllConnectedDevices {
     TestNG myTestNG = new TestNG();
     myTestNG.setXmlSuites(mySuites);
     mySuite.setFileName("myTemp.xml");
-    mySuite.setThreadCount(10);
     mySuite.addListener("com.Listeners.InvokedSuiteListener");
     mySuite.addListener("com.Listeners.TestListener");
 

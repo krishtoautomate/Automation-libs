@@ -787,5 +787,14 @@
     "colour":"Black",
     "devicePort":8250
  }
+  ,
+ {
+    "name":"Huawei P40 pro",
+    "udid":"9RJ0220516003054",
+    "platformName":"Android",
+    "platformVersion":"10.0",
+    "colour":"Blue",
+    "devicePort":8251
+ }
  
 ]

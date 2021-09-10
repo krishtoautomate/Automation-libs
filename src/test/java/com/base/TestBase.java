@@ -24,9 +24,6 @@ import com.DeviceManager.DeviceInfo;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
-import com.aventstack.extentreports.reporter.ExtentSparkReporter;
-import com.aventstack.extentreports.reporter.configuration.Theme;
-import com.aventstack.extentreports.reporter.configuration.ViewName;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
@@ -44,7 +41,7 @@ public class TestBase {
   protected WebDriverWait wait;
   protected TLDriverFactory tlDriverFactory = new TLDriverFactory();
   protected static Logger log;
-  protected ExtentSparkReporter htmlReporter;
+  // protected ExtentSparkReporter htmlReporter;
   protected static ExtentReports extent;
   protected ExtentTest test;
   protected ScreenShotManager screenShotManager;
@@ -52,6 +49,7 @@ public class TestBase {
   AppiumManager appiumManager = new AppiumManager();
   String platForm = "";
   String deviceName = "";
+  boolean isAndroid = false;
 
   int retry = 10;
   int interval = 1000;
@@ -93,21 +91,25 @@ public class TestBase {
     }
 
     // extent report
-    extent = new ExtentReports();
-    htmlReporter = new ExtentSparkReporter(Constants.EXTENT_HTML_REPORT).viewConfigurer()
-        .viewOrder().as(new ViewName[] {ViewName.TEST, ViewName.DEVICE, ViewName.AUTHOR,
-            ViewName.CATEGORY, ViewName.EXCEPTION, ViewName.LOG, ViewName.DASHBOARD})
-        .apply();
-    extent.attachReporter(htmlReporter);
+    extent = ExtentManager.createExtentReports("AUTOMATION REPORT", Constants.EXTENT_HTML_REPORT);
 
-    htmlReporter.config().setDocumentTitle("AUTOMATION REPORT");
-    htmlReporter.config().setReportName("AUTOMATION REPORT");
-    htmlReporter.config().setTheme(Theme.STANDARD);
 
-    // HOST INFO
-    extent.setSystemInfo("OS", Constants.HOST_OS);
-    extent.setSystemInfo("HostIPAddress", Constants.HOST_IP_ADDRESS());
-    extent.setSystemInfo("Host Name", Constants.HOST_NAME());
+
+    // new ExtentReports();
+    // ExtentSparkReporter htmlReporter =
+    // new ExtentSparkReporter(Constants.EXTENT_HTML_REPORT).viewConfigurer().viewOrder()
+    // .as(new ViewName[] {ViewName.TEST, ViewName.DEVICE, ViewName.AUTHOR, ViewName.CATEGORY,
+    // ViewName.EXCEPTION, ViewName.LOG, ViewName.DASHBOARD})
+    // .apply();
+    // extent.attachReporter(htmlReporter);
+    //
+    // htmlReporter.config().setDocumentTitle("AUTOMATION REPORT");
+    // htmlReporter.config().setReportName("AUTOMATION REPORT");
+    //
+    // // HOST INFO
+    // extent.setSystemInfo("OS", Constants.HOST_OS);
+    // extent.setSystemInfo("HostIPAddress", Constants.HOST_IP_ADDRESS());
+    // extent.setSystemInfo("Host Name", Constants.HOST_NAME());
 
   }
 
@@ -189,6 +191,8 @@ public class TestBase {
         log.error("session failed : " + e.getLocalizedMessage());
         throw new SkipException("session failed : " + e.getLocalizedMessage());
       }
+
+      isAndroid = driver instanceof AndroidDriver;
 
       /*
        * Test info
@@ -272,6 +276,13 @@ public class TestBase {
       }
 
     }
+
+    try {
+      extent.flush(); // -----close extent-report
+      log.info(Constants.EXTENT_HTML_REPORT);
+    } catch (Exception e) {
+      // ignore
+    }
   }
 
   /**
@@ -280,12 +291,12 @@ public class TestBase {
   @AfterSuite(alwaysRun = true)
   public void endSuit(ITestContext ctx) {
 
-    try {
-      extent.flush(); // -----close extent-report
-      log.info(Constants.EXTENT_HTML_REPORT);
-    } catch (Exception e) {
-      // ignore
-    }
+    // try {
+    // extent.flush(); // -----close extent-report
+    // log.info(Constants.EXTENT_HTML_REPORT);
+    // } catch (Exception e) {
+    // // ignore
+    // }
   }
 
 }
