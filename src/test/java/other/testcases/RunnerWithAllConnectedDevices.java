@@ -52,25 +52,29 @@ public class RunnerWithAllConnectedDevices {
       if (update.equalsIgnoreCase("iOS") || update.equalsIgnoreCase("All")) {
 
         for (int i = 0; i < iosDeviceList.size(); i++) {
-          // Create an instance of XmlTest and assign a name for it.
-          XmlTest iosTest = new XmlTest(mySuite);
 
-          // Test name
-          iosTest.setName("TestFlight_" + i);
+          if (iosDeviceList.get(i).getUniqueDeviceID() != null) {
 
-          // Test parameters
-          iosTest.addParameter("platForm", "IOS");
-          iosTest.addParameter("udid", iosDeviceList.get(i).getUniqueDeviceID());
+            // Create an instance of XmlTest and assign a name for it.
+            XmlTest iosTest = new XmlTest(mySuite);
 
-          // Create classes
-          List<XmlClass> myClasses = new ArrayList<XmlClass>();
-          myClasses.add(new XmlClass("other.testcases.TestFlight"));
+            // Test name
+            iosTest.setName("TestFlight_" + i);
 
-          // Add Classes
-          iosTest.setXmlClasses(myClasses);
+            // Test parameters
+            iosTest.addParameter("platForm", "IOS");
+            iosTest.addParameter("udid", iosDeviceList.get(i).getUniqueDeviceID());
 
-          // Add Test
-          myTests.add(iosTest);
+            // Create classes
+            List<XmlClass> myClasses = new ArrayList<XmlClass>();
+            myClasses.add(new XmlClass("other.testcases.TestFlight"));
+
+            // Add Classes
+            iosTest.setXmlClasses(myClasses);
+
+            // Add Test
+            myTests.add(iosTest);
+          }
         }
       }
     }
@@ -93,27 +97,31 @@ public class RunnerWithAllConnectedDevices {
         int i = 0;
         for (Device device : androidDeviceList) {
           i++;
-          // Create Test
-          XmlTest androidTests = new XmlTest(mySuite);
 
-          // Name test
-          androidTests.setName("PlayStore_" + i);
+          if (device.getUniqueDeviceID() != null) {
+            // Create Test
+            XmlTest androidTests = new XmlTest(mySuite);
 
-          // Add parameters
-          androidTests.addParameter("platForm", "Android");
-          androidTests.addParameter("udid", device.getUniqueDeviceID());
+            // Name test
+            androidTests.setName("PlayStore_" + i);
 
-          // Create classes
-          List<XmlClass> myClasses2 = new ArrayList<XmlClass>();
-          myClasses2.add(new XmlClass("other.testcases.PlayStore"));
+            // Add parameters
+            androidTests.addParameter("platForm", "Android");
+            androidTests.addParameter("udid", device.getUniqueDeviceID());
 
-          // add classes
-          androidTests.setXmlClasses(myClasses2);
+            // Create classes
+            List<XmlClass> myClasses2 = new ArrayList<XmlClass>();
+            myClasses2.add(new XmlClass("other.testcases.PlayStore"));
 
-          // add test to tests
-          myTests.add(androidTests);
+            // add classes
+            androidTests.setXmlClasses(myClasses2);
+
+            // add test to tests
+            myTests.add(androidTests);
+          }
 
         }
+
       }
     }
 
