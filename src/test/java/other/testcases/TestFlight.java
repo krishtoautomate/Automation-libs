@@ -1,17 +1,14 @@
 package other.testcases;
 
 import java.util.List;
-
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
 import com.Utilities.ITestBase;
 import com.Utilities.Utilities;
 import com.aventstack.extentreports.Status;
 import com.base.TestBase;
-
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import other.pages.TestFlightApp;

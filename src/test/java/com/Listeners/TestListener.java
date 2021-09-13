@@ -17,7 +17,6 @@ import org.testng.ISuiteListener;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
-import com.DeviceManager.DeviceDAO;
 import com.ReportManager.ReportBuilder;
 import com.Utilities.Constants;
 import com.aventstack.extentreports.ExtentTest;
@@ -27,6 +26,10 @@ import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.base.Jira;
 import com.base.ScreenShotManager;
 import com.base.TestBase;
+import com.deviceinformation.DeviceInfo;
+import com.deviceinformation.DeviceInfoImpl;
+import com.deviceinformation.device.DeviceType;
+import com.deviceinformation.model.Device;
 
 public class TestListener extends TestListenerAdapter
     implements ISuiteListener, ITestListener, IInvokedMethodListener {
@@ -56,21 +59,23 @@ public class TestListener extends TestListenerAdapter
      */
     Map<String, String> testParams =
         testResult.getTestContext().getCurrentXmlTest().getAllParameters();
-    String udid = testParams.get("udid");
-    DeviceDAO deviceinfoProvider = new DeviceDAO(udid);
-    deviceinfoProvider.getDeviceName();
-    String platForm = deviceinfoProvider.getPlatformName();
-    System.getenv("BUILD_NUMBER");
-    System.getenv("ENVIRONMENT");
-    String testName = testResult.getMethod().getMethodName();
+    testParams.get("udid");
+    String platForm = testParams.get("platForm");
 
     Object testClass = testResult.getInstance();
     ExtentTest test = ((TestBase) testClass).getExtentTest();
 
-    test.log(Status.INFO, testName + " - Completed as Success");
-
     // Categories
     test.assignCategory(platForm);
+
+
+    System.getenv("BUILD_NUMBER");
+    System.getenv("ENVIRONMENT");
+    String testName = testResult.getMethod().getMethodName();
+
+    test.log(Status.INFO, testName + " - Completed as Success");
+
+
 
     // DB update
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
@@ -115,9 +120,14 @@ public class TestListener extends TestListenerAdapter
     Map<String, String> testParams =
         testResult.getTestContext().getCurrentXmlTest().getAllParameters();
     String udid = testParams.get("udid");
-    DeviceDAO deviceinfoProvider = new DeviceDAO(udid);
-    String deviceName = deviceinfoProvider.getDeviceName();
-    String platForm = deviceinfoProvider.getPlatformName();
+    String platForm = testParams.get("platForm");
+
+    DeviceInfo deviceInfo = new DeviceInfoImpl(DeviceType.ALL);
+
+    Device device = deviceInfo.getUdid(udid);
+    String deviceName = device.getDeviceName();
+
+
     System.getenv("BUILD_NUMBER");
     System.getenv("ENVIRONMENT");
     String testName = testResult.getMethod().getMethodName();
@@ -185,8 +195,16 @@ public class TestListener extends TestListenerAdapter
     Map<String, String> testParams =
         testResult.getTestContext().getCurrentXmlTest().getAllParameters();
     String udid = testParams.get("udid");
-    DeviceDAO deviceinfoProvider = new DeviceDAO(udid);
-    String deviceName = deviceinfoProvider.getDeviceName();
+
+    DeviceInfo deviceInfo = new DeviceInfoImpl(DeviceType.ALL);
+
+    Device device;
+    String deviceName = "";
+
+    device = deviceInfo.getUdid(udid);
+    deviceName = device.getDeviceName();
+
+
 
     Object testClass = testResult.getInstance();
     Logger log = ((TestBase) testClass).getLog();
