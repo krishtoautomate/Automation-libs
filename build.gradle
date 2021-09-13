@@ -36,8 +36,9 @@ dependencies {
   	
     implementation 'commons-io:commons-io:2.6'
 
+    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+    implementation 'com.google.code.gson:gson:2.6.2'
     implementation 'com.googlecode.json-simple:json-simple:1.1.1'
-
 
     implementation 'javax.mail:mail:1.4'
     implementation 'org.json:json:20160810'
