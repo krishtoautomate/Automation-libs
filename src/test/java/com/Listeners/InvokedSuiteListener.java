@@ -1,8 +1,7 @@
 package com.Listeners;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-
+import java.util.List;
 import org.apache.log4j.Logger;
 /**
  * Created by Krish on 21.07.2018.
@@ -13,8 +12,10 @@ import org.testng.ITestContext;
 import org.testng.ITestNGMethod;
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
-
-import com.DeviceManager.DeviceDAO;
+import com.deviceinformation.DeviceInfo;
+import com.deviceinformation.DeviceInfoImpl;
+import com.deviceinformation.device.DeviceType;
+import com.deviceinformation.model.Device;
 
 public class InvokedSuiteListener extends TestListenerAdapter implements ISuiteListener {
 
@@ -28,32 +29,28 @@ public class InvokedSuiteListener extends TestListenerAdapter implements ISuiteL
   @Override
   public void onStart(ISuite suite) {
 
-    DeviceDAO deviceDAO = new DeviceDAO();
+    DeviceInfo deviceInfo = new DeviceInfoImpl(DeviceType.ALL);
 
     System.out.println(
         "---------------------------------------------------------------------------------------------------------------------------------");
-    System.out.printf("%2s %50s %30s %20s %10s %10s", "S.NO", "UDID", "DEVICE NAME", "OS",
-        "OS-VERSION", "BRAND");
+    System.out.printf("%2s %50s %30s %20s %10s", "S.NO", "UDID", "DEVICE NAME", "OS", "OS-VERSION");
     System.out.println();
     System.out.println(
         "---------------------------------------------------------------------------------------------------------------------------------");
 
-    ArrayList<String> deviceList = deviceDAO.getIdevices(); // iOS devices
+    List<Device> deviceList = deviceInfo.getDevices();
 
-    deviceList.addAll(deviceDAO.getADBdevices()); // Android devices
     int i = 0;
-    for (String udid : deviceList) {
+    for (Device device : deviceList) {
       i++;
-      DeviceDAO iosDevicesList = new DeviceDAO(udid);
-      System.out.format("%2d %50s %30s %20s %10s %10s", i, udid, iosDevicesList.getDeviceName(),
-          iosDevicesList.getOs(), iosDevicesList.getosVersion(), iosDevicesList.getBrand());
+      System.out.format("%2d %50s %30s %20s %10s", i, device.getUniqueDeviceID(),
+          device.getDeviceName(), device.getDeviceProductName(), device.getProductVersion());
       System.out.println();
       System.out.println(
           "--------------------------------------------------------------------------------------------------------------------------------");
     }
 
   }
-
 
   @Override
   public void onFinish(ITestContext context) {

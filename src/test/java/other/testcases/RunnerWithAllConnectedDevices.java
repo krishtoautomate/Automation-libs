@@ -7,7 +7,10 @@ import org.testng.annotations.Test;
 import org.testng.xml.XmlClass;
 import org.testng.xml.XmlSuite;
 import org.testng.xml.XmlTest;
-import com.DeviceManager.DeviceDAO;
+import com.deviceinformation.DeviceInfo;
+import com.deviceinformation.DeviceInfoImpl;
+import com.deviceinformation.device.DeviceType;
+import com.deviceinformation.model.Device;
 
 public class RunnerWithAllConnectedDevices {
 
@@ -17,8 +20,6 @@ public class RunnerWithAllConnectedDevices {
   public void testrunner() {
     // TODO Auto-generated method stub
 
-    DeviceDAO deviceDAO = new DeviceDAO();
-
     /*
      * Common
      */
@@ -27,18 +28,14 @@ public class RunnerWithAllConnectedDevices {
     XmlSuite mySuite = new XmlSuite();
     mySuite.setName("MySuite");
     mySuite.setParallel(XmlSuite.ParallelMode.TESTS);
-    mySuite.addListener("com.Listeners.InvokedSuiteListener");
-    mySuite.addListener("com.Listeners.TestListener");
-    mySuite.setThreadCount(15);
+    // mySuite.addListener("com.Listeners.InvokedSuiteListener");
+    mySuite.setThreadCount(1);
 
     List<XmlTest> myTests = new ArrayList<XmlTest>();
-    // *************************************************
 
     /*
      * Test1
      */
-    ArrayList<String> iosDeviceList = deviceDAO.getIdevices();
-
 
     String update = System.getenv("UPDATE");
 
@@ -46,28 +43,35 @@ public class RunnerWithAllConnectedDevices {
       update = "All";
     }
 
-    if (update.equalsIgnoreCase("iOS") || update.equalsIgnoreCase("All")) {
+    DeviceInfo iosDeviceInfo = new DeviceInfoImpl(DeviceType.IOS);
 
-      for (int i = 0; i < iosDeviceList.size(); i++) {
-        // Create an instance of XmlTest and assign a name for it.
-        XmlTest iosTest = new XmlTest(mySuite);
+    if (iosDeviceInfo.anyDeviceConnected()) {
 
-        // Test name
-        iosTest.setName("TestFlight_" + i);
+      List<Device> iosDeviceList = iosDeviceInfo.getDevices();
 
-        // Test parameters
-        iosTest.addParameter("platForm", "IOS");
-        iosTest.addParameter("udid", iosDeviceList.get(i));
+      if (update.equalsIgnoreCase("iOS") || update.equalsIgnoreCase("All")) {
 
-        // Create classes
-        List<XmlClass> myClasses = new ArrayList<XmlClass>();
-        myClasses.add(new XmlClass("other.testcases.TestFlight"));
+        for (int i = 0; i < iosDeviceList.size(); i++) {
+          // Create an instance of XmlTest and assign a name for it.
+          XmlTest iosTest = new XmlTest(mySuite);
 
-        // Add Classes
-        iosTest.setXmlClasses(myClasses);
+          // Test name
+          iosTest.setName("TestFlight_" + i);
 
-        // Add Test
-        myTests.add(iosTest);
+          // Test parameters
+          iosTest.addParameter("platForm", "IOS");
+          iosTest.addParameter("udid", iosDeviceList.get(i).getUniqueDeviceID());
+
+          // Create classes
+          List<XmlClass> myClasses = new ArrayList<XmlClass>();
+          myClasses.add(new XmlClass("other.testcases.TestFlight"));
+
+          // Add Classes
+          iosTest.setXmlClasses(myClasses);
+
+          // Add Test
+          myTests.add(iosTest);
+        }
       }
     }
 
@@ -76,35 +80,43 @@ public class RunnerWithAllConnectedDevices {
      */
 
     // get connected device list
-    ArrayList<String> androidDeviceList = deviceDAO.getADBdevices();
 
-    if (update.equalsIgnoreCase("Android") || update.equalsIgnoreCase("All")) {
-      for (int i = 0; i < androidDeviceList.size(); i++) {
+    DeviceInfo androidDeviceInfo = new DeviceInfoImpl(DeviceType.ANDROID);
 
-        // Create Test
-        XmlTest androidTests = new XmlTest(mySuite);
+    if (androidDeviceInfo.anyDeviceConnected()) {
 
-        // Name test
-        androidTests.setName("PlayStore_" + i);
+      List<Device> androidDeviceList = androidDeviceInfo.getDevices();
 
-        // Add parameters
-        androidTests.addParameter("platForm", "Android");
-        androidTests.addParameter("udid", androidDeviceList.get(i));
+      if (update.equalsIgnoreCase("Android") || update.equalsIgnoreCase("All")) {
 
-        // Create classes
-        List<XmlClass> myClasses2 = new ArrayList<XmlClass>();
-        myClasses2.add(new XmlClass("other.testcases.PlayStore"));
+        // for (int i = 0; i < androidDeviceList.size(); i++) {
+        int i = 0;
+        for (Device device : androidDeviceList) {
+          i++;
+          // Create Test
+          XmlTest androidTests = new XmlTest(mySuite);
 
-        // add classes
-        androidTests.setXmlClasses(myClasses2);
+          // Name test
+          androidTests.setName("PlayStore_" + i);
 
-        // add test to tests
-        myTests.add(androidTests);
+          // Add parameters
+          androidTests.addParameter("platForm", "Android");
+          androidTests.addParameter("udid", device.getUniqueDeviceID());
 
+          // Create classes
+          List<XmlClass> myClasses2 = new ArrayList<XmlClass>();
+          myClasses2.add(new XmlClass("other.testcases.PlayStore"));
+
+          // add classes
+          androidTests.setXmlClasses(myClasses2);
+
+          // add test to tests
+          myTests.add(androidTests);
+
+        }
       }
     }
 
-    // *****************************************************************
     /*
      * Common
      */
@@ -118,7 +130,6 @@ public class RunnerWithAllConnectedDevices {
     TestNG myTestNG = new TestNG();
     myTestNG.setXmlSuites(mySuites);
     mySuite.setFileName("myTemp.xml");
-    mySuite.setThreadCount(10);
     mySuite.addListener("com.Listeners.InvokedSuiteListener");
     mySuite.addListener("com.Listeners.TestListener");
 

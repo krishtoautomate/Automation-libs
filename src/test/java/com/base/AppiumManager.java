@@ -12,11 +12,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.apache.log4j.Logger;
+import org.json.simple.parser.ParseException;
 import org.testng.ITestResult;
 import org.testng.Reporter;
-
+import com.DataManager.JsonFileReader;
+import com.deviceinformation.DeviceInfo;
+import com.deviceinformation.DeviceInfoImpl;
+import com.deviceinformation.device.DeviceType;
+import com.deviceinformation.model.Device;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 
@@ -164,4 +168,43 @@ public class AppiumManager {
       }
     }
   }
+
+  public synchronized void uninstall_WDA(String udid) {
+    DeviceInfo deviceInfo = new DeviceInfoImpl(DeviceType.ALL);
+    Device device = deviceInfo.getUdid(udid);
+    String os = device.getDeviceProductName();
+
+    if (os.equalsIgnoreCase("Ios"))
+      try {
+        Runtime.getRuntime().exec("/usr/local/bin/ideviceinstaller -u " + udid
+            + " -U com.facebook.WebDriverAgentRunner.xctrunner");
+      } catch (IOException e) {
+        // ignore
+      }
+    // else {
+    // runCommandThruProcess(
+    // Constants.ADB + " -s " + udid + " uninstall io.appium.uiautomator2.server");
+    // runCommandThruProcess(
+    // Constants.ADB + " -s " + udid + " uninstall io.appium.uiautomator2.server.test");
+    // runCommandThruProcess(Constants.ADB + " -s " + udid + " uninstall io.appium.settings");
+    // }
+  }
+
+  /**
+   * @return the devicePort
+   */
+  public synchronized int getDevicePort(String deviceUdid) {
+    try {
+      JsonFileReader JsonFileReader = new JsonFileReader(Constants.DEVICE_INFO);
+
+      int index = JsonFileReader.getObjIndex("udid", deviceUdid);
+
+      return Integer.valueOf(JsonFileReader.getJsonValue(index, "devicePort"));
+    } catch (IOException | ParseException e) {
+      log.error("get deviceName failed! " + "\n" + e.getLocalizedMessage());
+
+    }
+    return 8301;
+  }
+
 }

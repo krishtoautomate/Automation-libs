@@ -31,7 +31,7 @@ dependencies {
     testImplementation 'org.seleniumhq.selenium:selenium-android-driver:2.39.0'
     implementation 'org.seleniumhq.selenium:selenium-support:3.141.59'
 
-    implementation 'io.appium:java-client:7.5.0'
+    implementation 'io.appium:java-client:7.5.1'
     implementation 'log4j:log4j:1.2.17'
   	
     implementation 'commons-io:commons-io:2.6'
@@ -45,9 +45,9 @@ dependencies {
     implementation 'com.jcraft:jsch:0.1.54'
     implementation 'org.bytedeco.javacpp-presets:tesseract:4.0.0-1.4.4'
     
-    testImplementation 'io.rest-assured:rest-assured:4.3.2'
+    testImplementation 'io.rest-assured:rest-assured:4.4.0'
    
-   	implementation 'com.aventstack:extentreports:5.0.4'
+   	testImplementation 'com.aventstack:extentreports:5.0.6'
     
     implementation 'com.google.guava:guava:21.0'
     

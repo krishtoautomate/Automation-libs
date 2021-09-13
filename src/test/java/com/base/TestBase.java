@@ -19,14 +19,13 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import com.DataManager.TestDataManager;
-import com.DeviceManager.DeviceDAO;
-import com.DeviceManager.DeviceInfo;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
-import com.aventstack.extentreports.reporter.ExtentSparkReporter;
-import com.aventstack.extentreports.reporter.configuration.Theme;
-import com.aventstack.extentreports.reporter.configuration.ViewName;
+import com.deviceinformation.DeviceInfo;
+import com.deviceinformation.DeviceInfoImpl;
+import com.deviceinformation.device.DeviceType;
+import com.deviceinformation.model.Device;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
@@ -44,14 +43,17 @@ public class TestBase {
   protected WebDriverWait wait;
   protected TLDriverFactory tlDriverFactory = new TLDriverFactory();
   protected static Logger log;
-  protected ExtentSparkReporter htmlReporter;
   protected static ExtentReports extent;
   protected ExtentTest test;
   protected ScreenShotManager screenShotManager;
-  protected DeviceInfo deviceManager = new DeviceInfo();
   AppiumManager appiumManager = new AppiumManager();
   String platForm = "";
   String deviceName = "";
+  String platFormVersion = "";
+  String udid = "";
+  int devicePort = 8301;
+  boolean isAndroid = false;
+
 
   int retry = 10;
   int interval = 1000;
@@ -93,38 +95,28 @@ public class TestBase {
     }
 
     // extent report
-    extent = new ExtentReports();
-    htmlReporter = new ExtentSparkReporter(Constants.EXTENT_HTML_REPORT).viewConfigurer()
-        .viewOrder().as(new ViewName[] {ViewName.TEST, ViewName.DEVICE, ViewName.AUTHOR,
-            ViewName.CATEGORY, ViewName.EXCEPTION, ViewName.LOG, ViewName.DASHBOARD})
-        .apply();
-    extent.attachReporter(htmlReporter);
-
-    htmlReporter.config().setDocumentTitle("AUTOMATION REPORT");
-    htmlReporter.config().setReportName("AUTOMATION REPORT");
-    htmlReporter.config().setTheme(Theme.STANDARD);
-
-    // HOST INFO
-    extent.setSystemInfo("OS", Constants.HOST_OS);
-    extent.setSystemInfo("HostIPAddress", Constants.HOST_IP_ADDRESS());
-    extent.setSystemInfo("Host Name", Constants.HOST_NAME());
+    extent = ExtentManager.createExtentReports("AUTOMATION REPORT", Constants.EXTENT_HTML_REPORT);
 
   }
 
   @BeforeTest
-  @Parameters({"udid"})
-  public synchronized void BeforeTest(@Optional String udid, ITestContext iTestContext) {
+  @Parameters({"udid", "platForm"})
+  public synchronized void BeforeTest(@Optional String udid, @Optional String platForm,
+      ITestContext iTestContext) {
     if (udid != null) {
       if (!udid.equalsIgnoreCase("auto")) {
+        this.udid = udid;
+        DeviceInfo deviceInfo = new DeviceInfoImpl(DeviceType.ALL);
+        Device device = deviceInfo.getUdid(udid);
 
-        DeviceDAO deviceinfoProvider = new DeviceDAO(udid);
-        platForm = deviceinfoProvider.getPlatformName();
-        deviceName = deviceinfoProvider.getDeviceName();
+        deviceName = device.getDeviceName();
+        this.platForm = platForm;
+        platFormVersion = device.getProductVersion();
 
         iTestContext.setAttribute("udid", udid);
         iTestContext.setAttribute("deviceName", deviceName);
 
-        int devicePort = deviceManager.getDevicePort(udid);
+        int devicePort = appiumManager.getDevicePort(udid);
         if (appiumManager.isPortBusy(devicePort)) {
           log.warn(
               "device Busy : " + deviceName + ", udid : " + udid + ", devicePort : " + devicePort);
@@ -136,14 +128,11 @@ public class TestBase {
 
   @SuppressWarnings("unchecked")
   @BeforeMethod
-  @Parameters({"udid"})
-  public synchronized void BeforeClass(@Optional String udid, ITestContext iTestContext,
-      Method method) {
+  public synchronized void BeforeClass(ITestContext iTestContext, Method method) {
 
     String methodName = method.getName();
     String className = this.getClass().getName();
-    String platFormVersion = "";
-    int devicePort = deviceManager.getDevicePort(udid);
+    devicePort = appiumManager.getDevicePort(udid);
 
     if (udid != null) {
 
@@ -198,12 +187,6 @@ public class TestBase {
             .toString();
 
       iTestContext.setAttribute("udid", udid);
-      DeviceDAO deviceinfoProvider = new DeviceDAO(udid);
-      deviceName = deviceinfoProvider.getDeviceName();
-      platForm = deviceinfoProvider.getPlatformName();
-      platFormVersion = deviceinfoProvider.getosVersion();
-
-
 
       Map<String, String> testParams = iTestContext.getCurrentXmlTest().getAllParameters();
       String p_Testdata = testParams.get("p_Testdata");
@@ -235,11 +218,9 @@ public class TestBase {
    */
   @SuppressWarnings("unchecked")
   @AfterMethod
-  @Parameters({"udid"})
-  public synchronized void AfterClass(@Optional String udid, ITestContext Testctx) {
+  public synchronized void AfterClass(ITestContext Testctx) {
 
     if (driver != null) {
-
       try {
         if ("Android".equalsIgnoreCase(platForm)) {
           ((AndroidDriver<MobileElement>) driver).closeApp();
@@ -266,11 +247,16 @@ public class TestBase {
         server.stop();
       }
 
-      int _port = deviceManager.getDevicePort(udid);
-      if (appiumManager.isPortBusy(_port)) {
-        appiumManager.killPort(_port);
+      if (appiumManager.isPortBusy(devicePort)) {
+        appiumManager.killPort(devicePort);
       }
+    }
 
+    try {
+      extent.flush(); // -----close extent-report
+      log.info(Constants.EXTENT_HTML_REPORT);
+    } catch (Exception e) {
+      // ignore
     }
   }
 
@@ -278,7 +264,7 @@ public class TestBase {
    * Executed once after all the tests
    */
   @AfterSuite(alwaysRun = true)
-  public void endSuit(ITestContext ctx) {
+  public void endSuit() {
 
     try {
       extent.flush(); // -----close extent-report
