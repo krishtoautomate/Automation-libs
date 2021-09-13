@@ -29,7 +29,7 @@ public class RunnerWithAllConnectedDevices {
     mySuite.setName("MySuite");
     mySuite.setParallel(XmlSuite.ParallelMode.TESTS);
     // mySuite.addListener("com.Listeners.InvokedSuiteListener");
-    mySuite.setThreadCount(1);
+    mySuite.setThreadCount(15);
 
     List<XmlTest> myTests = new ArrayList<XmlTest>();
 
