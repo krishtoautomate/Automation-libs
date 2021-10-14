@@ -199,10 +199,8 @@ public class TestBase {
       log.info("Test Details : " + className + " : " + platForm + " : " + deviceName);
       String[][] data = {{"<b>TestCase : </b>", className}, {"<b>Device : </b>", deviceName},
           {"<b>UDID : </b>", udid}, {"<b>Platform : </b>", platForm},
-          {"<b>OsVersion : </b>", platFormVersion}, {"<b>Jira test-key : </b>", testKey}};
-
-      // ExtentReportManager.getExtentTestInstance().log(LogStatus.INFO,"API Log Link : <a
-      // href='https://jira.bell.corp.bce.ca/browse/'>API LINK</a>");
+          {"<b>OsVersion : </b>", platFormVersion}, {"<b>Jira test-key : </b>",
+              "<a href=" + Constants.JIRA_URL + testKey + ">" + testKey + "</a>"}};
 
 
 
