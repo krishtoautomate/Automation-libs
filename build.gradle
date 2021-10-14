@@ -91,9 +91,9 @@ tasks.withType(JavaCompile) {
 
 
 //gradle clean compiletestjava -PappPackage=BETA -PappActivity=activity -PbundleId=PROD
-task createCapability(type: Exec) {
+//task createCapability(type: Exec) {
 //tasks.create(name: 'createCapability') {
-
+/*
     File capabilities = new File(projectDir, "capabilities.json"); //.mkdirs();
     capabilities.write('{\n'+
 					'"ANDROID":\n'+
@@ -133,7 +133,7 @@ task createCapability(type: Exec) {
 				      ']\n'+
 				'}');
 }
-
+*/
 allprojects { project ->
     tasks.withType(Test) { testTask ->
         afterSuite { desc, result ->
