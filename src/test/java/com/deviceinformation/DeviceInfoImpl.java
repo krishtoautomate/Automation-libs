@@ -15,8 +15,9 @@ import com.deviceinformation.model.IosSimulator;
 
 public class DeviceInfoImpl implements DeviceInfo {
 
-  private DeviceFinder deviceFinder;
+  private DeviceFinder<Device> deviceFinder;
 
+  @SuppressWarnings("unchecked")
   public DeviceInfoImpl(DeviceType deviceType) throws UnsupportedOperationException {
     if (!StringUtils.isEmpty(System.getProperty("key"))) {
       throw new IllegalArgumentException(getClass().getSimpleName() + " - "
@@ -40,7 +41,6 @@ public class DeviceInfoImpl implements DeviceInfo {
     return OS.isFamilyMac();
   }
 
-  @SuppressWarnings("unchecked")
   @Override
   public List<Device> getDevices() {
     try {

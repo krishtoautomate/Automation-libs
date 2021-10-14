@@ -2,13 +2,13 @@ package com.Listeners;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
-
 import org.testng.IAnnotationTransformer;
 import org.testng.annotations.ITestAnnotation;
 
 /**
  * Created by Krish on 17.10.2018.
  */
+@SuppressWarnings("rawtypes")
 public class AnnotationTransformer implements IAnnotationTransformer {
 
   @Override

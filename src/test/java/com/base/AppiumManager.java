@@ -31,6 +31,9 @@ public class AppiumManager {
 
   protected AppiumDriverLocalService server;
 
+  int retry = 10;
+  int interval = 1000;
+
   public synchronized AppiumDriverLocalService AppiumService() {
 
     AppiumServiceBuilder serviceBuilder = new AppiumServiceBuilder();
@@ -79,8 +82,19 @@ public class AppiumManager {
     if (!isAppiumLogsON)
       server.clearOutPutStreams();
 
+
+    if (server.isRunning())
+      server.stop();
+
+    try {
+      server.start();
+    } catch (Exception e) {
+      log.error("failed to start appium server : " + e.getLocalizedMessage());
+    }
+
     // log.info("Appium server started!");
     return server;
+
   }
 
   public static void main(String[] args) {
@@ -144,28 +158,30 @@ public class AppiumManager {
   }
 
   public void killPort(int port) {
-    List<String> list = new ArrayList<String>();
-    // list.add("/usr/sbin/lsof -ti:" + port + " | xargs kill");
-    list.add("/usr/sbin/lsof -t -i:" + port);
-    for (String each : list) {
-      String s = null;
-      String _pid = null;
-      try {
-        Process p = Runtime.getRuntime().exec(each);// lsof -ti:8302 | xargs kill
+    if (isPortBusy(port)) {
+      List<String> list = new ArrayList<String>();
+      // list.add("/usr/sbin/lsof -ti:" + port + " | xargs kill");
+      list.add("/usr/sbin/lsof -t -i:" + port);
+      for (String each : list) {
+        String s = null;
+        String _pid = null;
+        try {
+          Process p = Runtime.getRuntime().exec(each);// lsof -ti:8302 | xargs kill
 
-        BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
+          BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
 
-        while ((s = stdInput.readLine()) != null) {
-          _pid = s.trim();
+          while ((s = stdInput.readLine()) != null) {
+            _pid = s.trim();
+          }
+          // log.info("PID : " + _pid);
+          Runtime.getRuntime().exec("kill -9 " + _pid);
+          Runtime.getRuntime().exec("/usr/bin/fuser -k " + _pid + "/tcp");
+          Runtime.getRuntime().exec("/usr/sbin/lsof -ti:" + port + " | xargs kill");
+
+          log.info(port + " - port kill success");
+        } catch (IOException e) {
+          log.error("failed to kill Port");
         }
-        // log.info("PID : " + _pid);
-        Runtime.getRuntime().exec("kill -9 " + _pid);
-        Runtime.getRuntime().exec("/usr/bin/fuser -k " + _pid + "/tcp");
-        Runtime.getRuntime().exec("/usr/sbin/lsof -ti:" + port + " | xargs kill");
-
-        log.info(port + " - port kill success");
-      } catch (IOException e) {
-        log.error("failed to kill Port");
       }
     }
   }
