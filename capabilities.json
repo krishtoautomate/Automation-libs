@@ -21,17 +21,14 @@
 "platformName": "iOS",
 "platformVersion": "12.2",
 "automationName": "XCUITest",
-"autoLaunch":true,
-"fullReset":false,
-"noReset":false,
-"useNewWDA":true,
-"newCommandTimeout":60,
-"useJSONSource":true,
-"autoDismissAlerts":true,
-"bundleId":"null",
-"waitForQuiescence":false,
-"wdaStartupRetries":5,
-"wdaStartupRetryInterval":1000
+"autoLaunch": true,
+"fullReset": false,
+"noReset": false,
+"newCommandTimeout": 60,
+"autoDismissAlerts": true,
+"bundleId": "com.apple.TestFlight",
+"wdaStartupRetries": 5,
+"wdaStartupRetryInterval": 1000
 }
 ]
 }
