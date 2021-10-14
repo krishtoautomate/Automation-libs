@@ -10,7 +10,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import com.Utilities.Constants;
 
 /**
  * Created by Krish on 21.01.2019.
@@ -22,11 +21,6 @@ public class CapabilitiesManager {
   @SuppressWarnings("unchecked")
   public synchronized DesiredCapabilities loadJSONCapabilities(String capabilitiesJson,
       String capabilitiesName) {
-
-    String buildNo = System.getenv("BUILD_NUMBER");
-
-    if (buildNo != null)
-      capabilitiesJson = Constants.CAPABILITIES;
 
     try {
       JSONObject jsonObject = (JSONObject) new JSONParser().parse(new FileReader(capabilitiesJson));
