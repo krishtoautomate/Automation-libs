@@ -62,7 +62,7 @@ public class TLDriverFactory {
         try {
 
           desiredCapabilities =
-              capabilitiesManager.loadJSONCapabilities(Constants.ANDROID_CAPABILITIES, "ANDROID");
+              capabilitiesManager.loadJSONCapabilities(Constants.CAPABILITIES, "ANDROID");
 
           desiredCapabilities.setCapability("deviceName", deviceName);
           desiredCapabilities.setCapability(MobileCapabilityType.UDID, udid);
@@ -94,8 +94,7 @@ public class TLDriverFactory {
       // if(!"Auto".equalsIgnoreCase(udid))
       appiumManager.uninstall_WDA(udid);
 
-      desiredCapabilities =
-          capabilitiesManager.loadJSONCapabilities(Constants.IOS_CAPABILITIES, "IOS");
+      desiredCapabilities = capabilitiesManager.loadJSONCapabilities(Constants.CAPABILITIES, "IOS");
 
       desiredCapabilities.setCapability("deviceName", "Test Device");
       desiredCapabilities.setCapability("udid", udid);
