@@ -31,7 +31,6 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
-import io.appium.java_client.service.local.AppiumServerHasNotBeenStartedLocallyException;
 
 /**
  * Created by Krish on 06.06.2018.
@@ -133,28 +132,28 @@ public class TestBase {
 
       server = appiumManager.AppiumService();
 
-      if (server.isRunning())
-        server.stop();
-
-      while (retry > 0) {
-        try {
-          server.start();
-
-          if (server.isRunning())
-            break;
-        } catch (AppiumServerHasNotBeenStartedLocallyException e) {
-          log.error(e.getLocalizedMessage());
-
-          retry--;
-          log.info("\nAttempted: " + (60 - retry) + ", Appium Failed to start, Retrying...\n" + e);
-          try {
-            Thread.sleep(interval);
-          } catch (InterruptedException e1) {
-            // Ignore
-          }
-          server = appiumManager.AppiumService();
-        }
-      }
+      // if (server.isRunning())
+      // server.stop();
+      //
+      // while (retry > 0) {
+      // try {
+      // server.start();
+      //
+      // if (server.isRunning())
+      // break;
+      // } catch (AppiumServerHasNotBeenStartedLocallyException e) {
+      // log.error(e.getLocalizedMessage());
+      //
+      // retry--;
+      // log.info("\nAttempted: " + (60 - retry) + ", Appium Failed to start, Retrying...\n" + e);
+      // try {
+      // Thread.sleep(interval);
+      // } catch (InterruptedException e1) {
+      // // Ignore
+      // }
+      // server = appiumManager.AppiumService();
+      // }
+      // }
 
       // Create Session
       try {
@@ -166,9 +165,7 @@ public class TestBase {
             .get(Long.valueOf(Thread.currentThread().getId()));
 
       } catch (Exception e) {
-        if (appiumManager.isPortBusy(devicePort)) {
-          appiumManager.killPort(devicePort);
-        }
+        appiumManager.killPort(devicePort);
 
         log.error("session failed : " + e.getLocalizedMessage());
         throw new SkipException("session failed : " + e.getLocalizedMessage());
@@ -202,7 +199,10 @@ public class TestBase {
       log.info("Test Details : " + className + " : " + platForm + " : " + deviceName);
       String[][] data = {{"<b>TestCase : </b>", className}, {"<b>Device : </b>", deviceName},
           {"<b>UDID : </b>", udid}, {"<b>Platform : </b>", platForm},
-          {"<b>OsVersion : </b>", platFormVersion}, {"<b>Jira test-key : </b>", testKey}};
+          {"<b>OsVersion : </b>", platFormVersion}, {"<b>Jira test-key : </b>",
+              "<a href=" + Constants.JIRA_URL + testKey + ">" + testKey + "</a>"}};
+
+
 
       test.info(MarkupHelper.createTable(data));
 
@@ -250,9 +250,8 @@ public class TestBase {
         server.stop();
       }
 
-      if (appiumManager.isPortBusy(devicePort)) {
-        appiumManager.killPort(devicePort);
-      }
+      appiumManager.killPort(devicePort);
+
     }
 
     try {
