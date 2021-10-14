@@ -2,6 +2,9 @@ package com.base;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
 import java.util.logging.Logger;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -126,13 +129,25 @@ public class Jira {
     }
   }
 
+
+  public static void main(String[] args) {
+
+    // update status
+    Jira jira = new Jira();
+
+    Date date = new Date();
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
+    sdf.setTimeZone(TimeZone.getTimeZone("EST"));
+    String dateANDtime = sdf.format(date.getTime());
+
+    jira.update_Test_Exec("MAEAUTO-8149", "MAEAUTO-350", "PASS", dateANDtime, dateANDtime);
+  }
+
   /*
    * Updates test execution for individual test case
    */
   public void update_Test_Exec(String testExecutionKey, String testKey, String status, String start,
       String finish) {
-    // https://docs.getxray.app/display/XRAY/Import+Execution+Results+-+REST
-    Response res = null;
     try {
       String testPlanKey = System.getenv("TEST_PLAN_KEY");
       String jiraAuth = System.getenv("JIRA_AUTH");
@@ -154,15 +169,17 @@ public class Jira {
 
       String jsonBody = _mainObj.toString();
 
+      RestAssured.useRelaxedHTTPSValidation();
+
       RestAssured.baseURI = "https://jira.bell.corp.bce.ca/rest/raven/1.0/import/execution";
       RequestSpecification req = RestAssured.given();
       req.header("Content-Type", "application/json");
       req.header("Authorization", "Basic " + jiraAuth);
       req.body(jsonBody);
-      res = req.post();
+      req.post();
     } catch (Exception e) {
       log.info("JIRA test case execution update failed for " + testKey + " due to: "
-          + e.getLocalizedMessage() + "\nResponse code for API request: " + res.getStatusCode());
+          + e.getLocalizedMessage());
     }
 
   }
@@ -196,6 +213,8 @@ public class Jira {
 
       String jsonBody = _mainObj.toString();
 
+      RestAssured.useRelaxedHTTPSValidation();
+
       RestAssured.baseURI = "https://jira.bell.corp.bce.ca/rest/api/2/issue";
       RequestSpecification req = RestAssured.given();
       req.header("Content-Type", "application/json");
@@ -204,8 +223,7 @@ public class Jira {
       res = req.post();
       exec = res.getBody().jsonPath().getString("key");
     } catch (Exception e) {
-      log.info("JIRA execution creation failed due to: " + e.getLocalizedMessage()
-          + "\nResponse code for API request: " + res.getStatusCode());
+      log.info("JIRA execution creation failed due to: " + e.getLocalizedMessage());
     }
     return exec;
   }

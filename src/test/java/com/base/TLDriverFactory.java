@@ -1,13 +1,13 @@
 package com.base;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.ITestContext;
+import com.Utilities.Constants;
 import com.deviceinformation.DeviceInfo;
 import com.deviceinformation.DeviceInfoImpl;
 import com.deviceinformation.device.DeviceType;
@@ -101,14 +101,9 @@ public class TLDriverFactory {
       desiredCapabilities.setCapability("udid", udid);
       desiredCapabilities.setCapability("wdaLocalPort", devicePort);
 
-      try {
-        tlDriver.set(
-            new IOSDriver<MobileElement>(new URL(server.getUrl().toString()), desiredCapabilities));
-      } catch (MalformedURLException e) {
-        if (appiumManager.isPortBusy(devicePort)) {
-          appiumManager.killPort(devicePort);
-        }
-      }
+      tlDriver.set(
+          new IOSDriver<MobileElement>(new URL(server.getUrl().toString()), desiredCapabilities));
+
     }
   }
 

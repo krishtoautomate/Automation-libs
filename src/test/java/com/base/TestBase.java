@@ -19,6 +19,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import com.DataManager.TestDataManager;
+import com.Utilities.Constants;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
@@ -47,10 +48,6 @@ public class TestBase {
   protected ExtentTest test;
   protected ScreenShotManager screenShotManager;
   AppiumManager appiumManager = new AppiumManager();
-  String platForm = "";
-  String deviceName = "";
-  String platFormVersion = "";
-  String udid = "";
   int devicePort = 8301;
   boolean isAndroid = false;
 
@@ -105,13 +102,9 @@ public class TestBase {
       ITestContext iTestContext) {
     if (udid != null) {
       if (!udid.equalsIgnoreCase("auto")) {
-        this.udid = udid;
         DeviceInfo deviceInfo = new DeviceInfoImpl(DeviceType.ALL);
         Device device = deviceInfo.getUdid(udid);
-
-        deviceName = device.getDeviceName();
-        this.platForm = platForm;
-        platFormVersion = device.getProductVersion();
+        String deviceName = device.getDeviceName();
 
         iTestContext.setAttribute("udid", udid);
         iTestContext.setAttribute("deviceName", deviceName);
@@ -128,7 +121,9 @@ public class TestBase {
 
   @SuppressWarnings("unchecked")
   @BeforeMethod
-  public synchronized void BeforeClass(ITestContext iTestContext, Method method) {
+  @Parameters({"udid", "platForm"})
+  public synchronized void BeforeClass(@Optional String udid, @Optional String platForm,
+      ITestContext iTestContext, Method method) {
 
     String methodName = method.getName();
     String className = this.getClass().getName();
@@ -196,6 +191,11 @@ public class TestBase {
       ITestResult result = Reporter.getCurrentTestResult();
       result.setAttribute("testKey", testKey);
 
+      DeviceInfo deviceInfo = new DeviceInfoImpl(DeviceType.ALL);
+      Device device = deviceInfo.getUdid(udid);
+      String deviceName = device.getDeviceName();
+      String platFormVersion = device.getProductVersion();
+
       // Report Content
       test = extent.createTest(methodName + "(" + platForm + ")").assignDevice(deviceName);
 
@@ -218,7 +218,9 @@ public class TestBase {
    */
   @SuppressWarnings("unchecked")
   @AfterMethod
-  public synchronized void AfterClass(ITestContext Testctx) {
+  @Parameters({"udid", "platForm"})
+  public synchronized void AfterClass(@Optional String udid, @Optional String platForm,
+      ITestContext Testctx) {
 
     if (driver != null) {
       try {
@@ -228,6 +230,7 @@ public class TestBase {
         } else {
           ((AppiumDriver<MobileElement>) driver).terminateApp(((AppiumDriver<MobileElement>) driver)
               .getCapabilities().getCapability("bundleId").toString());
+          ((AndroidDriver<MobileElement>) driver).quit();
         }
         log.info("app close");
       } catch (Exception e) {

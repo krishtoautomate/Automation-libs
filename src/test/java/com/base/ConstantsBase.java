@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
-public class Constants {
+public class ConstantsBase {
 
   public static final String APPIUM_IP_ADDRESS = "127.0.0.1";
 
@@ -33,10 +33,9 @@ public class Constants {
   public static final String EMAIL_REPORT = REPORT_DIR + "EmailableReport" + ".html";
 
   public static final String CAPABILITIES = USER_DIR + "/capabilities.json";
-  public static final String IOS_CAPABILITIES = USER_DIR + "/src/test/resources/capabilities.json";
+  public static final String IOS_CAPABILITIES = USER_DIR + "/capabilities.json";
 
-  public static final String ANDROID_CAPABILITIES =
-      USER_DIR + "/src/test/resources/capabilities.json";
+  public static final String ANDROID_CAPABILITIES = USER_DIR + "/capabilities.json";
 
   public static final String NODE_PATH = "/usr/local/bin/node";
   public static final String APPIUM_PATH = "/usr/local/bin/appium";
@@ -51,7 +50,7 @@ public class Constants {
   public static final String IDEVICEINFO = PATH + "ideviceinfo";
   public static final String IDEVICE_ID = PATH + "idevice_id";
 
-  public static final String BASE_URI = "https://" + Constants.API_HOST + "/channelvirginext";
+  public static final String BASE_URI = "https://" + API_HOST + "/channelvirginext";
 
   public static final String LANGUAGE = "EN-CA";
 
