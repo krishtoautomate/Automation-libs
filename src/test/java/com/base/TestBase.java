@@ -47,7 +47,6 @@ public class TestBase {
   protected ExtentTest test;
   protected ScreenShotManager screenShotManager;
   AppiumManager appiumManager = new AppiumManager();
-  int devicePort = 8301;
   boolean isAndroid = false;
 
 
@@ -126,7 +125,6 @@ public class TestBase {
 
     String methodName = method.getName();
     String className = this.getClass().getName();
-    devicePort = appiumManager.getDevicePort(udid);
 
     if (udid != null) {
 
@@ -156,6 +154,7 @@ public class TestBase {
       // }
 
       // Create Session
+      log.info("creating session : " + className + " : " + udid);
       try {
         tlDriverFactory.setDriver(server, iTestContext);
 
@@ -165,7 +164,7 @@ public class TestBase {
             .get(Long.valueOf(Thread.currentThread().getId()));
 
       } catch (Exception e) {
-        appiumManager.killPort(devicePort);
+        appiumManager.killPort(appiumManager.getDevicePort(udid));
 
         log.error("session failed : " + e.getLocalizedMessage());
         throw new SkipException("session failed : " + e.getLocalizedMessage());
@@ -250,7 +249,7 @@ public class TestBase {
         server.stop();
       }
 
-      appiumManager.killPort(devicePort);
+      appiumManager.killPort(appiumManager.getDevicePort(udid));
 
     }
 
