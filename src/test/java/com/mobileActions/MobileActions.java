@@ -2,7 +2,6 @@ package com.mobileActions;
 
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
-
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -13,10 +12,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
-
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.PerformsTouchActions;
@@ -204,6 +201,10 @@ public class MobileActions {
    * scroll to find with gester control
    */
   public void scrollDowntoFind(By Locator) {
+    scrollDowntoFind(Locator, 5);
+  }
+
+  public void scrollDowntoFind(By Locator, int xScrolls) {
 
     Dimension size = driver.manage().window().getSize();
 
@@ -211,7 +212,7 @@ public class MobileActions {
     int y_end = (int) (size.height * 0.4);
     int x = size.width / 2;
 
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < xScrolls; i++) {
       try {
         sleep(2);
         if (isElementDisplayed(driver.findElement(Locator))) {
@@ -257,8 +258,8 @@ public class MobileActions {
   public void scrollDown1X() {
     Dimension size = driver.manage().window().getSize();
 
-    int y_start = (int) (size.height / 2);
-    int y_end = (int) (size.height / 4);
+    int y_start = size.height / 2;
+    int y_end = size.height / 4;
     int x = size.width / 2;
 
     try {
