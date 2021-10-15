@@ -18,10 +18,6 @@ import org.testng.ITestResult;
 import org.testng.Reporter;
 import com.DataManager.JsonFileReader;
 import com.Utilities.Constants;
-import com.deviceinformation.DeviceInfo;
-import com.deviceinformation.DeviceInfoImpl;
-import com.deviceinformation.device.DeviceType;
-import com.deviceinformation.model.Device;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 
@@ -39,35 +35,34 @@ public class AppiumManager {
     AppiumServiceBuilder serviceBuilder = new AppiumServiceBuilder();
 
     ITestResult iTestResult = Reporter.getCurrentTestResult();
-    Map<String, String> testParams =
-        iTestResult.getTestContext().getCurrentXmlTest().getAllParameters();
+    iTestResult.getTestContext().getCurrentXmlTest().getAllParameters();
 
-    Boolean isAppiumLogsON = false;
 
-    // APPIUM-PORT
-    String p_port = testParams.get("PORT");
-    int port = 0;
 
-    try {
-      port = Integer.parseInt(p_port);
-      String appiumLog = testParams.get("APPIUM_LOG");
-      if (appiumLog != null)
-        isAppiumLogsON = appiumLog.contains("true");
-    } catch (NumberFormatException e) {
-      // ignore
-    }
+    // // APPIUM-PORT
+    // String p_port = testParams.get("PORT");
+    // int port = 0;
+    //
+    // try {
+    // port = Integer.parseInt(p_port);
+    // String appiumLog = testParams.get("APPIUM_LOG");
+    // if (appiumLog != null)
+    // isAppiumLogsON = appiumLog.contains("true");
+    // } catch (NumberFormatException e) {
+    // // ignore
+    // }
 
     serviceBuilder.withIPAddress(Constants.APPIUM_IP_ADDRESS);
 
-    if (port != 0) {
-      serviceBuilder.usingAnyFreePort();
-    } else {
-      serviceBuilder.usingPort(port);
-    }
+    // if (port != 0) {
+    serviceBuilder.usingAnyFreePort();
+    // } else {
+    // serviceBuilder.usingPort(port);
+    // }
 
     // APPIUM_LOG
-    if (isAppiumLogsON)
-      serviceBuilder.withLogFile(new File(System.getProperty("user.dir") + "appium.log"));
+    // if (isAppiumLogsON)
+    // serviceBuilder.withLogFile(new File(System.getProperty("user.dir") + "appium.log"));
 
     serviceBuilder.usingDriverExecutable(new File(Constants.NODE_PATH));
     serviceBuilder.withAppiumJS(new File(Constants.APPIUM_PATH));
@@ -79,8 +74,8 @@ public class AppiumManager {
     server = AppiumDriverLocalService.buildService(serviceBuilder);
 
     // APPIUM_LOG
-    if (!isAppiumLogsON)
-      server.clearOutPutStreams();
+    // if (!isAppiumLogsON)
+    server.clearOutPutStreams();
 
 
     if (server.isRunning())
@@ -187,11 +182,14 @@ public class AppiumManager {
   }
 
   public synchronized void uninstall_WDA(String udid) {
-    DeviceInfo deviceInfo = new DeviceInfoImpl(DeviceType.ALL);
-    Device device = deviceInfo.getUdid(udid);
-    String os = device.getDeviceProductName();
 
-    if (os.equalsIgnoreCase("Ios"))
+    ITestResult iTestResult = Reporter.getCurrentTestResult();
+    Map<String, String> testParams =
+        iTestResult.getTestContext().getCurrentXmlTest().getAllParameters();
+
+    String platForm = testParams.get("platForm");
+
+    if (platForm.equalsIgnoreCase("Ios"))
       try {
         Runtime.getRuntime().exec("/usr/local/bin/ideviceinstaller -u " + udid
             + " -U com.facebook.WebDriverAgentRunner.xctrunner");
