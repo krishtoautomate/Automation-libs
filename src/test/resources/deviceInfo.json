@@ -360,6 +360,15 @@
 		"colour": "Black",
 		"devicePort": 8345
 	},
+	
+		{
+		"name": "iPhone 13",
+		"udid": "00008110-0019643136B8801E",
+		"platformName": "iOS",
+		"platformVersion": "15.0",
+		"colour": "Pink",
+		"devicePort": 8346
+	}
 	{
 		"name": "Samsung S8",
 		"udid": "988b9b304b4e4a374a",
