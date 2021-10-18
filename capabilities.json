@@ -11,8 +11,8 @@
 "newCommandTimeout":60,
 "androidInstallTimeout":150000,
 "autoDismissAlerts":true,
-"appPackage":"com.android.vending",
-"appActivity":"com.android.vending.AssetBrowserActivity"
+"appPackage":"null",
+"appActivity":"null"
 }
 ],
 "IOS":
@@ -21,17 +21,14 @@
 "platformName": "iOS",
 "platformVersion": "12.2",
 "automationName": "XCUITest",
-"autoLaunch":true,
-"fullReset":false,
-"noReset":false,
-"useNewWDA":true,
-"newCommandTimeout":60,
-"useJSONSource":true,
-"autoDismissAlerts":true,
-"bundleId":"com.apple.TestFlight",
-"waitForQuiescence":false,
-"wdaStartupRetries":5,
-"wdaStartupRetryInterval":1000
+"autoLaunch": true,
+"fullReset": false,
+"noReset": false,
+"newCommandTimeout": 60,
+"autoDismissAlerts": true,
+"bundleId": "com.apple.TestFlight",
+"wdaStartupRetries": 5,
+"wdaStartupRetryInterval": 1000
 }
 ]
 }

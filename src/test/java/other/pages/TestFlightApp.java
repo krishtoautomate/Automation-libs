@@ -93,7 +93,7 @@ public class TestFlightApp extends BaseObjs<TestFlightApp> {
 
   public List<WebElement> get_all_btns() {
     List<WebElement> eles = null;
-    mobileActions.scrollDowntoFind(all_btns);
+    mobileActions.scrollDowntoFind(all_btns, 2);
     try {
       wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(all_btns));
       eles = driver.findElements(all_btns);
@@ -114,29 +114,29 @@ public class TestFlightApp extends BaseObjs<TestFlightApp> {
     return eles;
   }
 
-  public List<WebElement> get_update_btn() {
-    List<WebElement> eles = null;
-    mobileActions.scrollDowntoFind(update_btn);
-    try {
-      wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(update_btn));
-      eles = driver.findElements(update_btn);
-    } catch (Exception e) {
-      // ignore
-    }
-    return eles;
-  }
+  // public List<WebElement> get_update_btn() {
+  // List<WebElement> eles = null;
+  // mobileActions.scrollDowntoFind(update_btn, 2);
+  // try {
+  // wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(update_btn));
+  // eles = driver.findElements(update_btn);
+  // } catch (Exception e) {
+  // // ignore
+  // }
+  // return eles;
+  // }
 
-  public List<WebElement> get_install_btn() {
-    List<WebElement> eles = null;
-    mobileActions.scrollDowntoFind(install_btn);
-    try {
-      wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(install_btn));
-      eles = driver.findElements(install_btn);
-    } catch (Exception e) {
-      // ignore
-    }
-    return eles;
-  }
+  // public List<WebElement> get_install_btn() {
+  // List<WebElement> eles = null;
+  // mobileActions.scrollDowntoFind(install_btn, 2);
+  // try {
+  // wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(install_btn));
+  // eles = driver.findElements(install_btn);
+  // } catch (Exception e) {
+  // // ignore
+  // }
+  // return eles;
+  // }
 
   public WebElement get_alert() {
     WebElement ele = null;

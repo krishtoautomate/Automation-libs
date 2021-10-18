@@ -59,7 +59,6 @@ public class TestListener extends TestListenerAdapter
      */
     Map<String, String> testParams =
         testResult.getTestContext().getCurrentXmlTest().getAllParameters();
-    testParams.get("udid");
     String platForm = testParams.get("platForm");
 
     Object testClass = testResult.getInstance();

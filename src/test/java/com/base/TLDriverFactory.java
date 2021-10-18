@@ -1,13 +1,13 @@
 package com.base;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.ITestContext;
+import com.Utilities.Constants;
 import com.deviceinformation.DeviceInfo;
 import com.deviceinformation.DeviceInfoImpl;
 import com.deviceinformation.device.DeviceType;
@@ -62,7 +62,7 @@ public class TLDriverFactory {
         try {
 
           desiredCapabilities =
-              capabilitiesManager.loadJSONCapabilities(Constants.ANDROID_CAPABILITIES, "ANDROID");
+              capabilitiesManager.loadJSONCapabilities(Constants.CAPABILITIES, "ANDROID");
 
           desiredCapabilities.setCapability("deviceName", deviceName);
           desiredCapabilities.setCapability(MobileCapabilityType.UDID, udid);
@@ -94,21 +94,15 @@ public class TLDriverFactory {
       // if(!"Auto".equalsIgnoreCase(udid))
       appiumManager.uninstall_WDA(udid);
 
-      desiredCapabilities =
-          capabilitiesManager.loadJSONCapabilities(Constants.IOS_CAPABILITIES, "IOS");
+      desiredCapabilities = capabilitiesManager.loadJSONCapabilities(Constants.CAPABILITIES, "IOS");
 
       desiredCapabilities.setCapability("deviceName", "Test Device");
       desiredCapabilities.setCapability("udid", udid);
       desiredCapabilities.setCapability("wdaLocalPort", devicePort);
 
-      try {
-        tlDriver.set(
-            new IOSDriver<MobileElement>(new URL(server.getUrl().toString()), desiredCapabilities));
-      } catch (MalformedURLException e) {
-        if (appiumManager.isPortBusy(devicePort)) {
-          appiumManager.killPort(devicePort);
-        }
-      }
+      tlDriver.set(
+          new IOSDriver<MobileElement>(new URL(server.getUrl().toString()), desiredCapabilities));
+
     }
   }
 

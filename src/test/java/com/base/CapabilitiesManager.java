@@ -22,11 +22,6 @@ public class CapabilitiesManager {
   public synchronized DesiredCapabilities loadJSONCapabilities(String capabilitiesJson,
       String capabilitiesName) {
 
-    String buildNo = System.getenv("BUILD_NUMBER");
-
-    if (buildNo != null)
-      capabilitiesJson = Constants.CAPABILITIES;
-
     try {
       JSONObject jsonObject = (JSONObject) new JSONParser().parse(new FileReader(capabilitiesJson));
 

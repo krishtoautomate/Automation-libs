@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
-import com.base.Constants;
+import com.Utilities.Constants;
 import com.deviceinformation.helper.JsonHelper;
 import com.deviceinformation.helper.ProcessHelper;
 import com.deviceinformation.model.DeviceInfoModel;

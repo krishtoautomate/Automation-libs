@@ -27,9 +27,12 @@ public interface DeviceInfo {
 
 
   default Device getUdid(String udid) {
-    return
-
-    getDevices().stream().filter(device -> udid.equalsIgnoreCase(device.getUniqueDeviceID()))
+    if (udid.equalsIgnoreCase("Auto")) {
+      return getDevices().stream()
+          .filter(device -> udid.equalsIgnoreCase(device.getUniqueDeviceID())).findFirst()
+          .orElse(null);
+    }
+    return getDevices().stream().filter(device -> udid.equalsIgnoreCase(device.getUniqueDeviceID()))
         .findAny().orElse(null);
   }
 
