@@ -75,7 +75,7 @@ public class TLDriverFactory {
           // Decrement Retry interval
           retry--;
           log.info("\nAttempted: " + (60 - retry) + ". Failure to find device(" + udid
-              + "), Retrying.....\n" + e);
+              + "), Retrying.....\n" + e.getLocalizedMessage());
           try {
             Thread.sleep(interval);
           } catch (InterruptedException e1) {
@@ -92,7 +92,7 @@ public class TLDriverFactory {
       device.getDeviceName();
 
       // if(!"Auto".equalsIgnoreCase(udid))
-      appiumManager.uninstall_WDA(udid);
+      // appiumManager.uninstall_WDA(udid);
 
       desiredCapabilities = capabilitiesManager.loadJSONCapabilities(Constants.CAPABILITIES, "IOS");
 
