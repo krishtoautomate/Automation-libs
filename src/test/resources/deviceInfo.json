@@ -368,7 +368,15 @@
 		"platformVersion": "15.0",
 		"colour": "Pink",
 		"devicePort": 8346
-	}
+	},
+	{
+		"name": "iPhone 13 Pro",
+		"udid": "00008110-000A208102F8801E",
+		"platformName": "iOS",
+		"platformVersion": "15.0",
+		"colour": "Black",
+		"devicePort": 8347
+	},
 	{
 		"name": "Samsung S8",
 		"udid": "988b9b304b4e4a374a",
