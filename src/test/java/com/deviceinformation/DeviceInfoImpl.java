@@ -43,13 +43,8 @@ public class DeviceInfoImpl implements DeviceInfo {
 
   @Override
   public List<Device> getDevices() {
-    try {
-      return deviceFinder.findDevices().getDevices();
-    } catch (IOException | DeviceNotFoundException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
-    return null;
+    return deviceFinder.findDevices().getDevices();
+
   }
 
   @Override
@@ -63,7 +58,7 @@ public class DeviceInfoImpl implements DeviceInfo {
   }
 
   @Override
-  public List<IosSimulator> getIosSimulatorDevices() throws IOException, DeviceNotFoundException {
+  public List<IosSimulator> getIosSimulatorDevices() {
     return deviceFinder.findDevices().getIosSimulatorDevices();
   }
 

@@ -801,4 +801,13 @@
 		"colour": "Black",
 		"devicePort": 8253
 	}
+	,
+	{
+		"name": "Samsung A52",
+		"udid": "R5CR912M1LT",
+		"platformName": "Android",
+		"platformVersion": "11.0",
+		"colour": "Black",
+		"devicePort": 8254
+	}
 ]

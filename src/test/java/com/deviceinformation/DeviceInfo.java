@@ -21,7 +21,7 @@ public interface DeviceInfo {
     return false;
   }
 
-  default Device getFirstDevice() throws IOException, DeviceNotFoundException {
+  default Device getFirstDevice() {
     return getDevices().stream().findFirst().orElse(null);
   }
 
@@ -99,7 +99,7 @@ public interface DeviceInfo {
     return getIosDevices();
   }
 
-  default List<IosSimulator> getIosSimulatorDevices() throws IOException, DeviceNotFoundException {
+  default List<IosSimulator> getIosSimulatorDevices() {
     return getIosSimulatorDevices();
   }
 

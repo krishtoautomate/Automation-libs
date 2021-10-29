@@ -74,7 +74,7 @@ public class TLDriverFactory {
         } catch (Exception e) {
           // Decrement Retry interval
           retry--;
-          log.info("\nAttempted: " + (60 - retry) + ". Failure to find device(" + udid
+          log.info("\nAttempted: " + (60 - retry) + ". Failure to create session : (" + udid
               + "), Retrying.....\n" + e.getLocalizedMessage());
           try {
             Thread.sleep(interval);
@@ -84,12 +84,6 @@ public class TLDriverFactory {
         }
       }
     } else if ("iOS".equalsIgnoreCase(platForm)) {
-
-      DeviceInfo deviceInfo = new DeviceInfoImpl(DeviceType.IOS);
-
-      Device device = deviceInfo.getUdid(udid);
-
-      device.getDeviceName();
 
       // if(!"Auto".equalsIgnoreCase(udid))
       // appiumManager.uninstall_WDA(udid);
