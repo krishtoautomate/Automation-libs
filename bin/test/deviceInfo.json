@@ -360,6 +360,23 @@
 		"colour": "Black",
 		"devicePort": 8345
 	},
+	
+		{
+		"name": "iPhone 13",
+		"udid": "00008110-0019643136B8801E",
+		"platformName": "iOS",
+		"platformVersion": "15.0",
+		"colour": "Pink",
+		"devicePort": 8346
+	},
+	{
+		"name": "iPhone 13 Pro",
+		"udid": "00008110-000A208102F8801E",
+		"platformName": "iOS",
+		"platformVersion": "15.0",
+		"colour": "Black",
+		"devicePort": 8347
+	},
 	{
 		"name": "Samsung S8",
 		"udid": "988b9b304b4e4a374a",
@@ -783,5 +800,14 @@
 		"platformVersion": "10.0",
 		"colour": "Black",
 		"devicePort": 8253
+	}
+	,
+	{
+		"name": "Samsung A52",
+		"udid": "R5CR912M1LT",
+		"platformName": "Android",
+		"platformVersion": "11.0",
+		"colour": "Black",
+		"devicePort": 8254
 	}
 ]

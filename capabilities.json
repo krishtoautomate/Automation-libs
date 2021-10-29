@@ -11,8 +11,8 @@
 "newCommandTimeout":60,
 "androidInstallTimeout":150000,
 "autoDismissAlerts":true,
-"appPackage":"null",
-"appActivity":"null"
+"appPackage": "com.android.vending",
+"appActivity": "com.android.vending.AssetBrowserActivity"
 }
 ],
 "IOS":
