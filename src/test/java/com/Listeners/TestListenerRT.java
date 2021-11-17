@@ -17,6 +17,7 @@ import org.testng.ISuiteListener;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
+import com.DataManager.DeviceInfoReader;
 import com.DataManager.TestDataManager;
 import com.ReportManager.ReportBuilder;
 import com.ReportManager.SlackReporter;
@@ -220,9 +221,13 @@ public class TestListenerRT extends TestListenerAdapter
         testResult.getTestContext().getCurrentXmlTest().getAllParameters();
     String udid = testParams.get("udid");
     String className = testResult.getTestClass().getName();
-    DeviceInfo deviceInfo = new DeviceInfoImpl(DeviceType.ALL);
-    Device device = deviceInfo.getUdid(udid);
-    String deviceName = device.getDeviceName();
+    // DeviceInfo deviceInfo = new DeviceInfoImpl(DeviceType.ALL);
+    // Device device = deviceInfo.getUdid(udid);
+    // String deviceName = device.getDeviceName();
+
+    DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
+    String deviceName = deviceInfoReader.getValue("name");
+
 
     String p_Testdata = testParams.get("p_Testdata");
     TestDataManager testData = new TestDataManager(p_Testdata);

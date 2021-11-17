@@ -18,6 +18,7 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
+import com.DataManager.DeviceInfoReader;
 import com.DataManager.TestDataManager;
 import com.Utilities.Constants;
 import com.aventstack.extentreports.ExtentReports;
@@ -99,20 +100,27 @@ public class TestBase {
   public synchronized void BeforeTest(@Optional String udid, @Optional String platForm,
       ITestContext iTestContext) {
     if (udid != null) {
-      if (!udid.equalsIgnoreCase("auto")) {
-        DeviceInfo deviceInfo = new DeviceInfoImpl(DeviceType.ALL);
-        Device device = deviceInfo.getUdid(udid);
-        String deviceName = device.getDeviceName();
+      try {
+        if (!udid.equalsIgnoreCase("auto")) {
+          // DeviceInfo deviceInfo = new DeviceInfoImpl(DeviceType.ALL);
+          // Device device = deviceInfo.getUdid(udid);
+          // String deviceName = device.getDeviceName();
 
-        iTestContext.setAttribute("udid", udid);
-        iTestContext.setAttribute("deviceName", deviceName);
+          DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
+          String deviceName = deviceInfoReader.getValue("name");
 
-        int devicePort = appiumManager.getDevicePort(udid);
-        if (appiumManager.isPortBusy(devicePort)) {
-          log.warn(
-              "device Busy : " + deviceName + ", udid : " + udid + ", devicePort : " + devicePort);
-          throw new SkipException("device Busy : " + " : " + deviceName + "_" + udid);
+          iTestContext.setAttribute("udid", udid);
+          iTestContext.setAttribute("deviceName", deviceName);
+
+          int devicePort = appiumManager.getDevicePort(udid);
+          if (appiumManager.isPortBusy(devicePort)) {
+            log.warn("device Busy : " + deviceName + ", udid : " + udid + ", devicePort : "
+                + devicePort);
+            throw new SkipException("device Busy : " + " : " + deviceName + "_" + udid);
+          }
         }
+      } catch (Exception e) {
+        // ignore
       }
     }
   }
@@ -164,6 +172,7 @@ public class TestBase {
             .get(Long.valueOf(Thread.currentThread().getId()));
 
       } catch (Exception e) {
+
         appiumManager.killPort(appiumManager.getDevicePort(udid));
 
         log.error("session failed : " + e.getLocalizedMessage());

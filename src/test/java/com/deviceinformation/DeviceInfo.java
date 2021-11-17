@@ -36,7 +36,7 @@ public interface DeviceInfo {
         .findAny().orElse(null);
   }
 
-  default Android getFirstAndroid() throws IOException, DeviceNotFoundException {
+  default Android getFirstAndroid() {
     return (Android) getDevices().stream()
         .filter(device -> device.getDeviceProductName().contains("Android"))
         .filter(device -> device.getSerialNumber() != null)
@@ -50,7 +50,7 @@ public interface DeviceInfo {
         .filter(device -> device.getModelNumber().contains("SDK")).findFirst().orElse(null);
   }
 
-  default Ios getFirstIos() throws IOException, DeviceNotFoundException {
+  default Ios getFirstIos() {
     return (Ios) getDevices().stream()
         .filter(device -> device.getDeviceProductName().contains("Ios")).findFirst().orElse(null);
   }

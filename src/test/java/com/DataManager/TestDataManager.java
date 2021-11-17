@@ -40,6 +40,20 @@ public class TestDataManager {
   // this.platformName = isAndroid ? "Android" : "iOS";
   // }
 
+
+  public static void main(String[] args) throws IOException, ParseException {
+
+    // TestDataManager testDataManager = new TestDataManager("src/test/resources/deviceInfo.json");
+
+    JsonFileReader JsonFileReader = new JsonFileReader("src/test/resources/deviceInfo.json");
+
+    System.out
+        .println(JsonFileReader.getObjIndex("udid", "e0857ea6c266c485198cf77589ac858a2526dc01"));
+
+
+    System.out.println(JsonFileReader.getJsonValue(2, "name"));
+  }
+
   public synchronized String getValue(String key) {
 
     JSONParser jsonParser = new JSONParser();
@@ -65,11 +79,8 @@ public class TestDataManager {
     JsonFileReader JsonFileReader = new JsonFileReader(filePath);
 
     int index = 0;
-    try {
-      index = JsonFileReader.getObjIndex("className", className);
-    } catch (IOException | ParseException | NullPointerException e) {
-      log.error("test data not found with className : " + className);
-    }
+
+    index = JsonFileReader.getObjIndex("className", className);
 
     String value = null;
     try {

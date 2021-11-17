@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-
+import java.util.ArrayList;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -30,13 +30,18 @@ public class JsonFileReader {
     return jsonValue;
   }
 
-  public synchronized int getObjIndex(String key, String value) throws IOException, ParseException {
+  public synchronized int getObjIndex(String key, String value) {
 
     int objIndex = 0;
 
-    FileReader fileReader = new FileReader(filePath);
-
-    JSONArray jArray = (JSONArray) new JSONParser().parse(fileReader);
+    FileReader fileReader;
+    ArrayList<?> jArray = null;
+    try {
+      fileReader = new FileReader(filePath);
+      jArray = (JSONArray) new JSONParser().parse(fileReader);
+    } catch (Exception e) {
+      // ignore
+    }
 
     for (int i = 0; i < jArray.size(); i++) {
       if (((JSONObject) jArray.get(i)).get(key).toString().equals(value)) {
