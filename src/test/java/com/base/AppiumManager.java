@@ -34,8 +34,8 @@ public class AppiumManager {
 
     AppiumServiceBuilder serviceBuilder = new AppiumServiceBuilder();
 
-    ITestResult iTestResult = Reporter.getCurrentTestResult();
-    iTestResult.getTestContext().getCurrentXmlTest().getAllParameters();
+    // ITestResult iTestResult = Reporter.getCurrentTestResult();
+    // iTestResult.getTestContext().getCurrentXmlTest().getAllParameters();
 
 
 
@@ -94,12 +94,14 @@ public class AppiumManager {
 
   public static void main(String[] args) {
 
-    AppiumManager appiumManager = new AppiumManager();
+    new AppiumManager();
 
-    int port = 8302;
-    if (appiumManager.isPortBusy(port)) {
-      appiumManager.killPort(port);
-    }
+    // int port = 8302;
+    // if (appiumManager.isPortBusy(port)) {
+    // appiumManager.killPort(port);
+    // }
+
+    // appiumManager.AppiumService();
 
   }
 
