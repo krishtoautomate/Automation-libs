@@ -1,4 +1,4 @@
-package Test;
+package Tests;
 
 
 import static io.restassured.RestAssured.given;

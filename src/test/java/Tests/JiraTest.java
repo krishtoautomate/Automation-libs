@@ -1,4 +1,4 @@
-package Test;
+package Tests;
 
 import java.io.FileWriter;
 import java.io.IOException;
