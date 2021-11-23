@@ -18,8 +18,7 @@ public class TestFlightApp extends BaseObjs<TestFlightApp> {
   By update_later_btn = By.xpath("//XCUIElementTypeButton[@name='Later']");
   By remindMeLater_btn = By.xpath("//XCUIElementTypeButton[@name='Remind Me Later']");
 
-  By all_btns = MobileBy
-      .iOSNsPredicateString("type == 'XCUIElementTypeButton' AND name == 'UPDATE' AND visible =1");
+  By all_btns = MobileBy.xpath("//XCUIElementTypeButton[@name='UPDATE']");
   By apps_h1 = MobileBy.iOSNsPredicateString("label == 'Apps' AND visible =1");
   By open_btn = By.xpath("//XCUIElementTypeButton[@name='OPEN']");
   By update_btn = By.xpath("//XCUIElementTypeButton[@name='UPDATE']");
