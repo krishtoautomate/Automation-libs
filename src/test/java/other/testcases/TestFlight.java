@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import com.Utilities.ITestBase;
 import com.Utilities.Utilities;
 import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.base.TestBase;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
@@ -66,6 +67,8 @@ public class TestFlight extends TestBase implements ITestBase {
     } catch (Exception e) {
       log.info("No 'UPDATE' or 'INSTALL' buttons found");
     }
+    String errorXML = driver.getPageSource();
+    test.info(MarkupHelper.createCodeBlock(errorXML));
 
   }
 }
