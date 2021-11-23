@@ -1,31 +1,24 @@
-package Test;
+package Tests;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public class webdriverAvailable {
+public class RemoveAppiumAndroid {
 
   public static void main(String[] args) {
     // TODO Auto-generated method stub
 
-    String installedApps =
-        runCommandThruProcess("/usr/local/bin/ideviceinstaller -u 00008030-001A550A2643802E -l");
 
-    System.out.println(installedApps);
+    String udid = "R58N70GGVZH";
 
-    Boolean deviceBusy = false;
-    // check available
-    if (installedApps.contains("com.facebook.WebDriverAgentRunner.xctrunner")) {
-      deviceBusy = true;
-    }
-
-    if (!deviceBusy)
-      runCommandThruProcess(
-          "/usr/local/bin/ideviceinstaller -u 00008030-001A550A2643802E -U com.facebook.WebDriverAgentRunner.xctrunner");
-
-
+    runCommandThruProcess("/usr/local/share/android-sdk/platform-tools/adb -s " + udid
+        + " uninstall io.appium.uiautomator2.server");
+    runCommandThruProcess("/usr/local/share/android-sdk/platform-tools/adb -s " + udid
+        + " uninstall io.appium.uiautomator2.server.test");
+    runCommandThruProcess("/usr/local/share/android-sdk/platform-tools/adb -s " + udid
+        + " uninstall io.appium.settings");
 
   }
 
@@ -41,8 +34,7 @@ public class webdriverAvailable {
         allLine = allLine + "" + line + "\n";
       }
     } catch (IOException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
+      // ignore
     }
     return allLine;
   }
