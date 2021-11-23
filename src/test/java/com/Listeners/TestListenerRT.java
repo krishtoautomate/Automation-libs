@@ -226,7 +226,7 @@ public class TestListenerRT extends TestListenerAdapter
     // String deviceName = device.getDeviceName();
 
     DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
-    String deviceName = deviceInfoReader.getValue("name");
+    String deviceName = deviceInfoReader.getString("name");
 
 
     String p_Testdata = testParams.get("p_Testdata");

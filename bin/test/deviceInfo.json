@@ -378,6 +378,14 @@
 		"devicePort": 8347
 	},
 	{
+		"name": "iPhone 13 Pro Max",
+		"udid": "00008110-000C294026C2801E",
+		"platformName": "iOS",
+		"platformVersion": "15.0",
+		"colour": "Black",
+		"devicePort": 8348
+	},
+	{
 		"name": "Samsung S8",
 		"udid": "988b9b304b4e4a374a",
 		"platformName": "Android",

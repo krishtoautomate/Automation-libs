@@ -64,6 +64,7 @@ public class RunnerWithAllConnectedDevices {
             // Test parameters
             iosTest.addParameter("platForm", "IOS");
             iosTest.addParameter("udid", iosDeviceList.get(i).getUniqueDeviceID());
+            iosTest.addParameter("remoteHost", "http://127.0.0.1:4723");
 
             // Create classes
             List<XmlClass> myClasses = new ArrayList<XmlClass>();
@@ -108,6 +109,7 @@ public class RunnerWithAllConnectedDevices {
             // Add parameters
             androidTests.addParameter("platForm", "Android");
             androidTests.addParameter("udid", device.getUniqueDeviceID());
+            androidTests.addParameter("remoteHost", "http://127.0.0.1:4723");
 
             // Create classes
             List<XmlClass> myClasses2 = new ArrayList<XmlClass>();
