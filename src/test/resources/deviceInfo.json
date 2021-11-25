@@ -1,4 +1,13 @@
 [
+	
+	{
+		"name": "unknown",
+		"udid": "unknown",
+		"platformName": "iOS",
+		"platformVersion": "12.1.2",
+		"colour": "Black",
+		"devicePort": 8300
+	},
 	{
 		"name": "iPhone 8",
 		"udid": "c96e4f4016966c6b50c39e1168f5535ee1988f40",
@@ -800,8 +809,7 @@
 		"platformVersion": "10.0",
 		"colour": "Black",
 		"devicePort": 8253
-	}
-	,
+	},
 	{
 		"name": "Samsung A52",
 		"udid": "R5CR912M1LT",
@@ -809,5 +817,13 @@
 		"platformVersion": "11.0",
 		"colour": "Black",
 		"devicePort": 8254
+	},
+	{
+		"name": "Samsung A31",
+		"udid": "R58NA1FX8DT",
+		"platformName": "Android",
+		"platformVersion": "11.0",
+		"colour": "Black",
+		"devicePort": 8255
 	}
 ]
