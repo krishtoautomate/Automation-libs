@@ -1,4 +1,13 @@
 [
+	
+	{
+		"name": "unknown",
+		"udid": "unknown",
+		"platformName": "iOS",
+		"platformVersion": "12.1.2",
+		"colour": "Black",
+		"devicePort": 8300
+	},
 	{
 		"name": "iPhone 8",
 		"udid": "c96e4f4016966c6b50c39e1168f5535ee1988f40",
@@ -20,7 +29,7 @@
 		"name": "iPhone 8",
 		"udid": "e0857ea6c266c485198cf77589ac858a2526dc01",
 		"platformName": "iOS",
-		"platformVersion": "12.1.2",
+		"platformVersion": "14.2",
 		"colour": "White",
 		"devicePort": 8303
 	},
@@ -28,7 +37,7 @@
 		"name": "iPhone 8 Plus",
 		"udid": "7672bcff3dc02cd2be41278fb077b360003da0d0",
 		"platformName": "iOS",
-		"platformVersion": "12.0",
+		"platformVersion": "13.7",
 		"colour": "Black",
 		"devicePort": 8304
 	},
@@ -52,7 +61,7 @@
 		"name": "iPhone 6 Plus",
 		"udid": "3cbd5f34c35b18b359bf24318a94fe522bfb1c1f",
 		"platformName": "iOS",
-		"platformVersion": "12.1.4",
+		"platformVersion": "12.5.5",
 		"colour": "White",
 		"devicePort": 8307
 	},
@@ -60,7 +69,7 @@
 		"name": "iPhone XR",
 		"udid": "00008020-001D4DA811C1002E",
 		"platformName": "iOS",
-		"platformVersion": "12.1.4",
+		"platformVersion": "13.6.1",
 		"colour": "Black",
 		"devicePort": 8308
 	},
@@ -84,7 +93,7 @@
 		"name": "iPhone XR",
 		"udid": "00008020-001A65893CF1002E",
 		"platformName": "iOS",
-		"platformVersion": "12.1.4",
+		"platformVersion": "13.7",
 		"colour": "Yellow",
 		"devicePort": 8311
 	},
@@ -124,7 +133,7 @@
 		"name": "iPhone XS",
 		"udid": "00008020-000B14421485002E",
 		"platformName": "iOS",
-		"platformVersion": "12.2",
+		"platformVersion": "13.7",
 		"colour": "Black",
 		"devicePort": 8316
 	},
@@ -172,7 +181,7 @@
 		"name": "iPad 7",
 		"udid": "990876a75a55284cffd3f45fa2a9c771bb0600a4",
 		"platformName": "iOS",
-		"platformVersion": "13.3",
+		"platformVersion": "14.0",
 		"colour": "White",
 		"devicePort": 8322
 	},
@@ -180,7 +189,7 @@
 		"name": "iPad 7",
 		"udid": "cb48db46d0b127db15f2b215b20308facf0089b1",
 		"platformName": "iOS",
-		"platformVersion": "13.3",
+		"platformVersion": "14.5",
 		"colour": "Gold",
 		"devicePort": 8323
 	},
@@ -196,7 +205,7 @@
 		"name": "iPhone SE 2",
 		"udid": "00008030-001A15422685802E",
 		"platformName": "iOS",
-		"platformVersion": "13.3",
+		"platformVersion": "14.2",
 		"colour": "Red",
 		"devicePort": 8325
 	},
@@ -204,7 +213,7 @@
 		"name": "iPhone XS pro",
 		"udid": "00008030-001A550A2643802E",
 		"platformName": "iOS",
-		"platformVersion": "13.3",
+		"platformVersion": "15.0",
 		"colour": "Red",
 		"devicePort": 8326
 	},
@@ -244,7 +253,7 @@
 		"name": "iPhone SE 2",
 		"udid": "00008030-0014605C0A50402E",
 		"platformName": "iOS",
-		"platformVersion": "14.0",
+		"platformVersion": "14.4",
 		"colour": "White",
 		"devicePort": 8331
 	},
@@ -260,7 +269,7 @@
 		"name": "iPhone SE 2",
 		"udid": "00008030-001E48AC3A47802E",
 		"platformName": "iOS",
-		"platformVersion": "14.0",
+		"platformVersion": "14.2",
 		"colour": "White",
 		"devicePort": 8333
 	},
@@ -324,7 +333,7 @@
 		"name": "iPhone XS Max",
 		"udid": "00008020-001E19140AF8002E",
 		"platformName": "iOS",
-		"platformVersion": "12.0",
+		"platformVersion": "14.8.1",
 		"colour": "Gold",
 		"devicePort": 8341
 	},
@@ -800,8 +809,7 @@
 		"platformVersion": "10.0",
 		"colour": "Black",
 		"devicePort": 8253
-	}
-	,
+	},
 	{
 		"name": "Samsung A52",
 		"udid": "R5CR912M1LT",
@@ -809,5 +817,13 @@
 		"platformVersion": "11.0",
 		"colour": "Black",
 		"devicePort": 8254
+	},
+	{
+		"name": "Samsung A31",
+		"udid": "R58NA1FX8DT",
+		"platformName": "Android",
+		"platformVersion": "11.0",
+		"colour": "Black",
+		"devicePort": 8255
 	}
 ]

@@ -19,24 +19,20 @@
 	        {
 			    "bundleId":"com.apple.TestFlight",
 			    "platformName": "iOS",
-			    "platformVersion": "12.0",
+			    "platformVersion": "12.2",
 			    "automationName": "XCUITest",
-			    "showIOSLog":true,
 			    "simpleIsVisibleCheck":true,
 			    "fullReset":false,
 			    "noReset":true,
-			    "useNewWDA":true,
-			    "autoDismissAlerts":false,
+			    "autoDismissAlerts":true,
 			    "autoAcceptAlerts":false,
 				"newCommandTimeout": 60,
 				"useJSONSource":true,
-				"useFirstMatch":true,
 			    "waitForQuiescence":false,
-			    "locationServicesEnabled":true,
-			    "locationServicesAuthorized":true,
-			    "wdaStartupRetries":9,
-			    "wdaStartupRetryInterval":5000
-				
+			    "wdaStartupRetries":2,
+			    "wdaStartupRetryInterval":2000,
+			    "xcodeOrgID":"RKZ69A629Q",
+                "xcodeSigningId":"iPhone Developer"
 			}
 	      ]         
 }

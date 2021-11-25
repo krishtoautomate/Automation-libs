@@ -30,10 +30,6 @@ import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.base.Jira;
 import com.base.ScreenShotManager;
 import com.base.TestBase;
-import com.deviceinformation.DeviceInfo;
-import com.deviceinformation.DeviceInfoImpl;
-import com.deviceinformation.device.DeviceType;
-import com.deviceinformation.model.Device;
 import io.appium.java_client.android.AndroidDriver;
 
 public class TestListenerRT extends TestListenerAdapter
@@ -70,10 +66,8 @@ public class TestListenerRT extends TestListenerAdapter
     String udid = testParams.get("udid");
     String platForm = testParams.get("platForm");
 
-    DeviceInfo deviceInfo = new DeviceInfoImpl(DeviceType.ALL);
-
-    Device device = deviceInfo.getUdid(udid);
-    String deviceName = device.getDeviceName();
+    DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
+    String deviceName = deviceInfoReader.getString("name");
 
 
     String buildNo = System.getenv("BUILD_NUMBER");
@@ -133,10 +127,10 @@ public class TestListenerRT extends TestListenerAdapter
         testResult.getTestContext().getCurrentXmlTest().getAllParameters();
     String udid = testParams.get("udid");
     String platForm = testParams.get("platForm");
-    DeviceInfo deviceInfo = new DeviceInfoImpl(DeviceType.ALL);
 
-    Device device = deviceInfo.getUdid(udid);
-    String deviceName = device.getDeviceName();
+    DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
+    String deviceName = deviceInfoReader.getString("name");
+
     String buildNo = System.getenv("BUILD_NUMBER");
     String environment = System.getenv("ENVIRONMENT");
     String slackChannel = System.getenv("SLACK_CHANNEL");
@@ -226,8 +220,7 @@ public class TestListenerRT extends TestListenerAdapter
     // String deviceName = device.getDeviceName();
 
     DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
-    String deviceName = deviceInfoReader.getValue("name");
-
+    String deviceName = deviceInfoReader.getString("name");
 
     String p_Testdata = testParams.get("p_Testdata");
     TestDataManager testData = new TestDataManager(p_Testdata);

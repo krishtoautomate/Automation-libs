@@ -66,6 +66,7 @@ public class AppiumManager {
 
     serviceBuilder.usingDriverExecutable(new File(Constants.NODE_PATH));
     serviceBuilder.withAppiumJS(new File(Constants.APPIUM_PATH));
+    serviceBuilder.withArgument(() -> "--base-path", "/wd/hub");
 
     // important for ios
     HashMap<String, String> environment = new HashMap<String, String>();
@@ -94,14 +95,14 @@ public class AppiumManager {
 
   public static void main(String[] args) {
 
-    new AppiumManager();
+    AppiumManager appiumManager = new AppiumManager();
 
     // int port = 8302;
     // if (appiumManager.isPortBusy(port)) {
     // appiumManager.killPort(port);
     // }
 
-    // appiumManager.AppiumService();
+    System.out.println(appiumManager.AppiumService().getUrl());
 
   }
 
