@@ -220,10 +220,6 @@ public class TestBase {
         // ignore
       }
 
-
-
-      // appiumManager.killPort(appiumManager.getDevicePort(udid));
-
     }
 
     try {

@@ -25,14 +25,14 @@ public class TLDriverFactory {
   private CapabilitiesManager capabilitiesManager = new CapabilitiesManager();
   private DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
   AppiumManager appiumManager = new AppiumManager();
-  AppiumDriverLocalService server;
+  private AppiumDriverLocalService server;
 
   int retry = 5;
   int interval = 1000;
 
   public synchronized void setDriver() throws MalformedURLException {
 
-    // server = appiumManager.AppiumService();
+
 
     ITestResult iTestResult = Reporter.getCurrentTestResult();
     Map<String, String> testParams =
@@ -40,7 +40,12 @@ public class TLDriverFactory {
 
     String udid = testParams.get("udid");
     String platForm = testParams.get("platForm");
-    String remoteHost = testParams.get("remoteHost");
+    String REMOTE_HOST = testParams.get("REMOTE_HOST");
+
+    if (REMOTE_HOST.equalsIgnoreCase("localhost")) {
+      server = appiumManager.AppiumService();
+      REMOTE_HOST = server.getUrl().toString();
+    }
 
     int devicePort = 8100;
     DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
@@ -71,7 +76,8 @@ public class TLDriverFactory {
       desiredCapabilities.setCapability("platformVersion",
           platformVersion == null ? "12.2" : platformVersion);
 
-      tlDriver.set(new IOSDriver<MobileElement>(new URL(remoteHost), desiredCapabilities));
+      tlDriver.set(new IOSDriver<MobileElement>(new URL(REMOTE_HOST), desiredCapabilities));
+
 
     }
   }

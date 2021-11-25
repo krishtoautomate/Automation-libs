@@ -64,7 +64,7 @@ public class RunnerWithAllConnectedDevices {
             // Test parameters
             iosTest.addParameter("platForm", "IOS");
             iosTest.addParameter("udid", iosDeviceList.get(i).getUniqueDeviceID());
-            iosTest.addParameter("remoteHost", "http://127.0.0.1:4723");
+            iosTest.addParameter("REMOTE_HOST", "localhost");
 
             // Create classes
             List<XmlClass> myClasses = new ArrayList<XmlClass>();

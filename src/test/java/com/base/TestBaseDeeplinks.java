@@ -28,11 +28,7 @@ import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 import com.aventstack.extentreports.reporter.configuration.ViewName;
-import com.deviceinformation.DeviceInfo;
-import com.deviceinformation.DeviceInfoImpl;
-import com.deviceinformation.device.DeviceType;
 import com.deviceinformation.exception.DeviceNotFoundException;
-import com.deviceinformation.model.Device;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
@@ -180,10 +176,9 @@ public class TestBaseDeeplinks {
       ITestResult result = Reporter.getCurrentTestResult();
       result.setAttribute("testKey", testKey);
 
-      DeviceInfo deviceInfo = new DeviceInfoImpl(DeviceType.ALL);
-      Device device = deviceInfo.getUdid(udid);
-      String deviceName = device.getDeviceName();
-      String platFormVersion = device.getProductVersion();
+      DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
+      String deviceName = deviceInfoReader.getString("name");
+      String platformVersion = deviceInfoReader.getString("platformVersion");
 
       // Report Content
       test = extent.createTest(methodName + "(" + platForm + ")").assignDevice(deviceName);
@@ -191,7 +186,7 @@ public class TestBaseDeeplinks {
       log.info("Test Details : " + className + " : " + platForm + " : " + deviceName);
       String[][] data = {{"<b>TestCase : </b>", className}, {"<b>Device : </b>", deviceName},
           {"<b>UDID : </b>", udid}, {"<b>Platform : </b>", platForm},
-          {"<b>OsVersion : </b>", platFormVersion}, {"<b>Jira test-key : </b>",
+          {"<b>OsVersion : </b>", platformVersion}, {"<b>Jira test-key : </b>",
               "<a href=" + Constants.JIRA_URL + testKey + ">" + testKey + "</a>"}};
 
 
@@ -237,8 +232,6 @@ public class TestBaseDeeplinks {
       } catch (Exception e) {
         // ignore
       }
-
-      // appiumManager.killPort(appiumManager.getDevicePort(udid));
 
     }
 

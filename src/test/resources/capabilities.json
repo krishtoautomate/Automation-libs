@@ -21,18 +21,18 @@
 			    "platformName": "iOS",
 			    "platformVersion": "12.2",
 			    "automationName": "XCUITest",
-			    "showIOSLog":true,
 			    "simpleIsVisibleCheck":true,
 			    "fullReset":false,
 			    "noReset":true,
-			    "autoDismissAlerts":false,
+			    "autoDismissAlerts":true,
 			    "autoAcceptAlerts":false,
 				"newCommandTimeout": 60,
 				"useJSONSource":true,
 			    "waitForQuiescence":false,
 			    "wdaStartupRetries":2,
-			    "wdaStartupRetryInterval":2000
-				
+			    "wdaStartupRetryInterval":2000,
+			    "xcodeOrgID":"RKZ69A629Q",
+                "xcodeSigningId":"iPhone Developer"
 			}
 	      ]         
 }
