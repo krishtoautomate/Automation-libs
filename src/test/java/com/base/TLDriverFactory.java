@@ -63,8 +63,7 @@ public class TLDriverFactory {
       // desiredCapabilities.setCapability("platformVersion", platformVersion == null ? "8.1.0" :
       // platformVersion);
 
-      tlDriver.set(new AndroidDriver<MobileElement>(new URL(server.getUrl().toString()),
-          desiredCapabilities));
+      tlDriver.set(new AndroidDriver<MobileElement>(new URL(REMOTE_HOST), desiredCapabilities));
 
     } else if ("iOS".equalsIgnoreCase(platForm)) {
 
