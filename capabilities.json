@@ -26,9 +26,9 @@
       "noReset": false,
       "newCommandTimeout": 60,
       "autoDismissAlerts": true,
-      "browserName":"com.apple.TestFlight",
-      "wdaStartupRetries": 5,
-      "wdaStartupRetryInterval": 1000
+      "bundleId":"com.apple.TestFlight",
+      "wdaStartupRetries": 2,
+      "wdaStartupRetryInterval": 2000
     }
   ]
 }
