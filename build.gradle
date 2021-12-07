@@ -27,9 +27,9 @@ dependencies {
     testImplementation 'org.testng:testng:6.14.3'
     testImplementation 'org.assertj:assertj-core:2.0.0'
 
-    testImplementation 'org.seleniumhq.selenium:selenium-java:4.1.0'
+    testImplementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
     testImplementation 'org.seleniumhq.selenium:selenium-android-driver:2.39.0'
-    implementation 'org.seleniumhq.selenium:selenium-support:4.1.0'
+    implementation 'org.seleniumhq.selenium:selenium-support:3.141.59'
 
     implementation 'io.appium:java-client:7.5.1'
     implementation 'log4j:log4j:1.2.17'
