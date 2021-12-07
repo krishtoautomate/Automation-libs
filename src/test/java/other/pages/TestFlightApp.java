@@ -68,18 +68,6 @@ public class TestFlightApp extends BaseObjs<TestFlightApp> {
     return ele;
   }
 
-  @Override
-  public WebElement get_remindMeLater_btn() {
-    WebElement ele = null;
-    try {
-      waitForVisibilityOf(remindMeLater_btn, 5);
-      ele = driver.findElement(remindMeLater_btn);
-    } catch (Exception e) {
-      // ignore
-    }
-    return ele;
-  }
-
   By apps_back_btn = MobileBy.iOSNsPredicateString(
       "type=='XCUIElementTypeButton' AND name=='BackButton' AND label=='Apps'");
 

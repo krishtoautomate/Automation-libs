@@ -1,4 +1,4 @@
-package Tests;
+package other.testcases;
 
 import java.io.FileWriter;
 import java.io.IOException;

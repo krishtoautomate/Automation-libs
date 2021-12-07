@@ -1,4 +1,4 @@
-package Tests;
+package other.testcases;
 
 import java.io.BufferedReader;
 import java.io.IOException;

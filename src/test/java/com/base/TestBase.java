@@ -2,7 +2,6 @@ package com.base;
 
 import java.io.File;
 import java.lang.reflect.Method;
-import java.net.MalformedURLException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import org.apache.log4j.Logger;
@@ -121,7 +120,7 @@ public class TestBase {
   @BeforeMethod
   @Parameters({"udid", "platForm"})
   public synchronized void BeforeClass(@Optional String udid, @Optional String platForm,
-      ITestContext iTestContext, Method method) throws MalformedURLException {
+      ITestContext iTestContext, Method method) throws Exception {
 
     String methodName = method.getName();
     String className = this.getClass().getName();
@@ -149,9 +148,12 @@ public class TestBase {
       /*
        * Test info
        */
-      if ("Auto".equalsIgnoreCase(udid))
+      if ("Auto".equalsIgnoreCase(udid)) {
         udid = ((AppiumDriver<MobileElement>) driver).getCapabilities().getCapability("udid")
             .toString();
+
+
+      }
 
       iTestContext.setAttribute("udid", udid);
 
@@ -165,7 +167,9 @@ public class TestBase {
 
       DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
       String deviceName = deviceInfoReader.getString("name");
-      String platformVersion = deviceInfoReader.getString("platformVersion");
+      String platformVersion = ((AppiumDriver<MobileElement>) driver).getCapabilities()
+          .getCapability("platformVersion").toString();
+      // deviceInfoReader.getString("platformVersion");
 
       // Report Content
       test = extent.createTest(methodName + "(" + platForm + ")").assignDevice(deviceName);

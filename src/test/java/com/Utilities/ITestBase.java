@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebElement;
 
 public interface ITestBase {
@@ -99,8 +100,6 @@ public interface ITestBase {
     return allLine;
   }
 
-
-
   /*
    * Jenkins Build number
    */
@@ -113,6 +112,24 @@ public interface ITestBase {
       // ignore
     }
     return buildNumber;
+  }
+
+  public default boolean isTextContains(String Actual, String Expected) {
+
+    Boolean isMatching = false;
+
+    String actual = Actual.replaceAll("\n", " ");
+    String[] arrOfExpected = Expected.split("\\|");
+
+    for (String expected : arrOfExpected) {
+      if (StringUtils.containsIgnoreCase(actual.trim(), expected.trim())
+          | StringUtils.containsIgnoreCase(expected, actual.trim()) && !actual.isEmpty()) {
+        isMatching = true;
+        break;
+      }
+    }
+
+    return isMatching;
   }
 
 }

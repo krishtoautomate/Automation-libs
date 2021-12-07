@@ -1,7 +1,6 @@
 package com.base;
 
 import java.io.File;
-import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -9,18 +8,13 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestContext;
-import org.testng.ITestResult;
-import org.testng.Reporter;
-import org.testng.SkipException;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import com.DataManager.DeviceInfoReader;
-import com.DataManager.TestDataManager;
 import com.Utilities.Constants;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -28,7 +22,6 @@ import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 import com.aventstack.extentreports.reporter.configuration.ViewName;
-import com.deviceinformation.exception.DeviceNotFoundException;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
@@ -107,34 +100,27 @@ public class TestBaseDeeplinks {
 
   }
 
-  @BeforeTest
-  @Parameters({"udid"})
-  public synchronized void BeforeTest(@Optional String udid, ITestContext iTestContext)
-      throws IOException, DeviceNotFoundException {
-    if (udid != null) {
-      if (!udid.equalsIgnoreCase("auto")) {
-
-        DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
-        String deviceName = deviceInfoReader.getString("name");
-
-        iTestContext.setAttribute("udid", udid);
-        iTestContext.setAttribute("deviceName", deviceName);
-
-        // devicePort = appiumManager.getDevicePort(udid);
-        // if (appiumManager.isPortBusy(devicePort)) {
-        // log.warn(
-        // "device Busy : " + deviceName + ", udid : " + udid + ", devicePort : " + devicePort);
-        // throw new SkipException("device Busy : " + " : " + deviceName + "_" + udid);
-        // }
-      }
-    }
-  }
+  // @BeforeTest
+  // @Parameters({"udid"})
+  // public synchronized void BeforeTest(@Optional String udid, ITestContext iTestContext)
+  // throws IOException, DeviceNotFoundException {
+  // if (udid != null) {
+  // if (!udid.equalsIgnoreCase("auto")) {
+  //
+  // DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
+  // String deviceName = deviceInfoReader.getString("name");
+  //
+  // iTestContext.setAttribute("udid", udid);
+  // iTestContext.setAttribute("deviceName", deviceName);
+  // }
+  // }
+  // }
 
   @SuppressWarnings("unchecked")
   @BeforeMethod
   @Parameters({"udid", "platForm"})
   public synchronized void BeforeMethod(@Optional String udid, @Optional String platForm,
-      ITestContext iTestContext, Method method) {
+      ITestContext iTestContext, Method method) throws Exception {
 
     String methodName = method.getName();
     String className = this.getClass().getName();
@@ -143,21 +129,21 @@ public class TestBaseDeeplinks {
 
       // Create Session
       log.info("creating session : " + className + " : " + udid);
-      try {
-        tlDriverFactory.setDriver();
+      // try {
+      tlDriverFactory.setDriver();
 
-        driverMap.put(Thread.currentThread().getId(), tlDriverFactory.getDriver());
+      driverMap.put(Thread.currentThread().getId(), tlDriverFactory.getDriver());
 
-        driver = (AppiumDriver<MobileElement>) driverMap
-            .get(Long.valueOf(Thread.currentThread().getId()));
+      driver =
+          (AppiumDriver<MobileElement>) driverMap.get(Long.valueOf(Thread.currentThread().getId()));
 
-      } catch (Exception e) {
-
-        appiumManager.killPort(appiumManager.getDevicePort(udid));
-
-        log.error("session failed : " + e.getLocalizedMessage());
-        throw new SkipException("session failed : " + e.getLocalizedMessage());
-      }
+      // } catch (Exception e) {
+      //
+      // appiumManager.killPort(appiumManager.getDevicePort(udid));
+      //
+      // log.error("session failed : " + e.getLocalizedMessage());
+      // throw new SkipException("session failed : " + e.getLocalizedMessage());
+      // }
 
       /*
        * Test info
@@ -167,14 +153,6 @@ public class TestBaseDeeplinks {
             .toString();
 
       iTestContext.setAttribute("udid", udid);
-
-      Map<String, String> testParams = iTestContext.getCurrentXmlTest().getAllParameters();
-      String p_Testdata = testParams.get("p_Testdata");
-      TestDataManager testData = new TestDataManager(p_Testdata);
-      int index = driver instanceof AndroidDriver ? 0 : 1;
-      String testKey = testData.getJsonValue(index, "testKey");
-      ITestResult result = Reporter.getCurrentTestResult();
-      result.setAttribute("testKey", testKey);
 
       DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
       String deviceName = deviceInfoReader.getString("name");
@@ -186,8 +164,7 @@ public class TestBaseDeeplinks {
       log.info("Test Details : " + className + " : " + platForm + " : " + deviceName);
       String[][] data = {{"<b>TestCase : </b>", className}, {"<b>Device : </b>", deviceName},
           {"<b>UDID : </b>", udid}, {"<b>Platform : </b>", platForm},
-          {"<b>OsVersion : </b>", platformVersion}, {"<b>Jira test-key : </b>",
-              "<a href=" + Constants.JIRA_URL + testKey + ">" + testKey + "</a>"}};
+          {"<b>OsVersion : </b>", platformVersion}};
 
 
 

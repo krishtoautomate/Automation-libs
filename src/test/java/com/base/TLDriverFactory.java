@@ -1,6 +1,5 @@
 package com.base;
 
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
 import org.openqa.selenium.WebDriver;
@@ -30,7 +29,7 @@ public class TLDriverFactory {
   int retry = 5;
   int interval = 1000;
 
-  public synchronized void setDriver() throws MalformedURLException {
+  public synchronized void setDriver() throws Exception {
 
 
 

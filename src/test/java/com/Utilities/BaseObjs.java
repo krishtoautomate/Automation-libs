@@ -1,10 +1,22 @@
 package com.Utilities;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Base64;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
+import javax.imageio.ImageIO;
 /**
  * Created by Krish on 21.07.2018.
  */
@@ -29,13 +41,12 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
-import com.mobileActions.MobileActions;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.restassured.response.Response;
 
-
-
-public class BaseObjs<T> {
+public class BaseObjs<T> implements ITestBase {
   protected WebDriver driver;
   protected WebDriverWait wait;
   protected Logger log;
@@ -55,10 +66,6 @@ public class BaseObjs<T> {
   protected BaseObjs(Logger log, ExtentTest test) {
     this.log = log;
     this.test = test;
-  }
-
-  protected BaseObjs() {
-
   }
 
   protected WebElement get_Element(By locator, String elementDesc) {
@@ -86,8 +93,34 @@ public class BaseObjs<T> {
     return ele;
   }
 
+  protected List<WebElement> get_Elements(By locator, String elementDesc) {
+    List<WebElement> eles = null;
+    try {
+      wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator));
+      eles = driver.findElements(locator);
+    } catch (Exception e) {
+      String errorMessage = elementDesc + " - Not found in " + this.getClass().getName();
+      logmessage(Status.FAIL, errorMessage);
+      Assert.fail(errorMessage);
+    }
+    return eles;
+  }
+
+  protected List<WebElement> verify_Elements(By locator) {
+    List<WebElement> eles = null;
+    try {
+      wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator));
+      eles = driver.findElements(locator);
+    } catch (StaleElementReferenceException e) {
+      // ignore
+    } catch (Exception e) {
+      // ignore
+    }
+    return eles;
+  }
+
   public void dismissAlert() {
-    Boolean isAndroid = driver instanceof AndroidDriver ? true : false;
+    Boolean isAndroid = driver instanceof AndroidDriver;
 
     if (!isAndroid) {
       try {
@@ -103,103 +136,31 @@ public class BaseObjs<T> {
   }
 
   /**
-   * Clears the text Field
-   */
-  protected void clear(By element) {
-    WebElement object = wait.until(ExpectedConditions.visibilityOfElementLocated(element));
-    ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", object);
-    driver.findElement(element).clear();
-  }
-
-  /**
-   * Thread sleep for Certain Seconds
-   */
-  public void sleep(int seconds) {
-    try {
-      Thread.sleep(seconds * 1000);
-    } catch (InterruptedException e) {
-      log.info("wait function failed!");
-    }
-  }
-
-  /**
-   * TRUE - If element is displayed
-   */
-  public boolean isElementDisplayed(WebElement element) {
-    Boolean isDisplayed = false;
-    try {
-      isDisplayed = element.isDisplayed() ? true : false;
-    } catch (Exception e) {
-      // ignore
-    }
-    return isDisplayed;
-  }
-
-  /**
-   * TRUE - If element is Selected
-   */
-  public boolean isElementSelected(WebElement element) {
-    Boolean isSelected = false;
-    try {
-      isSelected = element.isSelected() ? true : false;
-    } catch (Exception e) {
-      // ignore
-    }
-    return isSelected;
-  }
-
-  /**
-   * TRUE - If element is Enabled
-   */
-  public boolean isElementEnabled(WebElement element) {
-    Boolean isEnabled = false;
-    try {
-      isEnabled = element.isEnabled() ? true : false;
-    } catch (Exception e) {
-      isEnabled = false;
-    }
-    return isEnabled;
-  }
-
-  public synchronized String takeScreenshot() {
-
-    // Unique name to screen-shot
-    UUID uuid = UUID.randomUUID();
-    String imgPath = "img/" + uuid.toString() + "(" + Constants.TIME_NOW + ")" + ".PNG";
-
-    File ScreenShot = new File(Constants.NO_SCREENSHOTS_AVAILABLE);
-    try {
-      ScreenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-      FileUtils.moveFile(ScreenShot, new File(Constants.REPORT_DIR + imgPath));
-    } catch (WebDriverException | IOException e) {
-      log.error("TakesScreenshot service failed!!!");
-
-      try {
-        FileUtils.copyFile(ScreenShot, new File(Constants.REPORT_DIR + imgPath));
-      } catch (IOException e1) {
-        // ignore
-      }
-    }
-    return imgPath;
-  }
-
-  /**
    * Verifies if String contains other String
    */
   public void AssertContains(String Actual, String Expected) {
 
-    String actual = Actual.replaceAll("\n", " ");
-    String expected = Expected;
+    Boolean found = false;
 
-    if (StringUtils.containsIgnoreCase(actual, expected)
-        | StringUtils.containsIgnoreCase(expected, actual) && !actual.isEmpty()) {
-      logmessage(Status.INFO, "Verification Success : '" + actual + "' Vs '" + expected + "'");
-    } else {
-      logmessage(Status.FAIL, "Verification fail : '" + actual + "' Vs '" + expected + "'");
-      Assert.fail("Verification fail : " + actual + " Vs " + expected);
+    String actual = Actual.replaceAll("\n", " ");
+    String[] arrOfExpected = Expected.split("\\|");
+
+    for (String expected : arrOfExpected) {
+      if (StringUtils.containsIgnoreCase(actual.trim(), expected.trim())
+          | StringUtils.containsIgnoreCase(expected, actual.trim()) && !actual.isEmpty()) {
+        logmessage(Status.PASS,
+            "Verification Success : '" + actual.trim() + "' Vs '" + expected.trim() + "'");
+        found = true;
+        break;
+      }
+    }
+
+    if (!found) {
+      String message = "Verification failed : '" + actual + "' Vs '" + Expected + "'";
+      logmessage(Status.FAIL, message);
+      Assert.fail(message);
     }
   }
-
 
   /**
    * Verifies if String not same as other String
@@ -214,7 +175,6 @@ public class BaseObjs<T> {
     }
   }
 
-
   /**
    * Verifies if String same as other String
    */
@@ -228,6 +188,55 @@ public class BaseObjs<T> {
     }
   }
 
+  /**
+   * Verifies if Float same as other Float
+   */
+  public void AssertEquals(Float Actual, Float Expected) {
+    logmessage(Status.INFO, "Actual : " + Actual + ", Expected : " + Expected);
+    if (Actual.equals(Expected) || Expected.equals(Actual)) {
+      logmessage(Status.INFO, Actual + " equals " + Expected);
+    } else {
+      logmessage(Status.FAIL, Actual + " DONOT equals " + Expected);
+      Assert.fail(Actual + " DONOT equals " + Expected);
+    }
+  }
+
+  /**
+   * Verifies if boolean value same as other boolean
+   */
+  public void AssertEquals(Boolean Actual, Boolean Expected) {
+    logmessage(Status.INFO, "Actual : " + Actual + ", Expected : " + Expected);
+    if (Actual.equals(Expected) || Expected.equals(Actual)) {
+      logmessage(Status.INFO, Actual + " equals " + Expected);
+    } else {
+      logmessage(Status.FAIL, Actual + " DONOT equals " + Expected);
+      Assert.fail(Actual + " DONOT equals " + Expected);
+    }
+  }
+
+  public synchronized String takeScreenshot() {
+
+    // Unique name to screen-shot
+    UUID uuid = UUID.randomUUID();
+    String imgPath = "img/" + uuid.toString() + "(" + Constants.TIME_NOW + ")" + ".PNG";
+
+    File ScreenShot = new File(Constants.NO_SCREENSHOTS_AVAILABLE);
+    try {
+      ScreenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+
+      FileUtils.moveFile(ScreenShot, new File(Constants.REPORT_DIR + imgPath));
+
+    } catch (WebDriverException | IOException e) {
+      log.error("TakesScreenshot service failed!!!");
+
+      try {
+        FileUtils.copyFile(ScreenShot, new File(Constants.REPORT_DIR + imgPath));
+      } catch (IOException e1) {
+        // ignore
+      }
+    }
+    return imgPath;
+  }
 
   /**
    * Creates logs into Log4j and extent-Report with Screen-shot
@@ -240,6 +249,8 @@ public class BaseObjs<T> {
 
       if (Status == Status.FAIL) {
         test.fail(message, MediaEntityBuilder.createScreenCaptureFromPath(imgPath).build());
+      } else if (Status == Status.INFO) {
+        test.info(message);
       } else {
         test.pass(message, MediaEntityBuilder.createScreenCaptureFromPath(imgPath).build());
       }
@@ -250,6 +261,141 @@ public class BaseObjs<T> {
         test.pass(message);
       }
     }
+  }
+
+  /**
+   * Creates logs into Log4j and extent-Report with Screen-shot
+   */
+  @SuppressWarnings("static-access")
+  public synchronized void log(Status Status, String message) {
+    log.info(message);
+    try {
+
+      String screenShot = "";
+      try {
+        screenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
+      } catch (Exception e) {
+        log.error("TakesScreenshot service failed!!!");
+      }
+
+      if (Status == Status.FAIL) {
+        test.fail(message,
+            MediaEntityBuilder.createScreenCaptureFromBase64String(screenShot).build());
+      } else if (Status == Status.INFO) {
+        test.info(message);
+      } else {
+        test.pass(message,
+            MediaEntityBuilder.createScreenCaptureFromBase64String(screenShot).build());
+      }
+    } catch (WebDriverException e) {
+      if (Status == Status.FAIL) {
+        test.fail(message);
+      } else {
+        test.pass(message);
+      }
+    }
+  }
+
+  /**
+   * Creates logs into Log4j and extent-Report with Screen-shot
+   */
+  @SuppressWarnings("static-access")
+  protected synchronized void report(Status Status, String message, WebElement element) {
+    log.info(message);
+    try {
+      String imgPath = imageGraphicScreenshot(element);
+
+      if (Status == Status.FAIL) {
+        test.fail(message, MediaEntityBuilder.createScreenCaptureFromPath(imgPath).build());
+      } else if (Status == Status.INFO) {
+        test.info(message);
+      } else {
+        test.pass(message, MediaEntityBuilder.createScreenCaptureFromPath(imgPath).build());
+      }
+    } catch (WebDriverException e) {
+      if (Status == Status.FAIL) {
+        test.fail(message);
+      } else if (Status == Status.INFO) {
+        test.info(message);
+      } else {
+        test.pass(message);
+      }
+    }
+  }
+
+  protected boolean switchToNativeContext(String context) {
+    ArrayList<String> contexts =
+        new ArrayList<String>(((AppiumDriver<?>) driver).getContextHandles());
+    for (String cntext : contexts) {
+      if (cntext.contains(context)) {
+        ((AppiumDriver<?>) driver).context(cntext);
+        return true;
+      }
+    }
+    return false;
+  }
+
+  protected WebElement get_Element(By locator, String elementDesc, String action) {
+    WebElement ele = null;
+    try {
+      ele = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+      if (action != null | ele != null | action.equalsIgnoreCase("NONE")) {
+        report(Status.PASS, action, ele);
+      }
+    } catch (Exception e) {
+      String errorMessage = elementDesc + " - Not found in " + this.getClass().getName();
+      logmessage(Status.FAIL, errorMessage);
+      Assert.fail(errorMessage);
+    }
+    return ele;
+  }
+
+  public synchronized String imageGraphicScreenshot(WebElement element) {
+
+    boolean isAndroid = driver instanceof AndroidDriver ? true : false;
+
+    int x = element.getRect().getX();
+    int y = element.getRect().getY();
+
+    int width = element.getRect().getWidth();
+    int height = element.getRect().getHeight();
+
+    UUID uuid = UUID.randomUUID();
+    String imgPath = "img/" + uuid.toString() + "_" + Constants.TIME_NOW + "_" + ".PNG";
+
+    File ScreenShot = new File(Constants.NO_SCREENSHOTS_AVAILABLE);
+    try {
+      ScreenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+
+      if (isAndroid) {
+        // Crop the entire page screenshot to get only element screenshot
+        BufferedImage fullImg = ImageIO.read(ScreenShot);
+
+        Graphics2D g2d = fullImg.createGraphics();
+        g2d.setColor(Color.RED);
+        g2d.setStroke(new BasicStroke(5));
+
+        // g2d.translate(x, y);
+
+        g2d.drawRect(x, y, width, height);
+        g2d.dispose();
+
+        ImageIO.write(fullImg, "png", ScreenShot);
+      }
+
+      // Copy the element screenshot to disk
+      FileUtils.moveFile(ScreenShot, new File(Constants.REPORT_DIR + imgPath));
+    } catch (WebDriverException | IOException e) {
+      log.error("TakesScreenshot service failed!!!");
+
+      try {
+        FileUtils.copyFile(ScreenShot, new File(Constants.REPORT_DIR + imgPath));
+      } catch (IOException e1) {
+        // ignore
+      }
+    }
+
+    return imgPath;
   }
 
   /**
@@ -309,28 +455,42 @@ public class BaseObjs<T> {
     wait.until(condition);
   }
 
-
-  /*
-   * Skip 'Rate MY App' prompt
-   */
   By remindMeLater_btn = By.xpath(
-      "//android.widget.Button[contains(@resource-id, 'remindMeLatterButton') or @text='REMIND ME LATER' or @text='Remind me later']");
+      "//android.widget.Button[contains(@resource-id, '0_resource_name_obfuscated') and @text='Not now'] | "
+          + "//android.widget.Button[@text='REMIND ME LATER' or @text='Remind me later'] | "
+          + "//android.widget.Button[contains(@resource-id, 'remindMeLatterButton') or @text='REMIND ME LATER' or @text='Remind me later']");
 
-  public WebElement get_remindMeLater_btn() {
-    WebElement ele = null;
-    try {
-      wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(remindMeLater_btn));
-      ele = driver.findElement(remindMeLater_btn);
-    } catch (Exception e) {
-      // ignore
+  private WebElement verify_remindMeLater_btn() {
+    mobileActions.waitForProgressBarToDisappear();
+    return verify_Element(remindMeLater_btn);
+  }
+
+  By notNow_btn = MobileBy.iOSNsPredicateString("label == 'Not Now' AND visible =1");
+
+  private WebElement verify_notNow_btn() {
+    mobileActions.waitForProgressBarToDisappear();
+    return verify_Element(notNow_btn);
+  }
+
+  public void dismissAppRating() {
+    boolean isAndroid = driver instanceof AndroidDriver;
+    if (isAndroid) {
+      if (isElementDisplayed(verify_remindMeLater_btn())) {
+        verify_remindMeLater_btn().click();
+        logmessage(Status.INFO, "'REMIND ME LATER' button clicked - for Rate my app!");
+      }
+    } else {
+      if (isElementDisplayed(verify_notNow_btn())) {
+        verify_notNow_btn().click();
+        logmessage(Status.INFO, "'Not Now' button clicked - for Rate my app!");
+      }
     }
-    return ele;
   }
 
   public void VERIFY_API_STATUS(Response response) {
     if (response.getStatusCode() != HttpStatus.SC_OK) {
       test.fail(MarkupHelper.createCodeBlock(response.getBody().asString()));
-      // Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
+      Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
     } else {
       test.pass("RESPONSE STATUS_CODE : " + response.getStatusCode());
     }
@@ -339,7 +499,7 @@ public class BaseObjs<T> {
   public void VERIFY_API_CONTAINS(Response response, String message) {
     if ((response.getBody().asString().toLowerCase()).contains(message.toLowerCase()) == false) {
       test.fail(MarkupHelper.createCodeBlock(response.prettyPrint()));
-      // Assert.assertTrue(response.getBody().asString().contains(message));
+      Assert.assertTrue(response.getBody().asString().contains(message));
     } else {
       test.pass("Verification - RESPONSE contains : " + message);
     }
@@ -352,6 +512,49 @@ public class BaseObjs<T> {
     } else {
       test.pass("Verification - RESPONSE contains : " + actual);
     }
+  }
+
+  /**
+   *
+   * Method for Expected Deep Link Title //XCUIElementTypeOther/XCUIElementTypeStaticText[@label]
+   */
+
+  By expected_title = By.xpath(
+      "//android.widget.FrameLayout[contains(@resource-id, 'design_bottom_sheet')]/*/android.widget.TextView | //*[contains(@resource-id,'headerBarTitleTextView') and not(contains(@text,'('))]|//*[contains(@resource-id,'toolbar')]/android.widget.TextView |"
+          + "//*[contains(@resource-id,'id/headerTitleTextView')] | //*[contains(@resource-id,'titleTextView')] |//*[contains(@resource-id,'topbar')]//android.widget.TextView[@index='1'] |//*[@name='LongHeaderTableView.headerView']|"
+          + "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText[@label] |//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText/XCUIElementTypeStaticText[@label] | //XCUIElementTypeNavigationBar/XCUIElementTypeStaticText/XCUIElementTypeStaticText[string-length(@label)>0] |"
+          + "//*[@name='selectTopUpMethodLabel'] |//*[@name='AddOnInfoView.titleLabel']");
+
+  public WebElement get_expected_title() {
+    WebElement ele = null;
+
+    try {
+      wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(expected_title));
+      ele = driver.findElement(expected_title);
+
+    } catch (Exception e) {
+      String message = "Expected Title Not found";
+      logmessage(Status.FAIL, message);
+      Assert.fail(message);
+    }
+    return ele;
+  }
+
+  /*
+   * Convert Image to Base64 recognition
+   */
+
+  public String convertImgToBase64(String imgPath) {
+    URL refImgUrl = getClass().getClassLoader().getResource(imgPath);
+    File refImgFile;
+    String base64 = "";
+    try {
+      refImgFile = Paths.get(refImgUrl.toURI()).toFile();
+      base64 = Base64.getEncoder().encodeToString(Files.readAllBytes(refImgFile.toPath()));
+    } catch (URISyntaxException | IOException e) {
+      log.error("image error");
+    }
+    return base64;
   }
 
 }
