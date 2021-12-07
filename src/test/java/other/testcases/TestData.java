@@ -1,4 +1,4 @@
-package Tests;
+package other.testcases;
 
 public class TestData {
 

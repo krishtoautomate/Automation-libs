@@ -9,16 +9,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
-
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebElement;
 import org.testng.annotations.Optional;
-
 import com.aventstack.extentreports.ExtentTest;
 import com.jcraft.jsch.Channel;
 import com.jcraft.jsch.ChannelSftp;
@@ -40,10 +37,6 @@ public class Utilities extends BaseObjs<Utilities> {
     super(log, test);
   }
 
-  public Utilities() {
-    super();
-  }
-
   /**
    * Random UUID/Number in String format
    */
@@ -63,7 +56,17 @@ public class Utilities extends BaseObjs<Utilities> {
     return randomNum;
   }
 
+  public String get_BuildNo() {
 
+    String buildNumber = "";
+    try {
+      buildNumber = System.getenv("BUILD_NUMBER");
+    } catch (Exception e) {
+      // ignore
+    }
+
+    return buildNumber;
+  }
 
   /**
    * Random 16 digit Number in String format
@@ -182,19 +185,6 @@ public class Utilities extends BaseObjs<Utilities> {
   }
 
   /**
-   * click 'Done' button on keyboard to close in Ios
-   */
-  public void click_done_btn_IOS() {
-    By done_btn =
-        By.xpath("//XCUIElementTypeButton[@name='Done'] | //XCUIElementTypeButton[@name='OK']");
-    try {
-      driver.findElement(done_btn).click();
-    } catch (Exception e) {
-      log.warn("ios click 'done' failed!!!");
-    }
-  }
-
-  /**
    * scroll down 2X times to find object in Ios
    */
   public void Scroll2X_down_to_findIos(@Optional WebElement element) {
@@ -249,63 +239,6 @@ public class Utilities extends BaseObjs<Utilities> {
       }
     }
   }
-
-  /**
-   * Scroll Android elements within top 10 elements *Works with mvm only
-   */
-  // public void Scroll_down_to_find_Android(@Optional WebElement element) {
-  // By support_Mobility_tiles = By.xpath("//android.widget.TextView[contains(@resource-id,
-  // 'id/tvTitle')]");
-  // List<WebElement> elements = driver.findElements(support_Mobility_tiles);
-  //
-  // TouchAction touchAction=new TouchAction((PerformsTouchActions) driver);
-  // Dimension size=driver.manage().window().getSize();
-  //
-  // int y_start=(int)(size.height*0.20);
-  // int y_end=(int)(size.height*0.01);
-  // int x_pointer=size.width/2;
-  //
-  // try {
-  // String x = element.getText();
-  // log.info("Scrolling for : " + x);
-  //
-  // outerloop:
-  // for(int i=0;i<5;i++) {
-  // elements = null;
-  // sleep(2);
-  // elements = driver.findElements(support_Mobility_tiles);
-  // try {
-  // for(int j=0;j< elements.size() -2;j++) {
-  // sleep(1);
-  // if( elements.get(j).equals(element) == true || elements.get(j).getText().contains(x) == true ||
-  // x.contains(elements.get(j).getText()) == true || elements.get(j).getText().equals(x) == true) {
-  //
-  // sleep(2);
-  // break outerloop;
-  // }
-  // }
-  // } catch (Exception e) {
-  // log.info(x + " - Not Found! scrolling down");
-  //
-  // touchAction.longPress(ElementOption.point(x_pointer, y_start))
-  // .moveTo(ElementOption.point(x_pointer, y_end) )
-  // .release()
-  // .perform();
-  // sleep(1);
-  // }
-  // log.info(x + " - Not Found! ~ scrolling down");
-  //
-  // touchAction.longPress(ElementOption.point(x_pointer, y_start))
-  // .moveTo(ElementOption.point(x_pointer, y_end) )
-  // .release()
-  // .perform();
-  //
-  // sleep(2);
-  // }
-  // } catch (Exception e) {
-  // log.info("scrolling failed!");
-  // }
-  // }
 
   /**
    * move test-data folder from shared to local
@@ -435,7 +368,7 @@ public class Utilities extends BaseObjs<Utilities> {
 
   public String getVoucherNumber(String voucherFile) {
 
-    String VoucherNumber = "1111111111111111";
+    String VoucherNumber = null;
 
     try {
       File f = new File(voucherFile);

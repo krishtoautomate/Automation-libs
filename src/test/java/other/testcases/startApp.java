@@ -1,4 +1,4 @@
-package Tests;
+package other.testcases;
 
 import com.Utilities.Constants;
 import com.Utilities.ITestBase;

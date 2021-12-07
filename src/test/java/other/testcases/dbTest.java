@@ -1,4 +1,4 @@
-package Tests;
+package other.testcases;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

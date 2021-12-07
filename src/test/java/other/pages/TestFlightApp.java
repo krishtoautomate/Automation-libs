@@ -18,7 +18,8 @@ public class TestFlightApp extends BaseObjs<TestFlightApp> {
   By update_later_btn = By.xpath("//XCUIElementTypeButton[@name='Later']");
   By remindMeLater_btn = By.xpath("//XCUIElementTypeButton[@name='Remind Me Later']");
 
-  By all_btns = MobileBy.xpath("//XCUIElementTypeButton[@name='UPDATE' and @visible='true']");
+  By all_btns = MobileBy
+      .xpath("//XCUIElementTypeButton[@name='UPDATE' or @name='INSTALL' and @visible='true']");
   By apps_h1 = MobileBy.iOSNsPredicateString("label == 'Apps' AND visible =1");
   By open_btn = By.xpath("//XCUIElementTypeButton[@name='OPEN']");
   By update_btn = By.xpath("//XCUIElementTypeButton[@name='UPDATE']");
@@ -62,18 +63,6 @@ public class TestFlightApp extends BaseObjs<TestFlightApp> {
     try {
       waitForVisibilityOf(update_later_btn, 5);
       ele = driver.findElement(update_later_btn);
-    } catch (Exception e) {
-      // ignore
-    }
-    return ele;
-  }
-
-  @Override
-  public WebElement get_remindMeLater_btn() {
-    WebElement ele = null;
-    try {
-      waitForVisibilityOf(remindMeLater_btn, 5);
-      ele = driver.findElement(remindMeLater_btn);
     } catch (Exception e) {
       // ignore
     }

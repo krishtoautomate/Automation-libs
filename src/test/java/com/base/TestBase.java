@@ -149,9 +149,12 @@ public class TestBase {
       /*
        * Test info
        */
-      if ("Auto".equalsIgnoreCase(udid))
+      if ("Auto".equalsIgnoreCase(udid)) {
         udid = ((AppiumDriver<MobileElement>) driver).getCapabilities().getCapability("udid")
             .toString();
+
+
+      }
 
       iTestContext.setAttribute("udid", udid);
 
@@ -165,7 +168,9 @@ public class TestBase {
 
       DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
       String deviceName = deviceInfoReader.getString("name");
-      String platformVersion = deviceInfoReader.getString("platformVersion");
+      String platformVersion = ((AppiumDriver<MobileElement>) driver).getCapabilities()
+          .getCapability("platformVersion").toString();
+      // deviceInfoReader.getString("platformVersion");
 
       // Report Content
       test = extent.createTest(methodName + "(" + platForm + ")").assignDevice(deviceName);
