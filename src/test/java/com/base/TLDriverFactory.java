@@ -40,7 +40,8 @@ public class TLDriverFactory {
 
     String udid = testParams.get("udid");
     String platForm = testParams.get("platForm");
-    String REMOTE_HOST = testParams.get("REMOTE_HOST");
+    String REMOTE_HOST =
+        testParams.get("REMOTE_HOST") == null ? "localhost" : testParams.get("REMOTE_HOST");
 
     if (REMOTE_HOST.equalsIgnoreCase("localhost")) {
       server = appiumManager.AppiumService();

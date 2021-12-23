@@ -5,16 +5,12 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
-
-import com.base.TLDriverFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ReportBuilder {
 
@@ -23,7 +19,7 @@ public class ReportBuilder {
   public final String templatePath = System.getProperty("user.dir") + "/" + "src/main/resources"
       + "/" + "ReportTemplate" + ".html";
 
-  private static final Logger log = LogManager.getLogger(TLDriverFactory.class);
+  private static final Logger log = LoggerFactory.getLogger(Class.class.getName());
 
   public ReportBuilder() {}
 
@@ -73,7 +69,7 @@ public class ReportBuilder {
 
         if (dbConnected) {
 
-          ResultSet insertQuery = stmt.executeQuery(
+          stmt.executeQuery(
               "INSERT INTO BELLCA.AUTO_TBL_DATA(TEST_TIME ,TEST_BRAND ,TEST_BUILD , TEST_ENVIRONMENT ,TEST_CASE ,TEST_STATUS,TEST_PLATFORM, TEST_DEVICE) "
                   + "VALUES " + "(" + "TO_TIMESTAMP('" + details.get(i).getLocalDateTime()
                   + "','YYYY-MM-DD HH24:MI:SS')," + "'" + details.get(i).getTestBrand() + "'," + "'"

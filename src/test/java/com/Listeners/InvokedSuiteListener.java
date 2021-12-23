@@ -2,7 +2,8 @@ package com.Listeners;
 
 import java.util.Iterator;
 import java.util.List;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 /**
  * Created by Krish on 21.07.2018.
  */
@@ -19,7 +20,7 @@ import com.deviceinformation.model.Device;
 
 public class InvokedSuiteListener extends TestListenerAdapter implements ISuiteListener {
 
-  private static Logger log = Logger.getLogger(Class.class.getName());
+  private static final Logger log = LoggerFactory.getLogger(Class.class.getName());
 
   @Override
   public void onFinish(ISuite suite) {

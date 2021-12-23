@@ -3,7 +3,6 @@ package com.Utilities;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
-import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
@@ -19,8 +18,8 @@ import org.openqa.selenium.interactions.Sequence;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
 import org.testng.Assert;
-import com.Utilities.ITestBase;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.google.common.collect.ImmutableList;
@@ -349,11 +348,11 @@ public class MobileActions implements ITestBase {
           break;
         } else {
           touchAction().longPress(ElementOption.point(x, y_start))
-                  .moveTo(ElementOption.point(x, y_end)).release().perform();
+              .moveTo(ElementOption.point(x, y_end)).release().perform();
         }
       } catch (Exception e) {
         touchAction().longPress(ElementOption.point(x, y_start))
-                .moveTo(ElementOption.point(x, y_end)).release().perform();
+            .moveTo(ElementOption.point(x, y_end)).release().perform();
       }
     }
   }

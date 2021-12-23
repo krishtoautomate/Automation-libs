@@ -3,6 +3,7 @@ package com.base;
 import com.Utilities.Constants;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.aventstack.extentreports.reporter.JsonFormatter;
 import com.aventstack.extentreports.reporter.configuration.ViewName;
 
 public class ExtentManager {
@@ -12,6 +13,8 @@ public class ExtentManager {
   public synchronized static ExtentReports createExtentReports(String reportName,
       String htmlReport) {
 
+    JsonFormatter json = new JsonFormatter(Constants.EXTENT_JSON_REPORT);
+
     // extent report
     extent = new ExtentReports();
     ExtentSparkReporter htmlReporter = new ExtentSparkReporter(htmlReport).viewConfigurer()
@@ -19,7 +22,7 @@ public class ExtentManager {
             ViewName.CATEGORY, ViewName.EXCEPTION, ViewName.LOG, ViewName.DASHBOARD})
         .apply();
 
-    extent.attachReporter(htmlReporter);
+    extent.attachReporter(htmlReporter, json);
 
     htmlReporter.config().setDocumentTitle("AUTOMATION REPORT");
     htmlReporter.config().setReportName(reportName);

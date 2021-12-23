@@ -2,7 +2,8 @@ package com.base;
 
 import java.io.File;
 import java.lang.reflect.Method;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
@@ -44,10 +45,13 @@ public class TestBaseAPI {
   @BeforeSuite(alwaysRun = true)
   public void setupSuit(ITestContext ctx) {
 
-    String suiteName = ctx.getCurrentXmlTest().getSuite().getName();
+    ctx.getCurrentXmlTest().getSuite().getName();
 
     // Log4j
-    log = Logger.getLogger(suiteName);
+    // log = Logger.getLogger(suiteName);
+
+    // Logback
+    log = LoggerFactory.getLogger(this.getClass());
 
     // create Report Folder in 'test-output'
     File reportDir = new File(Constants.REPORT_DIR);

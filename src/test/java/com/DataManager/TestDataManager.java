@@ -2,19 +2,19 @@ package com.DataManager;
 
 import java.io.FileReader;
 import java.io.IOException;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 
 
 public class TestDataManager {
 
-  private static final Logger log = LogManager.getLogger(TestDataManager.class);
+  private static final Logger log = LoggerFactory.getLogger(Class.class.getName());
 
   private String filePath;
   private String className;
