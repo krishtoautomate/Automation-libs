@@ -56,7 +56,7 @@ public class PlayStore extends TestBase implements ITestBase {
       sleep(3);
       utils.logmessage(Status.PASS, "'UPDATE ALL' button clicked");
     }
-    sleep(5);
+    sleep(120);
 
 
   }

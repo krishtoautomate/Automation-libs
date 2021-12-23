@@ -385,12 +385,28 @@
 		"devicePort": 8347
 	},
 	{
+		"name": "iPhone 13 Pro",
+		"udid": "00008110-000A208102F8801E",
+		"platformName": "iOS",
+		"platformVersion": "15.0",
+		"colour": "Black",
+		"devicePort": 8347
+	},
+	{
 		"name": "iPhone 13 Pro Max",
 		"udid": "00008110-000C294026C2801E",
 		"platformName": "iOS",
 		"platformVersion": "15.0",
 		"colour": "Black",
 		"devicePort": 8348
+	},
+	{
+		"name": "iPhone 13 mini",
+		"udid": "00008110-00110CD62622801E",
+		"platformName": "iOS",
+		"platformVersion": "15.0",
+		"colour": "White",
+		"devicePort": 8349
 	},
 	{
 		"name": "Samsung S8",
@@ -831,8 +847,7 @@
 		"platformVersion": "11.0",
 		"colour": "Black",
 		"devicePort": 8255
-	}
-	,
+	},
 	{
 		"name": "Motorola one 5G Ace",
 		"udid": "ZY22DHKP74",
@@ -840,5 +855,13 @@
 		"platformVersion": "11.0",
 		"colour": "Black",
 		"devicePort": 8256
+	},
+	{
+		"name": "Pixel 6",
+		"udid": "1B221FDF6001L3",
+		"platformName": "Android",
+		"platformVersion": "11.0",
+		"colour": "Black",
+		"devicePort": 8257
 	}
 ]

@@ -1,9 +1,9 @@
 package other.pages;
 
-import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.slf4j.Logger;
 import com.Utilities.BaseObjs;
 import com.aventstack.extentreports.ExtentTest;
 import io.appium.java_client.MobileBy;

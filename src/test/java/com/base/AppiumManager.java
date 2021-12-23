@@ -12,8 +12,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.apache.log4j.Logger;
 import org.json.simple.parser.ParseException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 import com.DataManager.JsonFileReader;
@@ -23,7 +24,9 @@ import io.appium.java_client.service.local.AppiumServiceBuilder;
 
 public class AppiumManager {
 
-  private static Logger log = Logger.getLogger(Class.class.getName());
+  // private static Logger log = Logger.getLogger(Class.class.getName());
+
+  private static final Logger log = LoggerFactory.getLogger(Class.class.getName());
 
   protected AppiumDriverLocalService server;
 
@@ -87,6 +90,9 @@ public class AppiumManager {
     } catch (Exception e) {
       log.error("failed to start appium server : " + e.getLocalizedMessage());
     }
+
+    log.info("session : " + server.getUrl());
+    log.info("session isRunning : " + server.isRunning());
 
     // log.info("Appium server started!");
     return server;

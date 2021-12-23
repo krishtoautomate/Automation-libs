@@ -1,16 +1,15 @@
 package com.DataManager;
 
 import java.io.IOException;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.json.simple.parser.ParseException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.Utilities.Constants;
 
 
 public class DeviceInfoReader {
 
-  private static final Logger log = LogManager.getLogger(DeviceInfoReader.class);
-
+  private static final Logger log = LoggerFactory.getLogger(Class.class.getName());
 
   int index = 0;
 

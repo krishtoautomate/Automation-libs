@@ -5,9 +5,10 @@ import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.Reporter;
@@ -45,12 +46,6 @@ public class TestBase {
   AppiumManager appiumManager = new AppiumManager();
   boolean isAndroid = false;
 
-
-  // int retry = 10;
-  // int interval = 1000;
-
-  // protected AppiumDriverLocalService server;
-
   public synchronized WebDriver getDriver() {
     return driver;
   }
@@ -73,10 +68,13 @@ public class TestBase {
   @BeforeSuite(alwaysRun = true)
   public void setupSuit(ITestContext ctx) {
 
-    String suiteName = ctx.getCurrentXmlTest().getSuite().getName();
+    ctx.getCurrentXmlTest().getSuite().getName();
 
     // Log4j
-    log = Logger.getLogger(suiteName);
+    // log = Logger.getLogger(suiteName);
+
+    // Logback
+    log = LoggerFactory.getLogger(this.getClass());
 
     // create Report Folder in 'test-output'
     File reportDir = new File(Constants.REPORT_DIR);
@@ -125,6 +123,7 @@ public class TestBase {
 
     String methodName = method.getName();
     String className = this.getClass().getName();
+    isAndroid = platForm.equalsIgnoreCase("Android");
 
     if (udid != null) {
 
