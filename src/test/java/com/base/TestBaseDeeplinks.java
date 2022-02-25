@@ -43,7 +43,6 @@ public class TestBaseDeeplinks {
   protected static ExtentReports extent;
   protected ExtentTest test;
   protected ScreenShotManager screenShotManager;
-  AppiumManager appiumManager = new AppiumManager();
 
 
   protected AppiumDriverLocalService server;
@@ -169,8 +168,6 @@ public class TestBaseDeeplinks {
       String[][] data = {{"<b>TestCase : </b>", className}, {"<b>Device : </b>", deviceName},
           {"<b>UDID : </b>", udid}, {"<b>Platform : </b>", platForm},
           {"<b>OsVersion : </b>", platformVersion}};
-
-
 
       test.info(MarkupHelper.createTable(data));
 

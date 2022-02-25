@@ -18,11 +18,10 @@ public class TestFlightApp extends BaseObjs<TestFlightApp> {
   By update_later_btn = By.xpath("//XCUIElementTypeButton[@name='Later']");
   By remindMeLater_btn = By.xpath("//XCUIElementTypeButton[@name='Remind Me Later']");
 
-  By all_btns = MobileBy
-      .xpath("//XCUIElementTypeButton[@name='UPDATE' or @name='INSTALL' and @visible='true']");
+  By all_btns = MobileBy.iOSNsPredicateString("name == 'UPDATE' AND visible =1");
   By apps_h1 = MobileBy.iOSNsPredicateString("label == 'Apps' AND visible =1");
   By open_btn = By.xpath("//XCUIElementTypeButton[@name='OPEN']");
-  By update_btn = By.xpath("//XCUIElementTypeButton[@name='UPDATE']");
+  By update_btn = MobileBy.iOSNsPredicateString("name == 'UPDATE' AND visible =1");
   By install_btn = By.xpath("//XCUIElementTypeButton[@name='INSTALL']");
 
   // Apple ID pop-up
@@ -82,7 +81,7 @@ public class TestFlightApp extends BaseObjs<TestFlightApp> {
 
   public List<WebElement> get_all_btns() {
     List<WebElement> eles = null;
-    mobileActions.scrollDowntoFind(all_btns, 2);
+    mobileActions.scrollDowntoFind(all_btns, 20);
     try {
       wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(all_btns));
       eles = driver.findElements(all_btns);
@@ -103,17 +102,17 @@ public class TestFlightApp extends BaseObjs<TestFlightApp> {
     return eles;
   }
 
-  // public List<WebElement> get_update_btn() {
-  // List<WebElement> eles = null;
-  // mobileActions.scrollDowntoFind(update_btn, 2);
-  // try {
-  // wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(update_btn));
-  // eles = driver.findElements(update_btn);
-  // } catch (Exception e) {
-  // // ignore
-  // }
-  // return eles;
-  // }
+  public List<WebElement> get_update_btn() {
+    List<WebElement> eles = null;
+    mobileActions.scrollDowntoFind(update_btn, 2);
+    try {
+      wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(update_btn));
+      eles = driver.findElements(update_btn);
+    } catch (Exception e) {
+      // ignore
+    }
+    return eles;
+  }
 
   // public List<WebElement> get_install_btn() {
   // List<WebElement> eles = null;

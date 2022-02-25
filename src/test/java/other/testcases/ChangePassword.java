@@ -31,51 +31,54 @@ public class ChangePassword {
 
       String[] parts = bup.split(",");
       // String mdn = parts[0].trim();
-      String user = parts[1].trim();
-      String password = parts[2].trim();
+      String user = parts[0].trim();
+      String password = parts[1].trim();
 
-      // System.out.println("user : "+ user);
-      // System.out.println("password : "+ password);
-      String newPassword = "Galaxy1$";
-
-
+      System.out.println("user : " + user);
+      System.out.println("password : " + password);
       // Specify the proxy address
-      RestAssured.proxy("fastweb.int.bell.ca", 8083);
-      RestAssured.proxy("fastweb.int.bell.ca", 8083, "http");
+      RestAssured.useRelaxedHTTPSValidation();
+      // RestAssured.proxy("fastweb.int.bell.ca", 8083);
+      // RestAssured.proxy("fastweb.int.bell.ca", 8083, "http");
 
       // Specify the base URL to the RESTful web service
       // RestAssured.baseURI = Constants.BASE_URI;
-      RestAssured.baseURI = "https://apigate.bell.ca/channelbellcaext";
+      RestAssured.baseURI =
+          // "https://api.virginplus.ca/channelvirginext";
+          "https://apigate.bell.ca/channelbellcaext";
 
       try {
 
         Thread.sleep(5000);
-        // System.out.println("*************LOGIN******************");
         Response response = given().auth().basic(user, password)
             // .header("Host", Constants.API_HOST)
             .header("Connection", "keep-alive").header("Accept", "*/*")
             .header("Accept-Language", "en-ca").header("Cache-Control", "no-cache")
-            .header("Accept-Encoding", "gzip, deflate, br")
+            .header("Accept-Encoding", "gzip, deflate, br").header("applicationid", "MBM_IOS")
             .get(RestAssured.baseURI + "/Authentication/BUP");
 
 
-        String userId = response.path("userId").toString();
+        System.out.println(response.getBody().asPrettyString());
+        System.out.println("----------");
 
-        Thread.sleep(5000);
+        // String userId = response.path("userId").toString();
 
-        given().header("accept-language", "EN-CA").header("province", "ON").header("brand", "B")
-            .header("Accept", "*/*").header("Cache-Control", "no-cache")
-            .header("Host", "api.virginmobile.ca").header("Accept-Encoding", "gzip, deflate")
-            .header("Connection", "keep-alive").cookies(response.cookies()).when()
-            .get(RestAssured.baseURI + "/UXP.Services/eCare/CustomerProfile/CustomerAccounts/"
-                + userId + "/CustomerProfile?privilegeRequired=All");
+        // Thread.sleep(5000);
+        //
+        // given().header("accept-language", "EN-CA").header("province", "ON").header("brand", "B")
+        // .header("Accept", "*/*").header("Cache-Control", "no-cache")
+        // .header("Host", "api.virginmobile.ca").header("Accept-Encoding", "gzip, deflate")
+        // .header("Connection", "keep-alive").cookies(response.cookies()).when()
+        // .get(RestAssured.baseURI + "/UXP.Services/eCare/CustomerProfile/CustomerAccounts/"
+        // + userId + "/CustomerProfile?privilegeRequired=All");
 
 
 
-        Thread.sleep(5000);
+        Thread.sleep(2000);
 
+        String newPassword = "Crave1234$";
         given().header("Accept-Language", "EN-CA").header("brand", "B")
-            .header("Content-Type", "application/json")
+            .header("Content-Type", "application/json").header("applicationid", "MBM_IOS")
             .body("{\r\n\"CurrentKey\" : \"" + password + "\",\r\n\"NewKey\" : \"" + newPassword
                 + "\",\r\n\"Username\" : \"" + user + "\"\r\n}")
             .cookies(response.cookies()).when()
@@ -84,6 +87,8 @@ public class ChangePassword {
       } catch (JSONException | InterruptedException | NullPointerException e) {
         // ignore
         System.out.println("Failed: " + user + ":" + password);
+
+        System.out.println("----------");
       }
     }
 

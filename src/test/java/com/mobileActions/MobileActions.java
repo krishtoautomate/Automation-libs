@@ -8,6 +8,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.touch.TouchActions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
@@ -53,39 +54,46 @@ public class MobileActions {
 
   /**
    * type each char of String in Android text-box CommandExecutionHelper.execute(this,
-   * pressKeyCodeCommand(key));
+   * pressKeyCodeCommand(key)); new TouchActions(driver).sendKeys(keys)
    */
   @SuppressWarnings("rawtypes")
-  public void send_keys_android(String Value) {
-    for (int i = 0; i < Value.length(); i++) {
-      char c = Value.charAt(i);
-      String s = new StringBuilder().append(c).toString();
+  public void send_keys(String keys) {
 
-      if (s.equals("0")) {
-        ((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.DIGIT_0));
-      } else if (s.equals("1")) {
-        ((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.DIGIT_1));
-      } else if (s.equals("2")) {
-        ((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.DIGIT_2));
-      } else if (s.equals("3")) {
-        ((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.DIGIT_3));
-      } else if (s.equals("4")) {
-        ((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.DIGIT_4));
-      } else if (s.equals("5")) {
-        ((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.DIGIT_5));
-      } else if (s.equals("6")) {
-        ((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.DIGIT_6));
-      } else if (s.equals("7")) {
-        ((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.DIGIT_7));
-      } else if (s.equals("8")) {
-        ((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.DIGIT_8));
-      } else if (s.equals("9")) {
-        ((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.DIGIT_9));
-      } else {
-        test.log(Status.FAIL, "SendKeys Failed!");
-        log.error("SendKeys Failed!");
-        Assert.fail("Send Keys failed");
+    boolean isAndroid = driver instanceof AndroidDriver;
+
+    if (isAndroid) {
+      for (int i = 0; i < keys.length(); i++) {
+        char c = keys.charAt(i);
+        String s = new StringBuilder().append(c).toString();
+
+        if (s.equals("0")) {
+          ((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.DIGIT_0));
+        } else if (s.equals("1")) {
+          ((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.DIGIT_1));
+        } else if (s.equals("2")) {
+          ((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.DIGIT_2));
+        } else if (s.equals("3")) {
+          ((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.DIGIT_3));
+        } else if (s.equals("4")) {
+          ((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.DIGIT_4));
+        } else if (s.equals("5")) {
+          ((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.DIGIT_5));
+        } else if (s.equals("6")) {
+          ((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.DIGIT_6));
+        } else if (s.equals("7")) {
+          ((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.DIGIT_7));
+        } else if (s.equals("8")) {
+          ((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.DIGIT_8));
+        } else if (s.equals("9")) {
+          ((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.DIGIT_9));
+        } else {
+          test.log(Status.FAIL, "SendKeys Failed!");
+          log.error("SendKeys Failed!");
+          Assert.fail("Send Keys failed");
+        }
       }
+    } else {
+      new TouchActions(driver).sendKeys(keys);
     }
   }
 
@@ -345,8 +353,10 @@ public class MobileActions {
   }
 
   @SuppressWarnings("unchecked")
-  public void toggleWifiON(String platForm) {
-    if ("ios".equalsIgnoreCase(platForm)) {
+  public void toggleWifiON() {
+
+    boolean isAndroid = driver instanceof AndroidDriver;
+    if (!isAndroid) {
       try {
         // Turn-ON wifi
         ((AppiumDriver<MobileElement>) driver).activateApp("com.apple.shortcuts");

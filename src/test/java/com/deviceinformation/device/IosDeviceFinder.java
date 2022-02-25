@@ -17,9 +17,9 @@ import com.google.gson.reflect.TypeToken;
 
 public class IosDeviceFinder implements DeviceFinder<Ios> {
 
-  private final String LIB_MOBILE_DEVICE_LIST_SHELL_COMMAND = Constants.PATH + "idevice_id -l";
+  private final String LIB_MOBILE_DEVICE_LIST_SHELL_COMMAND = Constants.idevice_id + " -l";
   private final String LIB_MOBILE_DEVICE_UDID_PUT_SHELL_COMMAND =
-      Constants.PATH + "ideviceinfo -u UniqueDeviceID";
+      Constants.ideviceinfo + " -u UniqueDeviceID";
 
   @Override
   public DeviceInfoModel<Ios> findDevices(String localPath) throws IOException {

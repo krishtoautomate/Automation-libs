@@ -13,7 +13,7 @@
 		"platformName": "iOS",
 		"platformVersion": "12.1.2",
 		"colour": "Black",
-		"devicePort": 8302
+		"devicePort": 8301
 	},
 	{
 		"name": "iPhone 6s",
@@ -21,7 +21,7 @@
 		"platformName": "iOS",
 		"platformVersion": "11.3.1",
 		"colour": "Rose Gold",
-		"devicePort": 8301,
+		"devicePort": 8302,
 		"available": "false"
 	},
 	{
@@ -196,7 +196,7 @@
 		"name": "iPhone SE 2",
 		"udid": "00008030-0006316A26B9802E",
 		"platformName": "iOS",
-		"platformVersion": "13.3",
+		"platformVersion": "13.6",
 		"colour": "Red",
 		"devicePort": 8324
 	},
@@ -385,14 +385,6 @@
 		"devicePort": 8347
 	},
 	{
-		"name": "iPhone 13 Pro",
-		"udid": "00008110-000A208102F8801E",
-		"platformName": "iOS",
-		"platformVersion": "15.0",
-		"colour": "Black",
-		"devicePort": 8347
-	},
-	{
 		"name": "iPhone 13 Pro Max",
 		"udid": "00008110-000C294026C2801E",
 		"platformName": "iOS",
@@ -407,6 +399,63 @@
 		"platformVersion": "15.0",
 		"colour": "White",
 		"devicePort": 8349
+	},
+	{
+		"name": "iPhone 13 Pro",
+		"udid": "00008110-0011690811E9801E",
+		"platformName": "iOS",
+		"platformVersion": "15.1.1",
+		"colour": "White",
+		"devicePort": 8350
+	},
+	{
+		"name": "iPhone 13",
+		"udid": "00008110-000449A90A09801E",
+		"platformName": "iOS",
+		"platformVersion": "15.1.1",
+		"colour": "White",
+		"devicePort": 8351
+	},
+	{
+		"name": "iPhone 13 Pro Max",
+		"udid": "00008110-001C50342E39801E",
+		"platformName": "iOS",
+		"platformVersion": "15.2",
+		"colour": "Black",
+		"devicePort": 8352
+	},
+	{
+		"name": "iPhone 13 mini",
+		"udid": "00008110-001A5526147A801E",
+		"platformName": "iOS",
+		"platformVersion": "15.1",
+		"colour": "Blue",
+		"devicePort": 8353
+	},
+	{
+		"name": "iPhone 13 mini",
+		"udid": "00008110-000250A6147A801E",
+		"platformName": "iOS",
+		"platformVersion": "15.1",
+		"colour": "Blue",
+		"devicePort": 8354
+	},
+	{
+		"name": "iPad 9",
+		"udid": "00008030-001958401EE0C02E",
+		"platformName": "iOS",
+		"platformVersion": "15.2",
+		"colour": "Silver",
+		"devicePort": 8355
+	},
+	
+	{
+		"name": "iPhone 13 mini",
+		"udid": "00008110-001C6D6902F8801E",
+		"platformName": "iOS",
+		"platformVersion": "15.2",
+		"colour": "Silver",
+		"devicePort": 8356
 	},
 	{
 		"name": "Samsung S8",
@@ -508,7 +557,7 @@
 		"name": "Pixel 3a XL",
 		"udid": "93GAX07VLP",
 		"platformName": "Android",
-		"platformVersion": "9.0",
+		"platformVersion": "12.0",
 		"colour": "Black",
 		"devicePort": 8213
 	},
@@ -604,7 +653,7 @@
 		"name": "Motorola Moto one",
 		"udid": "ZY326QFCZP",
 		"platformName": "Android",
-		"platformVersion": "9.0",
+		"platformVersion": "11.0",
 		"colour": "Black",
 		"devicePort": 8225
 	},
@@ -612,7 +661,7 @@
 		"name": "Samsung S20 5G",
 		"udid": "RFCN20JNWGP",
 		"platformName": "Android",
-		"platformVersion": "10.0",
+		"platformVersion": "11.0",
 		"colour": "Blue",
 		"devicePort": 8226
 	},
@@ -644,7 +693,7 @@
 		"name": "Samsung S20 5G",
 		"udid": "R5CN30JLFYH",
 		"platformName": "Android",
-		"platformVersion": "10.0",
+		"platformVersion": "11.0",
 		"colour": "White",
 		"devicePort": 8230
 	},
@@ -660,7 +709,7 @@
 		"name": "Galaxy Note 20 5G",
 		"udid": "RFCN70BQCJX",
 		"platformName": "Android",
-		"platformVersion": "10.0",
+		"platformVersion": "11.0",
 		"colour": "Pink Gold",
 		"devicePort": 8232
 	},
@@ -700,7 +749,7 @@
 		"name": "Nokia 8236",
 		"udid": "N0AA003657K70900229",
 		"platformName": "Android",
-		"platformVersion": "10.0",
+		"platformVersion": "11.0",
 		"colour": "White",
 		"devicePort": 8237
 	},
@@ -716,7 +765,7 @@
 		"name": "Motorola one hyper",
 		"udid": "ZY22BH4R8B",
 		"platformName": "Android",
-		"platformVersion": "10.0",
+		"platformVersion": "11.0",
 		"colour": "Blue",
 		"devicePort": 8239
 	},
@@ -740,7 +789,7 @@
 		"name": "Galaxy Tab A 8",
 		"udid": "76ca8d7e",
 		"platformName": "Android",
-		"platformVersion": "11.0",
+		"platformVersion": "10.0",
 		"colour": "Black",
 		"devicePort": 8242
 	},
@@ -772,7 +821,7 @@
 		"name": "HUAWEI VOG-L04",
 		"udid": "URT7N19322000504",
 		"platformName": "Android",
-		"platformVersion": "11.0",
+		"platformVersion": "10.0",
 		"colour": "Violet",
 		"devicePort": 8246
 	},
@@ -796,7 +845,7 @@
 		"name": "Motorola one 5G ace",
 		"udid": "ZY22BXDT3X",
 		"platformName": "Android",
-		"platformVersion": "10.0",
+		"platformVersion": "11.0",
 		"colour": "Black",
 		"devicePort": 8249
 	},
@@ -828,7 +877,7 @@
 		"name": "Samsung S21",
 		"udid": "R5CR10D001K",
 		"platformName": "Android",
-		"platformVersion": "10.0",
+		"platformVersion": "11.0",
 		"colour": "Black",
 		"devicePort": 8253
 	},
@@ -863,5 +912,37 @@
 		"platformVersion": "11.0",
 		"colour": "Black",
 		"devicePort": 8257
+	},
+	{
+		"name": "Pixel 6 Pro",
+		"udid": "1C041FDEE000SH",
+		"platformName": "Android",
+		"platformVersion": "11.0",
+		"colour": "Black",
+		"devicePort": 8258
+	},
+	{
+		"name": "TCL 20 Pro",
+		"udid": "1a2e2032",
+		"platformName": "Android",
+		"platformVersion": "11.0",
+		"colour": "Black",
+		"devicePort": 8259
+	},
+	{
+		"name": "Samsung Z Flip 3",
+		"udid": "R5CT103Z3BR",
+		"platformName": "Android",
+		"platformVersion": "11.0",
+		"colour": "Black",
+		"devicePort": 8260
+	},
+	{
+		"name": "Google Pixel 6 Pro",
+		"udid": "1C041FDEE000RU",
+		"platformName": "Android",
+		"platformVersion": "12.0",
+		"colour": "Black",
+		"devicePort": 8261
 	}
 ]

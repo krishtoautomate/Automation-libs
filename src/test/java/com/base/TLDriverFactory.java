@@ -24,7 +24,7 @@ public class TLDriverFactory {
 
   private CapabilitiesManager capabilitiesManager = new CapabilitiesManager();
   private DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-  AppiumManager appiumManager = new AppiumManager();
+  AppiumService appiumService = new AppiumService();
   private AppiumDriverLocalService server;
 
   int retry = 5;
@@ -44,7 +44,7 @@ public class TLDriverFactory {
         testParams.get("REMOTE_HOST") == null ? "localhost" : testParams.get("REMOTE_HOST");
 
     if (REMOTE_HOST.equalsIgnoreCase("localhost")) {
-      server = appiumManager.AppiumService();
+      server = appiumService.AppiumServer();
       REMOTE_HOST = server.getUrl().toString();
     }
 

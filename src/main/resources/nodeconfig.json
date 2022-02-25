@@ -1,25 +1,20 @@
 {
-  "capabilities":
-      [
-        {
-
-          "maxInstances": 1,
-          "automationName": "uiautomator2",
-          "platformName":"Android"
-        }
-      ],
-      "configuration":
-        {
-          "cleanUpCycle":3000,
-          "timeout":30000,
-          "proxy": "org.openqa.grid.selenium.proxy.DefaultRemoteProxy",
-          "url":"http://172.21.34.235:4444/wd/hub",
-         
-          
-          "maxSession": 2,
-          "register": true,
-          "registerCycle": 5000,
-          "hubPort": 4444,
-          "hubHost": "172.21.34.235"
-        }
+	"capabilities": [
+		{
+			"maxInstances": 1,
+			"automationName": "uiautomator2",
+			"platformName": "Android"
+		}
+	],
+	"configuration": {
+		"cleanUpCycle": 3000,
+		"timeout": 30000,
+		"proxy": "org.openqa.grid.selenium.proxy.DefaultRemoteProxy",
+		"url": "http://172.21.34.235:4444/wd/hub",
+		"maxSession": 2,
+		"register": true,
+		"registerCycle": 5000,
+		"hubPort": 4444,
+		"hubHost": "172.21.34.235"
+	}
 }

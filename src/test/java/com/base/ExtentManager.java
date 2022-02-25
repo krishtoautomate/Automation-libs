@@ -15,6 +15,8 @@ public class ExtentManager {
 
     JsonFormatter json = new JsonFormatter(Constants.EXTENT_JSON_REPORT);
 
+    // ExtentPDFReporter pdf = new ExtentPDFReporter("Pdf.pdf");
+
     // extent report
     extent = new ExtentReports();
     ExtentSparkReporter htmlReporter = new ExtentSparkReporter(htmlReport).viewConfigurer()
