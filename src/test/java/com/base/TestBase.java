@@ -43,7 +43,6 @@ public class TestBase {
   protected static ExtentReports extent;
   protected ExtentTest test;
   protected ScreenShotManager screenShotManager;
-  AppiumManager appiumManager = new AppiumManager();
   boolean isAndroid = false;
 
   public synchronized WebDriver getDriver() {
@@ -125,69 +124,61 @@ public class TestBase {
     String className = this.getClass().getName();
     isAndroid = platForm.equalsIgnoreCase("Android");
 
-    if (udid != null) {
+    // if (udid != null) {
 
-      // Create Session
-      log.info("creating session : " + className + " : " + udid);
-      // try {
-      tlDriverFactory.setDriver();
+    // Create Session
+    log.info("creating session : " + className + " : " + udid);
+    // try {
+    tlDriverFactory.setDriver();
 
-      driverMap.put(Thread.currentThread().getId(), tlDriverFactory.getDriver());
+    driverMap.put(Thread.currentThread().getId(), tlDriverFactory.getDriver());
 
-      driver =
-          (AppiumDriver<MobileElement>) driverMap.get(Long.valueOf(Thread.currentThread().getId()));
+    driver =
+        (AppiumDriver<MobileElement>) driverMap.get(Long.valueOf(Thread.currentThread().getId()));
 
-      // } catch (Exception e) {
-      //
-      // appiumManager.killPort(appiumManager.getDevicePort(udid));
-      //
-      // log.error("session failed : " + e.getLocalizedMessage());
-      // throw new SkipException("session failed : " + e.getLocalizedMessage());
-      // }
-
-      /*
-       * Test info
-       */
-      if ("Auto".equalsIgnoreCase(udid)) {
-        udid = ((AppiumDriver<MobileElement>) driver).getCapabilities().getCapability("udid")
-            .toString();
+    /*
+     * Test info
+     */
+    if ("Auto".equalsIgnoreCase(udid)) {
+      udid =
+          ((AppiumDriver<MobileElement>) driver).getCapabilities().getCapability("udid").toString();
 
 
-      }
-
-      iTestContext.setAttribute("udid", udid);
-
-      Map<String, String> testParams = iTestContext.getCurrentXmlTest().getAllParameters();
-      String p_Testdata = testParams.get("p_Testdata");
-      TestDataManager testData = new TestDataManager(p_Testdata);
-      int index = driver instanceof AndroidDriver ? 0 : 1;
-      String testKey = testData.getJsonValue(index, "testKey");
-      ITestResult result = Reporter.getCurrentTestResult();
-      result.setAttribute("testKey", testKey);
-
-      DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
-      String deviceName = deviceInfoReader.getString("name");
-      String platformVersion = ((AppiumDriver<MobileElement>) driver).getCapabilities()
-          .getCapability("platformVersion").toString();
-      // deviceInfoReader.getString("platformVersion");
-
-      // Report Content
-      test = extent.createTest(methodName + "(" + platForm + ")").assignDevice(deviceName);
-
-      log.info("Test Details : " + className + " : " + platForm + " : " + deviceName);
-      String[][] data = {{"<b>TestCase : </b>", className}, {"<b>Device : </b>", deviceName},
-          {"<b>UDID : </b>", udid}, {"<b>Platform : </b>", platForm},
-          {"<b>OsVersion : </b>", platformVersion}, {"<b>Jira test-key : </b>",
-              "<a href=" + Constants.JIRA_URL + testKey + ">" + testKey + "</a>"}};
-
-
-
-      test.info(MarkupHelper.createTable(data));
-
-    } else {
-      test = extent.createTest(methodName);
-      test.info("TestCase : " + methodName);
     }
+
+    iTestContext.setAttribute("udid", udid);
+
+    Map<String, String> testParams = iTestContext.getCurrentXmlTest().getAllParameters();
+    String p_Testdata = testParams.get("p_Testdata");
+    TestDataManager testData = new TestDataManager(p_Testdata);
+    int index = driver instanceof AndroidDriver ? 0 : 1;
+    String testKey = testData.getJsonValue(index, "testKey");
+    ITestResult result = Reporter.getCurrentTestResult();
+    result.setAttribute("testKey", testKey);
+
+    DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
+    String deviceName = deviceInfoReader.getString("name");
+    String platformVersion = ((AppiumDriver<MobileElement>) driver).getCapabilities()
+        .getCapability("platformVersion").toString();
+    // deviceInfoReader.getString("platformVersion");
+
+    // Report Content
+    test = extent.createTest(methodName + "(" + platForm + ")").assignDevice(deviceName);
+
+    log.info("Test Details : " + className + " : " + platForm + " : " + deviceName);
+    String[][] data = {{"<b>TestCase : </b>", className}, {"<b>Device : </b>", deviceName},
+        {"<b>UDID : </b>", udid}, {"<b>Platform : </b>", platForm},
+        {"<b>OsVersion : </b>", platformVersion}, {"<b>Jira test-key : </b>",
+            "<a href=" + Constants.JIRA_URL + testKey + ">" + testKey + "</a>"}};
+
+
+
+    test.info(MarkupHelper.createTable(data));
+
+    // } else {
+    // test = extent.createTest(methodName);
+    // test.info("TestCase : " + methodName);
+    // }
 
   }
 
@@ -229,7 +220,7 @@ public class TestBase {
     try {
       extent.flush(); // -----close extent-report
       log.info(Constants.EXTENT_HTML_REPORT);
-    } catch (Exception e) {
+    } catch (Exception ign) {
       // ignore
     }
   }

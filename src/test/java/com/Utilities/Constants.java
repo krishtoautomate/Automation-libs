@@ -50,9 +50,18 @@ public class Constants {
   public static final String DEVICE_INFO = USER_DIR + "/src/test/resources/deviceInfo.json";
   public static final String JIRA_URL = "https://jira.bell.corp.bce.ca/browse/";
   public static final String BASE_URI = "https://" + API_HOST + "/channelbellcaext";
-  public static final String ADB = ANDROID_HOME + "platform-tools/adb";
+
   public static final String PATH = "/usr/local/bin/";
   public static final String LANGUAGE = "EN-CA";
+
+
+  // public static final String ADB = ANDROID_HOME + "platform-tools/adb";
+
+  public static final String ADB = System.getenv("adb");
+
+  public static final String idevice_id = System.getenv("idevice_id");
+  public static final String ideviceinfo = System.getenv("ideviceinfo");
+
 
   public static final String HOST_NAME() {
     try {

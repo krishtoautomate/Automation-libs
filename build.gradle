@@ -31,11 +31,7 @@ dependencies {
     testImplementation 'org.seleniumhq.selenium:selenium-android-driver:2.39.0'
     implementation 'org.seleniumhq.selenium:selenium-support:3.141.59'
 
-    implementation 'io.appium:java-client:7.5.1'
-    
-    //implementation 'log4j:log4j:1.2.17'
-    
-   // implementation 'ch.qos.logback:logback-core:1.2.7'
+    implementation 'io.appium:java-client:7.6.0'
   	
     implementation 'commons-io:commons-io:2.6'
 
@@ -52,21 +48,18 @@ dependencies {
     testImplementation 'io.rest-assured:rest-assured:4.4.0'
    
    	testImplementation 'com.aventstack:extentreports:5.0.6'
+   	testImplementation 'tech.grasshopper:pdfextentreporter:0.3'
     
     implementation 'com.google.guava:guava:21.0'
     
    	implementation 'org.slf4j:slf4j-api:1.7.25'
     implementation 'org.slf4j:slf4j-jdk14:1.7.25'
-    
+	
     testImplementation "com.oracle.ojdbc:ojdbc8:19.3.0.0"
-    
-    
     
     testImplementation 'org.usb4java:usb4java-javax:1.2.0'
     
     testImplementation 'com.slack.api:slack-api-client:1.8.1'
-
-    
    	   
 }
 

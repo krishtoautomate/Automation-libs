@@ -28,6 +28,19 @@ public class TestFlight extends TestBase implements ITestBase {
     Utilities utils = new Utilities(driver, log, test);
     TestFlightApp testFlightApp = new TestFlightApp(driver, log, test);
 
+
+    // accept open prompt
+    try {
+      driver.switchTo().alert().dismiss();
+
+      utils.logmessage(Status.PASS, "dismiss alert");
+    } catch (Exception ign) {
+      // ignore
+    }
+
+
+    ((AppiumDriver<MobileElement>) driver).resetApp();
+
     utils.dismissAlert();
 
     if (!((AppiumDriver<MobileElement>) driver).getCapabilities().getCapability("bundleId")
@@ -47,9 +60,10 @@ public class TestFlight extends TestBase implements ITestBase {
     // for ipads
     if (isElementDisplayed(testFlightApp.verify_apps_back_btn())) {
       testFlightApp.verify_apps_back_btn().click();
-      utils.logmessage(Status.INFO, "App back Button - is Clicked");
+      utils.logmessage(Status.PASS, "App back Button - is Clicked");
     }
 
+    sleep(4);
     // Verify title
     utils.AssertContains(testFlightApp.get_apps_h1().getText(), "Apps");
 
@@ -60,15 +74,22 @@ public class TestFlight extends TestBase implements ITestBase {
 
       for (int i = 0; i < all_btns.size(); i++) {
         String button = all_btns.get(i).getText();
+
+        String errorXML = driver.getPageSource();
+        test.info(MarkupHelper.createCodeBlock(errorXML));
+
+
         all_btns.get(i).click();
-        utils.logmessage(Status.INFO, button + "- button clicked");
+        utils.logmessage(Status.PASS, button + "- button clicked");
       }
-      sleep(5);
+      sleep(10);
     } catch (Exception e) {
       log.info("No 'UPDATE' or 'INSTALL' buttons found");
     }
     String errorXML = driver.getPageSource();
     test.info(MarkupHelper.createCodeBlock(errorXML));
+
+    utils.logmessage(Status.PASS, "Update done");
 
   }
 }
