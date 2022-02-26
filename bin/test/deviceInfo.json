@@ -458,6 +458,16 @@
 		"devicePort": 8356
 	},
 	{
+		"name": "iPhone XR",
+		"udid": "00008020-00121DCE36F3002E",
+		"platformName": "iOS",
+		"platformVersion": "14.7.1",
+		"colour": "Silver",
+		"devicePort": 8357
+	},
+	
+	
+	{
 		"name": "Samsung S8",
 		"udid": "988b9b304b4e4a374a",
 		"platformName": "Android",

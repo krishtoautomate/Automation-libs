@@ -70,7 +70,7 @@ public class TestFlight extends TestBase implements ITestBase {
     List<WebElement> all_btns = testFlightApp.get_all_btns();
 
     try {
-      log.info("Total 'UPDATE' or 'INSTALL' buttons : " + all_btns.size());
+      utils.logmessage(Status.PASS, "Total 'UPDATE' or 'INSTALL' buttons : " + all_btns.size());
 
       for (int i = 0; i < all_btns.size(); i++) {
         String button = all_btns.get(i).getText();
@@ -89,7 +89,33 @@ public class TestFlight extends TestBase implements ITestBase {
     String errorXML = driver.getPageSource();
     test.info(MarkupHelper.createCodeBlock(errorXML));
 
-    utils.logmessage(Status.PASS, "Update done");
+
+    all_btns = testFlightApp.get_all_btns();
+    try {
+      utils.logmessage(Status.PASS, "Total 'UPDATE' or 'INSTALL' buttons : " + all_btns.size());
+
+      for (int i = 0; i < all_btns.size(); i++) {
+        String button = all_btns.get(i).getText();
+
+        errorXML = driver.getPageSource();
+        test.info(MarkupHelper.createCodeBlock(errorXML));
+
+
+        all_btns.get(i).click();
+        utils.logmessage(Status.PASS, button + "- button clicked");
+      }
+      sleep(10);
+    } catch (Exception e) {
+      log.info("No 'UPDATE' or 'INSTALL' buttons found");
+    }
+    errorXML = driver.getPageSource();
+    test.info(MarkupHelper.createCodeBlock(errorXML));
+
+    // for ipads
+    if (isElementDisplayed(testFlightApp.verify_apps_back_btn())) {
+      testFlightApp.verify_apps_back_btn().click();
+      utils.logmessage(Status.PASS, "App back Button - is Clicked");
+    }
 
   }
 }
