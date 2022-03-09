@@ -2,6 +2,9 @@ package other.testcases;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import org.testng.ITestResult;
+import org.testng.Reporter;
 import org.testng.TestNG;
 import org.testng.annotations.Test;
 import org.testng.xml.XmlClass;
@@ -23,6 +26,14 @@ public class RunnerWithAllConnectedDevices {
     /*
      * Common
      */
+
+    ITestResult iTestResult = Reporter.getCurrentTestResult();
+    Map<String, String> testParams =
+        iTestResult.getTestContext().getCurrentXmlTest().getAllParameters();
+
+    String remoteHost =
+        testParams.get("REMOTE_HOST") != null ? testParams.get("REMOTE_HOST") : "localhost";
+
 
     // Create an instance of XML Suite and assign a name for it.
     XmlSuite mySuite = new XmlSuite();
@@ -64,7 +75,7 @@ public class RunnerWithAllConnectedDevices {
             // Test parameters
             iosTest.addParameter("platForm", "IOS");
             iosTest.addParameter("udid", iosDeviceList.get(i).getUniqueDeviceID());
-            iosTest.addParameter("REMOTE_HOST", "localhost");
+            iosTest.addParameter("REMOTE_HOST", remoteHost);// "localhost"
 
             // Create classes
             List<XmlClass> myClasses = new ArrayList<XmlClass>();

@@ -448,7 +448,6 @@
 		"colour": "Silver",
 		"devicePort": 8355
 	},
-	
 	{
 		"name": "iPhone 13 mini",
 		"udid": "00008110-001C6D6902F8801E",
@@ -465,8 +464,22 @@
 		"colour": "Silver",
 		"devicePort": 8357
 	},
-	
-	
+	{
+		"name": "iPhone 12 mini",
+		"udid": "00008101-001165AA0EE2001E",
+		"platformName": "iOS",
+		"platformVersion": "14.2.1",
+		"colour": "Silver",
+		"devicePort": 8358
+	},
+	{
+		"name": "iPad 9",
+		"udid": "00008030-0012693C3CE0C02E",
+		"platformName": "iOS",
+		"platformVersion": "15.2",
+		"colour": "Silver",
+		"devicePort": 8359
+	},
 	{
 		"name": "Samsung S8",
 		"udid": "988b9b304b4e4a374a",
@@ -954,5 +967,37 @@
 		"platformVersion": "12.0",
 		"colour": "Black",
 		"devicePort": 8261
+	},
+	{
+		"name": "motorola moto g pure",
+		"udid": "ZY22F4HLMX",
+		"platformName": "Android",
+		"platformVersion": "11.0",
+		"colour": "Black",
+		"devicePort": 8262
+	},
+	{
+		"name": "Samsung SM-G990W",
+		"udid": "R5CT10W15DK",
+		"platformName": "Android",
+		"platformVersion": "12.0",
+		"colour": "Black",
+		"devicePort": 8263
+	},
+	{
+		"name": "Samsung S21",
+		"udid": "R5CR10T9PLE",
+		"platformName": "Android",
+		"platformVersion": "12.0",
+		"colour": "Black",
+		"devicePort": 8264
+	},
+	{
+		"name": "Pixel 6",
+		"udid": "21211FDF600831",
+		"platformName": "Android",
+		"platformVersion": "12.0",
+		"colour": "Black",
+		"devicePort": 8265
 	}
 ]
