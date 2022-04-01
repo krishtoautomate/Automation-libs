@@ -101,12 +101,6 @@ public class TestBase {
           iTestContext.setAttribute("udid", udid);
           iTestContext.setAttribute("deviceName", deviceName);
 
-          // int devicePort = appiumManager.getDevicePort(udid);
-          // if (appiumManager.isPortBusy(devicePort)) {
-          // log.warn("device Busy : " + deviceName + ", udid : " + udid + ", devicePort : "
-          // + devicePort);
-          // throw new SkipException("device Busy : " + " : " + deviceName + "_" + udid);
-          // }
         }
       } catch (Exception e) {
         // ignore

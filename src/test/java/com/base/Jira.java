@@ -2,9 +2,6 @@ package com.base;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
 import java.util.logging.Logger;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -32,42 +29,6 @@ public class Jira {
   String finish;
   String comment;
   String status;
-
-  // public static void main(String[] args) {
-  //
-  // Date date = new Date();
-  // SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
-  // sdf.setTimeZone(TimeZone.getTimeZone("EST"));
-  // String dateANDtime = sdf.format(date.getTime());
-  //
-  // Jira jiraReporter = new Jira();
-  //
-  // // start
-  // String buildNo = System.getenv("BUILD_NUMBER");
-  // String jobName = System.getenv("JOB_NAME");
-  // String buildUrl = System.getenv("BUILD_URL");
-  // String testPlanKey = System.getenv("TEST_PLAN_KEY");
-  //
-  // String excutionSummary = jobName + "-" + buildNo;
-  // String excutionDescription = buildUrl;
-  // String startDate = dateANDtime;
-  // // String testExecKey = System.getenv("TEST_EXECUTION");
-  // // if(testExecKey != null)
-  // // jiraReporter.setTestExecutionInfo("testExecutionKey", testExecKey);
-  // jiraReporter.setTestExecutionInfo("summary", excutionSummary);
-  // jiraReporter.setTestExecutionInfo("testPlanKey", testPlanKey);// "MAEAUTO-320"
-  // jiraReporter.setTestExecutionInfo("description", excutionDescription);
-  // jiraReporter.setTestExecutionInfo("startDate", startDate);
-  //
-  // // finish
-  // String finishDate = dateANDtime;
-  // jiraReporter.setTestExecutionInfo("finishDate", finishDate);
-  // jiraReporter.addExecutionKey("testExecutionKey");
-  // jiraReporter.addInfo();
-  // jiraReporter.addTests();
-  //
-  // System.out.println(jiraReporter.info.toString());
-  // }
 
   /*
    * @param test execution details to set summary, description, revision, startDate, finishDate,
@@ -130,18 +91,18 @@ public class Jira {
   }
 
 
-  public static void main(String[] args) {
-
-    // update status
-    Jira jira = new Jira();
-
-    Date date = new Date();
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
-    sdf.setTimeZone(TimeZone.getTimeZone("EST"));
-    String dateANDtime = sdf.format(date.getTime());
-
-    jira.update_Test_Exec("MAEAUTO-8149", "MAEAUTO-350", "PASS", dateANDtime, dateANDtime);
-  }
+  // public static void main(String[] args) {
+  //
+  // // update status
+  // Jira jira = new Jira();
+  //
+  // Date date = new Date();
+  // SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
+  // sdf.setTimeZone(TimeZone.getTimeZone("EST"));
+  // String dateANDtime = sdf.format(date.getTime());
+  //
+  // jira.update_Test_Exec("MAEAUTO-8149", "MAEAUTO-350", "PASS", dateANDtime, dateANDtime);
+  // }
 
   /*
    * Updates test execution for individual test case

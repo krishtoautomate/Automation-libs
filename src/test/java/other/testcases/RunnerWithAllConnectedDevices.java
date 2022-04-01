@@ -63,6 +63,7 @@ public class RunnerWithAllConnectedDevices {
       if (update.equalsIgnoreCase("iOS") || update.equalsIgnoreCase("All")) {
 
         for (int i = 0; i < iosDeviceList.size(); i++) {
+          i++;
 
           if (iosDeviceList.get(i).getUniqueDeviceID() != null) {
 

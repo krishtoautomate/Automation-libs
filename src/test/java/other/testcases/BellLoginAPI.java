@@ -50,8 +50,8 @@ public class BellLoginAPI extends TestBaseAPI implements ITestBase {
 
       String[] parts = bup.split(",");
       p_mdn = parts[0].trim();
-      p_userid = parts[1].trim();
-      p_password = parts[2].trim();
+      p_userid = "automation5";// parts[1].trim();
+      p_password = "Fibe1234$";// parts[2].trim();
 
       // test.getModel().setName("MBM"); // : " + p_mdn + " : {" + p_userid + ":" + p_password +
       // "}");

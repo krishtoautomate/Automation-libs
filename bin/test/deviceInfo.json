@@ -481,6 +481,38 @@
 		"devicePort": 8359
 	},
 	{
+		"name": "iPhone 11",
+		"udid": "00008030-0006548426C0C02E",
+		"platformName": "iOS",
+		"platformVersion": "15.2.1",
+		"colour": "Black",
+		"devicePort": 8360
+	},
+	{
+		"name": "iPhone 13 Pro Max",
+		"udid": "00008110-000621661401801E",
+		"platformName": "iOS",
+		"platformVersion": "15.1.1",
+		"colour": "Black",
+		"devicePort": 8361
+	},
+	{
+		"name": "iPhone 12",
+		"udid": "00008101-001261201A69001E",
+		"platformName": "iOS",
+		"platformVersion": "15.2.1",
+		"colour": "Black",
+		"devicePort": 8362
+	},
+	{
+		"name": "iPhone 13",
+		"udid": "00008110-0009143C2E43801E",
+		"platformName": "iOS",
+		"platformVersion": "15.2.1",
+		"colour": "Black",
+		"devicePort": 8363
+	},
+	{
 		"name": "Samsung S8",
 		"udid": "988b9b304b4e4a374a",
 		"platformName": "Android",
@@ -999,5 +1031,54 @@
 		"platformVersion": "12.0",
 		"colour": "Black",
 		"devicePort": 8265
+	},
+	{
+		"name": "Samsung S22",
+		"udid": "R5CT121PWXE",
+		"platformName": "Android",
+		"platformVersion": "12.0",
+		"colour": "Black",
+		"devicePort": 8266
+	},
+	{
+		"name": "Samsung A7 Lite",
+		"udid": "R9PT10W887X",
+		"platformName": "Android",
+		"platformVersion": "11.0",
+		"colour": "Black",
+		"devicePort": 8267
+	},
+	{
+		"name": "Samsung Z flip 3",
+		"udid": "R5CT103Z4JV",
+		"platformName": "Android",
+		"platformVersion": "11.0",
+		"colour": "Black",
+		"devicePort": 8268
+	},
+	{
+		"name": "Samsung Galaxy S22",
+		"udid": "R3CT3094FDA",
+		"platformName": "Android",
+		"platformVersion": "12.0",
+		"colour": "Black",
+		"devicePort": 8269
+	},
+		{
+		"name": "samsung SM-G996W",
+		"udid": "R3CRC0SNPSL",
+		"platformName": "Android",
+		"platformVersion": "12.0",
+		"colour": "Black",
+		"devicePort": 8270
+	},
+	
+	{
+		"name": "samsung SM-S901W",
+		"udid": "R5CT12L4PHK",
+		"platformName": "Android",
+		"platformVersion": "12.0",
+		"colour": "Black",
+		"devicePort": 8271
 	}
 ]
