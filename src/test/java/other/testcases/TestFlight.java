@@ -49,12 +49,12 @@ public class TestFlight extends TestBase implements ITestBase {
 
     if (isElementDisplayed(testFlightApp.get_tryAgain_btn())) {
       testFlightApp.get_tryAgain_btn().click();
-      utils.logmessage(Status.INFO, "'Try Again' Button - is Clicked");
+      utils.logmessage(Status.PASS, "'Try Again' Button - is Clicked");
     }
 
     if (isElementDisplayed(testFlightApp.get_continue_btn())) {
       testFlightApp.get_continue_btn().click();
-      utils.logmessage(Status.INFO, "Continue Button - is Clicked");
+      utils.logmessage(Status.PASS, "Continue Button - is Clicked");
     }
 
     // for ipads
