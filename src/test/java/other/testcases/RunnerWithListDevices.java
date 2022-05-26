@@ -141,12 +141,14 @@ public class RunnerWithListDevices {
     List<XmlSuite> mySuites = new ArrayList<XmlSuite>();
 
     TestNG myTestNG = new TestNG();
-    myTestNG.setXmlSuites(mySuites);
+
     mySuite.setFileName("myTemp.xml");
 //    mySuite.addListener("com.Listeners.InvokedSuiteListener");
     mySuite.addListener("com.Listeners.TestListener");
 
     mySuites.add(mySuite);
+
+    myTestNG.setXmlSuites(mySuites);
 
     System.out.println(mySuite.toXml());
 
