@@ -49,15 +49,7 @@ public class RunnerWithListDevices {
     }
 
     String udids = System.getenv("UDID");
-    String[] iosDeviceList = udids.split(",");
-
-//          {"00008110-000C294026C2801E",
-//          "96fe2b13b088073ee34500de06c01f26a74c002e",
-//      "00008030-001A550A2643802E",
-//      "00008030-001E48AC3A47802E",
-//      "7672bcff3dc02cd2be41278fb077b360003da0d0",
-//      "00008110-000449A90A09801E",
-//      "00008110-0011690811E9801E"};
+    String[] iosDeviceList = udids.split("\n");
 
     if (update.equalsIgnoreCase("iOS") || update.equalsIgnoreCase("All")) {
 
@@ -74,7 +66,7 @@ public class RunnerWithListDevices {
 
         // Test parameters
         iosTest.addParameter("platForm", "IOS");
-        iosTest.addParameter("udid", deviceId);
+        iosTest.addParameter("udid", deviceId.trim());
         iosTest.addParameter("REMOTE_HOST", remoteHost);// "localhost"
 
         // Create classes
