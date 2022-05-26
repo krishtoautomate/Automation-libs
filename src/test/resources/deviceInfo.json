@@ -1,1084 +1,1147 @@
 [
-	{
-		"name": "unknown",
-		"udid": "unknown",
-		"platformName": "iOS",
-		"platformVersion": "12.1.2",
-		"colour": "Black",
-		"devicePort": 8300
-	},
-	{
-		"name": "iPhone 8",
-		"udid": "c96e4f4016966c6b50c39e1168f5535ee1988f40",
-		"platformName": "iOS",
-		"platformVersion": "12.1.2",
-		"colour": "Black",
-		"devicePort": 8301
-	},
-	{
-		"name": "iPhone 6s",
-		"udid": "504aa6bd8ef0ba4cd7c5b7cfd905315412af2d43",
-		"platformName": "iOS",
-		"platformVersion": "11.3.1",
-		"colour": "Rose Gold",
-		"devicePort": 8302,
-		"available": "false"
-	},
-	{
-		"name": "iPhone 8",
-		"udid": "e0857ea6c266c485198cf77589ac858a2526dc01",
-		"platformName": "iOS",
-		"platformVersion": "14.2",
-		"colour": "White",
-		"devicePort": 8303
-	},
-	{
-		"name": "iPhone 8 Plus",
-		"udid": "7672bcff3dc02cd2be41278fb077b360003da0d0",
-		"platformName": "iOS",
-		"platformVersion": "13.7",
-		"colour": "Black",
-		"devicePort": 8304
-	},
-	{
-		"name": "iPhone X",
-		"udid": "ef17480cfb9182dd0a8095cd9892f6ffee62ce50",
-		"platformName": "iOS",
-		"platformVersion": "12.1.4",
-		"colour": "Black",
-		"devicePort": 8305
-	},
-	{
-		"name": "iPhone 7",
-		"udid": "ce7a1d03f16738ffa197774f432d11e2d06f04a9",
-		"platformName": "iOS",
-		"platformVersion": "12.1.4",
-		"colour": "Black",
-		"devicePort": 8306
-	},
-	{
-		"name": "iPhone 6 Plus",
-		"udid": "3cbd5f34c35b18b359bf24318a94fe522bfb1c1f",
-		"platformName": "iOS",
-		"platformVersion": "12.5.5",
-		"colour": "White",
-		"devicePort": 8307
-	},
-	{
-		"name": "iPhone XR",
-		"udid": "00008020-001D4DA811C1002E",
-		"platformName": "iOS",
-		"platformVersion": "13.6.1",
-		"colour": "Black",
-		"devicePort": 8308
-	},
-	{
-		"name": "iPhone SE",
-		"udid": "f7f1c251b1dd4910f3a42902d8e4027339b1462e",
-		"platformName": "iOS",
-		"platformVersion": "12.1.4",
-		"colour": "White",
-		"devicePort": 8309
-	},
-	{
-		"name": "iPhone 5s",
-		"udid": "86065b39c984b83b6566b6a55c8cac973d03c24e",
-		"platformName": "iOS",
-		"platformVersion": "11.4.1",
-		"colour": "Gold",
-		"devicePort": 8310
-	},
-	{
-		"name": "iPhone XR",
-		"udid": "00008020-001A65893CF1002E",
-		"platformName": "iOS",
-		"platformVersion": "13.7",
-		"colour": "Yellow",
-		"devicePort": 8311
-	},
-	{
-		"name": "iPhone X",
-		"udid": "73fdf411e7504e1b4e4d4b7db6630787b6c29ad2",
-		"platformName": "iOS",
-		"platformVersion": "12.2",
-		"colour": "White",
-		"devicePort": 8312
-	},
-	{
-		"name": "iPhone 6",
-		"udid": "916cdfb79fa6b2997bae7422df51b38441b01273",
-		"platformName": "iOS",
-		"platformVersion": "12.2",
-		"colour": "White",
-		"devicePort": 8313
-	},
-	{
-		"name": "iPhone XS MAX",
-		"udid": "00008020-00015DCE0C23002E",
-		"platformName": "iOS",
-		"platformVersion": "12.2",
-		"colour": "Black",
-		"devicePort": 8314
-	},
-	{
-		"name": "iPhone X",
-		"udid": "410794a1a676390df79ad57c8228690299d966bc",
-		"platformName": "iOS",
-		"platformVersion": "12.2",
-		"colour": "Black",
-		"devicePort": 8315
-	},
-	{
-		"name": "iPhone XS",
-		"udid": "00008020-000B14421485002E",
-		"platformName": "iOS",
-		"platformVersion": "13.7",
-		"colour": "Black",
-		"devicePort": 8316
-	},
-	{
-		"name": "iPhone XS Max",
-		"udid": "00008020-00196D643433002E",
-		"platformName": "iOS",
-		"platformVersion": "12.2",
-		"colour": "Black",
-		"devicePort": 8317
-	},
-	{
-		"name": "iPhone 11",
-		"udid": "00008030-000969C11E20802E",
-		"platformName": "iOS",
-		"platformVersion": "12.2",
-		"colour": "Purple",
-		"devicePort": 8318
-	},
-	{
-		"name": "iPhone 11",
-		"udid": "00008030-000C58193410802E",
-		"platformName": "iOS",
-		"platformVersion": "12.2",
-		"colour": "Yellow",
-		"devicePort": 8319
-	},
-	{
-		"name": "iPhone 11",
-		"udid": "00008030-00092DE93660802E",
-		"platformName": "iOS",
-		"platformVersion": "12.2",
-		"colour": "Red",
-		"devicePort": 8320
-	},
-	{
-		"name": "iPhone 6s plus",
-		"udid": "5adbaed4e2062aca9bf86c9f4a80aedb4af482b2",
-		"platformName": "iOS",
-		"platformVersion": "13.3",
-		"colour": "White",
-		"devicePort": 8321
-	},
-	{
-		"name": "iPad 7",
-		"udid": "990876a75a55284cffd3f45fa2a9c771bb0600a4",
-		"platformName": "iOS",
-		"platformVersion": "14.0",
-		"colour": "White",
-		"devicePort": 8322
-	},
-	{
-		"name": "iPad 7",
-		"udid": "cb48db46d0b127db15f2b215b20308facf0089b1",
-		"platformName": "iOS",
-		"platformVersion": "14.5",
-		"colour": "Gold",
-		"devicePort": 8323
-	},
-	{
-		"name": "iPhone SE 2",
-		"udid": "00008030-0006316A26B9802E",
-		"platformName": "iOS",
-		"platformVersion": "13.6",
-		"colour": "Red",
-		"devicePort": 8324
-	},
-	{
-		"name": "iPhone SE 2",
-		"udid": "00008030-001A15422685802E",
-		"platformName": "iOS",
-		"platformVersion": "14.2",
-		"colour": "Red",
-		"devicePort": 8325
-	},
-	{
-		"name": "iPhone XS pro",
-		"udid": "00008030-001A550A2643802E",
-		"platformName": "iOS",
-		"platformVersion": "15.0",
-		"colour": "Red",
-		"devicePort": 8326
-	},
-	{
-		"name": "iPhone 11",
-		"udid": "00008030-001240223CBA802E",
-		"platformName": "iOS",
-		"platformVersion": "13.3",
-		"colour": "Unknown",
-		"devicePort": 8327
-	},
-	{
-		"name": "iPhone XS",
-		"udid": "00008020-001C494121C0802E",
-		"platformName": "iOS",
-		"platformVersion": "14.0",
-		"colour": "Black",
-		"devicePort": 8328
-	},
-	{
-		"name": "iPhone 7",
-		"udid": "96fe2b13b088073ee34500de06c01f26a74c002e",
-		"platformName": "iOS",
-		"platformVersion": "14.0",
-		"colour": "White",
-		"devicePort": 8329
-	},
-	{
-		"name": "iPhone 7",
-		"udid": "db724c52790135f3bc25e4421d5eb633874be986",
-		"platformName": "iOS",
-		"platformVersion": "14.0",
-		"colour": "White",
-		"devicePort": 8330
-	},
-	{
-		"name": "iPhone SE 2",
-		"udid": "00008030-0014605C0A50402E",
-		"platformName": "iOS",
-		"platformVersion": "14.4",
-		"colour": "White",
-		"devicePort": 8331
-	},
-	{
-		"name": "iPad 7 Pro",
-		"udid": "72f6647f8e436ef054d8e469827dd47ede96bdba",
-		"platformName": "iOS",
-		"platformVersion": "14.0",
-		"colour": "White",
-		"devicePort": 8332
-	},
-	{
-		"name": "iPhone SE 2",
-		"udid": "00008030-001E48AC3A47802E",
-		"platformName": "iOS",
-		"platformVersion": "14.2",
-		"colour": "White",
-		"devicePort": 8333
-	},
-	{
-		"name": "iPhone 11 Pro Max",
-		"udid": "00008030-0002112C1EC0402E",
-		"platformName": "iOS",
-		"platformVersion": "14.0.1",
-		"colour": "Green",
-		"devicePort": 8334
-	},
-	{
-		"name": "iPhone 11 Pro Max",
-		"udid": "00008030-001C38593420402E",
-		"platformName": "iOS",
-		"platformVersion": "14.0.1",
-		"colour": "Black",
-		"devicePort": 8335
-	},
-	{
-		"name": "iPhone 12 Pro Max",
-		"udid": "00008101-00094D000ED8001E",
-		"platformName": "iOS",
-		"platformVersion": "14.0.1",
-		"colour": "White",
-		"devicePort": 8336
-	},
-	{
-		"name": "iPhone 12",
-		"udid": "00008101-000425AC0CC0001E",
-		"platformName": "iOS",
-		"platformVersion": "14.0.1",
-		"colour": "Green",
-		"devicePort": 8337
-	},
-	{
-		"name": "iPhone 12",
-		"udid": "00008101-000418E104A1401E",
-		"platformName": "iOS",
-		"platformVersion": "14.0.1",
-		"colour": "Blue",
-		"devicePort": 8338
-	},
-	{
-		"name": "iPhone 12 Mini",
-		"udid": "00008101-000E71EC3C90001E",
-		"platformName": "iOS",
-		"platformVersion": "14.0.1",
-		"colour": "Blue",
-		"devicePort": 8339
-	},
-	{
-		"name": "iPhone 12 Pro",
-		"udid": "00008101-000128990250001E",
-		"platformName": "iOS",
-		"platformVersion": "14.0.1",
-		"colour": "Black",
-		"devicePort": 8340
-	},
-	{
-		"name": "iPhone XS Max",
-		"udid": "00008020-001E19140AF8002E",
-		"platformName": "iOS",
-		"platformVersion": "14.8.1",
-		"colour": "Gold",
-		"devicePort": 8341
-	},
-	{
-		"name": "iPhone 12 Pro",
-		"udid": "00008101-001C15A20AD2001E",
-		"platformName": "iOS",
-		"platformVersion": "14.2.1",
-		"colour": "White",
-		"devicePort": 8342
-	},
-	{
-		"name": "iPhone 12",
-		"udid": "00008101-001819220AC2001E",
-		"platformName": "iOS",
-		"platformVersion": "14.2.1",
-		"colour": "Green",
-		"devicePort": 8343
-	},
-	{
-		"name": "iPhone 12 mini",
-		"udid": "00008101-00056D321AF1003A",
-		"platformName": "iOS",
-		"platformVersion": "14.2",
-		"colour": "Black",
-		"devicePort": 8344
-	},
-	{
-		"name": "iPhone 11 Pro",
-		"udid": "00008030-000229A2117B802E",
-		"platformName": "iOS",
-		"platformVersion": "14.2",
-		"colour": "Black",
-		"devicePort": 8345
-	},
-	{
-		"name": "iPhone 13",
-		"udid": "00008110-0019643136B8801E",
-		"platformName": "iOS",
-		"platformVersion": "15.0",
-		"colour": "Pink",
-		"devicePort": 8346
-	},
-	{
-		"name": "iPhone 13 Pro",
-		"udid": "00008110-000A208102F8801E",
-		"platformName": "iOS",
-		"platformVersion": "15.0",
-		"colour": "Black",
-		"devicePort": 8347
-	},
-	{
-		"name": "iPhone 13 Pro Max",
-		"udid": "00008110-000C294026C2801E",
-		"platformName": "iOS",
-		"platformVersion": "15.0",
-		"colour": "Black",
-		"devicePort": 8348
-	},
-	{
-		"name": "iPhone 13 mini",
-		"udid": "00008110-00110CD62622801E",
-		"platformName": "iOS",
-		"platformVersion": "15.0",
-		"colour": "White",
-		"devicePort": 8349
-	},
-	{
-		"name": "iPhone 13 Pro",
-		"udid": "00008110-0011690811E9801E",
-		"platformName": "iOS",
-		"platformVersion": "15.1.1",
-		"colour": "White",
-		"devicePort": 8350
-	},
-	{
-		"name": "iPhone 13",
-		"udid": "00008110-000449A90A09801E",
-		"platformName": "iOS",
-		"platformVersion": "15.1.1",
-		"colour": "White",
-		"devicePort": 8351
-	},
-	{
-		"name": "iPhone 13 Pro Max",
-		"udid": "00008110-001C50342E39801E",
-		"platformName": "iOS",
-		"platformVersion": "15.2",
-		"colour": "Black",
-		"devicePort": 8352
-	},
-	{
-		"name": "iPhone 13 mini",
-		"udid": "00008110-001A5526147A801E",
-		"platformName": "iOS",
-		"platformVersion": "15.1",
-		"colour": "Blue",
-		"devicePort": 8353
-	},
-	{
-		"name": "iPhone 13 mini",
-		"udid": "00008110-000250A6147A801E",
-		"platformName": "iOS",
-		"platformVersion": "15.1",
-		"colour": "Blue",
-		"devicePort": 8354
-	},
-	{
-		"name": "iPad 9",
-		"udid": "00008030-001958401EE0C02E",
-		"platformName": "iOS",
-		"platformVersion": "15.2",
-		"colour": "Silver",
-		"devicePort": 8355
-	},
-	{
-		"name": "iPhone 13 mini",
-		"udid": "00008110-001C6D6902F8801E",
-		"platformName": "iOS",
-		"platformVersion": "15.2",
-		"colour": "Silver",
-		"devicePort": 8356
-	},
-	{
-		"name": "iPhone XR",
-		"udid": "00008020-00121DCE36F3002E",
-		"platformName": "iOS",
-		"platformVersion": "14.7.1",
-		"colour": "Silver",
-		"devicePort": 8357
-	},
-	{
-		"name": "iPhone 12 mini",
-		"udid": "00008101-001165AA0EE2001E",
-		"platformName": "iOS",
-		"platformVersion": "14.2.1",
-		"colour": "Silver",
-		"devicePort": 8358
-	},
-	{
-		"name": "iPad 9",
-		"udid": "00008030-0012693C3CE0C02E",
-		"platformName": "iOS",
-		"platformVersion": "15.2",
-		"colour": "Silver",
-		"devicePort": 8359
-	},
-	{
-		"name": "iPhone 11",
-		"udid": "00008030-0006548426C0C02E",
-		"platformName": "iOS",
-		"platformVersion": "15.2.1",
-		"colour": "Black",
-		"devicePort": 8360
-	},
-	{
-		"name": "iPhone 13 Pro Max",
-		"udid": "00008110-000621661401801E",
-		"platformName": "iOS",
-		"platformVersion": "15.1.1",
-		"colour": "Black",
-		"devicePort": 8361
-	},
-	{
-		"name": "iPhone 12",
-		"udid": "00008101-001261201A69001E",
-		"platformName": "iOS",
-		"platformVersion": "15.2.1",
-		"colour": "Black",
-		"devicePort": 8362
-	},
-	{
-		"name": "iPhone 13",
-		"udid": "00008110-0009143C2E43801E",
-		"platformName": "iOS",
-		"platformVersion": "15.2.1",
-		"colour": "Black",
-		"devicePort": 8363
-	},
-	{
-		"name": "Samsung S8",
-		"udid": "988b9b304b4e4a374a",
-		"platformName": "Android",
-		"platformVersion": "8.0.0",
-		"colour": "Blue",
-		"devicePort": 8201
-	},
-	{
-		"name": "Huawei Mate 20 Pro",
-		"udid": "KBV7N19104000601",
-		"platformName": "Android",
-		"platformVersion": "9.0",
-		"colour": "Violet",
-		"devicePort": 8202
-	},
-	{
-		"name": "Huawei Nexus",
-		"udid": "84B7N16418000360",
-		"platformName": "Android",
-		"platformVersion": "8.1.0",
-		"colour": "Black",
-		"devicePort": 8203
-	},
-	{
-		"name": "Samsung Note 9",
-		"udid": "5233584e4a363498",
-		"platformName": "Android",
-		"platformVersion": "9.0",
-		"colour": "Black",
-		"devicePort": 8204
-	},
-	{
-		"name": "Pixel 2 XL",
-		"udid": "803KPSL1612694",
-		"platformName": "Android",
-		"platformVersion": "8.1.0",
-		"colour": "Black",
-		"devicePort": 8205
-	},
-	{
-		"name": "Pixel 3",
-		"udid": "89HX09WF4",
-		"platformName": "Android",
-		"platformVersion": "9.0",
-		"colour": "Black",
-		"devicePort": 8206
-	},
-	{
-		"name": "Huawei P20",
-		"udid": "BPN0218515003355",
-		"platformName": "Android",
-		"platformVersion": "8.1.0",
-		"colour": "Black",
-		"devicePort": 8207
-	},
-	{
-		"name": "Samsung S9",
-		"udid": "4c4757534c573398",
-		"platformName": "Android",
-		"platformVersion": "8.1.0",
-		"colour": "Black",
-		"devicePort": 8208
-	},
-	{
-		"name": "LG G7",
-		"udid": "LMG710AWM68a3ff16",
-		"platformName": "Android",
-		"platformVersion": "8.0",
-		"colour": "Black",
-		"devicePort": 8209
-	},
-	{
-		"name": "Samsung S10",
-		"udid": "RF8M32J4G5E",
-		"platformName": "Android",
-		"platformVersion": "9.0",
-		"colour": "White",
-		"devicePort": 8210
-	},
-	{
-		"name": "Huawei P30 Pro",
-		"udid": "URT7N19322012788",
-		"platformName": "Android",
-		"platformVersion": "9.1",
-		"colour": "Black",
-		"devicePort": 8211
-	},
-	{
-		"name": "Galaxy S8",
-		"udid": "988838363144455259",
-		"platformName": "Android",
-		"platformVersion": "8.0",
-		"colour": "Black",
-		"devicePort": 8212
-	},
-	{
-		"name": "Pixel 3a XL",
-		"udid": "93GAX07VLP",
-		"platformName": "Android",
-		"platformVersion": "12.0",
-		"colour": "Black",
-		"devicePort": 8213
-	},
-	{
-		"name": "Samsung S10",
-		"udid": "RF8M639BRLL",
-		"platformName": "Android",
-		"platformVersion": "9.0",
-		"colour": "Blue",
-		"devicePort": 8214
-	},
-	{
-		"name": "Pixel 3 XL",
-		"udid": "8BRY12GXE",
-		"platformName": "Android",
-		"platformVersion": "9.0",
-		"colour": "White",
-		"devicePort": 8215
-	},
-	{
-		"name": "LG G8",
-		"udid": "LMG820UM5b25f2d7",
-		"platformName": "Android",
-		"platformVersion": "9.0",
-		"colour": "Black",
-		"devicePort": 8216
-	},
-	{
-		"name": "Samsung S10 plus",
-		"udid": "R38M601HGRH",
-		"platformName": "Android",
-		"platformVersion": "9.0",
-		"colour": "White",
-		"devicePort": 8217
-	},
-	{
-		"name": "Samsung Note 4",
-		"udid": "6221c8cc",
-		"platformName": "Android",
-		"platformVersion": "9.0",
-		"colour": "Blue",
-		"devicePort": 8218
-	},
-	{
-		"name": "Pixel 4 XL",
-		"udid": "9B201FFBA002P5",
-		"platformName": "Android",
-		"platformVersion": "10.0",
-		"colour": "Black",
-		"devicePort": 8219
-	},
-	{
-		"name": "Black Berry BBF100",
-		"udid": "5000360553",
-		"platformName": "Android",
-		"platformVersion": "8.0",
-		"colour": "Black",
-		"devicePort": 8220
-	},
-	{
-		"name": "Samsung S10 plus",
-		"udid": "R58M77GX0XZ",
-		"platformName": "Android",
-		"platformVersion": "10.0",
-		"colour": "White",
-		"devicePort": 8221
-	},
-	{
-		"name": "Samsung S20",
-		"udid": "R3CN20C5BKF",
-		"platformName": "Android",
-		"platformVersion": "10.0",
-		"colour": "Black",
-		"devicePort": 8222
-	},
-	{
-		"name": "Samsung S20",
-		"udid": "R3CN20AACGK",
-		"platformName": "Android",
-		"platformVersion": "10.0",
-		"colour": "Black",
-		"devicePort": 8223
-	},
-	{
-		"name": "Pixel 4",
-		"udid": "98261FFAZ001NL",
-		"platformName": "Android",
-		"platformVersion": "10.0",
-		"colour": "Black",
-		"devicePort": 8224
-	},
-	{
-		"name": "Motorola Moto one",
-		"udid": "ZY326QFCZP",
-		"platformName": "Android",
-		"platformVersion": "11.0",
-		"colour": "Black",
-		"devicePort": 8225
-	},
-	{
-		"name": "Samsung S20 5G",
-		"udid": "RFCN20JNWGP",
-		"platformName": "Android",
-		"platformVersion": "11.0",
-		"colour": "Blue",
-		"devicePort": 8226
-	},
-	{
-		"name": "Samsung A51",
-		"udid": "R58N70GGVZH",
-		"platformName": "Android",
-		"platformVersion": "10.0",
-		"colour": "Black",
-		"devicePort": 8227
-	},
-	{
-		"name": "TCL 10 Pro",
-		"udid": "67965c96",
-		"platformName": "Android",
-		"platformVersion": "10.0",
-		"colour": "Black",
-		"devicePort": 8228
-	},
-	{
-		"name": "LG Velvet",
-		"udid": "LMG900UM1b759d9d",
-		"platformName": "Android",
-		"platformVersion": "10.0",
-		"colour": "PinkGold",
-		"devicePort": 8229
-	},
-	{
-		"name": "Samsung S20 5G",
-		"udid": "R5CN30JLFYH",
-		"platformName": "Android",
-		"platformVersion": "11.0",
-		"colour": "White",
-		"devicePort": 8230
-	},
-	{
-		"name": "LG K20",
-		"udid": "LMX120L7IB9PP7V899",
-		"platformName": "Android",
-		"platformVersion": "10.0",
-		"colour": "Black",
-		"devicePort": 8231
-	},
-	{
-		"name": "Galaxy Note 20 5G",
-		"udid": "RFCN70BQCJX",
-		"platformName": "Android",
-		"platformVersion": "11.0",
-		"colour": "Pink Gold",
-		"devicePort": 8232
-	},
-	{
-		"name": "One Plus 8",
-		"udid": "06a49bf4",
-		"platformName": "Android",
-		"platformVersion": "10.0",
-		"colour": "White",
-		"devicePort": 8233
-	},
-	{
-		"name": "A7 Pro",
-		"udid": "A7PRO205077289",
-		"platformName": "Android",
-		"platformVersion": "10.0",
-		"colour": "White",
-		"devicePort": 8234
-	},
-	{
-		"name": "Huawei Y9 Prime",
-		"udid": "SLVNW20811004208",
-		"platformName": "Android",
-		"platformVersion": "10.0",
-		"colour": "White",
-		"devicePort": 8235
-	},
-	{
-		"name": "Huawei MediaPad T3 10",
-		"udid": "D8TNU20317105075",
-		"platformName": "Android",
-		"platformVersion": "10.0",
-		"colour": "White",
-		"devicePort": 8236
-	},
-	{
-		"name": "Nokia 8236",
-		"udid": "N0AA003657K70900229",
-		"platformName": "Android",
-		"platformVersion": "11.0",
-		"colour": "White",
-		"devicePort": 8237
-	},
-	{
-		"name": "Samsung Galaxy A31",
-		"udid": "RF8N70XJA4P",
-		"platformName": "Android",
-		"platformVersion": "10.0",
-		"colour": "Prism Crush Blue",
-		"devicePort": 8238
-	},
-	{
-		"name": "Motorola one hyper",
-		"udid": "ZY22BH4R8B",
-		"platformName": "Android",
-		"platformVersion": "11.0",
-		"colour": "Blue",
-		"devicePort": 8239
-	},
-	{
-		"name": "Pixel 5",
-		"udid": "0B271FDD4003AS",
-		"platformName": "Android",
-		"platformVersion": "11.0",
-		"colour": "Black",
-		"devicePort": 8240
-	},
-	{
-		"name": "Samsung S21 5G",
-		"udid": "R5CR104V68R",
-		"platformName": "Android",
-		"platformVersion": "11.0",
-		"colour": "Rose-Gold",
-		"devicePort": 8241
-	},
-	{
-		"name": "Galaxy Tab A 8",
-		"udid": "76ca8d7e",
-		"platformName": "Android",
-		"platformVersion": "10.0",
-		"colour": "Black",
-		"devicePort": 8242
-	},
-	{
-		"name": "Samsung S21 Ultra 5G",
-		"udid": "R5CR108J5JX",
-		"platformName": "Android",
-		"platformVersion": "11.0",
-		"colour": "Grey",
-		"devicePort": 8243
-	},
-	{
-		"name": "Samsung Z Fold2 5G",
-		"udid": "R3CR109VJ0L",
-		"platformName": "Android",
-		"platformVersion": "11.0",
-		"colour": "Grey",
-		"devicePort": 8244
-	},
-	{
-		"name": "Samsung S21 Plus",
-		"udid": "RFCR1004VJJ",
-		"platformName": "Android",
-		"platformVersion": "11.0",
-		"colour": "Violet",
-		"devicePort": 8245
-	},
-	{
-		"name": "HUAWEI VOG-L04",
-		"udid": "URT7N19322000504",
-		"platformName": "Android",
-		"platformVersion": "10.0",
-		"colour": "Violet",
-		"devicePort": 8246
-	},
-	{
-		"name": "Samsung Note20 ultra",
-		"udid": "R3CR10MH9KE",
-		"platformName": "Android",
-		"platformVersion": "11.0",
-		"colour": "Black",
-		"devicePort": 8247
-	},
-	{
-		"name": "Pixel 5",
-		"udid": "13201FDD4001SR",
-		"platformName": "Android",
-		"platformVersion": "12.0",
-		"colour": "Black",
-		"devicePort": 8248
-	},
-	{
-		"name": "Motorola one 5G ace",
-		"udid": "ZY22BXDT3X",
-		"platformName": "Android",
-		"platformVersion": "11.0",
-		"colour": "Black",
-		"devicePort": 8249
-	},
-	{
-		"name": "Pixel 4A",
-		"udid": "15141JEC201224",
-		"platformName": "Android",
-		"platformVersion": "11.0",
-		"colour": "Black",
-		"devicePort": 8250
-	},
-	{
-		"name": "Huawei P40 pro",
-		"udid": "9RJ0220516003054",
-		"platformName": "Android",
-		"platformVersion": "10.0",
-		"colour": "Blue",
-		"devicePort": 8251
-	},
-	{
-		"name": "Samsung S21",
-		"udid": "RFCR1037MRV",
-		"platformName": "Android",
-		"platformVersion": "10.0",
-		"colour": "Black",
-		"devicePort": 8252
-	},
-	{
-		"name": "Samsung S21",
-		"udid": "R5CR10D001K",
-		"platformName": "Android",
-		"platformVersion": "11.0",
-		"colour": "Black",
-		"devicePort": 8253
-	},
-	{
-		"name": "Samsung A52",
-		"udid": "R5CR912M1LT",
-		"platformName": "Android",
-		"platformVersion": "11.0",
-		"colour": "Black",
-		"devicePort": 8254
-	},
-	{
-		"name": "Samsung A31",
-		"udid": "R58NA1FX8DT",
-		"platformName": "Android",
-		"platformVersion": "11.0",
-		"colour": "Black",
-		"devicePort": 8255
-	},
-	{
-		"name": "Motorola one 5G Ace",
-		"udid": "ZY22DHKP74",
-		"platformName": "Android",
-		"platformVersion": "11.0",
-		"colour": "Black",
-		"devicePort": 8256
-	},
-	{
-		"name": "Pixel 6",
-		"udid": "1B221FDF6001L3",
-		"platformName": "Android",
-		"platformVersion": "11.0",
-		"colour": "Black",
-		"devicePort": 8257
-	},
-	{
-		"name": "Pixel 6 Pro",
-		"udid": "1C041FDEE000SH",
-		"platformName": "Android",
-		"platformVersion": "11.0",
-		"colour": "Black",
-		"devicePort": 8258
-	},
-	{
-		"name": "TCL 20 Pro",
-		"udid": "1a2e2032",
-		"platformName": "Android",
-		"platformVersion": "11.0",
-		"colour": "Black",
-		"devicePort": 8259
-	},
-	{
-		"name": "Samsung Z Flip 3",
-		"udid": "R5CT103Z3BR",
-		"platformName": "Android",
-		"platformVersion": "11.0",
-		"colour": "Black",
-		"devicePort": 8260
-	},
-	{
-		"name": "Google Pixel 6 Pro",
-		"udid": "1C041FDEE000RU",
-		"platformName": "Android",
-		"platformVersion": "12.0",
-		"colour": "Black",
-		"devicePort": 8261
-	},
-	{
-		"name": "motorola moto g pure",
-		"udid": "ZY22F4HLMX",
-		"platformName": "Android",
-		"platformVersion": "11.0",
-		"colour": "Black",
-		"devicePort": 8262
-	},
-	{
-		"name": "Samsung SM-G990W",
-		"udid": "R5CT10W15DK",
-		"platformName": "Android",
-		"platformVersion": "12.0",
-		"colour": "Black",
-		"devicePort": 8263
-	},
-	{
-		"name": "Samsung S21",
-		"udid": "R5CR10T9PLE",
-		"platformName": "Android",
-		"platformVersion": "12.0",
-		"colour": "Black",
-		"devicePort": 8264
-	},
-	{
-		"name": "Pixel 6",
-		"udid": "21211FDF600831",
-		"platformName": "Android",
-		"platformVersion": "12.0",
-		"colour": "Black",
-		"devicePort": 8265
-	},
-	{
-		"name": "Samsung S22",
-		"udid": "R5CT121PWXE",
-		"platformName": "Android",
-		"platformVersion": "12.0",
-		"colour": "Black",
-		"devicePort": 8266
-	},
-	{
-		"name": "Samsung A7 Lite",
-		"udid": "R9PT10W887X",
-		"platformName": "Android",
-		"platformVersion": "11.0",
-		"colour": "Black",
-		"devicePort": 8267
-	},
-	{
-		"name": "Samsung Z flip 3",
-		"udid": "R5CT103Z4JV",
-		"platformName": "Android",
-		"platformVersion": "11.0",
-		"colour": "Black",
-		"devicePort": 8268
-	},
-	{
-		"name": "Samsung Galaxy S22",
-		"udid": "R3CT3094FDA",
-		"platformName": "Android",
-		"platformVersion": "12.0",
-		"colour": "Black",
-		"devicePort": 8269
-	},
-		{
-		"name": "samsung SM-G996W",
-		"udid": "R3CRC0SNPSL",
-		"platformName": "Android",
-		"platformVersion": "12.0",
-		"colour": "Black",
-		"devicePort": 8270
-	},
-	
-	{
-		"name": "samsung SM-S901W",
-		"udid": "R5CT12L4PHK",
-		"platformName": "Android",
-		"platformVersion": "12.0",
-		"colour": "Black",
-		"devicePort": 8271
-	}
+  {
+    "name": "unknown",
+    "udid": "unknown",
+    "platformName": "iOS",
+    "platformVersion": "12.1.2",
+    "colour": "Black",
+    "devicePort": 8300
+  },
+  {
+    "name": "iPhone 8",
+    "udid": "c96e4f4016966c6b50c39e1168f5535ee1988f40",
+    "platformName": "iOS",
+    "platformVersion": "12.1.2",
+    "colour": "Black",
+    "devicePort": 8301
+  },
+  {
+    "name": "iPhone 6s",
+    "udid": "504aa6bd8ef0ba4cd7c5b7cfd905315412af2d43",
+    "platformName": "iOS",
+    "platformVersion": "11.3.1",
+    "colour": "Rose Gold",
+    "devicePort": 8302,
+    "available": "false"
+  },
+  {
+    "name": "iPhone 8",
+    "udid": "e0857ea6c266c485198cf77589ac858a2526dc01",
+    "platformName": "iOS",
+    "platformVersion": "14.2",
+    "colour": "White",
+    "devicePort": 8303
+  },
+  {
+    "name": "iPhone 8 Plus",
+    "udid": "7672bcff3dc02cd2be41278fb077b360003da0d0",
+    "platformName": "iOS",
+    "platformVersion": "13.7",
+    "colour": "Black",
+    "devicePort": 8304
+  },
+  {
+    "name": "iPhone X",
+    "udid": "ef17480cfb9182dd0a8095cd9892f6ffee62ce50",
+    "platformName": "iOS",
+    "platformVersion": "12.1.4",
+    "colour": "Black",
+    "devicePort": 8305
+  },
+  {
+    "name": "iPhone 7",
+    "udid": "ce7a1d03f16738ffa197774f432d11e2d06f04a9",
+    "platformName": "iOS",
+    "platformVersion": "12.1.4",
+    "colour": "Black",
+    "devicePort": 8306
+  },
+  {
+    "name": "iPhone 6 Plus",
+    "udid": "3cbd5f34c35b18b359bf24318a94fe522bfb1c1f",
+    "platformName": "iOS",
+    "platformVersion": "12.5.5",
+    "colour": "White",
+    "devicePort": 8307
+  },
+  {
+    "name": "iPhone XR",
+    "udid": "00008020-001D4DA811C1002E",
+    "platformName": "iOS",
+    "platformVersion": "13.6.1",
+    "colour": "Black",
+    "devicePort": 8308
+  },
+  {
+    "name": "iPhone SE",
+    "udid": "f7f1c251b1dd4910f3a42902d8e4027339b1462e",
+    "platformName": "iOS",
+    "platformVersion": "12.1.4",
+    "colour": "White",
+    "devicePort": 8309
+  },
+  {
+    "name": "iPhone 5s",
+    "udid": "86065b39c984b83b6566b6a55c8cac973d03c24e",
+    "platformName": "iOS",
+    "platformVersion": "11.4.1",
+    "colour": "Gold",
+    "devicePort": 8310
+  },
+  {
+    "name": "iPhone XR",
+    "udid": "00008020-001A65893CF1002E",
+    "platformName": "iOS",
+    "platformVersion": "13.7",
+    "colour": "Yellow",
+    "devicePort": 8311
+  },
+  {
+    "name": "iPhone X",
+    "udid": "73fdf411e7504e1b4e4d4b7db6630787b6c29ad2",
+    "platformName": "iOS",
+    "platformVersion": "12.2",
+    "colour": "White",
+    "devicePort": 8312
+  },
+  {
+    "name": "iPhone 6",
+    "udid": "916cdfb79fa6b2997bae7422df51b38441b01273",
+    "platformName": "iOS",
+    "platformVersion": "12.2",
+    "colour": "White",
+    "devicePort": 8313
+  },
+  {
+    "name": "iPhone XS MAX",
+    "udid": "00008020-00015DCE0C23002E",
+    "platformName": "iOS",
+    "platformVersion": "12.2",
+    "colour": "Black",
+    "devicePort": 8314
+  },
+  {
+    "name": "iPhone X",
+    "udid": "410794a1a676390df79ad57c8228690299d966bc",
+    "platformName": "iOS",
+    "platformVersion": "12.2",
+    "colour": "Black",
+    "devicePort": 8315
+  },
+  {
+    "name": "iPhone XS",
+    "udid": "00008020-000B14421485002E",
+    "platformName": "iOS",
+    "platformVersion": "13.7",
+    "colour": "Black",
+    "devicePort": 8316
+  },
+  {
+    "name": "iPhone XS Max",
+    "udid": "00008020-00196D643433002E",
+    "platformName": "iOS",
+    "platformVersion": "12.2",
+    "colour": "Black",
+    "devicePort": 8317
+  },
+  {
+    "name": "iPhone 11",
+    "udid": "00008030-000969C11E20802E",
+    "platformName": "iOS",
+    "platformVersion": "12.2",
+    "colour": "Purple",
+    "devicePort": 8318
+  },
+  {
+    "name": "iPhone 11",
+    "udid": "00008030-000C58193410802E",
+    "platformName": "iOS",
+    "platformVersion": "12.2",
+    "colour": "Yellow",
+    "devicePort": 8319
+  },
+  {
+    "name": "iPhone 11",
+    "udid": "00008030-00092DE93660802E",
+    "platformName": "iOS",
+    "platformVersion": "12.2",
+    "colour": "Red",
+    "devicePort": 8320
+  },
+  {
+    "name": "iPhone 6s plus",
+    "udid": "5adbaed4e2062aca9bf86c9f4a80aedb4af482b2",
+    "platformName": "iOS",
+    "platformVersion": "13.3",
+    "colour": "White",
+    "devicePort": 8321
+  },
+  {
+    "name": "iPad 7",
+    "udid": "990876a75a55284cffd3f45fa2a9c771bb0600a4",
+    "platformName": "iOS",
+    "platformVersion": "14.0",
+    "colour": "White",
+    "devicePort": 8322
+  },
+  {
+    "name": "iPad 7",
+    "udid": "cb48db46d0b127db15f2b215b20308facf0089b1",
+    "platformName": "iOS",
+    "platformVersion": "14.5",
+    "colour": "Gold",
+    "devicePort": 8323
+  },
+  {
+    "name": "iPhone SE 2",
+    "udid": "00008030-0006316A26B9802E",
+    "platformName": "iOS",
+    "platformVersion": "13.6",
+    "colour": "Red",
+    "devicePort": 8324
+  },
+  {
+    "name": "iPhone SE 2",
+    "udid": "00008030-001A15422685802E",
+    "platformName": "iOS",
+    "platformVersion": "14.2",
+    "colour": "Red",
+    "devicePort": 8325
+  },
+  {
+    "name": "iPhone XS pro",
+    "udid": "00008030-001A550A2643802E",
+    "platformName": "iOS",
+    "platformVersion": "15.0",
+    "colour": "Red",
+    "devicePort": 8326
+  },
+  {
+    "name": "iPhone 11",
+    "udid": "00008030-001240223CBA802E",
+    "platformName": "iOS",
+    "platformVersion": "13.3",
+    "colour": "Unknown",
+    "devicePort": 8327
+  },
+  {
+    "name": "iPhone XS",
+    "udid": "00008020-001C494121C0802E",
+    "platformName": "iOS",
+    "platformVersion": "14.0",
+    "colour": "Black",
+    "devicePort": 8328
+  },
+  {
+    "name": "iPhone 7",
+    "udid": "96fe2b13b088073ee34500de06c01f26a74c002e",
+    "platformName": "iOS",
+    "platformVersion": "14.0",
+    "colour": "White",
+    "devicePort": 8329
+  },
+  {
+    "name": "iPhone 7",
+    "udid": "db724c52790135f3bc25e4421d5eb633874be986",
+    "platformName": "iOS",
+    "platformVersion": "14.0",
+    "colour": "White",
+    "devicePort": 8330
+  },
+  {
+    "name": "iPhone SE 2",
+    "udid": "00008030-0014605C0A50402E",
+    "platformName": "iOS",
+    "platformVersion": "14.4",
+    "colour": "White",
+    "devicePort": 8331
+  },
+  {
+    "name": "iPad 7 Pro",
+    "udid": "72f6647f8e436ef054d8e469827dd47ede96bdba",
+    "platformName": "iOS",
+    "platformVersion": "14.0",
+    "colour": "White",
+    "devicePort": 8332
+  },
+  {
+    "name": "iPhone SE 2",
+    "udid": "00008030-001E48AC3A47802E",
+    "platformName": "iOS",
+    "platformVersion": "14.2",
+    "colour": "White",
+    "devicePort": 8333
+  },
+  {
+    "name": "iPhone 11 Pro Max",
+    "udid": "00008030-0002112C1EC0402E",
+    "platformName": "iOS",
+    "platformVersion": "14.0.1",
+    "colour": "Green",
+    "devicePort": 8334
+  },
+  {
+    "name": "iPhone 11 Pro Max",
+    "udid": "00008030-001C38593420402E",
+    "platformName": "iOS",
+    "platformVersion": "14.0.1",
+    "colour": "Black",
+    "devicePort": 8335
+  },
+  {
+    "name": "iPhone 12 Pro Max",
+    "udid": "00008101-00094D000ED8001E",
+    "platformName": "iOS",
+    "platformVersion": "14.0.1",
+    "colour": "White",
+    "devicePort": 8336
+  },
+  {
+    "name": "iPhone 12",
+    "udid": "00008101-000425AC0CC0001E",
+    "platformName": "iOS",
+    "platformVersion": "14.0.1",
+    "colour": "Green",
+    "devicePort": 8337
+  },
+  {
+    "name": "iPhone 12",
+    "udid": "00008101-000418E104A1401E",
+    "platformName": "iOS",
+    "platformVersion": "14.0.1",
+    "colour": "Blue",
+    "devicePort": 8338
+  },
+  {
+    "name": "iPhone 12 Mini",
+    "udid": "00008101-000E71EC3C90001E",
+    "platformName": "iOS",
+    "platformVersion": "14.0.1",
+    "colour": "Blue",
+    "devicePort": 8339
+  },
+  {
+    "name": "iPhone 12 Pro",
+    "udid": "00008101-000128990250001E",
+    "platformName": "iOS",
+    "platformVersion": "14.0.1",
+    "colour": "Black",
+    "devicePort": 8340
+  },
+  {
+    "name": "iPhone XS Max",
+    "udid": "00008020-001E19140AF8002E",
+    "platformName": "iOS",
+    "platformVersion": "14.8.1",
+    "colour": "Gold",
+    "devicePort": 8341
+  },
+  {
+    "name": "iPhone 12 Pro",
+    "udid": "00008101-001C15A20AD2001E",
+    "platformName": "iOS",
+    "platformVersion": "14.2.1",
+    "colour": "White",
+    "devicePort": 8342
+  },
+  {
+    "name": "iPhone 12",
+    "udid": "00008101-001819220AC2001E",
+    "platformName": "iOS",
+    "platformVersion": "14.2.1",
+    "colour": "Green",
+    "devicePort": 8343
+  },
+  {
+    "name": "iPhone 12 mini",
+    "udid": "00008101-00056D321AF1003A",
+    "platformName": "iOS",
+    "platformVersion": "14.2",
+    "colour": "Black",
+    "devicePort": 8344
+  },
+  {
+    "name": "iPhone 11 Pro",
+    "udid": "00008030-000229A2117B802E",
+    "platformName": "iOS",
+    "platformVersion": "14.2",
+    "colour": "Black",
+    "devicePort": 8345
+  },
+  {
+    "name": "iPhone 13",
+    "udid": "00008110-0019643136B8801E",
+    "platformName": "iOS",
+    "platformVersion": "15.0",
+    "colour": "Pink",
+    "devicePort": 8346
+  },
+  {
+    "name": "iPhone 13 Pro",
+    "udid": "00008110-000A208102F8801E",
+    "platformName": "iOS",
+    "platformVersion": "15.0",
+    "colour": "Black",
+    "devicePort": 8347
+  },
+  {
+    "name": "iPhone 13 Pro Max",
+    "udid": "00008110-000C294026C2801E",
+    "platformName": "iOS",
+    "platformVersion": "15.0",
+    "colour": "Black",
+    "devicePort": 8348
+  },
+  {
+    "name": "iPhone 13 mini",
+    "udid": "00008110-00110CD62622801E",
+    "platformName": "iOS",
+    "platformVersion": "15.0",
+    "colour": "White",
+    "devicePort": 8349
+  },
+  {
+    "name": "iPhone 13 Pro",
+    "udid": "00008110-0011690811E9801E",
+    "platformName": "iOS",
+    "platformVersion": "15.1.1",
+    "colour": "White",
+    "devicePort": 8350
+  },
+  {
+    "name": "iPhone 13",
+    "udid": "00008110-000449A90A09801E",
+    "platformName": "iOS",
+    "platformVersion": "15.1.1",
+    "colour": "White",
+    "devicePort": 8351
+  },
+  {
+    "name": "iPhone 13 Pro Max",
+    "udid": "00008110-001C50342E39801E",
+    "platformName": "iOS",
+    "platformVersion": "15.2",
+    "colour": "Black",
+    "devicePort": 8352
+  },
+  {
+    "name": "iPhone 13 mini",
+    "udid": "00008110-001A5526147A801E",
+    "platformName": "iOS",
+    "platformVersion": "15.1",
+    "colour": "Blue",
+    "devicePort": 8353
+  },
+  {
+    "name": "iPhone 13 mini",
+    "udid": "00008110-000250A6147A801E",
+    "platformName": "iOS",
+    "platformVersion": "15.1",
+    "colour": "Blue",
+    "devicePort": 8354
+  },
+  {
+    "name": "iPad 9",
+    "udid": "00008030-001958401EE0C02E",
+    "platformName": "iOS",
+    "platformVersion": "15.2",
+    "colour": "Silver",
+    "devicePort": 8355
+  },
+  {
+    "name": "iPhone 13 mini",
+    "udid": "00008110-001C6D6902F8801E",
+    "platformName": "iOS",
+    "platformVersion": "15.2",
+    "colour": "Silver",
+    "devicePort": 8356
+  },
+  {
+    "name": "iPhone XR",
+    "udid": "00008020-00121DCE36F3002E",
+    "platformName": "iOS",
+    "platformVersion": "14.7.1",
+    "colour": "Silver",
+    "devicePort": 8357
+  },
+  {
+    "name": "iPhone 12 mini",
+    "udid": "00008101-001165AA0EE2001E",
+    "platformName": "iOS",
+    "platformVersion": "14.2.1",
+    "colour": "Silver",
+    "devicePort": 8358
+  },
+  {
+    "name": "iPad 9",
+    "udid": "00008030-0012693C3CE0C02E",
+    "platformName": "iOS",
+    "platformVersion": "15.2",
+    "colour": "Silver",
+    "devicePort": 8359
+  },
+  {
+    "name": "iPhone 11",
+    "udid": "00008030-0006548426C0C02E",
+    "platformName": "iOS",
+    "platformVersion": "15.2.1",
+    "colour": "Black",
+    "devicePort": 8360
+  },
+  {
+    "name": "iPhone 13 Pro Max",
+    "udid": "00008110-000621661401801E",
+    "platformName": "iOS",
+    "platformVersion": "15.1.1",
+    "colour": "Black",
+    "devicePort": 8361
+  },
+  {
+    "name": "iPhone 12",
+    "udid": "00008101-001261201A69001E",
+    "platformName": "iOS",
+    "platformVersion": "15.2.1",
+    "colour": "Black",
+    "devicePort": 8362
+  },
+  {
+    "name": "iPhone 13",
+    "udid": "00008110-0009143C2E43801E",
+    "platformName": "iOS",
+    "platformVersion": "15.2.1",
+    "colour": "Black",
+    "devicePort": 8363
+  },
+  {
+    "name": "iPhone 12",
+    "udid": "00008101-000275A211EB001E",
+    "platformName": "iOS",
+    "platformVersion": "15.1.1",
+    "colour": "Black",
+    "devicePort": 8364
+  },
+  {
+    "name": "iPad mini",
+    "udid": "00008110-00043936267B801E",
+    "platformName": "iOS",
+    "platformVersion": "15.4.1",
+    "colour": "Black",
+    "devicePort": 8366
+  },
+  {
+    "name": "Samsung S8",
+    "udid": "988b9b304b4e4a374a",
+    "platformName": "Android",
+    "platformVersion": "8.0.0",
+    "colour": "Blue",
+    "devicePort": 8201
+  },
+  {
+    "name": "Huawei Mate 20 Pro",
+    "udid": "KBV7N19104000601",
+    "platformName": "Android",
+    "platformVersion": "9.0",
+    "colour": "Violet",
+    "devicePort": 8202
+  },
+  {
+    "name": "Huawei Nexus",
+    "udid": "84B7N16418000360",
+    "platformName": "Android",
+    "platformVersion": "8.1.0",
+    "colour": "Black",
+    "devicePort": 8203
+  },
+  {
+    "name": "Samsung Note 9",
+    "udid": "5233584e4a363498",
+    "platformName": "Android",
+    "platformVersion": "9.0",
+    "colour": "Black",
+    "devicePort": 8204
+  },
+  {
+    "name": "Pixel 2 XL",
+    "udid": "803KPSL1612694",
+    "platformName": "Android",
+    "platformVersion": "8.1.0",
+    "colour": "Black",
+    "devicePort": 8205
+  },
+  {
+    "name": "Pixel 3",
+    "udid": "89HX09WF4",
+    "platformName": "Android",
+    "platformVersion": "9.0",
+    "colour": "Black",
+    "devicePort": 8206
+  },
+  {
+    "name": "Huawei P20",
+    "udid": "BPN0218515003355",
+    "platformName": "Android",
+    "platformVersion": "8.1.0",
+    "colour": "Black",
+    "devicePort": 8207
+  },
+  {
+    "name": "Samsung S9",
+    "udid": "4c4757534c573398",
+    "platformName": "Android",
+    "platformVersion": "8.1.0",
+    "colour": "Black",
+    "devicePort": 8208
+  },
+  {
+    "name": "LG G7",
+    "udid": "LMG710AWM68a3ff16",
+    "platformName": "Android",
+    "platformVersion": "8.0",
+    "colour": "Black",
+    "devicePort": 8209
+  },
+  {
+    "name": "Samsung S10",
+    "udid": "RF8M32J4G5E",
+    "platformName": "Android",
+    "platformVersion": "9.0",
+    "colour": "White",
+    "devicePort": 8210
+  },
+  {
+    "name": "Huawei P30 Pro",
+    "udid": "URT7N19322012788",
+    "platformName": "Android",
+    "platformVersion": "9.1",
+    "colour": "Black",
+    "devicePort": 8211
+  },
+  {
+    "name": "Galaxy S8",
+    "udid": "988838363144455259",
+    "platformName": "Android",
+    "platformVersion": "8.0",
+    "colour": "Black",
+    "devicePort": 8212
+  },
+  {
+    "name": "Pixel 3a XL",
+    "udid": "93GAX07VLP",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8213
+  },
+  {
+    "name": "Samsung S10",
+    "udid": "RF8M639BRLL",
+    "platformName": "Android",
+    "platformVersion": "9.0",
+    "colour": "Blue",
+    "devicePort": 8214
+  },
+  {
+    "name": "Pixel 3 XL",
+    "udid": "8BRY12GXE",
+    "platformName": "Android",
+    "platformVersion": "9.0",
+    "colour": "White",
+    "devicePort": 8215
+  },
+  {
+    "name": "LG G8",
+    "udid": "LMG820UM5b25f2d7",
+    "platformName": "Android",
+    "platformVersion": "9.0",
+    "colour": "Black",
+    "devicePort": 8216
+  },
+  {
+    "name": "Samsung S10 plus",
+    "udid": "R38M601HGRH",
+    "platformName": "Android",
+    "platformVersion": "9.0",
+    "colour": "White",
+    "devicePort": 8217
+  },
+  {
+    "name": "Samsung Note 4",
+    "udid": "6221c8cc",
+    "platformName": "Android",
+    "platformVersion": "9.0",
+    "colour": "Blue",
+    "devicePort": 8218
+  },
+  {
+    "name": "Pixel 4 XL",
+    "udid": "9B201FFBA002P5",
+    "platformName": "Android",
+    "platformVersion": "10.0",
+    "colour": "Black",
+    "devicePort": 8219
+  },
+  {
+    "name": "Black Berry BBF100",
+    "udid": "5000360553",
+    "platformName": "Android",
+    "platformVersion": "8.0",
+    "colour": "Black",
+    "devicePort": 8220
+  },
+  {
+    "name": "Samsung S10 plus",
+    "udid": "R58M77GX0XZ",
+    "platformName": "Android",
+    "platformVersion": "10.0",
+    "colour": "White",
+    "devicePort": 8221
+  },
+  {
+    "name": "Samsung S20",
+    "udid": "R3CN20C5BKF",
+    "platformName": "Android",
+    "platformVersion": "10.0",
+    "colour": "Black",
+    "devicePort": 8222
+  },
+  {
+    "name": "Samsung S20",
+    "udid": "R3CN20AACGK",
+    "platformName": "Android",
+    "platformVersion": "10.0",
+    "colour": "Black",
+    "devicePort": 8223
+  },
+  {
+    "name": "Pixel 4",
+    "udid": "98261FFAZ001NL",
+    "platformName": "Android",
+    "platformVersion": "10.0",
+    "colour": "Black",
+    "devicePort": 8224
+  },
+  {
+    "name": "Motorola Moto one",
+    "udid": "ZY326QFCZP",
+    "platformName": "Android",
+    "platformVersion": "11.0",
+    "colour": "Black",
+    "devicePort": 8225
+  },
+  {
+    "name": "Samsung S20 5G",
+    "udid": "RFCN20JNWGP",
+    "platformName": "Android",
+    "platformVersion": "11.0",
+    "colour": "Blue",
+    "devicePort": 8226
+  },
+  {
+    "name": "Samsung A51",
+    "udid": "R58N70GGVZH",
+    "platformName": "Android",
+    "platformVersion": "10.0",
+    "colour": "Black",
+    "devicePort": 8227
+  },
+  {
+    "name": "TCL 10 Pro",
+    "udid": "67965c96",
+    "platformName": "Android",
+    "platformVersion": "10.0",
+    "colour": "Black",
+    "devicePort": 8228
+  },
+  {
+    "name": "LG Velvet",
+    "udid": "LMG900UM1b759d9d",
+    "platformName": "Android",
+    "platformVersion": "10.0",
+    "colour": "PinkGold",
+    "devicePort": 8229
+  },
+  {
+    "name": "Samsung S20 5G",
+    "udid": "R5CN30JLFYH",
+    "platformName": "Android",
+    "platformVersion": "11.0",
+    "colour": "White",
+    "devicePort": 8230
+  },
+  {
+    "name": "LG K20",
+    "udid": "LMX120L7IB9PP7V899",
+    "platformName": "Android",
+    "platformVersion": "10.0",
+    "colour": "Black",
+    "devicePort": 8231
+  },
+  {
+    "name": "Galaxy Note 20 5G",
+    "udid": "RFCN70BQCJX",
+    "platformName": "Android",
+    "platformVersion": "11.0",
+    "colour": "Pink Gold",
+    "devicePort": 8232
+  },
+  {
+    "name": "One Plus 8",
+    "udid": "06a49bf4",
+    "platformName": "Android",
+    "platformVersion": "10.0",
+    "colour": "White",
+    "devicePort": 8233
+  },
+  {
+    "name": "A7 Pro",
+    "udid": "A7PRO205077289",
+    "platformName": "Android",
+    "platformVersion": "10.0",
+    "colour": "White",
+    "devicePort": 8234
+  },
+  {
+    "name": "Huawei Y9 Prime",
+    "udid": "SLVNW20811004208",
+    "platformName": "Android",
+    "platformVersion": "10.0",
+    "colour": "White",
+    "devicePort": 8235
+  },
+  {
+    "name": "Huawei MediaPad T3 10",
+    "udid": "D8TNU20317105075",
+    "platformName": "Android",
+    "platformVersion": "10.0",
+    "colour": "White",
+    "devicePort": 8236
+  },
+  {
+    "name": "Nokia 8236",
+    "udid": "N0AA003657K70900229",
+    "platformName": "Android",
+    "platformVersion": "11.0",
+    "colour": "White",
+    "devicePort": 8237
+  },
+  {
+    "name": "Samsung Galaxy A31",
+    "udid": "RF8N70XJA4P",
+    "platformName": "Android",
+    "platformVersion": "10.0",
+    "colour": "Prism Crush Blue",
+    "devicePort": 8238
+  },
+  {
+    "name": "Motorola one hyper",
+    "udid": "ZY22BH4R8B",
+    "platformName": "Android",
+    "platformVersion": "11.0",
+    "colour": "Blue",
+    "devicePort": 8239
+  },
+  {
+    "name": "Pixel 5",
+    "udid": "0B271FDD4003AS",
+    "platformName": "Android",
+    "platformVersion": "11.0",
+    "colour": "Black",
+    "devicePort": 8240
+  },
+  {
+    "name": "Samsung S21 5G",
+    "udid": "R5CR104V68R",
+    "platformName": "Android",
+    "platformVersion": "11.0",
+    "colour": "Rose-Gold",
+    "devicePort": 8241
+  },
+  {
+    "name": "Galaxy Tab A 8",
+    "udid": "76ca8d7e",
+    "platformName": "Android",
+    "platformVersion": "10.0",
+    "colour": "Black",
+    "devicePort": 8242
+  },
+  {
+    "name": "Samsung S21 Ultra 5G",
+    "udid": "R5CR108J5JX",
+    "platformName": "Android",
+    "platformVersion": "11.0",
+    "colour": "Grey",
+    "devicePort": 8243
+  },
+  {
+    "name": "Samsung Z Fold2 5G",
+    "udid": "R3CR109VJ0L",
+    "platformName": "Android",
+    "platformVersion": "11.0",
+    "colour": "Grey",
+    "devicePort": 8244
+  },
+  {
+    "name": "Samsung S21 Plus",
+    "udid": "RFCR1004VJJ",
+    "platformName": "Android",
+    "platformVersion": "11.0",
+    "colour": "Violet",
+    "devicePort": 8245
+  },
+  {
+    "name": "HUAWEI VOG-L04",
+    "udid": "URT7N19322000504",
+    "platformName": "Android",
+    "platformVersion": "10.0",
+    "colour": "Violet",
+    "devicePort": 8246
+  },
+  {
+    "name": "Samsung Note20 ultra",
+    "udid": "R3CR10MH9KE",
+    "platformName": "Android",
+    "platformVersion": "11.0",
+    "colour": "Black",
+    "devicePort": 8247
+  },
+  {
+    "name": "Pixel 5",
+    "udid": "13201FDD4001SR",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8248
+  },
+  {
+    "name": "Motorola one 5G ace",
+    "udid": "ZY22BXDT3X",
+    "platformName": "Android",
+    "platformVersion": "11.0",
+    "colour": "Black",
+    "devicePort": 8249
+  },
+  {
+    "name": "Pixel 4A",
+    "udid": "15141JEC201224",
+    "platformName": "Android",
+    "platformVersion": "11.0",
+    "colour": "Black",
+    "devicePort": 8250
+  },
+  {
+    "name": "Huawei P40 pro",
+    "udid": "9RJ0220516003054",
+    "platformName": "Android",
+    "platformVersion": "10.0",
+    "colour": "Blue",
+    "devicePort": 8251
+  },
+  {
+    "name": "Samsung S21",
+    "udid": "RFCR1037MRV",
+    "platformName": "Android",
+    "platformVersion": "10.0",
+    "colour": "Black",
+    "devicePort": 8252
+  },
+  {
+    "name": "Samsung S21",
+    "udid": "R5CR10D001K",
+    "platformName": "Android",
+    "platformVersion": "11.0",
+    "colour": "Black",
+    "devicePort": 8253
+  },
+  {
+    "name": "Samsung A52",
+    "udid": "R5CR912M1LT",
+    "platformName": "Android",
+    "platformVersion": "11.0",
+    "colour": "Black",
+    "devicePort": 8254
+  },
+  {
+    "name": "Samsung A31",
+    "udid": "R58NA1FX8DT",
+    "platformName": "Android",
+    "platformVersion": "11.0",
+    "colour": "Black",
+    "devicePort": 8255
+  },
+  {
+    "name": "Motorola one 5G Ace",
+    "udid": "ZY22DHKP74",
+    "platformName": "Android",
+    "platformVersion": "11.0",
+    "colour": "Black",
+    "devicePort": 8256
+  },
+  {
+    "name": "Pixel 6",
+    "udid": "1B221FDF6001L3",
+    "platformName": "Android",
+    "platformVersion": "11.0",
+    "colour": "Black",
+    "devicePort": 8257
+  },
+  {
+    "name": "Pixel 6 Pro",
+    "udid": "1C041FDEE000SH",
+    "platformName": "Android",
+    "platformVersion": "11.0",
+    "colour": "Black",
+    "devicePort": 8258
+  },
+  {
+    "name": "TCL 20 Pro",
+    "udid": "1a2e2032",
+    "platformName": "Android",
+    "platformVersion": "11.0",
+    "colour": "Black",
+    "devicePort": 8259
+  },
+  {
+    "name": "Samsung Z Flip 3",
+    "udid": "R5CT103Z3BR",
+    "platformName": "Android",
+    "platformVersion": "11.0",
+    "colour": "Black",
+    "devicePort": 8260
+  },
+  {
+    "name": "Google Pixel 6 Pro",
+    "udid": "1C041FDEE000RU",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8261
+  },
+  {
+    "name": "motorola moto g pure",
+    "udid": "ZY22F4HLMX",
+    "platformName": "Android",
+    "platformVersion": "11.0",
+    "colour": "Black",
+    "devicePort": 8262
+  },
+  {
+    "name": "Samsung SM-G990W",
+    "udid": "R5CT10W15DK",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8263
+  },
+  {
+    "name": "Samsung S21",
+    "udid": "R5CR10T9PLE",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8264
+  },
+  {
+    "name": "Pixel 6",
+    "udid": "21211FDF600831",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8265
+  },
+  {
+    "name": "Samsung S22",
+    "udid": "R5CT121PWXE",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8266
+  },
+  {
+    "name": "Samsung A7 Lite",
+    "udid": "R9PT10W887X",
+    "platformName": "Android",
+    "platformVersion": "11.0",
+    "colour": "Black",
+    "devicePort": 8267
+  },
+  {
+    "name": "Samsung Z flip 3",
+    "udid": "R5CT103Z4JV",
+    "platformName": "Android",
+    "platformVersion": "11.0",
+    "colour": "Black",
+    "devicePort": 8268
+  },
+  {
+    "name": "Samsung Galaxy S22",
+    "udid": "R3CT3094FDA",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8269
+  },
+  {
+    "name": "samsung SM-G996W",
+    "udid": "R3CRC0SNPSL",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8270
+  },
+  {
+    "name": "samsung SM-S901W",
+    "udid": "R5CT12L4PHK",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8271
+  },
+  {
+    "name": "samsung S22",
+    "udid": "R3CRA0PM35M",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8272
+  },
+  {
+    "name": "Pixel 6",
+    "udid": "21111FDF6001RY",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8273
+  },
+  {
+    "name": "Pixel 6",
+    "udid": "16231FDF60006Y",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8274
+  },
+  {
+    "name": "TCL T773O",
+    "udid": "5f92eb5",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8275
+  },
+  {
+    "name": "samsung SM-S908W",
+    "udid": "R5CT335M4LJ",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8276
+  },
+  {
+    "name": "samsung SM-A515W",
+    "udid": "R38MC0AMQCN",
+    "platformName": "Android",
+    "platformVersion": "10.0",
+    "colour": "Black",
+    "devicePort": 8277
+  }
 ]
