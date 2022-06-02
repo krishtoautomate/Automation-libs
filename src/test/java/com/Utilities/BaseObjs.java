@@ -47,14 +47,14 @@ import io.appium.java_client.android.AndroidDriver;
 import io.restassured.response.Response;
 
 public class BaseObjs<T> implements ITestBase {
-  protected WebDriver driver;
+  protected AppiumDriver driver;
   protected WebDriverWait wait;
   protected Logger log;
   protected ExtentTest test;
   protected MobileActions mobileActions;
 
 
-  protected BaseObjs(WebDriver driver, Logger log, ExtentTest test) {
+  protected BaseObjs(AppiumDriver driver, Logger log, ExtentTest test) {
     this.driver = driver;
     this.log = log;
     this.test = test;
@@ -83,8 +83,7 @@ public class BaseObjs<T> implements ITestBase {
   protected WebElement verify_Element(By locator) {
     WebElement ele = null;
     try {
-      ele =
-          new WebDriverWait(driver, 5).until(ExpectedConditions.presenceOfElementLocated(locator));
+      ele = new WebDriverWait(driver, 5).until(ExpectedConditions.presenceOfElementLocated(locator));
     } catch (StaleElementReferenceException e) {
       // ignore
     } catch (Exception e) {
@@ -96,7 +95,7 @@ public class BaseObjs<T> implements ITestBase {
   protected List<WebElement> get_Elements(By locator, String elementDesc) {
     List<WebElement> eles = null;
     try {
-      wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator));
+      new WebDriverWait(driver, 10).until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator));
       eles = driver.findElements(locator);
     } catch (Exception e) {
       String errorMessage = elementDesc + " - Not found in " + this.getClass().getName();

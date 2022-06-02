@@ -4,7 +4,6 @@ import java.io.File;
 import java.lang.reflect.Method;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,7 +34,7 @@ public class TestBaseDeeplinks {
 
   @SuppressWarnings("rawtypes")
   protected AppiumDriver driver;
-  protected Map<Long, WebDriver> driverMap = new ConcurrentHashMap<Long, WebDriver>();
+  protected Map<Long, AppiumDriver> driverMap = new ConcurrentHashMap<Long, AppiumDriver>();
   protected WebDriverWait wait;
   protected TLDriverFactory tlDriverFactory = new TLDriverFactory();
   protected static Logger log;
@@ -47,7 +46,7 @@ public class TestBaseDeeplinks {
 
   protected AppiumDriverLocalService server;
 
-  public synchronized WebDriver getDriver() {
+  public synchronized AppiumDriver getDriver() {
     return driver;
   }
 
@@ -137,8 +136,7 @@ public class TestBaseDeeplinks {
 
       driverMap.put(Thread.currentThread().getId(), tlDriverFactory.getDriver());
 
-      driver =
-          (AppiumDriver<MobileElement>) driverMap.get(Long.valueOf(Thread.currentThread().getId()));
+      driver = driverMap.get(Long.valueOf(Thread.currentThread().getId()));
 
       // } catch (Exception e) {
       //

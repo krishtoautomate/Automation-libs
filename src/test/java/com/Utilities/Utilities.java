@@ -1,6 +1,7 @@
 package com.Utilities;
 
 
+import io.appium.java_client.AppiumDriver;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -29,7 +30,7 @@ import com.jcraft.jsch.SftpException;
 public class Utilities extends BaseObjs<Utilities> {
 
 
-  public Utilities(WebDriver driver, Logger log, ExtentTest test) {
+  public Utilities(AppiumDriver driver, Logger log, ExtentTest test) {
     super(driver, log, test);
   }
 

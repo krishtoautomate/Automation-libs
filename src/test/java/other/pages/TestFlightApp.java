@@ -1,5 +1,6 @@
 package other.pages;
 
+import io.appium.java_client.AppiumDriver;
 import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -32,7 +33,7 @@ public class TestFlightApp extends BaseObjs<TestFlightApp> {
   By password_inputField = By.xpath("//XCUIElementTypeSecureTextField");
   By signIn_btn = By.xpath("//XCUIElementTypeButton[@name='Sign In' or @name='OK']");
 
-  public TestFlightApp(WebDriver driver, Logger log, ExtentTest test) {
+  public TestFlightApp(AppiumDriver driver, Logger log, ExtentTest test) {
     super(driver, log, test);
   }
 

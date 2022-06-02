@@ -1,5 +1,6 @@
 package com.base;
 
+import io.appium.java_client.AppiumDriver;
 import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
@@ -13,12 +14,12 @@ import com.Utilities.Constants;
 
 public class ScreenShotManager {
 
-  private WebDriver driver;
+  private AppiumDriver driver;
 
   private static final Logger log = LoggerFactory.getLogger(Class.class.getName());
 
 
-  public ScreenShotManager(WebDriver driver) {
+  public ScreenShotManager(AppiumDriver driver) {
     this.driver = driver;
   }
 

@@ -1,5 +1,7 @@
 package com.Listeners;
 
+import com.DataManager.DeviceInfoReader;
+import com.ReportManager.ExtentTestManager;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -7,7 +9,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Map;
 import java.util.TimeZone;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.slf4j.Logger;
 import org.testng.IInvokedMethod;
@@ -30,10 +31,10 @@ import com.deviceinformation.DeviceInfo;
 import com.deviceinformation.DeviceInfoImpl;
 import com.deviceinformation.device.DeviceType;
 import com.deviceinformation.model.Device;
+import io.appium.java_client.AppiumDriver;
 
-public class TestListener extends TestListenerAdapter
-    implements ISuiteListener, ITestListener, IInvokedMethodListener {
-
+public class TestListener extends TestBase implements ISuiteListener, ITestListener, IInvokedMethodListener {
+//extends TestListenerAdapter
   protected ReportBuilder reporter = new ReportBuilder();
 
   Jira jiraReporter = new Jira();
@@ -61,8 +62,7 @@ public class TestListener extends TestListenerAdapter
         testResult.getTestContext().getCurrentXmlTest().getAllParameters();
     String platForm = testParams.get("platForm");
 
-    Object testClass = testResult.getInstance();
-    ExtentTest test = ((TestBase) testClass).getExtentTest();
+    ExtentTest test = ExtentTestManager.getTest();
 
     // Categories
     test.assignCategory(platForm);
@@ -121,20 +121,16 @@ public class TestListener extends TestListenerAdapter
     String udid = testParams.get("udid");
     String platForm = testParams.get("platForm");
 
-    DeviceInfo deviceInfo = new DeviceInfoImpl(DeviceType.ALL);
-
-    Device device = deviceInfo.getUdid(udid);
-    String deviceName = device.getDeviceName();
-
-
     System.getenv("BUILD_NUMBER");
     System.getenv("ENVIRONMENT");
     String testName = testResult.getMethod().getMethodName();
 
     Object testClass = testResult.getInstance();
-    WebDriver driver = ((TestBase) testClass).getDriver();
+    AppiumDriver driver = ((TestBase) testClass).getDriver();
     Logger log = ((TestBase) testClass).getLog();
-    ExtentTest test = ((TestBase) testClass).getExtentTest();
+    ExtentTest test = ExtentTestManager.getTest();
+    DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
+    String deviceName = deviceInfoReader.getString("name");
 
     if (driver != null) {
       log.error("Test failed : " + testName + " : " + udid + "_" + deviceName);
@@ -194,16 +190,8 @@ public class TestListener extends TestListenerAdapter
     Map<String, String> testParams =
         testResult.getTestContext().getCurrentXmlTest().getAllParameters();
     String udid = testParams.get("udid");
-
-    DeviceInfo deviceInfo = new DeviceInfoImpl(DeviceType.ALL);
-
-    Device device;
-    String deviceName = "";
-
-    device = deviceInfo.getUdid(udid);
-    deviceName = device.getDeviceName();
-
-
+    DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
+    String deviceName = deviceInfoReader.getString("name");
 
     Object testClass = testResult.getInstance();
     Logger log = ((TestBase) testClass).getLog();

@@ -30,6 +30,10 @@ dependencies {
     testImplementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
     testImplementation 'org.seleniumhq.selenium:selenium-android-driver:2.39.0'
     implementation 'org.seleniumhq.selenium:selenium-support:3.141.59'
+    
+    testImplementation 'io.cucumber:cucumber-java:7.3.1'
+    testImplementation 'io.cucumber:cucumber-testng:7.3.1'
+    testImplementation 'io.cucumber:cucumber-junit:7.2.3'
 
     implementation 'io.appium:java-client:7.6.0'
   	
@@ -81,6 +85,17 @@ tasks.withType(JavaCompile) {
     gradle.projectsEvaluated {
         tasks.withType(JavaCompile) {
             options.compilerArgs << "-Xlint:unchecked"
+        }
+    }
+}
+
+task cucumber() {
+    dependsOn assemble, testClasses
+    doLast {
+        javaexec {
+            main = "io.cucumber.core.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = ['--plugin', 'pretty', '--glue', 'gradle.cucumber', 'src/test/resources']
         }
     }
 }

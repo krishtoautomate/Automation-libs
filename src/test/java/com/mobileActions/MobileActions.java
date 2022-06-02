@@ -26,12 +26,12 @@ import io.appium.java_client.touch.offset.ElementOption;
 
 public class MobileActions {
 
-  private WebDriver driver;
+  private AppiumDriver driver;
   private WebDriverWait wait;
   private Logger log;
   private ExtentTest test;
 
-  public MobileActions(WebDriver driver, Logger log, ExtentTest test) {
+  public MobileActions(AppiumDriver driver, Logger log, ExtentTest test) {
     this.driver = driver;
     this.log = log;
     this.test = test;

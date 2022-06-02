@@ -1,5 +1,6 @@
 package other.testcases;
 
+import com.Driver.BaseDriver;
 import java.util.List;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Optional;
@@ -14,9 +15,10 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import other.pages.TestFlightApp;
 
-public class TestFlight extends TestBase implements ITestBase {
+public class TestFlight extends TestBase implements ITestBase{
 
   String className = this.getClass().getSimpleName();
+
 
   @SuppressWarnings("unchecked")
   @Test
@@ -24,7 +26,6 @@ public class TestFlight extends TestBase implements ITestBase {
   public void TestFlightUpdateScript(@Optional String udid) {
 
     test.getModel().setName(String.format("%s - %s", className, udid));
-
     Utilities utils = new Utilities(driver, log, test);
     TestFlightApp testFlightApp = new TestFlightApp(driver, log, test);
 

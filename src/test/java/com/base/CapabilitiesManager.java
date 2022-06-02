@@ -5,12 +5,15 @@ package com.base;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Map;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import com.Utilities.Constants;
+import org.testng.ITestResult;
+import org.testng.Reporter;
 
 /**
  * Created by Krish on 21.01.2019.
@@ -20,7 +23,15 @@ public class CapabilitiesManager {
   private DesiredCapabilities capabilities = new DesiredCapabilities();
 
   @SuppressWarnings("unchecked")
-  public synchronized DesiredCapabilities loadJSONCapabilities(String capabilitiesName) {
+  public synchronized DesiredCapabilities loadJSONCapabilities() {
+
+
+    ITestResult iTestResult = Reporter.getCurrentTestResult();
+    Map<String, String> testParams =
+        iTestResult.getTestContext().getCurrentXmlTest().getAllParameters();
+
+    String platForm = testParams.get("platForm");
+    String capabilitiesName = "Android".equalsIgnoreCase(platForm)?"ANDROID":"IOS";
 
     try {
       JSONObject jsonObject =
@@ -36,7 +47,6 @@ public class CapabilitiesManager {
     } catch (IOException | ParseException | NullPointerException ex) {
       ex.printStackTrace();
     }
-
     return capabilities;
   }
 }
