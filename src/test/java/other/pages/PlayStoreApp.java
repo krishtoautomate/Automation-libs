@@ -1,5 +1,6 @@
 package other.pages;
 
+import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -24,7 +25,7 @@ public class PlayStoreApp extends BaseObjs<PlayStoreApp> {
       "//android.widget.Button[contains(@text,'UPDATE ALL') or contains(@text,'Update all')]");
 
 
-  public PlayStoreApp(WebDriver driver, Logger log, ExtentTest test) {
+  public PlayStoreApp(AppiumDriver driver, Logger log, ExtentTest test) {
     super(driver, log, test);
   }
 

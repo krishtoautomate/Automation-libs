@@ -1,11 +1,13 @@
 package com.base;
 
+import com.Driver.BaseDriver;
+import com.ReportManager.ExtentManager;
+import com.ReportManager.ExtentTestManager;
 import java.io.File;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,29 +38,18 @@ public class TestBase {
 
   @SuppressWarnings("rawtypes")
   protected AppiumDriver driver;
-  protected Map<Long, WebDriver> driverMap = new ConcurrentHashMap<Long, WebDriver>();
-  protected WebDriverWait wait;
   protected TLDriverFactory tlDriverFactory = new TLDriverFactory();
   protected static Logger log;
-  protected static ExtentReports extent;
   protected ExtentTest test;
   protected ScreenShotManager screenShotManager;
   boolean isAndroid = false;
 
-  public synchronized WebDriver getDriver() {
+  public AppiumDriver<MobileElement> getDriver() {
     return driver;
   }
 
-  public synchronized ExtentTest getExtentTest() {
-    return test;
-  }
-
-  public synchronized Logger getLog() {
+  public Logger getLog() {
     return log;
-  }
-
-  public synchronized ExtentReports getExtentReports() {
-    return extent;
   }
 
   /**
@@ -67,7 +58,7 @@ public class TestBase {
   @BeforeSuite(alwaysRun = true)
   public void setupSuit(ITestContext ctx) {
 
-    ctx.getCurrentXmlTest().getSuite().getName();
+//    ctx.getCurrentXmlTest().getSuite().getName();
 
     // Log4j
     // log = Logger.getLogger(suiteName);
@@ -76,14 +67,11 @@ public class TestBase {
     log = LoggerFactory.getLogger(this.getClass());
 
     // create Report Folder in 'test-output'
-    File reportDir = new File(Constants.REPORT_DIR);
-    if (!reportDir.exists()) {
-      reportDir.mkdirs();
-      log.info("created Folder for Report: " + reportDir.getAbsolutePath().toString());
-    }
-
-    // extent report
-    extent = ExtentManager.createExtentReports("AUTOMATION REPORT", Constants.EXTENT_HTML_REPORT);
+//    File reportDir = new File(Constants.REPORT_DIR);
+//    if (!reportDir.exists()) {
+//      reportDir.mkdirs();
+//      log.info("created Folder for Report: " + reportDir.getAbsolutePath().toString());
+//    }
 
   }
 
@@ -91,21 +79,7 @@ public class TestBase {
   @Parameters({"udid", "platForm"})
   public synchronized void BeforeTest(@Optional String udid, @Optional String platForm,
       ITestContext iTestContext) {
-    if (udid != null) {
-      try {
-        if (!udid.equalsIgnoreCase("auto")) {
 
-          DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
-          String deviceName = deviceInfoReader.getString("name");
-
-          iTestContext.setAttribute("udid", udid);
-          iTestContext.setAttribute("deviceName", deviceName);
-
-        }
-      } catch (Exception e) {
-        // ignore
-      }
-    }
   }
 
   @SuppressWarnings("unchecked")
@@ -118,17 +92,11 @@ public class TestBase {
     String className = this.getClass().getName();
     isAndroid = platForm.equalsIgnoreCase("Android");
 
-    // if (udid != null) {
 
     // Create Session
     log.info("creating session : " + className + " : " + udid);
-    // try {
     tlDriverFactory.setDriver();
-
-    driverMap.put(Thread.currentThread().getId(), tlDriverFactory.getDriver());
-
-    driver =
-        (AppiumDriver<MobileElement>) driverMap.get(Long.valueOf(Thread.currentThread().getId()));
+    driver = tlDriverFactory.getDriverInstance();
 
     /*
      * Test info
@@ -137,14 +105,13 @@ public class TestBase {
       udid =
           ((AppiumDriver<MobileElement>) driver).getCapabilities().getCapability("udid").toString();
 
-
     }
 
     iTestContext.setAttribute("udid", udid);
 
     Map<String, String> testParams = iTestContext.getCurrentXmlTest().getAllParameters();
-    String p_Testdata = testParams.get("p_Testdata");
-    TestDataManager testData = new TestDataManager(p_Testdata);
+    String pTestData = testParams.get("p_Testdata");
+    TestDataManager testData = new TestDataManager(pTestData);
     int index = driver instanceof AndroidDriver ? 0 : 1;
     String testKey = testData.getJsonValue(index, "testKey");
     ITestResult result = Reporter.getCurrentTestResult();
@@ -154,25 +121,17 @@ public class TestBase {
     String deviceName = deviceInfoReader.getString("name");
     String platformVersion = ((AppiumDriver<MobileElement>) driver).getCapabilities()
         .getCapability("platformVersion").toString();
-    // deviceInfoReader.getString("platformVersion");
 
     // Report Content
-    test = extent.createTest(methodName + "(" + platForm + ")").assignDevice(deviceName);
+    test = ExtentTestManager.startTest(methodName + "(" + platForm + ")");
 
     log.info("Test Details : " + className + " : " + platForm + " : " + deviceName);
+    test.assignDevice(deviceName);
     String[][] data = {{"<b>TestCase : </b>", className}, {"<b>Device : </b>", deviceName},
         {"<b>UDID : </b>", udid}, {"<b>Platform : </b>", platForm},
         {"<b>OsVersion : </b>", platformVersion}, {"<b>Jira test-key : </b>",
             "<a href=" + Constants.JIRA_URL + testKey + ">" + testKey + "</a>"}};
-
-
-
     test.info(MarkupHelper.createTable(data));
-
-    // } else {
-    // test = extent.createTest(methodName);
-    // test.info("TestCase : " + methodName);
-    // }
 
   }
 
@@ -182,19 +141,17 @@ public class TestBase {
   @SuppressWarnings("unchecked")
   @AfterMethod
   @Parameters({"udid", "platForm"})
-  public synchronized void AfterClass(@Optional String udid, @Optional String platForm,
-      ITestContext Testctx) {
+  public synchronized void AfterClass(@Optional String udid, @Optional String platForm) {
 
     if (driver != null) {
       try {
-        if ("Android".equalsIgnoreCase(platForm)) {
+        if (isAndroid) {
           ((AndroidDriver<MobileElement>) driver).closeApp();
-          ((AndroidDriver<MobileElement>) driver).quit();
         } else {
-          ((AppiumDriver<MobileElement>) driver).terminateApp(((AppiumDriver<MobileElement>) driver)
+          driver.terminateApp(((AppiumDriver<MobileElement>) driver)
               .getCapabilities().getCapability("bundleId").toString());
-          ((AndroidDriver<MobileElement>) driver).quit();
         }
+        driver.quit();
         log.info("app close");
       } catch (Exception e) {
         // ignore
@@ -212,7 +169,7 @@ public class TestBase {
     }
 
     try {
-      extent.flush(); // -----close extent-report
+      ExtentTestManager.getTest().getExtent().flush();
       log.info(Constants.EXTENT_HTML_REPORT);
     } catch (Exception ign) {
       // ignore
@@ -226,7 +183,7 @@ public class TestBase {
   public void endSuit() {
 
     try {
-      extent.flush(); // -----close extent-report
+      ExtentTestManager.getTest().getExtent().flush(); // -----close extent-report
       log.info(Constants.EXTENT_HTML_REPORT);
     } catch (Exception e) {
       // ignore

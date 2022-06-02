@@ -6,7 +6,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 public interface ITestBase {
 
@@ -14,14 +17,15 @@ public interface ITestBase {
    * TRUE - If element is displayed
    */
   public default boolean isElementDisplayed(WebElement element) {
-    Boolean isDisplayed = false;
     try {
-      isDisplayed = element.isDisplayed() ? true : false;
+      return element.isDisplayed();
     } catch (Exception e) {
       // ignore
     }
-    return isDisplayed;
+    return false;
   }
+
+
 
   /**
    * TRUE - If elements are displayed

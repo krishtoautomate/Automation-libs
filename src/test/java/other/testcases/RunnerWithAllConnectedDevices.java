@@ -40,7 +40,7 @@ public class RunnerWithAllConnectedDevices {
     mySuite.setName("MySuite");
     mySuite.setParallel(XmlSuite.ParallelMode.TESTS);
     // mySuite.addListener("com.Listeners.InvokedSuiteListener");
-    mySuite.setThreadCount(15);
+
 
     List<XmlTest> myTests = new ArrayList<XmlTest>();
 
@@ -62,10 +62,12 @@ public class RunnerWithAllConnectedDevices {
 
       if (update.equalsIgnoreCase("iOS") || update.equalsIgnoreCase("All")) {
 
-        for (int i = 0; i < iosDeviceList.size(); i++) {
-          // i++;
+        // for (int i = 0; i < iosDeviceList.size(); i++) {
+        int i = 0;
+        for (Device device : iosDeviceList) {
+          i++;
 
-          if (iosDeviceList.get(i).getUniqueDeviceID() != null) {
+          if (device.getUniqueDeviceID() != null) {
 
             // Create an instance of XmlTest and assign a name for it.
             XmlTest iosTest = new XmlTest(mySuite);
@@ -75,7 +77,7 @@ public class RunnerWithAllConnectedDevices {
 
             // Test parameters
             iosTest.addParameter("platForm", "IOS");
-            iosTest.addParameter("udid", iosDeviceList.get(i).getUniqueDeviceID());
+            iosTest.addParameter("udid", device.getUniqueDeviceID());
             iosTest.addParameter("REMOTE_HOST", remoteHost);// "localhost"
 
             // Create classes
@@ -144,9 +146,11 @@ public class RunnerWithAllConnectedDevices {
      */
     // add the list of tests to your Suite.
     mySuite.setTests(myTests);
+    mySuite.setThreadCount(45);
 
     // Add the suite to the list of suites.
     List<XmlSuite> mySuites = new ArrayList<XmlSuite>();
+
     mySuites.add(mySuite);
 
     TestNG myTestNG = new TestNG();

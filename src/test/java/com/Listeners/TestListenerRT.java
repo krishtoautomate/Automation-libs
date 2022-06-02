@@ -1,5 +1,7 @@
 package com.Listeners;
 
+import com.ReportManager.ExtentTestManager;
+import io.appium.java_client.AppiumDriver;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -77,7 +79,7 @@ public class TestListenerRT extends TestListenerAdapter
 
     Object testClass = testResult.getInstance();
     Logger log = ((TestBase) testClass).getLog();
-    ExtentTest test = ((TestBase) testClass).getExtentTest();
+    ExtentTest test = ExtentTestManager.getTest();
 
     test.log(Status.INFO, testName + " - Completed as Success");
 
@@ -139,9 +141,9 @@ public class TestListenerRT extends TestListenerAdapter
     String ssPath = null;
 
     Object testClass = testResult.getInstance();
-    WebDriver driver = ((TestBase) testClass).getDriver();
+    AppiumDriver driver = ((TestBase) testClass).getDriver();
     Logger log = ((TestBase) testClass).getLog();
-    ExtentTest test = ((TestBase) testClass).getExtentTest();
+    ExtentTest test = ExtentTestManager.getTest();
 
     if (driver != null) {
       log.error("Test failed : " + className + " : " + udid + "_" + deviceName);
@@ -225,14 +227,14 @@ public class TestListenerRT extends TestListenerAdapter
     String p_Testdata = testParams.get("p_Testdata");
     TestDataManager testData = new TestDataManager(p_Testdata);
     Object testClass = testResult.getInstance();
-    WebDriver driver = ((TestBase) testClass).getDriver();
+    AppiumDriver driver = ((TestBase) testClass).getDriver();
     int index = driver instanceof AndroidDriver ? 0 : 1;
 
     Logger log = ((TestBase) testClass).getLog();
     log.warn("Test Skipped : " + className + " : " + udid + "_" + deviceName);
 
-    ExtentTest test = ((TestBase) testClass).getExtentTest();
-    ExtentReports extent = ((TestBase) testClass).getExtentReports();
+    ExtentTest test = ExtentTestManager.getTest();
+    ExtentReports extent = ExtentTestManager.getTest().getExtent();
 
     try {
       extent.removeTest(test);
