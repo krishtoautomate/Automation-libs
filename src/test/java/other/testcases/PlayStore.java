@@ -37,7 +37,7 @@ public class PlayStore extends TestBase implements ITestBase {
     // utils.logmessage(Status.PASS, "'My apps & games' link clicked");
     // }
 
-    if (isElementDisplayed(playstoreapp.verify_manageAppsAndDevice_btn())) {
+    if (playstoreapp.verify_manageAppsAndDevice_btn()) {
       playstoreapp.get_manageAppsAndDevice_btn().click();
       utils.logmessage(Status.PASS, "'Manage apps and device' link clicked");
     }
@@ -45,13 +45,13 @@ public class PlayStore extends TestBase implements ITestBase {
     sleep(2);
 
     // 3.0 -
-    if (isElementDisplayed(playstoreapp.get_updates_refresh_btn())) {
-      playstoreapp.get_updates_refresh_btn().click();
+    if (playstoreapp.verify_updates_refresh_btn()) {
+//      playstoreapp.get_updates_refresh_btn().click();
       utils.logmessage(Status.PASS, "'updates refresh Button' is clicked");
     }
 
     // 4.0 - Click Update All button
-    if (isElementDisplayed(playstoreapp.verify_updateAll_btn())) {
+    if (playstoreapp.verify_updateAll_btn()) {
       playstoreapp.get_updateAll_btn().click();
       sleep(3);
       utils.logmessage(Status.PASS, "'UPDATE ALL' button clicked");

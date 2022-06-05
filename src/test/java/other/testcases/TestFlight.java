@@ -1,11 +1,5 @@
 package other.testcases;
 
-import com.Driver.BaseDriver;
-import java.util.List;
-import org.openqa.selenium.WebElement;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
 import com.Utilities.ITestBase;
 import com.Utilities.Utilities;
 import com.aventstack.extentreports.Status;
@@ -13,9 +7,13 @@ import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.base.TestBase;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import java.util.List;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
 import other.pages.TestFlightApp;
 
-public class TestFlight extends TestBase implements ITestBase{
+public class TestFlight extends TestBase implements ITestBase {
 
   String className = this.getClass().getSimpleName();
 
@@ -29,7 +27,6 @@ public class TestFlight extends TestBase implements ITestBase{
     Utilities utils = new Utilities(driver, log, test);
     TestFlightApp testFlightApp = new TestFlightApp(driver, log, test);
 
-
     // accept open prompt
     try {
       driver.switchTo().alert().dismiss();
@@ -39,28 +36,28 @@ public class TestFlight extends TestBase implements ITestBase{
       // ignore
     }
 
-
     ((AppiumDriver<MobileElement>) driver).resetApp();
 
     utils.dismissAlert();
 
     if (!((AppiumDriver<MobileElement>) driver).getCapabilities().getCapability("bundleId")
-        .toString().contains("com.apple.TestFlight"))
+        .toString().contains("com.apple.TestFlight")) {
       ((AppiumDriver<MobileElement>) driver).activateApp("com.apple.TestFlight");
+    }
 
-    if (isElementDisplayed(testFlightApp.get_tryAgain_btn())) {
+    if (testFlightApp.verify_tryAgain_btn()) {
       testFlightApp.get_tryAgain_btn().click();
       utils.logmessage(Status.PASS, "'Try Again' Button - is Clicked");
     }
 
-    if (isElementDisplayed(testFlightApp.get_continue_btn())) {
+    if (testFlightApp.verify_continue_btn()) {
       testFlightApp.get_continue_btn().click();
       utils.logmessage(Status.PASS, "Continue Button - is Clicked");
     }
 
     // for ipads
-    if (isElementDisplayed(testFlightApp.verify_apps_back_btn())) {
-      testFlightApp.verify_apps_back_btn().click();
+    if (testFlightApp.verify_apps_back_btn()) {
+      testFlightApp.get_apps_back_btn().click();
       utils.logmessage(Status.PASS, "App back Button - is Clicked");
     }
 
@@ -68,55 +65,54 @@ public class TestFlight extends TestBase implements ITestBase{
     // Verify title
     utils.AssertContains(testFlightApp.get_apps_h1().getText(), "Apps");
 
-    List<WebElement> all_btns = testFlightApp.get_all_btns();
+    if (testFlightApp.verify_all_btns()) {
 
-    try {
-      utils.logmessage(Status.PASS, "Total 'UPDATE' or 'INSTALL' buttons : " + all_btns.size());
+      List<MobileElement> all_btns = testFlightApp.get_all_btns();
 
-      for (int i = 0; i < all_btns.size(); i++) {
-        String button = all_btns.get(i).getText();
+      try {
+        utils.logmessage(Status.PASS, "Total 'UPDATE' or 'INSTALL' buttons : " + all_btns.size());
 
-        String errorXML = driver.getPageSource();
-        test.info(MarkupHelper.createCodeBlock(errorXML));
+        for (int i = 0; i < all_btns.size(); i++) {
+          String button = all_btns.get(i).getText();
 
+          String errorXML = driver.getPageSource();
+          test.info(MarkupHelper.createCodeBlock(errorXML));
 
-        all_btns.get(i).click();
-        utils.logmessage(Status.PASS, button + "- button clicked");
+          all_btns.get(i).click();
+          utils.logmessage(Status.PASS, button + "- button clicked");
+        }
+        sleep(10);
+      } catch (Exception e) {
+        log.info("No 'UPDATE' or 'INSTALL' buttons found");
       }
-      sleep(10);
-    } catch (Exception e) {
-      log.info("No 'UPDATE' or 'INSTALL' buttons found");
-    }
-    String errorXML = driver.getPageSource();
-    test.info(MarkupHelper.createCodeBlock(errorXML));
+      String errorXML = driver.getPageSource();
+      test.info(MarkupHelper.createCodeBlock(errorXML));
 
+      all_btns = testFlightApp.get_all_btns();
+      try {
+        utils.logmessage(Status.PASS, "Total 'UPDATE' or 'INSTALL' buttons : " + all_btns.size());
 
-    all_btns = testFlightApp.get_all_btns();
-    try {
-      utils.logmessage(Status.PASS, "Total 'UPDATE' or 'INSTALL' buttons : " + all_btns.size());
+        for (int i = 0; i < all_btns.size(); i++) {
+          String button = all_btns.get(i).getText();
 
-      for (int i = 0; i < all_btns.size(); i++) {
-        String button = all_btns.get(i).getText();
+          errorXML = driver.getPageSource();
+          test.info(MarkupHelper.createCodeBlock(errorXML));
 
-        errorXML = driver.getPageSource();
-        test.info(MarkupHelper.createCodeBlock(errorXML));
-
-
-        all_btns.get(i).click();
-        utils.logmessage(Status.PASS, button + "- button clicked");
+          all_btns.get(i).click();
+          utils.logmessage(Status.PASS, button + "- button clicked");
+        }
+        sleep(10);
+      } catch (Exception e) {
+        log.info("No 'UPDATE' or 'INSTALL' buttons found");
       }
-      sleep(10);
-    } catch (Exception e) {
-      log.info("No 'UPDATE' or 'INSTALL' buttons found");
-    }
-    errorXML = driver.getPageSource();
-    test.info(MarkupHelper.createCodeBlock(errorXML));
+      errorXML = driver.getPageSource();
+      test.info(MarkupHelper.createCodeBlock(errorXML));
 
-    // for ipads
-    if (isElementDisplayed(testFlightApp.verify_apps_back_btn())) {
-      testFlightApp.verify_apps_back_btn().click();
-      utils.logmessage(Status.PASS, "App back Button - is Clicked");
+      // for ipads
+      if (testFlightApp.verify_apps_back_btn()) {
+        testFlightApp.get_apps_back_btn().click();
+        utils.logmessage(Status.PASS, "App back Button - is Clicked");
+      }
     }
-
   }
 }

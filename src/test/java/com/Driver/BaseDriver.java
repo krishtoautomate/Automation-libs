@@ -12,6 +12,7 @@ import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebElement;
 import com.base.TestBase;
 
+@SuppressWarnings("unchecked")
 public class BaseDriver extends TestBase implements IBaseDriver {
 
 

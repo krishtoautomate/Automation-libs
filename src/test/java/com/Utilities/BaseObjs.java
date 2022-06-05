@@ -1,5 +1,6 @@
 package com.Utilities;
 
+import io.appium.java_client.MobileElement;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -68,54 +69,49 @@ public class BaseObjs<T> implements ITestBase {
     this.test = test;
   }
 
-  protected WebElement get_Element(By locator, String elementDesc) {
+  protected MobileElement get_Element(By locator, String elementDesc) {
     WebElement ele = null;
     try {
-      ele = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+      return (MobileElement) wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     } catch (Exception e) {
       String errorMessage = elementDesc + " - Not found in " + this.getClass().getName();
       logmessage(Status.FAIL, errorMessage);
       Assert.fail(errorMessage);
     }
-    return ele;
+    return null;
   }
 
-  protected WebElement verify_Element(By locator) {
-    WebElement ele = null;
+  protected boolean verify_Element(By locator) {
     try {
-      ele = new WebDriverWait(driver, 5).until(ExpectedConditions.presenceOfElementLocated(locator));
+      return driver.findElement(locator).isDisplayed();
     } catch (StaleElementReferenceException e) {
       // ignore
     } catch (Exception e) {
       // ignore
     }
-    return ele;
+    return false;
   }
 
-  protected List<WebElement> get_Elements(By locator, String elementDesc) {
-    List<WebElement> eles = null;
+  protected List<MobileElement> get_Elements(By locator, String elementDesc) {
     try {
-      new WebDriverWait(driver, 10).until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator));
-      eles = driver.findElements(locator);
+      return driver.findElements(locator);
     } catch (Exception e) {
       String errorMessage = elementDesc + " - Not found in " + this.getClass().getName();
       logmessage(Status.FAIL, errorMessage);
       Assert.fail(errorMessage);
     }
-    return eles;
+    return null;
   }
 
-  protected List<WebElement> verify_Elements(By locator) {
-    List<WebElement> eles = null;
+  protected boolean verify_Elements(By locator) {
     try {
-      wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator));
-      eles = driver.findElements(locator);
+      return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator)).get(0).isDisplayed();
     } catch (StaleElementReferenceException e) {
       // ignore
     } catch (Exception e) {
       // ignore
     }
-    return eles;
+    return false;
   }
 
   public void dismissAlert() {
@@ -454,37 +450,7 @@ public class BaseObjs<T> implements ITestBase {
     wait.until(condition);
   }
 
-  By remindMeLater_btn = By.xpath(
-      "//android.widget.Button[contains(@resource-id, '0_resource_name_obfuscated') and @text='Not now'] | "
-          + "//android.widget.Button[@text='REMIND ME LATER' or @text='Remind me later'] | "
-          + "//android.widget.Button[contains(@resource-id, 'remindMeLatterButton') or @text='REMIND ME LATER' or @text='Remind me later']");
 
-  private WebElement verify_remindMeLater_btn() {
-    mobileActions.waitForProgressBarToDisappear();
-    return verify_Element(remindMeLater_btn);
-  }
-
-  By notNow_btn = MobileBy.iOSNsPredicateString("label == 'Not Now' AND visible =1");
-
-  private WebElement verify_notNow_btn() {
-    mobileActions.waitForProgressBarToDisappear();
-    return verify_Element(notNow_btn);
-  }
-
-  public void dismissAppRating() {
-    boolean isAndroid = driver instanceof AndroidDriver;
-    if (isAndroid) {
-      if (isElementDisplayed(verify_remindMeLater_btn())) {
-        verify_remindMeLater_btn().click();
-        logmessage(Status.INFO, "'REMIND ME LATER' button clicked - for Rate my app!");
-      }
-    } else {
-      if (isElementDisplayed(verify_notNow_btn())) {
-        verify_notNow_btn().click();
-        logmessage(Status.INFO, "'Not Now' button clicked - for Rate my app!");
-      }
-    }
-  }
 
   public void VERIFY_API_STATUS(Response response) {
     if (response.getStatusCode() != HttpStatus.SC_OK) {

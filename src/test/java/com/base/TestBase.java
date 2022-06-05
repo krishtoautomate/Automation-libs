@@ -8,6 +8,9 @@ import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -151,7 +154,7 @@ public class TestBase {
           driver.terminateApp(((AppiumDriver<MobileElement>) driver)
               .getCapabilities().getCapability("bundleId").toString());
         }
-        driver.quit();
+        tlDriverFactory.getDriverInstance().quit();
         log.info("app close");
       } catch (Exception e) {
         // ignore

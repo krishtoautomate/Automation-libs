@@ -1,5 +1,6 @@
 package com.Utilities;
 
+import io.appium.java_client.MobileElement;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,10 +31,10 @@ public interface ITestBase {
   /**
    * TRUE - If elements are displayed
    */
-  public default boolean isElementsDisplayed(List<WebElement> element) {
+  public default boolean isElementsDisplayed(List<MobileElement> elements) {
     Boolean isDisplayed = false;
     try {
-      isDisplayed = element.listIterator().hasNext() ? true : false;
+      isDisplayed = elements.get(0).isDisplayed();
     } catch (Exception e) {
       // ignore
     }
@@ -46,7 +47,7 @@ public interface ITestBase {
   public default boolean isElementEnabled(WebElement element) {
     Boolean isEnabled = false;
     try {
-      isEnabled = element.isEnabled() ? true : false;
+      isEnabled = element.isEnabled();
     } catch (Exception e) {
       // ignore
     }
@@ -59,7 +60,7 @@ public interface ITestBase {
   public default boolean isElementSelected(WebElement element) {
     Boolean isSelected = false;
     try {
-      isSelected = element.isSelected() ? true : false;
+      isSelected = element.isSelected();
     } catch (Exception e) {
       // ignore
     }
