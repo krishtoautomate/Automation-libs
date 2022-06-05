@@ -2,6 +2,17 @@ package com.Listeners;
 
 import com.DataManager.DeviceInfoReader;
 import com.ReportManager.ExtentTestManager;
+import com.ReportManager.ReportBuilder;
+import com.Utilities.Constants;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.MediaEntityBuilder;
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
+import com.base.Jira;
+import com.base.ScreenShotManager;
+import com.base.TLDriverFactory;
+import com.base.TestBase;
+import io.appium.java_client.AppiumDriver;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -18,23 +29,11 @@ import org.testng.ISuiteListener;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
-import com.ReportManager.ReportBuilder;
-import com.Utilities.Constants;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.MediaEntityBuilder;
-import com.aventstack.extentreports.Status;
-import com.aventstack.extentreports.markuputils.MarkupHelper;
-import com.base.Jira;
-import com.base.ScreenShotManager;
-import com.base.TestBase;
-import com.deviceinformation.DeviceInfo;
-import com.deviceinformation.DeviceInfoImpl;
-import com.deviceinformation.device.DeviceType;
-import com.deviceinformation.model.Device;
-import io.appium.java_client.AppiumDriver;
 
-public class TestListener extends TestBase implements ISuiteListener, ITestListener, IInvokedMethodListener {
-//extends TestListenerAdapter
+public class TestListener extends TestListenerAdapter implements ISuiteListener, ITestListener,
+    IInvokedMethodListener {
+
+  //extends TestListenerAdapter
   protected ReportBuilder reporter = new ReportBuilder();
 
   Jira jiraReporter = new Jira();
@@ -67,14 +66,11 @@ public class TestListener extends TestBase implements ISuiteListener, ITestListe
     // Categories
     test.assignCategory(platForm);
 
-
     System.getenv("BUILD_NUMBER");
     System.getenv("ENVIRONMENT");
     String testName = testResult.getMethod().getMethodName();
 
     test.log(Status.INFO, testName + " - Completed as Success");
-
-
 
     // DB update
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
@@ -132,7 +128,8 @@ public class TestListener extends TestBase implements ISuiteListener, ITestListe
     DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
     String deviceName = deviceInfoReader.getString("name");
 
-    if (driver != null) {
+
+//    if (driver != null) {
       log.error("Test failed : " + testName + " : " + udid + "_" + deviceName);
       try {
         ScreenShotManager screenShotManager = new ScreenShotManager(driver);
@@ -161,7 +158,7 @@ public class TestListener extends TestBase implements ISuiteListener, ITestListe
       // "FAIL",
       // testResult.getThrowable().toString());
 
-    }
+//    }
     // Jira
     Date date = new Date();
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
@@ -197,15 +194,6 @@ public class TestListener extends TestBase implements ISuiteListener, ITestListe
     Logger log = ((TestBase) testClass).getLog();
     log.warn("Test Skipped : " + testResult.getMethod().getMethodName() + " : " + udid + "_"
         + deviceName);
-
-    // ExtentTest test = ((TestBase) testClass).getExtentTest();
-    // ExtentReports extent = ((TestBase) testClass).getExtentReports();
-    //
-    // try {
-    // extent.removeTest(test);
-    // } catch (Exception e) {
-    // // ignore
-    // }
   }
 
   @Override
@@ -240,8 +228,9 @@ public class TestListener extends TestBase implements ISuiteListener, ITestListe
       // delete if exists
     }
     String buildNo = System.getenv("BUILD_NUMBER");
-    if (buildNo != null)
+    if (buildNo != null) {
       reporter.writeResults(emailReport);
+    }
 
     // Jira report
     Date date = new Date();
@@ -265,7 +254,6 @@ public class TestListener extends TestBase implements ISuiteListener, ITestListe
   @Override
   public void afterInvocation(IInvokedMethod method, ITestResult testResult) {
     // TODO Auto-generated method stub
-
   }
 
 }

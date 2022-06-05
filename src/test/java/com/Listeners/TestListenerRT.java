@@ -34,7 +34,7 @@ import com.base.ScreenShotManager;
 import com.base.TestBase;
 import io.appium.java_client.android.AndroidDriver;
 
-public class TestListenerRT extends TestListenerAdapter
+public class TestListenerRT extends TestBase
     implements ISuiteListener, ITestListener, IInvokedMethodListener {
 
   protected ReportBuilder reporter = new ReportBuilder();
@@ -141,7 +141,7 @@ public class TestListenerRT extends TestListenerAdapter
     String ssPath = null;
 
     Object testClass = testResult.getInstance();
-    AppiumDriver driver = ((TestBase) testClass).getDriver();
+    AppiumDriver driver = tlDriverFactory.getDriverInstance();
     Logger log = ((TestBase) testClass).getLog();
     ExtentTest test = ExtentTestManager.getTest();
 
@@ -227,7 +227,7 @@ public class TestListenerRT extends TestListenerAdapter
     String p_Testdata = testParams.get("p_Testdata");
     TestDataManager testData = new TestDataManager(p_Testdata);
     Object testClass = testResult.getInstance();
-    AppiumDriver driver = ((TestBase) testClass).getDriver();
+    AppiumDriver driver = tlDriverFactory.getDriverInstance();
     int index = driver instanceof AndroidDriver ? 0 : 1;
 
     Logger log = ((TestBase) testClass).getLog();

@@ -33,7 +33,7 @@ public class PlayStoreApp extends BaseObjs<PlayStoreApp> {
     return get_Element(accountLogo, "Account logo(right cornor) button");
   }
 
-  public WebElement verify_myApps_and_games_btn() {
+  public boolean verify_myApps_and_games_btn() {
     return verify_Element(myApps_and_games_btn);
   }
 
@@ -41,7 +41,7 @@ public class PlayStoreApp extends BaseObjs<PlayStoreApp> {
     return get_Element(myApps_and_games_btn, "'My apps & games' button");
   }
 
-  public WebElement verify_manageAppsAndDevice_btn() {
+  public boolean verify_manageAppsAndDevice_btn() {
     return verify_Element(manageAppsAndDevice_btn);
   }
 
@@ -49,11 +49,11 @@ public class PlayStoreApp extends BaseObjs<PlayStoreApp> {
     return get_Element(manageAppsAndDevice_btn, "'Manage apps and device' button");
   }
 
-  public WebElement get_updates_refresh_btn() {
+  public boolean verify_updates_refresh_btn() {
     return verify_Element(updates_refresh_btn);
   }
 
-  public WebElement verify_updateAll_btn() {
+  public boolean verify_updateAll_btn() {
     return verify_Element(updateAll_btn);
   }
 
