@@ -126,7 +126,7 @@ public class TestListener extends TestBase implements ISuiteListener, ITestListe
     String testName = testResult.getMethod().getMethodName();
 
     Object testClass = testResult.getInstance();
-    AppiumDriver driver = ((TestBase) testClass).getDriver();
+    AppiumDriver driver = tlDriverFactory.getDriverInstance();
     Logger log = ((TestBase) testClass).getLog();
     ExtentTest test = ExtentTestManager.getTest();
     DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
@@ -197,15 +197,6 @@ public class TestListener extends TestBase implements ISuiteListener, ITestListe
     Logger log = ((TestBase) testClass).getLog();
     log.warn("Test Skipped : " + testResult.getMethod().getMethodName() + " : " + udid + "_"
         + deviceName);
-
-    // ExtentTest test = ((TestBase) testClass).getExtentTest();
-    // ExtentReports extent = ((TestBase) testClass).getExtentReports();
-    //
-    // try {
-    // extent.removeTest(test);
-    // } catch (Exception e) {
-    // // ignore
-    // }
   }
 
   @Override
@@ -265,7 +256,6 @@ public class TestListener extends TestBase implements ISuiteListener, ITestListe
   @Override
   public void afterInvocation(IInvokedMethod method, ITestResult testResult) {
     // TODO Auto-generated method stub
-
   }
 
 }

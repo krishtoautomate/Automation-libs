@@ -47,10 +47,6 @@ public class TestBase {
   protected ScreenShotManager screenShotManager;
   boolean isAndroid = false;
 
-  public AppiumDriver<MobileElement> getDriver() {
-    return driver;
-  }
-
   public Logger getLog() {
     return log;
   }
@@ -68,21 +64,6 @@ public class TestBase {
 
     // Logback
     log = LoggerFactory.getLogger(this.getClass());
-
-    // create Report Folder in 'test-output'
-//    File reportDir = new File(Constants.REPORT_DIR);
-//    if (!reportDir.exists()) {
-//      reportDir.mkdirs();
-//      log.info("created Folder for Report: " + reportDir.getAbsolutePath().toString());
-//    }
-
-  }
-
-  @BeforeTest
-  @Parameters({"udid", "platForm"})
-  public synchronized void BeforeTest(@Optional String udid, @Optional String platForm,
-      ITestContext iTestContext) {
-
   }
 
   @SuppressWarnings("unchecked")
