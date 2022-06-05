@@ -74,7 +74,7 @@ public class TLDriverFactory {
     driverMap.put(Thread.currentThread().getId(), tlDriver.get());
   }
 
-  public synchronized AppiumDriver getDriver() {
+  private synchronized AppiumDriver getDriver() {
     return tlDriver.get();
   }
 

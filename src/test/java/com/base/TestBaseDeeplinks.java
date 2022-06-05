@@ -102,22 +102,6 @@ public class TestBaseDeeplinks {
 
   }
 
-  // @BeforeTest
-  // @Parameters({"udid"})
-  // public synchronized void BeforeTest(@Optional String udid, ITestContext iTestContext)
-  // throws IOException, DeviceNotFoundException {
-  // if (udid != null) {
-  // if (!udid.equalsIgnoreCase("auto")) {
-  //
-  // DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
-  // String deviceName = deviceInfoReader.getString("name");
-  //
-  // iTestContext.setAttribute("udid", udid);
-  // iTestContext.setAttribute("deviceName", deviceName);
-  // }
-  // }
-  // }
-
   @SuppressWarnings("unchecked")
   @BeforeMethod
   @Parameters({"udid", "platForm"})
@@ -131,20 +115,9 @@ public class TestBaseDeeplinks {
 
       // Create Session
       log.info("creating session : " + className + " : " + udid);
-      // try {
+
       tlDriverFactory.setDriver();
-
-      driverMap.put(Thread.currentThread().getId(), tlDriverFactory.getDriver());
-
-      driver = driverMap.get(Long.valueOf(Thread.currentThread().getId()));
-
-      // } catch (Exception e) {
-      //
-      // appiumManager.killPort(appiumManager.getDevicePort(udid));
-      //
-      // log.error("session failed : " + e.getLocalizedMessage());
-      // throw new SkipException("session failed : " + e.getLocalizedMessage());
-      // }
+      driver = tlDriverFactory.getDriverInstance();
 
       /*
        * Test info
