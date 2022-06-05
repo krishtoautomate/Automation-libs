@@ -1,14 +1,5 @@
 package com.base;
 
-import com.Driver.MobiDriver;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.testng.ITestResult;
-import org.testng.Reporter;
 import com.DataManager.DeviceInfoReader;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
@@ -16,6 +7,13 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.ITestResult;
+import org.testng.Reporter;
 
 public class TLDriverFactory {
 
@@ -28,9 +26,6 @@ public class TLDriverFactory {
   private DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
   AppiumService appiumService = new AppiumService();
   private AppiumDriverLocalService server;
-
-  int retry = 5;
-  int interval = 1000;
 
   public synchronized void setDriver() throws MalformedURLException {
 
@@ -70,12 +65,10 @@ public class TLDriverFactory {
 
       tlDriver.set(new IOSDriver<MobileElement>(new URL(REMOTE_HOST), desiredCapabilities));
 
+      sleep(5);
+
     }
     driverMap.put(Thread.currentThread().getId(), tlDriver.get());
-  }
-
-  private synchronized AppiumDriver getDriver() {
-    return tlDriver.get();
   }
 
   public synchronized AppiumDriver getDriverInstance() {
@@ -83,11 +76,19 @@ public class TLDriverFactory {
   }
 
   public synchronized void quit() {
-
     getDriverInstance().quit();
 
-    if (server.isRunning())
+    if (server.isRunning()) {
       server.stop();
+    }
 
+  }
+
+  public void sleep(int seconds){
+    try {
+      Thread.sleep(seconds*1000);
+    } catch (InterruptedException e) {
+      //ignore
+    }
   }
 }

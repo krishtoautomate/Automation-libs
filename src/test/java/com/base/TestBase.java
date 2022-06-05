@@ -1,17 +1,17 @@
 package com.base;
 
-import com.Driver.BaseDriver;
-import com.ReportManager.ExtentManager;
+import com.DataManager.DeviceInfoReader;
+import com.DataManager.TestDataManager;
 import com.ReportManager.ExtentTestManager;
-import java.io.File;
+import com.Utilities.Constants;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import org.openqa.selenium.By;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.ITestContext;
@@ -21,18 +21,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
-import com.DataManager.DeviceInfoReader;
-import com.DataManager.TestDataManager;
-import com.Utilities.Constants;
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.markuputils.MarkupHelper;
-import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidDriver;
 
 /**
  * Created by Krish on 06.06.2018.
@@ -44,9 +34,11 @@ public class TestBase {
   protected TLDriverFactory tlDriverFactory = new TLDriverFactory();
   protected static Logger log;
   protected ExtentTest test;
-  protected ScreenShotManager screenShotManager;
   boolean isAndroid = false;
 
+  public synchronized AppiumDriver getDriver() {
+    return driver;
+  }
   public Logger getLog() {
     return log;
   }
@@ -75,7 +67,6 @@ public class TestBase {
     String methodName = method.getName();
     String className = this.getClass().getName();
     isAndroid = platForm.equalsIgnoreCase("Android");
-
 
     // Create Session
     log.info("creating session : " + className + " : " + udid);
@@ -111,12 +102,13 @@ public class TestBase {
 
     log.info("Test Details : " + className + " : " + platForm + " : " + deviceName);
     test.assignDevice(deviceName);
+
     String[][] data = {{"<b>TestCase : </b>", className}, {"<b>Device : </b>", deviceName},
         {"<b>UDID : </b>", udid}, {"<b>Platform : </b>", platForm},
         {"<b>OsVersion : </b>", platformVersion}, {"<b>Jira test-key : </b>",
-            "<a href=" + Constants.JIRA_URL + testKey + ">" + testKey + "</a>"}};
-    test.info(MarkupHelper.createTable(data));
+        "<a href=" + Constants.JIRA_URL + testKey + ">" + testKey + "</a>"}};
 
+    test.info(MarkupHelper.createTable(data));
   }
 
   /**
@@ -135,7 +127,6 @@ public class TestBase {
           driver.terminateApp(((AppiumDriver<MobileElement>) driver)
               .getCapabilities().getCapability("bundleId").toString());
         }
-        tlDriverFactory.getDriverInstance().quit();
         log.info("app close");
       } catch (Exception e) {
         // ignore
@@ -145,7 +136,7 @@ public class TestBase {
 
       try {
         tlDriverFactory.quit();
-        log.info("TLdriver quit - done");
+        log.info("driver quit - done");
       } catch (Exception e) {
         // ignore
       }

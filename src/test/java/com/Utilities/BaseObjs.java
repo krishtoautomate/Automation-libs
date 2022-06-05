@@ -49,7 +49,6 @@ import io.restassured.response.Response;
 
 public class BaseObjs<T> implements ITestBase {
   protected AppiumDriver driver;
-  protected WebDriverWait wait;
   protected Logger log;
   protected ExtentTest test;
   protected MobileActions mobileActions;
@@ -60,8 +59,6 @@ public class BaseObjs<T> implements ITestBase {
     this.log = log;
     this.test = test;
     mobileActions = new MobileActions(driver, log, test);
-    wait = new WebDriverWait(driver, 10);
-    driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
   }
 
   protected BaseObjs(Logger log, ExtentTest test) {
@@ -69,10 +66,10 @@ public class BaseObjs<T> implements ITestBase {
     this.test = test;
   }
 
-  protected MobileElement get_Element(By locator, String elementDesc) {
+  protected MobileElement get_Element(By by, String elementDesc) {
     WebElement ele = null;
     try {
-      return (MobileElement) wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+      return (MobileElement) driver.findElement(by);
     } catch (Exception e) {
       String errorMessage = elementDesc + " - Not found in " + this.getClass().getName();
       logmessage(Status.FAIL, errorMessage);
@@ -83,7 +80,7 @@ public class BaseObjs<T> implements ITestBase {
 
   protected boolean verify_Element(By locator) {
     try {
-      return driver.findElement(locator).isDisplayed();
+      return new WebDriverWait(driver, 5).until(ExpectedConditions.presenceOfElementLocated(locator)).isDisplayed();
     } catch (StaleElementReferenceException e) {
       // ignore
     } catch (Exception e) {
@@ -92,26 +89,15 @@ public class BaseObjs<T> implements ITestBase {
     return false;
   }
 
-  protected List<MobileElement> get_Elements(By locator, String elementDesc) {
+  protected List<MobileElement> get_Elements(By by, String elementDesc) {
     try {
-      return driver.findElements(locator);
+      return driver.findElements(by);
     } catch (Exception e) {
       String errorMessage = elementDesc + " - Not found in " + this.getClass().getName();
       logmessage(Status.FAIL, errorMessage);
       Assert.fail(errorMessage);
     }
     return null;
-  }
-
-  protected boolean verify_Elements(By locator) {
-    try {
-      return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator)).get(0).isDisplayed();
-    } catch (StaleElementReferenceException e) {
-      // ignore
-    } catch (Exception e) {
-      // ignore
-    }
-    return false;
   }
 
   public void dismissAlert() {
@@ -333,7 +319,7 @@ public class BaseObjs<T> implements ITestBase {
   protected WebElement get_Element(By locator, String elementDesc, String action) {
     WebElement ele = null;
     try {
-      ele = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+      ele = driver.findElement(locator);
       if (action != null | ele != null | action.equalsIgnoreCase("NONE")) {
         report(Status.PASS, action, ele);
       }
@@ -393,65 +379,6 @@ public class BaseObjs<T> implements ITestBase {
     return imgPath;
   }
 
-  /**
-   * type text in a inputElement
-   */
-  protected void type(String text, By element) {
-    wait.until(ExpectedConditions.visibilityOfElementLocated(element));
-
-    WebElement object = wait.until(ExpectedConditions.visibilityOfElementLocated(element));
-    ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", object);
-
-    driver.findElement(element).sendKeys(text);
-  }
-
-  /**
-   * click on element
-   */
-  protected void click(By element) {
-    wait.until(ExpectedConditions.elementToBeClickable(element));
-    WebElement object = wait.until(ExpectedConditions.visibilityOfElementLocated(element));
-    ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", object);
-    driver.findElement(element).click();
-  }
-
-  /**
-   * find an element
-   */
-  protected void find(By element) {
-    wait.until(ExpectedConditions.visibilityOfElementLocated(element));
-    WebElement object = wait.until(ExpectedConditions.visibilityOfElementLocated(element));
-    ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", object);
-    driver.findElement(element);
-  }
-
-  /**
-   * wait for visibility of locator and timeINSeconds-to-wait
-   */
-  protected void waitForVisibilityOf(By locator, Integer... timeOutInSeconds) {
-    int attempts = 0;
-    while (attempts < 2) {
-      try {
-        waitFor(ExpectedConditions.visibilityOfElementLocated(locator),
-            (timeOutInSeconds.length > 0 ? timeOutInSeconds[0] : null));
-        break;
-      } catch (StaleElementReferenceException e) {
-
-      }
-      attempts++;
-    }
-  }
-
-  /**
-   * wait for expected condition for timeINSeconds-to-wait
-   */
-  protected void waitFor(ExpectedCondition<WebElement> condition, Integer timeOutInSeconds) {
-    timeOutInSeconds = timeOutInSeconds != null ? timeOutInSeconds : 30;
-    wait.until(condition);
-  }
-
-
-
   public void VERIFY_API_STATUS(Response response) {
     if (response.getStatusCode() != HttpStatus.SC_OK) {
       test.fail(MarkupHelper.createCodeBlock(response.getBody().asString()));
@@ -477,32 +404,6 @@ public class BaseObjs<T> implements ITestBase {
     } else {
       test.pass("Verification - RESPONSE contains : " + actual);
     }
-  }
-
-  /**
-   *
-   * Method for Expected Deep Link Title //XCUIElementTypeOther/XCUIElementTypeStaticText[@label]
-   */
-
-  By expected_title = By.xpath(
-      "//android.widget.FrameLayout[contains(@resource-id, 'design_bottom_sheet')]/*/android.widget.TextView | //*[contains(@resource-id,'headerBarTitleTextView') and not(contains(@text,'('))]|//*[contains(@resource-id,'toolbar')]/android.widget.TextView |"
-          + "//*[contains(@resource-id,'id/headerTitleTextView')] | //*[contains(@resource-id,'titleTextView')] |//*[contains(@resource-id,'topbar')]//android.widget.TextView[@index='1'] |//*[@name='LongHeaderTableView.headerView']|"
-          + "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText[@label] |//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText/XCUIElementTypeStaticText[@label] | //XCUIElementTypeNavigationBar/XCUIElementTypeStaticText/XCUIElementTypeStaticText[string-length(@label)>0] |"
-          + "//*[@name='selectTopUpMethodLabel'] |//*[@name='AddOnInfoView.titleLabel']");
-
-  public WebElement get_expected_title() {
-    WebElement ele = null;
-
-    try {
-      wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(expected_title));
-      ele = driver.findElement(expected_title);
-
-    } catch (Exception e) {
-      String message = "Expected Title Not found";
-      logmessage(Status.FAIL, message);
-      Assert.fail(message);
-    }
-    return ele;
   }
 
   /*

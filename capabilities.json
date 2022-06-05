@@ -22,7 +22,7 @@
 			"autoLaunch": true,
 			"fullReset": false,
 			"noReset": false,
-			"newCommandTimeout": 60,
+			"newCommandTimeout": 120,
 			"autoDismissAlerts": true,
 			"bundleId": "com.apple.TestFlight",
 			"wdaStartupRetries": 2,
