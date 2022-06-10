@@ -22,7 +22,7 @@ public class MobiDriver extends AppiumDriver{
     this.driver = driver;
   }
 
-  public Boolean isAndroid() {
+  public boolean isAndroid() {
     return this.driver instanceof AndroidDriver;
   }
 

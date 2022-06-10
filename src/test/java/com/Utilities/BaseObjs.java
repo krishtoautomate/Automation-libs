@@ -101,7 +101,7 @@ public class BaseObjs<T> implements ITestBase {
   }
 
   public void dismissAlert() {
-    Boolean isAndroid = driver instanceof AndroidDriver;
+    boolean isAndroid = driver instanceof AndroidDriver;
 
     if (!isAndroid) {
       try {

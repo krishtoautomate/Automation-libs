@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Point;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.touch.TouchActions;
@@ -203,6 +204,17 @@ public class MobileActions {
     } catch (InterruptedException e) {
       log.info("wait function failed!");
     }
+  }
+
+  protected boolean isElementDisplayed(By by) {
+    try {
+      return driver.findElement(by).isDisplayed();
+    } catch (StaleElementReferenceException e) {
+      // ignore
+    } catch (Exception e) {
+      // ignore
+    }
+    return false;
   }
 
   /**
