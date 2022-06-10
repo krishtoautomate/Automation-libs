@@ -36,13 +36,13 @@ public class TestFlight extends TestBase implements ITestBase {
       // ignore
     }
 
-    ((AppiumDriver<MobileElement>) driver).resetApp();
+    driver.resetApp();
 
     utils.dismissAlert();
 
-    if (!((AppiumDriver<MobileElement>) driver).getCapabilities().getCapability("bundleId")
+    if (!driver.getCapabilities().getCapability("bundleId")
         .toString().contains("com.apple.TestFlight")) {
-      ((AppiumDriver<MobileElement>) driver).activateApp("com.apple.TestFlight");
+      driver.activateApp("com.apple.TestFlight");
     }
 
     if (testFlightApp.verify_tryAgain_btn()) {

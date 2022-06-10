@@ -11,6 +11,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.ITestResult;
 import org.testng.Reporter;
@@ -65,10 +66,13 @@ public class TLDriverFactory {
 
       tlDriver.set(new IOSDriver<MobileElement>(new URL(REMOTE_HOST), desiredCapabilities));
 
-      sleep(5);
-
     }
     driverMap.put(Thread.currentThread().getId(), tlDriver.get());
+//    System.out.println("Thread Id : "+ Thread.currentThread().getId());
+//    System.out.println("Session Id : "+ tlDriver.get().getSessionId());
+
+    getDriverInstance().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
   }
 
   public synchronized AppiumDriver getDriverInstance() {
@@ -84,9 +88,9 @@ public class TLDriverFactory {
 
   }
 
-  public void sleep(int seconds){
+  public void sleep(int seconds) {
     try {
-      Thread.sleep(seconds*1000);
+      Thread.sleep(seconds * 1000);
     } catch (InterruptedException e) {
       //ignore
     }

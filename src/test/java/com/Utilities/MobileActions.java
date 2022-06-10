@@ -1,25 +1,5 @@
 package com.Utilities;
 
-import java.time.Duration;
-import java.util.HashMap;
-import java.util.concurrent.TimeUnit;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Pause;
-import org.openqa.selenium.interactions.PointerInput;
-import org.openqa.selenium.interactions.PointerInput.Kind;
-import org.openqa.selenium.interactions.PointerInput.MouseButton;
-import org.openqa.selenium.interactions.PointerInput.Origin;
-import org.openqa.selenium.interactions.Sequence;
-import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.slf4j.Logger;
-import org.testng.Assert;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.google.common.collect.ImmutableList;
@@ -31,11 +11,28 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.touch.offset.ElementOption;
+import java.time.Duration;
+import java.util.HashMap;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Point;
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Pause;
+import org.openqa.selenium.interactions.PointerInput;
+import org.openqa.selenium.interactions.PointerInput.Kind;
+import org.openqa.selenium.interactions.PointerInput.MouseButton;
+import org.openqa.selenium.interactions.PointerInput.Origin;
+import org.openqa.selenium.interactions.Sequence;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.slf4j.Logger;
+import org.testng.Assert;
 
 public class MobileActions implements ITestBase {
 
   private AppiumDriver driver;
-  private WebDriverWait wait;
   private Logger log;
   private ExtentTest test;
 
@@ -43,22 +40,17 @@ public class MobileActions implements ITestBase {
     this.driver = driver;
     this.log = log;
     this.test = test;
-    wait = new WebDriverWait(driver, 30);
-    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
   }
 
-  /**
-   * TRUE - If element is displayed
-   */
-  @Override
-  public boolean isElementDisplayed(WebElement element) {
-    Boolean isDisplayed = false;
+  protected boolean isElementDisplayed(By by) {
     try {
-      isDisplayed = element.isDisplayed() ? true : false;
+      return driver.findElement(by).isDisplayed();
+    } catch (StaleElementReferenceException e) {
+      // ignore
     } catch (Exception e) {
       // ignore
     }
-    return isDisplayed;
+    return false;
   }
 
   /**
@@ -104,17 +96,21 @@ public class MobileActions implements ITestBase {
           + "//*[contains(@resource-id, 'Shimmer')]");
 
   public void waitForProgressBarToDisappear() {
-    try {
-      wait.until(ExpectedConditions.invisibilityOfElementLocated(progressBar));
-    } catch (Exception e) {
-      // ignore
-    }
+    for(int i=0;i<4;i++)
+      try {
+        sleep(5);
+        if(!isElementDisplayed(progressBar))
+          break;
+      } catch (Exception e) {
+        // ignore
+      }
   }
 
   @SuppressWarnings("unchecked")
   public void activateApp(String platForm, String bundleId) {
-    if ("ios".equalsIgnoreCase(platForm))
+    if ("ios".equalsIgnoreCase(platForm)) {
       ((AppiumDriver<MobileElement>) driver).activateApp(bundleId);
+    }
   }
 
   @SuppressWarnings("unchecked")
@@ -185,7 +181,6 @@ public class MobileActions implements ITestBase {
       By done_btn = By.xpath(
           "//XCUIElementTypeButton[@name='Done' or @name='next:' or @name='Next:' or @name='Next']");
       try {
-        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(done_btn));
         driver.findElement(done_btn).click();
       } catch (Exception e) {
         log.warn("Hide iOS keyboard failed!!!");
@@ -218,14 +213,13 @@ public class MobileActions implements ITestBase {
   }
 
   public void dismissAlert() {
-    Boolean isAndroid = driver instanceof AndroidDriver ? true : false;
+    boolean isAndroid = driver instanceof AndroidDriver;
 
     if (!isAndroid) {
       try {
         HashMap<String, String> args = new HashMap<>();
         args.put("action", "dismiss");
-        ((RemoteWebDriver) driver).executeScript("mobile: alert", args);
-
+        driver.executeScript("mobile: alert", args);
 
         // driver.switchTo().alert().dismiss();
       } catch (Exception e) {
@@ -296,7 +290,7 @@ public class MobileActions implements ITestBase {
       int deviceWidth = windowSize.getWidth();
       int deviceHeight = windowSize.getHeight();
 
-      isElementDisplayedOnScreen = (eX < deviceWidth | eY < deviceHeight) ? true : false;
+      isElementDisplayedOnScreen = (eX < deviceWidth | eY < deviceHeight);
     } catch (Exception e) {
       // ignore
     }
@@ -610,7 +604,6 @@ public class MobileActions implements ITestBase {
     ((AppiumDriver<MobileElement>) driver).activateApp(BundleID);
     log.info("Switched back to App");
   }
-
 
 
 }

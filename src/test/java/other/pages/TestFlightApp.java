@@ -1,31 +1,26 @@
 package other.pages;
 
+import com.Utilities.BaseObjs;
+import com.aventstack.extentreports.ExtentTest;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import java.util.List;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.slf4j.Logger;
-import com.Utilities.BaseObjs;
-import com.aventstack.extentreports.ExtentTest;
-import io.appium.java_client.MobileBy;
 
 public class TestFlightApp extends BaseObjs<TestFlightApp> {
 
   // TestFlight
   By continue_btn = By.xpath("//XCUIElementTypeButton[@name='Continue Button']");
   By tryAgain_btn = By.xpath("//XCUIElementTypeButton[@name='Try Again']");
-  By update_later_btn = By.xpath("//XCUIElementTypeButton[@name='Later']");
-  By remindMeLater_btn = By.xpath("//XCUIElementTypeButton[@name='Remind Me Later']");
 
   By all_btns = MobileBy.xpath("//XCUIElementTypeButton[@name='UPDATE' or @name='INSTALL']");
   By apps_h1 = MobileBy.iOSNsPredicateString("label == 'Apps' AND visible =1");
-  By open_btn = By.xpath("//XCUIElementTypeButton[@name='OPEN']");
-  By update_btn = MobileBy
-      .iOSNsPredicateString("type == 'XCUIElementTypeButton' AND name == 'UPDATE' AND visible =1");
-  By install_btn = By.xpath("//XCUIElementTypeButton[@name='INSTALL']");
+
+  By apps_back_btn = MobileBy.iOSNsPredicateString(
+      "type=='XCUIElementTypeButton' AND name=='BackButton' AND label=='Apps'");
 
   public TestFlightApp(AppiumDriver driver, Logger log, ExtentTest test) {
     super(driver, log, test);
@@ -47,8 +42,6 @@ public class TestFlightApp extends BaseObjs<TestFlightApp> {
     return get_Element(tryAgain_btn, "try again button");
   }
 
-  By apps_back_btn = MobileBy.iOSNsPredicateString(
-      "type=='XCUIElementTypeButton' AND name=='BackButton' AND label=='Apps'");
 
   public boolean verify_apps_back_btn() {
     return verify_Element(apps_back_btn);
