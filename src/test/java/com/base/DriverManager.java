@@ -23,12 +23,7 @@ public class DriverManager {
   AppiumService appiumService = new AppiumService();
   private AppiumDriverLocalService server;
 
-  int retry = 5;
-  int interval = 1000;
-
   public synchronized void setDriver() throws MalformedURLException {
-
-
 
     ITestResult iTestResult = Reporter.getCurrentTestResult();
     Map<String, String> testParams =

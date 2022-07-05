@@ -12,16 +12,20 @@ import java.net.URL;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 
+@SuppressWarnings("rawtypes")
 public class TLDriverFactory {
 
   // private static Logger log = Logger.getLogger(Class.class.getName());
 
-  @SuppressWarnings("rawtypes")
+
   private ThreadLocal<AppiumDriver> tlDriver = new ThreadLocal<>();
+  private ThreadLocal<WebDriver> tlWebDriver = new ThreadLocal<>();
+  public Map<Long, WebDriver> driverWebMap = new ConcurrentHashMap<Long, WebDriver>();
   protected Map<Long, AppiumDriver> driverMap = new ConcurrentHashMap<Long, AppiumDriver>();
   private CapabilitiesManager capabilitiesManager = new CapabilitiesManager();
   private DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
@@ -47,7 +51,7 @@ public class TLDriverFactory {
     int devicePort = 8100;
     DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
     String deviceName = deviceInfoReader.getString("name");
-    String platformVersion = deviceInfoReader.getString("platformVersion");
+    deviceInfoReader.getString("platformVersion");
     devicePort = deviceInfoReader.getInt("devicePort");
 
     desiredCapabilities = capabilitiesManager.loadJSONCapabilities();
@@ -67,11 +71,13 @@ public class TLDriverFactory {
       tlDriver.set(new IOSDriver<MobileElement>(new URL(REMOTE_HOST), desiredCapabilities));
 
     }
-    driverMap.put(Thread.currentThread().getId(), tlDriver.get());
-//    System.out.println("Thread Id : "+ Thread.currentThread().getId());
-//    System.out.println("Session Id : "+ tlDriver.get().getSessionId());
 
-    getDriverInstance().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+    driverMap.put(Thread.currentThread().getId(), tlDriver.get());
+
+    // System.out.println("Thread Id : "+ Thread.currentThread().getId());
+    // System.out.println("Session Id : "+ tlDriver.get().getSessionId());
+
+    getDriverInstance().manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
   }
 
@@ -88,11 +94,11 @@ public class TLDriverFactory {
 
   }
 
-  public void sleep(int seconds) {
+  private void sleep(int seconds) {
     try {
       Thread.sleep(seconds * 1000);
     } catch (InterruptedException e) {
-      //ignore
+      // ignore
     }
   }
 }

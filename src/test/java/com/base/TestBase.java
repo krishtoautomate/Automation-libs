@@ -1,5 +1,14 @@
 package com.base;
 
+import com.DataManager.DeviceInfoReader;
+import com.DataManager.TestDataManager;
+import com.ReportManager.ExtentTestManager;
+import com.Utilities.Constants;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.util.Map;
@@ -14,15 +23,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
-import com.DataManager.DeviceInfoReader;
-import com.DataManager.TestDataManager;
-import com.ReportManager.ExtentTestManager;
-import com.Utilities.Constants;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.markuputils.MarkupHelper;
-import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidDriver;
 
 /**
  * Created by Krish on 06.06.2018.
@@ -33,7 +33,7 @@ public class TestBase {
   protected TLDriverFactory tlDriverFactory = new TLDriverFactory();
   protected static Logger log;
   protected ExtentTest test;
-  boolean isAndroid = false;
+  protected boolean isAndroid = false;
 
   public synchronized AppiumDriver<MobileElement> getDriver() {
     return driver;
@@ -104,7 +104,7 @@ public class TestBase {
     String[][] data = {{"<b>TestCase : </b>", className}, {"<b>Device : </b>", deviceName},
         {"<b>UDID : </b>", udid}, {"<b>Platform : </b>", platForm},
         {"<b>OsVersion : </b>", platformVersion}, {"<b>Jira test-key : </b>",
-            "<a href=" + Constants.JIRA_URL + testKey + ">" + testKey + "</a>"}};
+        "<a href=" + Constants.JIRA_URL + testKey + ">" + testKey + "</a>"}};
 
     test.info(MarkupHelper.createTable(data));
   }
@@ -137,7 +137,6 @@ public class TestBase {
       } catch (Exception e) {
         // ignore
       }
-
     }
 
     try {

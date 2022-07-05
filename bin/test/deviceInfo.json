@@ -529,6 +529,30 @@
     "devicePort": 8366
   },
   {
+    "name": "iPad mini",
+    "udid": "00008110-001A1CCC3ABB801E",
+    "platformName": "iOS",
+    "platformVersion": "15.5",
+    "colour": "Black",
+    "devicePort": 8367
+  },
+  {
+    "name": "iPhone SE",
+    "udid": "00008110-001178A93A8B801E",
+    "platformName": "iOS",
+    "platformVersion": "15.4",
+    "colour": "Black",
+    "devicePort": 8368
+  },
+  {
+    "name": "iPhone SE",
+    "udid": "00008110-001A35CA3E10401E",
+    "platformName": "iOS",
+    "platformVersion": "15.5",
+    "colour": "Black",
+    "devicePort": 8369
+  },
+  {
     "name": "Samsung S8",
     "udid": "988b9b304b4e4a374a",
     "platformName": "Android",

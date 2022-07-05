@@ -16,9 +16,15 @@ public class ExtentManager {
         .apply();
     reporter.config().setReportName("Automation Report");
     extentReports.attachReporter(reporter,jsonReport);
+
+//    ExtentPDFReporter pdfReport = new ExtentPDFReporter(Constants.EXTENT_PDF_REPORT);
+//    extentReports.attachReporter(pdfReport);
+//    pdfReport.config().setMediaFolders(new String[] {Constants.REPORT_DIR+"img"});
+
     extentReports.setSystemInfo("OS", Constants.HOST_OS);
     extentReports.setSystemInfo("HostIPAddress", Constants.HOST_IP_ADDRESS());
     extentReports.setSystemInfo("Host Name", Constants.HOST_NAME());
+
     return extentReports;
   }
 

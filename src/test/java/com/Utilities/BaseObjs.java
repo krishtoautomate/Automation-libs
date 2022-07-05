@@ -89,6 +89,7 @@ public class BaseObjs<T> implements ITestBase {
     return false;
   }
 
+  @SuppressWarnings("unchecked")
   protected List<MobileElement> get_Elements(By by, String elementDesc) {
     try {
       return driver.findElements(by);
