@@ -16,7 +16,6 @@ public class startApp implements ITestBase {
 
   public void run() {
 
-
     runCommandThruProcess(Constants.ADB
         + " shell am start -a android.intent.action.SENDTO -d sms:+1- --es sms_body \"\" --ez exit_on_sent true");
 

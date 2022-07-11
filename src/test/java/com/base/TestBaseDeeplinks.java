@@ -1,5 +1,17 @@
 package com.base;
 
+import com.DataManager.DeviceInfoReader;
+import com.Utilities.Constants;
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.aventstack.extentreports.reporter.configuration.Theme;
+import com.aventstack.extentreports.reporter.configuration.ViewName;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.service.local.AppiumDriverLocalService;
 import java.io.File;
 import java.lang.reflect.Method;
 import java.util.Map;
@@ -14,32 +26,20 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
-import com.DataManager.DeviceInfoReader;
-import com.Utilities.Constants;
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.markuputils.MarkupHelper;
-import com.aventstack.extentreports.reporter.ExtentSparkReporter;
-import com.aventstack.extentreports.reporter.configuration.Theme;
-import com.aventstack.extentreports.reporter.configuration.ViewName;
-import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.service.local.AppiumDriverLocalService;
 
 /**
  * Created by Krish on 06.06.2018.
  */
 public class TestBaseDeeplinks {
 
+  protected static Logger log;
+  protected static ExtentReports extent;
   @SuppressWarnings("rawtypes")
   protected AppiumDriver driver;
   protected Map<Long, AppiumDriver> driverMap = new ConcurrentHashMap<Long, AppiumDriver>();
   protected WebDriverWait wait;
   protected TLDriverFactory tlDriverFactory = new TLDriverFactory();
-  protected static Logger log;
   protected ExtentSparkReporter htmlReporter;
-  protected static ExtentReports extent;
   protected ExtentTest test;
   protected ScreenShotManager screenShotManager;
 
@@ -86,7 +86,7 @@ public class TestBaseDeeplinks {
     // extent report
     extent = new ExtentReports();
     htmlReporter = new ExtentSparkReporter(Constants.EXTENT_HTML_REPORT).viewConfigurer()
-        .viewOrder().as(new ViewName[] {ViewName.TEST, ViewName.DEVICE, ViewName.AUTHOR,
+        .viewOrder().as(new ViewName[]{ViewName.TEST, ViewName.DEVICE, ViewName.AUTHOR,
             ViewName.EXCEPTION, ViewName.LOG, ViewName.DASHBOARD})
         .apply();
     extent.attachReporter(htmlReporter);
@@ -122,9 +122,10 @@ public class TestBaseDeeplinks {
       /*
        * Test info
        */
-      if ("Auto".equalsIgnoreCase(udid))
+      if ("Auto".equalsIgnoreCase(udid)) {
         udid = ((AppiumDriver<MobileElement>) driver).getCapabilities().getCapability("udid")
             .toString();
+      }
 
       iTestContext.setAttribute("udid", udid);
 

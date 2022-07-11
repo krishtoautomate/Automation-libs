@@ -1,9 +1,5 @@
 package com.deviceinformation;
 
-import java.io.IOException;
-import java.util.List;
-import org.apache.commons.exec.OS;
-import org.apache.commons.lang3.StringUtils;
 import com.deviceinformation.device.DeviceFinder;
 import com.deviceinformation.device.DeviceFinderFactory;
 import com.deviceinformation.device.DeviceType;
@@ -12,6 +8,10 @@ import com.deviceinformation.model.Android;
 import com.deviceinformation.model.Device;
 import com.deviceinformation.model.Ios;
 import com.deviceinformation.model.IosSimulator;
+import java.io.IOException;
+import java.util.List;
+import org.apache.commons.exec.OS;
+import org.apache.commons.lang3.StringUtils;
 
 public class DeviceInfoImpl implements DeviceInfo {
 

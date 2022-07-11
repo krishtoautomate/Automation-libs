@@ -1,15 +1,15 @@
 package com.ReportManager;
 
-import java.io.File;
-import java.util.Arrays;
-import java.util.List;
-import java.util.logging.Logger;
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.request.chat.ChatPostMessageRequest;
 import com.slack.api.methods.request.files.FilesUploadRequest;
 import com.slack.api.methods.response.chat.ChatPostMessageResponse;
+import java.io.File;
+import java.util.Arrays;
+import java.util.List;
+import java.util.logging.Logger;
 
 public class SlackReporter {
 

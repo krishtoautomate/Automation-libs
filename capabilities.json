@@ -26,7 +26,8 @@
 			"autoDismissAlerts": true,
 			"bundleId": "com.apple.TestFlight",
 			"wdaStartupRetries": 2,
-			"wdaStartupRetryInterval": 2000
+			"wdaStartupRetryInterval": 2000,
+			"language": "en"
 		}
 	]
 }

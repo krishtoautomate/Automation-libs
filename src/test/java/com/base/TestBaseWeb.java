@@ -8,9 +8,11 @@ import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import java.lang.reflect.Method;
 import java.util.Map;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 import org.openqa.selenium.WebDriver;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.Reporter;
@@ -26,9 +28,9 @@ import org.testng.annotations.Parameters;
  */
 public class TestBaseWeb {
 
+  public static Logger log;
   public WebDriver driver;
   protected TLDriverFactoryWeb tlDriverFactory = new TLDriverFactoryWeb();
-  public static Logger log;
   protected ExtentTest test;
 
   @BeforeSuite
@@ -40,8 +42,13 @@ public class TestBaseWeb {
     // log = Logger.getLogger(suiteName);
 
     // Logback
-    log = LoggerFactory.getLogger(this.getClass());
+//    log = LoggerFactory.getLogger(this.getClass());
+
+    log = LogManager.getLogManager().getLogger(this.getClass().getSimpleName());
+
   }
+
+
 
   @BeforeMethod(alwaysRun = true)
   @Parameters({"browser"})

@@ -9,6 +9,7 @@ import org.testng.ITestResult;
  * Created by Krish on 21.07.2018.
  */
 public class InvokedMethodListener implements IInvokedMethodListener {
+
   @Override
   public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
     if (method.isTestMethod()) {

@@ -1,8 +1,7 @@
 package other.pages;
 
 import static io.restassured.RestAssured.given;
-import org.junit.Assert;
-import org.slf4j.Logger;
+
 import com.Utilities.BaseObjs;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
@@ -10,6 +9,8 @@ import com.aventstack.extentreports.markuputils.MarkupHelper;
 import io.restassured.RestAssured;
 import io.restassured.authentication.PreemptiveBasicAuthScheme;
 import io.restassured.response.Response;
+import org.junit.Assert;
+import org.slf4j.Logger;
 
 public class LoginObjects extends BaseObjs<LoginObjects> {
 

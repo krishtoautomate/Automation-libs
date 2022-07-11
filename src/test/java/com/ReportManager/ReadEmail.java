@@ -14,7 +14,6 @@ public class ReadEmail {
 
     // System.setProperty("java.net.useSystemProxies", "false");
 
-
     try {
 
       // create properties field
@@ -32,7 +31,6 @@ public class ReadEmail {
       properties.setProperty("mail.pop3.socks.host", "fastweb.int.bell.ca");
       properties.setProperty("mail.pop3.socks.port", "8083");
 
-
       // mail.smtp.proxy.host
       //
       // mail.smtp.proxy.port
@@ -40,7 +38,6 @@ public class ReadEmail {
       // mail.smtp.proxy.user
       //
       // mail.smtp.proxy.password
-
 
       // Mailer mailer = new Mailer(// note: from 5.0.0 on use MailerBuilder instead
       // new ServerConfig("localhost", thePort, theUser, thePasswordd),

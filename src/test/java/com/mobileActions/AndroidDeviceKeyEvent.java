@@ -2,7 +2,9 @@ package com.mobileActions;
 
 public class AndroidDeviceKeyEvent {
 
-  /** Key code constant: Unknown key code. */
+  /**
+   * Key code constant: Unknown key code.
+   */
   public static final int KEYCODE_UNKNOWN = 0;
   /**
    * Key code constant: Soft Left key. Usually situated below the display on phones and used as a
@@ -21,35 +23,65 @@ public class AndroidDeviceKeyEvent {
    * applications.
    */
   public static final int KEYCODE_HOME = 3;
-  /** Key code constant: Back key. */
+  /**
+   * Key code constant: Back key.
+   */
   public static final int KEYCODE_BACK = 4;
-  /** Key code constant: Call key. */
+  /**
+   * Key code constant: Call key.
+   */
   public static final int KEYCODE_CALL = 5;
-  /** Key code constant: End Call key. */
+  /**
+   * Key code constant: End Call key.
+   */
   public static final int KEYCODE_ENDCALL = 6;
-  /** Key code constant: '0' key. */
+  /**
+   * Key code constant: '0' key.
+   */
   public static final int KEYCODE_0 = 7;
-  /** Key code constant: '1' key. */
+  /**
+   * Key code constant: '1' key.
+   */
   public static final int KEYCODE_1 = 8;
-  /** Key code constant: '2' key. */
+  /**
+   * Key code constant: '2' key.
+   */
   public static final int KEYCODE_2 = 9;
-  /** Key code constant: '3' key. */
+  /**
+   * Key code constant: '3' key.
+   */
   public static final int KEYCODE_3 = 10;
-  /** Key code constant: '4' key. */
+  /**
+   * Key code constant: '4' key.
+   */
   public static final int KEYCODE_4 = 11;
-  /** Key code constant: '5' key. */
+  /**
+   * Key code constant: '5' key.
+   */
   public static final int KEYCODE_5 = 12;
-  /** Key code constant: '6' key. */
+  /**
+   * Key code constant: '6' key.
+   */
   public static final int KEYCODE_6 = 13;
-  /** Key code constant: '7' key. */
+  /**
+   * Key code constant: '7' key.
+   */
   public static final int KEYCODE_7 = 14;
-  /** Key code constant: '8' key. */
+  /**
+   * Key code constant: '8' key.
+   */
   public static final int KEYCODE_8 = 15;
-  /** Key code constant: '9' key. */
+  /**
+   * Key code constant: '9' key.
+   */
   public static final int KEYCODE_9 = 16;
-  /** Key code constant: '*' key. */
+  /**
+   * Key code constant: '*' key.
+   */
   public static final int KEYCODE_STAR = 17;
-  /** Key code constant: '#' key. */
+  /**
+   * Key code constant: '#' key.
+   */
   public static final int KEYCODE_POUND = 18;
   /**
    * Key code constant: Directional Pad Up key. May also be synthesized from trackball motions.
@@ -79,81 +111,153 @@ public class AndroidDeviceKeyEvent {
    * Key code constant: Volume Down key. Adjusts the speaker volume down.
    */
   public static final int KEYCODE_VOLUME_DOWN = 25;
-  /** Key code constant: Power key. */
+  /**
+   * Key code constant: Power key.
+   */
   public static final int KEYCODE_POWER = 26;
   /**
    * Key code constant: Camera key. Used to launch a camera application or take pictures.
    */
   public static final int KEYCODE_CAMERA = 27;
-  /** Key code constant: Clear key. */
+  /**
+   * Key code constant: Clear key.
+   */
   public static final int KEYCODE_CLEAR = 28;
-  /** Key code constant: 'A' key. */
+  /**
+   * Key code constant: 'A' key.
+   */
   public static final int KEYCODE_A = 29;
-  /** Key code constant: 'B' key. */
+  /**
+   * Key code constant: 'B' key.
+   */
   public static final int KEYCODE_B = 30;
-  /** Key code constant: 'C' key. */
+  /**
+   * Key code constant: 'C' key.
+   */
   public static final int KEYCODE_C = 31;
-  /** Key code constant: 'D' key. */
+  /**
+   * Key code constant: 'D' key.
+   */
   public static final int KEYCODE_D = 32;
-  /** Key code constant: 'E' key. */
+  /**
+   * Key code constant: 'E' key.
+   */
   public static final int KEYCODE_E = 33;
-  /** Key code constant: 'F' key. */
+  /**
+   * Key code constant: 'F' key.
+   */
   public static final int KEYCODE_F = 34;
-  /** Key code constant: 'G' key. */
+  /**
+   * Key code constant: 'G' key.
+   */
   public static final int KEYCODE_G = 35;
-  /** Key code constant: 'H' key. */
+  /**
+   * Key code constant: 'H' key.
+   */
   public static final int KEYCODE_H = 36;
-  /** Key code constant: 'I' key. */
+  /**
+   * Key code constant: 'I' key.
+   */
   public static final int KEYCODE_I = 37;
-  /** Key code constant: 'J' key. */
+  /**
+   * Key code constant: 'J' key.
+   */
   public static final int KEYCODE_J = 38;
-  /** Key code constant: 'K' key. */
+  /**
+   * Key code constant: 'K' key.
+   */
   public static final int KEYCODE_K = 39;
-  /** Key code constant: 'L' key. */
+  /**
+   * Key code constant: 'L' key.
+   */
   public static final int KEYCODE_L = 40;
-  /** Key code constant: 'M' key. */
+  /**
+   * Key code constant: 'M' key.
+   */
   public static final int KEYCODE_M = 41;
-  /** Key code constant: 'N' key. */
+  /**
+   * Key code constant: 'N' key.
+   */
   public static final int KEYCODE_N = 42;
-  /** Key code constant: 'O' key. */
+  /**
+   * Key code constant: 'O' key.
+   */
   public static final int KEYCODE_O = 43;
-  /** Key code constant: 'P' key. */
+  /**
+   * Key code constant: 'P' key.
+   */
   public static final int KEYCODE_P = 44;
-  /** Key code constant: 'Q' key. */
+  /**
+   * Key code constant: 'Q' key.
+   */
   public static final int KEYCODE_Q = 45;
-  /** Key code constant: 'R' key. */
+  /**
+   * Key code constant: 'R' key.
+   */
   public static final int KEYCODE_R = 46;
-  /** Key code constant: 'S' key. */
+  /**
+   * Key code constant: 'S' key.
+   */
   public static final int KEYCODE_S = 47;
-  /** Key code constant: 'T' key. */
+  /**
+   * Key code constant: 'T' key.
+   */
   public static final int KEYCODE_T = 48;
-  /** Key code constant: 'U' key. */
+  /**
+   * Key code constant: 'U' key.
+   */
   public static final int KEYCODE_U = 49;
-  /** Key code constant: 'V' key. */
+  /**
+   * Key code constant: 'V' key.
+   */
   public static final int KEYCODE_V = 50;
-  /** Key code constant: 'W' key. */
+  /**
+   * Key code constant: 'W' key.
+   */
   public static final int KEYCODE_W = 51;
-  /** Key code constant: 'X' key. */
+  /**
+   * Key code constant: 'X' key.
+   */
   public static final int KEYCODE_X = 52;
-  /** Key code constant: 'Y' key. */
+  /**
+   * Key code constant: 'Y' key.
+   */
   public static final int KEYCODE_Y = 53;
-  /** Key code constant: 'Z' key. */
+  /**
+   * Key code constant: 'Z' key.
+   */
   public static final int KEYCODE_Z = 54;
-  /** Key code constant: ',' key. */
+  /**
+   * Key code constant: ',' key.
+   */
   public static final int KEYCODE_COMMA = 55;
-  /** Key code constant: '.' key. */
+  /**
+   * Key code constant: '.' key.
+   */
   public static final int KEYCODE_PERIOD = 56;
-  /** Key code constant: Left Alt modifier key. */
+  /**
+   * Key code constant: Left Alt modifier key.
+   */
   public static final int KEYCODE_ALT_LEFT = 57;
-  /** Key code constant: Right Alt modifier key. */
+  /**
+   * Key code constant: Right Alt modifier key.
+   */
   public static final int KEYCODE_ALT_RIGHT = 58;
-  /** Key code constant: Left Shift modifier key. */
+  /**
+   * Key code constant: Left Shift modifier key.
+   */
   public static final int KEYCODE_SHIFT_LEFT = 59;
-  /** Key code constant: Right Shift modifier key. */
+  /**
+   * Key code constant: Right Shift modifier key.
+   */
   public static final int KEYCODE_SHIFT_RIGHT = 60;
-  /** Key code constant: Tab key. */
+  /**
+   * Key code constant: Tab key.
+   */
   public static final int KEYCODE_TAB = 61;
-  /** Key code constant: Space key. */
+  /**
+   * Key code constant: Space key.
+   */
   public static final int KEYCODE_SPACE = 62;
   /**
    * Key code constant: Symbol modifier key. Used to enter alternate symbols.
@@ -167,37 +271,59 @@ public class AndroidDeviceKeyEvent {
    * Key code constant: Envelope special function key. Used to launch a mail application.
    */
   public static final int KEYCODE_ENVELOPE = 65;
-  /** Key code constant: Enter key. */
+  /**
+   * Key code constant: Enter key.
+   */
   public static final int KEYCODE_ENTER = 66;
   /**
-   * Key code constant: Backspace key. Deletes characters before the insertion point, unlike
-   * {@link #KEYCODE_FORWARD_DEL}.
+   * Key code constant: Backspace key. Deletes characters before the insertion point, unlike {@link
+   * #KEYCODE_FORWARD_DEL}.
    */
   public static final int KEYCODE_DEL = 67;
-  /** Key code constant: '`' (backtick) key. */
+  /**
+   * Key code constant: '`' (backtick) key.
+   */
   public static final int KEYCODE_GRAVE = 68;
-  /** Key code constant: '-'. */
+  /**
+   * Key code constant: '-'.
+   */
   public static final int KEYCODE_MINUS = 69;
-  /** Key code constant: '=' key. */
+  /**
+   * Key code constant: '=' key.
+   */
   public static final int KEYCODE_EQUALS = 70;
-  /** Key code constant: '[' key. */
+  /**
+   * Key code constant: '[' key.
+   */
   public static final int KEYCODE_LEFT_BRACKET = 71;
-  /** Key code constant: ']' key. */
+  /**
+   * Key code constant: ']' key.
+   */
   public static final int KEYCODE_RIGHT_BRACKET = 72;
-  /** Key code constant: '\' key. */
+  /**
+   * Key code constant: '\' key.
+   */
   public static final int KEYCODE_BACKSLASH = 73;
-  /** Key code constant: ';' key. */
+  /**
+   * Key code constant: ';' key.
+   */
   public static final int KEYCODE_SEMICOLON = 74;
-  /** Key code constant: ''' (apostrophe) key. */
+  /**
+   * Key code constant: ''' (apostrophe) key.
+   */
   public static final int KEYCODE_APOSTROPHE = 75;
-  /** Key code constant: '/' key. */
+  /**
+   * Key code constant: '/' key.
+   */
   public static final int KEYCODE_SLASH = 76;
-  /** Key code constant: '@' key. */
+  /**
+   * Key code constant: '@' key.
+   */
   public static final int KEYCODE_AT = 77;
   /**
    * Key code constant: Number modifier key. Used to enter numeric symbols. This key is not Num
-   * Lock; it is more like {@link #KEYCODE_ALT_LEFT} and is interpreted as an ALT key by
-   * {@link android.text.method.MetaKeyKeyListener}.
+   * Lock; it is more like {@link #KEYCODE_ALT_LEFT} and is interpreted as an ALT key by {@link
+   * android.text.method.MetaKeyKeyListener}.
    */
   public static final int KEYCODE_NUM = 78;
   /**
@@ -208,45 +334,69 @@ public class AndroidDeviceKeyEvent {
    * Key code constant: Camera Focus key. Used to focus the camera.
    */
   public static final int KEYCODE_FOCUS = 80; // *Camera* focus
-  /** Key code constant: '+' key. */
+  /**
+   * Key code constant: '+' key.
+   */
   public static final int KEYCODE_PLUS = 81;
-  /** Key code constant: Menu key. */
+  /**
+   * Key code constant: Menu key.
+   */
   public static final int KEYCODE_MENU = 82;
-  /** Key code constant: Notification key. */
+  /**
+   * Key code constant: Notification key.
+   */
   public static final int KEYCODE_NOTIFICATION = 83;
-  /** Key code constant: Search key. */
+  /**
+   * Key code constant: Search key.
+   */
   public static final int KEYCODE_SEARCH = 84;
-  /** Key code constant: Play/Pause media key. */
+  /**
+   * Key code constant: Play/Pause media key.
+   */
   public static final int KEYCODE_MEDIA_PLAY_PAUSE = 85;
-  /** Key code constant: Stop media key. */
+  /**
+   * Key code constant: Stop media key.
+   */
   public static final int KEYCODE_MEDIA_STOP = 86;
-  /** Key code constant: Play Next media key. */
+  /**
+   * Key code constant: Play Next media key.
+   */
   public static final int KEYCODE_MEDIA_NEXT = 87;
-  /** Key code constant: Play Previous media key. */
+  /**
+   * Key code constant: Play Previous media key.
+   */
   public static final int KEYCODE_MEDIA_PREVIOUS = 88;
-  /** Key code constant: Rewind media key. */
+  /**
+   * Key code constant: Rewind media key.
+   */
   public static final int KEYCODE_MEDIA_REWIND = 89;
-  /** Key code constant: Fast Forward media key. */
+  /**
+   * Key code constant: Fast Forward media key.
+   */
   public static final int KEYCODE_MEDIA_FAST_FORWARD = 90;
   /**
    * Key code constant: Mute key. Mutes the microphone, unlike {@link #KEYCODE_VOLUME_MUTE}.
    */
   public static final int KEYCODE_MUTE = 91;
-  /** Key code constant: Page Up key. */
+  /**
+   * Key code constant: Page Up key.
+   */
   public static final int KEYCODE_PAGE_UP = 92;
-  /** Key code constant: Page Down key. */
+  /**
+   * Key code constant: Page Down key.
+   */
   public static final int KEYCODE_PAGE_DOWN = 93;
   /**
    * Key code constant: Picture Symbols modifier key. Used to switch symbol sets (Emoji, Kao-moji).
    */
   public static final int KEYCODE_PICTSYMBOLS = 94; // switch symbol-sets
-                                                    // (Emoji,Kao-moji)
+  // (Emoji,Kao-moji)
   /**
    * Key code constant: Switch Charset modifier key. Used to switch character sets (Kanji,
    * Katakana).
    */
   public static final int KEYCODE_SWITCH_CHARSET = 95; // switch char-sets
-                                                       // (Kanji,Katakana)
+  // (Kanji,Katakana)
   /**
    * Key code constant: A Button key. On a game controller, the A button should be either the button
    * labeled A or the first button on the upper row of controller buttons.
@@ -319,30 +469,50 @@ public class AndroidDeviceKeyEvent {
    * Key code constant: Mode Button key. On a game controller, the button labeled Mode.
    */
   public static final int KEYCODE_BUTTON_MODE = 110;
-  /** Key code constant: Escape key. */
+  /**
+   * Key code constant: Escape key.
+   */
   public static final int KEYCODE_ESCAPE = 111;
   /**
    * Key code constant: Forward Delete key. Deletes characters ahead of the insertion point, unlike
    * {@link #KEYCODE_DEL}.
    */
   public static final int KEYCODE_FORWARD_DEL = 112;
-  /** Key code constant: Left Control modifier key. */
+  /**
+   * Key code constant: Left Control modifier key.
+   */
   public static final int KEYCODE_CTRL_LEFT = 113;
-  /** Key code constant: Right Control modifier key. */
+  /**
+   * Key code constant: Right Control modifier key.
+   */
   public static final int KEYCODE_CTRL_RIGHT = 114;
-  /** Key code constant: Caps Lock key. */
+  /**
+   * Key code constant: Caps Lock key.
+   */
   public static final int KEYCODE_CAPS_LOCK = 115;
-  /** Key code constant: Scroll Lock key. */
+  /**
+   * Key code constant: Scroll Lock key.
+   */
   public static final int KEYCODE_SCROLL_LOCK = 116;
-  /** Key code constant: Left Meta modifier key. */
+  /**
+   * Key code constant: Left Meta modifier key.
+   */
   public static final int KEYCODE_META_LEFT = 117;
-  /** Key code constant: Right Meta modifier key. */
+  /**
+   * Key code constant: Right Meta modifier key.
+   */
   public static final int KEYCODE_META_RIGHT = 118;
-  /** Key code constant: Function modifier key. */
+  /**
+   * Key code constant: Function modifier key.
+   */
   public static final int KEYCODE_FUNCTION = 119;
-  /** Key code constant: System Request / Print Screen key. */
+  /**
+   * Key code constant: System Request / Print Screen key.
+   */
   public static final int KEYCODE_SYSRQ = 120;
-  /** Key code constant: Break / Pause key. */
+  /**
+   * Key code constant: Break / Pause key.
+   */
   public static final int KEYCODE_BREAK = 121;
   /**
    * Key code constant: Home Movement key. Used for scrolling or moving the cursor around to the
@@ -359,13 +529,17 @@ public class AndroidDeviceKeyEvent {
    */
   public static final int KEYCODE_INSERT = 124;
   /**
-   * Key code constant: Forward key. Navigates forward in the history stack. Complement of
-   * {@link #KEYCODE_BACK}.
+   * Key code constant: Forward key. Navigates forward in the history stack. Complement of {@link
+   * #KEYCODE_BACK}.
    */
   public static final int KEYCODE_FORWARD = 125;
-  /** Key code constant: Play media key. */
+  /**
+   * Key code constant: Play media key.
+   */
   public static final int KEYCODE_MEDIA_PLAY = 126;
-  /** Key code constant: Pause media key. */
+  /**
+   * Key code constant: Pause media key.
+   */
   public static final int KEYCODE_MEDIA_PAUSE = 127;
   /**
    * Key code constant: Close media key. May be used to close a CD tray, for example.
@@ -375,64 +549,118 @@ public class AndroidDeviceKeyEvent {
    * Key code constant: Eject media key. May be used to eject a CD tray, for example.
    */
   public static final int KEYCODE_MEDIA_EJECT = 129;
-  /** Key code constant: Record media key. */
+  /**
+   * Key code constant: Record media key.
+   */
   public static final int KEYCODE_MEDIA_RECORD = 130;
-  /** Key code constant: F1 key. */
+  /**
+   * Key code constant: F1 key.
+   */
   public static final int KEYCODE_F1 = 131;
-  /** Key code constant: F2 key. */
+  /**
+   * Key code constant: F2 key.
+   */
   public static final int KEYCODE_F2 = 132;
-  /** Key code constant: F3 key. */
+  /**
+   * Key code constant: F3 key.
+   */
   public static final int KEYCODE_F3 = 133;
-  /** Key code constant: F4 key. */
+  /**
+   * Key code constant: F4 key.
+   */
   public static final int KEYCODE_F4 = 134;
-  /** Key code constant: F5 key. */
+  /**
+   * Key code constant: F5 key.
+   */
   public static final int KEYCODE_F5 = 135;
-  /** Key code constant: F6 key. */
+  /**
+   * Key code constant: F6 key.
+   */
   public static final int KEYCODE_F6 = 136;
-  /** Key code constant: F7 key. */
+  /**
+   * Key code constant: F7 key.
+   */
   public static final int KEYCODE_F7 = 137;
-  /** Key code constant: F8 key. */
+  /**
+   * Key code constant: F8 key.
+   */
   public static final int KEYCODE_F8 = 138;
-  /** Key code constant: F9 key. */
+  /**
+   * Key code constant: F9 key.
+   */
   public static final int KEYCODE_F9 = 139;
-  /** Key code constant: F10 key. */
+  /**
+   * Key code constant: F10 key.
+   */
   public static final int KEYCODE_F10 = 140;
-  /** Key code constant: F11 key. */
+  /**
+   * Key code constant: F11 key.
+   */
   public static final int KEYCODE_F11 = 141;
-  /** Key code constant: F12 key. */
+  /**
+   * Key code constant: F12 key.
+   */
   public static final int KEYCODE_F12 = 142;
   /**
-   * Key code constant: Num Lock key. This is the Num Lock key; it is different from
-   * {@link #KEYCODE_NUM}. This key alters the behavior of other keys on the numeric keypad.
+   * Key code constant: Num Lock key. This is the Num Lock key; it is different from {@link
+   * #KEYCODE_NUM}. This key alters the behavior of other keys on the numeric keypad.
    */
   public static final int KEYCODE_NUM_LOCK = 143;
-  /** Key code constant: Numeric keypad '0' key. */
+  /**
+   * Key code constant: Numeric keypad '0' key.
+   */
   public static final int KEYCODE_NUMPAD_0 = 144;
-  /** Key code constant: Numeric keypad '1' key. */
+  /**
+   * Key code constant: Numeric keypad '1' key.
+   */
   public static final int KEYCODE_NUMPAD_1 = 145;
-  /** Key code constant: Numeric keypad '2' key. */
+  /**
+   * Key code constant: Numeric keypad '2' key.
+   */
   public static final int KEYCODE_NUMPAD_2 = 146;
-  /** Key code constant: Numeric keypad '3' key. */
+  /**
+   * Key code constant: Numeric keypad '3' key.
+   */
   public static final int KEYCODE_NUMPAD_3 = 147;
-  /** Key code constant: Numeric keypad '4' key. */
+  /**
+   * Key code constant: Numeric keypad '4' key.
+   */
   public static final int KEYCODE_NUMPAD_4 = 148;
-  /** Key code constant: Numeric keypad '5' key. */
+  /**
+   * Key code constant: Numeric keypad '5' key.
+   */
   public static final int KEYCODE_NUMPAD_5 = 149;
-  /** Key code constant: Numeric keypad '6' key. */
+  /**
+   * Key code constant: Numeric keypad '6' key.
+   */
   public static final int KEYCODE_NUMPAD_6 = 150;
-  /** Key code constant: Numeric keypad '7' key. */
+  /**
+   * Key code constant: Numeric keypad '7' key.
+   */
   public static final int KEYCODE_NUMPAD_7 = 151;
-  /** Key code constant: Numeric keypad '8' key. */
+  /**
+   * Key code constant: Numeric keypad '8' key.
+   */
   public static final int KEYCODE_NUMPAD_8 = 152;
-  /** Key code constant: Numeric keypad '9' key. */
+  /**
+   * Key code constant: Numeric keypad '9' key.
+   */
   public static final int KEYCODE_NUMPAD_9 = 153;
-  /** Key code constant: Numeric keypad '/' key (for division). */
+  /**
+   * Key code constant: Numeric keypad '/' key (for division).
+   */
   public static final int KEYCODE_NUMPAD_DIVIDE = 154;
-  /** Key code constant: Numeric keypad '*' key (for multiplication). */
+  /**
+   * Key code constant: Numeric keypad '*' key (for multiplication).
+   */
   public static final int KEYCODE_NUMPAD_MULTIPLY = 155;
-  /** Key code constant: Numeric keypad '-' key (for subtraction). */
+  /**
+   * Key code constant: Numeric keypad '-' key (for subtraction).
+   */
   public static final int KEYCODE_NUMPAD_SUBTRACT = 156;
-  /** Key code constant: Numeric keypad '+' key (for addition). */
+  /**
+   * Key code constant: Numeric keypad '+' key (for addition).
+   */
   public static final int KEYCODE_NUMPAD_ADD = 157;
   /**
    * Key code constant: Numeric keypad '.' key (for decimals or digit grouping).
@@ -442,13 +670,21 @@ public class AndroidDeviceKeyEvent {
    * Key code constant: Numeric keypad ',' key (for decimals or digit grouping).
    */
   public static final int KEYCODE_NUMPAD_COMMA = 159;
-  /** Key code constant: Numeric keypad Enter key. */
+  /**
+   * Key code constant: Numeric keypad Enter key.
+   */
   public static final int KEYCODE_NUMPAD_ENTER = 160;
-  /** Key code constant: Numeric keypad '=' key. */
+  /**
+   * Key code constant: Numeric keypad '=' key.
+   */
   public static final int KEYCODE_NUMPAD_EQUALS = 161;
-  /** Key code constant: Numeric keypad '(' key. */
+  /**
+   * Key code constant: Numeric keypad '(' key.
+   */
   public static final int KEYCODE_NUMPAD_LEFT_PAREN = 162;
-  /** Key code constant: Numeric keypad ')' key. */
+  /**
+   * Key code constant: Numeric keypad ')' key.
+   */
   public static final int KEYCODE_NUMPAD_RIGHT_PAREN = 163;
   /**
    * Key code constant: Volume Mute key. Mutes the speaker, unlike {@link #KEYCODE_MUTE}. This key
@@ -469,9 +705,13 @@ public class AndroidDeviceKeyEvent {
    * Key code constant: Channel down key. On TV remotes, decrements the television channel.
    */
   public static final int KEYCODE_CHANNEL_DOWN = 167;
-  /** Key code constant: Zoom in key. */
+  /**
+   * Key code constant: Zoom in key.
+   */
   public static final int KEYCODE_ZOOM_IN = 168;
-  /** Key code constant: Zoom out key. */
+  /**
+   * Key code constant: Zoom out key.
+   */
   public static final int KEYCODE_ZOOM_OUT = 169;
   /**
    * Key code constant: TV key. On TV remotes, switches to viewing live TV.
@@ -555,37 +795,69 @@ public class AndroidDeviceKeyEvent {
    * Key code constant: App switch key. Should bring up the application switcher dialog.
    */
   public static final int KEYCODE_APP_SWITCH = 187;
-  /** Key code constant: Generic Game Pad Button #1. */
+  /**
+   * Key code constant: Generic Game Pad Button #1.
+   */
   public static final int KEYCODE_BUTTON_1 = 188;
-  /** Key code constant: Generic Game Pad Button #2. */
+  /**
+   * Key code constant: Generic Game Pad Button #2.
+   */
   public static final int KEYCODE_BUTTON_2 = 189;
-  /** Key code constant: Generic Game Pad Button #3. */
+  /**
+   * Key code constant: Generic Game Pad Button #3.
+   */
   public static final int KEYCODE_BUTTON_3 = 190;
-  /** Key code constant: Generic Game Pad Button #4. */
+  /**
+   * Key code constant: Generic Game Pad Button #4.
+   */
   public static final int KEYCODE_BUTTON_4 = 191;
-  /** Key code constant: Generic Game Pad Button #5. */
+  /**
+   * Key code constant: Generic Game Pad Button #5.
+   */
   public static final int KEYCODE_BUTTON_5 = 192;
-  /** Key code constant: Generic Game Pad Button #6. */
+  /**
+   * Key code constant: Generic Game Pad Button #6.
+   */
   public static final int KEYCODE_BUTTON_6 = 193;
-  /** Key code constant: Generic Game Pad Button #7. */
+  /**
+   * Key code constant: Generic Game Pad Button #7.
+   */
   public static final int KEYCODE_BUTTON_7 = 194;
-  /** Key code constant: Generic Game Pad Button #8. */
+  /**
+   * Key code constant: Generic Game Pad Button #8.
+   */
   public static final int KEYCODE_BUTTON_8 = 195;
-  /** Key code constant: Generic Game Pad Button #9. */
+  /**
+   * Key code constant: Generic Game Pad Button #9.
+   */
   public static final int KEYCODE_BUTTON_9 = 196;
-  /** Key code constant: Generic Game Pad Button #10. */
+  /**
+   * Key code constant: Generic Game Pad Button #10.
+   */
   public static final int KEYCODE_BUTTON_10 = 197;
-  /** Key code constant: Generic Game Pad Button #11. */
+  /**
+   * Key code constant: Generic Game Pad Button #11.
+   */
   public static final int KEYCODE_BUTTON_11 = 198;
-  /** Key code constant: Generic Game Pad Button #12. */
+  /**
+   * Key code constant: Generic Game Pad Button #12.
+   */
   public static final int KEYCODE_BUTTON_12 = 199;
-  /** Key code constant: Generic Game Pad Button #13. */
+  /**
+   * Key code constant: Generic Game Pad Button #13.
+   */
   public static final int KEYCODE_BUTTON_13 = 200;
-  /** Key code constant: Generic Game Pad Button #14. */
+  /**
+   * Key code constant: Generic Game Pad Button #14.
+   */
   public static final int KEYCODE_BUTTON_14 = 201;
-  /** Key code constant: Generic Game Pad Button #15. */
+  /**
+   * Key code constant: Generic Game Pad Button #15.
+   */
   public static final int KEYCODE_BUTTON_15 = 202;
-  /** Key code constant: Generic Game Pad Button #16. */
+  /**
+   * Key code constant: Generic Game Pad Button #16.
+   */
   public static final int KEYCODE_BUTTON_16 = 203;
   /**
    * Key code constant: Language Switch key. Toggles the current input language such as switching

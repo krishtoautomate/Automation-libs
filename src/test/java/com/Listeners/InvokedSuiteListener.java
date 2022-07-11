@@ -1,22 +1,19 @@
 package com.Listeners;
 
+import com.deviceinformation.DeviceInfo;
+import com.deviceinformation.DeviceInfoImpl;
+import com.deviceinformation.device.DeviceType;
+import com.deviceinformation.model.Device;
 import java.util.Iterator;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-/**
- * Created by Krish on 21.07.2018.
- */
 import org.testng.ISuite;
 import org.testng.ISuiteListener;
 import org.testng.ITestContext;
 import org.testng.ITestNGMethod;
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
-import com.deviceinformation.DeviceInfo;
-import com.deviceinformation.DeviceInfoImpl;
-import com.deviceinformation.device.DeviceType;
-import com.deviceinformation.model.Device;
 
 public class InvokedSuiteListener extends TestListenerAdapter implements ISuiteListener {
 

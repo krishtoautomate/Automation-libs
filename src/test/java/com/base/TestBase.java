@@ -29,9 +29,9 @@ import org.testng.annotations.Parameters;
  */
 public class TestBase {
 
+  protected static Logger log;
   protected AppiumDriver<MobileElement> driver;
   protected TLDriverFactory tlDriverFactory = new TLDriverFactory();
-  protected static Logger log;
   protected ExtentTest test;
   protected boolean isAndroid = false;
 
@@ -39,9 +39,7 @@ public class TestBase {
     return driver;
   }
 
-  public Logger getLog() {
-    return log;
-  }
+
 
   /**
    * Executed once before all the tests
@@ -52,10 +50,14 @@ public class TestBase {
     // ctx.getCurrentXmlTest().getSuite().getName();
 
     // Log4j
-    // log = Logger.getLogger(suiteName);
+//     log = Logger.getLogger(suiteName);
 
     // Logback
     log = LoggerFactory.getLogger(this.getClass());
+  }
+
+  public Logger getLog() {
+    return log;
   }
 
   @SuppressWarnings("unchecked")
@@ -78,7 +80,6 @@ public class TestBase {
      */
     if ("Auto".equalsIgnoreCase(udid)) {
       udid = driver.getCapabilities().getCapability("udid").toString();
-
     }
 
     iTestContext.setAttribute("udid", udid);
@@ -128,8 +129,7 @@ public class TestBase {
       } catch (Exception e) {
         // ignore
       }
-      test.info("THE END");
-      log.info("THE END");
+
 
       try {
         tlDriverFactory.quit();
@@ -137,14 +137,16 @@ public class TestBase {
       } catch (Exception e) {
         // ignore
       }
+      test.info("THE END");
+      log.info("THE END");
+
+      try {
+        ExtentTestManager.getTest().getExtent().flush();
+      } catch (Exception e) {
+        // ignore
+      }
     }
 
-    try {
-      ExtentTestManager.getTest().getExtent().flush();
-      log.info(Constants.EXTENT_HTML_REPORT);
-    } catch (Exception ign) {
-      // ignore
-    }
   }
 
   /**

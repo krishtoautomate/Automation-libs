@@ -28,13 +28,12 @@ import org.testng.Reporter;
 
 public class TLDriverFactoryWeb {
 
-  private static OptionsManager optionsManager = new OptionsManager();
-  private static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<>();
   private static final Logger log = LoggerFactory.getLogger(Class.class.getName());
-  public Map<Long, WebDriver> driverMap = new ConcurrentHashMap<Long, WebDriver>();
-
   public static Properties prop = new Properties();
   public static InputStream input = null;
+  private static OptionsManager optionsManager = new OptionsManager();
+  private static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<>();
+  public Map<Long, WebDriver> driverMap = new ConcurrentHashMap<Long, WebDriver>();
 
   protected synchronized void setDriver() {
     try {
@@ -107,7 +106,7 @@ public class TLDriverFactoryWeb {
     }
     driverMap.put(Thread.currentThread().getId(), tlDriver.get());
 
-    this.getDriverInstance().manage().timeouts().implicitlyWait(15L, TimeUnit.SECONDS);
+    this.getDriverInstance().manage().timeouts().implicitlyWait(Constants.IMPLICITLYWAIT, TimeUnit.SECONDS);
 
   }
 

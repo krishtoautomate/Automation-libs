@@ -9,6 +9,8 @@ import java.util.Date;
 
 public class Constants {
 
+  public static final int IMPLICITLYWAIT = 5;
+
   public static final String APPIUM_IP_ADDRESS = "127.0.0.1";
 
   public static final String HOST_OS = System.getProperty("os.name");
@@ -54,7 +56,6 @@ public class Constants {
 
   public static final String PATH = "/usr/local/bin/";
   public static final String LANGUAGE = "EN-CA";
-
 
   // public static final String ADB = ANDROID_HOME + "platform-tools/adb";
 

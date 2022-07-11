@@ -1,8 +1,8 @@
 package com.deviceinformation.model;
 
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import java.util.List;
 
 public class DeviceInfoModel<T extends Device> {
 
@@ -12,6 +12,10 @@ public class DeviceInfoModel<T extends Device> {
 
   public List<T> getDevices() {
     return devices;
+  }
+
+  public void setDevices(List<T> devices) {
+    this.devices = devices;
   }
 
   @SuppressWarnings("unchecked")
@@ -27,9 +31,5 @@ public class DeviceInfoModel<T extends Device> {
   @SuppressWarnings("unchecked")
   public List<IosSimulator> getIosSimulatorDevices() {
     return (List<IosSimulator>) devices;
-  }
-
-  public void setDevices(List<T> devices) {
-    this.devices = devices;
   }
 }

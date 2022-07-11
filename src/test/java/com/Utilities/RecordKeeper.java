@@ -13,39 +13,46 @@ public class RecordKeeper {
   private static boolean logStackTrace;
   private static Level loggerLevel;
 
-  public RecordKeeper(){
+  public RecordKeeper() {
 
   }
 
   public static void printErrorlog(String message, Class<?> fromClass, Exception exception) {
     String logMessage;
-    if(logStackTrace){
-      logMessage = String.format("|Message = %s|,|Class Name - %s|,|Actual Exception - %s|",message, fromClass.getName(), exception);
+    if (logStackTrace) {
+      logMessage = String
+          .format("|Message = %s|,|Class Name - %s|,|Actual Exception - %s|", message,
+              fromClass.getName(), exception);
     } else {
-      logMessage = String.format("|Message = %s|,|Class Name - %s|,|Actual Exception - %s|",message, fromClass.getName());
+      logMessage = String
+          .format("|Message = %s|,|Class Name - %s|,|Actual Exception - %s|", message,
+              fromClass.getName());
     }
     pLogger.error(logMessage);
     rLogger.error(logMessage);
   }
 
   public static void printErrorlog(String message, Class<?> fromClass) {
-    String logMessage = String.format("|Message = %s|,|Class Name - %s|",message, fromClass.getName());
+    String logMessage = String
+        .format("|Message = %s|,|Class Name - %s|", message, fromClass.getName());
     pLogger.error(logMessage);
     rLogger.error(logMessage);
   }
 
   public static void printErrorlog(Class<?> fromClass, Exception exception) {
-    String logMessage = String.format("|Actual Exception - %s|,|Class Name - %s|",exception.getMessage(),fromClass.getName());
+    String logMessage = String
+        .format("|Actual Exception - %s|,|Class Name - %s|", exception.getMessage(),
+            fromClass.getName());
     pLogger.error(logMessage);
     rLogger.error(logMessage);
   }
 
   public static void printInfolog(String message, Class<?> fromClass) {
-    String logMessage = String.format("|Message = %s|,|Class Name - %s|",message, fromClass.getName());
+    String logMessage = String
+        .format("|Message = %s|,|Class Name - %s|", message, fromClass.getName());
     pLogger.error(logMessage);
     rLogger.error(logMessage);
   }
-
 
 
 }

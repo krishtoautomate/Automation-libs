@@ -1,19 +1,5 @@
 package com.mobileActions;
 
-import java.util.HashMap;
-import java.util.concurrent.TimeUnit;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.touch.TouchActions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.slf4j.Logger;
-import org.testng.Assert;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import io.appium.java_client.AppiumDriver;
@@ -24,6 +10,19 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.touch.offset.ElementOption;
+import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Point;
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.touch.TouchActions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.testng.Assert;
 
 public class MobileActions {
 
@@ -100,14 +99,16 @@ public class MobileActions {
 
   @SuppressWarnings("unchecked")
   public void activateApp(String platForm, String bundleId) {
-    if ("ios".equalsIgnoreCase(platForm))
+    if ("ios".equalsIgnoreCase(platForm)) {
       ((AppiumDriver<MobileElement>) driver).activateApp(bundleId);
+    }
   }
 
   @SuppressWarnings("unchecked")
   public void terminateApp(String platForm, String bundleId) {
-    if ("ios".equalsIgnoreCase(platForm))
+    if ("ios".equalsIgnoreCase(platForm)) {
       ((AppiumDriver<MobileElement>) driver).terminateApp(bundleId);
+    }
   }
 
   @SuppressWarnings("unchecked")

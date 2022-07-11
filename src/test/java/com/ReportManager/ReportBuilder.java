@@ -14,14 +14,14 @@ import org.slf4j.LoggerFactory;
 
 public class ReportBuilder {
 
+  private static final Logger log = LoggerFactory.getLogger(Class.class.getName());
   public static List<Result> details;
   public final String resultPlaceholder = "<!-- INSERT_RESULTS -->";
   public final String templatePath = System.getProperty("user.dir") + "/" + "src/main/resources"
       + "/" + "ReportTemplate" + ".html";
 
-  private static final Logger log = LoggerFactory.getLogger(Class.class.getName());
-
-  public ReportBuilder() {}
+  public ReportBuilder() {
+  }
 
   public void initialize() {
     details = new ArrayList<Result>();
@@ -57,7 +57,6 @@ public class ReportBuilder {
         String htmlStyle = "<td>";
         if (details.get(i).getStatus().contains("FAIL")) {
           htmlStyle = "<td style=\"color:#FF0000\";>";
-
 
           reportIn = reportIn.replaceFirst(resultPlaceholder,
 

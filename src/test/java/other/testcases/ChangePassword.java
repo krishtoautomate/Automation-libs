@@ -2,6 +2,9 @@ package other.testcases;
 
 
 import static io.restassured.RestAssured.given;
+
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -9,8 +12,6 @@ import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import io.restassured.RestAssured;
-import io.restassured.response.Response;
 
 
 public class ChangePassword {
@@ -72,8 +73,6 @@ public class ChangePassword {
         // .get(RestAssured.baseURI + "/UXP.Services/eCare/CustomerProfile/CustomerAccounts/"
         // + userId + "/CustomerProfile?privilegeRequired=All");
 
-
-
         Thread.sleep(2000);
 
         // String newPassword = "Fibe1234$";
@@ -83,7 +82,6 @@ public class ChangePassword {
         // + "',\r\n'Username' : '" + user + "'\r\n}")
         // .cookies(response.cookies()).when()
         // .put(RestAssured.baseURI + "/UXP.Services/ecare/Profile/UserProfile/Me/Password");
-
 
       } catch (Exception e) {
         // ignore

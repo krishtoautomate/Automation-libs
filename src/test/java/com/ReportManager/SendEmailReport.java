@@ -3,6 +3,7 @@ package com.ReportManager;
 /**
  * Created by Krish on 21.07.2018.
  **/
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -26,6 +27,7 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
 public class SendEmailReport {
+
   public static void main(String[] args) throws IOException {
 
     String to = "krish.pavulur@bell.ca";// change accordingly
@@ -63,7 +65,6 @@ public class SendEmailReport {
       String output_zip_folder = "C:\\Automation\\TestNGParallelDemo\\test-output\\14062018.zip";
       appZip.pack(input_folder, output_zip_folder);
 
-
       // 3) create MimeBodyPart object and set your message text
       BodyPart messageBodyPart1 = new MimeBodyPart();
       messageBodyPart1.setText("C:\\\\Automation\\\\TestNGParallelDemo\\\\test-output\\\\14062018");
@@ -75,7 +76,6 @@ public class SendEmailReport {
       DataSource source = new FileDataSource(output_zip_folder);
       messageBodyPart2.setDataHandler(new DataHandler(source));
       messageBodyPart2.setFileName("Report_name.zip");
-
 
       // 5) create Multipart object and add MimeBodyPart objects to this object
       Multipart multipart = new MimeMultipart();
@@ -92,7 +92,6 @@ public class SendEmailReport {
     } catch (MessagingException ex) {
       ex.printStackTrace();
     }
-
 
 
   }
