@@ -28,6 +28,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpStatus;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TakesScreenshot;
@@ -35,9 +36,10 @@ import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.slf4j.Logger;
 import org.testng.Assert;
+import java.time.Duration;
 
 public class BaseObjs<T> implements ITestBase {
 
@@ -71,12 +73,17 @@ public class BaseObjs<T> implements ITestBase {
     return null;
   }
 
-  protected boolean verify_Element(By locator) {
+  protected boolean isElementDisplayed(By by) {
     try {
-      return new WebDriverWait(driver, 5)
-          .until(ExpectedConditions.presenceOfElementLocated(locator)).isDisplayed();
-    } catch (StaleElementReferenceException e) {
-      // ignore
+//      return new WebDriverWait(driver, 5)
+//          .until(ExpectedConditions.presenceOfElementLocated(locator)).isDisplayed();
+
+//      new FluentWait(driver).withTimeout(Duration.ofSeconds(5))
+//    .pollingEvery(Duration.ofSeconds(1))
+//    .ignoring(NoSuchElementException.class)
+//          .ignoring(StaleElementReferenceException.class).until(ExpectedConditions.presenceOfElementLocated(by));
+
+      return driver.findElement(by).isDisplayed();
     } catch (Exception e) {
       // ignore
     }

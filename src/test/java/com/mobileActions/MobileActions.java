@@ -3,6 +3,7 @@ package com.mobileActions;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.PerformsTouchActions;
 import io.appium.java_client.TouchAction;
@@ -20,14 +21,12 @@ import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.touch.TouchActions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.testng.Assert;
 
 public class MobileActions {
 
   private AppiumDriver driver;
-  private WebDriverWait wait;
   private Logger log;
   private ExtentTest test;
 
@@ -35,8 +34,6 @@ public class MobileActions {
     this.driver = driver;
     this.log = log;
     this.test = test;
-    wait = new WebDriverWait(driver, 30);
-    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
   }
 
   /**
@@ -119,22 +116,6 @@ public class MobileActions {
     }
   }
 
-  /*
-   * Close ios Keyboard
-   */
-  // ((HasOnScreenKeyboard) driver).isKeyboardShown();
-  // ((AppiumDriver<MobileElement>) driver).hideKeyboard();
-  public WebElement get_done_btn() {
-    By done_btn = By.xpath("//XCUIElementTypeButton[@name='Done']");
-    WebElement ele = null;
-    try {
-      wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(done_btn));
-      ele = driver.findElement(done_btn);
-    } catch (Exception e) {
-      log.warn("'DONE' button - NotFound!!!");
-    }
-    return ele;
-  }
 
   /**
    * close keyboard in Android
@@ -143,7 +124,7 @@ public class MobileActions {
   public void hidekeyboard(String platForm) {
     try {
       if ("ios".equalsIgnoreCase(platForm)) {
-        get_done_btn().click();
+        driver.findElement(MobileBy.iOSNsPredicateString("name IN {'Done', 'done'}")).click();
       } else {
         ((AppiumDriver<MobileElement>) driver).hideKeyboard();
       }
@@ -152,27 +133,27 @@ public class MobileActions {
     }
   }
 
-  /**
-   * scroll to end of the page Ios by direction: down, up, left, right
-   */
-  public void Scrollios(String direction, WebElement element) {
-    JavascriptExecutor js = (JavascriptExecutor) driver;
-    HashMap<String, String> scrollObject = new HashMap<String, String>();
-
-    scrollObject.clear();
-    scrollObject.put("direction", direction);
-    for (int i = 0; i < 5; i++) {
-
-      if (element.getAttribute("visible").equals("true")) {
-        break;
-      }
-      js.executeScript("mobile: scroll", scrollObject);
-    }
-  }
+//  /**
+//   * scroll to end of the page Ios by direction: down, up, left, right
+//   */
+//  public void Scrollios(String direction, WebElement element) {
+//    JavascriptExecutor js = (JavascriptExecutor) driver;
+//    HashMap<String, String> scrollObject = new HashMap<String, String>();
+//
+//    scrollObject.clear();
+//    scrollObject.put("direction", direction);
+//    for (int i = 0; i < 5; i++) {
+//
+//      if (element.getAttribute("visible").equals("true")) {
+//        break;
+//      }
+//      js.executeScript("mobile: scroll", scrollObject);
+//    }
+//  }
 
   @SuppressWarnings("rawtypes")
   public TouchAction touchAction() {
-    return new TouchAction((PerformsTouchActions) driver);
+    return new TouchAction(driver);
   }
 
   public void tapByCoordinates(int X, int Y) {

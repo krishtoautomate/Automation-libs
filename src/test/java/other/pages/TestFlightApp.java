@@ -27,7 +27,7 @@ public class TestFlightApp extends BaseObjs<TestFlightApp> {
   }
 
   public boolean verify_continue_btn() {
-    return verify_Element(continue_btn);
+    return isElementDisplayed(continue_btn);
   }
 
   public WebElement get_continue_btn() {
@@ -35,7 +35,7 @@ public class TestFlightApp extends BaseObjs<TestFlightApp> {
   }
 
   public boolean verify_tryAgain_btn() {
-    return verify_Element(tryAgain_btn);
+    return isElementDisplayed(tryAgain_btn);
   }
 
   public WebElement get_tryAgain_btn() {
@@ -44,7 +44,7 @@ public class TestFlightApp extends BaseObjs<TestFlightApp> {
 
 
   public boolean verify_apps_back_btn() {
-    return verify_Element(apps_back_btn);
+    return isElementDisplayed(apps_back_btn);
   }
 
   public MobileElement get_apps_back_btn() {
@@ -61,7 +61,7 @@ public class TestFlightApp extends BaseObjs<TestFlightApp> {
   }
 
   public boolean verify_all_btns() {
-    return verify_Element(all_btns);
+    return isElementDisplayed(all_btns);
   }
 
 }

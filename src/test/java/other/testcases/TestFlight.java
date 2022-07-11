@@ -5,7 +5,6 @@ import com.Utilities.Utilities;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.base.TestBase;
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import java.util.List;
 import org.testng.annotations.Optional;
@@ -30,7 +29,6 @@ public class TestFlight extends TestBase implements ITestBase {
     // accept open prompt
     try {
       driver.switchTo().alert().dismiss();
-
       utils.logmessage(Status.PASS, "dismiss alert");
     } catch (Exception ign) {
       // ignore
