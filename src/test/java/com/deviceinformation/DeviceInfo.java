@@ -1,13 +1,13 @@
 package com.deviceinformation;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.stream.Collectors;
 import com.deviceinformation.exception.DeviceNotFoundException;
 import com.deviceinformation.model.Android;
 import com.deviceinformation.model.Device;
 import com.deviceinformation.model.Ios;
 import com.deviceinformation.model.IosSimulator;
+import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public interface DeviceInfo {
 

@@ -1,11 +1,11 @@
 package com.deviceinformation.helper;
 
-import java.util.Map;
 import com.deviceinformation.model.Device;
 import com.deviceinformation.model.DeviceInfoModel;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import java.util.Map;
 
 public class JsonHelper {
 

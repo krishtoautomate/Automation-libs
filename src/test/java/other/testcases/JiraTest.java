@@ -1,19 +1,16 @@
 package other.testcases;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-
 public class JiraTest {
 
   public static void main(String[] args) {
-
-
 
     // TODO Auto-generated method stub
 
@@ -52,7 +49,6 @@ public class JiraTest {
 
     info.add("tests", tests);
     System.out.println(info.toString());
-
 
     // Write JSON file
     try (FileWriter file = new FileWriter("test-output/jira-result.json")) {

@@ -1,5 +1,6 @@
 package com.base;
 
+import com.Utilities.Constants;
 import io.appium.java_client.AppiumDriver;
 import java.io.File;
 import java.io.IOException;
@@ -7,16 +8,13 @@ import java.util.UUID;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.Utilities.Constants;
 
 public class ScreenShotManager {
 
-  private AppiumDriver driver;
-
   private static final Logger log = LoggerFactory.getLogger(Class.class.getName());
+  private AppiumDriver driver;
 
 
   public ScreenShotManager(AppiumDriver driver) {

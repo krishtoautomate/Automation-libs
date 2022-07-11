@@ -10,7 +10,6 @@ public class RemoveAppiumAndroid {
   public static void main(String[] args) {
     // TODO Auto-generated method stub
 
-
     String udid = "R58N70GGVZH";
 
     runCommandThruProcess("/usr/local/share/android-sdk/platform-tools/adb -s " + udid

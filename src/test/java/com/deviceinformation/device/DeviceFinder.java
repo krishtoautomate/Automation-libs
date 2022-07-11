@@ -1,10 +1,10 @@
 package com.deviceinformation.device;
 
-import java.io.IOException;
-import java.util.Map;
 import com.deviceinformation.exception.DeviceNotFoundException;
 import com.deviceinformation.model.Device;
 import com.deviceinformation.model.DeviceInfoModel;
+import java.io.IOException;
+import java.util.Map;
 
 public interface DeviceFinder<S extends Device> {
 

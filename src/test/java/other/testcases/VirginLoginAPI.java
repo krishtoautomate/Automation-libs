@@ -1,5 +1,11 @@
 package other.testcases;
 
+import com.Utilities.ITestBase;
+import com.aventstack.extentreports.markuputils.ExtentColor;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
+import com.base.TestBaseAPI;
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -7,12 +13,6 @@ import java.util.Scanner;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import com.Utilities.ITestBase;
-import com.aventstack.extentreports.markuputils.ExtentColor;
-import com.aventstack.extentreports.markuputils.MarkupHelper;
-import com.base.TestBaseAPI;
-import io.restassured.RestAssured;
-import io.restassured.response.Response;
 import other.pages.LoginObjects;
 
 public class VirginLoginAPI extends TestBaseAPI implements ITestBase {

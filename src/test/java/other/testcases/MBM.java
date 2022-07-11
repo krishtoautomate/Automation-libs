@@ -1,27 +1,25 @@
 package other.testcases;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.concurrent.TimeUnit;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class MBM {
 
+  protected static AppiumDriverLocalService server;
   static AppiumDriver<MobileElement> driver;
   static WebDriverWait wait;
-
   static By loginUser =
       By.xpath("//android.widget.EditText[contains(@resource-id, 'usernameEditText')]");
   static By loginPwd =
@@ -29,10 +27,7 @@ public class MBM {
   // static By keepMeLoginIn_btn = By.xpath("//android.widget.Switch[contains(@resource-id,
   // 'keepMeLoggedInSwitch')]");
   static By LoginIn_btn = By.xpath("//*[contains(@resource-id,'loginButton')]");
-
   static By more_btn = By.xpath("//android.widget.TextView[contains(@resource-id,'id/more')]");
-
-  protected static AppiumDriverLocalService server;
 
   public static void main(String[] args) throws MalformedURLException {
 
@@ -45,9 +40,9 @@ public class MBM {
 
     desiredCapabilities.setCapability("deviceName", "Android");
     desiredCapabilities.setCapability(MobileCapabilityType.UDID, "0B271FDD4003AS");// device id
-                                                                                   // //adb devices
-                                                                                   // //
-                                                                                   // commnad
+    // //adb devices
+    // //
+    // commnad
     desiredCapabilities.setCapability("platformName", "Android");
     desiredCapabilities.setCapability("platformVersion", "8.1.0");
     desiredCapabilities.setCapability("automationName", "uiautomator2");

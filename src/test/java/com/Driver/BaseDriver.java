@@ -1,20 +1,13 @@
 package com.Driver;
 
-import com.aventstack.extentreports.ExtentTest;
+import com.base.TestBase;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
-import java.net.URL;
-import java.util.List;
-import java.util.Set;
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.WebElement;
-import com.base.TestBase;
 
 @SuppressWarnings("unchecked")
 public class BaseDriver extends TestBase implements IBaseDriver {
-
 
   //  protected ExtentTest test;
 //
@@ -23,22 +16,22 @@ public class BaseDriver extends TestBase implements IBaseDriver {
 //    driver = driver;
 //  }
 
-//  @Override
+  //  @Override
   public AppiumDriver getDriver() {
     return driver;
   }
 
-//  @Override
+  //  @Override
   public boolean isAndroid() {
     return driver instanceof AndroidDriver;
   }
 
-//  @Override
+  //  @Override
   public boolean isiOS() {
     return !(driver instanceof AndroidDriver);
   }
 
-//  @Override
+  //  @Override
   public void click(By by, String elementDescription) {
     try {
       driver.findElement(by).click();
@@ -50,7 +43,7 @@ public class BaseDriver extends TestBase implements IBaseDriver {
 //    test.pass(elementDescription + " : isClicked");
   }
 
-//  @Override
+  //  @Override
   public void sendKeys(By by, String keys, String elementDescription) {
     try {
       driver.findElement(by).sendKeys(keys);
@@ -62,7 +55,7 @@ public class BaseDriver extends TestBase implements IBaseDriver {
 //    test.pass(elementDescription);
   }
 
-//  @Override
+  //  @Override
   public boolean isElementDisplayed(By by) {
     try {
       return driver.findElement(by).isDisplayed();
@@ -72,7 +65,7 @@ public class BaseDriver extends TestBase implements IBaseDriver {
     return false;
   }
 
-//  @Override
+  //  @Override
   public boolean isElementsDisplayed(By by) {
     try {
       return driver.findElement(by).isDisplayed();
@@ -82,7 +75,7 @@ public class BaseDriver extends TestBase implements IBaseDriver {
     return false;
   }
 
-//  @Override
+  //  @Override
   public void tapByElement(By by) {
 
   }

@@ -2,6 +2,7 @@ package com.DataManager;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Iterator;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -43,15 +44,23 @@ public class TestDataManager {
 
   public static void main(String[] args) throws IOException, ParseException {
 
-    // TestDataManager testDataManager = new TestDataManager("src/test/resources/deviceInfo.json");
+    JSONObject jsonObject = (JSONObject) new JSONParser().parse(new FileReader("MBM_Database.txt"));
 
-    JsonFileReader JsonFileReader = new JsonFileReader("src/test/resources/deviceInfo.json");
+    JSONArray jsonArray = (JSONArray) jsonObject.get("Tests.Login.InValidLogin");
 
-    System.out
-        .println(JsonFileReader.getObjIndex("udid", "e0857ea6c266c485198cf77589ac858a2526dc01"));
+    JSONObject jObj = (JSONObject) jsonArray.get(0);
+
+    JSONObject jAObject = (JSONObject) jObj.get("capabilities");
 
 
-    System.out.println(JsonFileReader.getJsonValue(2, "name"));
+    for (Object keyStr : jAObject.keySet()) {
+
+      System.out.println("key: "+ keyStr.toString() + " value: " + jAObject.get(keyStr).toString());
+
+    }
+
+
+//    System.out.println(jAObject);
   }
 
   public synchronized String getValue(String key) {
@@ -94,8 +103,6 @@ public class TestDataManager {
 
   public synchronized String getJsonValue(int index, String key) {
 
-    String value = null;
-
     try {
       // read the json file
       JSONObject jsonObject = (JSONObject) new JSONParser().parse(new FileReader(filePath));
@@ -105,13 +112,13 @@ public class TestDataManager {
 
       JSONObject innerObj = (JSONObject) jsonArray.get(index);
 
-      value = (String) innerObj.get(key);
+      return innerObj.get(key).toString();
 
     } catch (IOException | ParseException | NullPointerException ex) {
       log.error("Data file error..");
     }
 
-    return value;
+    return null;
   }
 
 }

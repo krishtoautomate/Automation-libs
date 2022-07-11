@@ -9,6 +9,8 @@ import java.util.Date;
 
 public class Constants {
 
+  public static final int IMPLICITLYWAIT = 5;
+
   public static final String APPIUM_IP_ADDRESS = "127.0.0.1";
 
   public static final String HOST_OS = System.getProperty("os.name");
@@ -37,6 +39,7 @@ public class Constants {
   public static final String REPORT_DIR = OUTPUT_DIRECTORY + DATE_NOW + "/";
   public static final String EXTENT_HTML_REPORT = REPORT_DIR + "AUTOMATION_REPORT" + ".html";
   public static final String EXTENT_JSON_REPORT = REPORT_DIR + "AUTOMATION_REPORT" + ".json";
+  public static final String EXTENT_PDF_REPORT = REPORT_DIR + "AUTOMATION_REPORT" + ".pdf";
   public static final String APPENDED_REPORT = REPORT_DIR + "appendedReports" + ".html";
   public static final String EMAIL_REPORT = REPORT_DIR + "EmailableReport" + ".html";
   public static final String JIRA_REPORT = REPORT_DIR + "jira-result.json";
@@ -53,7 +56,6 @@ public class Constants {
 
   public static final String PATH = "/usr/local/bin/";
   public static final String LANGUAGE = "EN-CA";
-
 
   // public static final String ADB = ANDROID_HOME + "platform-tools/adb";
 

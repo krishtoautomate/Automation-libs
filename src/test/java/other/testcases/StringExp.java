@@ -16,7 +16,6 @@ public class StringExp {
 
     System.out.println(str.split(",")[0]);
 
-
     // System.out.println(str.replaceAll("[a-zA-Z]|\\W|\\s+", ""));//50
 
     // System.out.println(str.replaceAll("^[a-zA-Z$]|\\s+", ""));
@@ -25,9 +24,7 @@ public class StringExp {
 
     // System.out.println(Float.parseFloat(str.replaceAll("^[a-zA-Z$]|\\s+", "")));
 
-
     // System.out.println(strs
-
 
   }
 

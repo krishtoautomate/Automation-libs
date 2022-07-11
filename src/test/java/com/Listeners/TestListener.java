@@ -10,7 +10,6 @@ import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.base.Jira;
 import com.base.ScreenShotManager;
-import com.base.TLDriverFactory;
 import com.base.TestBase;
 import io.appium.java_client.AppiumDriver;
 import java.io.File;
@@ -128,35 +127,34 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
     DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
     String deviceName = deviceInfoReader.getString("name");
 
-
 //    if (driver != null) {
-      log.error("Test failed : " + testName + " : " + udid + "_" + deviceName);
-      try {
-        ScreenShotManager screenShotManager = new ScreenShotManager(driver);
-        String ScreenShot = screenShotManager.getScreenshot();
+    log.error("Test failed : " + testName + " : " + udid + "_" + deviceName);
+    try {
+      ScreenShotManager screenShotManager = new ScreenShotManager(driver);
+      String ScreenShot = screenShotManager.getScreenshot();
 
-        test.fail("Failed Test case : " + testName + "\n" + testResult.getThrowable(),
-            MediaEntityBuilder.createScreenCaptureFromPath(ScreenShot).build());
+      test.fail("Failed Test case : " + testName + "\n" + testResult.getThrowable(),
+          MediaEntityBuilder.createScreenCaptureFromPath(ScreenShot).build());
 
-        String errorXML = driver.getPageSource();
-        test.info(MarkupHelper.createCodeBlock(errorXML));
+      String errorXML = driver.getPageSource();
+      test.info(MarkupHelper.createCodeBlock(errorXML));
 
-      } catch (WebDriverException e) {
-        test.fail("Failed Test case : " + testName + "\n" + testResult.getThrowable());
-      }
+    } catch (WebDriverException e) {
+      test.fail("Failed Test case : " + testName + "\n" + testResult.getThrowable());
+    }
 
-      // Categories
-      test.assignCategory(platForm);
+    // Categories
+    test.assignCategory(platForm);
 
-      // DB
-      DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-      LocalDateTime now = LocalDateTime.now();
-      dtf.format(now);
+    // DB
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+    LocalDateTime now = LocalDateTime.now();
+    dtf.format(now);
 
-      // Emailable Test Summary
-      // reporter.report(date_time, "LM", buildNo, environment, testName, deviceName, platForm,
-      // "FAIL",
-      // testResult.getThrowable().toString());
+    // Emailable Test Summary
+    // reporter.report(date_time, "LM", buildNo, environment, testName, deviceName, platForm,
+    // "FAIL",
+    // testResult.getThrowable().toString());
 
 //    }
     // Jira

@@ -1,6 +1,13 @@
 package com.Utilities;
 
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.MediaEntityBuilder;
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
+import io.restassured.response.Response;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -16,38 +23,24 @@ import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 import javax.imageio.ImageIO;
-/**
- * Created by Krish on 21.07.2018.
- */
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpStatus;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.testng.Assert;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.MediaEntityBuilder;
-import com.aventstack.extentreports.Status;
-import com.aventstack.extentreports.markuputils.MarkupHelper;
-import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileBy;
-import io.appium.java_client.android.AndroidDriver;
-import io.restassured.response.Response;
 
 public class BaseObjs<T> implements ITestBase {
+
   protected AppiumDriver driver;
   protected Logger log;
   protected ExtentTest test;
@@ -80,7 +73,8 @@ public class BaseObjs<T> implements ITestBase {
 
   protected boolean verify_Element(By locator) {
     try {
-      return new WebDriverWait(driver, 5).until(ExpectedConditions.presenceOfElementLocated(locator)).isDisplayed();
+      return new WebDriverWait(driver, 5)
+          .until(ExpectedConditions.presenceOfElementLocated(locator)).isDisplayed();
     } catch (StaleElementReferenceException e) {
       // ignore
     } catch (Exception e) {
@@ -89,6 +83,7 @@ public class BaseObjs<T> implements ITestBase {
     return false;
   }
 
+  @SuppressWarnings("unchecked")
   protected List<MobileElement> get_Elements(By by, String elementDesc) {
     try {
       return driver.findElements(by);

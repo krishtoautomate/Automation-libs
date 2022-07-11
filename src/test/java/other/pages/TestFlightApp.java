@@ -55,6 +55,7 @@ public class TestFlightApp extends BaseObjs<TestFlightApp> {
     return get_Element(apps_h1, "'Apps' title text");
   }
 
+  @SuppressWarnings("unchecked")
   public List<MobileElement> get_all_btns() {
     return get_Elements(all_btns, "All buttons");
   }

@@ -1,15 +1,13 @@
 package other.testcases;
 
+import com.Utilities.ITestBase;
+import com.base.TestBase;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 import org.openqa.selenium.By;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
-import com.Utilities.ITestBase;
-import com.base.TestBase;
-
-import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileElement;
 
 
 public class WifiOFF extends TestBase implements ITestBase {

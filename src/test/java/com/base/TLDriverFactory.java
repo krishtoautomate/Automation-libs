@@ -1,32 +1,26 @@
 package com.base;
 
-import com.DataManager.DeviceInfoReader;
+import com.Utilities.Constants;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
-import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 
+@SuppressWarnings("rawtypes")
 public class TLDriverFactory {
 
-  // private static Logger log = Logger.getLogger(Class.class.getName());
-
-  @SuppressWarnings("rawtypes")
-  private ThreadLocal<AppiumDriver> tlDriver = new ThreadLocal<>();
   protected Map<Long, AppiumDriver> driverMap = new ConcurrentHashMap<Long, AppiumDriver>();
+  private ThreadLocal<AppiumDriver> tlDriver = new ThreadLocal<>();
   private CapabilitiesManager capabilitiesManager = new CapabilitiesManager();
-  private DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-  AppiumService appiumService = new AppiumService();
-  private AppiumDriverLocalService server;
+  private static AppiumDriverLocalService server;
 
   public synchronized void setDriver() throws MalformedURLException {
 
@@ -35,43 +29,30 @@ public class TLDriverFactory {
         iTestResult.getTestContext().getCurrentXmlTest().getAllParameters();
 
     String platForm = testParams.get("platForm");
-    String udid = testParams.get("udid");
     String REMOTE_HOST =
         testParams.get("REMOTE_HOST") == null ? "localhost" : testParams.get("REMOTE_HOST");
 
     if (REMOTE_HOST.equalsIgnoreCase("localhost")) {
-      server = appiumService.AppiumServer();
+      server = AppiumService.AppiumServer();
+      server.start();
       REMOTE_HOST = server.getUrl().toString();
     }
 
-    int devicePort = 8100;
-    DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
-    String deviceName = deviceInfoReader.getString("name");
-    String platformVersion = deviceInfoReader.getString("platformVersion");
-    devicePort = deviceInfoReader.getInt("devicePort");
-
-    desiredCapabilities = capabilitiesManager.loadJSONCapabilities();
-    desiredCapabilities.setCapability("deviceName", deviceName);
-    desiredCapabilities.setCapability(MobileCapabilityType.UDID, udid);
-
     if ("Android".equalsIgnoreCase(platForm)) {
-
-      desiredCapabilities.setCapability("systemPort", devicePort);
-
-      tlDriver.set(new AndroidDriver<MobileElement>(new URL(REMOTE_HOST), desiredCapabilities));
-
+      tlDriver.set(new AndroidDriver<MobileElement>(new URL(REMOTE_HOST),
+          capabilitiesManager.setCapabilities()));
     } else if ("iOS".equalsIgnoreCase(platForm)) {
-
-      desiredCapabilities.setCapability("wdaLocalPort", devicePort);
-
-      tlDriver.set(new IOSDriver<MobileElement>(new URL(REMOTE_HOST), desiredCapabilities));
-
+      tlDriver.set(new IOSDriver<MobileElement>(new URL(REMOTE_HOST),
+          capabilitiesManager.setCapabilities()));
     }
-    driverMap.put(Thread.currentThread().getId(), tlDriver.get());
-//    System.out.println("Thread Id : "+ Thread.currentThread().getId());
-//    System.out.println("Session Id : "+ tlDriver.get().getSessionId());
 
-    getDriverInstance().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+    driverMap.put(Thread.currentThread().getId(), tlDriver.get());
+
+    // System.out.println("Thread Id : "+ Thread.currentThread().getId());
+    // System.out.println("Session Id : "+ tlDriver.get().getSessionId());
+
+    getDriverInstance().manage().timeouts().implicitlyWait(Constants.IMPLICITLYWAIT,
+        TimeUnit.SECONDS);
 
   }
 
@@ -88,11 +69,10 @@ public class TLDriverFactory {
 
   }
 
-  public void sleep(int seconds) {
-    try {
-      Thread.sleep(seconds * 1000);
-    } catch (InterruptedException e) {
-      //ignore
-    }
-  }
+//  private boolean isAndroid() {
+//    ITestResult iTestResult = Reporter.getCurrentTestResult();
+//    Map<String, String> testParams =
+//        iTestResult.getTestContext().getCurrentXmlTest().getAllParameters();
+//    return "Android".equalsIgnoreCase(testParams.get("platForm"));
+//  }
 }

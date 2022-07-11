@@ -1,5 +1,9 @@
 package other.testcases;
 
+import com.deviceinformation.DeviceInfo;
+import com.deviceinformation.DeviceInfoImpl;
+import com.deviceinformation.device.DeviceType;
+import com.deviceinformation.model.Device;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -10,10 +14,6 @@ import org.testng.annotations.Test;
 import org.testng.xml.XmlClass;
 import org.testng.xml.XmlSuite;
 import org.testng.xml.XmlTest;
-import com.deviceinformation.DeviceInfo;
-import com.deviceinformation.DeviceInfoImpl;
-import com.deviceinformation.device.DeviceType;
-import com.deviceinformation.model.Device;
 
 public class RunnerWithAllConnectedDevices {
 
@@ -34,13 +34,11 @@ public class RunnerWithAllConnectedDevices {
     String remoteHost =
         testParams.get("REMOTE_HOST") != null ? testParams.get("REMOTE_HOST") : "localhost";
 
-
     // Create an instance of XML Suite and assign a name for it.
     XmlSuite mySuite = new XmlSuite();
     mySuite.setName("MySuite");
     mySuite.setParallel(XmlSuite.ParallelMode.TESTS);
     // mySuite.addListener("com.Listeners.InvokedSuiteListener");
-
 
     List<XmlTest> myTests = new ArrayList<XmlTest>();
 

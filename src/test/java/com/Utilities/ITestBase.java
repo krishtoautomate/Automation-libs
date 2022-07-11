@@ -7,10 +7,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.RemoteWebDriver;
 
 public interface ITestBase {
 
@@ -25,7 +22,6 @@ public interface ITestBase {
     }
     return false;
   }
-
 
 
   /**

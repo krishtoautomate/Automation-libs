@@ -553,6 +553,14 @@
     "devicePort": 8369
   },
   {
+    "name": "iPhone SE",
+    "udid": "00008110-001A749E1E7B801E",
+    "platformName": "iOS",
+    "platformVersion": "15.4",
+    "colour": "Black",
+    "devicePort": 8370
+  },
+  {
     "name": "Samsung S8",
     "udid": "988b9b304b4e4a374a",
     "platformName": "Android",
@@ -1167,5 +1175,13 @@
     "platformVersion": "10.0",
     "colour": "Black",
     "devicePort": 8277
+  },
+  {
+    "name": "samsung SM-S906W",
+    "udid": "RFCT51J1KHM",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8278
   }
 ]

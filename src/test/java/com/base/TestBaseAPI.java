@@ -1,5 +1,11 @@
 package com.base;
 
+import com.Utilities.Constants;
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.aventstack.extentreports.reporter.configuration.Theme;
+import com.aventstack.extentreports.reporter.configuration.ViewName;
 import java.io.File;
 import java.lang.reflect.Method;
 import org.slf4j.Logger;
@@ -10,12 +16,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
-import com.Utilities.Constants;
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.reporter.ExtentSparkReporter;
-import com.aventstack.extentreports.reporter.configuration.Theme;
-import com.aventstack.extentreports.reporter.configuration.ViewName;
 
 /**
  * Created by Krish on 06.06.2018.
@@ -23,8 +23,8 @@ import com.aventstack.extentreports.reporter.configuration.ViewName;
 public class TestBaseAPI {
 
   protected static Logger log;
-  protected ExtentSparkReporter htmlReporter;
   protected static ExtentReports extent;
+  protected ExtentSparkReporter htmlReporter;
   protected ExtentTest test;
 
   public synchronized ExtentTest getExtentTest() {
@@ -63,7 +63,7 @@ public class TestBaseAPI {
     // extent report
     extent = new ExtentReports();
     htmlReporter = new ExtentSparkReporter(Constants.EXTENT_HTML_REPORT).viewConfigurer()
-        .viewOrder().as(new ViewName[] {ViewName.TEST, ViewName.DEVICE, ViewName.AUTHOR,
+        .viewOrder().as(new ViewName[]{ViewName.TEST, ViewName.DEVICE, ViewName.AUTHOR,
             ViewName.EXCEPTION, ViewName.LOG, ViewName.DASHBOARD})
         .apply();
     extent.attachReporter(htmlReporter);

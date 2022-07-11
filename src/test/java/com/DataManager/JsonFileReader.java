@@ -1,7 +1,6 @@
 package com.DataManager;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,16 +12,19 @@ import org.json.simple.parser.ParseException;
 public class JsonFileReader {
 
 
-  String filePath;
+  String filePath = "";
 
-  public JsonFileReader(String jsonfile) {
-    this.setFilePath(jsonfile);
+  /*
+  @param jsonFile : Path to json file path
+   */
+  public JsonFileReader(String jsonFile) {
+    this.filePath = jsonFile;
   }
 
   public synchronized String getJsonValue(int index, String key)
-      throws FileNotFoundException, IOException, ParseException {
+      throws IOException, ParseException {
 
-    Object obj = new JSONParser().parse(new FileReader(new File(filePath)));
+    Object obj = new JSONParser().parse(new FileReader(filePath));
     JSONArray jsonArray = (JSONArray) obj;
 
     String jsonValue = ((JSONObject) jsonArray.get(index)).get(key).toString();
@@ -30,35 +32,21 @@ public class JsonFileReader {
     return jsonValue;
   }
 
-
   public synchronized int getObjIndex(String key, String value) {
 
-    int objIndex = 0;
-
-    FileReader fileReader;
-    ArrayList<?> jArray = null;
     try {
-      fileReader = new FileReader(filePath);
-      jArray = (JSONArray) new JSONParser().parse(fileReader);
+      FileReader fileReader = new FileReader(filePath);
+      ArrayList jArray = (JSONArray) new JSONParser().parse(fileReader);
+
+      for (int i = 0; i < jArray.size(); i++) {
+        if (((JSONObject) jArray.get(i)).get(key).toString().equals(value)) {
+          return i;
+        }
+      }
     } catch (Exception e) {
       // ignore
     }
-
-    for (int i = 0; i < jArray.size(); i++) {
-      if (((JSONObject) jArray.get(i)).get(key).toString().equals(value)) {
-        objIndex = i;
-        break;
-      }
-    }
-    return objIndex;
-  }
-
-  public synchronized String getFilePath() {
-    return filePath;
-  }
-
-  public synchronized void setFilePath(String filePath) {
-    this.filePath = filePath;
+    return 0;
   }
 
 }

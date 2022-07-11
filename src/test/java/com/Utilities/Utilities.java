@@ -1,6 +1,14 @@
 package com.Utilities;
 
 
+import com.aventstack.extentreports.ExtentTest;
+import com.jcraft.jsch.Channel;
+import com.jcraft.jsch.ChannelSftp;
+import com.jcraft.jsch.JSch;
+import com.jcraft.jsch.JSchException;
+import com.jcraft.jsch.Session;
+import com.jcraft.jsch.SftpATTRS;
+import com.jcraft.jsch.SftpException;
 import io.appium.java_client.AppiumDriver;
 import java.io.File;
 import java.io.FileInputStream;
@@ -12,19 +20,10 @@ import java.util.Random;
 import java.util.UUID;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebElement;
 import org.slf4j.Logger;
 import org.testng.annotations.Optional;
-import com.aventstack.extentreports.ExtentTest;
-import com.jcraft.jsch.Channel;
-import com.jcraft.jsch.ChannelSftp;
-import com.jcraft.jsch.JSch;
-import com.jcraft.jsch.JSchException;
-import com.jcraft.jsch.Session;
-import com.jcraft.jsch.SftpATTRS;
-import com.jcraft.jsch.SftpException;
 
 
 public class Utilities extends BaseObjs<Utilities> {
@@ -259,7 +258,6 @@ public class Utilities extends BaseObjs<Utilities> {
     // "/Users/Shared/Jenkins/PC/app-soak-release.apk";//file_path_in_remote_linux_server
     // String copyFrom = "/Volumes/BQAT_AUTOMATION/PC/app-soak-release.apk";
 
-
     JSch jsch = new JSch();
     Session session = null;
     log.info("Trying to connect.....");
@@ -283,7 +281,6 @@ public class Utilities extends BaseObjs<Utilities> {
         e.printStackTrace();
       }
 
-
       sftpChannel.exit();
       session.disconnect();
 
@@ -305,8 +302,9 @@ public class Utilities extends BaseObjs<Utilities> {
       // copy if it is a file
       sftpChannel.cd(destPath);
 
-      if (!localFile.getName().startsWith("."))
+      if (!localFile.getName().startsWith(".")) {
         sftpChannel.put(new FileInputStream(localFile), localFile.getName(), ChannelSftp.OVERWRITE);
+      }
     } else {
       System.out.println("inside else " + localFile.getName());
       File[] files = localFile.listFiles();
@@ -375,7 +373,6 @@ public class Utilities extends BaseObjs<Utilities> {
       File f = new File(voucherFile);
 
       List<String> lines = FileUtils.readLines(f, "UTF-8");
-
 
       for (String line : lines) {
         VoucherNumber = line;

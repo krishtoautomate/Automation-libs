@@ -1,15 +1,15 @@
 package com.deviceinformation.device;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import com.deviceinformation.exception.DeviceNotFoundException;
 import com.deviceinformation.model.Android;
 import com.deviceinformation.model.Device;
 import com.deviceinformation.model.DeviceInfoModel;
 import com.deviceinformation.model.Ios;
 import com.deviceinformation.model.IosSimulator;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class AllDeviceFinder implements DeviceFinder<Device> {
 
@@ -19,7 +19,8 @@ public class AllDeviceFinder implements DeviceFinder<Device> {
     this.deviceType = deviceType;
   }
 
-  public AllDeviceFinder() {}
+  public AllDeviceFinder() {
+  }
 
   @Override
   public DeviceInfoModel<Device> findDevices(String localPath) throws IOException {
@@ -30,15 +31,19 @@ public class AllDeviceFinder implements DeviceFinder<Device> {
     List<Ios> deviceIos = new IosDeviceFinder().findDevices(localPath).getDevices();
     List<IosSimulator> deviceIosSimulator = null;
 
-    if (deviceType == DeviceType.ALLANDIOSSIMULATOR)
+    if (deviceType == DeviceType.ALLANDIOSSIMULATOR) {
       deviceIosSimulator = new IosSimulatorDeviceFinder().findDevices(localPath).getDevices();
+    }
 
-    if (deviceAndroid != null)
+    if (deviceAndroid != null) {
       devices.addAll(deviceAndroid);
-    if (deviceIos != null)
+    }
+    if (deviceIos != null) {
       devices.addAll(deviceIos);
-    if (deviceIosSimulator != null)
+    }
+    if (deviceIosSimulator != null) {
       devices.addAll(deviceIosSimulator);
+    }
     if (deviceAndroid == null && deviceIos == null && deviceType == null
         || deviceAndroid == null && deviceIos == null && deviceIosSimulator.size() == 0) {
       try {

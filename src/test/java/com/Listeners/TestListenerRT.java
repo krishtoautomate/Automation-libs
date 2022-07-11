@@ -1,26 +1,8 @@
 package com.Listeners;
 
-import com.ReportManager.ExtentTestManager;
-import io.appium.java_client.AppiumDriver;
-import java.io.File;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.Map;
-import java.util.TimeZone;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
-import org.slf4j.Logger;
-import org.testng.IInvokedMethod;
-import org.testng.IInvokedMethodListener;
-import org.testng.ISuite;
-import org.testng.ISuiteListener;
-import org.testng.ITestListener;
-import org.testng.ITestResult;
-import org.testng.TestListenerAdapter;
 import com.DataManager.DeviceInfoReader;
 import com.DataManager.TestDataManager;
+import com.ReportManager.ExtentTestManager;
 import com.ReportManager.ReportBuilder;
 import com.ReportManager.SlackReporter;
 import com.Utilities.Constants;
@@ -32,16 +14,31 @@ import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.base.Jira;
 import com.base.ScreenShotManager;
 import com.base.TestBase;
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Map;
+import java.util.TimeZone;
+import org.openqa.selenium.WebDriverException;
+import org.slf4j.Logger;
+import org.testng.IInvokedMethod;
+import org.testng.IInvokedMethodListener;
+import org.testng.ISuite;
+import org.testng.ISuiteListener;
+import org.testng.ITestListener;
+import org.testng.ITestResult;
 
 public class TestListenerRT extends TestBase
     implements ISuiteListener, ITestListener, IInvokedMethodListener {
 
+  private static String testExecutionKey = null;
   protected ReportBuilder reporter = new ReportBuilder();
-
   Jira jiraReporter = new Jira();
   SlackReporter slackReporter = new SlackReporter();
-  private static String testExecutionKey = null;
 
   @Override
   public void onTestStart(ITestResult testResult) {
@@ -70,7 +67,6 @@ public class TestListenerRT extends TestBase
 
     DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
     String deviceName = deviceInfoReader.getString("name");
-
 
     String buildNo = System.getenv("BUILD_NUMBER");
     String environment = System.getenv("ENVIRONMENT");
@@ -275,9 +271,10 @@ public class TestListenerRT extends TestBase
     if (jobName != null && testPlanKey != null) {
       // JIRA
       testExecutionKey = testExecKey;
-      if (testExecutionKey == null)
+      if (testExecutionKey == null) {
         testExecutionKey =
             jiraReporter.create_Test_Exec(executionSummary, executionDescription, testPlanKey);
+      }
 
       // Slack
       String message = ":virgin-mobile: Mobility Run started at: <" + executionDescription + "|"
@@ -324,7 +321,6 @@ public class TestListenerRT extends TestBase
     // TODO Auto-generated method stub
 
   }
-
 
 
 }

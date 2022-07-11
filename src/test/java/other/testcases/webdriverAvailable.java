@@ -21,10 +21,10 @@ public class webdriverAvailable {
       deviceBusy = true;
     }
 
-    if (!deviceBusy)
+    if (!deviceBusy) {
       runCommandThruProcess(
           "/usr/local/bin/ideviceinstaller -u 00008030-001A550A2643802E -U com.facebook.WebDriverAgentRunner.xctrunner");
-
+    }
 
 
   }

@@ -1,5 +1,14 @@
 package com.base;
 
+import com.DataManager.DeviceInfoReader;
+import com.DataManager.TestDataManager;
+import com.ReportManager.ExtentTestManager;
+import com.Utilities.Constants;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.util.Map;
@@ -14,34 +23,23 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
-import com.DataManager.DeviceInfoReader;
-import com.DataManager.TestDataManager;
-import com.ReportManager.ExtentTestManager;
-import com.Utilities.Constants;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.markuputils.MarkupHelper;
-import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidDriver;
 
 /**
  * Created by Krish on 06.06.2018.
  */
 public class TestBase {
 
+  protected static Logger log;
   protected AppiumDriver<MobileElement> driver;
   protected TLDriverFactory tlDriverFactory = new TLDriverFactory();
-  protected static Logger log;
   protected ExtentTest test;
-  boolean isAndroid = false;
+  protected boolean isAndroid = false;
 
   public synchronized AppiumDriver<MobileElement> getDriver() {
     return driver;
   }
 
-  public Logger getLog() {
-    return log;
-  }
+
 
   /**
    * Executed once before all the tests
@@ -52,10 +50,14 @@ public class TestBase {
     // ctx.getCurrentXmlTest().getSuite().getName();
 
     // Log4j
-    // log = Logger.getLogger(suiteName);
+//     log = Logger.getLogger(suiteName);
 
     // Logback
     log = LoggerFactory.getLogger(this.getClass());
+  }
+
+  public Logger getLog() {
+    return log;
   }
 
   @SuppressWarnings("unchecked")
@@ -78,7 +80,6 @@ public class TestBase {
      */
     if ("Auto".equalsIgnoreCase(udid)) {
       udid = driver.getCapabilities().getCapability("udid").toString();
-
     }
 
     iTestContext.setAttribute("udid", udid);
@@ -104,7 +105,7 @@ public class TestBase {
     String[][] data = {{"<b>TestCase : </b>", className}, {"<b>Device : </b>", deviceName},
         {"<b>UDID : </b>", udid}, {"<b>Platform : </b>", platForm},
         {"<b>OsVersion : </b>", platformVersion}, {"<b>Jira test-key : </b>",
-            "<a href=" + Constants.JIRA_URL + testKey + ">" + testKey + "</a>"}};
+        "<a href=" + Constants.JIRA_URL + testKey + ">" + testKey + "</a>"}};
 
     test.info(MarkupHelper.createTable(data));
   }
@@ -128,8 +129,7 @@ public class TestBase {
       } catch (Exception e) {
         // ignore
       }
-      test.info("THE END");
-      log.info("THE END");
+
 
       try {
         tlDriverFactory.quit();
@@ -137,15 +137,16 @@ public class TestBase {
       } catch (Exception e) {
         // ignore
       }
+      test.info("THE END");
+      log.info("THE END");
 
+      try {
+        ExtentTestManager.getTest().getExtent().flush();
+      } catch (Exception e) {
+        // ignore
+      }
     }
 
-    try {
-      ExtentTestManager.getTest().getExtent().flush();
-      log.info(Constants.EXTENT_HTML_REPORT);
-    } catch (Exception ign) {
-      // ignore
-    }
   }
 
   /**

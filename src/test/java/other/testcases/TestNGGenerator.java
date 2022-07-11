@@ -37,7 +37,6 @@ public class TestNGGenerator {
     // Create a list which can contain the classes that you want to run.
     List<XmlClass> myClasses = new ArrayList<XmlClass>();
 
-
     Path start = Paths.get("src/test/java/Tests");
     try (Stream<Path> stream = Files.walk(start, Integer.MAX_VALUE)) {
       List<String> collect = stream.map(String::valueOf).sorted().collect(Collectors.toList());
@@ -51,13 +50,12 @@ public class TestNGGenerator {
           className = className.replaceAll(".java", "");
           className = className.replaceAll("/", ".");
           // System.out.println(className);
-          if (!isFound(className))
+          if (!isFound(className)) {
             myClasses.add(new XmlClass(className));
+          }
         }
       }
     }
-
-
 
     // Assign that to the XmlTest Object created earlier.
     myTest.setXmlClasses(myClasses);

@@ -1,5 +1,11 @@
 package com.deviceinformation.device;
 
+import com.Utilities.Constants;
+import com.deviceinformation.helper.JsonHelper;
+import com.deviceinformation.helper.ProcessHelper;
+import com.deviceinformation.model.Android;
+import com.deviceinformation.model.DeviceInfoModel;
+import com.google.gson.reflect.TypeToken;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -8,12 +14,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
-import com.Utilities.Constants;
-import com.deviceinformation.helper.JsonHelper;
-import com.deviceinformation.helper.ProcessHelper;
-import com.deviceinformation.model.Android;
-import com.deviceinformation.model.DeviceInfoModel;
-import com.google.gson.reflect.TypeToken;
 
 public class AndroidDeviceFinder implements DeviceFinder<Android> {
 
@@ -26,7 +26,8 @@ public class AndroidDeviceFinder implements DeviceFinder<Android> {
   @Override
   public DeviceInfoModel<Android> findDevices(String localPath) throws IOException {
     DeviceInfoModel<Android> deviceInfoModel = JsonHelper.convertJsonToDeviceInfo(
-        readDeviceInfo(localPath), new TypeToken<DeviceInfoModel<Android>>() {});
+        readDeviceInfo(localPath), new TypeToken<DeviceInfoModel<Android>>() {
+        });
     if (deviceInfoModel == null
         || (deviceInfoModel.getDevices() == null || deviceInfoModel.getDevices().size() == 0)) {
       // try {

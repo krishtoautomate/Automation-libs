@@ -1,9 +1,9 @@
 package com.deviceinformation.device;
 
 public enum DeviceType {
-    ANDROID,
-    IOS,
-    IOSSIMULATOR,
-    ALLANDIOSSIMULATOR,
-    ALL
+  ANDROID,
+  IOS,
+  IOSSIMULATOR,
+  ALLANDIOSSIMULATOR,
+  ALL
 }

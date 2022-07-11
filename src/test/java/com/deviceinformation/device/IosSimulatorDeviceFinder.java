@@ -1,12 +1,5 @@
 package com.deviceinformation.device;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import com.deviceinformation.exception.DeviceNotFoundException;
 import com.deviceinformation.helper.JsonHelper;
 import com.deviceinformation.helper.ProcessHelper;
@@ -17,6 +10,13 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class IosSimulatorDeviceFinder implements DeviceFinder<IosSimulator> {
 
@@ -28,7 +28,8 @@ public class IosSimulatorDeviceFinder implements DeviceFinder<IosSimulator> {
   @Override
   public DeviceInfoModel<IosSimulator> findDevices(String localPath) throws IOException {
     DeviceInfoModel<IosSimulator> deviceInfoModel = JsonHelper.convertJsonToDeviceInfo(
-        readDeviceInfo(localPath), new TypeToken<DeviceInfoModel<IosSimulator>>() {});
+        readDeviceInfo(localPath), new TypeToken<DeviceInfoModel<IosSimulator>>() {
+        });
     if (deviceInfoModel == null
         || (deviceInfoModel.getDevices() == null || deviceInfoModel.getDevices().size() == 0)) {
       try {

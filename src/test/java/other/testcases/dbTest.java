@@ -45,25 +45,25 @@ public class dbTest {
 
     ResultSet rs = stmt.executeQuery("SELECT * FROM BELLCA.AUTO_TBL_DATA");
 
-
-
     System.out.println(rs.getMetaData().getColumnName(9));
     System.out.println("TEST_TIME" + "          |" + "TEST_BRAND" + "|" + "TEST_BUILD" + "|"
         + "TEST_ENVIRONMENT" + "|" + "TEST_CASE" + "             |" + "TEST_STATUS" + "    |"
         + "TEST_PLATFORM" + "|" + "TEST_DEVICE" + "|" + "DB_INSERT_TIME");
-    while (rs.next())
+    while (rs.next()) {
       System.out.println(rs.getString("TEST_TIME") + "|" + rs.getString("TEST_BRAND") + "       |"
           + rs.getString("TEST_BUILD") + "        |" + rs.getString("TEST_ENVIRONMENT")
           + "            |" + rs.getString("TEST_CASE") + "            |"
           + rs.getString("TEST_STATUS") + "   |" + rs.getString("TEST_PLATFORM") + "  |"
           + rs.getString("TEST_DEVICE") + "  |" + rs.getString("DB_INSERT_TIME"));
+    }
 
     // step5 close the connection object
     con.close();
 
     String buildNo = System.getenv("BUILD_NUMBER");
-    if (buildNo != null)
+    if (buildNo != null) {
       System.out.println("Build Number:" + buildNo);
+    }
 
   }
 

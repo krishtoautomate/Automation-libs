@@ -25,8 +25,6 @@ import org.openqa.selenium.interactions.PointerInput.Kind;
 import org.openqa.selenium.interactions.PointerInput.MouseButton;
 import org.openqa.selenium.interactions.PointerInput.Origin;
 import org.openqa.selenium.interactions.Sequence;
-import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.slf4j.Logger;
 import org.testng.Assert;
 
@@ -89,21 +87,6 @@ public class MobileActions implements ITestBase {
         Assert.fail("Send Keys failed");
       }
     }
-  }
-
-  By progressBar = By.xpath(
-      "//android.widget.ProgressBar | //XCUIElementTypeActivityIndicator[@name='In Progress'] | //*[contains(@content-desc, 'is loading')] | "
-          + "//*[contains(@resource-id, 'Shimmer')]");
-
-  public void waitForProgressBarToDisappear() {
-    for(int i=0;i<4;i++)
-      try {
-        sleep(5);
-        if(!isElementDisplayed(progressBar))
-          break;
-      } catch (Exception e) {
-        // ignore
-      }
   }
 
   @SuppressWarnings("unchecked")
@@ -235,6 +218,10 @@ public class MobileActions implements ITestBase {
 
   public void tapByCoordinates(int X, int Y) {
     touchAction().tap(ElementOption.point(X, Y)).perform();
+  }
+
+  public void sendKeys(String keys) {
+
   }
 
   /*

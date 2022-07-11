@@ -2,7 +2,6 @@ package com.Driver;
 
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
 public interface IBaseDriver {
 
@@ -15,7 +14,7 @@ public interface IBaseDriver {
 
   void click(By by, String elementDescription);
 
-  void sendKeys(By by, String keys,String elementDescription);
+  void sendKeys(By by, String keys, String elementDescription);
 
   boolean isElementDisplayed(By by);
 
