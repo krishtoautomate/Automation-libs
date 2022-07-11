@@ -12,14 +12,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class MBM {
 
-  protected static AppiumDriverLocalService server;
   static AppiumDriver<MobileElement> driver;
-  static WebDriverWait wait;
   static By loginUser =
       By.xpath("//android.widget.EditText[contains(@resource-id, 'usernameEditText')]");
   static By loginPwd =
@@ -72,14 +68,11 @@ public class MBM {
 
     System.out.println(dtf.format(LocalDateTime.now()));
 
-    wait = new WebDriverWait(driver, 5);
     driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
-    wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(loginUser));
     driver.findElement(loginUser).sendKeys("automation5");
     System.out.println("user : automation5");
 
-    wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(loginPwd));
     driver.findElement(loginPwd).sendKeys("Lucky1234$");
     System.out.println("password : Lucky1234$");
 
@@ -87,7 +80,6 @@ public class MBM {
     // driver.findElement(keepMeLoginIn_btn).click();
     // System.out.println("KeepMeLoggedIn : Disabled");
 
-    wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(LoginIn_btn));
     driver.findElement(LoginIn_btn).click();
     System.out.println(dtf.format(LocalDateTime.now()) + " : LogIn : Clicked");
 
@@ -99,7 +91,6 @@ public class MBM {
     }
 
     // Click 'More' button
-    wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(more_btn));
     driver.findElement(more_btn).click();
     // ((AndroidDriver<MobileElement>) driver).findElementByAndroidUIAutomator("new
     // UiSelector().resourceId(\"id/more\")").click();

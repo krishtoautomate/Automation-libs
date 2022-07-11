@@ -36,12 +36,9 @@ public class TestBaseDeeplinks {
   protected static ExtentReports extent;
   @SuppressWarnings("rawtypes")
   protected AppiumDriver driver;
-  protected Map<Long, AppiumDriver> driverMap = new ConcurrentHashMap<Long, AppiumDriver>();
-  protected WebDriverWait wait;
   protected TLDriverFactory tlDriverFactory = new TLDriverFactory();
   protected ExtentSparkReporter htmlReporter;
   protected ExtentTest test;
-  protected ScreenShotManager screenShotManager;
 
 
   protected AppiumDriverLocalService server;

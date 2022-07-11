@@ -14,8 +14,6 @@ public class PlayStoreApp extends BaseObjs<PlayStoreApp> {
   By accountLogo = By.xpath(
       "(//android.view.ViewGroup/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ImageView[contains(@resource-id, '0_resource_name_obfuscated')])[1]");
 
-  By myApps_and_games_btn = MobileBy.AccessibilityId("My apps & games");
-
   By manageAppsAndDevice_btn = MobileBy
       .xpath("(//android.widget.FrameLayout/android.view.ViewGroup/android.widget.TextView)[1]");
 
@@ -32,16 +30,8 @@ public class PlayStoreApp extends BaseObjs<PlayStoreApp> {
     return get_Element(accountLogo, "Account logo(right cornor) button");
   }
 
-  public boolean verify_myApps_and_games_btn() {
-    return verify_Element(myApps_and_games_btn);
-  }
-
-  public WebElement get_myApps_and_games_btn() {
-    return get_Element(myApps_and_games_btn, "'My apps & games' button");
-  }
-
   public boolean verify_manageAppsAndDevice_btn() {
-    return verify_Element(manageAppsAndDevice_btn);
+    return isElementDisplayed(manageAppsAndDevice_btn);
   }
 
   public WebElement get_manageAppsAndDevice_btn() {
@@ -49,11 +39,11 @@ public class PlayStoreApp extends BaseObjs<PlayStoreApp> {
   }
 
   public boolean verify_updates_refresh_btn() {
-    return verify_Element(updates_refresh_btn);
+    return isElementDisplayed(updates_refresh_btn);
   }
 
   public boolean verify_updateAll_btn() {
-    return verify_Element(updateAll_btn);
+    return isElementDisplayed(updateAll_btn);
   }
 
   public WebElement get_updateAll_btn() {
