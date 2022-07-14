@@ -6,18 +6,11 @@ import com.Utilities.Constants;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
-import com.aventstack.extentreports.reporter.ExtentSparkReporter;
-import com.aventstack.extentreports.reporter.configuration.Theme;
-import com.aventstack.extentreports.reporter.configuration.ViewName;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
-import java.io.File;
 import java.lang.reflect.Method;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.ITestContext;
@@ -103,7 +96,8 @@ public class TestBaseDeeplinks {
       String platformVersion = deviceInfoReader.getString("platformVersion");
 
       // Report Content
-      test = ExtentTestManager.startTest(methodName + "(" + platForm + ")").assignDevice(deviceName);
+      test = ExtentTestManager.startTest(methodName + "(" + platForm + ")")
+          .assignDevice(deviceName);
 
       log.info("Test Details : " + className + " : " + platForm + " : " + deviceName);
       String[][] data = {{"<b>TestCase : </b>", className}, {"<b>Device : </b>", deviceName},
@@ -155,10 +149,10 @@ public class TestBaseDeeplinks {
     }
 
     try {
-       ExtentTestManager.getTest().getExtent().flush(); // -----close extent-report
+      ExtentTestManager.getTest().getExtent().flush(); // -----close extent-report
     } catch (Exception e) {
       // ignore
-    }finally {
+    } finally {
       log.info(Constants.EXTENT_HTML_REPORT);
     }
   }
@@ -170,10 +164,10 @@ public class TestBaseDeeplinks {
   public void endSuit(ITestContext ctx) {
 
     try {
-       ExtentTestManager.getTest().getExtent().flush(); // -----close extent-report
+      ExtentTestManager.getTest().getExtent().flush(); // -----close extent-report
     } catch (Exception e) {
       // ignore
-    }finally{
+    } finally {
       log.info(Constants.EXTENT_HTML_REPORT);
     }
   }

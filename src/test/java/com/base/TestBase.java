@@ -40,7 +40,6 @@ public class TestBase {
   }
 
 
-
   /**
    * Executed once before all the tests
    */
@@ -130,7 +129,6 @@ public class TestBase {
         // ignore
       }
 
-
       try {
         tlDriverFactory.quit();
         log.info("driver quit - done");
@@ -158,7 +156,7 @@ public class TestBase {
       ExtentTestManager.getTest().getExtent().flush(); // -----close extent-report
     } catch (Exception e) {
       // ignore
-    }finally {
+    } finally {
       log.info(Constants.EXTENT_HTML_REPORT);
     }
   }

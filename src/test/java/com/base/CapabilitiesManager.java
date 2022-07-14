@@ -4,9 +4,7 @@ package com.base;
  **/
 
 import com.DataManager.DeviceInfoReader;
-import com.DataManager.TestDataManager;
 import com.Utilities.Constants;
-import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import java.io.FileReader;
 import java.io.IOException;
@@ -44,10 +42,11 @@ public class CapabilitiesManager {
     capabilities.setCapability("deviceName", deviceName);
     capabilities.setCapability(MobileCapabilityType.UDID, udid);
 
-    if("Android".equalsIgnoreCase(platForm))
+    if ("Android".equalsIgnoreCase(platForm)) {
       capabilities.setCapability("systemPort", devicePort);
-    else
+    } else {
       capabilities.setCapability("wdaLocalPort", devicePort);
+    }
 
     String capabilitiesName = "Android".equalsIgnoreCase(platForm) ? "ANDROID" : "IOS";
 
@@ -74,7 +73,7 @@ public class CapabilitiesManager {
       JSONObject jAObject = (JSONObject) jObj.get("capabilities");
 
       for (Object keyStr : jAObject.keySet()) {
-        capabilities.setCapability( keyStr.toString() , jAObject.get(keyStr).toString());
+        capabilities.setCapability(keyStr.toString(), jAObject.get(keyStr).toString());
       }
     } catch (Exception e) {
       //ignore
