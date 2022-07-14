@@ -561,6 +561,14 @@
     "devicePort": 8370
   },
   {
+    "name": "iPad mini",
+    "udid": "00008020-001935502ED1002E",
+    "platformName": "iOS",
+    "platformVersion": "15.1",
+    "colour": "Black",
+    "devicePort": 8371
+  },
+  {
     "name": "Samsung S8",
     "udid": "988b9b304b4e4a374a",
     "platformName": "Android",

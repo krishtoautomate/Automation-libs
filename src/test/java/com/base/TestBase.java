@@ -146,7 +146,6 @@ public class TestBase {
         // ignore
       }
     }
-
   }
 
   /**
@@ -157,9 +156,10 @@ public class TestBase {
 
     try {
       ExtentTestManager.getTest().getExtent().flush(); // -----close extent-report
-      log.info(Constants.EXTENT_HTML_REPORT);
     } catch (Exception e) {
       // ignore
+    }finally {
+      log.info(Constants.EXTENT_HTML_REPORT);
     }
   }
 
