@@ -1,6 +1,7 @@
 package com.base;
 
 import com.DataManager.DeviceInfoReader;
+import com.ReportManager.ExtentTestManager;
 import com.Utilities.Constants;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -37,7 +38,6 @@ public class TestBaseDeeplinks {
   @SuppressWarnings("rawtypes")
   protected AppiumDriver driver;
   protected TLDriverFactory tlDriverFactory = new TLDriverFactory();
-  protected ExtentSparkReporter htmlReporter;
   protected ExtentTest test;
 
 
@@ -45,10 +45,6 @@ public class TestBaseDeeplinks {
 
   public synchronized AppiumDriver getDriver() {
     return driver;
-  }
-
-  public synchronized ExtentTest getExtentTest() {
-    return test;
   }
 
   public synchronized Logger getLog() {
@@ -72,30 +68,6 @@ public class TestBaseDeeplinks {
 
     // Logback
     log = LoggerFactory.getLogger(this.getClass());
-
-    // create Report Folder in 'test-output'
-    File reportDir = new File(Constants.REPORT_DIR);
-    if (!reportDir.exists()) {
-      reportDir.mkdirs();
-      log.info("created Folder for Report: " + reportDir.getAbsolutePath().toString());
-    }
-
-    // extent report
-    extent = new ExtentReports();
-    htmlReporter = new ExtentSparkReporter(Constants.EXTENT_HTML_REPORT).viewConfigurer()
-        .viewOrder().as(new ViewName[]{ViewName.TEST, ViewName.DEVICE, ViewName.AUTHOR,
-            ViewName.EXCEPTION, ViewName.LOG, ViewName.DASHBOARD})
-        .apply();
-    extent.attachReporter(htmlReporter);
-
-    htmlReporter.config().setDocumentTitle("AUTOMATION REPORT");
-    htmlReporter.config().setReportName("AUTOMATION REPORT");
-    htmlReporter.config().setTheme(Theme.STANDARD);
-
-    // HOST INFO
-    extent.setSystemInfo("OS", Constants.HOST_OS);
-    extent.setSystemInfo("HostIPAddress", Constants.HOST_IP_ADDRESS());
-    extent.setSystemInfo("Host Name", Constants.HOST_NAME());
 
   }
 
@@ -131,7 +103,7 @@ public class TestBaseDeeplinks {
       String platformVersion = deviceInfoReader.getString("platformVersion");
 
       // Report Content
-      test = extent.createTest(methodName + "(" + platForm + ")").assignDevice(deviceName);
+      test = ExtentTestManager.startTest(methodName + "(" + platForm + ")").assignDevice(deviceName);
 
       log.info("Test Details : " + className + " : " + platForm + " : " + deviceName);
       String[][] data = {{"<b>TestCase : </b>", className}, {"<b>Device : </b>", deviceName},
@@ -183,10 +155,11 @@ public class TestBaseDeeplinks {
     }
 
     try {
-      extent.flush(); // -----close extent-report
-      log.info(Constants.EXTENT_HTML_REPORT);
+       ExtentTestManager.getTest().getExtent().flush(); // -----close extent-report
     } catch (Exception e) {
       // ignore
+    }finally {
+      log.info(Constants.EXTENT_HTML_REPORT);
     }
   }
 
@@ -197,10 +170,11 @@ public class TestBaseDeeplinks {
   public void endSuit(ITestContext ctx) {
 
     try {
-      extent.flush(); // -----close extent-report
-      log.info(Constants.EXTENT_HTML_REPORT);
+       ExtentTestManager.getTest().getExtent().flush(); // -----close extent-report
     } catch (Exception e) {
       // ignore
+    }finally{
+      log.info(Constants.EXTENT_HTML_REPORT);
     }
   }
 

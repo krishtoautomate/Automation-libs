@@ -75,7 +75,6 @@ public class TestDataManager {
     } catch (IOException | ParseException e) {
       log.error("Data file error..");
     }
-
     return value;
   }
 
@@ -84,21 +83,15 @@ public class TestDataManager {
    * get key by unique key
    */
   public synchronized String getJsonValue(String key) {
-
     JsonFileReader JsonFileReader = new JsonFileReader(filePath);
-
     int index = 0;
-
     index = JsonFileReader.getObjIndex("className", className);
-
-    String value = null;
     try {
-      value = JsonFileReader.getJsonValue(index, key);
+      return JsonFileReader.getJsonValue(index, key);
     } catch (Exception e) {
       log.error("Data file error..");
     }
-
-    return value;
+    return null;
   }
 
   public synchronized String getJsonValue(int index, String key) {
