@@ -11,8 +11,6 @@ import java.util.Map;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import org.openqa.selenium.WebDriver;
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.Reporter;
@@ -47,7 +45,6 @@ public class TestBaseWeb {
     log = LogManager.getLogManager().getLogger(this.getClass().getSimpleName());
 
   }
-
 
 
   @BeforeMethod(alwaysRun = true)

@@ -17,10 +17,10 @@ import org.testng.Reporter;
 @SuppressWarnings("rawtypes")
 public class TLDriverFactory {
 
+  private static AppiumDriverLocalService server;
   protected Map<Long, AppiumDriver> driverMap = new ConcurrentHashMap<Long, AppiumDriver>();
   private ThreadLocal<AppiumDriver> tlDriver = new ThreadLocal<>();
   private CapabilitiesManager capabilitiesManager = new CapabilitiesManager();
-  private static AppiumDriverLocalService server;
 
   public synchronized void setDriver() throws MalformedURLException {
 

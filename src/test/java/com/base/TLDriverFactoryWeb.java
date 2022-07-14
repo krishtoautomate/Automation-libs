@@ -106,7 +106,8 @@ public class TLDriverFactoryWeb {
     }
     driverMap.put(Thread.currentThread().getId(), tlDriver.get());
 
-    this.getDriverInstance().manage().timeouts().implicitlyWait(Constants.IMPLICITLYWAIT, TimeUnit.SECONDS);
+    this.getDriverInstance().manage().timeouts()
+        .implicitlyWait(Constants.IMPLICITLYWAIT, TimeUnit.SECONDS);
 
   }
 
