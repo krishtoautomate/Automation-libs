@@ -2,7 +2,6 @@ package com.DataManager;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Iterator;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -27,6 +26,13 @@ public class TestDataManager {
     this.filePath = filePath;
   }
 
+  public TestDataManager(String filePath, String platformName) {
+    ITestResult iTestResult = Reporter.getCurrentTestResult();
+    this.className = iTestResult.getInstanceName();
+    this.filePath = filePath;
+    this.platformName = platformName;
+  }
+
   // public TestDataManager(String filePath, String platformName) {
   // ITestResult iTestResult = Reporter.getCurrentTestResult();
   // this.filePath = filePath;
@@ -44,55 +50,55 @@ public class TestDataManager {
 
   public static void main(String[] args) throws IOException, ParseException {
 
-    JSONObject jsonObject = (JSONObject) new JSONParser().parse(new FileReader("MBM_Database.txt"));
+//    JSONObject jsonObject = (JSONObject) new JSONParser().parse(new FileReader("Database.txt"));
+//
+//    JSONArray jsonArray = (JSONArray) jsonObject.get("other.testcases.TestFlight");
+//
+//    JSONObject jObj = (JSONObject) jsonArray.get(0);
+//
+//    JSONObject jAObject = (JSONObject) jObj.get("capabilities");
+//
+//    for (Object keyStr : jAObject.keySet()) {
+//      System.out
+//          .println("key: " + keyStr.toString() + " value: " + jAObject.get(keyStr).toString());
+//    }
+//
+//    TestDataManager testDataManager = new TestDataManager("/Users/krish/Automation/Automation-libs/Database.txt");
+//
+//    System.out.println(testDataManager.getGlobal("language"));
 
-    JSONArray jsonArray = (JSONArray) jsonObject.get("Tests.Login.InValidLogin");
-
-    JSONObject jObj = (JSONObject) jsonArray.get(0);
-
-    JSONObject jAObject = (JSONObject) jObj.get("capabilities");
-
-
-    for (Object keyStr : jAObject.keySet()) {
-
-      System.out.println("key: "+ keyStr.toString() + " value: " + jAObject.get(keyStr).toString());
-
-    }
-
-
-//    System.out.println(jAObject);
   }
 
-  public synchronized String getValue(String key) {
-
-    JSONParser jsonParser = new JSONParser();
-    String value = null;
-    try {
-      JSONObject jsonTestData = (JSONObject) jsonParser.parse(new FileReader(filePath));
-      JSONObject currentTestData = (JSONObject) jsonTestData.get(className);
-      JSONObject userPassData = (JSONObject) currentTestData.get(platformName);
-      value = userPassData.get(key).toString();
-    } catch (IOException | ParseException e) {
-      log.error("Data file error..");
-    }
-    return value;
-  }
+//  public synchronized String getValue(String key) {
+//
+//    JSONParser jsonParser = new JSONParser();
+//    String value = null;
+//    try {
+//      JSONObject jsonTestData = (JSONObject) jsonParser.parse(new FileReader(filePath));
+//      JSONObject currentTestData = (JSONObject) jsonTestData.get(className);
+//      JSONObject userPassData = (JSONObject) currentTestData.get(platformName);
+//      value = userPassData.get(key).toString();
+//    } catch (IOException | ParseException e) {
+//      log.error("Data file error..");
+//    }
+//    return value;
+//  }
 
 
   /*
    * get key by unique key
    */
-  public synchronized String getJsonValue(String key) {
-    JsonFileReader JsonFileReader = new JsonFileReader(filePath);
-    int index = 0;
-    index = JsonFileReader.getObjIndex("className", className);
-    try {
-      return JsonFileReader.getJsonValue(index, key);
-    } catch (Exception e) {
-      log.error("Data file error..");
-    }
-    return null;
-  }
+//  public synchronized String getJsonValue(String key) {
+//    JsonFileReader JsonFileReader = new JsonFileReader(filePath);
+//    int index = 0;
+//    index = JsonFileReader.getObjIndex("className", className);
+//    try {
+//      return JsonFileReader.getJsonValue(index, key);
+//    } catch (Exception e) {
+//      log.error("Data file error..");
+//    }
+//    return null;
+//  }
 
   public synchronized String getJsonValue(int index, String key) {
 
@@ -111,6 +117,46 @@ public class TestDataManager {
       log.error("Data file error..");
     }
 
+    return null;
+  }
+
+  /*
+  index is set by default based on platform
+   */
+  public synchronized String get(String key) {
+
+    try {
+      // read the json file
+      JSONObject jsonObject = (JSONObject) new JSONParser().parse(new FileReader(filePath));
+
+      // get an array from the JSON object
+      JSONArray jsonArray = (JSONArray) jsonObject.get(className);
+
+      int index = "Android".equalsIgnoreCase(platformName) ? 0 : 1;
+      JSONObject innerObj = (JSONObject) jsonArray.get(index);
+
+      return innerObj.get(key).toString();
+
+    } catch (IOException | ParseException | NullPointerException ex) {
+      log.error("Data file error..");
+    }
+    return null;
+  }
+
+  /*
+  get global value without className/testName
+ */
+  public synchronized String getGlobal(String key) {
+
+    try {
+      // read the json file
+      JSONObject jsonObject = (JSONObject) new JSONParser().parse(new FileReader(filePath));
+
+      return jsonObject.get(key).toString();
+
+    } catch (IOException | ParseException | NullPointerException ex) {
+      log.error("Data file error..");
+    }
     return null;
   }
 
