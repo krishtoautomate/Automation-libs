@@ -15,10 +15,10 @@ import org.testng.ITestResult;
 import org.testng.Reporter;
 
 @SuppressWarnings("rawtypes")
-public class TLDriverFactory {
+public class AppiumDriverManager {
 
   private static AppiumDriverLocalService server;
-  protected Map<Long, AppiumDriver> driverMap = new ConcurrentHashMap<Long, AppiumDriver>();
+  static Map<Long, AppiumDriver> driverMap = new ConcurrentHashMap<Long, AppiumDriver>();
   private ThreadLocal<AppiumDriver> tlDriver = new ThreadLocal<>();
   private CapabilitiesManager capabilitiesManager = new CapabilitiesManager();
 
@@ -33,7 +33,8 @@ public class TLDriverFactory {
         testParams.get("REMOTE_HOST") == null ? "localhost" : testParams.get("REMOTE_HOST");
 
     if (REMOTE_HOST.equalsIgnoreCase("localhost")) {
-      server = AppiumService.AppiumServer();
+      AppiumService appiumService = new AppiumService();
+      server = appiumService.AppiumServer();
       server.start();
       REMOTE_HOST = server.getUrl().toString();
     }
@@ -56,7 +57,7 @@ public class TLDriverFactory {
 
   }
 
-  public synchronized AppiumDriver getDriverInstance() {
+  public static synchronized AppiumDriver getDriverInstance() {
     return driverMap.get(Long.valueOf(Thread.currentThread().getId()));
   }
 

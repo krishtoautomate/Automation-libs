@@ -8,6 +8,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
+import com.base.AppiumDriverManager;
 import com.base.Jira;
 import com.base.ScreenShotManager;
 import com.base.TestBase;
@@ -121,7 +122,7 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
     String testName = testResult.getMethod().getMethodName();
 
     Object testClass = testResult.getInstance();
-    AppiumDriver driver = ((TestBase) testClass).getDriver();
+    AppiumDriver driver = AppiumDriverManager.getDriverInstance();
     Logger log = ((TestBase) testClass).getLog();
     ExtentTest test = ExtentTestManager.getTest();
     DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);

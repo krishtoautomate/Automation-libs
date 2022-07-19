@@ -27,25 +27,14 @@ import org.testng.annotations.Parameters;
 public class TestBaseDeeplinks {
 
   protected static Logger log;
-  protected static ExtentReports extent;
+
   @SuppressWarnings("rawtypes")
   protected AppiumDriver driver;
-  protected TLDriverFactory tlDriverFactory = new TLDriverFactory();
+  protected AppiumDriverManager tlDriverFactory = new AppiumDriverManager();
   protected ExtentTest test;
-
-
-  protected AppiumDriverLocalService server;
-
-  public synchronized AppiumDriver getDriver() {
-    return driver;
-  }
 
   public synchronized Logger getLog() {
     return log;
-  }
-
-  public synchronized ExtentReports getExtentReports() {
-    return extent;
   }
 
   /**
@@ -70,10 +59,10 @@ public class TestBaseDeeplinks {
   public synchronized void BeforeMethod(@Optional String udid, @Optional String platForm,
       ITestContext iTestContext, Method method) throws Exception {
 
-    String methodName = method.getName();
-    String className = this.getClass().getName();
-
     if (udid != null) {
+
+      String methodName = method.getName();
+      String className = this.getClass().getName();
 
       // Create Session
       log.info("creating session : " + className + " : " + udid);
@@ -106,31 +95,22 @@ public class TestBaseDeeplinks {
 
       test.info(MarkupHelper.createTable(data));
 
-    } else {
-      test = extent.createTest(methodName);
-      test.info("TestCase : " + methodName);
     }
 
   }
 
-  /**
-   * Executed after Class
-   */
   @SuppressWarnings("unchecked")
   @AfterMethod
-  @Parameters({"udid", "platForm"})
-  public synchronized void AfterMethod(@Optional String udid, @Optional String platForm,
-      ITestContext Testctx) {
+  public synchronized void AfterMethod(ITestContext testctx) {
 
     if (driver != null) {
       try {
-        if ("Android".equalsIgnoreCase(platForm)) {
+        boolean isAndroid = driver instanceof AndroidDriver;
+        if (isAndroid) {
           ((AndroidDriver<MobileElement>) driver).closeApp();
-          ((AndroidDriver<MobileElement>) driver).quit();
         } else {
-          ((AppiumDriver<MobileElement>) driver).terminateApp(((AppiumDriver<MobileElement>) driver)
+          driver.terminateApp(((AppiumDriver<MobileElement>) driver)
               .getCapabilities().getCapability("bundleId").toString());
-          ((AndroidDriver<MobileElement>) driver).quit();
         }
         log.info("app close");
       } catch (Exception e) {

@@ -13,11 +13,11 @@ public class AppiumService {
 
   public static void main(String[] args) {
 
-    AppiumServer().start();
+//    AppiumServer().start();
 
   }
 
-  public synchronized static AppiumDriverLocalService AppiumServer() {
+  public synchronized AppiumDriverLocalService AppiumServer() {
 
     AppiumDriverLocalService server = AppiumDriverLocalService.buildService(
         new AppiumServiceBuilder().usingDriverExecutable(new File(Constants.NODE_PATH))
@@ -39,7 +39,7 @@ public class AppiumService {
     }
 
     log.info("session : " + server.getUrl());
-    log.info("session isRunning : " + server.isRunning());
+//    log.info("session isRunning : " + server.isRunning());
 
     return server;
 
