@@ -126,7 +126,7 @@ public class TestBase {
       }
 
       try {
-        tlDriverFactory.quit();
+        AppiumDriverManager.quit();
         log.info("driver quit - done");
       } catch (Exception e) {
         // ignore

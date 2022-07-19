@@ -120,8 +120,8 @@ public class TestBaseDeeplinks {
       log.info("THE END");
 
       try {
-        tlDriverFactory.quit();
-        log.info("TLdriver quit - done");
+        AppiumDriverManager.quit();
+        log.info("driver quit - done");
       } catch (Exception e) {
         // ignore
       }

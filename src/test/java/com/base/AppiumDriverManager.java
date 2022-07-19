@@ -61,7 +61,7 @@ public class AppiumDriverManager {
     return driverMap.get(Long.valueOf(Thread.currentThread().getId()));
   }
 
-  public synchronized void quit() {
+  public static synchronized void quit() {
     getDriverInstance().quit();
 
     if (server.isRunning()) {
