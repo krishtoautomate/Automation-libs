@@ -1,6 +1,7 @@
-package com.base;
+package com.Utilities;
 
 import com.Utilities.Constants;
+import com.base.AppiumDriverManager;
 import io.appium.java_client.AppiumDriver;
 import java.io.File;
 import java.io.IOException;
@@ -14,12 +15,8 @@ import org.slf4j.LoggerFactory;
 public class ScreenShotManager {
 
   private static final Logger log = LoggerFactory.getLogger(Class.class.getName());
-  private AppiumDriver driver;
 
-
-  public ScreenShotManager(AppiumDriver driver) {
-    this.driver = driver;
-  }
+  AppiumDriver driver = AppiumDriverManager.getDriverInstance();
 
   public synchronized String getScreenshot() {
 

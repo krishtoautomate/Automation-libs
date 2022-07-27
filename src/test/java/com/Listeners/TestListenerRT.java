@@ -12,7 +12,7 @@ import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.base.Jira;
-import com.base.ScreenShotManager;
+import com.Utilities.ScreenShotManager;
 import com.base.TestBase;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
@@ -144,7 +144,7 @@ public class TestListenerRT extends TestBase
     if (driver != null) {
       log.error("Test failed : " + className + " : " + udid + "_" + deviceName);
       try {
-        ScreenShotManager screenShotManager = new ScreenShotManager(driver);
+        ScreenShotManager screenShotManager = new ScreenShotManager();
         String ScreenShot = screenShotManager.getScreenshot();
         ssPath = ScreenShot;
         test.fail("Failed Test case : " + testName + "\n" + testResult.getThrowable(),
