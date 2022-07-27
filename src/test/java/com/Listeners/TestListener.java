@@ -10,7 +10,7 @@ import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.base.AppiumDriverManager;
 import com.base.Jira;
-import com.base.ScreenShotManager;
+import com.Utilities.ScreenShotManager;
 import com.base.TestBase;
 import io.appium.java_client.AppiumDriver;
 import java.io.File;
@@ -131,7 +131,7 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
 //    if (driver != null) {
     log.error("Test failed : " + testName + " : " + udid + "_" + deviceName);
     try {
-      ScreenShotManager screenShotManager = new ScreenShotManager(driver);
+      ScreenShotManager screenShotManager = new ScreenShotManager();
       String ScreenShot = screenShotManager.getScreenshot();
 
       test.fail("Failed Test case : " + testName + "\n" + testResult.getThrowable(),

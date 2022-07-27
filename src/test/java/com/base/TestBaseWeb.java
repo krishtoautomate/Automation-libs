@@ -28,7 +28,7 @@ public class TestBaseWeb {
 
   public static Logger log;
   public WebDriver driver;
-  protected TLDriverFactoryWeb tlDriverFactory = new TLDriverFactoryWeb();
+  protected WebBrowserDriverManager tlDriverFactory = new WebBrowserDriverManager();
   protected ExtentTest test;
 
   @BeforeSuite
@@ -52,14 +52,12 @@ public class TestBaseWeb {
   public synchronized void setupTest(@Optional String browser, ITestContext iTestContext,
       Method method) {
 
-    // get TestName, ClassName and MethodName
-    // String testName = Testctx.getCurrentXmlTest().getName();
     String className = this.getClass().getName();
     String methodName = method.getName();
 
     // Set & Get ThreadLocal Driver with Browser
     tlDriverFactory.setDriver();
-    driver = tlDriverFactory.getDriverInstance();
+    driver = WebBrowserDriverManager.getDriverInstance();
 //    driver = tlDriverFactory.getDriver();
 //    driverMap.put(Thread.currentThread().getId(), tlDriverFactory.getDriver());
 //    driver = driverMap.get(Long.valueOf(Thread.currentThread().getId()));
@@ -92,28 +90,28 @@ public class TestBaseWeb {
   @Parameters({"browser"})
   @AfterMethod()
   public synchronized void tearDown(ITestContext context, String browser) {
-    log.info("|--AfterClass--|");
-    log.info("AfterTest : " + context.getCurrentXmlTest().getName());
 
-    // Removes the skipped tests
-    // Iterator<ITestResult> skippedTestCases =
-    // context.getSkippedTests().getAllResults().iterator();
-    // while (skippedTestCases.hasNext()) {
-    // ITestResult skippedTestCase = skippedTestCases.next();
-    // ITestNGMethod method = skippedTestCase.getMethod();
-    // if (context.getSkippedTests().getResults(method).size() > 0) {
-    // log.info("Removing:" + skippedTestCase.getTestClass().toString());
-    // skippedTestCases.remove();
-    // }
-    // }
+    log.info("AfterTest : " + context.getCurrentXmlTest().getName());
 
     if (driver != null) {
       try {
         driver.close();
-        tlDriverFactory.getDriverInstance().quit();
+      } catch (Exception ign) {
+        // ignore
+      }
+
+      try {
+        driver.quit();
+      } catch (Exception ign) {
+        // ignore
+      }
+
+      try {
         ExtentTestManager.getTest().getExtent().flush();
       } catch (Exception ign) {
         // ignore
+      }finally {
+        log.info(Constants.EXTENT_HTML_REPORT);
       }
     }
     test.log(Status.INFO, "Test Completed : " + context.getCurrentXmlTest().getName());
@@ -123,11 +121,11 @@ public class TestBaseWeb {
   public void endSuit() {
     try {
       ExtentTestManager.getTest().getExtent().flush();
-      log.info(Constants.EXTENT_HTML_REPORT);
     } catch (Exception e) {
       // ignore
+    }finally {
+      log.info(Constants.EXTENT_HTML_REPORT);
     }
-
   }
 
 }

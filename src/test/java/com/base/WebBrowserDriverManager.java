@@ -26,7 +26,7 @@ import org.testng.Reporter;
  * Created by Krish on 21.05.2018.
  */
 
-public class TLDriverFactoryWeb {
+public class WebBrowserDriverManager {
 
   private static final Logger log = LoggerFactory.getLogger(Class.class.getName());
   public static Properties prop = new Properties();
@@ -113,6 +113,10 @@ public class TLDriverFactoryWeb {
 
   public static synchronized WebDriver getDriverInstance() {
     return driverMap.get(Long.valueOf(Thread.currentThread().getId()));
+  }
+
+  public static synchronized void quit() {
+    getDriverInstance().quit();
   }
 
 }
