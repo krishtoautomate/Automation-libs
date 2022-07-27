@@ -31,13 +31,9 @@ public class TestBase {
 
   protected static Logger log;
   protected AppiumDriver<MobileElement> driver;
-  protected TLDriverFactory tlDriverFactory = new TLDriverFactory();
+  protected AppiumDriverManager tlDriverFactory = new AppiumDriverManager();
   protected ExtentTest test;
   protected boolean isAndroid = false;
-
-  public synchronized AppiumDriver<MobileElement> getDriver() {
-    return driver;
-  }
 
 
   /**
@@ -130,7 +126,7 @@ public class TestBase {
       }
 
       try {
-        tlDriverFactory.quit();
+        AppiumDriverManager.quit();
         log.info("driver quit - done");
       } catch (Exception e) {
         // ignore

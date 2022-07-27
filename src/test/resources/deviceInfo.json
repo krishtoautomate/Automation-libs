@@ -569,6 +569,22 @@
     "devicePort": 8371
   },
   {
+    "name": "iPhone SE",
+    "udid": "00008110-000E3C891A0B801E",
+    "platformName": "iOS",
+    "platformVersion": "15.5",
+    "colour": "Black",
+    "devicePort": 8372
+  },
+  {
+    "name": "iPad",
+    "udid": "00008110-00014DE03A7B801E",
+    "platformName": "iOS",
+    "platformVersion": "15.4.1",
+    "colour": "Black",
+    "devicePort": 8373
+  },
+  {
     "name": "Samsung S8",
     "udid": "988b9b304b4e4a374a",
     "platformName": "Android",
