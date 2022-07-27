@@ -36,7 +36,7 @@ public class CapabilitiesManager {
     int devicePort = 8100;
     DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
     String deviceName = deviceInfoReader.getString("name");
-    deviceInfoReader.getString("platformVersion");
+//    deviceInfoReader.getString("platformVersion");
     devicePort = deviceInfoReader.getInt("devicePort");
 
     capabilities.setCapability("deviceName", deviceName);

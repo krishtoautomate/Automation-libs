@@ -33,7 +33,7 @@ public class TLDriverFactoryWeb {
   public static InputStream input = null;
   private static OptionsManager optionsManager = new OptionsManager();
   private static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<>();
-  public Map<Long, WebDriver> driverMap = new ConcurrentHashMap<Long, WebDriver>();
+  static Map<Long, WebDriver> driverMap = new ConcurrentHashMap<Long, WebDriver>();
 
   protected synchronized void setDriver() {
     try {
@@ -106,12 +106,12 @@ public class TLDriverFactoryWeb {
     }
     driverMap.put(Thread.currentThread().getId(), tlDriver.get());
 
-    this.getDriverInstance().manage().timeouts()
+    getDriverInstance().manage().timeouts()
         .implicitlyWait(Constants.IMPLICITLYWAIT, TimeUnit.SECONDS);
 
   }
 
-  public synchronized WebDriver getDriverInstance() {
+  public static synchronized WebDriver getDriverInstance() {
     return driverMap.get(Long.valueOf(Thread.currentThread().getId()));
   }
 

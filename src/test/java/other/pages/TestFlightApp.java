@@ -13,7 +13,7 @@ import org.slf4j.Logger;
 public class TestFlightApp extends BaseObjs<TestFlightApp> {
 
   // TestFlight
-  By continue_btn = By.xpath("//XCUIElementTypeButton[@name='Continue Button']");
+  By continue_btn = MobileBy.iOSNsPredicateString("type == 'XCUIElementTypeButton' AND name IN {'Continue Button','Not Now'}");
   By tryAgain_btn = By.xpath("//XCUIElementTypeButton[@name='Try Again']");
 
   By all_btns = MobileBy.xpath("//XCUIElementTypeButton[@name='UPDATE' or @name='INSTALL']");
