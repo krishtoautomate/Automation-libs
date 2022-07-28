@@ -8,7 +8,7 @@ import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
 
-public class LogFormatter extends Formatter{
+public class LogFormatter extends Formatter {
 
   private static final DateFormat df = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss.SSS");
 
@@ -26,14 +26,18 @@ public class LogFormatter extends Formatter{
   @Override
   public String format(LogRecord record) {
 
-    String ANSI = ANSI_GREEN;
-    if(record.getLevel().equals(Level.WARNING))
+    String ANSI = "";
+    if (record.getLevel().equals(Level.WARNING)) {
       ANSI = ANSI_YELLOW;
-    else if(record.getLevel().equals(Level.SEVERE))
+    }
+    else if (record.getLevel().equals(Level.SEVERE)) {
       ANSI = ANSI_RED;
+    }
 
     StringBuilder builder = new StringBuilder(1000);
+
     builder.append(ANSI);
+
     builder.append(df.format(new Date(record.getMillis()))).append(" - ");
     //className
     builder.append("(").append(record.getSourceClassName()).append(".");
