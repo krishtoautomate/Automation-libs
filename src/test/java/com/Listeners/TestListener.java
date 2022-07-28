@@ -2,6 +2,7 @@ package com.Listeners;
 
 import com.DataManager.DeviceInfoReader;
 import com.ReportManager.ExtentTestManager;
+import com.ReportManager.LoggerManager;
 import com.ReportManager.ReportBuilder;
 import com.Utilities.Constants;
 import com.aventstack.extentreports.ExtentTest;
@@ -20,8 +21,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Map;
 import java.util.TimeZone;
+import java.util.logging.Logger;
 import org.openqa.selenium.WebDriverException;
-import org.slf4j.Logger;
 import org.testng.IInvokedMethod;
 import org.testng.IInvokedMethodListener;
 import org.testng.ISuite;
@@ -123,13 +124,13 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
 
     Object testClass = testResult.getInstance();
     AppiumDriver driver = AppiumDriverManager.getDriverInstance();
-    Logger log = ((TestBase) testClass).getLog();
+    Logger log = LoggerManager.getLogger();
     ExtentTest test = ExtentTestManager.getTest();
     DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
     String deviceName = deviceInfoReader.getString("name");
 
 //    if (driver != null) {
-    log.error("Test failed : " + testName + " : " + udid + "_" + deviceName);
+    log.severe("Test failed : " + testName + " : " + udid + "_" + deviceName);
     try {
       ScreenShotManager screenShotManager = new ScreenShotManager();
       String ScreenShot = screenShotManager.getScreenshot();
@@ -190,8 +191,8 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
     String deviceName = deviceInfoReader.getString("name");
 
     Object testClass = testResult.getInstance();
-    Logger log = ((TestBase) testClass).getLog();
-    log.warn("Test Skipped : " + testResult.getMethod().getMethodName() + " : " + udid + "_"
+    Logger log = LoggerManager.getLogger();
+    log.warning("Test Skipped : " + testResult.getMethod().getMethodName() + " : " + udid + "_"
         + deviceName);
   }
 

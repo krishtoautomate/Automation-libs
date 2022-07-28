@@ -8,8 +8,7 @@ import com.aventstack.extentreports.reporter.configuration.Theme;
 import com.aventstack.extentreports.reporter.configuration.ViewName;
 import java.io.File;
 import java.lang.reflect.Method;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.logging.Logger;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
@@ -51,7 +50,7 @@ public class TestBaseAPI {
     // log = Logger.getLogger(suiteName);
 
     // Logback
-    log = LoggerFactory.getLogger(this.getClass());
+    log = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     // create Report Folder in 'test-output'
     File reportDir = new File(Constants.REPORT_DIR);

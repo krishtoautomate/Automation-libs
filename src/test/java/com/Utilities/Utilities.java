@@ -18,11 +18,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
+import java.util.logging.Logger;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebElement;
-import org.slf4j.Logger;
 import org.testng.annotations.Optional;
 
 
@@ -385,7 +385,7 @@ public class Utilities extends BaseObjs<Utilities> {
       raf.setLength(length - 17);
       raf.close();
     } catch (Exception ex) {
-      log.error("voucher file not found!!!");
+      log.severe("voucher file not found!!!");
     }
     return VoucherNumber;
   }

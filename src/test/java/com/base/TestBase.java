@@ -3,6 +3,7 @@ package com.base;
 import com.DataManager.DeviceInfoReader;
 import com.DataManager.TestDataManager;
 import com.ReportManager.ExtentTestManager;
+import com.ReportManager.LoggerManager;
 import com.Utilities.Constants;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
@@ -12,8 +13,7 @@ import io.appium.java_client.android.AndroidDriver;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.util.Map;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.logging.Logger;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.Reporter;
@@ -41,18 +41,7 @@ public class TestBase {
    */
   @BeforeSuite(alwaysRun = true)
   public void setupSuit(ITestContext ctx) {
-
-    // ctx.getCurrentXmlTest().getSuite().getName();
-
-    // Log4j
-//     log = Logger.getLogger(suiteName);
-
-    // Logback
-    log = LoggerFactory.getLogger(this.getClass());
-  }
-
-  public Logger getLog() {
-    return log;
+//     String suiteName = ctx.getCurrentXmlTest().getSuite().getName();
   }
 
   @SuppressWarnings("unchecked")
@@ -64,6 +53,8 @@ public class TestBase {
     String methodName = method.getName();
     String className = this.getClass().getName();
     isAndroid = platForm.equalsIgnoreCase("Android");
+
+    log = LoggerManager.startLogger(className);
 
     // Create Session
     log.info("creating session : " + className + " : " + udid);
