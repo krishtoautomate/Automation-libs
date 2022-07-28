@@ -3,6 +3,8 @@ package com.base;
 import com.DataManager.DeviceInfoReader;
 import com.DataManager.TestDataManager;
 import com.ReportManager.ExtentTestManager;
+import com.ReportManager.LogFormatter;
+import com.ReportManager.LoggerManager;
 import com.Utilities.Constants;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
@@ -12,7 +14,10 @@ import io.appium.java_client.android.AndroidDriver;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.util.Map;
-import org.slf4j.Logger;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
@@ -42,13 +47,27 @@ public class TestBase {
   @BeforeSuite(alwaysRun = true)
   public void setupSuit(ITestContext ctx) {
 
-    // ctx.getCurrentXmlTest().getSuite().getName();
+     String suiteName = ctx.getCurrentXmlTest().getSuite().getName();
 
     // Log4j
 //     log = Logger.getLogger(suiteName);
 
     // Logback
-    log = LoggerFactory.getLogger(this.getClass());
+//    log = LoggerFactory.getLogger(this.getClass());
+
+
+    log = LoggerManager.startLogger(suiteName);
+
+//    log =  Logger.getLogger(suiteName);
+//        Logger.getGlobal();
+
+//    log.setUseParentHandlers(false);
+//
+//    LogFormatter formatter = new LogFormatter();
+//    ConsoleHandler handler = new ConsoleHandler();
+//    handler.setFormatter(formatter);
+//    log.addHandler(handler);
+
   }
 
   public Logger getLog() {

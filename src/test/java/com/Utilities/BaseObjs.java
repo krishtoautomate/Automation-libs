@@ -23,6 +23,7 @@ import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -37,7 +38,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
-import org.slf4j.Logger;
 import org.testng.Assert;
 import java.time.Duration;
 
@@ -210,7 +210,7 @@ public class BaseObjs<T> implements ITestBase {
       FileUtils.moveFile(ScreenShot, new File(Constants.REPORT_DIR + imgPath));
 
     } catch (WebDriverException | IOException e) {
-      log.error("TakesScreenshot service failed!!!");
+      log.severe("TakesScreenshot service failed!!!");
 
       try {
         FileUtils.copyFile(ScreenShot, new File(Constants.REPORT_DIR + imgPath));
@@ -258,7 +258,7 @@ public class BaseObjs<T> implements ITestBase {
       try {
         screenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
       } catch (Exception e) {
-        log.error("TakesScreenshot service failed!!!");
+        log.severe("TakesScreenshot service failed!!!");
       }
 
       if (Status == Status.FAIL) {
@@ -369,7 +369,7 @@ public class BaseObjs<T> implements ITestBase {
       // Copy the element screenshot to disk
       FileUtils.moveFile(ScreenShot, new File(Constants.REPORT_DIR + imgPath));
     } catch (WebDriverException | IOException e) {
-      log.error("TakesScreenshot service failed!!!");
+      log.severe("TakesScreenshot service failed!!!");
 
       try {
         FileUtils.copyFile(ScreenShot, new File(Constants.REPORT_DIR + imgPath));
@@ -420,7 +420,7 @@ public class BaseObjs<T> implements ITestBase {
       refImgFile = Paths.get(refImgUrl.toURI()).toFile();
       base64 = Base64.getEncoder().encodeToString(Files.readAllBytes(refImgFile.toPath()));
     } catch (URISyntaxException | IOException e) {
-      log.error("image error");
+      log.severe("image error");
     }
     return base64;
   }

@@ -23,8 +23,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Map;
 import java.util.TimeZone;
+import java.util.logging.Logger;
 import org.openqa.selenium.WebDriverException;
-import org.slf4j.Logger;
 import org.testng.IInvokedMethod;
 import org.testng.IInvokedMethodListener;
 import org.testng.ISuite;
@@ -142,7 +142,7 @@ public class TestListenerRT extends TestBase
     ExtentTest test = ExtentTestManager.getTest();
 
     if (driver != null) {
-      log.error("Test failed : " + className + " : " + udid + "_" + deviceName);
+      log.severe("Test failed : " + className + " : " + udid + "_" + deviceName);
       try {
         ScreenShotManager screenShotManager = new ScreenShotManager();
         String ScreenShot = screenShotManager.getScreenshot();
@@ -227,7 +227,7 @@ public class TestListenerRT extends TestBase
     int index = driver instanceof AndroidDriver ? 0 : 1;
 
     Logger log = ((TestBase) testClass).getLog();
-    log.warn("Test Skipped : " + className + " : " + udid + "_" + deviceName);
+    log.warning("Test Skipped : " + className + " : " + udid + "_" + deviceName);
 
     ExtentTest test = ExtentTestManager.getTest();
     ExtentReports extent = ExtentTestManager.getTest().getExtent();

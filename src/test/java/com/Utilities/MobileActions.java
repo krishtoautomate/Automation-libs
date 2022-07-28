@@ -13,6 +13,7 @@ import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.touch.offset.ElementOption;
 import java.time.Duration;
 import java.util.HashMap;
+import java.util.logging.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
@@ -25,7 +26,6 @@ import org.openqa.selenium.interactions.PointerInput.Kind;
 import org.openqa.selenium.interactions.PointerInput.MouseButton;
 import org.openqa.selenium.interactions.PointerInput.Origin;
 import org.openqa.selenium.interactions.Sequence;
-import org.slf4j.Logger;
 import org.testng.Assert;
 
 public class MobileActions implements ITestBase {
@@ -83,7 +83,7 @@ public class MobileActions implements ITestBase {
         ((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.DIGIT_9));
       } else {
         test.log(Status.FAIL, "SendKeys Failed!");
-        log.error("SendKeys Failed!");
+        log.severe("SendKeys Failed!");
         Assert.fail("Send Keys failed");
       }
     }
@@ -166,7 +166,7 @@ public class MobileActions implements ITestBase {
       try {
         driver.findElement(done_btn).click();
       } catch (Exception e) {
-        log.warn("Hide iOS keyboard failed!!!");
+        log.warning("Hide iOS keyboard failed!!!");
       }
     } else {
       try {
@@ -384,7 +384,7 @@ public class MobileActions implements ITestBase {
               .moveTo(ElementOption.point(x, y_end)).release().perform();
         }
       } catch (Exception e) {
-        log.warn("scroll failed!!!");
+        log.warning("scroll failed!!!");
       }
     }
   }
