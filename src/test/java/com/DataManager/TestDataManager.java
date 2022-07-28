@@ -14,7 +14,7 @@ import org.testng.Reporter;
 
 public class TestDataManager {
 
-  static Logger log = LoggerManager.startLogger(Logger.class.getName());
+  static Logger log = LoggerManager.getLogger();
 
   private String filePath;
   private String className;

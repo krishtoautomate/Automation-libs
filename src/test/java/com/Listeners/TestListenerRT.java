@@ -3,6 +3,7 @@ package com.Listeners;
 import com.DataManager.DeviceInfoReader;
 import com.DataManager.TestDataManager;
 import com.ReportManager.ExtentTestManager;
+import com.ReportManager.LoggerManager;
 import com.ReportManager.ReportBuilder;
 import com.ReportManager.SlackReporter;
 import com.Utilities.Constants;
@@ -74,7 +75,7 @@ public class TestListenerRT extends TestBase
     String className = testResult.getTestClass().getName();
 
     Object testClass = testResult.getInstance();
-    Logger log = ((TestBase) testClass).getLog();
+    Logger log = LoggerManager.getLogger();
     ExtentTest test = ExtentTestManager.getTest();
 
     test.log(Status.INFO, testName + " - Completed as Success");
@@ -138,7 +139,7 @@ public class TestListenerRT extends TestBase
 
     Object testClass = testResult.getInstance();
     AppiumDriver driver = tlDriverFactory.getDriverInstance();
-    Logger log = ((TestBase) testClass).getLog();
+    Logger log = LoggerManager.getLogger();
     ExtentTest test = ExtentTestManager.getTest();
 
     if (driver != null) {
@@ -226,7 +227,7 @@ public class TestListenerRT extends TestBase
     AppiumDriver driver = tlDriverFactory.getDriverInstance();
     int index = driver instanceof AndroidDriver ? 0 : 1;
 
-    Logger log = ((TestBase) testClass).getLog();
+    Logger log = LoggerManager.getLogger();
     log.warning("Test Skipped : " + className + " : " + udid + "_" + deviceName);
 
     ExtentTest test = ExtentTestManager.getTest();

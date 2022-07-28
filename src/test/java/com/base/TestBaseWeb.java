@@ -2,6 +2,7 @@ package com.base;
 
 import com.DataManager.TestDataManager;
 import com.ReportManager.ExtentTestManager;
+import com.ReportManager.LoggerManager;
 import com.Utilities.Constants;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
@@ -42,7 +43,7 @@ public class TestBaseWeb {
     // Logback
 //    log = LoggerFactory.getLogger(this.getClass());
 
-    log = LogManager.getLogManager().getLogger(this.getClass().getSimpleName());
+//    log = LogManager.getLogManager().getLogger(this.getClass().getSimpleName());
 
   }
 
@@ -55,12 +56,11 @@ public class TestBaseWeb {
     String className = this.getClass().getName();
     String methodName = method.getName();
 
+    log = LoggerManager.startLogger(className);
+
     // Set & Get ThreadLocal Driver with Browser
     tlDriverFactory.setDriver();
     driver = WebBrowserDriverManager.getDriverInstance();
-//    driver = tlDriverFactory.getDriver();
-//    driverMap.put(Thread.currentThread().getId(), tlDriverFactory.getDriver());
-//    driver = driverMap.get(Long.valueOf(Thread.currentThread().getId()));
 
     // Create Test in extent-Report
     test = ExtentTestManager.startTest(methodName);

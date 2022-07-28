@@ -2,6 +2,7 @@ package com.base;
 
 import com.DataManager.DeviceInfoReader;
 import com.ReportManager.ExtentTestManager;
+import com.ReportManager.LoggerManager;
 import com.Utilities.Constants;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -11,8 +12,7 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import java.lang.reflect.Method;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.logging.Logger;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
@@ -43,13 +43,7 @@ public class TestBaseDeeplinks {
   @BeforeSuite(alwaysRun = true)
   public void setupSuit(ITestContext ctx) {
 
-    ctx.getCurrentXmlTest().getSuite().getName();
-
-    // Log4j
-    // log = Logger.getLogger(suiteName);
-
-    // Logback
-    log = LoggerFactory.getLogger(this.getClass());
+//    ctx.getCurrentXmlTest().getSuite().getName();
 
   }
 
@@ -59,10 +53,13 @@ public class TestBaseDeeplinks {
   public synchronized void BeforeMethod(@Optional String udid, @Optional String platForm,
       ITestContext iTestContext, Method method) throws Exception {
 
+    String methodName = method.getName();
+    String className = this.getClass().getName();
+
+    log = LoggerManager.startLogger(className);
+
     if (udid != null) {
 
-      String methodName = method.getName();
-      String className = this.getClass().getName();
 
       // Create Session
       log.info("creating session : " + className + " : " + udid);

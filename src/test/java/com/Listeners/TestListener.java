@@ -2,6 +2,7 @@ package com.Listeners;
 
 import com.DataManager.DeviceInfoReader;
 import com.ReportManager.ExtentTestManager;
+import com.ReportManager.LoggerManager;
 import com.ReportManager.ReportBuilder;
 import com.Utilities.Constants;
 import com.aventstack.extentreports.ExtentTest;
@@ -123,7 +124,7 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
 
     Object testClass = testResult.getInstance();
     AppiumDriver driver = AppiumDriverManager.getDriverInstance();
-    Logger log = ((TestBase) testClass).getLog();
+    Logger log = LoggerManager.getLogger();
     ExtentTest test = ExtentTestManager.getTest();
     DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
     String deviceName = deviceInfoReader.getString("name");
@@ -190,7 +191,7 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
     String deviceName = deviceInfoReader.getString("name");
 
     Object testClass = testResult.getInstance();
-    Logger log = ((TestBase) testClass).getLog();
+    Logger log = LoggerManager.getLogger();
     log.warning("Test Skipped : " + testResult.getMethod().getMethodName() + " : " + udid + "_"
         + deviceName);
   }
