@@ -35,7 +35,6 @@ public class LoggerManager {
 
   public static void main(String[] args) {
 
-
     logger.setUseParentHandlers(false);
 
     LogFormatter formatter = new LogFormatter();
