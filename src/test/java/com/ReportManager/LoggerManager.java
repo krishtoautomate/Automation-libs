@@ -15,7 +15,7 @@ public class LoggerManager {
   static Logger logger = Logger.getGlobal();
 
  public static Logger startLogger(String name){
-   Logger logger =  Logger.getLogger(name);
+   logger =  Logger.getLogger(name);
 
    logger.setUseParentHandlers(false);
 
@@ -30,7 +30,7 @@ public class LoggerManager {
  }
 
   public static synchronized Logger getLogger() {
-    return LoggerMap.get((long) Thread.currentThread().getId());
+    return LoggerMap.get((int) Thread.currentThread().getId());
   }
 
   public static void main(String[] args) {

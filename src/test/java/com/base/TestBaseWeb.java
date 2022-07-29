@@ -35,16 +35,6 @@ public class TestBaseWeb {
   @BeforeSuite
   public void setupSuit(ITestContext ctx) {
 
-    // String suiteName = ctx.getCurrentXmlTest().getSuite().getName();
-
-    // Create Log4J
-    // log = Logger.getLogger(suiteName);
-
-    // Logback
-//    log = LoggerFactory.getLogger(this.getClass());
-
-//    log = LogManager.getLogManager().getLogger(this.getClass().getSimpleName());
-
   }
 
 
@@ -68,15 +58,17 @@ public class TestBaseWeb {
     Map<String, String> testParams = iTestContext.getCurrentXmlTest().getAllParameters();
     String pTestData = testParams.get("p_Testdata");
     TestDataManager testData = new TestDataManager(pTestData);
-    int index = 0;
-    String testKey = testData.getJsonValue(index, "testKey");
+    String testKey = testData.getJsonValue(0, "testKey");
     ITestResult result = Reporter.getCurrentTestResult();
     result.setAttribute("testKey", testKey);
 
     log.info("Test Details : " + className);
-    String[][] data = {{"<b>TestCase : </b>", className}, {"<b>Platform : </b>", browser},
+    String[][] data = {
+        {"<b>TestCase : </b>", className},
+        {"<b>Platform : </b>", browser},
         {"<b>Jira test-key : </b>",
-            "<a href=" + Constants.JIRA_URL + testKey + ">" + testKey + "</a>"}};
+            "<a href=" + Constants.JIRA_URL + testKey + ">" + testKey + "</a>"}
+    };
 
     test.info(MarkupHelper.createTable(data));
 
