@@ -69,37 +69,6 @@ public class TestDataManager {
 
   }
 
-//  public synchronized String getValue(String key) {
-//
-//    JSONParser jsonParser = new JSONParser();
-//    String value = null;
-//    try {
-//      JSONObject jsonTestData = (JSONObject) jsonParser.parse(new FileReader(filePath));
-//      JSONObject currentTestData = (JSONObject) jsonTestData.get(className);
-//      JSONObject userPassData = (JSONObject) currentTestData.get(platformName);
-//      value = userPassData.get(key).toString();
-//    } catch (IOException | ParseException e) {
-//      log.error("Data file error..");
-//    }
-//    return value;
-//  }
-
-
-  /*
-   * get key by unique key
-   */
-//  public synchronized String getJsonValue(String key) {
-//    JsonFileReader JsonFileReader = new JsonFileReader(filePath);
-//    int index = 0;
-//    index = JsonFileReader.getObjIndex("className", className);
-//    try {
-//      return JsonFileReader.getJsonValue(index, key);
-//    } catch (Exception e) {
-//      log.error("Data file error..");
-//    }
-//    return null;
-//  }
-
   public synchronized String getJsonValue(int index, String key) {
 
     try {

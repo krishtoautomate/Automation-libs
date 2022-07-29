@@ -29,7 +29,7 @@ import org.testng.annotations.Parameters;
  */
 public class TestBase {
 
-  protected Logger log;
+  protected static Logger log;
   protected AppiumDriver<MobileElement> driver;
   protected AppiumDriverManager tlDriverFactory = new AppiumDriverManager();
   protected ExtentTest test;

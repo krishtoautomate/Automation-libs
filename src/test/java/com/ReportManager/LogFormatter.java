@@ -31,7 +31,7 @@ public class LogFormatter extends Formatter {
 //    String methodName = Thread.currentThread().getStackTrace()[2].getMethodName();
 //    int lineNumber = Thread.currentThread().getStackTrace()[2].getLineNumber();
 
-    String ANSI = "";
+    String ANSI = ANSI_RESET;
     if (record.getLevel().equals(Level.WARNING)) {
       ANSI = ANSI_YELLOW;
     }
