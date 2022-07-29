@@ -26,7 +26,7 @@ public class LogFormatter extends Formatter {
   @Override
   public String format(LogRecord record) {
 
-    String fullClassName = Thread.currentThread().getStackTrace()[2].getClassName();
+//    String fullClassName = Thread.currentThread().getStackTrace()[2].getClassName();
 //    String className = fullClassName.substring(fullClassName.lastIndexOf(".") + 1);
 //    String methodName = Thread.currentThread().getStackTrace()[2].getMethodName();
 //    int lineNumber = Thread.currentThread().getStackTrace()[2].getLineNumber();
