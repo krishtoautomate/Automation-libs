@@ -29,7 +29,7 @@ import org.testng.annotations.Parameters;
  */
 public class TestBase {
 
-  protected static Logger log;
+  protected Logger log;
   protected AppiumDriver<MobileElement> driver;
   protected AppiumDriverManager tlDriverFactory = new AppiumDriverManager();
   protected ExtentTest test;
@@ -59,7 +59,7 @@ public class TestBase {
     // Create Session
     log.info("creating session : " + className + " : " + udid);
     tlDriverFactory.setDriver();
-    driver = tlDriverFactory.getDriverInstance();
+    driver = AppiumDriverManager.getDriverInstance();
 
     /*
      * Test info

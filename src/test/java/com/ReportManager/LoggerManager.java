@@ -30,7 +30,7 @@ public class LoggerManager {
  }
 
   public static synchronized Logger getLogger() {
-    return LoggerMap.get((int) Thread.currentThread().getId());
+    return LoggerMap.get((long) Thread.currentThread().getId());
   }
 
   public static void main(String[] args) {
