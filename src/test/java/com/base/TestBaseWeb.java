@@ -1,15 +1,8 @@
 package com.base;
 
-import com.DataManager.TestDataManager;
-import com.ReportManager.ExtentTestManager;
-import com.ReportManager.LoggerManager;
-import com.Utilities.Constants;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.Status;
-import com.aventstack.extentreports.markuputils.MarkupHelper;
 import java.lang.reflect.Method;
+import java.net.MalformedURLException;
 import java.util.Map;
-import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
@@ -21,6 +14,13 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
+import com.DataManager.TestDataManager;
+import com.ReportManager.ExtentTestManager;
+import com.ReportManager.LoggerManager;
+import com.Utilities.Constants;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
 
 /**
  * Created by Krish on 06.06.2018. Modified : 11.06.2018
@@ -41,7 +41,7 @@ public class TestBaseWeb {
   @BeforeMethod(alwaysRun = true)
   @Parameters({"browser"})
   public synchronized void setupTest(@Optional String browser, ITestContext iTestContext,
-      Method method) {
+      Method method) throws MalformedURLException {
 
     String className = this.getClass().getName();
     String methodName = method.getName();
@@ -63,12 +63,9 @@ public class TestBaseWeb {
     result.setAttribute("testKey", testKey);
 
     log.info("Test Details : " + className);
-    String[][] data = {
-        {"<b>TestCase : </b>", className},
-        {"<b>Platform : </b>", browser},
+    String[][] data = {{"<b>TestCase : </b>", className}, {"<b>Platform : </b>", browser},
         {"<b>Jira test-key : </b>",
-            "<a href=" + Constants.JIRA_URL + testKey + ">" + testKey + "</a>"}
-    };
+            "<a href=" + Constants.JIRA_URL + testKey + ">" + testKey + "</a>"}};
 
     test.info(MarkupHelper.createTable(data));
 
@@ -80,7 +77,7 @@ public class TestBaseWeb {
 
 
   @Parameters({"browser"})
-  @AfterMethod()
+  @AfterMethod(alwaysRun = true)
   public synchronized void tearDown(ITestContext context, String browser) {
 
     log.info("AfterTest : " + context.getCurrentXmlTest().getName());
@@ -102,7 +99,7 @@ public class TestBaseWeb {
         ExtentTestManager.getTest().getExtent().flush();
       } catch (Exception ign) {
         // ignore
-      }finally {
+      } finally {
         log.info(Constants.EXTENT_HTML_REPORT);
       }
     }
@@ -115,7 +112,7 @@ public class TestBaseWeb {
       ExtentTestManager.getTest().getExtent().flush();
     } catch (Exception e) {
       // ignore
-    }finally {
+    } finally {
       log.info(Constants.EXTENT_HTML_REPORT);
     }
   }
