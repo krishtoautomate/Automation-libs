@@ -1,13 +1,9 @@
 package com.base;
 
-import com.Utilities.Constants;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.Map;
-import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
@@ -16,10 +12,10 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestResult;
 import org.testng.Reporter;
+import com.Utilities.Constants;
 
 
 /**
@@ -28,21 +24,11 @@ import org.testng.Reporter;
 
 public class WebBrowserDriverManager {
 
-  private static final Logger log = LoggerFactory.getLogger(Class.class.getName());
-  public static Properties prop = new Properties();
-  public static InputStream input = null;
   private static OptionsManager optionsManager = new OptionsManager();
   private static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<>();
   static Map<Long, WebDriver> driverMap = new ConcurrentHashMap<Long, WebDriver>();
 
-  protected synchronized void setDriver() {
-    try {
-      input = new FileInputStream(
-          System.getProperty("user.dir") + "/src/main/resources/driver.properties");
-      prop.load(input);
-    } catch (IOException e) {
-      log.info("Driver properties file not found - " + e.toString());
-    }
+  protected synchronized void setDriver() throws MalformedURLException {
 
     ITestResult iTestResult = Reporter.getCurrentTestResult();
     Map<String, String> testParams =
@@ -50,20 +36,21 @@ public class WebBrowserDriverManager {
 
     String browser = testParams.get("browser");
 
+    String REMOTE_HOST =
+        testParams.get("REMOTE_HOST") == null ? "localhost" : testParams.get("REMOTE_HOST");
+
     if (browser.equals("chrome")) {
       DesiredCapabilities capabilities = new DesiredCapabilities();
-      // identify System O
 
-      // ChromeDriverManager.chromedriver().setup();
-      if (System.getProperty("os.name").toLowerCase().contains("windows")) {
-        System.setProperty("webdriver.chrome.driver",
-            Constants.USER_DIR + prop.getProperty("chrome_driver_windows"));
-      } else {
-        System.setProperty("webdriver.chrome.driver",
-            Constants.USER_DIR + prop.getProperty("chrome_driver_mac"));
+      if ("localhost".equalsIgnoreCase(REMOTE_HOST)) {
+        if (System.getProperty("os.name").toLowerCase().contains("windows")) {
+          System.setProperty("webdriver.chrome.driver",
+              Constants.USER_DIR + "/src/main/resources/chromedriver.exe");
+        } else {
+          System.setProperty("webdriver.chrome.driver",
+              Constants.USER_DIR + "/src/main/resources/chromedriver");
+        }
       }
-
-      // WebDriverManager.chromedriver().setup();
 
       capabilities.setCapability(ChromeOptions.CAPABILITY, optionsManager.getChromeOptions());
 
@@ -74,24 +61,16 @@ public class WebBrowserDriverManager {
           Arrays.asList("--ignore-certificate-errors" + "," + "--web-security=false" + ","
               + "--ssl-protocol=any" + "," + "--ignore-ssl-errors=true"));
 
-      // tlDriver.set(new ChromeDriver(optionsManager.getChromeOptions()));
-      // tlDriver.set(new ChromeDriver(capabilities));
-
       ChromeOptions options = new ChromeOptions();
       options.merge(capabilities);
-      tlDriver.set(new ChromeDriver(options));
 
-      log.info("Chrome started!");
+      if ("localhost".equalsIgnoreCase(REMOTE_HOST)) {
+        tlDriver.set(new ChromeDriver(options));
+      } else {
+        tlDriver.set(new RemoteWebDriver(new URL(REMOTE_HOST), options));
+      }
     } else if (browser.equals("ie")) {
 
-      if (System.getProperty("os.name").toLowerCase().contains("windows")) {
-        System.setProperty("webdriver.ie.driver",
-            System.getProperty("user.dir") + prop.getProperty("ieedge_driver_windows"));
-      } else {
-        System.setProperty("webdriver.ie.driver",
-            System.getProperty("user.dir") + prop.getProperty("ieedge_driver_mac"));
-      }
-      WebDriverManager.iedriver().setup();
 
       // EdgeOptions options = new EdgeOptions();
       // Capabilities cap = new DesiredCapabilities();
@@ -106,8 +85,8 @@ public class WebBrowserDriverManager {
     }
     driverMap.put(Thread.currentThread().getId(), tlDriver.get());
 
-    getDriverInstance().manage().timeouts()
-        .implicitlyWait(Constants.IMPLICITLYWAIT, TimeUnit.SECONDS);
+    getDriverInstance().manage().timeouts().implicitlyWait(Constants.IMPLICITLYWAIT,
+        TimeUnit.SECONDS);
 
   }
 
