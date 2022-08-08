@@ -372,7 +372,7 @@
     "name": "iPhone 13",
     "udid": "00008110-0019643136B8801E",
     "platformName": "iOS",
-    "platformVersion": "15.0",
+    "platformVersion": "16.0",
     "colour": "Pink",
     "devicePort": 8346
   },
@@ -388,7 +388,7 @@
     "name": "iPhone 13 Pro Max",
     "udid": "00008110-000C294026C2801E",
     "platformName": "iOS",
-    "platformVersion": "15.0",
+    "platformVersion": "16.0",
     "colour": "Black",
     "devicePort": 8348
   },
@@ -1207,5 +1207,37 @@
     "platformVersion": "12.0",
     "colour": "Black",
     "devicePort": 8278
+  },
+  {
+    "name": "Pixel 6",
+    "udid": "25091FDF6006E3",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8279
+  },
+  {
+    "name": "Pixel 6",
+    "udid": "24281FDF6003Y5",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8280
+  },
+  {
+    "name": "Pixel 6",
+    "udid": "23301FDF6002ZP",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8281
+  },
+  {
+    "name": "TCL",
+    "udid": "36d5268b",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8282
   }
 ]
