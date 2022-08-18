@@ -47,7 +47,7 @@ public class TestBase {
   @SuppressWarnings("unchecked")
   @BeforeMethod
   @Parameters({"udid", "platForm"})
-  public synchronized void BeforeClass(@Optional String udid, @Optional String platForm,
+  public synchronized void Before(@Optional String udid, @Optional String platForm,
       ITestContext iTestContext, Method method) throws MalformedURLException {
 
     String methodName = method.getName();
@@ -99,7 +99,7 @@ public class TestBase {
 
   @AfterMethod
   @Parameters({"udid", "platForm"})
-  public synchronized void AfterClass(@Optional String udid, @Optional String platForm) {
+  public synchronized void After(@Optional String udid, @Optional String platForm) {
 
     if (driver != null) {
       try {
@@ -126,6 +126,8 @@ public class TestBase {
         ExtentTestManager.getTest().getExtent().flush();
       } catch (Exception e) {
         // ignore
+      } finally {
+        log.info(Constants.EXTENT_HTML_REPORT);
       }
     }
   }
