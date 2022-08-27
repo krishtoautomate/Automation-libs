@@ -246,6 +246,11 @@ public class BaseObjs<T> implements ITestBase {
     }
   }
 
+  public void getPageSource(){
+    String errorXML = driver.getPageSource();
+    test.info(MarkupHelper.createCodeBlock(errorXML));
+  }
+
   /**
    * Creates logs into Log4j and extent-Report with Screen-shot
    */

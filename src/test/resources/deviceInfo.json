@@ -1247,5 +1247,13 @@
     "platformVersion": "12.0",
     "colour": "Black",
     "devicePort": 8283
+  },
+  {
+    "name": "TCL T773O",
+    "udid": "24a67af5",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8284
   }
 ]
