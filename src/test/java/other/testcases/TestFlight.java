@@ -55,6 +55,14 @@ public class TestFlight extends TestBase implements ITestBase {
 
     // for ipads
     if (testFlightApp.verify_apps_back_btn()) {
+
+      utils.getPageSource();
+
+      if (testFlightApp.verify_all_btns()) {
+        testFlightApp.get_all_btns().get(0).click();
+        utils.logmessage(Status.PASS,"UPDATE button clicked");
+      }
+
       testFlightApp.get_apps_back_btn().click();
       utils.logmessage(Status.PASS, "App back Button - is Clicked");
     }
@@ -63,6 +71,7 @@ public class TestFlight extends TestBase implements ITestBase {
     // Verify title
     utils.AssertContains(testFlightApp.get_apps_h1().getText(), "Apps");
 
+    utils.getPageSource();
     if (testFlightApp.verify_all_btns()) {
 
       List<MobileElement> all_btns = testFlightApp.get_all_btns();
@@ -73,8 +82,7 @@ public class TestFlight extends TestBase implements ITestBase {
         for (int i = 0; i < all_btns.size(); i++) {
           String button = all_btns.get(i).getText();
 
-          String errorXML = driver.getPageSource();
-          test.info(MarkupHelper.createCodeBlock(errorXML));
+          utils.getPageSource();
 
           all_btns.get(i).click();
           utils.logmessage(Status.PASS, button + "- button clicked");
@@ -83,18 +91,17 @@ public class TestFlight extends TestBase implements ITestBase {
       } catch (Exception e) {
         log.info("No 'UPDATE' or 'INSTALL' buttons found");
       }
-      String errorXML = driver.getPageSource();
-      test.info(MarkupHelper.createCodeBlock(errorXML));
+      utils.getPageSource();
 
       all_btns = testFlightApp.get_all_btns();
+      utils.getPageSource();
       try {
         utils.logmessage(Status.PASS, "Total 'UPDATE' or 'INSTALL' buttons : " + all_btns.size());
 
         for (int i = 0; i < all_btns.size(); i++) {
           String button = all_btns.get(i).getText();
 
-          errorXML = driver.getPageSource();
-          test.info(MarkupHelper.createCodeBlock(errorXML));
+          utils.getPageSource();
 
           all_btns.get(i).click();
           utils.logmessage(Status.PASS, button + "- button clicked");
@@ -103,14 +110,15 @@ public class TestFlight extends TestBase implements ITestBase {
       } catch (Exception e) {
         log.info("No 'UPDATE' or 'INSTALL' buttons found");
       }
-      errorXML = driver.getPageSource();
-      test.info(MarkupHelper.createCodeBlock(errorXML));
+      utils.getPageSource();
 
       // for ipads
       if (testFlightApp.verify_apps_back_btn()) {
         testFlightApp.get_apps_back_btn().click();
         utils.logmessage(Status.PASS, "App back Button - is Clicked");
       }
+
+      utils.getPageSource();
     }
   }
 }

@@ -16,9 +16,10 @@ public class ScreenShotManager {
 
   private static final Logger log = LoggerFactory.getLogger(Class.class.getName());
 
-  AppiumDriver driver = AppiumDriverManager.getDriverInstance();
 
   public synchronized String getScreenshot() {
+
+    AppiumDriver driver = AppiumDriverManager.getDriverInstance();
 
     File ScreenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 

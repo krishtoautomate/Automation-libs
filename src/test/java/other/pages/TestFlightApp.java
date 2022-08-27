@@ -16,7 +16,7 @@ public class TestFlightApp extends BaseObjs<TestFlightApp> {
   By continue_btn = MobileBy.iOSNsPredicateString("type == 'XCUIElementTypeButton' AND name IN {'Continue Button','Not Now'}");
   By tryAgain_btn = By.xpath("//XCUIElementTypeButton[@name='Try Again']");
 
-  By all_btns = MobileBy.xpath("//XCUIElementTypeButton[@name='UPDATE' or @name='INSTALL']");
+  By all_btns = MobileBy.iOSClassChain("**/XCUIElementTypeButton[`label IN {'UPDATE','INSTALL'}`]");
   By apps_h1 = MobileBy.iOSNsPredicateString("label == 'Apps' AND visible =1");
 
   By apps_back_btn = MobileBy.iOSNsPredicateString(
