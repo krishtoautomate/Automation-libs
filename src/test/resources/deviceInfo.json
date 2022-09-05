@@ -585,6 +585,38 @@
     "devicePort": 8373
   },
   {
+    "name": "iPhone XR",
+    "udid": "00008020-000434E91188003A",
+    "platformName": "iOS",
+    "platformVersion": "14.3",
+    "colour": "Black",
+    "devicePort": 8374
+  },
+  {
+    "name": "iPhone SE",
+    "udid": "00008110-00140DD9349B801E",
+    "platformName": "iOS",
+    "platformVersion": "15.4",
+    "colour": "Black",
+    "devicePort": 8375
+  },
+  {
+    "name": "iPhone SE",
+    "udid": "00008110-001E1CAA3EE0401E",
+    "platformName": "iOS",
+    "platformVersion": "15.5",
+    "colour": "Black",
+    "devicePort": 8376
+  },
+  {
+    "name": "iPhone SE",
+    "udid": "00008110-000958EC0AC0401E",
+    "platformName": "iOS",
+    "platformVersion": "15.4.1",
+    "colour": "Black",
+    "devicePort": 8377
+  },
+  {
     "name": "Samsung S8",
     "udid": "988b9b304b4e4a374a",
     "platformName": "Android",
@@ -1255,5 +1287,29 @@
     "platformVersion": "12.0",
     "colour": "Black",
     "devicePort": 8284
+  },
+  {
+    "name": "samsung SM-A037W",
+    "udid": "R9TT3011RMR",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8285
+  },
+  {
+    "name": "samsung SM-A037W",
+    "udid": "R9TT3006KEH",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8286
+  },
+  {
+    "name": "samsung SM-A037W",
+    "udid": "R9TT300EHZH",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8287
   }
 ]

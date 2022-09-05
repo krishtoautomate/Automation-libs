@@ -19,9 +19,9 @@ public class TestFlight extends TestBase implements ITestBase {
 
   @SuppressWarnings("unchecked")
   @Test
-  @Parameters({"udid"})
-  public void TestFlightUpdateScript(@Optional String udid) {
+  public void TestFlightUpdateScript() {
 
+    String udid = driver.getCapabilities().getCapability("udid").toString();
     test.getModel().setName(String.format("%s - %s", className, udid));
     Utilities utils = new Utilities(driver, log, test);
     TestFlightApp testFlightApp = new TestFlightApp(driver, log, test);

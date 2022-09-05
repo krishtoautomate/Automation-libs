@@ -8,6 +8,7 @@ import com.Utilities.Constants;
 import io.appium.java_client.remote.MobileCapabilityType;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.ServerSocket;
 import java.util.Map;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -22,6 +23,8 @@ import org.testng.Reporter;
  */
 public class CapabilitiesManager {
 
+  static int devicePort = 8100;
+
   @SuppressWarnings("unchecked")
   public synchronized DesiredCapabilities setCapabilities() {
 
@@ -33,20 +36,35 @@ public class CapabilitiesManager {
 
     String platForm = testParams.get("platForm");
     String udid = testParams.get("udid");
-    int devicePort = 8100;
-    DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
-    String deviceName = deviceInfoReader.getString("name");
+
+    String deviceName = "Android".equalsIgnoreCase(platForm) ? "Android Device":"iPhone";
+
+    if(udid != null) {
+      capabilities.setCapability(MobileCapabilityType.UDID, udid);
+
+
+      DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
+      deviceName = deviceInfoReader.getString("name");
 //    deviceInfoReader.getString("platformVersion");
-    devicePort = deviceInfoReader.getInt("devicePort");
-
-    capabilities.setCapability("deviceName", deviceName);
-    capabilities.setCapability(MobileCapabilityType.UDID, udid);
-
-    if ("Android".equalsIgnoreCase(platForm)) {
-      capabilities.setCapability("systemPort", devicePort);
-    } else {
-      capabilities.setCapability("wdaLocalPort", devicePort);
+      devicePort = deviceInfoReader.getInt("devicePort");
+      if ("Android".equalsIgnoreCase(platForm)) {
+        capabilities.setCapability("systemPort", devicePort);
+      }
+      if ("iOS".equalsIgnoreCase(platForm)) {
+        capabilities.setCapability("wdaLocalPort", devicePort);
+      }
     }
+    else{
+
+      if ("Android".equalsIgnoreCase(platForm)) {
+        capabilities.setCapability("systemPort", devicePort+1);
+      }
+      if ("iOS".equalsIgnoreCase(platForm)) {
+        capabilities.setCapability("wdaLocalPort", devicePort+1);
+      }
+
+    }
+    capabilities.setCapability("deviceName", deviceName);
 
     String capabilitiesName = "Android".equalsIgnoreCase(platForm) ? "ANDROID" : "IOS";
 
@@ -81,4 +99,5 @@ public class CapabilitiesManager {
 
     return capabilities;
   }
+
 }

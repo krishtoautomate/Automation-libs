@@ -34,6 +34,7 @@ public class TestBase {
   protected AppiumDriverManager tlDriverFactory = new AppiumDriverManager();
   protected ExtentTest test;
   protected boolean isAndroid = false;
+  protected boolean isIos = false;
 
 
   /**
@@ -53,22 +54,35 @@ public class TestBase {
     String methodName = method.getName();
     String className = this.getClass().getName();
     isAndroid = platForm.equalsIgnoreCase("Android");
+    isIos = platForm.equalsIgnoreCase("iOS");
 
     log = LoggerManager.startLogger(className);
 
     // Create Session
-    log.info("creating session : " + className + " : " + udid);
+    if(udid != null)
+      log.info("creating session : " + className + " : " + udid);
+    else
+      log.info("creating session : " + className + " : " +platForm);
+
     tlDriverFactory.setDriver();
     driver = AppiumDriverManager.getDriverInstance();
 
     /*
      * Test info
      */
-    if ("Auto".equalsIgnoreCase(udid)) {
-      udid = driver.getCapabilities().getCapability("udid").toString();
-    }
+    String deviceName = "";
+    String platformVersion = "";
+    if(udid!=null) {
+      if ("Auto".equalsIgnoreCase(udid)) {
+        udid = driver.getCapabilities().getCapability("udid").toString();
+      }
+      iTestContext.setAttribute("udid", udid);
 
-    iTestContext.setAttribute("udid", udid);
+      DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
+      deviceName = deviceInfoReader.getString("name");
+    }
+    platformVersion = driver.getCapabilities().getCapability("platformVersion").toString();
+    udid = driver.getCapabilities().getCapability("udid").toString();
 
     Map<String, String> testParams = iTestContext.getCurrentXmlTest().getAllParameters();
     String pTestData = testParams.get("p_Testdata");
@@ -78,20 +92,18 @@ public class TestBase {
     ITestResult result = Reporter.getCurrentTestResult();
     result.setAttribute("testKey", testKey);
 
-    DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
-    String deviceName = deviceInfoReader.getString("name");
-    String platformVersion = driver.getCapabilities().getCapability("platformVersion").toString();
-
     // Report Content
     test = ExtentTestManager.startTest(methodName + "(" + platForm + ")");
 
     log.info("Test Details : " + className + " : " + platForm + " : " + deviceName);
     test.assignDevice(deviceName);
 
-    String[][] data = {{"<b>TestCase : </b>", className}, {"<b>Device : </b>", deviceName},
-        {"<b>UDID : </b>", udid}, {"<b>Platform : </b>", platForm},
-        {"<b>OsVersion : </b>", platformVersion}, {"<b>Jira test-key : </b>",
-            "<a href=" + Constants.JIRA_URL + testKey + ">" + testKey + "</a>"}};
+    String[][] data = {{"<b>TestCase : </b>", className}, {"<b>Device-Name : </b>", deviceName},
+        {"<b>UDID : </b>", udid},
+            {"<b>Platform : </b>", platForm},
+        {"<b>OsVersion : </b>", platformVersion},
+            {"<b>Jira test-key : </b>",
+             "<a href=" + Constants.JIRA_URL + testKey + ">" + testKey + "</a>"}};
 
     test.info(MarkupHelper.createTable(data));
   }
@@ -105,7 +117,9 @@ public class TestBase {
       try {
         if (isAndroid) {
           driver.closeApp();
-        } else {
+        }
+
+        if(isIos){
           driver.terminateApp(driver.getCapabilities().getCapability("bundleId").toString());
         }
         log.info("app close");
