@@ -3,7 +3,6 @@ package com.Listeners;
 import com.DataManager.DeviceInfoReader;
 import com.ReportManager.ExtentTestManager;
 import com.ReportManager.LoggerManager;
-import com.ReportManager.ReportBuilder;
 import com.Utilities.Constants;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
@@ -12,9 +11,7 @@ import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.base.AppiumDriverManager;
 import com.base.Jira;
 import com.Utilities.ScreenShotManager;
-import com.base.TestBase;
 import io.appium.java_client.AppiumDriver;
-import java.io.File;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -35,7 +32,7 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
     IInvokedMethodListener {
 
   //extends TestListenerAdapter
-  protected ReportBuilder reporter = new ReportBuilder();
+//  protected ReportBuilder reporter = new ReportBuilder();
 
   Jira jiraReporter = new Jira();
 
@@ -190,7 +187,6 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
     DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
     String deviceName = deviceInfoReader.getString("name");
 
-    Object testClass = testResult.getInstance();
     Logger log = LoggerManager.getLogger();
     log.warning("Test Skipped : " + testResult.getMethod().getMethodName() + " : " + udid + "_"
         + deviceName);
@@ -198,7 +194,7 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
 
   @Override
   public void onStart(ISuite suite) {
-    reporter.initialize();// Emailable Report
+//    reporter.initialize();// Emailable Report
 
     Date date = new Date();
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
@@ -222,15 +218,15 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
 
   @Override
   public void onFinish(ISuite suite) {
-    String emailReport = Constants.EMAIL_REPORT;
-    File file = new File(emailReport);
-    if (file.delete()) {
-      // delete if exists
-    }
-    String buildNo = System.getenv("BUILD_NUMBER");
-    if (buildNo != null) {
-      reporter.writeResults(emailReport);
-    }
+//    String emailReport = Constants.EMAIL_REPORT;
+//    File file = new File(emailReport);
+//    if (file.delete()) {
+//      // delete if exists
+//    }
+//    String buildNo = System.getenv("BUILD_NUMBER");
+//    if (buildNo != null) {
+//      reporter.writeResults(emailReport);
+//    }
 
     // Jira report
     Date date = new Date();

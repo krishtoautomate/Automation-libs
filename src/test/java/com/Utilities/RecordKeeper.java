@@ -2,7 +2,7 @@ package com.Utilities;
 
 
 import java.util.logging.Level;
-import org.testng.log4testng.Logger;
+import java.util.logging.Logger;
 
 public class RecordKeeper {
 
@@ -28,30 +28,30 @@ public class RecordKeeper {
           .format("|Message = %s|,|Class Name - %s|,|Actual Exception - %s|", message,
               fromClass.getName());
     }
-    pLogger.error(logMessage);
-    rLogger.error(logMessage);
+    pLogger.severe(logMessage);
+    rLogger.severe(logMessage);
   }
 
   public static void printErrorlog(String message, Class<?> fromClass) {
     String logMessage = String
         .format("|Message = %s|,|Class Name - %s|", message, fromClass.getName());
-    pLogger.error(logMessage);
-    rLogger.error(logMessage);
+    pLogger.severe(logMessage);
+    rLogger.severe(logMessage);
   }
 
   public static void printErrorlog(Class<?> fromClass, Exception exception) {
     String logMessage = String
         .format("|Actual Exception - %s|,|Class Name - %s|", exception.getMessage(),
             fromClass.getName());
-    pLogger.error(logMessage);
-    rLogger.error(logMessage);
+    pLogger.severe(logMessage);
+    rLogger.severe(logMessage);
   }
 
   public static void printInfolog(String message, Class<?> fromClass) {
     String logMessage = String
         .format("|Message = %s|,|Class Name - %s|", message, fromClass.getName());
-    pLogger.error(logMessage);
-    rLogger.error(logMessage);
+    pLogger.severe(logMessage);
+    rLogger.severe(logMessage);
   }
 
 
