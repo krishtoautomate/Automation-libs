@@ -3,12 +3,9 @@ package other.testcases;
 import com.Utilities.ITestBase;
 import com.Utilities.Utilities;
 import com.aventstack.extentreports.Status;
-import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.base.TestBase;
 import io.appium.java_client.MobileElement;
 import java.util.List;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import other.pages.TestFlightApp;
 

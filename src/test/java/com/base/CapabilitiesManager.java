@@ -28,6 +28,8 @@ public class CapabilitiesManager {
   @SuppressWarnings("unchecked")
   public synchronized DesiredCapabilities setCapabilities() {
 
+    devicePort++;
+
     DesiredCapabilities capabilities = new DesiredCapabilities();
 
     ITestResult iTestResult = Reporter.getCurrentTestResult();
@@ -45,7 +47,6 @@ public class CapabilitiesManager {
 
       DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
       deviceName = deviceInfoReader.getString("name");
-//    deviceInfoReader.getString("platformVersion");
       devicePort = deviceInfoReader.getInt("devicePort");
       if ("Android".equalsIgnoreCase(platForm)) {
         capabilities.setCapability("systemPort", devicePort);
@@ -57,10 +58,10 @@ public class CapabilitiesManager {
     else{
 
       if ("Android".equalsIgnoreCase(platForm)) {
-        capabilities.setCapability("systemPort", devicePort+1);
+        capabilities.setCapability("systemPort", devicePort);
       }
       if ("iOS".equalsIgnoreCase(platForm)) {
-        capabilities.setCapability("wdaLocalPort", devicePort+1);
+        capabilities.setCapability("wdaLocalPort", devicePort);
       }
 
     }

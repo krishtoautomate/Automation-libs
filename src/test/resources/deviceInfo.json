@@ -609,12 +609,28 @@
     "devicePort": 8376
   },
   {
+    "name": "iPhone XR",
+    "udid": "00008020-001958960262002E",
+    "platformName": "iOS",
+    "platformVersion": "14.4.2",
+    "colour": "Black",
+    "devicePort": 8377
+  },
+  {
     "name": "iPhone SE",
     "udid": "00008110-000958EC0AC0401E",
     "platformName": "iOS",
     "platformVersion": "15.4.1",
     "colour": "Black",
-    "devicePort": 8377
+    "devicePort": 8378
+  },
+  {
+    "name": "iPhone 12 mini",
+    "udid": "00008101-0006059211D8001E",
+    "platformName": "iOS",
+    "platformVersion": "14.2.1",
+    "colour": "Black",
+    "devicePort": 8379
   },
   {
     "name": "Samsung S8",

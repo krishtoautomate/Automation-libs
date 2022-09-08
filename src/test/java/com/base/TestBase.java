@@ -49,7 +49,7 @@ public class TestBase {
   @BeforeMethod
   @Parameters({"udid", "platForm"})
   public synchronized void Before(@Optional String udid, @Optional String platForm,
-      ITestContext iTestContext, Method method) throws MalformedURLException {
+      ITestContext iTestContext, Method method) throws Exception {
 
     String methodName = method.getName();
     String className = this.getClass().getName();
