@@ -633,6 +633,30 @@
     "devicePort": 8379
   },
   {
+    "name": "iPhone 12 mini",
+    "udid": "00008101-001A611A0CB8001E",
+    "platformName": "iOS",
+    "platformVersion": "14.2.1",
+    "colour": "Black",
+    "devicePort": 8380
+  },
+  {
+    "name": "iPhone SE",
+    "udid": "00008110-000E404234D0401E",
+    "platformName": "iOS",
+    "platformVersion": "15.4.1",
+    "colour": "Black",
+    "devicePort": 8381
+  },
+  {
+    "name": "iPhone SE",
+    "udid": "00008110-0011089C3607801E",
+    "platformName": "iOS",
+    "platformVersion": "15.4",
+    "colour": "Black",
+    "devicePort": 8382
+  },
+  {
     "name": "Samsung S8",
     "udid": "988b9b304b4e4a374a",
     "platformName": "Android",
