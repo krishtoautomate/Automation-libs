@@ -88,7 +88,7 @@ public class TestBase {
     String pTestData = testParams.get("p_Testdata");
     TestDataManager testData = new TestDataManager(pTestData);
     int index = driver instanceof AndroidDriver ? 0 : 1;
-    String testKey = testData.getJsonValue(index, "testKey");
+    String testKey = testData.get(index, "testKey");
     ITestResult result = Reporter.getCurrentTestResult();
     result.setAttribute("testKey", testKey);
 
