@@ -242,7 +242,7 @@ public class TestListenerRT extends TestBase
     // JIRA
     String testKey = null;
     try {
-      testKey = testData.getJsonValue(index, "testKey");
+      testKey = testData.get(index, "testKey");
     } catch (Exception e) {
       // ignore
     }
