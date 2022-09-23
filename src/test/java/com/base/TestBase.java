@@ -1,18 +1,12 @@
 package com.base;
 
 import java.lang.reflect.Method;
-import java.net.MalformedURLException;
 import java.util.Map;
 import java.util.logging.Logger;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.Reporter;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 import com.DataManager.DeviceInfoReader;
 import com.DataManager.TestDataManager;
 import com.ReportManager.ExtentTestManager;

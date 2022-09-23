@@ -1,20 +1,21 @@
 package com.Utilities;
 
+import com.ReportManager.LoggerManager;
 import com.Utilities.Constants;
 import com.base.AppiumDriverManager;
 import io.appium.java_client.AppiumDriver;
 import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
+import java.util.logging.Logger;
+
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class ScreenShotManager {
 
-  private static final Logger log = LoggerFactory.getLogger(Class.class.getName());
+  private static final Logger log = LoggerManager.getLogger();
 
 
   public synchronized String getScreenshot() {
@@ -32,7 +33,7 @@ public class ScreenShotManager {
     try {
       FileUtils.moveFile(ScreenShot, filePath);
     } catch (IOException e) {
-      log.error("screenShot not Found!!!");
+      log.severe("screenShot not Found!!!");
     }
     return imgPath;
   }

@@ -101,7 +101,7 @@ public class TestDataManager {
       // get an array from the JSON object
       JSONArray jsonArray = (JSONArray) jsonObject.get(className);
 
-      int index = "Android".equalsIgnoreCase(platformName) ? 0 : 1;
+      int index = "iOS".equalsIgnoreCase(platformName) ? 1 : 0;
       JSONObject innerObj = (JSONObject) jsonArray.get(index);
 
       return innerObj.get(key).toString();
