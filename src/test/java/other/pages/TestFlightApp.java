@@ -47,16 +47,16 @@ public class TestFlightApp extends BaseObjs<TestFlightApp> {
     return isElementDisplayed(apps_back_btn);
   }
 
-  public MobileElement get_apps_back_btn() {
+  public WebElement get_apps_back_btn() {
     return get_Element(apps_back_btn, "Back button");
   }
 
-  public MobileElement get_apps_h1() {
+  public WebElement get_apps_h1() {
     return get_Element(apps_h1, "'Apps' title text");
   }
 
   @SuppressWarnings("unchecked")
-  public List<MobileElement> get_all_btns() {
+  public List<WebElement> get_all_btns() {
     return get_Elements(all_btns, "All buttons");
   }
 

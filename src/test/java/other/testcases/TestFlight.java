@@ -6,6 +6,8 @@ import com.aventstack.extentreports.Status;
 import com.base.TestBase;
 import io.appium.java_client.MobileElement;
 import java.util.List;
+
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 import other.pages.TestFlightApp;
 
@@ -71,7 +73,7 @@ public class TestFlight extends TestBase implements ITestBase {
     utils.getPageSource();
     if (testFlightApp.verify_all_btns()) {
 
-      List<MobileElement> all_btns = testFlightApp.get_all_btns();
+      List<WebElement> all_btns = testFlightApp.get_all_btns();
 
       try {
         utils.logmessage(Status.PASS, "Total 'UPDATE' or 'INSTALL' buttons : " + all_btns.size());

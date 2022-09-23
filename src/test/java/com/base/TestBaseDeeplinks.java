@@ -64,7 +64,7 @@ public class TestBaseDeeplinks {
        * Test info
        */
       if ("Auto".equalsIgnoreCase(udid)) {
-        udid = ((AppiumDriver<MobileElement>) driver).getCapabilities().getCapability("udid")
+        udid = driver.getCapabilities().getCapability("udid")
             .toString();
       }
 
@@ -97,10 +97,9 @@ public class TestBaseDeeplinks {
       try {
         boolean isAndroid = driver instanceof AndroidDriver;
         if (isAndroid) {
-          ((AndroidDriver<MobileElement>) driver).closeApp();
+          driver.closeApp();
         } else {
-          driver.terminateApp(((AppiumDriver<MobileElement>) driver)
-              .getCapabilities().getCapability("bundleId").toString());
+          driver.terminateApp(driver.getCapabilities().getCapability("bundleId").toString());
         }
         log.info("app close");
       } catch (Exception e) {

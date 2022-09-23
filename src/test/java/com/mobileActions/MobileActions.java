@@ -97,22 +97,22 @@ public class MobileActions {
   @SuppressWarnings("unchecked")
   public void activateApp(String platForm, String bundleId) {
     if ("ios".equalsIgnoreCase(platForm)) {
-      ((AppiumDriver<MobileElement>) driver).activateApp(bundleId);
+      driver.activateApp(bundleId);
     }
   }
 
   @SuppressWarnings("unchecked")
   public void terminateApp(String platForm, String bundleId) {
     if ("ios".equalsIgnoreCase(platForm)) {
-      ((AppiumDriver<MobileElement>) driver).terminateApp(bundleId);
+      driver.terminateApp(bundleId);
     }
   }
 
   @SuppressWarnings("unchecked")
   public void resetApp(String platForm, String bundleId) {
     if ("ios".equalsIgnoreCase(platForm)) {
-      ((AppiumDriver<MobileElement>) driver).activateApp(bundleId);
-      ((AppiumDriver<MobileElement>) driver).resetApp();
+      driver.activateApp(bundleId);
+      driver.resetApp();
     }
   }
 
@@ -126,7 +126,7 @@ public class MobileActions {
       if ("ios".equalsIgnoreCase(platForm)) {
         driver.findElement(MobileBy.iOSNsPredicateString("name IN {'Done', 'done'}")).click();
       } else {
-        ((AppiumDriver<MobileElement>) driver).hideKeyboard();
+        driver.hideKeyboard();
       }
     } catch (Exception e) {
       log.warning("Failed to close keyboard!!!");
@@ -329,12 +329,12 @@ public class MobileActions {
     if ("ios".equalsIgnoreCase(platForm)) {
       try {
         // Turn-OFF wifi
-        ((AppiumDriver<MobileElement>) driver).activateApp("com.apple.shortcuts");
+        driver.activateApp("com.apple.shortcuts");
 
         driver.findElement(By.xpath("//XCUIElementTypeCell[@name='Wifi OFF']")).click();
         log.info("WIFI OFF");
         // Restart app
-        ((AppiumDriver<MobileElement>) driver).resetApp();
+        driver.resetApp();
         // .activateApp(
         // ((AppiumDriver<MobileElement>)
         // driver).getCapabilities().getCapability("bundleId").toString());
@@ -353,7 +353,7 @@ public class MobileActions {
     if (!isAndroid) {
       try {
         // Turn-ON wifi
-        ((AppiumDriver<MobileElement>) driver).activateApp("com.apple.shortcuts");
+        driver.activateApp("com.apple.shortcuts");
 
         driver.findElement(By.xpath("//XCUIElementTypeCell[@name='Wifi ON']")).click();
         log.info("WIFI OFF");
@@ -364,7 +364,7 @@ public class MobileActions {
 
       try {
         // Restart app
-        ((AppiumDriver<MobileElement>) driver).activateApp(((AppiumDriver<MobileElement>) driver)
+        driver.activateApp(driver
             .getCapabilities().getCapability("bundleId").toString());
         log.info("App Restarted");
       } catch (Exception e) {
