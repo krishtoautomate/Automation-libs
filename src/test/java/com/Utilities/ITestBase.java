@@ -27,7 +27,7 @@ public interface ITestBase {
   /**
    * TRUE - If elements are displayed
    */
-  public default boolean isElementsDisplayed(List<MobileElement> elements) {
+  public default boolean isElementsDisplayed(List<WebElement> elements) {
     Boolean isDisplayed = false;
     try {
       isDisplayed = elements.get(0).isDisplayed();

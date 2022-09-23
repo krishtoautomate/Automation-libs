@@ -5,7 +5,6 @@ import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.restassured.response.Response;
 import java.awt.BasicStroke;
@@ -61,10 +60,10 @@ public class BaseObjs<T> implements ITestBase {
     this.test = test;
   }
 
-  protected MobileElement get_Element(By by, String elementDesc) {
+  protected WebElement get_Element(By by, String elementDesc) {
     WebElement ele = null;
     try {
-      return (MobileElement) driver.findElement(by);
+      return driver.findElement(by);
     } catch (Exception e) {
       String errorMessage = elementDesc + " - Not found in " + this.getClass().getName();
       logmessage(Status.FAIL, errorMessage);
@@ -91,7 +90,7 @@ public class BaseObjs<T> implements ITestBase {
   }
 
   @SuppressWarnings("unchecked")
-  protected List<MobileElement> get_Elements(By by, String elementDesc) {
+  protected List<WebElement> get_Elements(By by, String elementDesc) {
     try {
       return driver.findElements(by);
     } catch (Exception e) {

@@ -34,10 +34,13 @@ public class MobileActions implements ITestBase {
   private Logger log;
   private ExtentTest test;
 
+  boolean isAndroid = false;
+
   public MobileActions(AppiumDriver driver, Logger log, ExtentTest test) {
     this.driver = driver;
     this.log = log;
     this.test = test;
+    this.isAndroid = driver instanceof AndroidDriver;
   }
 
   protected boolean isElementDisplayed(By by) {
@@ -92,7 +95,7 @@ public class MobileActions implements ITestBase {
   @SuppressWarnings("unchecked")
   public void activateApp(String platForm, String bundleId) {
     if ("ios".equalsIgnoreCase(platForm)) {
-      ((AppiumDriver<MobileElement>) driver).activateApp(bundleId);
+      driver.activateApp(bundleId);
     }
   }
 
@@ -100,46 +103,46 @@ public class MobileActions implements ITestBase {
   public void terminateApp(String bundleId) {
     boolean isAndroid = driver instanceof AndroidDriver;
     if (!isAndroid) {
-      ((AppiumDriver<MobileElement>) driver).terminateApp(bundleId);
+      driver.terminateApp(bundleId);
     }
   }
 
   @SuppressWarnings("unchecked")
   public void resetApp(String platForm, String bundleId) {
     if ("ios".equalsIgnoreCase(platForm)) {
-      ((AppiumDriver<MobileElement>) driver).activateApp(bundleId);
-      ((AppiumDriver<MobileElement>) driver).resetApp();
+      driver.activateApp(bundleId);
+      driver.resetApp();
     }
   }
 
   @SuppressWarnings("unchecked")
   public void activateAndroidDeepLink(String deepLinkUrl) {
-    String packageId = ((AppiumDriver<MobileElement>) driver).getCapabilities()
+    String packageId = driver.getCapabilities()
         .getCapability("appPackage").toString();
     HashMap<String, String> event = new HashMap<>();
     event.put("url", deepLinkUrl);
     event.put("package", packageId);
-    ((AndroidDriver<MobileElement>) driver).executeScript("mobile:deepLink", event);
+    driver.executeScript("mobile:deepLink", event);
   }
 
   @SuppressWarnings("unchecked")
   public void activateSafariApp() {
-    ((AppiumDriver<MobileElement>) driver).activateApp("com.apple.mobilesafari");
+    driver.activateApp("com.apple.mobilesafari");
   }
 
   @SuppressWarnings("unchecked")
   public void terminateSafariApp() {
-    ((AppiumDriver<MobileElement>) driver).terminateApp("com.apple.mobilesafari");
+    driver.terminateApp("com.apple.mobilesafari");
   }
 
   @SuppressWarnings("unchecked")
   public void closeApp() {
-    ((AppiumDriver<MobileElement>) driver).closeApp();
+    driver.closeApp();
   }
 
   @SuppressWarnings("unchecked")
   public void launchUrl(String platForm, String url) {
-    ((AppiumDriver<MobileElement>) driver).get(url);
+    driver.get(url);
   }
 
   /*
@@ -158,22 +161,17 @@ public class MobileActions implements ITestBase {
   @SuppressWarnings("unchecked")
   public void hidekeyboard() {
 
-    String platform = driver instanceof AndroidDriver ? "android" : "ios";
+    try {
+      if (this.isAndroid) {
+        driver.hideKeyboard();
+      }else{
+        By done_btn = By.xpath(
+            "//XCUIElementTypeButton[@name='Done' or @name='next:' or @name='Next:' or @name='Next']");
 
-    if ("ios".equalsIgnoreCase(platform)) {
-      By done_btn = By.xpath(
-          "//XCUIElementTypeButton[@name='Done' or @name='next:' or @name='Next:' or @name='Next']");
-      try {
-        driver.findElement(done_btn).click();
-      } catch (Exception e) {
-        log.warning("Hide iOS keyboard failed!!!");
+          driver.findElement(done_btn).click();
       }
-    } else {
-      try {
-        ((AppiumDriver<MobileElement>) driver).hideKeyboard();
-      } catch (Exception e) {
-        log.info("Hide Android keyboard failed!!!");
-      }
+    } catch (Exception e) {
+      log.warning("Hide iOS keyboard failed!!!");
     }
   }
 
@@ -543,12 +541,12 @@ public class MobileActions implements ITestBase {
     if ("ios".equalsIgnoreCase(platForm)) {
       try {
         // Turn-OFF wifi
-        ((AppiumDriver<MobileElement>) driver).activateApp("com.apple.shortcuts");
+        driver.activateApp("com.apple.shortcuts");
 
         driver.findElement(By.xpath("//XCUIElementTypeCell[@name='Wifi OFF']")).click();
         log.info("WIFI OFF");
         // Restart app
-        ((AppiumDriver<MobileElement>) driver).resetApp();
+        driver.resetApp();
         // .activateApp(
         // ((AppiumDriver<MobileElement>)
         // driver).getCapabilities().getCapability("bundleId").toString());
@@ -565,7 +563,7 @@ public class MobileActions implements ITestBase {
     if ("ios".equalsIgnoreCase(platForm)) {
       try {
         // Turn-ON wifi
-        ((AppiumDriver<MobileElement>) driver).activateApp("com.apple.shortcuts");
+        driver.activateApp("com.apple.shortcuts");
         driver.findElement(By.xpath("//XCUIElementTypeCell[@name='Wifi ON']")).click();
         log.info("WIFI ON");
         sleep(10);
@@ -575,7 +573,7 @@ public class MobileActions implements ITestBase {
 
       try {
         // Restart app
-        ((AppiumDriver<MobileElement>) driver).activateApp(((AppiumDriver<MobileElement>) driver)
+        driver.activateApp(driver
             .getCapabilities().getCapability("bundleId").toString());
         log.info("App Restarted");
       } catch (Exception e) {
@@ -586,9 +584,9 @@ public class MobileActions implements ITestBase {
 
   @SuppressWarnings("unchecked")
   public void execute_OpenCurrentApp() {
-    String BundleID = ((AppiumDriver<MobileElement>) driver).getCapabilities()
+    String BundleID = driver.getCapabilities()
         .getCapability("bundleId").toString();
-    ((AppiumDriver<MobileElement>) driver).activateApp(BundleID);
+    driver.activateApp(BundleID);
     log.info("Switched back to App");
   }
 

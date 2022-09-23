@@ -21,13 +21,13 @@ public class WifiOFF extends TestBase implements ITestBase {
     if ("ios".equalsIgnoreCase(platForm)) {
       try {
         // Turn-OFF wifi
-        ((AppiumDriver<MobileElement>) driver).activateApp("com.apple.shortcuts");
+        driver.activateApp("com.apple.shortcuts");
 
         driver.findElement(By.xpath("//XCUIElementTypeCell[@name='Wifi OFF']")).click();
         log.info("WIFI OFF");
 
         // Restart app
-        ((AppiumDriver<MobileElement>) driver).resetApp();
+        driver.resetApp();
 
         log.info("App Restarted");
       } catch (Exception e) {
