@@ -1,15 +1,15 @@
 package com.base;
 
+import com.ReportManager.LoggerManager;
 import com.Utilities.Constants;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import java.io.File;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.logging.Logger;
 
 public class AppiumService {
 
-  private static final Logger log = LoggerFactory.getLogger(AppiumService.class);
+  private static final Logger log = LoggerManager.getLogger();
 
   public static void main(String[] args) {
 
@@ -35,7 +35,7 @@ public class AppiumService {
 //      server.start();
 
     } catch (Exception e) {
-      log.error("failed to start appium server : " + e.getLocalizedMessage());
+      log.severe("failed to start appium server : " + e.getLocalizedMessage());
     }
 
     log.info("session : " + server.getUrl());

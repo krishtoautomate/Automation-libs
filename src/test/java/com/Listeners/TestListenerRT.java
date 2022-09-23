@@ -135,7 +135,6 @@ public class TestListenerRT extends TestBase
     String slackChannel = System.getenv("SLACK_CHANNEL");
     String testName = testResult.getMethod().getMethodName();
     String className = testResult.getTestClass().getName();
-    String ssPath = null;
 
     Object testClass = testResult.getInstance();
     AppiumDriver driver = tlDriverFactory.getDriverInstance();
@@ -147,7 +146,6 @@ public class TestListenerRT extends TestBase
       try {
         ScreenShotManager screenShotManager = new ScreenShotManager();
         String ScreenShot = screenShotManager.getScreenshot();
-        ssPath = ScreenShot;
         test.fail("Failed Test case : " + testName + "\n" + testResult.getThrowable(),
             MediaEntityBuilder.createScreenCaptureFromPath(ScreenShot).build());
 
@@ -196,11 +194,11 @@ public class TestListenerRT extends TestBase
             + " : " + className);
 
         // Slack
-        String message = "*" + className + "* : <https://jira.bell.corp.bce.ca/browse/" + testKey
-            + "|" + testKey + ">" + " failed due to `" + testResult.getThrowable() + "`";
-        slackReporter.send_Failure_Data_To_Channel(message, Constants.REPORT_DIR + ssPath,
-            slackChannel);
-        log.info("Failure info for " + testKey + " sent to slack channel #" + slackChannel);
+//        String message = "*" + className + "* : <https://jira.bell.corp.bce.ca/browse/" + testKey
+//            + "|" + testKey + ">" + " failed due to `" + testResult.getThrowable() + "`";
+//        slackReporter.send_Failure_Data_To_Channel(message, Constants.REPORT_DIR + ssPath,
+//            slackChannel);
+//        log.info("Failure info for " + testKey + " sent to slack channel #" + slackChannel);
       }
     }
   }
