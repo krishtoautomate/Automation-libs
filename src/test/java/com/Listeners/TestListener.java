@@ -18,7 +18,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Map;
 import java.util.TimeZone;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriverException;
 import org.testng.IInvokedMethod;
 import org.testng.IInvokedMethodListener;
@@ -33,6 +33,8 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
 
   //extends TestListenerAdapter
 //  protected ReportBuilder reporter = new ReportBuilder();
+
+  private static Logger log = Logger.getLogger(TestListener.class.getName());
 
   Jira jiraReporter = new Jira();
 
@@ -121,13 +123,13 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
 
     Object testClass = testResult.getInstance();
     AppiumDriver driver = AppiumDriverManager.getDriverInstance();
-    Logger log = LoggerManager.getLogger();
+//    Logger log = LoggerManager.getLogger();
     ExtentTest test = ExtentTestManager.getTest();
     DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
     String deviceName = deviceInfoReader.getString("name");
 
 //    if (driver != null) {
-    log.severe("Test failed : " + testName + " : " + udid + "_" + deviceName);
+    log.error("Test failed : " + testName + " : " + udid + "_" + deviceName);
     try {
       ScreenShotManager screenShotManager = new ScreenShotManager();
       String ScreenShot = screenShotManager.getScreenshot();
@@ -187,8 +189,8 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
     DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
     String deviceName = deviceInfoReader.getString("name");
 
-    Logger log = LoggerManager.getLogger();
-    log.warning("Test Skipped : " + testResult.getMethod().getMethodName() + " : " + udid + "_"
+//    Logger log = LoggerManager.getLogger();
+    log.warn("Test Skipped : " + testResult.getMethod().getMethodName() + " : " + udid + "_"
         + deviceName);
   }
 

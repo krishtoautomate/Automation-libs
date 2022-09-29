@@ -57,9 +57,15 @@ dependencies {
    	testImplementation 'tech.grasshopper:pdfextentreporter:0.3'
     
     implementation 'com.google.guava:guava:21.0'
-    
-//   	implementation 'org.slf4j:slf4j-api:1.7.25'
-//    implementation 'org.slf4j:slf4j-jdk14:1.7.25'
+
+
+    implementation 'org.apache.logging.log4j:log4j-core:2.13.3'
+
+    implementation 'org.apache.logging.log4j:log4j-api:2.13.3'
+
+    implementation 'log4j:log4j:1.2.17'
+   	implementation 'org.slf4j:slf4j-api:1.7.25'
+    implementation 'org.slf4j:slf4j-jdk14:1.7.25'
 	
     testImplementation "com.oracle.ojdbc:ojdbc8:19.3.0.0"
     

@@ -10,7 +10,7 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import java.lang.reflect.Method;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 
@@ -25,8 +25,10 @@ public class TestBaseDeeplinks {
   protected AppiumDriver driver;
   protected AppiumDriverManager tlDriverFactory = new AppiumDriverManager();
   protected ExtentTest test;
+  protected boolean isAndroid = false;
+  protected boolean isIos = false;
 
-  public synchronized Logger getLog() {
+  public Logger getLog() {
     return log;
   }
 
@@ -36,7 +38,10 @@ public class TestBaseDeeplinks {
   @BeforeSuite(alwaysRun = true)
   public void setupSuit(ITestContext ctx) {
 
-//    ctx.getCurrentXmlTest().getSuite().getName();
+    String suiteName = ctx.getCurrentXmlTest().getSuite().getName();
+
+    // Log4j
+    log = Logger.getLogger(suiteName);
 
   }
 
@@ -49,7 +54,10 @@ public class TestBaseDeeplinks {
     String methodName = method.getName();
     String className = this.getClass().getName();
 
-    log = LoggerManager.startLogger(className);
+    isAndroid = platForm.equalsIgnoreCase("Android");
+    isIos = platForm.equalsIgnoreCase("iOS");
+
+//    log = LoggerManager.startLogger(className);
 
     if (udid != null) {
 

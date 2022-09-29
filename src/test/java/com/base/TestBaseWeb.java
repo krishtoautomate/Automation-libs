@@ -3,7 +3,7 @@ package com.base;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.util.Map;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
@@ -30,6 +30,11 @@ public class TestBaseWeb {
   @BeforeSuite
   public void setupSuit(ITestContext ctx) {
 
+    String suiteName = ctx.getCurrentXmlTest().getSuite().getName();
+
+    // Log4j
+    log = Logger.getLogger(suiteName);
+
   }
 
 
@@ -41,7 +46,7 @@ public class TestBaseWeb {
     String className = this.getClass().getName();
     String methodName = method.getName();
 
-    log = LoggerManager.startLogger(className);
+//    log = LoggerManager.startLogger(className);
 
     // Set & Get ThreadLocal Driver with Browser
     tlDriverFactory.setDriver();
@@ -53,7 +58,7 @@ public class TestBaseWeb {
     Map<String, String> testParams = iTestContext.getCurrentXmlTest().getAllParameters();
     String pTestData = testParams.get("p_Testdata");
     TestDataManager testData = new TestDataManager(pTestData);
-    String testKey = testData.get(0, "testKey");
+    String testKey = testData.get( "testKey");
     ITestResult result = Reporter.getCurrentTestResult();
     result.setAttribute("testKey", testKey);
 

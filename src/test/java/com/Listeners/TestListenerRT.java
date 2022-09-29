@@ -24,7 +24,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Map;
 import java.util.TimeZone;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriverException;
 import org.testng.IInvokedMethod;
 import org.testng.IInvokedMethodListener;
@@ -35,6 +35,8 @@ import org.testng.ITestResult;
 
 public class TestListenerRT extends TestBase
     implements ISuiteListener, ITestListener, IInvokedMethodListener {
+
+  private static Logger log = Logger.getLogger(TestListenerRT.class.getName());
 
   private static String testExecutionKey = null;
   protected ReportBuilder reporter = new ReportBuilder();
@@ -75,7 +77,7 @@ public class TestListenerRT extends TestBase
     String className = testResult.getTestClass().getName();
 
     Object testClass = testResult.getInstance();
-    Logger log = LoggerManager.getLogger();
+//    Logger log = LoggerManager.getLogger();
     ExtentTest test = ExtentTestManager.getTest();
 
     test.log(Status.INFO, testName + " - Completed as Success");
@@ -138,11 +140,11 @@ public class TestListenerRT extends TestBase
 
     Object testClass = testResult.getInstance();
     AppiumDriver driver = tlDriverFactory.getDriverInstance();
-    Logger log = LoggerManager.getLogger();
+//    Logger log = LoggerManager.getLogger();
     ExtentTest test = ExtentTestManager.getTest();
 
     if (driver != null) {
-      log.severe("Test failed : " + className + " : " + udid + "_" + deviceName);
+      log.error("Test failed : " + className + " : " + udid + "_" + deviceName);
       try {
         ScreenShotManager screenShotManager = new ScreenShotManager();
         String ScreenShot = screenShotManager.getScreenshot();
@@ -225,8 +227,8 @@ public class TestListenerRT extends TestBase
     AppiumDriver driver = tlDriverFactory.getDriverInstance();
     int index = driver instanceof AndroidDriver ? 0 : 1;
 
-    Logger log = LoggerManager.getLogger();
-    log.warning("Test Skipped : " + className + " : " + udid + "_" + deviceName);
+//    Logger log = LoggerManager.getLogger();
+    log.warn("Test Skipped : " + className + " : " + udid + "_" + deviceName);
 
     ExtentTest test = ExtentTestManager.getTest();
     ExtentReports extent = ExtentTestManager.getTest().getExtent();

@@ -1,13 +1,14 @@
 package com.Listeners;
 
 import com.ReportManager.LoggerManager;
+import com.base.Jira;
 import com.deviceinformation.DeviceInfo;
 import com.deviceinformation.DeviceInfoImpl;
 import com.deviceinformation.device.DeviceType;
 import com.deviceinformation.model.Device;
 import java.util.Iterator;
 import java.util.List;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 import org.testng.ISuite;
 import org.testng.ISuiteListener;
@@ -18,7 +19,7 @@ import org.testng.TestListenerAdapter;
 
 public class InvokedSuiteListener extends TestListenerAdapter implements ISuiteListener {
 
-  private static final Logger log = LoggerManager.getLogger();
+  private static Logger log = Logger.getLogger(InvokedSuiteListener.class.getName());
 
   @Override
   public void onFinish(ISuite suite) {

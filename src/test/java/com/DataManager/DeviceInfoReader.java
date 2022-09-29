@@ -1,11 +1,12 @@
 package com.DataManager;
 
 import com.ReportManager.LoggerManager;
+import com.ReportManager.ReportBuilder;
 import com.Utilities.Constants;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -13,9 +14,11 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 
+
 public class DeviceInfoReader {
 
-  private static final Logger log = LoggerManager.getLogger();
+
+  private static Logger log = Logger.getLogger(DeviceInfoReader.class.getName());
 
   int index = 0;
   String udid = "";
@@ -37,7 +40,7 @@ public class DeviceInfoReader {
       ArrayList jArray = (JSONArray) new JSONParser().parse(new FileReader(Constants.DEVICE_INFO));
       return ((JSONObject) jArray.get(index)).get(key).toString();
     } catch (IOException | ParseException e) {
-      log.severe("Device-info file error..");
+      log.error("Device-info file error..");
     }
     return null;
   }
@@ -47,7 +50,7 @@ public class DeviceInfoReader {
       ArrayList jArray = (JSONArray) new JSONParser().parse(new FileReader(Constants.DEVICE_INFO));
       return Integer.valueOf(((JSONObject) jArray.get(index)).get(key).toString());
     } catch (IOException | ParseException e) {
-      log.severe("Device-info file error..");
+      log.error("Device-info file error..");
     }
     return 8301;
   }

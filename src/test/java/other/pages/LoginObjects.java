@@ -9,7 +9,7 @@ import com.aventstack.extentreports.markuputils.MarkupHelper;
 import io.restassured.RestAssured;
 import io.restassured.authentication.PreemptiveBasicAuthScheme;
 import io.restassured.response.Response;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 import org.junit.Assert;
 
 public class LoginObjects extends BaseObjs<LoginObjects> {
@@ -34,7 +34,7 @@ public class LoginObjects extends BaseObjs<LoginObjects> {
           .get(RestAssured.baseURI + RestAssured.basePath);
     } catch (Exception e) {
       String errorMessage = "API call failed : " + e.getLocalizedMessage();
-      log.severe(errorMessage);
+      log.error(errorMessage);
       test.log(Status.FAIL, errorMessage);
       Assert.fail(errorMessage);
     }
@@ -64,7 +64,7 @@ public class LoginObjects extends BaseObjs<LoginObjects> {
           .get(RestAssured.baseURI + RestAssured.basePath);
     } catch (Exception e) {
       String errorMessage = "API call failed : " + e.getLocalizedMessage();
-      log.severe(errorMessage);
+      log.error(errorMessage);
       test.log(Status.FAIL, errorMessage);
       Assert.fail(errorMessage);
     }
