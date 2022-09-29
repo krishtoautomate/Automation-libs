@@ -25,6 +25,8 @@ public class TestBaseDeeplinks {
   protected AppiumDriver driver;
   protected AppiumDriverManager tlDriverFactory = new AppiumDriverManager();
   protected ExtentTest test;
+  protected boolean isAndroid = false;
+  protected boolean isIos = false;
 
   public Logger getLog() {
     return log;
@@ -51,6 +53,9 @@ public class TestBaseDeeplinks {
 
     String methodName = method.getName();
     String className = this.getClass().getName();
+
+    isAndroid = platForm.equalsIgnoreCase("Android");
+    isIos = platForm.equalsIgnoreCase("iOS");
 
 //    log = LoggerManager.startLogger(className);
 

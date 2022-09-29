@@ -58,7 +58,7 @@ public class TestBaseWeb {
     Map<String, String> testParams = iTestContext.getCurrentXmlTest().getAllParameters();
     String pTestData = testParams.get("p_Testdata");
     TestDataManager testData = new TestDataManager(pTestData);
-    String testKey = testData.get(0, "testKey");
+    String testKey = testData.get( "testKey");
     ITestResult result = Reporter.getCurrentTestResult();
     result.setAttribute("testKey", testKey);
 
