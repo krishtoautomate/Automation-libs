@@ -4,12 +4,15 @@ package com.base;
  **/
 
 import com.DataManager.DeviceInfoReader;
+import com.DataManager.TestDataManager;
 import com.Utilities.Constants;
 import io.appium.java_client.remote.MobileCapabilityType;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.util.Map;
+
+import org.apache.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -22,6 +25,8 @@ import org.testng.Reporter;
  * Created by Krish on 21.01.2019.
  */
 public class CapabilitiesManager {
+
+  private static Logger log = Logger.getLogger(CapabilitiesManager.class.getName());
 
   static int devicePort = 8100;
 
@@ -80,7 +85,7 @@ public class CapabilitiesManager {
       });
 
     } catch (IOException | ParseException | NullPointerException ex) {
-      //ignore
+      log.error(("failed to set global capabilities"));
     }
 
     try {
@@ -95,7 +100,7 @@ public class CapabilitiesManager {
         capabilities.setCapability(keyStr.toString(), jAObject.get(keyStr).toString());
       }
     } catch (Exception e) {
-      //ignore
+      log.error(("failed to set test capabilities"));
     }
 
     return capabilities;
