@@ -22,7 +22,7 @@ import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 import javax.imageio.ImageIO;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -209,7 +209,7 @@ public class BaseObjs<T> implements ITestBase {
       FileUtils.moveFile(ScreenShot, new File(Constants.REPORT_DIR + imgPath));
 
     } catch (WebDriverException | IOException e) {
-      log.severe("TakesScreenshot service failed!!!");
+      log.error("TakesScreenshot service failed!!!");
 
       try {
         FileUtils.copyFile(ScreenShot, new File(Constants.REPORT_DIR + imgPath));
@@ -262,7 +262,7 @@ public class BaseObjs<T> implements ITestBase {
       try {
         screenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
       } catch (Exception e) {
-        log.severe("TakesScreenshot service failed!!!");
+        log.error("TakesScreenshot service failed!!!");
       }
 
       if (Status == Status.FAIL) {
@@ -373,7 +373,7 @@ public class BaseObjs<T> implements ITestBase {
       // Copy the element screenshot to disk
       FileUtils.moveFile(ScreenShot, new File(Constants.REPORT_DIR + imgPath));
     } catch (WebDriverException | IOException e) {
-      log.severe("TakesScreenshot service failed!!!");
+      log.error("TakesScreenshot service failed!!!");
 
       try {
         FileUtils.copyFile(ScreenShot, new File(Constants.REPORT_DIR + imgPath));
@@ -424,7 +424,7 @@ public class BaseObjs<T> implements ITestBase {
       refImgFile = Paths.get(refImgUrl.toURI()).toFile();
       base64 = Base64.getEncoder().encodeToString(Files.readAllBytes(refImgFile.toPath()));
     } catch (URISyntaxException | IOException e) {
-      log.severe("image error");
+      log.error("image error");
     }
     return base64;
   }

@@ -1,5 +1,6 @@
 package com.base;
 
+import com.Listeners.TestListener;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import io.restassured.RestAssured;
@@ -7,11 +8,13 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 public class Jira {
 
   private static Logger log = Logger.getLogger(Jira.class.getName());
+
+
   JsonObject info = new JsonObject();
   JsonObject textExecution = new JsonObject();
   JsonArray tests = new JsonArray();

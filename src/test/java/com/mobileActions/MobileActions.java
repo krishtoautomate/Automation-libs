@@ -13,7 +13,7 @@ import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.touch.offset.ElementOption;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -85,7 +85,7 @@ public class MobileActions {
           ((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.DIGIT_9));
         } else {
           test.log(Status.FAIL, "SendKeys Failed!");
-          log.severe("SendKeys Failed!");
+          log.error("SendKeys Failed!");
           Assert.fail("Send Keys failed");
         }
       }
@@ -129,7 +129,7 @@ public class MobileActions {
         driver.hideKeyboard();
       }
     } catch (Exception e) {
-      log.warning("Failed to close keyboard!!!");
+      log.warn("Failed to close keyboard!!!");
     }
   }
 
@@ -249,7 +249,7 @@ public class MobileActions {
               .moveTo(ElementOption.point(x, y_end)).release().perform();
         }
       } catch (Exception e) {
-        log.warning("scroll failed!!!");
+        log.warn("scroll failed!!!");
       }
     }
   }
