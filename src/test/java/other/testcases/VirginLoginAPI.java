@@ -3,6 +3,7 @@ package other.testcases;
 import com.Utilities.ITestBase;
 import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
+import com.base.Log;
 import com.base.TestBaseAPI;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -59,7 +60,7 @@ public class VirginLoginAPI extends TestBaseAPI implements ITestBase {
 
       Response response = loginObjects.getBupLogin(p_userid, p_password);
 
-      log.info("\n" + response.getBody().asString());
+      Log.info("\n" + response.getBody().asString());
 
       loginObjects.VERIFY_API_STATUS(response);
       loginObjects.VERIFY_API_CONTAINS(response, "success");

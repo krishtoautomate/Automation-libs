@@ -21,7 +21,7 @@ import org.testng.annotations.Parameters;
  */
 public class TestBaseAPI {
 
-  protected static Logger log;
+//  protected static Logger log;
   protected static ExtentReports extent;
   protected ExtentSparkReporter htmlReporter;
   protected ExtentTest test;
@@ -30,9 +30,9 @@ public class TestBaseAPI {
     return test;
   }
 
-  public synchronized Logger getLog() {
-    return log;
-  }
+//  public synchronized Logger getLog() {
+//    return log;
+//  }
 
   public synchronized ExtentReports getExtentReports() {
     return extent;
@@ -56,7 +56,7 @@ public class TestBaseAPI {
     File reportDir = new File(Constants.REPORT_DIR);
     if (!reportDir.exists()) {
       reportDir.mkdirs();
-      log.info("created Folder for Report: " + reportDir.getAbsolutePath().toString());
+      Log.info("created Folder for Report: " + reportDir.getAbsolutePath().toString());
     }
 
     // extent report
@@ -99,7 +99,7 @@ public class TestBaseAPI {
 
     try {
       extent.flush(); // -----close extent-report
-      log.info(Constants.EXTENT_HTML_REPORT);
+      Log.info(Constants.EXTENT_HTML_REPORT);
     } catch (Exception e) {
       // ignore
     }

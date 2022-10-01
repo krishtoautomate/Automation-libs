@@ -657,6 +657,46 @@
     "devicePort": 8382
   },
   {
+    "name": "iPhone 14",
+    "udid": "00008110-001A6CC61A46401E",
+    "platformName": "iOS",
+    "platformVersion": "16.0.1",
+    "colour": "Black",
+    "devicePort": 8383
+  },
+  {
+    "name": "iPhone 14",
+    "udid": "00008110-001A488A02D9401E",
+    "platformName": "iOS",
+    "platformVersion": "16.0",
+    "colour": "Black",
+    "devicePort": 8384
+  },
+  {
+    "name": "iPhone SE",
+    "udid": "00008110-001539DC3408401E",
+    "platformName": "iOS",
+    "platformVersion": "15.4",
+    "colour": "Black",
+    "devicePort": 8385
+  },
+  {
+    "name": "iPhone 12 mini",
+    "udid": "00008101-000259281191003A",
+    "platformName": "iOS",
+    "platformVersion": "14.2.1",
+    "colour": "Black",
+    "devicePort": 8386
+  },
+  {
+    "name": "iPhone 13 Pro Max",
+    "udid": "00008110-001155D23E38401E",
+    "platformName": "iOS",
+    "platformVersion": "15.4.1",
+    "colour": "Black",
+    "devicePort": 8387
+  },
+  {
     "name": "Samsung S8",
     "udid": "988b9b304b4e4a374a",
     "platformName": "Android",
@@ -1359,6 +1399,14 @@
     "platformVersion": "11.0",
     "colour": "Black",
     "devicePort": 8288
+  },
+  {
+    "name": "samsung SM-F711W",
+    "udid": "R5CR91V7WFJ",
+    "platformName": "Android",
+    "platformVersion": "11.0",
+    "colour": "Black",
+    "devicePort": 8289
   }
 
 
