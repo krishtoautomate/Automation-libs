@@ -4,6 +4,7 @@ import com.DataManager.TestDataManager;
 import com.ReportManager.LoggerManager;
 import com.Utilities.Constants;
 import com.base.AppiumDriverManager;
+import com.base.Log;
 import io.appium.java_client.AppiumDriver;
 import java.io.File;
 import java.io.IOException;
@@ -16,7 +17,7 @@ import org.openqa.selenium.TakesScreenshot;
 
 public class ScreenShotManager {
 
-  private static Logger log = Logger.getLogger(ScreenShotManager.class.getName());
+//  private static Logger log = Logger.getLogger(ScreenShotManager.class.getName());
 
 
   public synchronized String getScreenshot() {
@@ -27,14 +28,14 @@ public class ScreenShotManager {
 
     UUID uuid = UUID.randomUUID();
 
-    String imgPath = "img/" + uuid.toString() + "_" + Constants.TIME_NOW + ".PNG";
+    String imgPath = "img/" + uuid + "_" + Constants.TIME_NOW + ".PNG";
 
     File filePath = new File(Constants.REPORT_DIR + imgPath);
 
     try {
       FileUtils.moveFile(ScreenShot, filePath);
     } catch (IOException e) {
-      log.error("screenShot not Found!!!");
+      Log.error("Screenshot not Found!!!");
     }
     return imgPath;
   }

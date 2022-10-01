@@ -1,5 +1,6 @@
 package com.ReportManager;
 
+import com.base.Log;
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.MethodsClient;
@@ -13,7 +14,7 @@ import org.apache.log4j.Logger;
 
 public class SlackReporter {
 
-  private static Logger log = Logger.getLogger(SlackReporter.class.getName());
+//  private static Logger log = Logger.getLogger(SlackReporter.class.getName());
 
   public void send_Message_To_Channel(String message, String channels) {
     try {
@@ -30,7 +31,7 @@ public class SlackReporter {
         methods.chatPostMessage(request);
       }
     } catch (Exception e) {
-      log.info("Could not send message to slack channel due to: " + e.getLocalizedMessage());
+      Log.info("Could not send message to slack channel due to: " + e.getLocalizedMessage());
     }
 
   }
@@ -57,7 +58,7 @@ public class SlackReporter {
         }
       }
     } catch (Exception e) {
-      log.info(
+      Log.info(
           "Could not send failure details to slack channel due to: " + e.getLocalizedMessage());
     }
 

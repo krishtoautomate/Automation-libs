@@ -11,6 +11,7 @@ import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.base.AppiumDriverManager;
 import com.base.Jira;
 import com.Utilities.ScreenShotManager;
+import com.base.Log;
 import io.appium.java_client.AppiumDriver;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -34,7 +35,7 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
   //extends TestListenerAdapter
 //  protected ReportBuilder reporter = new ReportBuilder();
 
-  private static Logger log = Logger.getLogger(TestListener.class.getName());
+//  private static Logger log = Logger.getLogger(TestListener.class.getName());
 
   Jira jiraReporter = new Jira();
 
@@ -129,7 +130,7 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
     String deviceName = deviceInfoReader.getString("name");
 
 //    if (driver != null) {
-    log.error("Test failed : " + testName + " : " + udid + "_" + deviceName);
+    Log.error("Test failed : " + testName + " : " + udid + "_" + deviceName);
     try {
       ScreenShotManager screenShotManager = new ScreenShotManager();
       String ScreenShot = screenShotManager.getScreenshot();
@@ -190,7 +191,7 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
     String deviceName = deviceInfoReader.getString("name");
 
 //    Logger log = LoggerManager.getLogger();
-    log.warn("Test Skipped : " + testResult.getMethod().getMethodName() + " : " + udid + "_"
+    Log.warn("Test Skipped : " + testResult.getMethod().getMethodName() + " : " + udid + "_"
         + deviceName);
   }
 

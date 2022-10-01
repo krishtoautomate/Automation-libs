@@ -100,7 +100,7 @@ public class CapabilitiesManager {
         capabilities.setCapability(keyStr.toString(), jAObject.get(keyStr).toString());
       }
     } catch (Exception e) {
-      Log.error(("failed to set test capabilities"));
+      Log.error(("No test capabilities found!"));
     }
 
     return capabilities;

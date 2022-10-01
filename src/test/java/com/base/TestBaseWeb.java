@@ -22,7 +22,7 @@ import com.aventstack.extentreports.markuputils.MarkupHelper;
  */
 public class TestBaseWeb {
 
-  public static Logger log;
+//  public static Logger log;
   public WebDriver driver;
   protected WebBrowserDriverManager tlDriverFactory = new WebBrowserDriverManager();
   protected ExtentTest test;
@@ -30,10 +30,10 @@ public class TestBaseWeb {
   @BeforeSuite
   public void setupSuit(ITestContext ctx) {
 
-    String suiteName = ctx.getCurrentXmlTest().getSuite().getName();
-
-    // Log4j
-    log = Logger.getLogger(suiteName);
+//    String suiteName = ctx.getCurrentXmlTest().getSuite().getName();
+//
+//    // Log4j
+//    log = Logger.getLogger(suiteName);
 
   }
 
@@ -62,14 +62,14 @@ public class TestBaseWeb {
     ITestResult result = Reporter.getCurrentTestResult();
     result.setAttribute("testKey", testKey);
 
-    log.info("Test Details : " + className);
+    Log.info("Test Details : " + className);
     String[][] data = {{"<b>TestCase : </b>", className}, {"<b>Platform : </b>", browser},
         {"<b>Jira test-key : </b>",
             "<a href=" + Constants.JIRA_URL + testKey + ">" + testKey + "</a>"}};
 
     test.info(MarkupHelper.createTable(data));
 
-    log.info("Test Started : " + className);
+    Log.info("Test Started : " + className);
 
     test.log(Status.INFO, methodName);
 
@@ -80,7 +80,7 @@ public class TestBaseWeb {
   @AfterMethod(alwaysRun = true)
   public synchronized void tearDown(ITestContext context, String browser) {
 
-    log.info("AfterTest : " + context.getCurrentXmlTest().getName());
+    Log.info("AfterTest : " + context.getCurrentXmlTest().getName());
 
     if (driver != null) {
       try {
@@ -100,7 +100,7 @@ public class TestBaseWeb {
       } catch (Exception ign) {
         // ignore
       } finally {
-        log.info(Constants.EXTENT_HTML_REPORT);
+        Log.info(Constants.EXTENT_HTML_REPORT);
       }
     }
     test.log(Status.INFO, "Test Completed : " + context.getCurrentXmlTest().getName());
@@ -113,7 +113,7 @@ public class TestBaseWeb {
     } catch (Exception e) {
       // ignore
     } finally {
-      log.info(Constants.EXTENT_HTML_REPORT);
+      Log.info(Constants.EXTENT_HTML_REPORT);
     }
   }
 

@@ -14,6 +14,7 @@ import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.base.Jira;
 import com.Utilities.ScreenShotManager;
+import com.base.Log;
 import com.base.TestBase;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
@@ -36,7 +37,7 @@ import org.testng.ITestResult;
 public class TestListenerRT extends TestBase
     implements ISuiteListener, ITestListener, IInvokedMethodListener {
 
-  private static Logger log = Logger.getLogger(TestListenerRT.class.getName());
+//  private static Logger log = Logger.getLogger(TestListenerRT.class.getName());
 
   private static String testExecutionKey = null;
   protected ReportBuilder reporter = new ReportBuilder();
@@ -113,7 +114,7 @@ public class TestListenerRT extends TestBase
       String finish = dateANDtime;
       if (testExecutionKey != null) {
         jiraReporter.update_Test_Exec(testExecutionKey, testKey, "PASS", start, finish);
-        log.info("Test execution " + testExecutionKey + " updated as PASS for test : " + testKey
+        Log.info("Test execution " + testExecutionKey + " updated as PASS for test : " + testKey
             + " : " + className);
       }
     }
@@ -144,7 +145,7 @@ public class TestListenerRT extends TestBase
     ExtentTest test = ExtentTestManager.getTest();
 
     if (driver != null) {
-      log.error("Test failed : " + className + " : " + udid + "_" + deviceName);
+      Log.error("Test failed : " + className + " : " + udid + "_" + deviceName);
       try {
         ScreenShotManager screenShotManager = new ScreenShotManager();
         String ScreenShot = screenShotManager.getScreenshot();
@@ -192,7 +193,7 @@ public class TestListenerRT extends TestBase
       if (testExecutionKey != null) {
         // JIRA
         jiraReporter.update_Test_Exec(testExecutionKey, testKey, "FAIL", start, finish);
-        log.info("Test execution " + testExecutionKey + " updated as FAIL for test : " + testKey
+        Log.info("Test execution " + testExecutionKey + " updated as FAIL for test : " + testKey
             + " : " + className);
 
         // Slack
@@ -228,7 +229,7 @@ public class TestListenerRT extends TestBase
     int index = driver instanceof AndroidDriver ? 0 : 1;
 
 //    Logger log = LoggerManager.getLogger();
-    log.warn("Test Skipped : " + className + " : " + udid + "_" + deviceName);
+    Log.warn("Test Skipped : " + className + " : " + udid + "_" + deviceName);
 
     ExtentTest test = ExtentTestManager.getTest();
     ExtentReports extent = ExtentTestManager.getTest().getExtent();
@@ -249,7 +250,7 @@ public class TestListenerRT extends TestBase
     if (testKey != null) {
       if (testExecutionKey != null) {
         jiraReporter.update_Test_Exec(testExecutionKey, testKey, "TODO", "", "");
-        log.info("Test execution " + testExecutionKey + " updated as TODO for test : " + testKey
+        Log.info("Test execution " + testExecutionKey + " updated as TODO for test : " + testKey
             + " : " + className);
       }
     }
