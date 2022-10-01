@@ -2,6 +2,7 @@ package com.Listeners;
 
 import com.ReportManager.LoggerManager;
 import com.base.Jira;
+import com.base.Log;
 import com.deviceinformation.DeviceInfo;
 import com.deviceinformation.DeviceInfoImpl;
 import com.deviceinformation.device.DeviceType;
@@ -19,7 +20,7 @@ import org.testng.TestListenerAdapter;
 
 public class InvokedSuiteListener extends TestListenerAdapter implements ISuiteListener {
 
-  private static Logger log = Logger.getLogger(InvokedSuiteListener.class.getName());
+//  private static Logger log = Logger.getLogger(InvokedSuiteListener.class.getName());
 
   @Override
   public void onFinish(ISuite suite) {
@@ -59,7 +60,7 @@ public class InvokedSuiteListener extends TestListenerAdapter implements ISuiteL
       ITestResult skippedTestCase = skippedTestCases.next();
       ITestNGMethod method = skippedTestCase.getMethod();
       if (context.getSkippedTests().getResults(method).size() > 0) {
-        log.info("Removing:" + skippedTestCase.getTestClass().toString());
+        Log.info("Removing:" + skippedTestCase.getTestClass().toString());
         skippedTestCases.remove();
       }
     }

@@ -1,11 +1,14 @@
 package com.Utilities;
 
+import com.ReportManager.ExtentTestManager;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
+import com.base.Log;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
 import io.restassured.response.Response;
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -43,32 +46,37 @@ import java.time.Duration;
 public class BaseObjs<T> implements ITestBase {
 
   protected AppiumDriver driver;
-  protected Logger log;
+
+  protected boolean isAndroid;
+  protected boolean isIOS;
+//  protected Logger log;
   protected ExtentTest test;
   protected MobileActions mobileActions;
 
 
-  protected BaseObjs(AppiumDriver driver, Logger log, ExtentTest test) {
+  protected BaseObjs(AppiumDriver driver) {
     this.driver = driver;
-    this.log = log;
-    this.test = test;
-    mobileActions = new MobileActions(driver, log, test);
+    this.isAndroid = driver instanceof AndroidDriver;
+    this.isIOS = driver instanceof IOSDriver;
+//    this.log = log;
+    this.test = ExtentTestManager.getTest();
+    mobileActions = new MobileActions(driver);
   }
 
-  protected BaseObjs(Logger log, ExtentTest test) {
-    this.log = log;
+  protected BaseObjs(ExtentTest test) {
+//    this.log = log;
     this.test = test;
   }
 
   protected WebElement get_Element(By by, String elementDesc) {
-    WebElement ele = null;
     try {
       return driver.findElement(by);
     } catch (Exception e) {
-      String errorMessage = elementDesc + " - Not found in " + this.getClass().getName();
-      logmessage(Status.FAIL, errorMessage);
-      Assert.fail(errorMessage);
+      //ignore
     }
+    String errorMessage = elementDesc + " - Not found in " + this.getClass().getName();
+    logmessage(Status.FAIL, errorMessage);
+    Assert.fail(errorMessage);
     return null;
   }
 
@@ -209,7 +217,7 @@ public class BaseObjs<T> implements ITestBase {
       FileUtils.moveFile(ScreenShot, new File(Constants.REPORT_DIR + imgPath));
 
     } catch (WebDriverException | IOException e) {
-      log.error("TakesScreenshot service failed!!!");
+      Log.error("TakesScreenshot service failed!!!");
 
       try {
         FileUtils.copyFile(ScreenShot, new File(Constants.REPORT_DIR + imgPath));
@@ -225,7 +233,7 @@ public class BaseObjs<T> implements ITestBase {
    */
   @SuppressWarnings("static-access")
   public synchronized void logmessage(Status Status, String message) {
-    log.info(message);
+    Log.info(message);
     try {
       String imgPath = takeScreenshot();
 
@@ -255,14 +263,14 @@ public class BaseObjs<T> implements ITestBase {
    */
   @SuppressWarnings("static-access")
   public synchronized void log(Status Status, String message) {
-    log.info(message);
+    Log.info(message);
     try {
 
       String screenShot = "";
       try {
         screenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
       } catch (Exception e) {
-        log.error("TakesScreenshot service failed!!!");
+        Log.error("TakesScreenshot service failed!!!");
       }
 
       if (Status == Status.FAIL) {
@@ -288,7 +296,7 @@ public class BaseObjs<T> implements ITestBase {
    */
   @SuppressWarnings("static-access")
   protected synchronized void report(Status Status, String message, WebElement element) {
-    log.info(message);
+    Log.info(message);
     try {
       String imgPath = imageGraphicScreenshot(element);
 
@@ -373,7 +381,7 @@ public class BaseObjs<T> implements ITestBase {
       // Copy the element screenshot to disk
       FileUtils.moveFile(ScreenShot, new File(Constants.REPORT_DIR + imgPath));
     } catch (WebDriverException | IOException e) {
-      log.error("TakesScreenshot service failed!!!");
+      Log.error("TakesScreenshot service failed!!!");
 
       try {
         FileUtils.copyFile(ScreenShot, new File(Constants.REPORT_DIR + imgPath));
@@ -424,7 +432,7 @@ public class BaseObjs<T> implements ITestBase {
       refImgFile = Paths.get(refImgUrl.toURI()).toFile();
       base64 = Base64.getEncoder().encodeToString(Files.readAllBytes(refImgFile.toPath()));
     } catch (URISyntaxException | IOException e) {
-      log.error("image error");
+      Log.error("image error");
     }
     return base64;
   }

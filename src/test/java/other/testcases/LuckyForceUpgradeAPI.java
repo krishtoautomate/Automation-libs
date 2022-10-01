@@ -32,7 +32,7 @@ public class LuckyForceUpgradeAPI extends TestBaseAPI implements ITestBase {
 
     RestAssured.baseURI = Constants.BASE_URI;
 
-    LoginObjects loginObjects = new LoginObjects(log, test);
+    LoginObjects loginObjects = new LoginObjects( test);
 
     Response andriod_response = loginObjects.getForceUpgradeAPI("L", "android");
 

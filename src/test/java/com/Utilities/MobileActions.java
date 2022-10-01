@@ -1,7 +1,9 @@
 package com.Utilities;
 
+import com.ReportManager.ExtentTestManager;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
+import com.base.Log;
 import com.google.common.collect.ImmutableList;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
@@ -10,6 +12,7 @@ import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
+import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.touch.offset.ElementOption;
 import java.time.Duration;
 import java.util.HashMap;
@@ -31,16 +34,18 @@ import org.testng.Assert;
 public class MobileActions implements ITestBase {
 
   private AppiumDriver driver;
-  private Logger log;
+//  private Logger log;
   private ExtentTest test;
 
   boolean isAndroid = false;
+  boolean isIOS = false;
 
-  public MobileActions(AppiumDriver driver, Logger log, ExtentTest test) {
+  public MobileActions(AppiumDriver driver) {
     this.driver = driver;
-    this.log = log;
-    this.test = test;
+//    this.log = log;
     this.isAndroid = driver instanceof AndroidDriver;
+    this.isIOS = driver instanceof IOSDriver;
+    this.test = ExtentTestManager.getTest();
   }
 
   protected boolean isElementDisplayed(By by) {
@@ -86,7 +91,7 @@ public class MobileActions implements ITestBase {
         ((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.DIGIT_9));
       } else {
         test.log(Status.FAIL, "SendKeys Failed!");
-        log.error("SendKeys Failed!");
+        Log.error("SendKeys Failed!");
         Assert.fail("Send Keys failed");
       }
     }
@@ -171,7 +176,7 @@ public class MobileActions implements ITestBase {
           driver.findElement(done_btn).click();
       }
     } catch (Exception e) {
-      log.warn("Hide iOS keyboard failed!!!");
+      Log.warn("Hide iOS keyboard failed!!!");
     }
   }
 
@@ -375,14 +380,14 @@ public class MobileActions implements ITestBase {
       try {
         sleep(2);
         if (isElementDisplayed(driver.findElement(Locator))) {
-          log.info(driver.findElement(Locator).getText() + " - isDisplayed");
+          Log.info(driver.findElement(Locator).getText() + " - isDisplayed");
           break;
         } else {
           touchAction().longPress(ElementOption.point(x, y_start))
               .moveTo(ElementOption.point(x, y_end)).release().perform();
         }
       } catch (Exception e) {
-        log.warn("scroll failed!!!");
+        Log.warn("scroll failed!!!");
       }
     }
   }
@@ -544,14 +549,14 @@ public class MobileActions implements ITestBase {
         driver.activateApp("com.apple.shortcuts");
 
         driver.findElement(By.xpath("//XCUIElementTypeCell[@name='Wifi OFF']")).click();
-        log.info("WIFI OFF");
+        Log.info("WIFI OFF");
         // Restart app
         driver.resetApp();
         // .activateApp(
         // ((AppiumDriver<MobileElement>)
         // driver).getCapabilities().getCapability("bundleId").toString());
 
-        log.info("App Restarted");
+        Log.info("App Restarted");
       } catch (Exception e) {
         // ignore
       }
@@ -565,7 +570,7 @@ public class MobileActions implements ITestBase {
         // Turn-ON wifi
         driver.activateApp("com.apple.shortcuts");
         driver.findElement(By.xpath("//XCUIElementTypeCell[@name='Wifi ON']")).click();
-        log.info("WIFI ON");
+        Log.info("WIFI ON");
         sleep(10);
       } catch (Exception e) {
         // ignore
@@ -575,7 +580,7 @@ public class MobileActions implements ITestBase {
         // Restart app
         driver.activateApp(driver
             .getCapabilities().getCapability("bundleId").toString());
-        log.info("App Restarted");
+        Log.info("App Restarted");
       } catch (Exception e) {
         // ignore
       }
@@ -587,7 +592,7 @@ public class MobileActions implements ITestBase {
     String BundleID = driver.getCapabilities()
         .getCapability("bundleId").toString();
     driver.activateApp(BundleID);
-    log.info("Switched back to App");
+    Log.info("Switched back to App");
   }
 
 

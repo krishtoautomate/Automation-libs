@@ -2,6 +2,7 @@ package com.Utilities;
 
 
 import com.aventstack.extentreports.ExtentTest;
+import com.base.Log;
 import com.jcraft.jsch.Channel;
 import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.JSch;
@@ -30,13 +31,13 @@ import org.apache.log4j.Logger;
 public class Utilities extends BaseObjs<Utilities> {
 
 
-  public Utilities(AppiumDriver driver, Logger log, ExtentTest test) {
-    super(driver, log, test);
+  public Utilities(AppiumDriver driver) {
+    super(driver);
   }
 
-  public Utilities(Logger log, ExtentTest test) {
-    super(log, test);
-  }
+//  public Utilities(LogExtentTest test) {
+//    super(test);
+//  }
 
   /**
    * Random UUID/Number in String format
@@ -178,7 +179,7 @@ public class Utilities extends BaseObjs<Utilities> {
 
     for (int i = 0; i < 10; i++) {
       if (element.getAttribute("visible").contains("true")) {
-        log.info(element.getText() + " is visible : " + element.getAttribute("visible"));
+        Log.info(element.getText() + " is visible : " + element.getAttribute("visible"));
         break;
       }
       js.executeScript("mobile: scroll", scrollObject);
@@ -203,11 +204,11 @@ public class Utilities extends BaseObjs<Utilities> {
     js.executeScript("mobile: scroll", scrollObject);
 
     for (int i = 0; i < 5; i++) {
-      log.info("scrolling down for : " + element.getText());
+      Log.info("scrolling down for : " + element.getText());
       js.executeScript("mobile: scroll", scrollObject);
 
       if (element.getAttribute("visible").contains("true")) {
-        log.info(element.getText() + " is visible : " + element.getAttribute("visible"));
+        Log.info(element.getText() + " is visible : " + element.getAttribute("visible"));
         break;
       }
     }
@@ -231,11 +232,11 @@ public class Utilities extends BaseObjs<Utilities> {
     js.executeScript("mobile: scroll", scrollObject);
 
     for (int i = 0; i < 10; i++) {
-      log.info("scrolling down for : " + element.getText());
+      Log.info("scrolling down for : " + element.getText());
       js.executeScript("mobile: scroll", scrollObject);
 
       if (element.getAttribute("visible").contains("true")) {
-        log.info(element.getText() + " is visible : " + element.getAttribute("visible"));
+        Log.info(element.getText() + " is visible : " + element.getAttribute("visible"));
         break;
       }
     }
@@ -248,7 +249,7 @@ public class Utilities extends BaseObjs<Utilities> {
     String hostname = "127.0.0.1"; // hostname
     String username = System.getProperty("user.name");// "dcxdevmac015"; //<username>
 
-    log.info("username : " + username);
+    Log.info("username : " + username);
     String password = "Bell1234";
 
     // String copyFrom =
@@ -261,7 +262,7 @@ public class Utilities extends BaseObjs<Utilities> {
 
     JSch jsch = new JSch();
     Session session = null;
-    log.info("Trying to connect.....");
+    Log.info("Trying to connect.....");
     try {
       session = jsch.getSession(username, hostname, 22);
       session.setConfig("StrictHostKeyChecking", "no");
@@ -285,7 +286,7 @@ public class Utilities extends BaseObjs<Utilities> {
       sftpChannel.exit();
       session.disconnect();
 
-      log.info("Done !!");
+      Log.info("Done !!");
     } catch (JSchException e) {
       e.printStackTrace();
     } catch (SftpException e) {
@@ -319,14 +320,14 @@ public class Utilities extends BaseObjs<Utilities> {
         try {
           attrs = sftpChannel.stat(destPath + "/" + localFile.getName());
         } catch (Exception e) {
-          log.info(destPath + "/" + localFile.getName() + " not found");
+          Log.info(destPath + "/" + localFile.getName() + " not found");
         }
 
         // else create a directory
         if (attrs != null) {
-          log.info("Directory exists IsDir=" + attrs.isDir());
+          Log.info("Directory exists IsDir=" + attrs.isDir());
         } else {
-          log.info("Creating dir " + localFile.getName());
+          Log.info("Creating dir " + localFile.getName());
           sftpChannel.mkdir(localFile.getName());
         }
 
@@ -386,7 +387,7 @@ public class Utilities extends BaseObjs<Utilities> {
       raf.setLength(length - 17);
       raf.close();
     } catch (Exception ex) {
-      log.error("voucher file not found!!!");
+      Log.error("voucher file not found!!!");
     }
     return VoucherNumber;
   }

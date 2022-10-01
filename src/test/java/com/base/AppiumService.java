@@ -10,16 +10,6 @@ import org.apache.log4j.Logger;
 
 public class AppiumService {
 
-//  private static final Logger log = LoggerManager.getLogger();
-
-  private static Logger log = Logger.getLogger(AppiumService.class.getName());
-
-  public static void main(String[] args) {
-
-//    AppiumServer().start();
-
-  }
-
   public synchronized AppiumDriverLocalService AppiumServer() {
 
     AppiumDriverLocalService server = AppiumDriverLocalService.buildService(
@@ -35,14 +25,11 @@ public class AppiumService {
         server.stop();
       }
 
-//      server.start();
-
     } catch (Exception e) {
-      log.error("failed to start appium server : " + e.getLocalizedMessage());
+      Log.error("failed to start appium server : " + e.getLocalizedMessage());
     }
 
-    log.info("session : " + server.getUrl());
-//    log.info("session isRunning : " + server.isRunning());
+    Log.info("session : " + server.getUrl());
 
     return server;
 

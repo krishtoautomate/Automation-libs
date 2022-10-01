@@ -2,6 +2,8 @@ package com.DataManager;
 
 import java.io.FileReader;
 import java.io.IOException;
+
+import com.base.Log;
 import org.apache.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -13,7 +15,7 @@ import org.testng.Reporter;
 
 public class TestDataManager {
 
-  private static Logger log = Logger.getLogger(TestDataManager.class.getName());
+//  private static Logger log = Logger.getLogger(TestDataManager.class.getName());
 
 
 
@@ -84,7 +86,7 @@ public class TestDataManager {
       return innerObj.get(key).toString();
 
     } catch (IOException | ParseException | NullPointerException ex) {
-      log.error("Data file error to get : "+className + ":"+key);
+      Log.error("Data file error to get : "+className + ":"+key);
     }
 
     return null;
@@ -108,7 +110,7 @@ public class TestDataManager {
       return innerObj.get(key).toString();
 
     } catch (IOException | ParseException | NullPointerException ex) {
-      log.error("Data file error to get : "+className + ":"+key);
+      Log.error("Data file error to get : "+className + ":"+key);
     }
     return null;
   }
@@ -127,7 +129,7 @@ public class TestDataManager {
       return innerObj.get(key).toString();
 
     } catch (IOException | ParseException | NullPointerException ex) {
-      log.error("Data file error to get : "+className + ":"+key);
+      Log.error("Data file error to get : "+className + ":"+key);
     }
     return null;
   }
@@ -144,7 +146,7 @@ public class TestDataManager {
       return jsonObject.get(key).toString();
 
     } catch (IOException | ParseException | NullPointerException ex) {
-      log.error("Data file error to get global : "+key);
+      Log.error("Data file error to get global : "+key);
     }
     return null;
   }

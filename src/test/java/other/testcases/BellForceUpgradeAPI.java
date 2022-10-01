@@ -31,7 +31,7 @@ public class BellForceUpgradeAPI extends TestBaseAPI implements ITestBase {
 
     RestAssured.baseURI = "https://apigate.bell.ca/channelbellcaext";
 
-    LoginObjects loginObjects = new LoginObjects(log, test);
+    LoginObjects loginObjects = new LoginObjects( test);
 
     Response andriod_response = loginObjects.getForceUpgradeAPI("B", "android");
 

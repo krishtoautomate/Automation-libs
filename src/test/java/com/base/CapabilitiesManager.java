@@ -26,7 +26,7 @@ import org.testng.Reporter;
  */
 public class CapabilitiesManager {
 
-  private static Logger log = Logger.getLogger(CapabilitiesManager.class.getName());
+//  private static Logger log = Logger.getLogger(CapabilitiesManager.class.getName());
 
   static int devicePort = 8100;
 
@@ -85,7 +85,7 @@ public class CapabilitiesManager {
       });
 
     } catch (IOException | ParseException | NullPointerException ex) {
-      log.error(("failed to set global capabilities"));
+      Log.error(("failed to set global capabilities"));
     }
 
     try {
@@ -100,7 +100,7 @@ public class CapabilitiesManager {
         capabilities.setCapability(keyStr.toString(), jAObject.get(keyStr).toString());
       }
     } catch (Exception e) {
-      log.error(("failed to set test capabilities"));
+      Log.error(("No test capabilities found!"));
     }
 
     return capabilities;

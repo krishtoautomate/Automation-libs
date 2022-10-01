@@ -31,7 +31,7 @@ public class VirginForceUpgradeAPI extends TestBaseAPI implements ITestBase {
 
     RestAssured.baseURI = "https://api.virginmobile.ca/channelvirginext";
 
-    LoginObjects loginObjects = new LoginObjects(log, test);
+    LoginObjects loginObjects = new LoginObjects( test);
 
     Response andriod_response = loginObjects.getForceUpgradeAPI("V", "android");
 

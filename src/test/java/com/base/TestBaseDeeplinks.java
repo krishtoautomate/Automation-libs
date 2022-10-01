@@ -19,7 +19,7 @@ import org.testng.annotations.*;
  */
 public class TestBaseDeeplinks {
 
-  protected static Logger log;
+//  protected static Logger log;
 
   @SuppressWarnings("rawtypes")
   protected AppiumDriver driver;
@@ -28,9 +28,9 @@ public class TestBaseDeeplinks {
   protected boolean isAndroid = false;
   protected boolean isIos = false;
 
-  public Logger getLog() {
-    return log;
-  }
+//  public Logger getLog() {
+//    return log;
+//  }
 
   /**
    * Executed once before all the tests
@@ -38,10 +38,10 @@ public class TestBaseDeeplinks {
   @BeforeSuite(alwaysRun = true)
   public void setupSuit(ITestContext ctx) {
 
-    String suiteName = ctx.getCurrentXmlTest().getSuite().getName();
+//    String suiteName = ctx.getCurrentXmlTest().getSuite().getName();
 
     // Log4j
-    log = Logger.getLogger(suiteName);
+//    log = Logger.getLogger(suiteName);
 
   }
 
@@ -63,7 +63,7 @@ public class TestBaseDeeplinks {
 
 
       // Create Session
-      log.info("creating session : " + className + " : " + udid);
+      Log.info("creating session : " + className + " : " + udid);
 
       tlDriverFactory.setDriver();
       driver = tlDriverFactory.getDriverInstance();
@@ -86,7 +86,7 @@ public class TestBaseDeeplinks {
       test = ExtentTestManager.startTest(methodName + "(" + platForm + ")")
           .assignDevice(deviceName);
 
-      log.info("Test Details : " + className + " : " + platForm + " : " + deviceName);
+      Log.info("Test Details : " + className + " : " + platForm + " : " + deviceName);
       String[][] data = {{"<b>TestCase : </b>", className}, {"<b>Device : </b>", deviceName},
           {"<b>UDID : </b>", udid}, {"<b>Platform : </b>", platForm},
           {"<b>OsVersion : </b>", platformVersion}};
@@ -109,16 +109,16 @@ public class TestBaseDeeplinks {
         } else {
           driver.terminateApp(driver.getCapabilities().getCapability("bundleId").toString());
         }
-        log.info("app close");
+        Log.info("app close");
       } catch (Exception e) {
         // ignore
       }
       test.info("THE END");
-      log.info("THE END");
+      Log.info("THE END");
 
       try {
         AppiumDriverManager.quit();
-        log.info("driver quit - done");
+        Log.info("driver quit - done");
       } catch (Exception e) {
         // ignore
       }
@@ -130,7 +130,7 @@ public class TestBaseDeeplinks {
     } catch (Exception e) {
       // ignore
     } finally {
-      log.info(Constants.EXTENT_HTML_REPORT);
+      Log.info(Constants.EXTENT_HTML_REPORT);
     }
   }
 
@@ -145,7 +145,7 @@ public class TestBaseDeeplinks {
     } catch (Exception e) {
       // ignore
     } finally {
-      log.info(Constants.EXTENT_HTML_REPORT);
+      Log.info(Constants.EXTENT_HTML_REPORT);
     }
   }
 

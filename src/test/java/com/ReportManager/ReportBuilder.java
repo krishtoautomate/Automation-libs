@@ -9,10 +9,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.base.Log;
 import org.apache.log4j.Logger;
 
 public class ReportBuilder {
-  private static Logger log = Logger.getLogger(ReportBuilder.class.getName());
+//  private static Logger log = Logger.getLogger(ReportBuilder.class.getName());
   public static List<Result> details;
   public final String resultPlaceholder = "<!-- INSERT_RESULTS -->";
   public final String templatePath = System.getProperty("user.dir") + "/" + "src/main/resources"
@@ -45,7 +47,7 @@ public class ReportBuilder {
 
       dbConnected = true;
     } catch (ClassNotFoundException | SQLException e) {
-      log.error("DB connection error..");
+      Log.error("DB connection error..");
     }
 
     try {
@@ -82,7 +84,7 @@ public class ReportBuilder {
       Files.write(Paths.get(Path), reportIn.getBytes(), StandardOpenOption.CREATE);
 
     } catch (Exception e) {
-      log.info("Error when writing report file..");
+      Log.info("Error when writing report file..");
     }
   }
 }
