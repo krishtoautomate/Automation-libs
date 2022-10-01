@@ -22,8 +22,8 @@ public class TestFlightApp extends BaseObjs<TestFlightApp> {
   By apps_back_btn = MobileBy.iOSNsPredicateString(
       "type=='XCUIElementTypeButton' AND name=='BackButton' AND label=='Apps'");
 
-  public TestFlightApp(AppiumDriver driver, Logger log, ExtentTest test) {
-    super(driver, log, test);
+  public TestFlightApp(AppiumDriver driver) {
+    super(driver);
   }
 
   public boolean verify_continue_btn() {

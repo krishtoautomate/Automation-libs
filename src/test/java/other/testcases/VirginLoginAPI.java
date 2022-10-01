@@ -36,7 +36,7 @@ public class VirginLoginAPI extends TestBaseAPI implements ITestBase {
 
     RestAssured.baseURI = "https://api.virginmobile.ca/channelvirginext";
 
-    LoginObjects loginObjects = new LoginObjects(log, test);
+    LoginObjects loginObjects = new LoginObjects( test);
 
     Scanner s = new Scanner(new File(p_Testdata));
     ArrayList<String> list = new ArrayList<String>();

@@ -6,16 +6,19 @@ import com.Utilities.BaseObjs;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
+import com.base.Log;
+import io.appium.java_client.AppiumDriver;
 import io.restassured.RestAssured;
 import io.restassured.authentication.PreemptiveBasicAuthScheme;
 import io.restassured.response.Response;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.WebDriver;
 
 public class LoginObjects extends BaseObjs<LoginObjects> {
 
-  public LoginObjects(Logger log, ExtentTest test) {
-    super(log, test);
+  public LoginObjects( ExtentTest test) {
+    super( test);
     // TODO Auto-generated constructor stub
   }
 
@@ -34,7 +37,7 @@ public class LoginObjects extends BaseObjs<LoginObjects> {
           .get(RestAssured.baseURI + RestAssured.basePath);
     } catch (Exception e) {
       String errorMessage = "API call failed : " + e.getLocalizedMessage();
-      log.error(errorMessage);
+      Log.error(errorMessage);
       test.log(Status.FAIL, errorMessage);
       Assert.fail(errorMessage);
     }
@@ -64,7 +67,7 @@ public class LoginObjects extends BaseObjs<LoginObjects> {
           .get(RestAssured.baseURI + RestAssured.basePath);
     } catch (Exception e) {
       String errorMessage = "API call failed : " + e.getLocalizedMessage();
-      log.error(errorMessage);
+      Log.error(errorMessage);
       test.log(Status.FAIL, errorMessage);
       Assert.fail(errorMessage);
     }

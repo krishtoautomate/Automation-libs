@@ -3,6 +3,7 @@ package other.testcases;
 import com.Utilities.ITestBase;
 import com.Utilities.Utilities;
 import com.aventstack.extentreports.Status;
+import com.base.Log;
 import com.base.TestBase;
 import io.appium.java_client.MobileElement;
 import java.util.List;
@@ -22,8 +23,8 @@ public class TestFlight extends TestBase implements ITestBase {
 
     String udid = driver.getCapabilities().getCapability("udid").toString();
     test.getModel().setName(String.format("%s - %s", className, udid));
-    Utilities utils = new Utilities(driver, log, test);
-    TestFlightApp testFlightApp = new TestFlightApp(driver, log, test);
+    Utilities utils = new Utilities(driver);
+    TestFlightApp testFlightApp = new TestFlightApp(driver);
 
     // accept open prompt
     try {
@@ -88,7 +89,7 @@ public class TestFlight extends TestBase implements ITestBase {
         }
         sleep(10);
       } catch (Exception e) {
-        log.info("No 'UPDATE' or 'INSTALL' buttons found");
+        Log.info("No 'UPDATE' or 'INSTALL' buttons found");
       }
       utils.getPageSource();
 
@@ -107,7 +108,7 @@ public class TestFlight extends TestBase implements ITestBase {
         }
         sleep(10);
       } catch (Exception e) {
-        log.info("No 'UPDATE' or 'INSTALL' buttons found");
+        Log.info("No 'UPDATE' or 'INSTALL' buttons found");
       }
       utils.getPageSource();
 

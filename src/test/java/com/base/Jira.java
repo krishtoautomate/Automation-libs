@@ -12,7 +12,7 @@ import org.apache.log4j.Logger;
 
 public class Jira {
 
-  private static Logger log = Logger.getLogger(Jira.class.getName());
+//  private static Logger log = Logger.getLogger(Jira.class.getName());
 
 
   JsonObject info = new JsonObject();
@@ -140,7 +140,7 @@ public class Jira {
       req.body(jsonBody);
       req.post();
     } catch (Exception e) {
-      log.info("JIRA test case execution update failed for " + testKey + " due to: "
+      Log.info("JIRA test case execution update failed for " + testKey + " due to: "
           + e.getLocalizedMessage());
     }
 
@@ -185,7 +185,7 @@ public class Jira {
       res = req.post();
       exec = res.getBody().jsonPath().getString("key");
     } catch (Exception e) {
-      log.info("JIRA execution creation failed due to: " + e.getLocalizedMessage());
+      Log.info("JIRA execution creation failed due to: " + e.getLocalizedMessage());
     }
     return exec;
   }
