@@ -15,7 +15,7 @@ import java.util.UUID;
 
 public class ScreenShotManager {
 
-    private static org.apache.log4j.Logger log = Logger.getLogger(ScreenShotManager.class.getName());
+    private static Logger log = Logger.getLogger(ScreenShotManager.class.getName());
 
     public static synchronized String getScreenshot() {
 
