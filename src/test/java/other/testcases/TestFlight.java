@@ -1,5 +1,6 @@
 package other.testcases;
 
+import com.Utilities.Assertions;
 import com.Utilities.ITestBase;
 import com.Utilities.Utilities;
 import com.aventstack.extentreports.Status;
@@ -69,7 +70,7 @@ public class TestFlight extends TestBase implements ITestBase {
 
     sleep(4);
     // Verify title
-    utils.AssertContains(testFlightApp.get_apps_h1().getText(), "Apps");
+    Assertions.contains(testFlightApp.get_apps_h1().getText(), "Apps");
 
     utils.getPageSource();
     if (testFlightApp.verify_all_btns()) {

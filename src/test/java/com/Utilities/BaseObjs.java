@@ -101,7 +101,7 @@ public class BaseObjs<T> implements ITestBase {
             try {
                 HashMap<String, String> args = new HashMap<>();
                 args.put("action", "dismiss");
-                ((RemoteWebDriver) driver).executeScript("mobile: alert", args);
+                driver.executeScript("mobile: alert", args);
 
                 // driver.switchTo().alert().dismiss();
             } catch (Exception e) {
@@ -113,29 +113,29 @@ public class BaseObjs<T> implements ITestBase {
     /**
      * Verifies if String contains other String
      */
-    public void AssertContains(String Actual, String Expected) {
-
-        Boolean found = false;
-
-        String actual = Actual.replaceAll("\n", " ");
-        String[] arrOfExpected = Expected.split("\\|");
-
-        for (String expected : arrOfExpected) {
-            if (StringUtils.containsIgnoreCase(actual.trim(), expected.trim())
-                    | StringUtils.containsIgnoreCase(expected, actual.trim()) && !actual.isEmpty()) {
-                logmessage(Status.PASS,
-                        "Verification Success : '" + actual.trim() + "' Vs '" + expected.trim() + "'");
-                found = true;
-                break;
-            }
-        }
-
-        if (!found) {
-            String message = "Verification failed : '" + actual + "' Vs '" + Expected + "'";
-            logmessage(Status.FAIL, message);
-            Assert.fail(message);
-        }
-    }
+//    public void AssertContains(String Actual, String Expected) {
+//
+//        Boolean found = false;
+//
+//        String actual = Actual.replaceAll("\n", " ");
+//        String[] arrOfExpected = Expected.split("\\|");
+//
+//        for (String expected : arrOfExpected) {
+//            if (StringUtils.containsIgnoreCase(actual.trim(), expected.trim())
+//                    | StringUtils.containsIgnoreCase(expected, actual.trim()) && !actual.isEmpty()) {
+//                logmessage(Status.PASS,
+//                        "Verification Success : '" + actual.trim() + "' Vs '" + expected.trim() + "'");
+//                found = true;
+//                break;
+//            }
+//        }
+//
+//        if (!found) {
+//            String message = "Verification failed : '" + actual + "' Vs '" + Expected + "'";
+//            logmessage(Status.FAIL, message);
+//            Assert.fail(message);
+//        }
+//    }
 
     /**
      * Verifies if String not same as other String
