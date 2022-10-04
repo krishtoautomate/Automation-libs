@@ -17,7 +17,7 @@ import org.openqa.selenium.TakesScreenshot;
 
 public class ScreenShotManager {
 
-//  private static Logger log = Logger.getLogger(ScreenShotManager.class.getName());
+  private static Logger log = Logger.getLogger(ScreenShotManager.class.getName());
 
 
   public synchronized String getScreenshot() {
@@ -35,7 +35,7 @@ public class ScreenShotManager {
     try {
       FileUtils.moveFile(ScreenShot, filePath);
     } catch (IOException e) {
-      Log.error("Screenshot not Found!!!");
+      log.error("Screenshot not Found!!!");
     }
     return imgPath;
   }

@@ -37,7 +37,7 @@ public class LoginObjects extends BaseObjs<LoginObjects> {
           .get(RestAssured.baseURI + RestAssured.basePath);
     } catch (Exception e) {
       String errorMessage = "API call failed : " + e.getLocalizedMessage();
-      Log.error(errorMessage);
+      log.error(errorMessage);
       test.log(Status.FAIL, errorMessage);
       Assert.fail(errorMessage);
     }
@@ -67,7 +67,7 @@ public class LoginObjects extends BaseObjs<LoginObjects> {
           .get(RestAssured.baseURI + RestAssured.basePath);
     } catch (Exception e) {
       String errorMessage = "API call failed : " + e.getLocalizedMessage();
-      Log.error(errorMessage);
+      log.error(errorMessage);
       test.log(Status.FAIL, errorMessage);
       Assert.fail(errorMessage);
     }

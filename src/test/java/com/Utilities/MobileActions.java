@@ -34,7 +34,7 @@ import org.testng.Assert;
 public class MobileActions implements ITestBase {
 
   private AppiumDriver driver;
-//  private Logger log;
+  private Logger log;
   private ExtentTest test;
 
   boolean isAndroid = false;
@@ -42,7 +42,7 @@ public class MobileActions implements ITestBase {
 
   public MobileActions(AppiumDriver driver) {
     this.driver = driver;
-//    this.log = log;
+    this.log = Logger.getLogger(this.getClass().getName());
     this.isAndroid = driver instanceof AndroidDriver;
     this.isIOS = driver instanceof IOSDriver;
     this.test = ExtentTestManager.getTest();
@@ -91,7 +91,7 @@ public class MobileActions implements ITestBase {
         ((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.DIGIT_9));
       } else {
         test.log(Status.FAIL, "SendKeys Failed!");
-        Log.error("SendKeys Failed!");
+        log.error("SendKeys Failed!");
         Assert.fail("Send Keys failed");
       }
     }
@@ -176,7 +176,7 @@ public class MobileActions implements ITestBase {
           driver.findElement(done_btn).click();
       }
     } catch (Exception e) {
-      Log.warn("Hide iOS keyboard failed!!!");
+      log.warn("Hide iOS keyboard failed!!!");
     }
   }
 
@@ -380,14 +380,14 @@ public class MobileActions implements ITestBase {
       try {
         sleep(2);
         if (isElementDisplayed(driver.findElement(Locator))) {
-          Log.info(driver.findElement(Locator).getText() + " - isDisplayed");
+          log.info(driver.findElement(Locator).getText() + " - isDisplayed");
           break;
         } else {
           touchAction().longPress(ElementOption.point(x, y_start))
               .moveTo(ElementOption.point(x, y_end)).release().perform();
         }
       } catch (Exception e) {
-        Log.warn("scroll failed!!!");
+        log.warn("scroll failed!!!");
       }
     }
   }
@@ -549,14 +549,14 @@ public class MobileActions implements ITestBase {
         driver.activateApp("com.apple.shortcuts");
 
         driver.findElement(By.xpath("//XCUIElementTypeCell[@name='Wifi OFF']")).click();
-        Log.info("WIFI OFF");
+        log.info("WIFI OFF");
         // Restart app
         driver.resetApp();
         // .activateApp(
         // ((AppiumDriver<MobileElement>)
         // driver).getCapabilities().getCapability("bundleId").toString());
 
-        Log.info("App Restarted");
+        log.info("App Restarted");
       } catch (Exception e) {
         // ignore
       }
@@ -568,9 +568,9 @@ public class MobileActions implements ITestBase {
     if ("ios".equalsIgnoreCase(platForm)) {
       try {
         // Turn-ON wifi
-        driver.activateApp("com.apple.shortcuts");
+        driver.activateApp("com.apple.Preferences");
         driver.findElement(By.xpath("//XCUIElementTypeCell[@name='Wifi ON']")).click();
-        Log.info("WIFI ON");
+        log.info("WIFI ON");
         sleep(10);
       } catch (Exception e) {
         // ignore
@@ -580,7 +580,7 @@ public class MobileActions implements ITestBase {
         // Restart app
         driver.activateApp(driver
             .getCapabilities().getCapability("bundleId").toString());
-        Log.info("App Restarted");
+        log.info("App Restarted");
       } catch (Exception e) {
         // ignore
       }
@@ -592,7 +592,7 @@ public class MobileActions implements ITestBase {
     String BundleID = driver.getCapabilities()
         .getCapability("bundleId").toString();
     driver.activateApp(BundleID);
-    Log.info("Switched back to App");
+    log.info("Switched back to App");
   }
 
 

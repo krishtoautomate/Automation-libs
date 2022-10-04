@@ -14,7 +14,7 @@ import com.base.Log;
 import org.apache.log4j.Logger;
 
 public class ReportBuilder {
-//  private static Logger log = Logger.getLogger(ReportBuilder.class.getName());
+  private static Logger log = Logger.getLogger(ReportBuilder.class.getName());
   public static List<Result> details;
   public final String resultPlaceholder = "<!-- INSERT_RESULTS -->";
   public final String templatePath = System.getProperty("user.dir") + "/" + "src/main/resources"
@@ -47,7 +47,7 @@ public class ReportBuilder {
 
       dbConnected = true;
     } catch (ClassNotFoundException | SQLException e) {
-      Log.error("DB connection error..");
+      log.error("DB connection error..");
     }
 
     try {
@@ -84,7 +84,7 @@ public class ReportBuilder {
       Files.write(Paths.get(Path), reportIn.getBytes(), StandardOpenOption.CREATE);
 
     } catch (Exception e) {
-      Log.info("Error when writing report file..");
+      log.info("Error when writing report file..");
     }
   }
 }

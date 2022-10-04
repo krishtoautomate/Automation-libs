@@ -21,22 +21,22 @@ import org.testng.annotations.Parameters;
  */
 public class TestBaseAPI {
 
-//  protected static Logger log;
+  protected Logger log;
   protected static ExtentReports extent;
   protected ExtentSparkReporter htmlReporter;
   protected ExtentTest test;
 
-  public synchronized ExtentTest getExtentTest() {
-    return test;
-  }
+//  public synchronized ExtentTest getExtentTest() {
+//    return test;
+//  }
 
 //  public synchronized Logger getLog() {
 //    return log;
 //  }
 
-  public synchronized ExtentReports getExtentReports() {
-    return extent;
-  }
+//  public synchronized ExtentReports getExtentReports() {
+//    return extent;
+//  }
 
   /**
    * Executed once before all the tests
@@ -44,10 +44,8 @@ public class TestBaseAPI {
   @BeforeSuite(alwaysRun = true)
   public void setupSuit(ITestContext ctx) {
 
-    ctx.getCurrentXmlTest().getSuite().getName();
-
     // Log4j
-    // log = Logger.getLogger(suiteName);
+     log = Logger.getLogger(this.getClass().getName());
 
     // Logback
 //    log = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
@@ -56,7 +54,7 @@ public class TestBaseAPI {
     File reportDir = new File(Constants.REPORT_DIR);
     if (!reportDir.exists()) {
       reportDir.mkdirs();
-      Log.info("created Folder for Report: " + reportDir.getAbsolutePath().toString());
+      log.info("created Folder for Report: " + reportDir.getAbsolutePath().toString());
     }
 
     // extent report
@@ -99,7 +97,7 @@ public class TestBaseAPI {
 
     try {
       extent.flush(); // -----close extent-report
-      Log.info(Constants.EXTENT_HTML_REPORT);
+      log.info(Constants.EXTENT_HTML_REPORT);
     } catch (Exception e) {
       // ignore
     }

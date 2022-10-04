@@ -18,18 +18,18 @@ public class DataOFF extends TestBase implements ITestBase {
   @Parameters({"platForm"})
   public void Data_OFF(@Optional String platForm) {
 
-    if ("ios".equalsIgnoreCase(platForm)) {
+    if (isIos) {
       try {
         // Turn-OFF wifi
         driver.activateApp("com.apple.shortcuts");
 
         driver.findElement(By.xpath("//XCUIElementTypeCell[@name='Data OFF']")).click();
-        Log.info("Data OFF");
+        log.info("Data OFF");
 
         // Restart app
         driver.resetApp();
 
-        Log.info("App Restarted");
+        log.info("App Restarted");
       } catch (Exception e) {
         // ignore
       }

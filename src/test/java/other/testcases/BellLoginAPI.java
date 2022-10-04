@@ -62,7 +62,7 @@ public class BellLoginAPI extends TestBaseAPI implements ITestBase {
 
       Response response = loginObjects.getBupLogin(p_userid, p_password);
 
-      Log.info("\n" + response.getBody().asString());
+      log.info("\n" + response.getBody().asString());
 
       loginObjects.VERIFY_API_STATUS(response);
       loginObjects.VERIFY_API_CONTAINS(response, "success");
