@@ -19,7 +19,7 @@ import org.testng.annotations.*;
  */
 public class TestBaseDeeplinks {
 
-//  protected static Logger log;
+  protected static Logger log;
 
   @SuppressWarnings("rawtypes")
   protected AppiumDriver driver;
@@ -41,7 +41,7 @@ public class TestBaseDeeplinks {
 //    String suiteName = ctx.getCurrentXmlTest().getSuite().getName();
 
     // Log4j
-//    log = Logger.getLogger(suiteName);
+    log = Logger.getLogger(this.getClass().getName());
 
   }
 
@@ -63,7 +63,7 @@ public class TestBaseDeeplinks {
 
 
       // Create Session
-      Log.info("creating session : " + className + " : " + udid);
+      log.info("creating session : " + className + " : " + udid);
 
       tlDriverFactory.setDriver();
       driver = tlDriverFactory.getDriverInstance();
@@ -86,7 +86,7 @@ public class TestBaseDeeplinks {
       test = ExtentTestManager.startTest(methodName + "(" + platForm + ")")
           .assignDevice(deviceName);
 
-      Log.info("Test Details : " + className + " : " + platForm + " : " + deviceName);
+      log.info("Test Details : " + className + " : " + platForm + " : " + deviceName);
       String[][] data = {{"<b>TestCase : </b>", className}, {"<b>Device : </b>", deviceName},
           {"<b>UDID : </b>", udid}, {"<b>Platform : </b>", platForm},
           {"<b>OsVersion : </b>", platformVersion}};
@@ -109,16 +109,16 @@ public class TestBaseDeeplinks {
         } else {
           driver.terminateApp(driver.getCapabilities().getCapability("bundleId").toString());
         }
-        Log.info("app close");
+        log.info("app close");
       } catch (Exception e) {
         // ignore
       }
       test.info("THE END");
-      Log.info("THE END");
+      log.info("THE END");
 
       try {
         AppiumDriverManager.quit();
-        Log.info("driver quit - done");
+        log.info("driver quit - done");
       } catch (Exception e) {
         // ignore
       }
@@ -130,7 +130,7 @@ public class TestBaseDeeplinks {
     } catch (Exception e) {
       // ignore
     } finally {
-      Log.info(Constants.EXTENT_HTML_REPORT);
+      log.info(Constants.EXTENT_HTML_REPORT);
     }
   }
 
@@ -145,7 +145,7 @@ public class TestBaseDeeplinks {
     } catch (Exception e) {
       // ignore
     } finally {
-      Log.info(Constants.EXTENT_HTML_REPORT);
+      log.info(Constants.EXTENT_HTML_REPORT);
     }
   }
 

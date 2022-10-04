@@ -25,12 +25,12 @@ public class WifiON extends TestBase implements ITestBase {
         driver.activateApp("com.apple.shortcuts");
 
         driver.findElement(By.xpath("//XCUIElementTypeCell[@name='Wifi ON']")).click();
-        Log.info("WIFI ON");
+        log.info("WIFI ON");
 
         // Restart app
         driver.resetApp();
 
-        Log.info("App Restarted");
+        log.info("App Restarted");
       } catch (Exception e) {
         // ignore
       }

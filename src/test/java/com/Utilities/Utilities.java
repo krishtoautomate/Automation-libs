@@ -179,7 +179,7 @@ public class Utilities extends BaseObjs<Utilities> {
 
     for (int i = 0; i < 10; i++) {
       if (element.getAttribute("visible").contains("true")) {
-        Log.info(element.getText() + " is visible : " + element.getAttribute("visible"));
+        log.info(element.getText() + " is visible : " + element.getAttribute("visible"));
         break;
       }
       js.executeScript("mobile: scroll", scrollObject);
@@ -204,11 +204,11 @@ public class Utilities extends BaseObjs<Utilities> {
     js.executeScript("mobile: scroll", scrollObject);
 
     for (int i = 0; i < 5; i++) {
-      Log.info("scrolling down for : " + element.getText());
+      log.info("scrolling down for : " + element.getText());
       js.executeScript("mobile: scroll", scrollObject);
 
       if (element.getAttribute("visible").contains("true")) {
-        Log.info(element.getText() + " is visible : " + element.getAttribute("visible"));
+        log.info(element.getText() + " is visible : " + element.getAttribute("visible"));
         break;
       }
     }
@@ -232,11 +232,11 @@ public class Utilities extends BaseObjs<Utilities> {
     js.executeScript("mobile: scroll", scrollObject);
 
     for (int i = 0; i < 10; i++) {
-      Log.info("scrolling down for : " + element.getText());
+      log.info("scrolling down for : " + element.getText());
       js.executeScript("mobile: scroll", scrollObject);
 
       if (element.getAttribute("visible").contains("true")) {
-        Log.info(element.getText() + " is visible : " + element.getAttribute("visible"));
+        log.info(element.getText() + " is visible : " + element.getAttribute("visible"));
         break;
       }
     }
@@ -249,7 +249,7 @@ public class Utilities extends BaseObjs<Utilities> {
     String hostname = "127.0.0.1"; // hostname
     String username = System.getProperty("user.name");// "dcxdevmac015"; //<username>
 
-    Log.info("username : " + username);
+    log.info("username : " + username);
     String password = "Bell1234";
 
     // String copyFrom =
@@ -262,7 +262,7 @@ public class Utilities extends BaseObjs<Utilities> {
 
     JSch jsch = new JSch();
     Session session = null;
-    Log.info("Trying to connect.....");
+    log.info("Trying to connect.....");
     try {
       session = jsch.getSession(username, hostname, 22);
       session.setConfig("StrictHostKeyChecking", "no");
@@ -286,7 +286,7 @@ public class Utilities extends BaseObjs<Utilities> {
       sftpChannel.exit();
       session.disconnect();
 
-      Log.info("Done !!");
+      log.info("Done !!");
     } catch (JSchException e) {
       e.printStackTrace();
     } catch (SftpException e) {
@@ -320,14 +320,14 @@ public class Utilities extends BaseObjs<Utilities> {
         try {
           attrs = sftpChannel.stat(destPath + "/" + localFile.getName());
         } catch (Exception e) {
-          Log.info(destPath + "/" + localFile.getName() + " not found");
+          log.info(destPath + "/" + localFile.getName() + " not found");
         }
 
         // else create a directory
         if (attrs != null) {
-          Log.info("Directory exists IsDir=" + attrs.isDir());
+          log.info("Directory exists IsDir=" + attrs.isDir());
         } else {
-          Log.info("Creating dir " + localFile.getName());
+          log.info("Creating dir " + localFile.getName());
           sftpChannel.mkdir(localFile.getName());
         }
 
@@ -387,7 +387,7 @@ public class Utilities extends BaseObjs<Utilities> {
       raf.setLength(length - 17);
       raf.close();
     } catch (Exception ex) {
-      Log.error("voucher file not found!!!");
+      log.error("voucher file not found!!!");
     }
     return VoucherNumber;
   }

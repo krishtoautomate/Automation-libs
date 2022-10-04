@@ -25,12 +25,12 @@ public class DataON extends TestBase implements ITestBase {
         driver.activateApp("com.apple.shortcuts");
 
         driver.findElement(By.xpath("//XCUIElementTypeCell[@name='Data ON']")).click();
-        Log.info("Data ON");
+        log.info("Data ON");
 
         // Restart app
         driver.resetApp();
 
-        Log.info("App Restarted");
+        log.info("App Restarted");
       } catch (Exception e) {
         // ignore
       }

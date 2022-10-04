@@ -1,5 +1,6 @@
 package com.base;
 
+import com.Listeners.TestListener;
 import com.Listeners.TestListenerRT;
 import com.ReportManager.LoggerManager;
 import com.Utilities.Constants;
@@ -9,6 +10,8 @@ import java.io.File;
 import org.apache.log4j.Logger;
 
 public class AppiumService {
+
+  private static Logger log = Logger.getLogger(AppiumService.class.getName());
 
   public synchronized AppiumDriverLocalService AppiumServer() {
 
@@ -26,10 +29,10 @@ public class AppiumService {
       }
 
     } catch (Exception e) {
-      Log.error("failed to start appium server : " + e.getLocalizedMessage());
+      log.error("failed to start appium server : " + e.getLocalizedMessage());
     }
 
-    Log.info("session : " + server.getUrl());
+    log.info("session : " + server.getUrl());
 
     return server;
 

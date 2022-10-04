@@ -9,6 +9,7 @@ import com.aventstack.extentreports.markuputils.MarkupHelper;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import org.apache.log4j.Logger;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.Reporter;
@@ -29,19 +30,17 @@ public class TestBase {
     protected boolean isAndroid = false;
     protected boolean isIos = false;
 
-//    public Logger getLog() {
-//        return log;
-//    }
+    protected Logger log;
 
     /**
      * Executed once before all the tests
      */
     @BeforeSuite(alwaysRun = true)
     public void setupSuit(ITestContext ctx) {
-        String suiteName = ctx.getCurrentXmlTest().getSuite().getName();
+//        String suiteName = ctx.getCurrentXmlTest().getSuite().getName();
 
         // Log4j
-//        log = Logger.getLogger(suiteName);
+        log = Logger.getLogger(this.getClass().getName());
 
     }
 
@@ -60,9 +59,9 @@ public class TestBase {
 
         // Create Session
         if (udid != null)
-            Log.info("creating session : " + className + " : " + udid);
+            log.info("creating session : " + className + " : " + udid);
         else
-            Log.info("creating session : " + className + " : " + platForm);
+            log.info("creating session : " + className + " : " + platForm);
 
         tlDriverFactory.setDriver();
         driver = AppiumDriverManager.getDriverInstance();
@@ -95,7 +94,7 @@ public class TestBase {
         // Report Content
         test = ExtentTestManager.startTest(methodName + "(" + platForm + ")");
 
-        Log.info("Test Details : " + className + " : " + platForm + " : " + deviceName);
+        log.info("Test Details : " + className + " : " + platForm + " : " + deviceName);
         test.assignDevice(deviceName);
 
         String[][] data = {{"<b>TestCase : </b>", className}, {"<b>Device-Name : </b>", deviceName},
@@ -122,26 +121,26 @@ public class TestBase {
                 if (isIos) {
                     driver.terminateApp(driver.getCapabilities().getCapability("bundleId").toString());
                 }
-                Log.info("app close");
+                log.info("app close");
             } catch (Exception e) {
                 // ignore
             }
 
             try {
                 AppiumDriverManager.quit();
-                Log.info("driver quit - done");
+                log.info("driver quit - done");
             } catch (Exception e) {
                 // ignore
             }
             test.info("THE END");
-            Log.info("THE END");
+            log.info("THE END");
 
             try {
                 ExtentTestManager.getTest().getExtent().flush();
             } catch (Exception e) {
                 // ignore
             } finally {
-                Log.info(Constants.EXTENT_HTML_REPORT);
+                log.info(Constants.EXTENT_HTML_REPORT);
             }
         }
     }
@@ -157,7 +156,7 @@ public class TestBase {
         } catch (Exception e) {
             // ignore
         } finally {
-            Log.info(Constants.EXTENT_HTML_REPORT);
+            log.info(Constants.EXTENT_HTML_REPORT);
         }
     }
 

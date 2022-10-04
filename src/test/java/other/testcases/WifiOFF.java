@@ -25,12 +25,12 @@ public class WifiOFF extends TestBase implements ITestBase {
         driver.activateApp("com.apple.shortcuts");
 
         driver.findElement(By.xpath("//XCUIElementTypeCell[@name='Wifi OFF']")).click();
-        Log.info("WIFI OFF");
+        log.info("WIFI OFF");
 
         // Restart app
         driver.resetApp();
 
-        Log.info("App Restarted");
+        log.info("App Restarted");
       } catch (Exception e) {
         // ignore
       }

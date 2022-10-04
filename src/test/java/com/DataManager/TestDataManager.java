@@ -15,7 +15,7 @@ import org.testng.Reporter;
 
 public class TestDataManager {
 
-//  private static Logger log = Logger.getLogger(TestDataManager.class.getName());
+  private static Logger log = Logger.getLogger(TestDataManager.class.getName());
 
 
 
@@ -86,7 +86,7 @@ public class TestDataManager {
       return innerObj.get(key).toString();
 
     } catch (IOException | ParseException | NullPointerException ex) {
-      Log.error("Data file error to get : "+className + ":"+key);
+      log.error("Data file error to get : "+className + ":"+key);
     }
 
     return null;
@@ -110,7 +110,7 @@ public class TestDataManager {
       return innerObj.get(key).toString();
 
     } catch (IOException | ParseException | NullPointerException ex) {
-      Log.error("Data file error to get : "+className + ":"+key);
+      log.error("Data file error to get : "+className + ":"+key);
     }
     return null;
   }
@@ -129,7 +129,7 @@ public class TestDataManager {
       return innerObj.get(key).toString();
 
     } catch (IOException | ParseException | NullPointerException ex) {
-      Log.error("Data file error to get : "+className + ":"+key);
+      log.error("Data file error to get : "+className + ":"+key);
     }
     return null;
   }
@@ -146,7 +146,7 @@ public class TestDataManager {
       return jsonObject.get(key).toString();
 
     } catch (IOException | ParseException | NullPointerException ex) {
-      Log.error("Data file error to get global : "+key);
+      log.error("Data file error to get global : "+key);
     }
     return null;
   }

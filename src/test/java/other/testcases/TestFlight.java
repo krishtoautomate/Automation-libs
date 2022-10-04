@@ -89,7 +89,7 @@ public class TestFlight extends TestBase implements ITestBase {
         }
         sleep(10);
       } catch (Exception e) {
-        Log.info("No 'UPDATE' or 'INSTALL' buttons found");
+        log.info("No 'UPDATE' or 'INSTALL' buttons found");
       }
       utils.getPageSource();
 
@@ -108,7 +108,7 @@ public class TestFlight extends TestBase implements ITestBase {
         }
         sleep(10);
       } catch (Exception e) {
-        Log.info("No 'UPDATE' or 'INSTALL' buttons found");
+        log.info("No 'UPDATE' or 'INSTALL' buttons found");
       }
       utils.getPageSource();
 

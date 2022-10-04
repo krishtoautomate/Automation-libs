@@ -35,7 +35,7 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
   //extends TestListenerAdapter
 //  protected ReportBuilder reporter = new ReportBuilder();
 
-//  private static Logger log = Logger.getLogger(TestListener.class.getName());
+  private static Logger log = Logger.getLogger(TestListener.class.getName());
 
   Jira jiraReporter = new Jira();
 
@@ -130,7 +130,7 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
     String deviceName = deviceInfoReader.getString("name");
 
 //    if (driver != null) {
-    Log.error("Test failed : " + testName + " : " + udid + "_" + deviceName);
+    log.error("Test failed : " + testName + " : " + udid + "_" + deviceName);
     try {
       ScreenShotManager screenShotManager = new ScreenShotManager();
       String ScreenShot = screenShotManager.getScreenshot();
@@ -191,7 +191,7 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
     String deviceName = deviceInfoReader.getString("name");
 
 //    Logger log = LoggerManager.getLogger();
-    Log.warn("Test Skipped : " + testResult.getMethod().getMethodName() + " : " + udid + "_"
+    log.warn("Test Skipped : " + testResult.getMethod().getMethodName() + " : " + udid + "_"
         + deviceName);
   }
 

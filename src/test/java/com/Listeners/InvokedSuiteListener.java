@@ -20,7 +20,7 @@ import org.testng.TestListenerAdapter;
 
 public class InvokedSuiteListener extends TestListenerAdapter implements ISuiteListener {
 
-//  private static Logger log = Logger.getLogger(InvokedSuiteListener.class.getName());
+  private static Logger log = Logger.getLogger(InvokedSuiteListener.class.getName());
 
   @Override
   public void onFinish(ISuite suite) {
@@ -60,7 +60,7 @@ public class InvokedSuiteListener extends TestListenerAdapter implements ISuiteL
       ITestResult skippedTestCase = skippedTestCases.next();
       ITestNGMethod method = skippedTestCase.getMethod();
       if (context.getSkippedTests().getResults(method).size() > 0) {
-        Log.info("Removing:" + skippedTestCase.getTestClass().toString());
+        log.info("Removing:" + skippedTestCase.getTestClass().toString());
         skippedTestCases.remove();
       }
     }
