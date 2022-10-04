@@ -30,7 +30,7 @@ public class TestBase {
     protected boolean isAndroid = false;
     protected boolean isIos = false;
 
-    protected Logger log;
+    protected static Logger log;
 
     /**
      * Executed once before all the tests
@@ -39,7 +39,7 @@ public class TestBase {
     public void setupSuit(ITestContext ctx) {
 //        String suiteName = ctx.getCurrentXmlTest().getSuite().getName();
 
-        // Log4j
+
         log = Logger.getLogger(this.getClass().getName());
 
     }
