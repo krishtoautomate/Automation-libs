@@ -2,19 +2,20 @@ package com.Utilities;
 
 import com.ReportManager.LoggerManager;
 import com.base.AppiumDriverManager;
+import com.base.CapabilitiesManager;
 import io.appium.java_client.AppiumDriver;
 import org.apache.commons.io.FileUtils;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
-import java.util.logging.Logger;
 
 public class ScreenShotManager {
 
-    private static final Logger log = LoggerManager.getLogger();
+    private static org.apache.log4j.Logger log = Logger.getLogger(ScreenShotManager.class.getName());
 
     public static synchronized String getScreenshot() {
 
@@ -31,7 +32,7 @@ public class ScreenShotManager {
         try {
             FileUtils.moveFile(ScreenShot, filePath);
         } catch (IOException e) {
-            log.severe("ScreenShot service failed!!!");
+            log.error("ScreenShot service failed!!!");
         }
         return imgPath;
     }
