@@ -6,6 +6,7 @@ package com.base;
 import com.DataManager.DeviceInfoReader;
 import com.DataManager.TestDataManager;
 import com.Utilities.Constants;
+import com.google.gson.JsonArray;
 import io.appium.java_client.remote.MobileCapabilityType;
 import java.io.FileReader;
 import java.io.IOException;
@@ -43,6 +44,7 @@ public class CapabilitiesManager {
 
     String platForm = testParams.get("platForm");
     String udid = testParams.get("udid");
+    String pCapabilities = testParams.get("capabilities");
 
     String deviceName = "Android".equalsIgnoreCase(platForm) ? "Android Device":"iPhone";
 
@@ -101,6 +103,24 @@ public class CapabilitiesManager {
       }
     } catch (Exception e) {
       log.error(("No test capabilities found!"));
+    }
+
+
+    if(pCapabilities != null) {
+
+      pCapabilities = pCapabilities.replaceAll("'","\"");
+
+      try {
+        JSONObject jsonObject = (JSONObject) new JSONParser().parse(pCapabilities);
+
+        for (Object keyStr : jsonObject.keySet()) {
+          capabilities.setCapability(keyStr.toString(), jsonObject.get(keyStr).toString());
+        }
+      } catch (ParseException e) {
+        log.error(("No test parameter capabilities found!"));
+      }
+
+
     }
 
     return capabilities;

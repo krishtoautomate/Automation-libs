@@ -70,7 +70,7 @@ public class TestFlight extends TestBase implements ITestBase {
 
     sleep(4);
     // Verify title
-    Assertions.contains(testFlightApp.get_apps_h1().getText(), "Apps");
+    Assertions.contains(testFlightApp.get_apps_h1().getText(), "Apps", true);
 
     utils.getPageSource();
     if (testFlightApp.verify_all_btns()) {
