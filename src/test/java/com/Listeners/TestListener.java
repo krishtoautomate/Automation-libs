@@ -4,6 +4,7 @@ import com.DataManager.DeviceInfoReader;
 import com.ReportManager.ExtentTestManager;
 import com.ReportManager.LoggerManager;
 import com.Utilities.Constants;
+import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
@@ -193,6 +194,16 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
 //    Logger log = LoggerManager.getLogger();
     log.warn("Test Skipped : " + testResult.getMethod().getMethodName() + " : " + udid + "_"
         + deviceName);
+
+    ExtentReports extent = ExtentTestManager.getTest().getExtent();
+
+    try {
+      extent.removeTest(ExtentTestManager.getTest());
+    } catch (Exception e) {
+      // ignore
+    }
+
+
   }
 
   @Override
