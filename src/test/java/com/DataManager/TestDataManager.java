@@ -28,6 +28,9 @@ public class TestDataManager {
     ITestResult iTestResult = Reporter.getCurrentTestResult();
     this.className = iTestResult.getInstanceName();
     this.filePath = filePath;
+    Map<String, String> testParams =
+            iTestResult.getTestContext().getCurrentXmlTest().getAllParameters();
+    this.platformName = testParams.get("platForm");
   }
 
   public TestDataManager(String filePath, String platformName) {
