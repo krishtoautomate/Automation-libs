@@ -10,6 +10,7 @@ import io.appium.java_client.MobileElement;
 import java.util.List;
 
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import other.pages.TestFlightApp;
 
@@ -19,7 +20,7 @@ public class TestFlight extends TestBase implements ITestBase {
 
 
   @SuppressWarnings("unchecked")
-  @Test
+  @Test(retryAnalyzer = com.Listeners.RetryAnalyzer.class)
   public void TestFlightUpdateScript() {
 
     String udid = driver.getCapabilities().getCapability("udid").toString();

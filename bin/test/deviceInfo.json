@@ -372,7 +372,7 @@
     "name": "iPhone 13",
     "udid": "00008110-0019643136B8801E",
     "platformName": "iOS",
-    "platformVersion": "15.0",
+    "platformVersion": "16.0",
     "colour": "Pink",
     "devicePort": 8346
   },
@@ -388,7 +388,7 @@
     "name": "iPhone 13 Pro Max",
     "udid": "00008110-000C294026C2801E",
     "platformName": "iOS",
-    "platformVersion": "15.0",
+    "platformVersion": "16.0",
     "colour": "Black",
     "devicePort": 8348
   },
@@ -583,6 +583,118 @@
     "platformVersion": "15.4.1",
     "colour": "Black",
     "devicePort": 8373
+  },
+  {
+    "name": "iPhone XR",
+    "udid": "00008020-000434E91188003A",
+    "platformName": "iOS",
+    "platformVersion": "14.3",
+    "colour": "Black",
+    "devicePort": 8374
+  },
+  {
+    "name": "iPhone SE",
+    "udid": "00008110-00140DD9349B801E",
+    "platformName": "iOS",
+    "platformVersion": "15.4",
+    "colour": "Black",
+    "devicePort": 8375
+  },
+  {
+    "name": "iPhone SE",
+    "udid": "00008110-001E1CAA3EE0401E",
+    "platformName": "iOS",
+    "platformVersion": "15.5",
+    "colour": "Black",
+    "devicePort": 8376
+  },
+  {
+    "name": "iPhone XR",
+    "udid": "00008020-001958960262002E",
+    "platformName": "iOS",
+    "platformVersion": "14.4.2",
+    "colour": "Black",
+    "devicePort": 8377
+  },
+  {
+    "name": "iPhone SE",
+    "udid": "00008110-000958EC0AC0401E",
+    "platformName": "iOS",
+    "platformVersion": "15.4.1",
+    "colour": "Black",
+    "devicePort": 8378
+  },
+  {
+    "name": "iPhone 12 mini",
+    "udid": "00008101-0006059211D8001E",
+    "platformName": "iOS",
+    "platformVersion": "14.2.1",
+    "colour": "Black",
+    "devicePort": 8379
+  },
+  {
+    "name": "iPhone 12 mini",
+    "udid": "00008101-001A611A0CB8001E",
+    "platformName": "iOS",
+    "platformVersion": "14.2.1",
+    "colour": "Black",
+    "devicePort": 8380
+  },
+  {
+    "name": "iPhone SE",
+    "udid": "00008110-000E404234D0401E",
+    "platformName": "iOS",
+    "platformVersion": "15.4.1",
+    "colour": "Black",
+    "devicePort": 8381
+  },
+  {
+    "name": "iPhone SE",
+    "udid": "00008110-0011089C3607801E",
+    "platformName": "iOS",
+    "platformVersion": "15.4",
+    "colour": "Black",
+    "devicePort": 8382
+  },
+  {
+    "name": "iPhone 14",
+    "udid": "00008110-001A6CC61A46401E",
+    "platformName": "iOS",
+    "platformVersion": "16.0.1",
+    "colour": "Black",
+    "devicePort": 8383
+  },
+  {
+    "name": "iPhone 14",
+    "udid": "00008110-001A488A02D9401E",
+    "platformName": "iOS",
+    "platformVersion": "16.0",
+    "colour": "Black",
+    "devicePort": 8384
+  },
+  {
+    "name": "iPhone SE",
+    "udid": "00008110-001539DC3408401E",
+    "platformName": "iOS",
+    "platformVersion": "15.4",
+    "colour": "Black",
+    "devicePort": 8385
+  },
+  {
+    "name": "iPhone 12 mini",
+    "udid": "00008101-000259281191003A",
+    "platformName": "iOS",
+    "platformVersion": "14.2.1",
+    "colour": "Black",
+    "devicePort": 8386
+  },
+  {
+    "name": "iPhone 13 Pro Max",
+    "udid": "00008110-001155D23E38401E",
+    "platformName": "iOS",
+    "platformVersion": "15.4.1",
+    "colour": "Black",
+    "devicePort": 8387
   },
   {
     "name": "Samsung S8",
@@ -1207,5 +1319,95 @@
     "platformVersion": "12.0",
     "colour": "Black",
     "devicePort": 8278
+  },
+  {
+    "name": "Pixel 6",
+    "udid": "25091FDF6006E3",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8279
+  },
+  {
+    "name": "Pixel 6",
+    "udid": "24281FDF6003Y5",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8280
+  },
+  {
+    "name": "Pixel 6",
+    "udid": "23301FDF6002ZP",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8281
+  },
+  {
+    "name": "TCL",
+    "udid": "36d5268b",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8282
+  },
+  {
+    "name": "Pixel 6",
+    "udid": "23281FDF6000CL",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8283
+  },
+  {
+    "name": "TCL T773O",
+    "udid": "24a67af5",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8284
+  },
+  {
+    "name": "samsung SM-A037W",
+    "udid": "R9TT3011RMR",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8285
+  },
+  {
+    "name": "samsung SM-A037W",
+    "udid": "R9TT3006KEH",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8286
+  },
+  {
+    "name": "samsung SM-A037W",
+    "udid": "R9TT300EHZH",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8287
+  },
+  {
+    "name": "samsung A03",
+    "udid": "R9TT30VB48W",
+    "platformName": "Android",
+    "platformVersion": "11.0",
+    "colour": "Black",
+    "devicePort": 8288
+  },
+  {
+    "name": "samsung SM-F711W",
+    "udid": "R5CR91V7WFJ",
+    "platformName": "Android",
+    "platformVersion": "11.0",
+    "colour": "Black",
+    "devicePort": 8289
   }
+
+
 ]

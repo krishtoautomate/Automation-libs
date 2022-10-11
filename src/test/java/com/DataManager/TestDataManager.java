@@ -2,6 +2,7 @@ package com.DataManager;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Map;
 
 import com.base.Log;
 import org.apache.log4j.Logger;
@@ -104,6 +105,10 @@ public class TestDataManager {
       // get an array from the JSON object
       JSONArray jsonArray = (JSONArray) jsonObject.get(className);
 
+      ITestResult iTestResult = Reporter.getCurrentTestResult();
+      Map<String, String> testParams =
+              iTestResult.getTestContext().getCurrentXmlTest().getAllParameters();
+      this.platformName = testParams.get("platForm");
       int index = "iOS".equalsIgnoreCase(platformName) ? 1 : 0;
       JSONObject innerObj = (JSONObject) jsonArray.get(index);
 
