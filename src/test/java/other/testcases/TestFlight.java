@@ -25,8 +25,8 @@ public class TestFlight extends TestBase implements ITestBase {
 
     String udid = driver.getCapabilities().getCapability("udid").toString();
     test.getModel().setName(String.format("%s - %s", className, udid));
-    Utilities utils = new Utilities(driver);
-    TestFlightApp testFlightApp = new TestFlightApp(driver);
+    Utilities utils = new Utilities(driver, test);
+    TestFlightApp testFlightApp = new TestFlightApp(driver, test);
 
     // accept open prompt
     try {

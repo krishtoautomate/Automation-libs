@@ -12,7 +12,7 @@ public class BaseDriver extends TestBase implements IBaseDriver {
   //  protected ExtentTest test;
 //
 //
-//  public BaseDriver(AppiumDriver driver){
+//  public BaseDriver(AppiumDriver driver, Extent test){
 //    driver = driver;
 //  }
 

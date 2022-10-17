@@ -40,12 +40,12 @@ public class MobileActions implements ITestBase {
   boolean isAndroid = false;
   boolean isIOS = false;
 
-  public MobileActions(AppiumDriver driver) {
+  public MobileActions(AppiumDriver driver,ExtentTest test) {
     this.driver = driver;
     this.log = Logger.getLogger(this.getClass().getName());
     this.isAndroid = driver instanceof AndroidDriver;
     this.isIOS = driver instanceof IOSDriver;
-    this.test = ExtentTestManager.getTest();
+    this.test = test;
   }
 
   protected boolean isElementDisplayed(By by) {

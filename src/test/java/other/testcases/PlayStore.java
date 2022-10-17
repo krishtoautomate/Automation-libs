@@ -20,8 +20,8 @@ public class PlayStore extends TestBase implements ITestBase {
 
     test.getModel().setName(String.format("%s - %s", className, udid));
 
-    Utilities utils = new Utilities(driver);
-    PlayStoreApp playstoreapp = new PlayStoreApp(driver);
+    Utilities utils = new Utilities(driver, test);
+    PlayStoreApp playstoreapp = new PlayStoreApp(driver, test);
 
     sleep(2);
 

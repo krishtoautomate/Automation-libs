@@ -40,13 +40,13 @@ public class BaseObjs<T> implements ITestBase {
     protected MobileActions mobileActions;
 
 
-    protected BaseObjs(AppiumDriver driver) {
+    protected BaseObjs(AppiumDriver driver, ExtentTest test) {
         this.driver = driver;
         this.isAndroid = driver instanceof AndroidDriver;
         this.isIOS = driver instanceof IOSDriver;
         this.log = Logger.getLogger(this.getClass().getName());
-        this.test = ExtentTestManager.getTest();
-        mobileActions = new MobileActions(driver);
+        this.test = test;
+        mobileActions = new MobileActions(driver, test);
     }
 
     protected BaseObjs(ExtentTest test) {
