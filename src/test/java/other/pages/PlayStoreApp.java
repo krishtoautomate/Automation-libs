@@ -22,8 +22,8 @@ public class PlayStoreApp extends BaseObjs<PlayStoreApp> {
       "//android.widget.Button[contains(@text,'UPDATE ALL') or contains(@text,'Update all')]");
 
 
-  public PlayStoreApp(AppiumDriver driver) {
-    super(driver);
+  public PlayStoreApp(AppiumDriver driver, ExtentTest test) {
+    super(driver, test);
   }
 
   public WebElement get_accountLogo() {

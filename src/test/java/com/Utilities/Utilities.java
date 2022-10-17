@@ -31,8 +31,8 @@ import org.apache.log4j.Logger;
 public class Utilities extends BaseObjs<Utilities> {
 
 
-  public Utilities(AppiumDriver driver) {
-    super(driver);
+  public Utilities(AppiumDriver driver, ExtentTest test) {
+    super(driver, test);
   }
 
 //  public Utilities(LogExtentTest test) {
