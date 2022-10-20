@@ -1423,6 +1423,46 @@
     "platformVersion": "11.0",
     "colour": "Black",
     "devicePort": 8289
+  },
+  {
+    "name": "Pixel 7",
+    "udid": "28041FDH2008AY",
+    "platformName": "Android",
+    "platformVersion": "13.0",
+    "colour": "Black",
+    "devicePort": 8290
+  },
+  {
+    "name": "samsung SM-F711W",
+    "udid": "R5CR802YPAA",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8291
+  },
+  {
+    "name": "motorola moto g stylus 5G",
+    "udid": "ZY22G2PVMB",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8292
+  },
+  {
+    "name": "samsung SM-F711W",
+    "udid": "R5CT103YMJJ",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8293
+  },
+  {
+    "name": "samsung SM-T577U",
+    "udid": "R52T409V0TP",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8294
   }
 
 
