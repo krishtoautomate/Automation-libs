@@ -47,7 +47,6 @@ public class CapabilitiesManager {
         if (udid != null) {
             capabilities.setCapability(MobileCapabilityType.UDID, udid);
 
-
             DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
             deviceName = deviceInfoReader.getString("name");
             devicePort = deviceInfoReader.getInt("devicePort");
