@@ -713,6 +713,22 @@
     "devicePort": 8389
   },
   {
+    "name": "iPad Air 2",
+    "udid": "d49c5201c9addd3375878995020a76ffcbe18691",
+    "platformName": "iOS",
+    "platformVersion": "15.3.1",
+    "colour": "Black",
+    "devicePort": 8390
+  },
+  {
+    "name": "iPhone 14 Pro",
+    "udid": "00008120-0019556A210B401E",
+    "platformName": "iOS",
+    "platformVersion": "16.0",
+    "colour": "Black",
+    "devicePort": 8391
+  },
+  {
     "name": "Samsung S8",
     "udid": "988b9b304b4e4a374a",
     "platformName": "Android",
