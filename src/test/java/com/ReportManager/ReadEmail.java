@@ -27,9 +27,9 @@ public class ReadEmail {
       properties.put("mail.pop3.port", "995");
       properties.put("mail.pop3.starttls.enable", "true");
 
-      // properties.setProperty("proxySet", "true");
-      properties.setProperty("mail.pop3.socks.host", "fastweb.int.bell.ca");
-      properties.setProperty("mail.pop3.socks.port", "8083");
+//       properties.setProperty("proxySet", "true");
+//      properties.setProperty("mail.pop3.socks.host", "fastweb.int.bell.ca");
+//      properties.setProperty("mail.pop3.socks.port", "8083");
 
       // mail.smtp.proxy.host
       //
@@ -48,9 +48,9 @@ public class ReadEmail {
       Session emailSession = Session.getDefaultInstance(properties);
 
       // create the POP3 store object and connect with the pop server
-      Store store = emailSession.getStore("pop3s");
+      Store store = emailSession.getStore(storeType);
 
-      store.connect(host, user, password);
+      store.connect(host, user,password);
 
       // create the folder object and open it
       Folder emailFolder = store.getFolder("INBOX");
@@ -85,10 +85,10 @@ public class ReadEmail {
 
   public static void main(String[] args) {
 
-    String host = "pop.gmail.com";// change accordingly
+    String host = "pop.yopmail.com";// change accordingly
     String mailStoreType = "pop3";
-    String username = "bqatautomation@gmail.com";// change accordingly
-    String password = "Bellcode1$";// change accordingly
+    String username = "bqatautomation@yopmail.com";// change accordingly
+    String password = "12345678";// change accordingly
 
     check(host, mailStoreType, username, password);
 
