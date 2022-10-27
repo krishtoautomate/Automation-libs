@@ -729,6 +729,30 @@
     "devicePort": 8391
   },
   {
+    "name": "iPhone 14 Pro",
+    "udid": "00008120-00023D313A90C01E",
+    "platformName": "iOS",
+    "platformVersion": "16.0.2",
+    "colour": "Black",
+    "devicePort": 8392
+  },
+  {
+    "name": "iPhone 14 Pro",
+    "udid": "00008120-001169C00138C01E",
+    "platformName": "iOS",
+    "platformVersion": "16.0.2",
+    "colour": "Black",
+    "devicePort": 8393
+  },
+  {
+    "name": "iPhone 14 Pro Max",
+    "udid": "00008120-0012708C3A3B401E",
+    "platformName": "iOS",
+    "platformVersion": "16.0.2",
+    "colour": "Black",
+    "devicePort": 8394
+  },
+  {
     "name": "Samsung S8",
     "udid": "988b9b304b4e4a374a",
     "platformName": "Android",
