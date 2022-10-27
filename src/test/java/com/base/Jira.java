@@ -143,7 +143,6 @@ public class Jira {
       log.info("JIRA test case execution update failed for " + testKey + " due to: "
           + e.getLocalizedMessage());
     }
-
   }
 
   /*
@@ -152,7 +151,7 @@ public class Jira {
   public String create_Test_Exec(String summary, String description, String testPlanKey) {
     // https://developer.atlassian.com/server/jira/platform/jira-rest-api-examples/
     String exec = "";
-    Response res = null;
+//    Response res = null;
     try {
       String issue_type = "Test Execution";
       String jiraAuth = System.getenv("JIRA_AUTH");
@@ -182,7 +181,7 @@ public class Jira {
       req.header("Content-Type", "application/json");
       req.header("Authorization", "Basic " + jiraAuth);
       req.body(jsonBody);
-      res = req.post();
+      Response res = req.post();
       exec = res.getBody().jsonPath().getString("key");
     } catch (Exception e) {
       log.info("JIRA execution creation failed due to: " + e.getLocalizedMessage());
