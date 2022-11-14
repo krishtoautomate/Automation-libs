@@ -63,7 +63,7 @@ public class TestBaseWeb {
         result.setAttribute("testKey", testKey);
 
         log.info("Test Details : " + className);
-        String[][] data = {{"<b>TestCase : </b>", className}, {"<b>Platform : </b>", browser},
+        String[][] data = {{"<b>TestCase : </b>", className}, {"<b>Browser : </b>", browser},
                 {"<b>Jira test-key : </b>",
                         "<a href=" + Constants.JIRA_URL + testKey + ">" + testKey + "</a>"}};
 

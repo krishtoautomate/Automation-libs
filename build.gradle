@@ -53,7 +53,7 @@ dependencies {
     
     testImplementation 'io.rest-assured:rest-assured:4.4.0'
    
-   	testImplementation 'com.aventstack:extentreports:5.0.6'
+   	testImplementation 'com.aventstack:extentreports:5.0.9'
    	testImplementation 'tech.grasshopper:pdfextentreporter:0.3'
     
     implementation 'com.google.guava:guava:21.0'
@@ -66,8 +66,6 @@ dependencies {
     implementation 'org.slf4j:slf4j-jdk14:1.7.25'
 	
     testImplementation "com.oracle.ojdbc:ojdbc8:19.3.0.0"
-    
-    testImplementation 'org.usb4java:usb4java-javax:1.2.0'
     
     testImplementation 'com.slack.api:slack-api-client:1.8.1'
    	   

@@ -1503,6 +1503,46 @@
     "platformVersion": "12.0",
     "colour": "Black",
     "devicePort": 8294
+  },
+  {
+    "name": "samsung SM-F711W",
+    "udid": "R5CR802XVAL",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8295
+  },
+  {
+    "name": "Pixel 7",
+    "udid": "28061FDH2000VW",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8296
+  },
+  {
+    "name": "samsung SM-A037W",
+    "udid": "R9TT300F26W",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8297
+  },
+  {
+    "name": "samsung SM-A037W",
+    "udid": "R9TT30VAEMF",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8298
+  },
+  {
+    "name": "samsung SM-F711W",
+    "udid": "R5CR91D79BM",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8299
   }
 
 
