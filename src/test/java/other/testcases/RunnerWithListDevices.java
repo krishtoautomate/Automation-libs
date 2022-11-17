@@ -135,7 +135,7 @@ public class RunnerWithListDevices {
      */
     // add the list of tests to your Suite.
     mySuite.setTests(myTests);
-    mySuite.setThreadCount(45);
+    mySuite.setThreadCount(15);
 
     // Add the suite to the list of suites.
     List<XmlSuite> mySuites = new ArrayList<XmlSuite>();

@@ -24,12 +24,12 @@ import java.util.Map;
 public class TestBase {
 
     protected static Logger log;
-    //    protected static Logger log;
     protected AppiumDriver<MobileElement> driver;
     protected AppiumDriverManager tlDriverFactory = new AppiumDriverManager();
     protected ExtentTest test;
     protected boolean isAndroid = false;
     protected boolean isIos = false;
+//    protected boolean isFrench = false;
 
     /**
      * Executed once before all the tests

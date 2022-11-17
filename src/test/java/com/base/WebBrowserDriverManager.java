@@ -39,7 +39,7 @@ public class WebBrowserDriverManager {
     String REMOTE_HOST =
         testParams.get("REMOTE_HOST") == null ? "localhost" : testParams.get("REMOTE_HOST");
 
-    if (browser.equals("chrome")) {
+    if (browser.equalsIgnoreCase("chrome")) {
       DesiredCapabilities capabilities = new DesiredCapabilities();
 
       if ("localhost".equalsIgnoreCase(REMOTE_HOST)) {
@@ -57,6 +57,9 @@ public class WebBrowserDriverManager {
       capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
       capabilities.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
 
+      capabilities.setCapability(CapabilityType.BROWSER_NAME, "chrome");
+      capabilities.setCapability(CapabilityType.VERSION, "chrome");
+
       capabilities.setCapability("chrome.switches",
           Arrays.asList("--ignore-certificate-errors" + "," + "--web-security=false" + ","
               + "--ssl-protocol=any" + "," + "--ignore-ssl-errors=true"));
@@ -69,7 +72,7 @@ public class WebBrowserDriverManager {
       } else {
         tlDriver.set(new RemoteWebDriver(new URL(REMOTE_HOST), options));
       }
-    } else if (browser.equals("ie")) {
+    } else if (browser.equalsIgnoreCase("ie")) {
 
 
       // EdgeOptions options = new EdgeOptions();
