@@ -226,10 +226,6 @@ public class MobileActions implements ITestBase {
     touchAction().tap(ElementOption.point(X, Y)).perform();
   }
 
-  public void sendKeys(String keys) {
-
-  }
-
   /*
    * provide Element Center x and y coordinates
    */
