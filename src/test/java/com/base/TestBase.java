@@ -7,7 +7,6 @@ import com.Utilities.Constants;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import org.apache.log4j.Logger;
 import org.testng.ITestContext;
@@ -16,6 +15,7 @@ import org.testng.Reporter;
 import org.testng.annotations.*;
 
 import java.lang.reflect.Method;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -24,12 +24,12 @@ import java.util.Map;
 public class TestBase {
 
     protected static Logger log;
-    protected AppiumDriver<MobileElement> driver;
+    protected AppiumDriver driver;
     protected AppiumDriverManager tlDriverFactory = new AppiumDriverManager();
     protected ExtentTest test;
     protected boolean isAndroid = false;
     protected boolean isIos = false;
-//    protected boolean isFrench = false;
+    protected boolean isFrench = false;
 
     /**
      * Executed once before all the tests
@@ -82,6 +82,12 @@ public class TestBase {
         platformVersion = driver.getCapabilities().getCapability("platformVersion").toString();
         udid = driver.getCapabilities().getCapability("udid").toString();
 
+        try {
+            isFrench = driver.getCapabilities().getCapability("language").toString().equalsIgnoreCase("fr");
+        } catch (Exception e) {
+            isFrench = false;
+        }
+
         Map<String, String> testParams = iTestContext.getCurrentXmlTest().getAllParameters();
         String pTestData = testParams.get("p_Testdata");
         TestDataManager testData = new TestDataManager(pTestData);
@@ -114,11 +120,15 @@ public class TestBase {
         if (driver != null) {
             try {
                 if (isAndroid) {
-                    driver.closeApp();
+                    driver.close();
                 }
 
                 if (isIos) {
-                    driver.terminateApp(driver.getCapabilities().getCapability("bundleId").toString());
+
+//                    driver.terminateApp(driver.getCapabilities().getCapability("bundleId").toString());
+                    HashMap<String, String> args = new HashMap<>();
+                    args.put("bundleId", driver.getCapabilities().getCapability("bundleId").toString());
+                    driver.executeScript("mobile:terminateApp", args);
                 }
                 log.info("app close");
             } catch (Exception e) {

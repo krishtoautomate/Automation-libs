@@ -6,7 +6,6 @@ import com.aventstack.extentreports.Status;
 import com.base.Log;
 import com.google.common.collect.ImmutableList;
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileElement;
 import io.appium.java_client.PerformsTouchActions;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
@@ -98,9 +97,12 @@ public class MobileActions implements ITestBase {
   }
 
   @SuppressWarnings("unchecked")
-  public void activateApp(String platForm, String bundleId) {
-    if ("ios".equalsIgnoreCase(platForm)) {
-      driver.activateApp(bundleId);
+  public void activateApp(String bundleId) {
+    if (isIOS) {
+//      driver.activateApp(bundleId);
+      HashMap<String, String> args = new HashMap<>();
+      args.put("bundleId", bundleId);
+      driver.executeScript("mobile:activateApp", args);
     }
   }
 
@@ -108,15 +110,20 @@ public class MobileActions implements ITestBase {
   public void terminateApp(String bundleId) {
     boolean isAndroid = driver instanceof AndroidDriver;
     if (!isAndroid) {
-      driver.terminateApp(bundleId);
+//      driver.terminateApp(bundleId);
+      HashMap<String, String> args = new HashMap<>();
+      args.put("bundleId", bundleId);
+      driver.executeScript("mobile:terminateApp", args);
     }
   }
 
   @SuppressWarnings("unchecked")
-  public void resetApp(String platForm, String bundleId) {
-    if ("ios".equalsIgnoreCase(platForm)) {
-      driver.activateApp(bundleId);
-      driver.resetApp();
+  public void resetApp() {
+    String bundleId = driver.getCapabilities().getCapability("bundleId").toString();
+    if (isIOS) {
+      terminateApp(bundleId);
+      sleep(2);
+      activateApp(bundleId);
     }
   }
 
@@ -132,18 +139,14 @@ public class MobileActions implements ITestBase {
 
   @SuppressWarnings("unchecked")
   public void activateSafariApp() {
-    driver.activateApp("com.apple.mobilesafari");
+    activateApp("com.apple.mobilesafari");
   }
 
   @SuppressWarnings("unchecked")
   public void terminateSafariApp() {
-    driver.terminateApp("com.apple.mobilesafari");
+    terminateApp("com.apple.mobilesafari");
   }
 
-  @SuppressWarnings("unchecked")
-  public void closeApp() {
-    driver.closeApp();
-  }
 
   @SuppressWarnings("unchecked")
   public void launchUrl(String platForm, String url) {
@@ -156,7 +159,7 @@ public class MobileActions implements ITestBase {
   @SuppressWarnings("unchecked")
   public void get_androidHomeScreen(String platform) {
     if ("Android".equalsIgnoreCase(platform)) {
-      ((AndroidDriver<MobileElement>) driver).pressKey(new KeyEvent(AndroidKey.HOME));
+      ((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.HOME));
     }
   }
 
@@ -168,7 +171,7 @@ public class MobileActions implements ITestBase {
 
     try {
       if (this.isAndroid) {
-        driver.hideKeyboard();
+        ((AndroidDriver) driver).hideKeyboard();
       }else{
         By done_btn = By.xpath(
             "//XCUIElementTypeButton[@name='Done' or @name='next:' or @name='Next:' or @name='Next']");
@@ -248,7 +251,7 @@ public class MobileActions implements ITestBase {
     tap.addAction(input.createPointerDown(MouseButton.LEFT.asArg()));
     tap.addAction(new Pause(input, Duration.ofMillis(200)));
     tap.addAction(input.createPointerUp(MouseButton.LEFT.asArg()));
-    ((AppiumDriver<?>) driver).perform(ImmutableList.of(tap));
+    driver.perform(ImmutableList.of(tap));
   }
 
   public void doubleTapElement(WebElement element) {
@@ -260,7 +263,7 @@ public class MobileActions implements ITestBase {
    * Double tap
    */
   public void doubleTapByElement(WebElement element) {
-    Point point = ((MobileElement) element).getCenter();
+    Point point = element.getRect().getPoint();
     touchAction().tap(ElementOption.point(point)).perform().tap(ElementOption.point(point))
         .perform();
   }
@@ -273,7 +276,7 @@ public class MobileActions implements ITestBase {
     Boolean isElementDisplayedOnScreen = false;
 
     try {
-      Point point = ((MobileElement) element).getCenter();
+      Point point = element.getRect().getPoint();
       int eX = point.getX();
       int eY = point.getY();
       Dimension windowSize = driver.manage().window().getSize();
@@ -448,8 +451,8 @@ public class MobileActions implements ITestBase {
   public void scrollFromElementOneToElementTwo(WebElement element1, WebElement element2,
       int xScrolls) {
 
-    Point point1 = ((MobileElement) element1).getLocation();
-    Point point2 = ((MobileElement) element2).getLocation();
+    Point point1 = element1.getLocation();
+    Point point2 = element2.getLocation();
 
     int mX = point1.getX();
     int yStart = point1.getY();
@@ -473,7 +476,7 @@ public class MobileActions implements ITestBase {
   public void scrollFromElementOneToTheBottom(WebElement element1, int xScrolls) {
 
     Dimension size = driver.manage().window().getSize();
-    Point point1 = ((MobileElement) element1).getLocation();
+    Point point1 = element1.getLocation();
 
     int mX = point1.getX();
     int yStart = point1.getY();
@@ -546,16 +549,13 @@ public class MobileActions implements ITestBase {
     if ("ios".equalsIgnoreCase(platForm)) {
       try {
         // Turn-OFF wifi
-        driver.activateApp("com.apple.shortcuts");
+        activateApp("com.apple.shortcuts");
 
         driver.findElement(By.xpath("//XCUIElementTypeCell[@name='Wifi OFF']")).click();
         log.info("WIFI OFF");
         // Restart app
-        driver.resetApp();
-        // .activateApp(
-        // ((AppiumDriver<MobileElement>)
-        // driver).getCapabilities().getCapability("bundleId").toString());
-
+//        driver.resetApp();
+        resetApp();
         log.info("App Restarted");
       } catch (Exception e) {
         // ignore
@@ -568,18 +568,17 @@ public class MobileActions implements ITestBase {
     if ("ios".equalsIgnoreCase(platForm)) {
       try {
         // Turn-ON wifi
-        driver.activateApp("com.apple.Preferences");
+        activateApp("com.apple.Preferences");
         driver.findElement(By.xpath("//XCUIElementTypeCell[@name='Wifi ON']")).click();
         log.info("WIFI ON");
-        sleep(10);
+        sleep(5);
       } catch (Exception e) {
         // ignore
       }
 
       try {
         // Restart app
-        driver.activateApp(driver
-            .getCapabilities().getCapability("bundleId").toString());
+        resetApp();
         log.info("App Restarted");
       } catch (Exception e) {
         // ignore
@@ -591,7 +590,7 @@ public class MobileActions implements ITestBase {
   public void execute_OpenCurrentApp() {
     String BundleID = driver.getCapabilities()
         .getCapability("bundleId").toString();
-    driver.activateApp(BundleID);
+    activateApp(BundleID);
     log.info("Switched back to App");
   }
 

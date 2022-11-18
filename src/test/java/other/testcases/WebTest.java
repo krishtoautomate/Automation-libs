@@ -10,6 +10,7 @@ public class WebTest extends TestBaseWeb implements ITestBase {
     public void Web_Test(){
         driver.get("http://172.21.34.239:4444/grid/console");
 
+        System.out.println("session info : "+ driver.getPageSource());
         sleep(20);
     }
 }

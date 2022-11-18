@@ -2,15 +2,13 @@ package other.testcases;
 
 import com.Utilities.Assertions;
 import com.Utilities.ITestBase;
+import com.Utilities.MobileActions;
 import com.Utilities.Utilities;
 import com.aventstack.extentreports.Status;
-import com.base.Log;
 import com.base.TestBase;
-import io.appium.java_client.MobileElement;
 import java.util.List;
 
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import other.pages.TestFlightApp;
 
@@ -27,6 +25,7 @@ public class TestFlight extends TestBase implements ITestBase {
     test.getModel().setName(String.format("%s - %s", className, udid));
     Utilities utils = new Utilities(driver, test);
     TestFlightApp testFlightApp = new TestFlightApp(driver, test);
+    MobileActions mobileActions = new MobileActions(driver, test);
 
     // accept open prompt
     try {
@@ -36,13 +35,13 @@ public class TestFlight extends TestBase implements ITestBase {
       // ignore
     }
 
-    driver.resetApp();
+    mobileActions.resetApp();
 
     utils.dismissAlert();
 
     if (!driver.getCapabilities().getCapability("bundleId")
         .toString().contains("com.apple.TestFlight")) {
-      driver.activateApp("com.apple.TestFlight");
+      mobileActions.activateApp("com.apple.TestFlight");
     }
 
     if (testFlightApp.verify_tryAgain_btn()) {
