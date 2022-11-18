@@ -7,6 +7,7 @@ import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Duration;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
@@ -51,8 +52,7 @@ public class AppiumDriverManager {
     // System.out.println("Thread Id : "+ Thread.currentThread().getId());
     // System.out.println("Session Id : "+ tlDriver.get().getSessionId());
 
-    getDriverInstance().manage().timeouts().implicitlyWait(Constants.IMPLICITLYWAIT,
-        TimeUnit.SECONDS);
+    getDriverInstance().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
   }
 
