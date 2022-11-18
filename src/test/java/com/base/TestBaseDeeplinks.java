@@ -7,9 +7,10 @@ import com.Utilities.Constants;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import java.lang.reflect.Method;
+import java.util.HashMap;
+
 import org.apache.log4j.Logger;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
@@ -105,9 +106,12 @@ public class TestBaseDeeplinks {
       try {
         boolean isAndroid = driver instanceof AndroidDriver;
         if (isAndroid) {
-          driver.closeApp();
+          driver.close();
         } else {
-          driver.terminateApp(driver.getCapabilities().getCapability("bundleId").toString());
+//          driver.terminateApp(driver.getCapabilities().getCapability("bundleId").toString());
+          HashMap<String, String> args = new HashMap<>();
+          args.put("bundleId", driver.getCapabilities().getCapability("bundleId").toString());
+          driver.executeScript("mobile:terminateApp", args);
         }
         log.info("app close");
       } catch (Exception e) {

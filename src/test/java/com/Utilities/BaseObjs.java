@@ -8,6 +8,7 @@ import com.aventstack.extentreports.markuputils.MarkupHelper;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.remote.SupportsContextSwitching;
 import io.restassured.response.Response;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -305,10 +306,10 @@ public class BaseObjs<T> implements ITestBase {
 
     protected boolean switchToNativeContext(String context) {
         ArrayList<String> contexts =
-                new ArrayList<String>(((AppiumDriver<?>) driver).getContextHandles());
+                new ArrayList<String>(((SupportsContextSwitching) driver).getContextHandles());
         for (String cntext : contexts) {
             if (cntext.contains(context)) {
-                ((AppiumDriver<?>) driver).context(cntext);
+                ((SupportsContextSwitching) driver).context(cntext);
                 return true;
             }
         }

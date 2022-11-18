@@ -1,7 +1,6 @@
 package other.testcases;
 
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
@@ -15,7 +14,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class MBM {
 
-  static AppiumDriver<MobileElement> driver;
+  static AppiumDriver driver;
   static By loginUser =
       By.xpath("//android.widget.EditText[contains(@resource-id, 'usernameEditText')]");
   static By loginPwd =
@@ -61,7 +60,7 @@ public class MBM {
     // desiredCapabilities.setCapability("appActivity",
     // "ca.virginmobile.myaccount.virginmobile.ui.splash.view.SplashActivity");
 
-    driver = new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:4723/wd/hub"),
+    driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"),
         desiredCapabilities);
     // driver = new AndroidDriver<MobileElement>(new URL(server.getUrl().toString()),
     // desiredCapabilities);

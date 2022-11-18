@@ -1,6 +1,5 @@
 package com.Utilities;
 
-import io.appium.java_client.MobileElement;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
