@@ -2,6 +2,7 @@ package other.pages;
 
 import com.Utilities.BaseObjs;
 import com.aventstack.extentreports.ExtentTest;
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy;
 import org.apache.log4j.Logger;
@@ -14,10 +15,10 @@ public class PlayStoreApp extends BaseObjs<PlayStoreApp> {
   By accountLogo = By.xpath(
       "(//android.view.ViewGroup/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ImageView[contains(@resource-id, '0_resource_name_obfuscated')])[1]");
 
-  By manageAppsAndDevice_btn = MobileBy
+  By manageAppsAndDevice_btn = AppiumBy
       .xpath("(//android.widget.FrameLayout/android.view.ViewGroup/android.widget.TextView)[1]");
 
-  By updates_refresh_btn = MobileBy.AccessibilityId("Check for updates");
+  By updates_refresh_btn = AppiumBy.accessibilityId("Check for updates");
   By updateAll_btn = By.xpath(
       "//android.widget.Button[contains(@text,'UPDATE ALL') or contains(@text,'Update all')]");
 
