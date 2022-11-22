@@ -113,9 +113,9 @@ public class TestBase {
     }
 
 
-    @AfterMethod
-    @Parameters({"udid", "platForm"})
-    public synchronized void After(@Optional String udid, @Optional String platForm) {
+    @AfterMethod//(alwaysRun = true)
+    @Parameters({"udid"})
+    public synchronized void After(@Optional String udid) {
 
         if (driver != null) {
             try {
@@ -124,7 +124,6 @@ public class TestBase {
                 }
 
                 if (isIos) {
-
 //                    driver.terminateApp(driver.getCapabilities().getCapability("bundleId").toString());
                     HashMap<String, String> args = new HashMap<>();
                     args.put("bundleId", driver.getCapabilities().getCapability("bundleId").toString());
