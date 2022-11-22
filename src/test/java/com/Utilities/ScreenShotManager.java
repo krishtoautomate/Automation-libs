@@ -21,7 +21,7 @@ public class ScreenShotManager {
 
         AppiumDriver driver = AppiumDriverManager.getDriverInstance();
 
-        File ScreenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        File ScreenShot = driver.getScreenshotAs(OutputType.FILE);
 
         UUID uuid = UUID.randomUUID();
 
