@@ -17,8 +17,7 @@ public class TestFlight extends TestBase implements ITestBase {
   String className = this.getClass().getSimpleName();
 
 
-  @SuppressWarnings("unchecked")
-  @Test(retryAnalyzer = com.Listeners.RetryAnalyzer.class)
+  @Test//(retryAnalyzer = com.Listeners.RetryAnalyzer.class)
   public void TestFlightUpdateScript() {
 
     String udid = driver.getCapabilities().getCapability("udid").toString();

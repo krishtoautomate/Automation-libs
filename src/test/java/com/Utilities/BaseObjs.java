@@ -169,39 +169,6 @@ public class BaseObjs<T> implements ITestBase {
      * Creates logs into Log4j and extent-Report with Screen-shot
      */
     @SuppressWarnings("static-access")
-    public synchronized void log(Status Status, String message) {
-        log.info(message);
-        try {
-
-            String screenShot = "";
-            try {
-                screenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
-            } catch (Exception e) {
-                log.error("TakesScreenshot service failed!!!");
-            }
-
-            if (Status == Status.FAIL) {
-                test.fail(message,
-                        MediaEntityBuilder.createScreenCaptureFromBase64String(screenShot).build());
-            } else if (Status == Status.INFO) {
-                test.info(message);
-            } else {
-                test.pass(message,
-                        MediaEntityBuilder.createScreenCaptureFromBase64String(screenShot).build());
-            }
-        } catch (WebDriverException e) {
-            if (Status == Status.FAIL) {
-                test.fail(message);
-            } else {
-                test.pass(message);
-            }
-        }
-    }
-
-    /**
-     * Creates logs into Log4j and extent-Report with Screen-shot
-     */
-    @SuppressWarnings("static-access")
     protected synchronized void report(Status Status, String message, WebElement element) {
         log.info(message);
         try {
@@ -254,8 +221,6 @@ public class BaseObjs<T> implements ITestBase {
 
     public synchronized String imageGraphicScreenshot(WebElement element) {
 
-        boolean isAndroid = driver instanceof AndroidDriver ? true : false;
-
         int x = element.getRect().getX();
         int y = element.getRect().getY();
 
@@ -263,7 +228,7 @@ public class BaseObjs<T> implements ITestBase {
         int height = element.getRect().getHeight();
 
         UUID uuid = UUID.randomUUID();
-        String imgPath = "img/" + uuid.toString() + "_" + Constants.TIME_NOW + "_" + ".PNG";
+        String imgPath = "img/" + uuid + "_" + Constants.TIME_NOW + "_" + ".PNG";
 
         File ScreenShot = new File(Constants.NO_SCREENSHOTS_AVAILABLE);
         try {
@@ -287,7 +252,7 @@ public class BaseObjs<T> implements ITestBase {
 
             // Copy the element screenshot to disk
             FileUtils.moveFile(ScreenShot, new File(Constants.REPORT_DIR + imgPath));
-        } catch (WebDriverException | IOException e) {
+        } catch (Exception e) {
             log.error("TakesScreenshot service failed!!!");
 
             try {
