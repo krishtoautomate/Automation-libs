@@ -27,7 +27,7 @@ public class TestFlight extends TestBase implements ITestBase {
     TestFlightApp testFlightApp = new TestFlightApp(driver, test);
     MobileActions mobileActions = new MobileActions(driver, test);
 
-    // accept open prompt
+    // dismiss open prompt
     try {
       driver.switchTo().alert().dismiss();
       utils.logmessage(Status.PASS, "dismiss alert");
