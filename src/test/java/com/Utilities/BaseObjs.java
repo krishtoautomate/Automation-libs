@@ -192,23 +192,23 @@ public class BaseObjs<T> implements ITestBase {
         }
     }
 
-    protected boolean switchToNativeContext(String context) {
-        ArrayList<String> contexts =
-                new ArrayList<String>(((SupportsContextSwitching) driver).getContextHandles());
-        for (String cntext : contexts) {
-            if (cntext.contains(context)) {
-                ((SupportsContextSwitching) driver).context(cntext);
-                return true;
-            }
-        }
-        return false;
-    }
+//    protected boolean switchToNativeContext(String context) {
+//        ArrayList<String> contexts =
+//                new ArrayList<String>(((IOSDriver) driver).getContextHandles());
+//        for (String cntext : contexts) {
+//            if (cntext.contains(context)) {
+//                ((SupportsContextSwitching) driver).context(cntext);
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 
     protected WebElement get_Element(By locator, String elementDesc, String action) {
         WebElement ele = null;
         try {
             ele = driver.findElement(locator);
-            if (action != null | ele != null | action.equalsIgnoreCase("NONE")) {
+            if (action != null || ele != null || action.equalsIgnoreCase("NONE")) {
                 report(Status.PASS, action, ele);
             }
         } catch (Exception e) {
