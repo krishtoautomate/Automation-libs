@@ -25,7 +25,7 @@ public class Assertions extends TestBase {
                             .pass("Verification Success : '" + actual.trim() + "' Vs '" + expectedText + "'", MediaEntityBuilder.createScreenCaptureFromPath(ScreenShotManager.getScreenshot()).build());
                 else
                     ExtentTestManager.getTest()
-                            .info("Verification Success : '" + actual.trim() + "' Vs '" + expected.trim() + "'");
+                            .pass("Verification Success : '" + actual.trim() + "' Vs '" + expected.trim() + "'");
                 return;
             }
         }

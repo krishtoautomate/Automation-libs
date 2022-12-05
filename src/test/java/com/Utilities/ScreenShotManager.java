@@ -1,13 +1,10 @@
 package com.Utilities;
 
-import com.ReportManager.LoggerManager;
 import com.base.AppiumDriverManager;
-import com.base.CapabilitiesManager;
 import io.appium.java_client.AppiumDriver;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 
 import java.io.File;
 import java.io.IOException;
