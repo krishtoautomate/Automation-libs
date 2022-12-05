@@ -79,7 +79,11 @@ public class TestBase {
             DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
             deviceName = deviceInfoReader.getString("name");
         }
-        platformVersion = driver.getCapabilities().getCapability("platformVersion").toString();
+        try {
+            platformVersion = driver.getCapabilities().getCapability("platformVersion").toString();
+        } catch (Exception e) {
+            //ignore
+        }
         udid = driver.getCapabilities().getCapability("udid").toString();
 
         try {

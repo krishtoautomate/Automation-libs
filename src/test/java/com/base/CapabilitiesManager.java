@@ -40,10 +40,10 @@ public class CapabilitiesManager {
 
         String platForm = testParams.get("platForm");
         String udid = testParams.get("udid");
-        String pCapabilities = testParams.get("capabilities");
 
         String deviceName = "Android".equalsIgnoreCase(platForm) ? "Android Device" : "iPhone";
 
+        //capabilities from capabilities.json
         if (udid != null) {
             capabilities.setCapability(MobileCapabilityType.UDID, udid);
 
@@ -57,14 +57,12 @@ public class CapabilitiesManager {
                 capabilities.setCapability("wdaLocalPort", devicePort);
             }
         } else {
-
             if ("Android".equalsIgnoreCase(platForm)) {
                 capabilities.setCapability("systemPort", devicePort);
             }
             if ("iOS".equalsIgnoreCase(platForm)) {
                 capabilities.setCapability("wdaLocalPort", devicePort);
             }
-
         }
         capabilities.setCapability("deviceName", deviceName);
 
@@ -76,46 +74,50 @@ public class CapabilitiesManager {
             JSONArray jsonArray = (JSONArray) jsonObject.get(capabilitiesName);
             JSONObject jObj = (JSONObject) jsonArray.get(0);
 
+            //capabilities from TestNG.xml
+            String pCapabilities = testParams.get("capabilities");
+            if (pCapabilities != null) {
+                pCapabilities = pCapabilities.replaceAll("'", "\"");
+                try {
+                    JSONObject jObject = (JSONObject) new JSONParser().parse(pCapabilities);
+                    for (Object keyStr : jObject.keySet()) {
+                        try {
+                            jObj.put(keyStr.toString(), jObject.get(keyStr).toString());
+                        } catch (Exception e) {
+                            //ignore
+                        }
+                    }
+                } catch (ParseException e) {
+                    //ignore
+                }
+            }
+
+            //add to capabilities
+            System.out.println("capabilities : "+jObj.toJSONString());
             jObj.keySet().forEach(key -> {
                 capabilities.setCapability(key.toString(), jObj.get(key));
             });
 
         } catch (IOException | ParseException | NullPointerException ex) {
-            log.error(("failed to set global capabilities"));
+            log.error("failed to set global capabilities");
         }
 
-        try {
-            String pTestData = testParams.get("p_Testdata");
-            JSONObject jsonObject = (JSONObject) new JSONParser().parse(new FileReader(pTestData));
-            String className = iTestResult.getInstanceName();
-            JSONArray jsonArray = (JSONArray) jsonObject.get(className);
-            JSONObject jObj = (JSONObject) jsonArray.get(0);
-            JSONObject jAObject = (JSONObject) jObj.get("capabilities");
+        //capabilities from TestData
+//        try {
+//            String pTestData = testParams.get("p_Testdata");
+//            JSONObject jsonObject = (JSONObject) new JSONParser().parse(new FileReader(pTestData));
+//            String className = iTestResult.getInstanceName();
+//            JSONArray jsonArray = (JSONArray) jsonObject.get(className);
+//            JSONObject jObj = (JSONObject) jsonArray.get(0);
+//            JSONObject jAObject = (JSONObject) jObj.get("capabilities");
+//
+//            jAObject.keySet().forEach(key -> {
+//                capabilities.setCapability(key.toString(), jAObject.get(key));
+//            });
+//        } catch (Exception e) {
+//            //ignore
+//        }
 
-            for (Object keyStr : jAObject.keySet()) {
-                capabilities.setCapability(keyStr.toString(), jAObject.get(keyStr).toString());
-            }
-        } catch (Exception e) {
-            log.error(("No test capabilities found!"));
-        }
-
-
-        if (pCapabilities != null) {
-
-            pCapabilities = pCapabilities.replaceAll("'", "\"");
-
-            try {
-                JSONObject jsonObject = (JSONObject) new JSONParser().parse(pCapabilities);
-
-                for (Object keyStr : jsonObject.keySet()) {
-                    capabilities.setCapability(keyStr.toString(), jsonObject.get(keyStr).toString());
-                }
-            } catch (ParseException e) {
-                log.error(("No test parameter capabilities found!"));
-            }
-
-
-        }
 
         return capabilities;
     }
