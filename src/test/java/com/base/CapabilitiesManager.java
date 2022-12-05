@@ -43,36 +43,23 @@ public class CapabilitiesManager {
 
         String deviceName = "Android".equalsIgnoreCase(platForm) ? "Android Device" : "iPhone";
 
-        //capabilities from capabilities.json
-        if (udid != null) {
-            capabilities.setCapability(MobileCapabilityType.UDID, udid);
-
-            DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
-            deviceName = deviceInfoReader.getString("name");
-            devicePort = deviceInfoReader.getInt("devicePort");
-            if ("Android".equalsIgnoreCase(platForm)) {
-                capabilities.setCapability("systemPort", devicePort);
-            }
-            if ("iOS".equalsIgnoreCase(platForm)) {
-                capabilities.setCapability("wdaLocalPort", devicePort);
-            }
-        } else {
-            if ("Android".equalsIgnoreCase(platForm)) {
-                capabilities.setCapability("systemPort", devicePort);
-            }
-            if ("iOS".equalsIgnoreCase(platForm)) {
-                capabilities.setCapability("wdaLocalPort", devicePort);
-            }
-        }
-        capabilities.setCapability("deviceName", deviceName);
-
-        String capabilitiesName = "Android".equalsIgnoreCase(platForm) ? "ANDROID" : "IOS";
-
         try {
+            //capabilities from capabilities.json
             JSONObject jsonObject =
                     (JSONObject) new JSONParser().parse(new FileReader(Constants.CAPABILITIES));
-            JSONArray jsonArray = (JSONArray) jsonObject.get(capabilitiesName);
+            JSONArray jsonArray = (JSONArray) jsonObject.get(platForm.toUpperCase());
             JSONObject jObj = (JSONObject) jsonArray.get(0);
+
+            if (udid != null) {
+                //UDID from TestNG parameter
+                jObj.put(MobileCapabilityType.UDID, udid);
+
+                DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
+                deviceName = deviceInfoReader.getString("name");
+                devicePort = deviceInfoReader.getInt("devicePort");
+            }
+            jObj.put("Android".equalsIgnoreCase(platForm) ? "systemPort" : "wdaLocalPort", devicePort);
+            jObj.put("deviceName", deviceName);
 
             //capabilities from TestNG.xml
             String pCapabilities = testParams.get("capabilities");
@@ -93,7 +80,7 @@ public class CapabilitiesManager {
             }
 
             //add to capabilities
-            System.out.println("capabilities : "+jObj.toJSONString());
+            System.out.println("capabilities : " + jObj.toJSONString());
             jObj.keySet().forEach(key -> {
                 capabilities.setCapability(key.toString(), jObj.get(key));
             });
