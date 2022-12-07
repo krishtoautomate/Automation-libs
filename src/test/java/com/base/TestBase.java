@@ -56,11 +56,11 @@ public class TestBase {
 
 //    log = LoggerManager.startLogger(className);
 
-        // Create Session
-        if (udid != null)
-            log.info("creating session : " + className + " : " + udid);
-        else
-            log.info("creating session : " + className + " : " + platForm);
+//        // Create Session
+//        if (udid != null)
+//            log.info("creating session : " + className + " : " + udid);
+//        else
+//            log.info("creating session : " + className + " : " + platForm);
 
         tlDriverFactory.setDriver();
         driver = AppiumDriverManager.getDriverInstance();
