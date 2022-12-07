@@ -32,7 +32,7 @@ dependencies {
     testImplementation 'org.seleniumhq.selenium:selenium-java:4.5.0'
     testImplementation 'org.seleniumhq.selenium:selenium-support:4.5.0'
 
-    implementation 'io.appium:java-client:8.2.0'
+    implementation 'io.appium:java-client:8.2.1'
     
     testImplementation 'io.cucumber:cucumber-java:7.3.1'
     testImplementation 'io.cucumber:cucumber-testng:7.3.1'
