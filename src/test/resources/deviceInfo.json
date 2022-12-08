@@ -753,6 +753,14 @@
     "devicePort": 8394
   },
   {
+    "name": "iPhone 14 Pro Max",
+    "udid": "00008120-001E494C2263C01E",
+    "platformName": "iOS",
+    "platformVersion": "16.1.1",
+    "colour": "Black",
+    "devicePort": 8395
+  },
+  {
     "name": "Samsung S8",
     "udid": "988b9b304b4e4a374a",
     "platformName": "Android",
@@ -1559,6 +1567,14 @@
     "platformVersion": "12.0",
     "colour": "Black",
     "devicePort": 8502
+  },
+  {
+    "name": "samsung SM-F711W",
+    "udid": "R5CR802YV4Y",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8503
   }
 
 
