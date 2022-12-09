@@ -39,6 +39,9 @@ public class AppiumDriverManager {
                 iTestResult.getTestContext().getCurrentXmlTest().getAllParameters();
 
         String platForm = testParams.get("platForm");
+        if(platForm==null)
+            return;
+
         String REMOTE_HOST =
                 testParams.get("REMOTE_HOST") == null ? "localhost" : testParams.get("REMOTE_HOST");
 

@@ -47,19 +47,10 @@ public class WebBrowserDriverManager {
         String REMOTE_HOST =
                 testParams.get("REMOTE_HOST") == null ? "localhost" : testParams.get("REMOTE_HOST");
 
+        if(browser==null)
+            return;
         if (browser.equalsIgnoreCase("chrome")) {
             DesiredCapabilities capabilities = new DesiredCapabilities();
-
-//            if ("localhost".equalsIgnoreCase(REMOTE_HOST)) {
-//        if (System.getProperty("os.name").toLowerCase().contains("windows")) {
-//          System.setProperty("webdriver.chrome.driver",
-//              Constants.USER_DIR + "/src/main/resources/chromedriver.exe");
-//          WebDriverManager.chromedriver().setup();
-//        } else {
-//          System.setProperty("webdriver.chrome.driver",
-//              Constants.USER_DIR + "/src/main/resources/chromedriver");
-//        }
-//            }
 
             capabilities.setCapability(ChromeOptions.CAPABILITY, optionsManager.getChromeOptions());
 

@@ -71,8 +71,6 @@ public class TestBaseWeb {
 
         log.info("Test Started : " + className);
 
-        test.log(Status.INFO, methodName);
-
     }
 
 
