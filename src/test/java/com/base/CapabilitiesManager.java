@@ -79,17 +79,7 @@ public class CapabilitiesManager {
                 }
             }
 
-            //add to capabilities
-            System.out.println("capabilities : " + jObj.toJSONString());
-            jObj.keySet().forEach(key -> {
-                capabilities.setCapability(key.toString(), jObj.get(key));
-            });
-
-        } catch (IOException | ParseException | NullPointerException ex) {
-            log.error("failed to set global capabilities");
-        }
-
-        //capabilities from TestData
+            //capabilities from TestData
 //        try {
 //            String pTestData = testParams.get("p_Testdata");
 //            JSONObject jsonObject = (JSONObject) new JSONParser().parse(new FileReader(pTestData));
@@ -104,6 +94,16 @@ public class CapabilitiesManager {
 //        } catch (Exception e) {
 //            //ignore
 //        }
+
+            //add to capabilities
+            System.out.println("capabilities : " + jObj.toJSONString());
+            jObj.keySet().forEach(key -> {
+                capabilities.setCapability(key.toString(), jObj.get(key));
+            });
+
+        } catch (IOException | ParseException | NullPointerException ex) {
+            log.error("failed to set global capabilities");
+        }
 
 
         return capabilities;

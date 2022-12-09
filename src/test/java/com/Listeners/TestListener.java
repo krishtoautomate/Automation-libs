@@ -54,12 +54,8 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
          */
         Map<String, String> testParams =
                 testResult.getTestContext().getCurrentXmlTest().getAllParameters();
-        String platForm = testParams.get("platForm");
 
         ExtentTest test = ExtentTestManager.getTest();
-
-        // Categories
-        test.assignCategory(platForm);
 
         System.getenv("BUILD_NUMBER");
         System.getenv("ENVIRONMENT");
@@ -98,7 +94,7 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
             // jiraReporter.setTestInfo("status", "PASS");
             // jiraReporter.setTestInfo("comment", testName+"("+platForm+")");
 
-            jiraReporter.addTest(testKey, start, finish, "PASS", testName + "(" + platForm + ")");
+            jiraReporter.addTest(testKey, start, finish, "PASS", testName );
         }
     }
 
@@ -110,7 +106,6 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
         Map<String, String> testParams =
                 testResult.getTestContext().getCurrentXmlTest().getAllParameters();
         String udid = testParams.get("udid");
-        String platForm = testParams.get("platForm");
 
         System.getenv("BUILD_NUMBER");
         System.getenv("ENVIRONMENT");
@@ -137,9 +132,6 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
                 test.fail("Failed Test case : " + testName + "\n" + testResult.getThrowable());
             }
         }
-
-        // Categories
-        test.assignCategory(platForm);
 
         // DB
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
@@ -168,7 +160,7 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
         if (testKey != null) {
             String start = testResult.getAttribute("start").toString();
             String finish = dateANDtime;
-            jiraReporter.addTest(testKey, start, finish, "FAIL", testName + "(" + platForm + ")");
+            jiraReporter.addTest(testKey, start, finish, "FAIL", testName);
         }
     }
 

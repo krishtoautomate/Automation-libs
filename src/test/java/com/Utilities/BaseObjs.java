@@ -33,11 +33,12 @@ import java.util.*;
 public class BaseObjs<T> implements ITestBase {
 
     protected AppiumDriver driver;
+    protected WebDriver webDriver;
+    protected Logger log;
+    protected ExtentTest test;
 
     protected boolean isAndroid;
     protected boolean isIOS;
-    protected Logger log;
-    protected ExtentTest test;
     protected MobileActions mobileActions;
 
 
@@ -45,6 +46,13 @@ public class BaseObjs<T> implements ITestBase {
         this.driver = driver;
         this.isAndroid = driver instanceof AndroidDriver;
         this.isIOS = driver instanceof IOSDriver;
+        this.log = Logger.getLogger(this.getClass().getName());
+        this.test = test;
+        mobileActions = new MobileActions(driver, test);
+    }
+
+    protected BaseObjs(WebDriver webDriver, ExtentTest test) {
+        this.webDriver = webDriver;
         this.log = Logger.getLogger(this.getClass().getName());
         this.test = test;
         mobileActions = new MobileActions(driver, test);
@@ -192,18 +200,6 @@ public class BaseObjs<T> implements ITestBase {
         }
     }
 
-//    protected boolean switchToNativeContext(String context) {
-//        ArrayList<String> contexts =
-//                new ArrayList<String>(((IOSDriver) driver).getContextHandles());
-//        for (String cntext : contexts) {
-//            if (cntext.contains(context)) {
-//                ((SupportsContextSwitching) driver).context(cntext);
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-
     protected WebElement get_Element(By locator, String elementDesc, String action) {
         WebElement ele = null;
         try {
@@ -281,32 +277,6 @@ public class BaseObjs<T> implements ITestBase {
         } else {
             test.pass("Verification - RESPONSE contains : " + message);
         }
-    }
-
-    public void VERIFY_API_VALUE(String expected, String actual, Response response) {
-        if ((expected.toLowerCase()).contains(actual.toLowerCase()) == false) {
-            test.fail(MarkupHelper.createCodeBlock(response.prettyPrint()));
-            Assert.assertTrue(response.getBody().asString().contains(actual));
-        } else {
-            test.pass("Verification - RESPONSE contains : " + actual);
-        }
-    }
-
-    /*
-     * Convert Image to Base64 recognition
-     */
-
-    public String convertImgToBase64(String imgPath) {
-        URL refImgUrl = getClass().getClassLoader().getResource(imgPath);
-        File refImgFile;
-        String base64 = "";
-        try {
-            refImgFile = Paths.get(refImgUrl.toURI()).toFile();
-            base64 = Base64.getEncoder().encodeToString(Files.readAllBytes(refImgFile.toPath()));
-        } catch (URISyntaxException | IOException e) {
-            log.error("image error");
-        }
-        return base64;
     }
 
 }

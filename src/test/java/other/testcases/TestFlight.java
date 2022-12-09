@@ -8,11 +8,12 @@ import com.aventstack.extentreports.Status;
 import com.base.TestBase;
 import java.util.List;
 
+import com.base.TestBaseHybrid;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 import other.pages.TestFlightApp;
 
-public class TestFlight extends TestBase implements ITestBase {
+public class TestFlight extends TestBaseHybrid implements ITestBase {
 
   String className = this.getClass().getSimpleName();
 

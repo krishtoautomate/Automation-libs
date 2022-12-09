@@ -16,12 +16,7 @@ import io.appium.java_client.touch.offset.ElementOption;
 import java.time.Duration;
 import java.util.HashMap;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Pause;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.PointerInput.Kind;
@@ -33,6 +28,7 @@ import org.testng.Assert;
 public class MobileActions implements ITestBase {
 
   private AppiumDriver driver;
+  private WebDriver webDriver;
   private Logger log;
   private ExtentTest test;
 
@@ -44,6 +40,12 @@ public class MobileActions implements ITestBase {
     this.log = Logger.getLogger(this.getClass().getName());
     this.isAndroid = driver instanceof AndroidDriver;
     this.isIOS = driver instanceof IOSDriver;
+    this.test = test;
+  }
+
+  public MobileActions(WebDriver driver,ExtentTest test) {
+    this.webDriver = driver;
+    this.log = Logger.getLogger(this.getClass().getName());
     this.test = test;
   }
 
