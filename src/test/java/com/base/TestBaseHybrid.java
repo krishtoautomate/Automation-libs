@@ -8,6 +8,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
@@ -28,7 +29,7 @@ public class TestBaseHybrid {
     protected WebDriver webDriver;
     protected AppiumDriver driver;
     protected AppiumDriverManager tlDriverFactoryApp = new AppiumDriverManager();
-    protected WebBrowserDriverManager tlDriverFactoryWeb = new WebBrowserDriverManager();
+    protected DriverManager tlDriverFactoryWeb = new DriverManager();
     protected ExtentTest test;
     protected boolean isAndroid = false;
     protected boolean isIos = false;
@@ -65,8 +66,8 @@ public class TestBaseHybrid {
         tlDriverFactoryApp.setDriver();
         driver = AppiumDriverManager.getDriverInstance();
 
-        tlDriverFactoryWeb.setDriver();
-        webDriver = WebBrowserDriverManager.getDriverInstance();
+        tlDriverFactoryWeb.setDriver("Web");
+        webDriver = DriverManager.getDriverInstance("Web");
 
         /*
          * Test info
@@ -112,7 +113,7 @@ public class TestBaseHybrid {
         String[][] data = {{"<b>TestCase : </b>", className}, {"<b>Device-Name : </b>", deviceName},
                 {"<b>UDID : </b>", udid},
                 {"<b>Platform : </b>", platForm},
-                {"<b>OsVersion : </b>", platformVersion},
+//                {"<b>OsVersion : </b>", platformVersion},
                 {"<b>Jira test-key : </b>",
                         "<a href=" + Constants.JIRA_URL + testKey + ">" + testKey + "</a>"}};
 
@@ -132,7 +133,7 @@ public class TestBaseHybrid {
             }
 
             try {
-                webDriver.quit();
+                DriverManager.quit("Web");
             } catch (Exception ign) {
                 // ignore
             }
@@ -145,10 +146,7 @@ public class TestBaseHybrid {
                 }
 
                 if (isIos) {
-//                    driver.terminateApp(driver.getCapabilities().getCapability("bundleId").toString());
-                    HashMap<String, String> args = new HashMap<>();
-                    args.put("bundleId", driver.getCapabilities().getCapability("bundleId").toString());
-                    driver.executeScript("mobile:terminateApp", args);
+                    ((IOSDriver)driver).terminateApp(driver.getCapabilities().getCapability("bundleId").toString());
                 }
                 log.info("app close");
             } catch (Exception e) {

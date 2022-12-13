@@ -1,26 +1,42 @@
 package other.testcases;
 
 import com.Utilities.ITestBase;
+import com.Utilities.ScreenShotManager;
+import com.Utilities.ScreenShotManagerWeb;
+import com.Utilities.Utilities;
+import com.aventstack.extentreports.MediaEntityBuilder;
+import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.base.TestBaseHybrid;
 import com.base.TestBaseWeb;
 import org.testng.annotations.Test;
+import other.pages.PlayStoreApp;
 
 public class HybridTest extends TestBaseHybrid implements ITestBase {
 
     @Test
     public void Hybrid_Test(){
-        webDriver.get("http://bqatautomation:4444/grid/console");
+        webDriver.get("http://bqatautomation:8080");
 
-        sleep(10);
+        sleep(5);
+
+        test.pass("web-page loaded : "+webDriver.getCurrentUrl(), MediaEntityBuilder.createScreenCaptureFromPath(ScreenShotManagerWeb.getScreenshot()).build());
+
+        Utilities utils = new Utilities(driver, test);
+        PlayStoreApp playstoreapp = new PlayStoreApp(driver, test);
+
+        sleep(2);
 
         String errorXML = webDriver.getPageSource();
         test.info(MarkupHelper.createCodeBlock(errorXML));
 
+        // 1.0 - Click navigate button
+        playstoreapp.get_accountLogo().click();
+        utils.logmessage(Status.PASS, "Right Account logo Button clicked");
+
+        sleep(2);
+
         errorXML = driver.getPageSource();
         test.info(MarkupHelper.createCodeBlock(errorXML));
-
-//        utils.logmessage(Status.PASS, "Web page launched  : "+driver.getCurrentUrl());
-//        utils.getPageSource();
     }
 }

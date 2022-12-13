@@ -13,7 +13,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 import other.pages.TestFlightApp;
 
-public class TestFlight extends TestBaseHybrid implements ITestBase {
+public class TestFlight extends TestBase implements ITestBase {
 
   String className = this.getClass().getSimpleName();
 

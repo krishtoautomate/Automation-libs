@@ -7,7 +7,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
-import com.base.WebBrowserDriverManager;
+import com.base.DriverManager;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.OutputType;
@@ -46,7 +46,7 @@ public class TestListenerWeb extends TestListenerAdapter
         String testName = testResult.getMethod().getMethodName();
         String className = testResult.getTestClass().getName();
 
-        WebDriver driver = WebBrowserDriverManager.getDriverInstance();
+        WebDriver driver = DriverManager.getDriverInstance("Web");
         ExtentTest test = ExtentTestManager.getTest();
 
         if (driver != null) {

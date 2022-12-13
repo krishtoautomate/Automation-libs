@@ -24,7 +24,7 @@ public class TestBaseWeb {
 
     public static Logger log;
     public WebDriver driver;
-    protected WebBrowserDriverManager tlDriverFactory = new WebBrowserDriverManager();
+    protected DriverManager tlDriverFactory = new DriverManager();
     protected ExtentTest test;
 
     @BeforeSuite
@@ -49,8 +49,8 @@ public class TestBaseWeb {
 //    log = LoggerManager.startLogger(className);
 
         // Set & Get ThreadLocal Driver with Browser
-        tlDriverFactory.setDriver();
-        driver = WebBrowserDriverManager.getDriverInstance();
+        tlDriverFactory.setDriver("Web");
+        driver = DriverManager.getDriverInstance("Web");
 
         // Create Test in extent-Report
         test = ExtentTestManager.startTest(methodName);
