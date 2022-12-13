@@ -1,8 +1,6 @@
 package com.Utilities;
 
-import com.base.AppiumDriverManager;
-import com.base.WebBrowserDriverManager;
-import io.appium.java_client.AppiumDriver;
+import com.base.DriverManager;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.OutputType;
@@ -19,7 +17,7 @@ public class ScreenShotManagerWeb {
 
     public static synchronized String getScreenshot() {
 
-        WebDriver driver = WebBrowserDriverManager.getDriverInstance();
+        WebDriver driver = DriverManager.getDriverInstance("Web");
 
         File ScreenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 

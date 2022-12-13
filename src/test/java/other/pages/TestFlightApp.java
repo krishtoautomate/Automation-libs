@@ -1,7 +1,7 @@
 package other.pages;
 
-import com.Utilities.BaseObjs;
 import com.Driver.MobileBy;
+import com.Utilities.BaseObjs;
 import com.aventstack.extentreports.ExtentTest;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
@@ -13,8 +13,8 @@ import java.util.List;
 public class TestFlightApp extends BaseObjs<TestFlightApp> {
 
     // TestFlight
-    By continue_btn = MobileBy.iOSNsPredicateString("type == 'XCUIElementTypeButton' AND name IN {'Continue Button','Not Now'}");
-    By tryAgain_btn = By.xpath("//XCUIElementTypeButton[@name='Try Again']");
+    By continue_btn = AppiumBy.iOSNsPredicateString("type == 'XCUIElementTypeButton' AND name IN {'Continue Button','Not Now'}");
+    By tryAgain_btn = AppiumBy.iOSNsPredicateString("type == 'XCUIElementTypeButton' AND name=='Try Again'");
 
     By all_btns = AppiumBy.iOSClassChain("**/XCUIElementTypeButton[`label IN {'UPDATE','INSTALL'}`]");
     By apps_h1 = MobileBy.iOSNsPredicateString("label == 'Apps' AND visible =1");

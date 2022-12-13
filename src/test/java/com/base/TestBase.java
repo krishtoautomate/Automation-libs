@@ -8,6 +8,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
 import org.apache.log4j.Logger;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
@@ -109,7 +110,7 @@ public class TestBase {
         String[][] data = {{"<b>TestCase : </b>", className}, {"<b>Device-Name : </b>", deviceName},
                 {"<b>UDID : </b>", udid},
                 {"<b>Platform : </b>", platForm},
-                {"<b>OsVersion : </b>", platformVersion},
+//                {"<b>OsVersion : </b>", platformVersion},
                 {"<b>Jira test-key : </b>",
                         "<a href=" + Constants.JIRA_URL + testKey + ">" + testKey + "</a>"}};
 
@@ -128,10 +129,7 @@ public class TestBase {
                 }
 
                 if (isIos) {
-//                    driver.terminateApp(driver.getCapabilities().getCapability("bundleId").toString());
-                    HashMap<String, String> args = new HashMap<>();
-                    args.put("bundleId", driver.getCapabilities().getCapability("bundleId").toString());
-                    driver.executeScript("mobile:terminateApp", args);
+                    ((IOSDriver)driver).terminateApp(driver.getCapabilities().getCapability("bundleId").toString());
                 }
                 log.info("app close");
             } catch (Exception e) {
