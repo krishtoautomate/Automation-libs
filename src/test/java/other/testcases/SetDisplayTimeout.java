@@ -33,14 +33,15 @@ public class SetDisplayTimeout extends TestBase implements ITestBase {
         driver.findElement(AppiumBy.accessibilityId("Auto-Lock")).click();
         utils.logmessage(Status.PASS, "'Auto-Lock' button is clicked");
 
+        sleep(1);
+
         driver.findElement(AppiumBy.iOSClassChain("**/XCUIElementTypeCell[`label == '5 minutes'`]")).click();
         utils.logmessage(Status.PASS, "'5 minutes' button is clicked");
 
-        driver.findElement(AppiumBy.accessibilityId("Display & Brightness")).click();
-        utils.logmessage(Status.PASS, "'Back' button is clicked");
+        sleep(1);
 
         mobileActions.terminateApp("com.apple.preferences");
-
+        utils.logmessage(Status.PASS, "'close app'");
 
     }
 }
