@@ -21,7 +21,7 @@ public class SetDisplayTimeout extends TestBase implements ITestBase {
 
         SettingsApp settingsApp = new SettingsApp(driver, test);
 
-        utils.logmessage(Status.PASS, "Start");
+        utils.logmessage(Status.PASS, "--Start--");
 
         // Turn-OFF wifi
         mobileActions.activateApp("com.apple.Preferences");
@@ -29,6 +29,10 @@ public class SetDisplayTimeout extends TestBase implements ITestBase {
         mobileActions.terminateApp("com.apple.Preferences");
         sleep(5);
         mobileActions.activateApp("com.apple.Preferences");
+
+        sleep(10);
+
+        utils.logmessage(Status.PASS, "app launch");
 
         mobileActions.swipe(MobileActions.Direction.UP);
 
