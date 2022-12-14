@@ -22,7 +22,7 @@ public class SettingsApp extends BaseObjs<SettingsApp> {
 
     By autoLockCell = AppiumBy.iOSClassChain("**/XCUIElementTypeCell[`label == 'Auto-Lock'`]");
 
-    By minutes = AppiumBy.iOSClassChain("**/XCUIElementTypeCell[`label == '5 Minutes'`]");
+    By minutes = AppiumBy.iOSClassChain("**/XCUIElementTypeCell[`label IN {'5 Minutes','5 minutes'}`]");
 
     public boolean verify_displayCell(){
         return isElementDisplayed(displayCell);
