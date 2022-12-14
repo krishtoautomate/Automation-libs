@@ -25,6 +25,10 @@ public class SetDisplayTimeout extends TestBase implements ITestBase {
 
         // Turn-OFF wifi
         mobileActions.activateApp("com.apple.Preferences");
+        sleep(5);
+        mobileActions.terminateApp("com.apple.Preferences");
+        sleep(5);
+        mobileActions.activateApp("com.apple.Preferences");
 
         mobileActions.swipe(MobileActions.Direction.UP);
 
