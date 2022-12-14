@@ -72,7 +72,7 @@ public class RunnerWithListDevices {
         // Create classes
         List<XmlClass> myClasses = new ArrayList<XmlClass>();
         myClasses.add(new XmlClass("other.testcases.TestFlight"));
-        myClasses.add(new XmlClass("other.testcases.SetDisplayTimeout"));
+//        myClasses.add(new XmlClass("other.testcases.SetDisplayTimeout"));
 
         // Add Classes
         iosTest.setXmlClasses(myClasses);

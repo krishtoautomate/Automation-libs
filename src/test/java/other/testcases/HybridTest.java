@@ -25,7 +25,7 @@ public class HybridTest extends TestBaseHybrid implements ITestBase {
         Utilities utils = new Utilities(driver, test);
         PlayStoreApp playstoreapp = new PlayStoreApp(driver, test);
 
-        sleep(2);
+        sleep(5);
 
         String errorXML = webDriver.getPageSource();
         test.info(MarkupHelper.createCodeBlock(errorXML));
@@ -34,7 +34,7 @@ public class HybridTest extends TestBaseHybrid implements ITestBase {
         playstoreapp.get_accountLogo().click();
         utils.logmessage(Status.PASS, "Right Account logo Button clicked");
 
-        sleep(2);
+        sleep(5);
 
         errorXML = driver.getPageSource();
         test.info(MarkupHelper.createCodeBlock(errorXML));

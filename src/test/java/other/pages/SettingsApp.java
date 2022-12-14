@@ -18,7 +18,7 @@ public class SettingsApp extends BaseObjs<SettingsApp> {
         super(driver, test);
     }
 
-    By displayCell = AppiumBy.iOSClassChain("**/XCUIElementTypeCell[`label == 'Display & Brightness'`]");
+    By displayCell = AppiumBy.iOSClassChain("**/XCUIElementTypeStaticText[`label CONTAINS 'Display'`]");
 
     By autoLockCell = AppiumBy.iOSClassChain("**/XCUIElementTypeCell[`label == 'Auto-Lock'`]");
 
