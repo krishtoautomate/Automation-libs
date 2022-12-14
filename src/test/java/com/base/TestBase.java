@@ -16,7 +16,6 @@ import org.testng.Reporter;
 import org.testng.annotations.*;
 
 import java.lang.reflect.Method;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -70,7 +69,7 @@ public class TestBase {
          * Test info
          */
         String deviceName = "";
-        String platformVersion = "";
+//        String platformVersion = "";
         if (udid != null) {
             if ("Auto".equalsIgnoreCase(udid)) {
                 udid = driver.getCapabilities().getCapability("udid").toString();
@@ -80,11 +79,11 @@ public class TestBase {
             DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
             deviceName = deviceInfoReader.getString("name");
         }
-        try {
-            platformVersion = driver.getCapabilities().getCapability("platformVersion").toString();
-        } catch (Exception e) {
-            //ignore
-        }
+//        try {
+//            platformVersion = driver.getCapabilities().getCapability("platformVersion").toString();
+//        } catch (Exception e) {
+//            //ignore
+//        }
         udid = driver.getCapabilities().getCapability("udid").toString();
 
         try {
@@ -129,7 +128,7 @@ public class TestBase {
                 }
 
                 if (isIos) {
-                    ((IOSDriver)driver).terminateApp(driver.getCapabilities().getCapability("bundleId").toString());
+                    ((IOSDriver) driver).terminateApp(driver.getCapabilities().getCapability("bundleId").toString());
                 }
                 log.info("app close");
             } catch (Exception e) {
