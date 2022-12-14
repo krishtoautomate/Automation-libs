@@ -7,6 +7,7 @@ import com.aventstack.extentreports.Status;
 import com.base.TestBase;
 import io.appium.java_client.AppiumBy;
 import org.testng.annotations.Test;
+import other.pages.SettingsApp;
 
 
 public class SetDisplayTimeout extends TestBase implements ITestBase {
@@ -18,6 +19,8 @@ public class SetDisplayTimeout extends TestBase implements ITestBase {
         MobileActions mobileActions = new MobileActions(driver, test);
         Utilities utils = new Utilities(driver, test);
 
+        SettingsApp settingsApp = new SettingsApp(driver, test);
+
         utils.logmessage(Status.PASS, "Start");
 
         // Turn-OFF wifi
@@ -25,17 +28,21 @@ public class SetDisplayTimeout extends TestBase implements ITestBase {
 
         mobileActions.swipe(MobileActions.Direction.UP);
 
-        driver.findElement(AppiumBy.iOSClassChain("**/XCUIElementTypeCell[`label == 'Display & Brightness'`]")).click();
-        utils.logmessage(Status.PASS, "'Display & Brightness' button is clicked");
+        if(settingsApp.verify_displayCell()) {
+            settingsApp.get_displayCell().click();
+            utils.logmessage(Status.PASS, "'Display & Brightness' button is clicked");
+        }
 
         mobileActions.swipe(MobileActions.Direction.UP, 2);
 
-        driver.findElement(AppiumBy.accessibilityId("Auto-Lock")).click();
-        utils.logmessage(Status.PASS, "'Auto-Lock' button is clicked");
+        if(settingsApp.verify_autoLockCell()) {
+            settingsApp.get_autoLockCell().click();
+            utils.logmessage(Status.PASS, "'Auto-Lock' button is clicked");
+        }
 
-        sleep(1);
+        sleep(4);
 
-        driver.findElement(AppiumBy.iOSClassChain("**/XCUIElementTypeCell[`label == '5 minutes'`]")).click();
+        settingsApp.get_5minutes().click();
         utils.logmessage(Status.PASS, "'5 minutes' button is clicked");
 
         sleep(1);
