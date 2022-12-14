@@ -15,6 +15,8 @@ import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.touch.offset.ElementOption;
 import java.time.Duration;
 import java.util.HashMap;
+
+import io.appium.java_client.touch.offset.PointOption;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Pause;
@@ -98,13 +100,66 @@ public class MobileActions implements ITestBase {
     }
   }
 
+  public void swipe(Direction dir, int... xSwipes) {
+    // Animation default time:
+    //  - Android: 300 ms
+    //  - iOS: 200 ms
+    // final value depends on your app and could be greater
+
+    int xTimes = xSwipes.length > 0 ? xSwipes[0] : 1;
+
+//        final int PRESS_TIME = 500; // ms
+
+    int edgeBorder = 90; // better avoid edges
+    // init screen variables
+    Dimension dims = driver.manage().window().getSize();
+
+    PointOption pointOptionEnd = PointOption.point(dims.width / 4, edgeBorder);
+
+    // init start point = center of screen
+    PointOption pointOptionStart = PointOption.point(dims.width / 2, dims.height / 2);
+
+
+    switch (dir) {
+      case DOWN: // center of footer
+        pointOptionEnd = PointOption.point(dims.width / 2, dims.height - edgeBorder);
+        break;
+      case UP: // center of header
+        pointOptionEnd = PointOption.point(dims.width / 2, dims.height / 4);
+        break;
+      case LEFT: // center of left side
+        pointOptionEnd = PointOption.point(edgeBorder, dims.height / 2);
+        break;
+      case RIGHT: // center of right side
+        pointOptionEnd = PointOption.point(dims.width - edgeBorder, dims.height / 2);
+        break;
+      default:
+        log.error("swipe() - dir: '" + dir + "' NOT supported");
+    }
+
+    // execute swipe using TouchAction
+    for (int x = 0; x < xTimes; x++) {
+      try {
+        new TouchAction((PerformsTouchActions) driver)
+                .longPress(pointOptionStart)
+                // a bit more reliable when we add small wait
+                //                    .waitAction(WaitOptions.waitOptions(Duration.ofMillis(PRESS_TIME)))
+                .moveTo(pointOptionEnd)
+                .release()
+                .perform();
+      } catch (Exception e) {
+        log.error("swipeScreen(): TouchAction FAILED");
+      }
+    }
+  }
+
   @SuppressWarnings("unchecked")
   public void activateApp(String bundleId) {
     if (isIOS) {
-//      driver.activateApp(bundleId);
-      HashMap<String, String> args = new HashMap<>();
-      args.put("bundleId", bundleId);
-      driver.executeScript("mobile:activateApp", args);
+      ((IOSDriver)driver).activateApp(bundleId);
+//      HashMap<String, String> args = new HashMap<>();
+//      args.put("bundleId", bundleId);
+//      driver.executeScript("mobile:activateApp", args);
     }
   }
 
@@ -590,6 +645,13 @@ public class MobileActions implements ITestBase {
         .getCapability("bundleId").toString();
     activateApp(BundleID);
     log.info("Switched back to App");
+  }
+
+  public enum Direction {
+    UP,
+    DOWN,
+    LEFT,
+    RIGHT;
   }
 
 
