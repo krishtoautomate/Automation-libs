@@ -10,6 +10,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 
@@ -40,20 +41,11 @@ public class TestDataManager {
     this.platformName = platformName;
   }
 
-  // public TestDataManager(String filePath, String platformName) {
-  // ITestResult iTestResult = Reporter.getCurrentTestResult();
-  // this.filePath = filePath;
-  // this.className = iTestResult.getInstanceName();
-  // this.platformName = platformName;
-  // }
-  //
-  // public TestDataManager(String filePath, boolean isAndroid) {
-  // ITestResult iTestResult = Reporter.getCurrentTestResult();
-  // this.filePath = filePath;
-  // this.className = iTestResult.getInstanceName();
-  // this.platformName = isAndroid ? "Android" : "iOS";
-  // }
-
+  public TestDataManager(String filePath, String platForm, String className) {
+    this.className = className;
+    this.filePath = filePath;
+    this.platformName = platForm;
+  }
 
   public static void main(String[] args) throws IOException, ParseException {
 
