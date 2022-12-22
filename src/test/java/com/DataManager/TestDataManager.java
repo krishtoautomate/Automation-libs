@@ -47,7 +47,6 @@ public class TestDataManager {
     this.platformName = platForm;
   }
 
-
   public static void main(String[] args) throws IOException, ParseException {
 
 //    JSONObject jsonObject = (JSONObject) new JSONParser().parse(new FileReader("Database.txt"));
