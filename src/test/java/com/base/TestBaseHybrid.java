@@ -7,7 +7,6 @@ import com.Utilities.Constants;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -17,7 +16,6 @@ import org.testng.Reporter;
 import org.testng.annotations.*;
 
 import java.lang.reflect.Method;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -45,23 +43,15 @@ public class TestBaseHybrid {
         log = Logger.getLogger(this.getClass().getName());
     }
 
-    @SuppressWarnings("unchecked")
     @BeforeMethod
-    @Parameters({"udid", "platForm"})
-    public synchronized void Before(@Optional String udid, @Optional String platForm,
+    @Parameters({"udid", "platForm", "browser"})
+    public synchronized void Before(@Optional String udid, @Optional String platForm, @Optional String browser,
                                     ITestContext iTestContext, Method method) throws Exception {
 
         String methodName = method.getName();
         String className = this.getClass().getName();
         isAndroid = platForm.equalsIgnoreCase("Android");
         isIos = platForm.equalsIgnoreCase("iOS");
-
-//    log = LoggerManager.startLogger(className);
-//        // Create Session
-//        if (udid != null)
-//            log.info("creating session : " + className + " : " + udid);
-//        else
-//            log.info("creating session : " + className + " : " + platForm);
 
         tlDriverFactoryApp.setDriver();
         driver = AppiumDriverManager.getDriverInstance();
@@ -73,7 +63,6 @@ public class TestBaseHybrid {
          * Test info
          */
         String deviceName = "";
-        String platformVersion = "";
         if (udid != null) {
             if ("Auto".equalsIgnoreCase(udid)) {
                 udid = driver.getCapabilities().getCapability("udid").toString();
@@ -83,11 +72,7 @@ public class TestBaseHybrid {
             DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
             deviceName = deviceInfoReader.getString("name");
         }
-        try {
-            platformVersion = driver.getCapabilities().getCapability("platformVersion").toString();
-        } catch (Exception e) {
-            //ignore
-        }
+
         udid = driver.getCapabilities().getCapability("udid").toString();
 
         try {
@@ -99,8 +84,7 @@ public class TestBaseHybrid {
         Map<String, String> testParams = iTestContext.getCurrentXmlTest().getAllParameters();
         String pTestData = testParams.get("p_Testdata");
         TestDataManager testData = new TestDataManager(pTestData);
-        int index = driver instanceof AndroidDriver ? 0 : 1;
-        String testKey = testData.get(index, "testKey");
+        String testKey = testData.get("testKey");
         ITestResult result = Reporter.getCurrentTestResult();
         result.setAttribute("testKey", testKey);
 
@@ -113,7 +97,6 @@ public class TestBaseHybrid {
         String[][] data = {{"<b>TestCase : </b>", className}, {"<b>Device-Name : </b>", deviceName},
                 {"<b>UDID : </b>", udid},
                 {"<b>Platform : </b>", platForm},
-//                {"<b>OsVersion : </b>", platformVersion},
                 {"<b>Jira test-key : </b>",
                         "<a href=" + Constants.JIRA_URL + testKey + ">" + testKey + "</a>"}};
 
@@ -146,7 +129,7 @@ public class TestBaseHybrid {
                 }
 
                 if (isIos) {
-                    ((IOSDriver)driver).terminateApp(driver.getCapabilities().getCapability("bundleId").toString());
+                    ((IOSDriver) driver).terminateApp(driver.getCapabilities().getCapability("bundleId").toString());
                 }
                 log.info("app close");
             } catch (Exception e) {

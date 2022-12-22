@@ -76,30 +76,21 @@ public class DriverManager {
             if (browser == null)
                 return;
             if (browser.equalsIgnoreCase("chrome")) {
-                DesiredCapabilities capabilities = new DesiredCapabilities();
 
-                capabilities.setCapability(ChromeOptions.CAPABILITY, optionsManager.getChromeOptions());
-
-//            capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-                capabilities.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
-
-                capabilities.setCapability(CapabilityType.BROWSER_NAME, "chrome");
+                DesiredCapabilities capabilities = capabilitiesManager.setCapabilities("CHROME");
 
                 capabilities.setCapability("chrome.switches",
                         Arrays.asList("--ignore-certificate-errors" + "," + "--web-security=false" + ","
                                 + "--ssl-protocol=any" + "," + "--ignore-ssl-errors=true"));
 
-                ChromeOptions options = new ChromeOptions();
-                options.merge(capabilities);
+                ChromeOptions options = optionsManager.getChromeOptions(capabilities);
 
                 if ("localhost".equalsIgnoreCase(REMOTE_HOST)) {
-//                tlDriver.set(new ChromeDriver(options));
-                    tlWebDriver.set(new ChromeDriver());
+                    tlWebDriver.set(new ChromeDriver(options));
                 } else {
                     tlWebDriver.set(new RemoteWebDriver(new URL(REMOTE_HOST), options));
                 }
             } else if (browser.equalsIgnoreCase("ie")) {
-
 
                 // EdgeOptions options = new EdgeOptions();
                 // Capabilities cap = new DesiredCapabilities();
@@ -109,8 +100,6 @@ public class DriverManager {
                 // EdgeProfile
                 // For Local Usage
                 tlWebDriver.set(new InternetExplorerDriver());
-
-
             }
             webDriverMap.put(Thread.currentThread().getId(), tlWebDriver.get());
 
@@ -138,10 +127,10 @@ public class DriverManager {
 
             if ("Android".equalsIgnoreCase(platForm)) {
                 tlAppiumDriver.set(new AndroidDriver(new URL(REMOTE_HOST),
-                        capabilitiesManager.setCapabilities()));
+                        capabilitiesManager.setCapabilities("ANDROID")));
             } else if ("iOS".equalsIgnoreCase(platForm)) {
                 tlAppiumDriver.set(new IOSDriver(new URL(REMOTE_HOST),
-                        capabilitiesManager.setCapabilities()));
+                        capabilitiesManager.setCapabilities("IOS")));
             }
 
             appiumDriverMap.put(Thread.currentThread().getId(), tlAppiumDriver.get());
@@ -150,7 +139,6 @@ public class DriverManager {
             // System.out.println("Session Id : "+ tlDriver.get().getSessionId());
 
             getDriverInstance("Appium").manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-
         }
     }
 

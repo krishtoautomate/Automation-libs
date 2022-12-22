@@ -28,5 +28,11 @@
 			"wdaStartupRetries": 2,
 			"wdaStartupRetryInterval": 2000
 		}
+	],
+	"CHROME": [
+		{
+			"acceptInsecureCerts": true,
+			"browserName": "chrome"
+		}
 	]
 }

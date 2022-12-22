@@ -54,10 +54,10 @@ public class AppiumDriverManager {
 
         if ("Android".equalsIgnoreCase(platForm)) {
             tlDriver.set(new AndroidDriver(new URL(REMOTE_HOST),
-                    capabilitiesManager.setCapabilities()));
+                    capabilitiesManager.setCapabilities("ANDROID")));
         } else if ("iOS".equalsIgnoreCase(platForm)) {
             tlDriver.set(new IOSDriver(new URL(REMOTE_HOST),
-                    capabilitiesManager.setCapabilities()));
+                    capabilitiesManager.setCapabilities("IOS")));
         }
 
         driverMap.put(Thread.currentThread().getId(), tlDriver.get());

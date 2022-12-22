@@ -1575,6 +1575,14 @@
     "platformVersion": "12.0",
     "colour": "Black",
     "devicePort": 8503
+  },
+  {
+    "name": "Google Pixel 7 Pro",
+    "udid": "2A261FDH300ERC",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8504
   }
 
 
