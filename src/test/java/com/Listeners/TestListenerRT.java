@@ -209,20 +209,14 @@ public class TestListenerRT extends TestBase
                 testResult.getTestContext().getCurrentXmlTest().getAllParameters();
         String udid = testParams.get("udid");
         String className = testResult.getTestClass().getName();
-        // DeviceInfo deviceInfo = new DeviceInfoImpl(DeviceType.ALL);
-        // Device device = deviceInfo.getUdid(udid);
-        // String deviceName = device.getDeviceName();
 
         DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
         String deviceName = deviceInfoReader.getString("name");
-
-        String p_Testdata = testParams.get("p_Testdata");
+        String p_Testdata = Reporter.getCurrentTestResult().getTestContext().getCurrentXmlTest().getAllParameters().get("p_Testdata");
         TestDataManager testData = new TestDataManager(p_Testdata);
-        Object testClass = testResult.getInstance();
         AppiumDriver driver = tlDriverFactory.getDriverInstance();
         int index = driver instanceof AndroidDriver ? 0 : 1;
 
-//    Logger log = LoggerManager.getLogger();
         log.warn("Test Skipped : " + className + " : " + udid + "_" + deviceName);
 
         ExtentTest test = ExtentTestManager.getTest();

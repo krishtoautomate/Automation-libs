@@ -16,7 +16,7 @@ public class HybridTest extends TestBaseHybrid implements ITestBase {
 
     @Test
     public void Hybrid_Test(){
-        webDriver.get("http://bqatautomation:8080");
+        webDriver.get("http://bqatautomation.bell.corp.bce.ca:8080/");
 
         sleep(5);
 

@@ -28,7 +28,7 @@ public class CapabilitiesManager {
     private static Logger log = Logger.getLogger(CapabilitiesManager.class.getName());
 
     @SuppressWarnings("unchecked")
-    public synchronized DesiredCapabilities setCapabilities() {
+    public synchronized DesiredCapabilities setCapabilities(String platForm) {
 
         devicePort++;
 
@@ -38,7 +38,7 @@ public class CapabilitiesManager {
         Map<String, String> testParams =
                 iTestResult.getTestContext().getCurrentXmlTest().getAllParameters();
 
-        String platForm = testParams.get("platForm");
+//        String platForm = testParams.get("platForm");
         String udid = testParams.get("udid");
 
         String deviceName = "Android".equalsIgnoreCase(platForm) ? "Android Device" : "iPhone";
@@ -50,32 +50,34 @@ public class CapabilitiesManager {
             JSONArray jsonArray = (JSONArray) jsonObject.get(platForm.toUpperCase());
             JSONObject jObj = (JSONObject) jsonArray.get(0);
 
-            if (udid != null) {
-                //UDID from TestNG parameter
-                jObj.put(MobileCapabilityType.UDID, udid);
+            if (platForm.equalsIgnoreCase("Android") || platForm.equalsIgnoreCase("iOS")) {
+                if (udid != null) {
+                    //UDID from TestNG parameter
+                    jObj.put(MobileCapabilityType.UDID, udid.trim());
 
-                DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
-                deviceName = deviceInfoReader.getString("name");
-                devicePort = deviceInfoReader.getInt("devicePort");
-            }
-            jObj.put("Android".equalsIgnoreCase(platForm) ? "systemPort" : "wdaLocalPort", devicePort);
-            jObj.put("deviceName", deviceName);
+                    DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
+                    deviceName = deviceInfoReader.getString("name");
+                    devicePort = deviceInfoReader.getInt("devicePort");
+                }
+                jObj.put("Android".equalsIgnoreCase(platForm) ? "systemPort" : "wdaLocalPort", devicePort);
+                jObj.put("deviceName", deviceName);
 
-            //capabilities from TestNG.xml
-            String pCapabilities = testParams.get("capabilities");
-            if (pCapabilities != null) {
-                pCapabilities = pCapabilities.replaceAll("'", "\"");
-                try {
-                    JSONObject jObject = (JSONObject) new JSONParser().parse(pCapabilities);
-                    for (Object keyStr : jObject.keySet()) {
-                        try {
-                            jObj.put(keyStr.toString(), jObject.get(keyStr).toString());
-                        } catch (Exception e) {
-                            //ignore
+                //capabilities from TestNG.xml
+                String pCapabilities = testParams.get("capabilities");
+                if (pCapabilities != null) {
+                    pCapabilities = pCapabilities.replaceAll("'", "\"");
+                    try {
+                        JSONObject jObject = (JSONObject) new JSONParser().parse(pCapabilities);
+                        for (Object keyStr : jObject.keySet()) {
+                            try {
+                                jObj.put(keyStr, jObject.get(keyStr));
+                            } catch (Exception e) {
+                                //ignore
+                            }
                         }
+                    } catch (ParseException e) {
+                        //ignore
                     }
-                } catch (ParseException e) {
-                    //ignore
                 }
             }
 
@@ -104,7 +106,6 @@ public class CapabilitiesManager {
         } catch (IOException | ParseException | NullPointerException ex) {
             log.error("failed to set global capabilities");
         }
-
 
         return capabilities;
     }

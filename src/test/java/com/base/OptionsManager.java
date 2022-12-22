@@ -2,6 +2,7 @@ package com.base;
 
 
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 /**
  * Created by Krish on 21.05.2018.
@@ -9,9 +10,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 public class OptionsManager {
 
   // Get Chrome Options
-  public ChromeOptions getChromeOptions() {
-
-    // System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+  public ChromeOptions getChromeOptions(DesiredCapabilities capabilities) {
 
     ChromeOptions options = new ChromeOptions();
     options.addArguments("--start-maximized");
@@ -21,6 +20,7 @@ public class OptionsManager {
     options.addArguments("user-agent=GomezAgent");
     options.addArguments("disable-infobars");
     options.setAcceptInsecureCerts(true);
+    options.merge(capabilities);
 
     return options;
   }

@@ -23,9 +23,8 @@ public class RunnerWithListDevices {
      * Common
      */
 
-    ITestResult iTestResult = Reporter.getCurrentTestResult();
     Map<String, String> testParams =
-        iTestResult.getTestContext().getCurrentXmlTest().getAllParameters();
+            Reporter.getCurrentTestResult().getTestContext().getCurrentXmlTest().getAllParameters();
 
     String remoteHost =
         testParams.get("REMOTE_HOST") != null ? testParams.get("REMOTE_HOST") : "localhost";
