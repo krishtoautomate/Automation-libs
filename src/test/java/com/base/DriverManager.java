@@ -105,7 +105,9 @@ public class DriverManager {
 
             getDriverInstance("Web").manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
-        } else {
+        }
+
+        if (platform.equalsIgnoreCase("Appium")) {
 
             ITestResult iTestResult = Reporter.getCurrentTestResult();
             Map<String, String> testParams =
