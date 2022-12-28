@@ -1,6 +1,7 @@
 package com.base;
 
 
+import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -20,6 +21,7 @@ public class OptionsManager {
     options.addArguments("user-agent=GomezAgent");
     options.addArguments("disable-infobars");
     options.setAcceptInsecureCerts(true);
+    options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
     options.merge(capabilities);
 
     return options;
