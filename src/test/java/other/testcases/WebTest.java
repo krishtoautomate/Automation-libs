@@ -8,6 +8,7 @@ import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.base.TestBaseWeb;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.Test;
 
 public class WebTest extends TestBaseWeb implements ITestBase {
@@ -28,6 +29,9 @@ public class WebTest extends TestBaseWeb implements ITestBase {
 
 
         String errorXML = driver.getPageSource();
+
+        System.out.println(((RemoteWebDriver) driver).getSessionId());
+
         test.info(MarkupHelper.createCodeBlock(errorXML));
 
 //        utils.logmessage(Status.PASS, "Web page launched  : "+driver.getCurrentUrl());

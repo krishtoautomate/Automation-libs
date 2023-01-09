@@ -2,16 +2,15 @@
 	"ANDROID": [
 		{
 			"platformName": "Android",
-			"platformVersion": "8.1.0",
-			"automationName": "uiautomator2",
+			"appium:automationName": "uiautomator2",
 			"autoLaunch": true,
 			"noReset": true,
 			"fullReset": false,
 			"newCommandTimeout": 60,
 			"androidInstallTimeout": 150000,
 			"autoDismissAlerts": true,
-			"appPackage": "com.android.vending",
-			"appActivity": "com.android.vending.AssetBrowserActivity"
+			"appium:appPackage": "com.android.vending",
+			"appium:appActivity": "com.android.vending.AssetBrowserActivity"
 		}
 	],
 	"IOS": [

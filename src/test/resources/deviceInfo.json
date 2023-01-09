@@ -761,6 +761,14 @@
     "devicePort": 8395
   },
   {
+    "name": "iPhone 14 Pro",
+    "udid": "00008120-001A69EE116B401E",
+    "platformName": "iOS",
+    "platformVersion": "16.1.2",
+    "colour": "Black",
+    "devicePort": 8396
+  },
+  {
     "name": "Samsung S8",
     "udid": "988b9b304b4e4a374a",
     "platformName": "Android",
@@ -1020,7 +1028,7 @@
     "name": "One Plus 8",
     "udid": "06a49bf4",
     "platformName": "Android",
-    "platformVersion": "10.0",
+    "platformVersion": "11",
     "colour": "White",
     "devicePort": 8233
   },
@@ -1580,10 +1588,40 @@
     "name": "Google Pixel 7 Pro",
     "udid": "2A261FDH300ERC",
     "platformName": "Android",
-    "platformVersion": "12.0",
+    "platformVersion": "13.0",
     "colour": "Black",
     "devicePort": 8504
+  },
+  {
+    "name": "HUAWEI VOG-L04",
+    "udid": "45C0118C13000441",
+    "platformName": "Android",
+    "platformVersion": "9.0",
+    "colour": "Black",
+    "devicePort": 8505
+  },
+  {
+    "name": "Google Pixel 7 Pro",
+    "udid": "2A251FDH300EQM",
+    "platformName": "Android",
+    "platformVersion": "13.0",
+    "colour": "Black",
+    "devicePort": 8506
+  },
+  {
+    "name": "samsung SM-A520W",
+    "udid": "5210eefbea2a1475",
+    "platformName": "Android",
+    "platformVersion": "8.0.0",
+    "colour": "Black",
+    "devicePort": 8507
+  },
+  {
+    "name": "LGE LM-Q910",
+    "udid": "LMQ910520a9d7c",
+    "platformName": "Android",
+    "platformVersion": "8.1.0",
+    "colour": "Black",
+    "devicePort": 8508
   }
-
-
 ]
