@@ -53,13 +53,17 @@ public class CapabilitiesManager {
             if (platForm.equalsIgnoreCase("Android") || platForm.equalsIgnoreCase("iOS")) {
                 if (udid != null) {
                     //UDID from TestNG parameter
-                    jObj.put(MobileCapabilityType.UDID, udid.trim());
+                    if(udid!=null)
+                        jObj.put("appium:"+MobileCapabilityType.UDID, udid.trim());
 
                     DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
                     deviceName = deviceInfoReader.getString("name");
                     devicePort = deviceInfoReader.getInt("devicePort");
+                    String platformVersion = deviceInfoReader.getString("platformVersion");
+                    if(platformVersion!=null)
+                        jObj.put(MobileCapabilityType.PLATFORM_VERSION, platformVersion);
                 }
-                jObj.put("Android".equalsIgnoreCase(platForm) ? "systemPort" : "wdaLocalPort", devicePort);
+                jObj.put("Android".equalsIgnoreCase(platForm) ? "appium:systemPort" : "appium:wdaLocalPort", devicePort);
                 jObj.put("deviceName", deviceName);
 
                 //capabilities from TestNG.xml

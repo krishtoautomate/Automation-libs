@@ -19,12 +19,10 @@ import java.util.HashMap;
 import io.appium.java_client.touch.offset.PointOption;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Pause;
-import org.openqa.selenium.interactions.PointerInput;
+import org.openqa.selenium.interactions.*;
 import org.openqa.selenium.interactions.PointerInput.Kind;
 import org.openqa.selenium.interactions.PointerInput.MouseButton;
 import org.openqa.selenium.interactions.PointerInput.Origin;
-import org.openqa.selenium.interactions.Sequence;
 import org.testng.Assert;
 
 public class MobileActions implements ITestBase {
@@ -67,37 +65,10 @@ public class MobileActions implements ITestBase {
    * pressKeyCodeCommand(key));
    */
   @SuppressWarnings("rawtypes")
-  public void send_keys_android(String Value) {
-    for (int i = 0; i < Value.length(); i++) {
-      char c = Value.charAt(i);
-      String s = new StringBuilder().append(c).toString();
-
-      if (s.equals("0")) {
-        ((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.DIGIT_0));
-      } else if (s.equals("1")) {
-        ((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.DIGIT_1));
-      } else if (s.equals("2")) {
-        ((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.DIGIT_2));
-      } else if (s.equals("3")) {
-        ((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.DIGIT_3));
-      } else if (s.equals("4")) {
-        ((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.DIGIT_4));
-      } else if (s.equals("5")) {
-        ((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.DIGIT_5));
-      } else if (s.equals("6")) {
-        ((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.DIGIT_6));
-      } else if (s.equals("7")) {
-        ((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.DIGIT_7));
-      } else if (s.equals("8")) {
-        ((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.DIGIT_8));
-      } else if (s.equals("9")) {
-        ((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.DIGIT_9));
-      } else {
-        test.log(Status.FAIL, "SendKeys Failed!");
-        log.error("SendKeys Failed!");
-        Assert.fail("Send Keys failed");
-      }
-    }
+  public void sendKeys(String keys) {
+    Actions a = new Actions(driver);
+    a.sendKeys(keys);
+    a.perform();
   }
 
   public void swipe(Direction dir, int... xSwipes) {
