@@ -35,16 +35,12 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
 
     @Override
     public void onTestStart(ITestResult testResult) {
-
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
         sdf.setTimeZone(TimeZone.getTimeZone("EST"));
         String dateANDtime = sdf.format(date.getTime());
-
         String start = dateANDtime;
-
         testResult.setAttribute("start", start);
-
     }
 
     @Override

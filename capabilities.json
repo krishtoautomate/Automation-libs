@@ -16,7 +16,6 @@
 	"IOS": [
 		{
 			"platformName": "iOS",
-			"platformVersion": "12.2",
 			"automationName": "XCUITest",
 			"autoLaunch": true,
 			"fullReset": false,

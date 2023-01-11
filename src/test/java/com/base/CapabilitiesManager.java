@@ -61,7 +61,7 @@ public class CapabilitiesManager {
                     devicePort = deviceInfoReader.getInt("devicePort");
                     String platformVersion = deviceInfoReader.getString("platformVersion");
                     if(platformVersion!=null)
-                        jObj.put(MobileCapabilityType.PLATFORM_VERSION, platformVersion);
+                        jObj.put("appium:"+MobileCapabilityType.PLATFORM_VERSION, platformVersion);
                 }
                 jObj.put("Android".equalsIgnoreCase(platForm) ? "appium:systemPort" : "appium:wdaLocalPort", devicePort);
                 jObj.put("deviceName", deviceName);
