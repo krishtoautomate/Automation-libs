@@ -1,6 +1,5 @@
 package com.base;
 
-import com.Listeners.TestListener;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import io.restassured.RestAssured;
@@ -74,7 +73,6 @@ public class Jira {
    */
   public void addTests() {
     info.add("tests", tests);
-
   }
 
   /*
@@ -83,10 +81,8 @@ public class Jira {
   public void CreatejiraReport(String reportPath) {
 
     try (FileWriter file = new FileWriter(reportPath)) {
-
       file.write(info.toString());
       file.flush();
-
     } catch (IOException e) {
       // ignore
     }
@@ -104,6 +100,43 @@ public class Jira {
   //
   // jira.update_Test_Exec("MAEAUTO-8149", "MAEAUTO-350", "PASS", dateANDtime, dateANDtime);
   // }
+
+  /*
+  @type : add/remove
+   */
+  public void updateTestLabel(String testKey, String type, String label) {
+    try {
+      String jiraAuth = System.getenv("JIRA_AUTH");
+      RestAssured.useRelaxedHTTPSValidation();
+      RestAssured.baseURI = "https://jira.bell.corp.bce.ca/rest/api/2/issue/"+ testKey;
+      RequestSpecification req = RestAssured.given();
+      req.header("Content-Type", "application/json");
+      req.header("Authorization", "Basic " + jiraAuth);
+      req.body("{\"update\" : {\"labels\" : [{\""+type+"\" : \""+label+"\"}]}}");
+      req.put();
+    } catch (Exception e) {
+      log.info("JIRA test update of labels failed for " + testKey + " due to: "
+              + e.getLocalizedMessage());
+    }
+  }
+
+  public String getTestLabels(String testKey){
+    try {
+      String jiraAuth = System.getenv("JIRA_AUTH");
+      RestAssured.useRelaxedHTTPSValidation();
+      RestAssured.baseURI = "https://jira.bell.corp.bce.ca/rest/api/2/issue/"+testKey;
+      RequestSpecification req = RestAssured.given();
+      req.header("Content-Type", "application/json");
+      req.header("Authorization", "Basic " + jiraAuth);
+      Response res = req.get();
+      String labels = res.getBody().jsonPath().getString("labels");
+      return labels;
+    } catch (Exception e) {
+      log.info("JIRA test get labels failed for " + testKey + " due to: "
+              + e.getLocalizedMessage());
+    }
+    return "";
+  }
 
   /*
    * Updates test execution for individual test case
