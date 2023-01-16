@@ -54,14 +54,6 @@ public class TestBase {
         isAndroid = platForm.equalsIgnoreCase("Android");
         isIos = platForm.equalsIgnoreCase("iOS");
 
-//    log = LoggerManager.startLogger(className);
-
-//        // Create Session
-//        if (udid != null)
-//            log.info("creating session : " + className + " : " + udid);
-//        else
-//            log.info("creating session : " + className + " : " + platForm);
-
         tlDriverFactory.setDriver();
         driver = AppiumDriverManager.getDriverInstance();
 
