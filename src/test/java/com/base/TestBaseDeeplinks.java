@@ -28,10 +28,6 @@ public class TestBaseDeeplinks {
     protected boolean isAndroid = false;
     protected boolean isIos = false;
 
-//  public Logger getLog() {
-//    return log;
-//  }
-
     /**
      * Executed once before all the tests
      */
@@ -57,15 +53,15 @@ public class TestBaseDeeplinks {
         isAndroid = platForm.equalsIgnoreCase("Android");
         isIos = platForm.equalsIgnoreCase("iOS");
 
-        tlDriverFactory.setDriver();
-        driver = AppiumDriverManager.getDriverInstance();
-
         /*
          * Test info
          */
         String deviceName = "";
 //        String platformVersion = "";
         if (udid != null) {
+            tlDriverFactory.setDriver();
+            driver = AppiumDriverManager.getDriverInstance();
+
             if ("Auto".equalsIgnoreCase(udid)) {
                 udid = driver.getCapabilities().getCapability("udid").toString();
             }
@@ -73,27 +69,25 @@ public class TestBaseDeeplinks {
 
             DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
             deviceName = deviceInfoReader.getString("name");
+
+            udid = driver.getCapabilities().getCapability("udid").toString();
+
+            iTestContext.setAttribute("udid", udid);
+
+//            DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
+            String platformVersion = deviceInfoReader.getString("platformVersion");
+
+            // Report Content
+            test = ExtentTestManager.startTest(methodName + "(" + platForm + ")")
+                    .assignDevice(deviceName);
+
+            log.info("Test Details : " + className + " : " + platForm + " : " + deviceName);
+            String[][] data = {{"<b>TestCase : </b>", className}, {"<b>Device : </b>", deviceName},
+                    {"<b>UDID : </b>", udid}, {"<b>Platform : </b>", platForm},
+                    {"<b>OsVersion : </b>", platformVersion}};
+
+            test.info(MarkupHelper.createTable(data));
         }
-        udid = driver.getCapabilities().getCapability("udid").toString();
-
-
-        iTestContext.setAttribute("udid", udid);
-
-        DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
-        String platformVersion = deviceInfoReader.getString("platformVersion");
-
-        // Report Content
-        test = ExtentTestManager.startTest(methodName + "(" + platForm + ")")
-                .assignDevice(deviceName);
-
-        log.info("Test Details : " + className + " : " + platForm + " : " + deviceName);
-        String[][] data = {{"<b>TestCase : </b>", className}, {"<b>Device : </b>", deviceName},
-                {"<b>UDID : </b>", udid}, {"<b>Platform : </b>", platForm},
-                {"<b>OsVersion : </b>", platformVersion}};
-
-        test.info(MarkupHelper.createTable(data));
-
-
     }
 
     @SuppressWarnings("unchecked")
