@@ -27,6 +27,7 @@ public class TestBaseDeeplinks {
     protected ExtentTest test;
     protected boolean isAndroid = false;
     protected boolean isIos = false;
+    protected String udid = "";
 
     /**
      * Executed once before all the tests
@@ -49,6 +50,7 @@ public class TestBaseDeeplinks {
 
         String methodName = method.getName();
         String className = this.getClass().getName();
+        this.udid = udid;
 
         isAndroid = platForm.equalsIgnoreCase("Android");
         isIos = platForm.equalsIgnoreCase("iOS");
