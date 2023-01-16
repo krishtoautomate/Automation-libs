@@ -769,6 +769,14 @@
     "devicePort": 8396
   },
   {
+    "name": "iPhone 11",
+    "udid": "00008030-0015053C2232802E",
+    "platformName": "iOS",
+    "platformVersion": "16.1.1",
+    "colour": "Black",
+    "devicePort": 8397
+  },
+  {
     "name": "Samsung S8",
     "udid": "988b9b304b4e4a374a",
     "platformName": "Android",
