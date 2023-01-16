@@ -36,7 +36,8 @@ public class DataproviderParallel extends TestBaseDeeplinks implements ITestBase
 
     //---start
 
-//    DataProviderParallelHelper(Data);
+    if(udid == null)
+      DataProviderParallelHelper(Data);
 
     //--end
 
@@ -83,9 +84,9 @@ public class DataproviderParallel extends TestBaseDeeplinks implements ITestBase
     /*
      * Test info
      */
-    String deviceName = "";
-    String udid = Data.get("udid");
-    if (udid != null) {
+
+      String deviceName = "";
+      String udid = Data.get("udid");
       tlDriverFactory.setDriver(udid);
       driver = AppiumDriverManager.getDriverInstance();
 
@@ -110,7 +111,7 @@ public class DataproviderParallel extends TestBaseDeeplinks implements ITestBase
               {"<b>OsVersion : </b>", platformVersion}};
 
       test.info(MarkupHelper.createTable(data));
-    }
+
   }
 
   // ****Deep Link Data Provider *****
