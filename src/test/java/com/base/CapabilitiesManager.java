@@ -24,12 +24,12 @@ import java.util.Map;
  */
 public class CapabilitiesManager {
 
-    static int devicePort = 8100;
     private static Logger log = Logger.getLogger(CapabilitiesManager.class.getName());
 
     @SuppressWarnings("unchecked")
     public synchronized DesiredCapabilities setCapabilities(String platForm) {
 
+        int devicePort = 8100;
         devicePort++;
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -116,6 +116,7 @@ public class CapabilitiesManager {
 
     public synchronized DesiredCapabilities setCapabilities(String platForm, String udid) {
 
+        int devicePort = 8100;
         devicePort++;
 
         DesiredCapabilities capabilities = new DesiredCapabilities();

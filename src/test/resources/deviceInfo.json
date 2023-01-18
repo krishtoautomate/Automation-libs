@@ -1631,5 +1631,13 @@
     "platformVersion": "8.1.0",
     "colour": "Black",
     "devicePort": 8508
+  },
+  {
+    "name": "samsung SM-F721W",
+    "udid": "R5CT80Z7R3T",
+    "platformName": "Android",
+    "platformVersion": "12.0",
+    "colour": "Black",
+    "devicePort": 8509
   }
 ]

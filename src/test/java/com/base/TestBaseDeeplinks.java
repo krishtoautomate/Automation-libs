@@ -7,6 +7,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
 import org.apache.log4j.Logger;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
@@ -93,19 +94,20 @@ public class TestBaseDeeplinks {
     }
 
     @SuppressWarnings("unchecked")
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public synchronized void AfterMethod(ITestContext testctx) {
 
         if (driver != null) {
             try {
                 boolean isAndroid = driver instanceof AndroidDriver;
                 if (isAndroid) {
-                    driver.close();
+                    ((AndroidDriver) driver).closeApp();
                 } else {
-//          driver.terminateApp(driver.getCapabilities().getCapability("bundleId").toString());
-                    HashMap<String, String> args = new HashMap<>();
-                    args.put("bundleId", driver.getCapabilities().getCapability("bundleId").toString());
-                    driver.executeScript("mobile:terminateApp", args);
+                    ((IOSDriver) driver)
+                            .terminateApp(driver.getCapabilities().getCapability("bundleId").toString());
+//                    HashMap<String, String> args = new HashMap<>();
+//                    args.put("bundleId", driver.getCapabilities().getCapability("bundleId").toString());
+//                    driver.executeScript("mobile:terminateApp", args);
                 }
                 log.info("app close");
             } catch (Exception e) {
@@ -120,7 +122,6 @@ public class TestBaseDeeplinks {
             } catch (Exception e) {
                 // ignore
             }
-
         }
 
         try {

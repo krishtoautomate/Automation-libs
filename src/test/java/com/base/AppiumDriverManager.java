@@ -39,6 +39,7 @@ public class AppiumDriverManager {
                 iTestResult.getTestContext().getCurrentXmlTest().getAllParameters();
 
         String platForm = testParams.get("platForm");
+        String udid = testParams.get("udid");
         if(platForm==null)
             return;
 
@@ -54,10 +55,10 @@ public class AppiumDriverManager {
 
         if ("Android".equalsIgnoreCase(platForm)) {
             tlDriver.set(new AndroidDriver(new URL(REMOTE_HOST),
-                    capabilitiesManager.setCapabilities("ANDROID")));
+                    capabilitiesManager.setCapabilities("ANDROID", udid)));
         } else if ("iOS".equalsIgnoreCase(platForm)) {
             tlDriver.set(new IOSDriver(new URL(REMOTE_HOST),
-                    capabilitiesManager.setCapabilities("IOS")));
+                    capabilitiesManager.setCapabilities("IOS", udid)));
         }
 
         driverMap.put(Thread.currentThread().getId(), tlDriver.get());
