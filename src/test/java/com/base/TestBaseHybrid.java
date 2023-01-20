@@ -50,11 +50,14 @@ public class TestBaseHybrid {
 
         String methodName = method.getName();
         String className = this.getClass().getName();
-        isAndroid = platForm.equalsIgnoreCase("Android");
-        isIos = platForm.equalsIgnoreCase("iOS");
 
-        tlDriverFactoryApp.setDriver();
-        driver = AppiumDriverManager.getDriverInstance();
+        if (udid != null) {
+            isAndroid = platForm.equalsIgnoreCase("Android");
+            isIos = platForm.equalsIgnoreCase("iOS");
+
+            tlDriverFactoryApp.setDriver();
+            driver = AppiumDriverManager.getDriverInstance();
+        }
 
         tlDriverFactoryWeb.setDriver("Web");
         webDriver = DriverManager.getDriverInstance("Web");
@@ -71,14 +74,15 @@ public class TestBaseHybrid {
 
             DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
             deviceName = deviceInfoReader.getString("name");
-        }
 
-        udid = driver.getCapabilities().getCapability("udid").toString();
 
-        try {
-            isFrench = driver.getCapabilities().getCapability("language").toString().equalsIgnoreCase("fr");
-        } catch (Exception e) {
-            isFrench = false;
+            udid = driver.getCapabilities().getCapability("udid").toString();
+
+            try {
+                isFrench = driver.getCapabilities().getCapability("language").toString().equalsIgnoreCase("fr");
+            } catch (Exception e) {
+                isFrench = false;
+            }
         }
 
         Map<String, String> testParams = iTestContext.getCurrentXmlTest().getAllParameters();
@@ -89,18 +93,19 @@ public class TestBaseHybrid {
         result.setAttribute("testKey", testKey);
 
         // Report Content
-        test = ExtentTestManager.startTest(methodName + "(" + platForm + ")");
-
-        log.info("Test Details : " + className + " : " + platForm + " : " + deviceName);
+        test = ExtentTestManager.startTest(methodName);
         test.assignDevice(deviceName);
 
-        String[][] data = {{"<b>TestCase : </b>", className}, {"<b>Device-Name : </b>", deviceName},
-                {"<b>UDID : </b>", udid},
-                {"<b>Platform : </b>", platForm},
+        String[][] data = {{"<b>TestCase : </b>", className},
+//                {"<b>Device-Name : </b>", deviceName},
+//                {"<b>UDID : </b>", udid},
+//                {"<b>Platform : </b>", platForm},
                 {"<b>Jira test-key : </b>",
                         "<a href=" + Constants.JIRA_URL + testKey + ">" + testKey + "</a>"}};
 
         test.info(MarkupHelper.createTable(data));
+
+        log.info("Test started : " + className);
     }
 
 
