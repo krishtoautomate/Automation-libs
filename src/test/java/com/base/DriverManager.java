@@ -71,7 +71,7 @@ public class DriverManager {
             String browser = testParams.get("browser");
 
             String REMOTE_HOST =
-                    testParams.get("REMOTE_HOST") == null ? "localhost" : testParams.get("REMOTE_HOST");
+                    testParams.get("REMOTE_HOST_WEB") == null ? "localhost" : testParams.get("REMOTE_HOST_WEB");
 
             if (browser == null)
                 return;

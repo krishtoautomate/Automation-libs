@@ -62,7 +62,6 @@ public class TestBaseWeb {
         ITestResult result = Reporter.getCurrentTestResult();
         result.setAttribute("testKey", testKey);
 
-        log.info("Test Details : " + className);
         String[][] data = {{"<b>TestCase : </b>", className}, {"<b>Browser : </b>", browser},
                 {"<b>Jira test-key : </b>",
                         "<a href=" + Constants.JIRA_URL + testKey + ">" + testKey + "</a>"}};
@@ -70,7 +69,6 @@ public class TestBaseWeb {
         test.info(MarkupHelper.createTable(data));
 
         log.info("Test Started : " + className);
-
     }
 
 
