@@ -140,7 +140,7 @@
     "name": "iPhone XS Max",
     "udid": "00008020-00196D643433002E",
     "platformName": "iOS",
-    "platformVersion": "12.2",
+    "platformVersion": "13.7",
     "colour": "Black",
     "devicePort": 8317
   },
@@ -156,7 +156,7 @@
     "name": "iPhone 11",
     "udid": "00008030-000C58193410802E",
     "platformName": "iOS",
-    "platformVersion": "12.2",
+    "platformVersion": "15.6.1",
     "colour": "Yellow",
     "devicePort": 8319
   },
@@ -212,7 +212,7 @@
     "name": "iPhone XS pro",
     "udid": "00008030-001A550A2643802E",
     "platformName": "iOS",
-    "platformVersion": "15.0",
+    "platformVersion": "15.3.1",
     "colour": "Red",
     "devicePort": 8326
   },
@@ -284,7 +284,7 @@
     "name": "iPhone 11 Pro",
     "udid": "00008030-001C38593420402E",
     "platformName": "iOS",
-    "platformVersion": "14.0.1",
+    "platformVersion": "15.6.1",
     "colour": "Black",
     "devicePort": 8335
   },
@@ -436,7 +436,7 @@
     "name": "iPhone 13 mini",
     "udid": "00008110-000250A6147A801E",
     "platformName": "iOS",
-    "platformVersion": "15.1",
+    "platformVersion": "16.2",
     "colour": "Blue",
     "devicePort": 8354
   },
@@ -700,7 +700,7 @@
     "name": "iPhone 14 Pro",
     "udid": "00008120-000E656011D3401E",
     "platformName": "iOS",
-    "platformVersion": "16.0",
+    "platformVersion": "16.0.3",
     "colour": "Black",
     "devicePort": 8388
   },
@@ -775,6 +775,22 @@
     "platformVersion": "16.1.1",
     "colour": "Black",
     "devicePort": 8397
+  },
+  {
+    "name": "iPhone 12",
+    "udid": "00008101-001E48E821F0801E",
+    "platformName": "iOS",
+    "platformVersion": "16.1",
+    "colour": "Black",
+    "devicePort": 8398
+  },
+  {
+    "name": "iPhone 6s",
+    "udid": "c5aa6d6e334d2840e1302fbbca97bff7b87e11d8",
+    "platformName": "iOS",
+    "platformVersion": "15.7.2",
+    "colour": "Black",
+    "devicePort": 8399
   },
   {
     "name": "Samsung S8",
@@ -1580,7 +1596,7 @@
     "name": "samsung SM-F711W",
     "udid": "R5CR91YJWLF",
     "platformName": "Android",
-    "platformVersion": "12.0",
+    "platformVersion": "13",
     "colour": "Black",
     "devicePort": 8502
   },
@@ -1639,5 +1655,53 @@
     "platformVersion": "12.0",
     "colour": "Black",
     "devicePort": 8509
+  },
+  {
+    "name": "samsung SM-F721W",
+    "udid": "R5CT8464WBD",
+    "platformName": "Android",
+    "platformVersion": "12",
+    "colour": "Black",
+    "devicePort": 8510
+  },
+  {
+    "name": "LGE LG-H831",
+    "udid": "LGH8312039419f",
+    "platformName": "Android",
+    "platformVersion": "7.0",
+    "colour": "Black",
+    "devicePort": 8511
+  },
+  {
+    "name": "LGE LG-H873",
+    "udid": "LGH873b2af0494",
+    "platformName": "Android",
+    "platformVersion": "7.0",
+    "colour": "Black",
+    "devicePort": 8512
+  },
+  {
+    "name": "Google Pixel",
+    "udid": "FA6A60317686",
+    "platformName": "Android",
+    "platformVersion": "10",
+    "colour": "Black",
+    "devicePort": 8513
+  },
+  {
+    "name": "LGE LG-H933",
+    "udid": "LGH933af9b8f29",
+    "platformName": "Android",
+    "platformVersion": "7.1.2",
+    "colour": "Black",
+    "devicePort": 8514
+  },
+  {
+    "name": "LGE LM-G820",
+    "udid": "LMG820UM8cf34283",
+    "platformName": "Android",
+    "platformVersion": "9",
+    "colour": "Black",
+    "devicePort": 8515
   }
 ]
