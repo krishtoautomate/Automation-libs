@@ -30,7 +30,7 @@ public class WebTest extends TestBaseWeb implements ITestBase {
 
         String errorXML = driver.getPageSource();
 
-        System.out.println(((RemoteWebDriver) driver).getSessionId());
+        System.out.println("SessionId : " + ((RemoteWebDriver) driver).getSessionId());
 
         test.info(MarkupHelper.createCodeBlock(errorXML));
 

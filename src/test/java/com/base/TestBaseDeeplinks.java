@@ -22,13 +22,11 @@ public class TestBaseDeeplinks {
 
     protected static Logger log;
 
-    @SuppressWarnings("rawtypes")
     protected AppiumDriver driver;
     protected AppiumDriverManager tlDriverFactory = new AppiumDriverManager();
     protected ExtentTest test;
     protected boolean isAndroid = false;
     protected boolean isIos = false;
-    protected String udid = "";
 
     /**
      * Executed once before all the tests
@@ -43,7 +41,6 @@ public class TestBaseDeeplinks {
 
     }
 
-    @SuppressWarnings("unchecked")
     @BeforeMethod
     @Parameters({"udid", "platForm"})
     public synchronized void BeforeMethod(@Optional String udid, @Optional String platForm,
@@ -51,7 +48,6 @@ public class TestBaseDeeplinks {
 
         String methodName = method.getName();
         String className = this.getClass().getName();
-        this.udid = udid;
 
         isAndroid = platForm.equalsIgnoreCase("Android");
         isIos = platForm.equalsIgnoreCase("iOS");
@@ -62,7 +58,8 @@ public class TestBaseDeeplinks {
         String deviceName = "";
 //        String platformVersion = "";
         if (udid != null) {
-            tlDriverFactory.setDriver();
+            iTestContext.setAttribute("udid",udid);
+            tlDriverFactory.setDriver(iTestContext);
             driver = AppiumDriverManager.getDriverInstance();
 
             if ("Auto".equalsIgnoreCase(udid)) {
@@ -93,7 +90,6 @@ public class TestBaseDeeplinks {
         }
     }
 
-    @SuppressWarnings("unchecked")
     @AfterMethod(alwaysRun = true)
     public synchronized void AfterMethod(ITestContext testctx) {
         driver = AppiumDriverManager.getDriverInstance();
@@ -103,8 +99,9 @@ public class TestBaseDeeplinks {
                 if (isAndroid) {
                     ((AndroidDriver) driver).closeApp();
                 } else {
+                    String bundleId = getIOSActiveAppInfo();
                     ((IOSDriver) driver)
-                            .terminateApp(driver.getCapabilities().getCapability("bundleId").toString());
+                            .terminateApp(bundleId);
 //                    HashMap<String, String> args = new HashMap<>();
 //                    args.put("bundleId", driver.getCapabilities().getCapability("bundleId").toString());
 //                    driver.executeScript("mobile:terminateApp", args);
@@ -146,6 +143,18 @@ public class TestBaseDeeplinks {
         } finally {
             log.info(Constants.EXTENT_HTML_REPORT);
         }
+    }
+
+    public String getIOSActiveAppInfo() {
+        String activeApp = "";
+        try {
+            String jsonResponse = driver.executeScript("mobile:activeAppInfo").toString();
+            activeApp = (jsonResponse.split("bundleId=")[1]).replaceAll("}", "");
+        } catch (Exception e) {
+            //ignore
+        }
+        log.info("Active-app :" + activeApp);
+        return activeApp;
     }
 
 }

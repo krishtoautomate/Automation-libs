@@ -54,8 +54,8 @@ public class TestBaseHybrid {
         if (udid != null) {
             isAndroid = platForm.equalsIgnoreCase("Android");
             isIos = platForm.equalsIgnoreCase("iOS");
-
-            tlDriverFactoryApp.setDriver();
+            UdidMapper.setUdid(udid);
+            tlDriverFactoryApp.setDriver(iTestContext);
             driver = AppiumDriverManager.getDriverInstance();
         }
 
@@ -147,7 +147,7 @@ public class TestBaseHybrid {
             } catch (Exception e) {
                 // ignore
             }
-            test.info("THE END");
+            ExtentTestManager.getTest().info("THE END");
             log.info("THE END");
 
             try {

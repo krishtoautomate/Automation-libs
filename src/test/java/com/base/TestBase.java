@@ -53,8 +53,9 @@ public class TestBase {
         String className = this.getClass().getName();
         isAndroid = platForm.equalsIgnoreCase("Android");
         isIos = platForm.equalsIgnoreCase("iOS");
-
-        tlDriverFactory.setDriver();
+        UdidMapper.setUdid(udid);
+        iTestContext.setAttribute("udid",udid);
+        tlDriverFactory.setDriver(iTestContext);
         driver = AppiumDriverManager.getDriverInstance();
 
         /*
@@ -133,7 +134,7 @@ public class TestBase {
             } catch (Exception e) {
                 // ignore
             }
-            test.info("THE END");
+            ExtentTestManager.getTest().info("THE END");
             log.info("THE END");
 
             try {

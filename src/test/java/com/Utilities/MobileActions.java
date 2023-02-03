@@ -134,6 +134,18 @@ public class MobileActions implements ITestBase {
     }
   }
 
+  public String getIOSActiveAppInfo() {
+    String activeApp = "";
+    try {
+      String jsonResponse = driver.executeScript("mobile:activeAppInfo").toString();
+      activeApp = (jsonResponse.split("bundleId=")[1]).replaceAll("}", "");
+    } catch (Exception e) {
+      //ignore
+    }
+    log.info("Active-app :" + activeApp);
+    return activeApp;
+  }
+
   @SuppressWarnings("unchecked")
   public void terminateApp(String bundleId) {
     boolean isAndroid = driver instanceof AndroidDriver;
