@@ -1,3 +1,0 @@
-udid,DeepLinkName,UserName,Password,French Url,English Url,Android:locator,Ios:locator,VerificationText,AndroidTestKey,iOSTestKey
-R3CN20AACGK,Support,automation21,Fibe1234$,https://m.bell.ca/soutein,https://m.bell.ca/support,"xpath://*[contains(@resource-id,'toolBarTitleTV')]",AccessibilityId:SupportHeadingTitle,Support,MAEAUTO-5521,MAEAUTO-5573
-R5CR10T9PLE,Contact Us,automation21,Fibe1234$,https://m.bell.ca/pournousjoindre,https://m.bell.ca/contactus,"xpath://*[contains(@resource-id,'toolbar')]/android.widget.TextView",AccessibilityId:SupportGroupContactUs,Contact Us,MAEAUTO-5522,MAEAUTO-5574
