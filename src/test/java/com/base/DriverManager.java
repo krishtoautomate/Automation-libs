@@ -142,7 +142,7 @@ public class DriverManager {
             appiumDriverMap.put(Thread.currentThread().getId(), tlAppiumDriver.get());
 
             // System.out.println("Thread Id : "+ Thread.currentThread().getId());
-            // System.out.println("Session Id : "+ tlDriver.get().getSessionId());
+//            System.out.println("Session Id : "+ tlAppiumDriver.get().getSessionId());
 
             getDriverInstance("Appium").manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         }

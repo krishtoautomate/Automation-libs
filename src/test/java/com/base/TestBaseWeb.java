@@ -9,6 +9,8 @@ import com.aventstack.extentreports.markuputils.MarkupHelper;
 import org.apache.log4j.Logger;
 import org.json.simple.parser.ParseException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.remote.SessionId;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.Reporter;
@@ -52,7 +54,7 @@ public class TestBaseWeb {
 
         // Set & Get ThreadLocal Driver with Browser
         iTestContext.setAttribute("platform", "Web");
-        tlDriverFactory.setDriver("Appium");
+        tlDriverFactory.setDriver("Web");
         driver = DriverManager.getDriverInstance("Web");
 
         // Create Test in extent-Report
@@ -65,10 +67,15 @@ public class TestBaseWeb {
         ITestResult result = Reporter.getCurrentTestResult();
         result.setAttribute("testKey", testKey);
         browser = browser == null ? testParams.get("platForm") : testParams.get("browser");
+        String sessionId = String.valueOf(((RemoteWebDriver) driver).getSessionId());
 
-        String[][] data = {{"<b>TestCase : </b>", className}, {"<b>Browser : </b>", browser},
+        String[][] data = {
+                {"<b>TestCase : </b>", className},
+                {"<b>Browser : </b>", browser},
+                {"<b>SessionId : </b>", sessionId},
                 {"<b>Jira test-key : </b>",
-                        "<a href=" + Constants.JIRA_URL + testKey + ">" + testKey + "</a>"}};
+                        "<a href=" + Constants.JIRA_URL + testKey + ">" + testKey + "</a>"}
+        };
 
         test.info(MarkupHelper.createTable(data));
 
