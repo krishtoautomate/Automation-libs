@@ -27,7 +27,7 @@ public class PlayStoreApp extends BaseObjs<PlayStoreApp> {
     super(driver, test);
   }
 
-  public WebElement get_accountLogo() {
+  public WebElement  get_accountLogo() {
     return get_Element(accountLogo, "Account logo(right cornor) button");
   }
 

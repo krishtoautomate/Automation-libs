@@ -183,7 +183,6 @@ allprojects { project ->
 }
 
 test {
-
 	testLogging {
 		events "passed", "skipped", "failed"
 	}

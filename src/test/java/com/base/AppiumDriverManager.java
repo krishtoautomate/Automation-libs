@@ -4,6 +4,7 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
+import org.openqa.selenium.remote.SessionId;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 
@@ -22,6 +23,10 @@ public class AppiumDriverManager {
 
     public static synchronized AppiumDriver getDriverInstance() {
         return driverMap.get(Long.valueOf(Thread.currentThread().getId()));
+    }
+
+    public SessionId getSessionId() {
+        return getDriverInstance().getSessionId();
     }
 
     public static synchronized void quit() {
@@ -64,7 +69,7 @@ public class AppiumDriverManager {
         driverMap.put(Thread.currentThread().getId(), tlDriver.get());
 
         // System.out.println("Thread Id : "+ Thread.currentThread().getId());
-        // System.out.println("Session Id : "+ tlDriver.get().getSessionId());
+        System.out.println("Session Id : "+ tlDriver.get().getSessionId());
 
         getDriverInstance().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
@@ -101,7 +106,7 @@ public class AppiumDriverManager {
         driverMap.put(Thread.currentThread().getId(), tlDriver.get());
 
         // System.out.println("Thread Id : "+ Thread.currentThread().getId());
-        // System.out.println("Session Id : "+ tlDriver.get().getSessionId());
+        System.out.println("Session Id : "+ tlDriver.get().getSessionId());
 
         getDriverInstance().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
