@@ -2,6 +2,7 @@ package com.base;
 
 import com.DataManager.DeviceInfoReader;
 import com.DataManager.TestDataManager;
+import com.Driver.UdidMapper;
 import com.ReportManager.ExtentTestManager;
 import com.Utilities.Constants;
 import com.aventstack.extentreports.ExtentTest;
@@ -53,8 +54,9 @@ public class TestBase {
         String className = this.getClass().getName();
         isAndroid = platForm.equalsIgnoreCase("Android");
         isIos = platForm.equalsIgnoreCase("iOS");
-
-        tlDriverFactory.setDriver();
+        UdidMapper.setUdid(udid);
+        iTestContext.setAttribute("udid",udid);
+        tlDriverFactory.setDriver(iTestContext);
         driver = AppiumDriverManager.getDriverInstance();
 
         /*

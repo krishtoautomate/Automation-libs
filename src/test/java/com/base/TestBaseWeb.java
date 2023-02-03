@@ -7,12 +7,14 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import org.apache.log4j.Logger;
+import org.json.simple.parser.ParseException;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.annotations.*;
 
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.util.Map;
@@ -41,7 +43,7 @@ public class TestBaseWeb {
     @BeforeMethod(alwaysRun = true)
     @Parameters({"browser"})
     public synchronized void setupTest(@Optional String browser, ITestContext iTestContext,
-                                       Method method) throws MalformedURLException {
+                                       Method method) throws IOException, ParseException {
 
         String className = this.getClass().getName();
         String methodName = method.getName();
@@ -49,7 +51,8 @@ public class TestBaseWeb {
 //    log = LoggerManager.startLogger(className);
 
         // Set & Get ThreadLocal Driver with Browser
-        tlDriverFactory.setDriver("Web");
+        iTestContext.setAttribute("platform", "Web");
+        tlDriverFactory.setDriver(iTestContext);
         driver = DriverManager.getDriverInstance("Web");
 
         // Create Test in extent-Report
@@ -61,6 +64,7 @@ public class TestBaseWeb {
         String testKey = testData.get("testKey");
         ITestResult result = Reporter.getCurrentTestResult();
         result.setAttribute("testKey", testKey);
+        browser = browser == null ? testParams.get("platForm") : testParams.get("browser");
 
         String[][] data = {{"<b>TestCase : </b>", className}, {"<b>Browser : </b>", browser},
                 {"<b>Jira test-key : </b>",
@@ -71,10 +75,8 @@ public class TestBaseWeb {
         log.info("Test Started : " + className);
     }
 
-
-    @Parameters({"browser"})
     @AfterMethod(alwaysRun = true)
-    public synchronized void tearDown(ITestContext context, String browser) {
+    public synchronized void tearDown(ITestContext context) {
 
         log.info("AfterTest : " + context.getCurrentXmlTest().getName());
 
