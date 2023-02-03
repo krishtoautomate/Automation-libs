@@ -114,6 +114,7 @@ public class CapabilitiesManager {
         return capabilities;
     }
 
+    @SuppressWarnings("unchecked")
     public synchronized DesiredCapabilities setCapabilities(String platForm, String udid) {
 
         int devicePort = 8100;
