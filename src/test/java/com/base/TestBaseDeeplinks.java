@@ -81,7 +81,8 @@ public class TestBaseDeeplinks {
             test = ExtentTestManager.startTest(methodName + "(" + platForm + ")")
                     .assignDevice(deviceName);
 
-            log.info("Test Details : " + className + " : " + platForm + " : " + deviceName);
+            log.info("Test started : " + className);
+
             String[][] data = {{"<b>TestCase : </b>", className}, {"<b>Device : </b>", deviceName},
                     {"<b>UDID : </b>", udid}, {"<b>Platform : </b>", platForm},
                     {"<b>OsVersion : </b>", platformVersion}};
