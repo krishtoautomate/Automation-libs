@@ -96,7 +96,7 @@ public class TestBaseDeeplinks {
     @SuppressWarnings("unchecked")
     @AfterMethod(alwaysRun = true)
     public synchronized void AfterMethod(ITestContext testctx) {
-
+        driver = AppiumDriverManager.getDriverInstance();
         if (driver != null) {
             try {
                 boolean isAndroid = driver instanceof AndroidDriver;
@@ -113,7 +113,7 @@ public class TestBaseDeeplinks {
             } catch (Exception e) {
                 // ignore
             }
-            test.info("THE END");
+            ExtentTestManager.getTest().info("THE END");
             log.info("THE END");
 
             try {

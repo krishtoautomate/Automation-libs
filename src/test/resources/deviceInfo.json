@@ -1703,5 +1703,13 @@
     "platformVersion": "9",
     "colour": "Black",
     "devicePort": 8515
+  },
+  {
+    "name": "samsung SM-A715W",
+    "udid": "R58N340WVNY",
+    "platformName": "Android",
+    "platformVersion": "12",
+    "colour": "Black",
+    "devicePort": 8516
   }
 ]
