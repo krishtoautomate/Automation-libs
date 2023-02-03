@@ -103,6 +103,17 @@ task cucumber() {
     }
 }
 
+//./gradlew BaseJar
+task BaseJar(type: Jar) {
+    from sourceSets.test.output
+    include 'com/base/*'
+    include 'com/ReportManager/*'
+    include 'com/DataManager/*'
+    destinationDirectory = file("$buildDir/jar")
+    archiveName = 'Base.jar'
+    exclude 'META-INF/MANIFEST.MF'
+}
+
 
 //gradle clean compiletestjava -PappPackage=BETA -PappActivity=activity -PbundleId=PROD
 //task createCapability(type: Exec) {
