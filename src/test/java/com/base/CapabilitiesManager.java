@@ -4,7 +4,6 @@ package com.base;
  **/
 
 import com.DataManager.DeviceInfoReader;
-import com.Driver.UdidMapper;
 import com.Utilities.Constants;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.apache.log4j.Logger;
@@ -13,11 +12,9 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
@@ -48,7 +45,7 @@ public class CapabilitiesManager {
     }
 
     @SuppressWarnings("unchecked")
-    public synchronized DesiredCapabilities setCapabilities(ITestContext iTestContext) throws IOException, ParseException {
+    public synchronized DesiredCapabilities setCapabilities(String platForm) throws IOException, ParseException {
 
         int devicePort = 8100;
         devicePort++;
@@ -58,8 +55,6 @@ public class CapabilitiesManager {
         ITestResult iTestResult = Reporter.getCurrentTestResult();
         Map<String, String> testParams =
                 iTestResult.getTestContext().getCurrentXmlTest().getAllParameters();
-        String platForm = testParams.get("platForm");
-        platForm = platForm == null ? testParams.get("browser") : testParams.get("platForm");
 //        String udid = testParams.get("udid");
         String udid = UdidMapper.getUdid();
 //        String udid = (String) iTestContext.getAttribute("udid");

@@ -2,7 +2,6 @@ package com.base;
 
 import com.DataManager.DeviceInfoReader;
 import com.DataManager.TestDataManager;
-import com.Driver.UdidMapper;
 import com.ReportManager.ExtentTestManager;
 import com.Utilities.Constants;
 import com.aventstack.extentreports.ExtentTest;
@@ -135,7 +134,7 @@ public class TestBase {
             } catch (Exception e) {
                 // ignore
             }
-            test.info("THE END");
+            ExtentTestManager.getTest().info("THE END");
             log.info("THE END");
 
             try {

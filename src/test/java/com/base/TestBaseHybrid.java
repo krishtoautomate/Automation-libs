@@ -2,7 +2,6 @@ package com.base;
 
 import com.DataManager.DeviceInfoReader;
 import com.DataManager.TestDataManager;
-import com.Driver.UdidMapper;
 import com.ReportManager.ExtentTestManager;
 import com.Utilities.Constants;
 import com.aventstack.extentreports.ExtentTest;
@@ -60,7 +59,7 @@ public class TestBaseHybrid {
             driver = AppiumDriverManager.getDriverInstance();
         }
 
-        tlDriverFactoryWeb.setDriver(iTestContext);
+        tlDriverFactoryWeb.setDriver("Web");
         webDriver = DriverManager.getDriverInstance("Web");
 
         /*
@@ -148,7 +147,7 @@ public class TestBaseHybrid {
             } catch (Exception e) {
                 // ignore
             }
-            test.info("THE END");
+            ExtentTestManager.getTest().info("THE END");
             log.info("THE END");
 
             try {

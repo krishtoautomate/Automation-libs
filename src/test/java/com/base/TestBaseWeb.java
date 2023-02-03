@@ -52,7 +52,7 @@ public class TestBaseWeb {
 
         // Set & Get ThreadLocal Driver with Browser
         iTestContext.setAttribute("platform", "Web");
-        tlDriverFactory.setDriver(iTestContext);
+        tlDriverFactory.setDriver("Appium");
         driver = DriverManager.getDriverInstance("Web");
 
         // Create Test in extent-Report

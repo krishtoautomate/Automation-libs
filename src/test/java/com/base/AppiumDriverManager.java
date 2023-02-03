@@ -65,11 +65,11 @@ public class AppiumDriverManager {
         if ("Android".equalsIgnoreCase(platForm)) {
             iTestContext.setAttribute("platForm", "ANDROID");
             tlDriver.set(new AndroidDriver(new URL(REMOTE_HOST),
-                    capabilitiesManager.setCapabilities(iTestContext)));
+                    capabilitiesManager.setCapabilities("ANDROID")));
         } else if ("iOS".equalsIgnoreCase(platForm)) {
             iTestContext.setAttribute("platForm", "IOS");
             tlDriver.set(new IOSDriver(new URL(REMOTE_HOST),
-                    capabilitiesManager.setCapabilities(iTestContext)));
+                    capabilitiesManager.setCapabilities("IOS")));
         }
 
         driverMap.put(Thread.currentThread().getId(), tlDriver.get());

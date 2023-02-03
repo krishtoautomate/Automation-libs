@@ -10,15 +10,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
 import java.util.Arrays;
@@ -63,9 +60,9 @@ public class DriverManager {
     /*
      @platform = Web/Appium
      */
-    protected synchronized void setDriver(ITestContext iTestContext) throws IOException, ParseException {
+    protected synchronized void setDriver(String platform) throws IOException, ParseException {
 
-        String platform = (String) iTestContext.getAttribute("platform");
+//        String platform = (String) iTestContext.getAttribute("platform");
         if (platform.equalsIgnoreCase("Web")) {
 
             ITestResult iTestResult = Reporter.getCurrentTestResult();
@@ -81,8 +78,8 @@ public class DriverManager {
             if (platform == null)
                 return;
             if (browser.equalsIgnoreCase("chrome")) {
-                iTestContext.setAttribute("platForm", "CHROME");
-                DesiredCapabilities capabilities = capabilitiesManager.setCapabilities(iTestContext);
+//                iTestContext.setAttribute("platForm", "CHROME");
+                DesiredCapabilities capabilities = capabilitiesManager.setCapabilities("CHROME");
 
                 capabilities.setCapability("chrome.switches",
                         Arrays.asList("--ignore-certificate-errors" + "," + "--web-security=false" + ","
@@ -133,13 +130,13 @@ public class DriverManager {
             }
 
             if ("Android".equalsIgnoreCase(platForm)) {
-                iTestContext.setAttribute("platForm", "ANDROID");
+//                iTestContext.setAttribute("platForm", "ANDROID");
                 tlAppiumDriver.set(new AndroidDriver(new URL(REMOTE_HOST),
-                        capabilitiesManager.setCapabilities(iTestContext)));
+                        capabilitiesManager.setCapabilities("ANDROID")));
             } else if ("iOS".equalsIgnoreCase(platForm)) {
-                iTestContext.setAttribute("platForm", "IOS");
+//                iTestContext.setAttribute("platForm", "IOS");
                 tlAppiumDriver.set(new IOSDriver(new URL(REMOTE_HOST),
-                        capabilitiesManager.setCapabilities(iTestContext)));
+                        capabilitiesManager.setCapabilities("IOS")));
             }
 
             appiumDriverMap.put(Thread.currentThread().getId(), tlAppiumDriver.get());

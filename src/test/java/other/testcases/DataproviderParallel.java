@@ -1,7 +1,7 @@
 package other.testcases;
 
 import com.DataManager.DeviceInfoReader;
-import com.Driver.UdidMapper;
+import com.base.UdidMapper;
 import com.ReportManager.ExtentTestManager;
 import com.Utilities.ITestBase;
 import com.Utilities.Utilities;
@@ -20,7 +20,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.*;
 
 
