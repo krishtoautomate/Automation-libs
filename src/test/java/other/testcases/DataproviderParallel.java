@@ -1,7 +1,7 @@
 package other.testcases;
 
 import com.DataManager.DeviceInfoReader;
-import com.base.UdidMapper;
+import com.base.GlobalMapper;
 import com.ReportManager.ExtentTestManager;
 import com.Utilities.ITestBase;
 import com.Utilities.Utilities;
@@ -33,7 +33,7 @@ public class DataproviderParallel extends TestBaseDeeplinks implements ITestBase
         //---start
         String udid = data.get("udid");
         iTestContext.setAttribute("udid", udid);
-        UdidMapper.setUdid(udid);
+        GlobalMapper.setUdid(udid);
         DataProviderParallelHelper(data, iTestContext);
         //--end
 
@@ -82,7 +82,7 @@ public class DataproviderParallel extends TestBaseDeeplinks implements ITestBase
          */
 
         String udid = data.get("udid");
-        UdidMapper.setUdid(udid);
+        GlobalMapper.setUdid(udid);
         iTestContext.setAttribute("udid",udid);
         tlDriverFactory.setDriver(iTestContext);
         driver = AppiumDriverManager.getDriverInstance();
