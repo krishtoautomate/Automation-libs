@@ -53,7 +53,7 @@ public class TestBase {
         String className = this.getClass().getName();
         isAndroid = platForm.equalsIgnoreCase("Android");
         isIos = platForm.equalsIgnoreCase("iOS");
-        UdidMapper.setUdid(udid);
+        GlobalMapper.setUdid(udid);
         iTestContext.setAttribute("udid",udid);
         tlDriverFactory.setDriver(iTestContext);
         driver = AppiumDriverManager.getDriverInstance();

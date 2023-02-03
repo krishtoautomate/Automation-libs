@@ -56,7 +56,7 @@ public class CapabilitiesManager {
         Map<String, String> testParams =
                 iTestResult.getTestContext().getCurrentXmlTest().getAllParameters();
 //        String udid = testParams.get("udid");
-        String udid = UdidMapper.getUdid();
+        String udid = GlobalMapper.getUdid();
 //        String udid = (String) iTestContext.getAttribute("udid");
 //        String platForm = (String) iTestContext.getAttribute("platForm");
         String deviceName = "Android".equalsIgnoreCase(platForm) ? "Android Device" : "iPhone";
