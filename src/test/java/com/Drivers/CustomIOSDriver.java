@@ -17,18 +17,7 @@
 package com.Drivers;
 
 import com.google.common.collect.ImmutableMap;
-import io.appium.java_client.AppiumClientConfig;
-import io.appium.java_client.HasAppStrings;
-import io.appium.java_client.HasDeviceTime;
-import io.appium.java_client.HasOnScreenKeyboard;
-import io.appium.java_client.HidesKeyboard;
-import io.appium.java_client.HidesKeyboardWithKeyName;
-import io.appium.java_client.InteractsWithApps;
-import io.appium.java_client.LocksDevice;
-import io.appium.java_client.PerformsTouchActions;
-import io.appium.java_client.PullsFiles;
-import io.appium.java_client.PushesFiles;
-import io.appium.java_client.SupportsLegacyAppManagement;
+import io.appium.java_client.*;
 import io.appium.java_client.battery.HasBattery;
 import io.appium.java_client.ios.*;
 import io.appium.java_client.remote.SupportsContextSwitching;
@@ -80,210 +69,214 @@ public class CustomIOSDriver extends CustomAppiumDriver implements
         HasIOSClipboard,
         ListensToSyslogMessages,
         HasBattery<IOSBatteryInfo> {
-  private static final String PLATFORM_NAME = Platform.IOS.name();
+    private static final String PLATFORM_NAME = Platform.IOS.name();
 
-  private StringWebSocketClient syslogClient;
+    private StringWebSocketClient syslogClient;
 
-  /**
-   * Creates a new instance based on command {@code executor} and {@code capabilities}.
-   *
-   * @param executor is an instance of {@link HttpCommandExecutor}
-   *                 or class that extends it. Default commands or another vendor-specific
-   *                 commands may be specified there.
-   * @param capabilities take a look at {@link Capabilities}
-   */
-  public CustomIOSDriver(HttpCommandExecutor executor, Capabilities capabilities) {
-    super(executor, ensurePlatformName(capabilities, PLATFORM_NAME));
-  }
-
-  /**
-   * Creates a new instance based on Appium server URL and {@code capabilities}.
-   *
-   * @param remoteAddress is the address of remotely/locally started Appium server
-   * @param capabilities take a look at {@link Capabilities}
-   */
-  public CustomIOSDriver(URL remoteAddress, Capabilities capabilities) {
-    super(remoteAddress, ensurePlatformName(capabilities, PLATFORM_NAME));
-  }
-
-  /**
-   * Creates a new instance based on Appium server URL, HTTP client factory and {@code capabilities}.
-   *
-   * @param remoteAddress is the address of remotely/locally started Appium server
-   * @param httpClientFactory take a look at {@link HttpClient.Factory}
-   * @param capabilities take a look at {@link Capabilities}
-   */
-  public CustomIOSDriver(URL remoteAddress, HttpClient.Factory httpClientFactory,
-                         Capabilities capabilities) {
-    super(remoteAddress, httpClientFactory, ensurePlatformName(capabilities, PLATFORM_NAME));
-  }
-
-  /**
-   * Creates a new instance based on Appium driver local service and {@code capabilities}.
-   *
-   * @param service take a look at {@link AppiumDriverLocalService}
-   * @param capabilities take a look at {@link Capabilities}
-   */
-  public CustomIOSDriver(AppiumDriverLocalService service, Capabilities capabilities) {
-    super(service, ensurePlatformName(capabilities, PLATFORM_NAME));
-  }
-
-  /**
-   * Creates a new instance based on Appium driver local service, HTTP client factory and {@code capabilities}.
-   *
-   * @param service take a look at {@link AppiumDriverLocalService}
-   * @param httpClientFactory take a look at {@link HttpClient.Factory}
-   * @param capabilities take a look at {@link Capabilities}
-   */
-  public CustomIOSDriver(AppiumDriverLocalService service, HttpClient.Factory httpClientFactory,
-                         Capabilities capabilities) {
-    super(service, httpClientFactory, ensurePlatformName(capabilities, PLATFORM_NAME));
-  }
-
-  /**
-   * Creates a new instance based on Appium service builder and {@code capabilities}.
-   *
-   * @param builder take a look at {@link AppiumServiceBuilder}
-   * @param capabilities take a look at {@link Capabilities}
-   */
-  public CustomIOSDriver(AppiumServiceBuilder builder, Capabilities capabilities) {
-    super(builder, ensurePlatformName(capabilities, PLATFORM_NAME));
-  }
-
-  /**
-   * Creates a new instance based on Appium service builder, HTTP client factory and {@code capabilities}.
-   *
-   * @param builder take a look at {@link AppiumServiceBuilder}
-   * @param httpClientFactory take a look at {@link HttpClient.Factory}
-   * @param capabilities take a look at {@link Capabilities}
-   */
-  public CustomIOSDriver(AppiumServiceBuilder builder, HttpClient.Factory httpClientFactory,
-                         Capabilities capabilities) {
-    super(builder, httpClientFactory, ensurePlatformName(capabilities, PLATFORM_NAME));
-  }
-
-  /**
-   * Creates a new instance based on HTTP client factory and {@code capabilities}.
-   *
-   * @param httpClientFactory take a look at {@link HttpClient.Factory}
-   * @param capabilities take a look at {@link Capabilities}
-   */
-  public CustomIOSDriver(HttpClient.Factory httpClientFactory, Capabilities capabilities) {
-    super(httpClientFactory, ensurePlatformName(capabilities, PLATFORM_NAME));
-  }
-
-  /**
-   * Creates a new instance based on the given ClientConfig and {@code capabilities}.
-   * The HTTP client is default client generated by {@link HttpCommandExecutor#getDefaultClientFactory}.
-   * For example:
-   *
-   * <pre>
-   *
-   * ClientConfig clientConfig = ClientConfig.defaultConfig()
-   *     .baseUri(URI.create("WebDriver URL"))
-   *     .readTimeout(Duration.ofMinutes(5));
-   * XCUITestOptions options = new XCUITestOptions();
-   * IOSDriver driver = new IOSDriver(clientConfig, options);
-   *
-   * </pre>
-   *
-   * @param clientConfig take a look at {@link ClientConfig}
-   * @param capabilities take a look at {@link Capabilities}
-   *
-   */
-  public CustomIOSDriver(ClientConfig clientConfig, Capabilities capabilities) {
-    super(AppiumClientConfig.fromClientConfig(clientConfig),
-            ensurePlatformName(capabilities, PLATFORM_NAME));
-  }
-
-  /**
-   * Creates a new instance based on the given ClientConfig and {@code capabilities}.
-   * The HTTP client is default client generated by {@link HttpCommandExecutor#getDefaultClientFactory}.
-   * For example:
-   *
-   * <pre>
-   *
-   * AppiumClientConfig appiumClientConfig = AppiumClientConfig.defaultConfig()
-   *     .directConnect(true)
-   *     .baseUri(URI.create("WebDriver URL"))
-   *     .readTimeout(Duration.ofMinutes(5));
-   * XCUITestOptions options = new XCUITestOptions();
-   * IOSDriver driver = new IOSDriver(options, appiumClientConfig);
-   *
-   * </pre>
-   *
-   * @param appiumClientConfig take a look at {@link AppiumClientConfig}
-   * @param capabilities take a look at {@link Capabilities}
-   *
-   */
-  public CustomIOSDriver(AppiumClientConfig appiumClientConfig, Capabilities capabilities) {
-    super(appiumClientConfig, ensurePlatformName(capabilities, PLATFORM_NAME));
-  }
-
-
-  /**
-   * Creates a new instance based on {@code capabilities}.
-   *
-   * @param capabilities take a look at {@link Capabilities}
-   */
-  public CustomIOSDriver(Capabilities capabilities) {
-    super(ensurePlatformName(capabilities, PLATFORM_NAME));
-  }
-
-  @Override public TargetLocator switchTo() {
-    return new InnerTargetLocator();
-  }
-
-  @SuppressWarnings("unchecked")
-  @Override
-  public IOSBatteryInfo getBatteryInfo() {
-    return new IOSBatteryInfo((Map<String, Object>) execute(EXECUTE_SCRIPT, ImmutableMap.of(
-            "script", "mobile: batteryInfo", "args", Collections.emptyList())).getValue());
-  }
-
-  private class InnerTargetLocator extends RemoteTargetLocator {
-    @Override public Alert alert() {
-      return new IOSAlert(super.alert());
-    }
-  }
-
-  class IOSAlert implements Alert {
-
-    private final Alert alert;
-
-    IOSAlert(Alert alert) {
-      this.alert = alert;
+    /**
+     * Creates a new instance based on command {@code executor} and {@code capabilities}.
+     *
+     * @param executor     is an instance of {@link HttpCommandExecutor}
+     *                     or class that extends it. Default commands or another vendor-specific
+     *                     commands may be specified there.
+     * @param capabilities take a look at {@link Capabilities}
+     */
+    public CustomIOSDriver(HttpCommandExecutor executor, Capabilities capabilities) {
+        super(executor, ensurePlatformName(capabilities, PLATFORM_NAME));
     }
 
-    @Override public void dismiss() {
-      execute(DriverCommand.DISMISS_ALERT);
+    /**
+     * Creates a new instance based on Appium server URL and {@code capabilities}.
+     *
+     * @param remoteAddress is the address of remotely/locally started Appium server
+     * @param capabilities  take a look at {@link Capabilities}
+     */
+    public CustomIOSDriver(URL remoteAddress, Capabilities capabilities) {
+        super(remoteAddress, ensurePlatformName(capabilities, PLATFORM_NAME));
     }
 
-    @Override public void accept() {
-      execute(DriverCommand.ACCEPT_ALERT);
+    /**
+     * Creates a new instance based on Appium server URL, HTTP client factory and {@code capabilities}.
+     *
+     * @param remoteAddress     is the address of remotely/locally started Appium server
+     * @param httpClientFactory take a look at {@link HttpClient.Factory}
+     * @param capabilities      take a look at {@link Capabilities}
+     */
+    public CustomIOSDriver(URL remoteAddress, HttpClient.Factory httpClientFactory,
+                           Capabilities capabilities) {
+        super(remoteAddress, httpClientFactory, ensurePlatformName(capabilities, PLATFORM_NAME));
     }
 
-    @Override public String getText() {
-      Response response = execute(DriverCommand.GET_ALERT_TEXT);
-      return response.getValue().toString();
+    /**
+     * Creates a new instance based on Appium driver local service and {@code capabilities}.
+     *
+     * @param service      take a look at {@link AppiumDriverLocalService}
+     * @param capabilities take a look at {@link Capabilities}
+     */
+    public CustomIOSDriver(AppiumDriverLocalService service, Capabilities capabilities) {
+        super(service, ensurePlatformName(capabilities, PLATFORM_NAME));
     }
 
-    @Override public void sendKeys(String keysToSend) {
-      execute(DriverCommand.SET_ALERT_VALUE, prepareArguments("value", keysToSend));
+    /**
+     * Creates a new instance based on Appium driver local service, HTTP client factory and {@code capabilities}.
+     *
+     * @param service           take a look at {@link AppiumDriverLocalService}
+     * @param httpClientFactory take a look at {@link HttpClient.Factory}
+     * @param capabilities      take a look at {@link Capabilities}
+     */
+    public CustomIOSDriver(AppiumDriverLocalService service, HttpClient.Factory httpClientFactory,
+                           Capabilities capabilities) {
+        super(service, httpClientFactory, ensurePlatformName(capabilities, PLATFORM_NAME));
     }
 
-  }
-
-  @Override
-  public RemoteLocationContext getLocationContext() {
-    return locationContext;
-  }
-
-  @Override
-  public synchronized StringWebSocketClient getSyslogClient() {
-    if (syslogClient == null) {
-      syslogClient = new StringWebSocketClient();
+    /**
+     * Creates a new instance based on Appium service builder and {@code capabilities}.
+     *
+     * @param builder      take a look at {@link AppiumServiceBuilder}
+     * @param capabilities take a look at {@link Capabilities}
+     */
+    public CustomIOSDriver(AppiumServiceBuilder builder, Capabilities capabilities) {
+        super(builder, ensurePlatformName(capabilities, PLATFORM_NAME));
     }
-    return syslogClient;
-  }
+
+    /**
+     * Creates a new instance based on Appium service builder, HTTP client factory and {@code capabilities}.
+     *
+     * @param builder           take a look at {@link AppiumServiceBuilder}
+     * @param httpClientFactory take a look at {@link HttpClient.Factory}
+     * @param capabilities      take a look at {@link Capabilities}
+     */
+    public CustomIOSDriver(AppiumServiceBuilder builder, HttpClient.Factory httpClientFactory,
+                           Capabilities capabilities) {
+        super(builder, httpClientFactory, ensurePlatformName(capabilities, PLATFORM_NAME));
+    }
+
+    /**
+     * Creates a new instance based on HTTP client factory and {@code capabilities}.
+     *
+     * @param httpClientFactory take a look at {@link HttpClient.Factory}
+     * @param capabilities      take a look at {@link Capabilities}
+     */
+    public CustomIOSDriver(HttpClient.Factory httpClientFactory, Capabilities capabilities) {
+        super(httpClientFactory, ensurePlatformName(capabilities, PLATFORM_NAME));
+    }
+
+    /**
+     * Creates a new instance based on the given ClientConfig and {@code capabilities}.
+     * The HTTP client is default client generated by {@link HttpCommandExecutor#getDefaultClientFactory}.
+     * For example:
+     *
+     * <pre>
+     *
+     * ClientConfig clientConfig = ClientConfig.defaultConfig()
+     *     .baseUri(URI.create("WebDriver URL"))
+     *     .readTimeout(Duration.ofMinutes(5));
+     * XCUITestOptions options = new XCUITestOptions();
+     * IOSDriver driver = new IOSDriver(clientConfig, options);
+     *
+     * </pre>
+     *
+     * @param clientConfig take a look at {@link ClientConfig}
+     * @param capabilities take a look at {@link Capabilities}
+     */
+    public CustomIOSDriver(ClientConfig clientConfig, Capabilities capabilities) {
+        super(AppiumClientConfig.fromClientConfig(clientConfig),
+                ensurePlatformName(capabilities, PLATFORM_NAME));
+    }
+
+    /**
+     * Creates a new instance based on the given ClientConfig and {@code capabilities}.
+     * The HTTP client is default client generated by {@link HttpCommandExecutor#getDefaultClientFactory}.
+     * For example:
+     *
+     * <pre>
+     *
+     * AppiumClientConfig appiumClientConfig = AppiumClientConfig.defaultConfig()
+     *     .directConnect(true)
+     *     .baseUri(URI.create("WebDriver URL"))
+     *     .readTimeout(Duration.ofMinutes(5));
+     * XCUITestOptions options = new XCUITestOptions();
+     * IOSDriver driver = new IOSDriver(options, appiumClientConfig);
+     *
+     * </pre>
+     *
+     * @param appiumClientConfig take a look at {@link AppiumClientConfig}
+     * @param capabilities       take a look at {@link Capabilities}
+     */
+    public CustomIOSDriver(AppiumClientConfig appiumClientConfig, Capabilities capabilities) {
+        super(appiumClientConfig, ensurePlatformName(capabilities, PLATFORM_NAME));
+    }
+
+
+    /**
+     * Creates a new instance based on {@code capabilities}.
+     *
+     * @param capabilities take a look at {@link Capabilities}
+     */
+    public CustomIOSDriver(Capabilities capabilities) {
+        super(ensurePlatformName(capabilities, PLATFORM_NAME));
+    }
+
+    @Override
+    public TargetLocator switchTo() {
+        return new InnerTargetLocator();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public IOSBatteryInfo getBatteryInfo() {
+        return new IOSBatteryInfo((Map<String, Object>) execute(EXECUTE_SCRIPT, ImmutableMap.of(
+                "script", "mobile: batteryInfo", "args", Collections.emptyList())).getValue());
+    }
+
+    @Override
+    public RemoteLocationContext getLocationContext() {
+        return locationContext;
+    }
+
+    @Override
+    public synchronized StringWebSocketClient getSyslogClient() {
+        if (syslogClient == null) {
+            syslogClient = new StringWebSocketClient();
+        }
+        return syslogClient;
+    }
+
+    private class InnerTargetLocator extends RemoteTargetLocator {
+        @Override
+        public Alert alert() {
+            return new IOSAlert(super.alert());
+        }
+    }
+
+    class IOSAlert implements Alert {
+
+        private final Alert alert;
+
+        IOSAlert(Alert alert) {
+            this.alert = alert;
+        }
+
+        @Override
+        public void dismiss() {
+            execute(DriverCommand.DISMISS_ALERT);
+        }
+
+        @Override
+        public void accept() {
+            execute(DriverCommand.ACCEPT_ALERT);
+        }
+
+        @Override
+        public String getText() {
+            Response response = execute(DriverCommand.GET_ALERT_TEXT);
+            return response.getValue().toString();
+        }
+
+        @Override
+        public void sendKeys(String keysToSend) {
+            execute(DriverCommand.SET_ALERT_VALUE, prepareArguments("value", keysToSend));
+        }
+
+    }
 }

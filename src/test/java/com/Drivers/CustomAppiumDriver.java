@@ -37,113 +37,113 @@ import java.net.URL;
  */
 public class CustomAppiumDriver extends AppiumDriver {
 
-  private static final ErrorHandler errorHandler = new ErrorHandler(new ErrorCodesMobile(), true);
-  // frequently used command parameters
-  private final URL remoteAddress;
-  protected final RemoteLocationContext locationContext;
-  private final ExecuteMethod executeMethod;
+    private static final ErrorHandler errorHandler = new ErrorHandler(new ErrorCodesMobile(), true);
+    protected final RemoteLocationContext locationContext;
+    // frequently used command parameters
+    private final URL remoteAddress;
+    private final ExecuteMethod executeMethod;
 
-  /**
-   * Creates a new instance based on command {@code executor} and {@code capabilities}.
-   *
-   * @param executor     is an instance of {@link HttpCommandExecutor}
-   *                     or class that extends it. Default commands or another vendor-specific
-   *                     commands may be specified there.
-   * @param capabilities take a look at {@link Capabilities}
-   */
-  public CustomAppiumDriver(HttpCommandExecutor executor, Capabilities capabilities) {
-    super(executor, capabilities);
-    this.executeMethod = new AppiumExecutionMethod(this);
-    locationContext = new RemoteLocationContext(executeMethod);
-    super.setErrorHandler(errorHandler);
-    this.remoteAddress = executor.getAddressOfRemoteServer();
-  }
+    /**
+     * Creates a new instance based on command {@code executor} and {@code capabilities}.
+     *
+     * @param executor     is an instance of {@link HttpCommandExecutor}
+     *                     or class that extends it. Default commands or another vendor-specific
+     *                     commands may be specified there.
+     * @param capabilities take a look at {@link Capabilities}
+     */
+    public CustomAppiumDriver(HttpCommandExecutor executor, Capabilities capabilities) {
+        super(executor, capabilities);
+        this.executeMethod = new AppiumExecutionMethod(this);
+        locationContext = new RemoteLocationContext(executeMethod);
+        super.setErrorHandler(errorHandler);
+        this.remoteAddress = executor.getAddressOfRemoteServer();
+    }
 
-  public CustomAppiumDriver(AppiumClientConfig clientConfig, Capabilities capabilities) {
-    this(new AppiumCommandExecutor(MobileCommand.commandRepository, clientConfig), capabilities);
-  }
+    public CustomAppiumDriver(AppiumClientConfig clientConfig, Capabilities capabilities) {
+        this(new AppiumCommandExecutor(MobileCommand.commandRepository, clientConfig), capabilities);
+    }
 
-  public CustomAppiumDriver(URL remoteAddress, Capabilities capabilities) {
-    this(new AppiumCommandExecutor(MobileCommand.commandRepository, remoteAddress),
-            capabilities);
-  }
+    public CustomAppiumDriver(URL remoteAddress, Capabilities capabilities) {
+        this(new AppiumCommandExecutor(MobileCommand.commandRepository, remoteAddress),
+                capabilities);
+    }
 
-  public CustomAppiumDriver(URL remoteAddress, HttpClient.Factory httpClientFactory,
-                      Capabilities capabilities) {
-    this(new AppiumCommandExecutor(MobileCommand.commandRepository, remoteAddress,
-            httpClientFactory), capabilities);
-  }
+    public CustomAppiumDriver(URL remoteAddress, HttpClient.Factory httpClientFactory,
+                              Capabilities capabilities) {
+        this(new AppiumCommandExecutor(MobileCommand.commandRepository, remoteAddress,
+                httpClientFactory), capabilities);
+    }
 
-  public CustomAppiumDriver(AppiumDriverLocalService service, Capabilities capabilities) {
-    this(new AppiumCommandExecutor(MobileCommand.commandRepository, service),
-            capabilities);
-  }
+    public CustomAppiumDriver(AppiumDriverLocalService service, Capabilities capabilities) {
+        this(new AppiumCommandExecutor(MobileCommand.commandRepository, service),
+                capabilities);
+    }
 
-  public CustomAppiumDriver(AppiumDriverLocalService service, HttpClient.Factory httpClientFactory,
-                      Capabilities capabilities) {
-    this(new AppiumCommandExecutor(MobileCommand.commandRepository, service, httpClientFactory),
-            capabilities);
-  }
+    public CustomAppiumDriver(AppiumDriverLocalService service, HttpClient.Factory httpClientFactory,
+                              Capabilities capabilities) {
+        this(new AppiumCommandExecutor(MobileCommand.commandRepository, service, httpClientFactory),
+                capabilities);
+    }
 
-  public CustomAppiumDriver(AppiumServiceBuilder builder, Capabilities capabilities) {
-    this(builder.build(), capabilities);
-  }
+    public CustomAppiumDriver(AppiumServiceBuilder builder, Capabilities capabilities) {
+        this(builder.build(), capabilities);
+    }
 
-  public CustomAppiumDriver(AppiumServiceBuilder builder, HttpClient.Factory httpClientFactory,
-                      Capabilities capabilities) {
-    this(builder.build(), httpClientFactory, capabilities);
-  }
+    public CustomAppiumDriver(AppiumServiceBuilder builder, HttpClient.Factory httpClientFactory,
+                              Capabilities capabilities) {
+        this(builder.build(), httpClientFactory, capabilities);
+    }
 
-  public CustomAppiumDriver(HttpClient.Factory httpClientFactory, Capabilities capabilities) {
-    this(AppiumDriverLocalService.buildDefaultService(), httpClientFactory,
-            capabilities);
-  }
+    public CustomAppiumDriver(HttpClient.Factory httpClientFactory, Capabilities capabilities) {
+        this(AppiumDriverLocalService.buildDefaultService(), httpClientFactory,
+                capabilities);
+    }
 
-  public CustomAppiumDriver(Capabilities capabilities) {
-    this(AppiumDriverLocalService.buildDefaultService(), capabilities);
-  }
+    public CustomAppiumDriver(Capabilities capabilities) {
+        this(AppiumDriverLocalService.buildDefaultService(), capabilities);
+    }
 
-  public void findElementAndClick(By by) {
-    WebElement element = findElement(by);
-    element.click();
-  }
+    public void findElementAndClick(By by) {
+        WebElement element = findElement(by);
+        element.click();
+    }
 
-  public AppiumDriver getDriverInstance() {
-    return this;
-  }
+    public AppiumDriver getDriverInstance() {
+        return this;
+    }
 
-  public void findElementAndTap(By by) {
-    WebElement element = findElement(by);
-    // Custom implementation for the tap() method
-    actions().moveToElement(element).click().perform();
-  }
+    public void findElementAndTap(By by) {
+        WebElement element = findElement(by);
+        // Custom implementation for the tap() method
+        actions().moveToElement(element).click().perform();
+    }
 
-  public Actions actions() {
-    Actions a = new Actions(this);
-    return a;
-  }
+    public Actions actions() {
+        Actions a = new Actions(this);
+        return a;
+    }
 
-  @Override
-  public WebElement findElement(By by) {
-    WebElement element = super.findElement(by);
-    // Custom logic for finding the element
-    return element;
-  }
+    @Override
+    public WebElement findElement(By by) {
+        WebElement element = super.findElement(by);
+        // Custom logic for finding the element
+        return element;
+    }
 
-  public void sendKeys(CharSequence... keysToSend) {
-    actions().sendKeys(keysToSend);
-  }
+    public void sendKeys(CharSequence... keysToSend) {
+        actions().sendKeys(keysToSend);
+    }
 
-  public WebElement findElement(By by, String... message) {
-    WebElement element = super.findElement(by);
-    // Custom logic for finding the element
-    return element;
-  }
+    public WebElement findElement(By by, String... message) {
+        WebElement element = super.findElement(by);
+        // Custom logic for finding the element
+        return element;
+    }
 
-  @Override
-  public void get(String url) {
-    // Custom logic for navigating to a URL
-    super.get(url);
-  }
+    @Override
+    public void get(String url) {
+        // Custom logic for navigating to a URL
+        super.get(url);
+    }
 
 }

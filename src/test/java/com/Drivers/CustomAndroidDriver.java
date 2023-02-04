@@ -17,19 +17,7 @@
 package com.Drivers;
 
 import com.google.common.collect.ImmutableMap;
-import io.appium.java_client.AppiumClientConfig;
-import io.appium.java_client.CommandExecutionHelper;
-import io.appium.java_client.ExecuteCDPCommand;
-import io.appium.java_client.HasAppStrings;
-import io.appium.java_client.HasDeviceTime;
-import io.appium.java_client.HasOnScreenKeyboard;
-import io.appium.java_client.HidesKeyboard;
-import io.appium.java_client.InteractsWithApps;
-import io.appium.java_client.LocksDevice;
-import io.appium.java_client.PerformsTouchActions;
-import io.appium.java_client.PullsFiles;
-import io.appium.java_client.PushesFiles;
-import io.appium.java_client.SupportsLegacyAppManagement;
+import io.appium.java_client.*;
 import io.appium.java_client.android.*;
 import io.appium.java_client.android.connection.HasNetworkConnection;
 import io.appium.java_client.android.geolocation.SupportsExtendedGeolocationCommands;
@@ -53,9 +41,7 @@ import java.net.URL;
 import java.util.Collections;
 import java.util.Map;
 
-import static io.appium.java_client.android.AndroidMobileCommandHelper.endTestCoverageCommand;
-import static io.appium.java_client.android.AndroidMobileCommandHelper.openNotificationsCommand;
-import static io.appium.java_client.android.AndroidMobileCommandHelper.toggleLocationServicesCommand;
+import static io.appium.java_client.android.AndroidMobileCommandHelper.*;
 import static org.openqa.selenium.remote.DriverCommand.EXECUTE_SCRIPT;
 
 /**
@@ -91,193 +77,191 @@ public class CustomAndroidDriver extends CustomAppiumDriver implements
         ExecuteCDPCommand,
         CanReplaceElementValue,
         SupportsExtendedGeolocationCommands {
-  private static final String ANDROID_PLATFORM = Platform.ANDROID.name();
+    private static final String ANDROID_PLATFORM = Platform.ANDROID.name();
 
-  private StringWebSocketClient logcatClient;
+    private StringWebSocketClient logcatClient;
 
-  /**
-   * Creates a new instance based on command {@code executor} and {@code capabilities}.
-   *
-   * @param executor is an instance of {@link HttpCommandExecutor}
-   *                 or class that extends it. Default commands or another vendor-specific
-   *                 commands may be specified there.
-   * @param capabilities take a look at {@link Capabilities}
-   */
-  public CustomAndroidDriver(HttpCommandExecutor executor, Capabilities capabilities) {
-    super(executor, ensurePlatformName(capabilities, ANDROID_PLATFORM));
-  }
-
-  /**
-   * Creates a new instance based on Appium server URL and {@code capabilities}.
-   *
-   * @param remoteAddress is the address of remotely/locally started Appium server
-   * @param capabilities take a look at {@link Capabilities}
-   */
-  public CustomAndroidDriver(URL remoteAddress, Capabilities capabilities) {
-    super(remoteAddress, ensurePlatformName(capabilities, ANDROID_PLATFORM));
-  }
-
-  /**
-   * Creates a new instance based on Appium server URL, HTTP client factory and {@code capabilities}.
-   *
-   * @param remoteAddress is the address of remotely/locally started Appium server
-   * @param httpClientFactory take a look at {@link HttpClient.Factory}
-   * @param capabilities take a look at {@link Capabilities}
-   */
-  public CustomAndroidDriver(
-          URL remoteAddress, HttpClient.Factory httpClientFactory, Capabilities capabilities) {
-    super(remoteAddress, httpClientFactory, ensurePlatformName(capabilities, ANDROID_PLATFORM));
-  }
-
-  /**
-   * Creates a new instance based on Appium driver local service and {@code capabilities}.
-   *
-   * @param service take a look at {@link AppiumDriverLocalService}
-   * @param capabilities take a look at {@link Capabilities}
-   */
-  public CustomAndroidDriver(AppiumDriverLocalService service, Capabilities capabilities) {
-    super(service, ensurePlatformName(capabilities, ANDROID_PLATFORM));
-  }
-
-  /**
-   * Creates a new instance based on Appium driver local service, HTTP client factory and {@code capabilities}.
-   *
-   * @param service take a look at {@link AppiumDriverLocalService}
-   * @param httpClientFactory take a look at {@link HttpClient.Factory}
-   * @param capabilities take a look at {@link Capabilities}
-   */
-  public CustomAndroidDriver(
-          AppiumDriverLocalService service, HttpClient.Factory httpClientFactory, Capabilities capabilities) {
-    super(service, httpClientFactory, ensurePlatformName(capabilities, ANDROID_PLATFORM));
-  }
-
-  /**
-   * Creates a new instance based on Appium service builder and {@code capabilities}.
-   *
-   * @param builder take a look at {@link AppiumServiceBuilder}
-   * @param capabilities take a look at {@link Capabilities}
-   */
-  public CustomAndroidDriver(AppiumServiceBuilder builder, Capabilities capabilities) {
-    super(builder, ensurePlatformName(capabilities, ANDROID_PLATFORM));
-  }
-
-  /**
-   * Creates a new instance based on Appium service builder, HTTP client factory and {@code capabilities}.
-   *
-   * @param builder take a look at {@link AppiumServiceBuilder}
-   * @param httpClientFactory take a look at {@link HttpClient.Factory}
-   * @param capabilities take a look at {@link Capabilities}
-   */
-  public CustomAndroidDriver(AppiumServiceBuilder builder, HttpClient.Factory httpClientFactory,
-                             Capabilities capabilities) {
-    super(builder, httpClientFactory, ensurePlatformName(capabilities, ANDROID_PLATFORM));
-  }
-
-  /**
-   * Creates a new instance based on HTTP client factory and {@code capabilities}.
-   *
-   * @param httpClientFactory take a look at {@link HttpClient.Factory}
-   * @param capabilities take a look at {@link Capabilities}
-   */
-  public CustomAndroidDriver(HttpClient.Factory httpClientFactory, Capabilities capabilities) {
-    super(httpClientFactory, ensurePlatformName(capabilities, ANDROID_PLATFORM));
-  }
-
-  /**
-   * Creates a new instance based on the given ClientConfig and {@code capabilities}.
-   * The HTTP client is default client generated by {@link HttpCommandExecutor#getDefaultClientFactory}.
-   * For example:
-   *
-   * <pre>
-   *
-   * ClientConfig clientConfig = ClientConfig.defaultConfig()
-   *     .baseUri(URI.create("WebDriver URL"))
-   *     .readTimeout(Duration.ofMinutes(5));
-   * UiAutomator2Options options = new UiAutomator2Options();
-   * AndroidDriver driver = new AndroidDriver(clientConfig, options);
-   *
-   * </pre>
-   *
-   * @param clientConfig take a look at {@link ClientConfig}
-   * @param capabilities take a look at {@link Capabilities}
-   *
-   */
-  public CustomAndroidDriver(ClientConfig clientConfig, Capabilities capabilities) {
-    super(AppiumClientConfig.fromClientConfig(clientConfig), ensurePlatformName(capabilities,
-            ANDROID_PLATFORM));
-  }
-
-  /**
-   * Creates a new instance based on the given ClientConfig and {@code capabilities}.
-   * The HTTP client is default client generated by {@link HttpCommandExecutor#getDefaultClientFactory}.
-   * For example:
-   *
-   * <pre>
-   *
-   * AppiumClientConfig appiumClientConfig = AppiumClientConfig.defaultConfig()
-   *     .directConnect(true)
-   *     .baseUri(URI.create("WebDriver URL"))
-   *     .readTimeout(Duration.ofMinutes(5));
-   * UiAutomator2Options options = new UiAutomator2Options();
-   * AndroidDriver driver = new AndroidDriver(appiumClientConfig, options);
-   *
-   * </pre>
-   *
-   * @param appiumClientConfig take a look at {@link AppiumClientConfig}
-   * @param capabilities take a look at {@link Capabilities}
-   *
-   */
-  public CustomAndroidDriver(AppiumClientConfig appiumClientConfig, Capabilities capabilities) {
-    super(appiumClientConfig, ensurePlatformName(capabilities, ANDROID_PLATFORM));
-  }
-
-  /**
-   * Creates a new instance based on {@code capabilities}.
-   *
-   * @param capabilities take a look at {@link Capabilities}
-   */
-  public CustomAndroidDriver(Capabilities capabilities) {
-    super(ensurePlatformName(capabilities, ANDROID_PLATFORM));
-  }
-
-  /**
-   * Get test-coverage data.
-   *
-   * @param intent intent to broadcast.
-   * @param path   path to .ec file.
-   */
-  public void endTestCoverage(String intent, String path) {
-    CommandExecutionHelper.execute(this, endTestCoverageCommand(intent, path));
-  }
-
-  /**
-   * Open the notification shade, on Android devices.
-   */
-  public void openNotifications() {
-    CommandExecutionHelper.execute(this, openNotificationsCommand());
-  }
-
-  public void toggleLocationServices() {
-    CommandExecutionHelper.execute(this, toggleLocationServicesCommand());
-  }
-
-  @SuppressWarnings("unchecked")
-  @Override
-  public AndroidBatteryInfo getBatteryInfo() {
-    return new AndroidBatteryInfo((Map<String, Object>) execute(EXECUTE_SCRIPT, ImmutableMap.of(
-            "script", "mobile: batteryInfo", "args", Collections.emptyList())).getValue());
-  }
-
-  @Override
-  public RemoteLocationContext getLocationContext() {
-    return locationContext;
-  }
-
-  @Override
-  public synchronized StringWebSocketClient getLogcatClient() {
-    if (logcatClient == null) {
-      logcatClient = new StringWebSocketClient();
+    /**
+     * Creates a new instance based on command {@code executor} and {@code capabilities}.
+     *
+     * @param executor     is an instance of {@link HttpCommandExecutor}
+     *                     or class that extends it. Default commands or another vendor-specific
+     *                     commands may be specified there.
+     * @param capabilities take a look at {@link Capabilities}
+     */
+    public CustomAndroidDriver(HttpCommandExecutor executor, Capabilities capabilities) {
+        super(executor, ensurePlatformName(capabilities, ANDROID_PLATFORM));
     }
-    return logcatClient;
-  }
+
+    /**
+     * Creates a new instance based on Appium server URL and {@code capabilities}.
+     *
+     * @param remoteAddress is the address of remotely/locally started Appium server
+     * @param capabilities  take a look at {@link Capabilities}
+     */
+    public CustomAndroidDriver(URL remoteAddress, Capabilities capabilities) {
+        super(remoteAddress, ensurePlatformName(capabilities, ANDROID_PLATFORM));
+    }
+
+    /**
+     * Creates a new instance based on Appium server URL, HTTP client factory and {@code capabilities}.
+     *
+     * @param remoteAddress     is the address of remotely/locally started Appium server
+     * @param httpClientFactory take a look at {@link HttpClient.Factory}
+     * @param capabilities      take a look at {@link Capabilities}
+     */
+    public CustomAndroidDriver(
+            URL remoteAddress, HttpClient.Factory httpClientFactory, Capabilities capabilities) {
+        super(remoteAddress, httpClientFactory, ensurePlatformName(capabilities, ANDROID_PLATFORM));
+    }
+
+    /**
+     * Creates a new instance based on Appium driver local service and {@code capabilities}.
+     *
+     * @param service      take a look at {@link AppiumDriverLocalService}
+     * @param capabilities take a look at {@link Capabilities}
+     */
+    public CustomAndroidDriver(AppiumDriverLocalService service, Capabilities capabilities) {
+        super(service, ensurePlatformName(capabilities, ANDROID_PLATFORM));
+    }
+
+    /**
+     * Creates a new instance based on Appium driver local service, HTTP client factory and {@code capabilities}.
+     *
+     * @param service           take a look at {@link AppiumDriverLocalService}
+     * @param httpClientFactory take a look at {@link HttpClient.Factory}
+     * @param capabilities      take a look at {@link Capabilities}
+     */
+    public CustomAndroidDriver(
+            AppiumDriverLocalService service, HttpClient.Factory httpClientFactory, Capabilities capabilities) {
+        super(service, httpClientFactory, ensurePlatformName(capabilities, ANDROID_PLATFORM));
+    }
+
+    /**
+     * Creates a new instance based on Appium service builder and {@code capabilities}.
+     *
+     * @param builder      take a look at {@link AppiumServiceBuilder}
+     * @param capabilities take a look at {@link Capabilities}
+     */
+    public CustomAndroidDriver(AppiumServiceBuilder builder, Capabilities capabilities) {
+        super(builder, ensurePlatformName(capabilities, ANDROID_PLATFORM));
+    }
+
+    /**
+     * Creates a new instance based on Appium service builder, HTTP client factory and {@code capabilities}.
+     *
+     * @param builder           take a look at {@link AppiumServiceBuilder}
+     * @param httpClientFactory take a look at {@link HttpClient.Factory}
+     * @param capabilities      take a look at {@link Capabilities}
+     */
+    public CustomAndroidDriver(AppiumServiceBuilder builder, HttpClient.Factory httpClientFactory,
+                               Capabilities capabilities) {
+        super(builder, httpClientFactory, ensurePlatformName(capabilities, ANDROID_PLATFORM));
+    }
+
+    /**
+     * Creates a new instance based on HTTP client factory and {@code capabilities}.
+     *
+     * @param httpClientFactory take a look at {@link HttpClient.Factory}
+     * @param capabilities      take a look at {@link Capabilities}
+     */
+    public CustomAndroidDriver(HttpClient.Factory httpClientFactory, Capabilities capabilities) {
+        super(httpClientFactory, ensurePlatformName(capabilities, ANDROID_PLATFORM));
+    }
+
+    /**
+     * Creates a new instance based on the given ClientConfig and {@code capabilities}.
+     * The HTTP client is default client generated by {@link HttpCommandExecutor#getDefaultClientFactory}.
+     * For example:
+     *
+     * <pre>
+     *
+     * ClientConfig clientConfig = ClientConfig.defaultConfig()
+     *     .baseUri(URI.create("WebDriver URL"))
+     *     .readTimeout(Duration.ofMinutes(5));
+     * UiAutomator2Options options = new UiAutomator2Options();
+     * AndroidDriver driver = new AndroidDriver(clientConfig, options);
+     *
+     * </pre>
+     *
+     * @param clientConfig take a look at {@link ClientConfig}
+     * @param capabilities take a look at {@link Capabilities}
+     */
+    public CustomAndroidDriver(ClientConfig clientConfig, Capabilities capabilities) {
+        super(AppiumClientConfig.fromClientConfig(clientConfig), ensurePlatformName(capabilities,
+                ANDROID_PLATFORM));
+    }
+
+    /**
+     * Creates a new instance based on the given ClientConfig and {@code capabilities}.
+     * The HTTP client is default client generated by {@link HttpCommandExecutor#getDefaultClientFactory}.
+     * For example:
+     *
+     * <pre>
+     *
+     * AppiumClientConfig appiumClientConfig = AppiumClientConfig.defaultConfig()
+     *     .directConnect(true)
+     *     .baseUri(URI.create("WebDriver URL"))
+     *     .readTimeout(Duration.ofMinutes(5));
+     * UiAutomator2Options options = new UiAutomator2Options();
+     * AndroidDriver driver = new AndroidDriver(appiumClientConfig, options);
+     *
+     * </pre>
+     *
+     * @param appiumClientConfig take a look at {@link AppiumClientConfig}
+     * @param capabilities       take a look at {@link Capabilities}
+     */
+    public CustomAndroidDriver(AppiumClientConfig appiumClientConfig, Capabilities capabilities) {
+        super(appiumClientConfig, ensurePlatformName(capabilities, ANDROID_PLATFORM));
+    }
+
+    /**
+     * Creates a new instance based on {@code capabilities}.
+     *
+     * @param capabilities take a look at {@link Capabilities}
+     */
+    public CustomAndroidDriver(Capabilities capabilities) {
+        super(ensurePlatformName(capabilities, ANDROID_PLATFORM));
+    }
+
+    /**
+     * Get test-coverage data.
+     *
+     * @param intent intent to broadcast.
+     * @param path   path to .ec file.
+     */
+    public void endTestCoverage(String intent, String path) {
+        CommandExecutionHelper.execute(this, endTestCoverageCommand(intent, path));
+    }
+
+    /**
+     * Open the notification shade, on Android devices.
+     */
+    public void openNotifications() {
+        CommandExecutionHelper.execute(this, openNotificationsCommand());
+    }
+
+    public void toggleLocationServices() {
+        CommandExecutionHelper.execute(this, toggleLocationServicesCommand());
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public AndroidBatteryInfo getBatteryInfo() {
+        return new AndroidBatteryInfo((Map<String, Object>) execute(EXECUTE_SCRIPT, ImmutableMap.of(
+                "script", "mobile: batteryInfo", "args", Collections.emptyList())).getValue());
+    }
+
+    @Override
+    public RemoteLocationContext getLocationContext() {
+        return locationContext;
+    }
+
+    @Override
+    public synchronized StringWebSocketClient getLogcatClient() {
+        if (logcatClient == null) {
+            logcatClient = new StringWebSocketClient();
+        }
+        return logcatClient;
+    }
 }
