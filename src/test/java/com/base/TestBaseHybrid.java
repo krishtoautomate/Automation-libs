@@ -55,7 +55,7 @@ public class TestBaseHybrid {
             isAndroid = platForm.equalsIgnoreCase("Android");
             isIos = platForm.equalsIgnoreCase("iOS");
             GlobalMapper.setUdid(udid);
-            tlDriverFactoryApp.setDriver(iTestContext);
+            tlDriverFactoryApp.setDriver();
             driver = AppiumDriverManager.getDriverInstance();
         }
 

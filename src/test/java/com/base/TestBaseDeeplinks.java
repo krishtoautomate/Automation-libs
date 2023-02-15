@@ -59,7 +59,7 @@ public class TestBaseDeeplinks {
 //        String platformVersion = "";
         if (udid != null) {
             iTestContext.setAttribute("udid",udid);
-            tlDriverFactory.setDriver(iTestContext);
+            tlDriverFactory.setDriver();
             driver = AppiumDriverManager.getDriverInstance();
 
             if ("Auto".equalsIgnoreCase(udid)) {

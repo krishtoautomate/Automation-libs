@@ -38,7 +38,7 @@ public class AppiumDriverManager {
         return getDriverInstance().getSessionId();
     }
 
-    public synchronized void setDriver(ITestContext iTestContext) throws IOException {
+    public synchronized void setDriver() throws IOException {
 
         ITestResult iTestResult = Reporter.getCurrentTestResult();
         Map<String, String> testParams =
@@ -61,11 +61,11 @@ public class AppiumDriverManager {
         }
 
         if ("Android".equalsIgnoreCase(platForm)) {
-            iTestContext.setAttribute("platForm", "ANDROID");
+//            iTestContext.setAttribute("platForm", "ANDROID");
             tlDriver.set(new AndroidDriver(new URL(REMOTE_HOST),
                     capabilitiesManager.setCapabilities("ANDROID")));
         } else if ("iOS".equalsIgnoreCase(platForm)) {
-            iTestContext.setAttribute("platForm", "IOS");
+//            iTestContext.setAttribute("platForm", "IOS");
             tlDriver.set(new IOSDriver(new URL(REMOTE_HOST),
                     capabilitiesManager.setCapabilities("IOS")));
         }

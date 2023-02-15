@@ -1,5 +1,6 @@
 package other.pages;
 
+import com.Drivers.LocatorBy;
 import com.Utilities.BaseObjs;
 import com.aventstack.extentreports.ExtentTest;
 import io.appium.java_client.AppiumBy;
@@ -15,7 +16,7 @@ public class SettingsApp extends BaseObjs<SettingsApp> {
         super(driver, test);
     }
 
-    By displayCell = AppiumBy.iOSClassChain("**/XCUIElementTypeStaticText[`label CONTAINS 'Display'`]");
+    By displayCell = LocatorBy.all(AppiumBy.iOSClassChain("**/XCUIElementTypeStaticText[`label CONTAINS 'Display'`]"));
 
     By autoLockCell = AppiumBy.iOSClassChain("**/XCUIElementTypeCell[`label == 'Auto-Lock'`]");
 

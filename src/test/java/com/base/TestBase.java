@@ -55,7 +55,7 @@ public class TestBase {
         isIos = platForm.equalsIgnoreCase("iOS");
         GlobalMapper.setUdid(udid);
         iTestContext.setAttribute("udid",udid);
-        tlDriverFactory.setDriver(iTestContext);
+        tlDriverFactory.setDriver();
         driver = AppiumDriverManager.getDriverInstance();
 
         /*
