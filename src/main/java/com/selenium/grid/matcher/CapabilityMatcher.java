@@ -1,6 +1,7 @@
 package com.selenium.grid.matcher;
 
 import org.openqa.grid.internal.utils.DefaultCapabilityMatcher;
+
 import java.util.Map;
 
 public class CapabilityMatcher extends DefaultCapabilityMatcher {
