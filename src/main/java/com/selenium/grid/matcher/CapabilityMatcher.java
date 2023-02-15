@@ -24,6 +24,14 @@ public class CapabilityMatcher extends DefaultCapabilityMatcher {
             }
         }
 
+        if (nodeCapability.containsKey("udid")) {
+            // Check if the requested capability has the same appium version
+            if (requestedCapability.containsKey("udid") &&
+                    requestedCapability.get("udid").equals(nodeCapability.get("udid"))) {
+                return true;
+            }
+        }
+
         // Check if the node has the appium version property
         if (nodeCapability.containsKey("appium:platformVersion")) {
             // Check if the requested capability has the same appium version
