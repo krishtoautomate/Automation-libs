@@ -109,6 +109,7 @@ task BaseJar(type: Jar) {
     include 'com/base/*'
     include 'com/ReportManager/*'
     include 'com/DataManager/*'
+    include 'com/Drivers/*'
     destinationDirectory = file("$buildDir/jar")
     archiveName = 'Base.jar'
     exclude 'META-INF/MANIFEST.MF'

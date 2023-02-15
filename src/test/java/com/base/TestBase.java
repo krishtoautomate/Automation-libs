@@ -55,7 +55,7 @@ public class TestBase {
         isIos = platForm.equalsIgnoreCase("iOS");
         GlobalMapper.setUdid(udid);
         iTestContext.setAttribute("udid",udid);
-        tlDriverFactory.setDriver(iTestContext);
+        tlDriverFactory.setDriver();
         driver = AppiumDriverManager.getDriverInstance();
 
         /*
@@ -96,7 +96,7 @@ public class TestBase {
         // Report Content
         test = ExtentTestManager.startTest(methodName + "(" + platForm + ")");
 
-        log.info("Test Details : " + className + " : " + platForm + " : " + deviceName);
+        log.info("Test started : " + className);
         test.assignDevice(deviceName);
 
         String[][] data = {{"<b>TestCase : </b>", className}, {"<b>Device-Name : </b>", deviceName},

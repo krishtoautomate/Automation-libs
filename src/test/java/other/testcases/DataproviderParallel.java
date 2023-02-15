@@ -84,7 +84,7 @@ public class DataproviderParallel extends TestBaseDeeplinks implements ITestBase
         String udid = data.get("udid");
         GlobalMapper.setUdid(udid);
         iTestContext.setAttribute("udid",udid);
-        tlDriverFactory.setDriver(iTestContext);
+        tlDriverFactory.setDriver();
         driver = AppiumDriverManager.getDriverInstance();
 
         if ("Auto".equalsIgnoreCase(udid)) {

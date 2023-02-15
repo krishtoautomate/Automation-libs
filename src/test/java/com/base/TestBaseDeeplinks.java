@@ -59,7 +59,7 @@ public class TestBaseDeeplinks {
 //        String platformVersion = "";
         if (udid != null) {
             iTestContext.setAttribute("udid",udid);
-            tlDriverFactory.setDriver(iTestContext);
+            tlDriverFactory.setDriver();
             driver = AppiumDriverManager.getDriverInstance();
 
             if ("Auto".equalsIgnoreCase(udid)) {
@@ -81,7 +81,8 @@ public class TestBaseDeeplinks {
             test = ExtentTestManager.startTest(methodName + "(" + platForm + ")")
                     .assignDevice(deviceName);
 
-            log.info("Test Details : " + className + " : " + platForm + " : " + deviceName);
+            log.info("Test started : " + className);
+
             String[][] data = {{"<b>TestCase : </b>", className}, {"<b>Device : </b>", deviceName},
                     {"<b>UDID : </b>", udid}, {"<b>Platform : </b>", platForm},
                     {"<b>OsVersion : </b>", platformVersion}};

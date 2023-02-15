@@ -1,5 +1,6 @@
 package other.pages;
 
+import com.Drivers.LocatorBy;
 import com.Utilities.BaseObjs;
 import com.aventstack.extentreports.ExtentTest;
 import io.appium.java_client.AppiumBy;
@@ -16,7 +17,7 @@ public class TestFlightApp extends BaseObjs<TestFlightApp> {
     By tryAgain_btn = AppiumBy.iOSNsPredicateString("type == 'XCUIElementTypeButton' AND name=='Try Again'");
 
     By all_btns = AppiumBy.iOSClassChain("**/XCUIElementTypeButton[`label IN {'UPDATE','INSTALL'}`]");
-    By apps_h1 = AppiumBy.iOSNsPredicateString("label == 'Apps' AND visible =1");
+    By apps_h1 = LocatorBy.all(AppiumBy.iOSNsPredicateString("type == 'XCUIElementTypeStaticText' AND label == 'Apps'"));
 
     By apps_back_btn = AppiumBy.iOSNsPredicateString(
             "type=='XCUIElementTypeButton' AND name=='BackButton' AND label=='Apps'");

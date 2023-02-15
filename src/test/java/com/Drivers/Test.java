@@ -1,7 +1,6 @@
-package com.Driver;
+package com.Drivers;
 
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -28,14 +27,13 @@ public class Test {
         capabilitiesMap.put("appium:appActivity", "com.android.vending.AssetBrowserActivity");
 
         DesiredCapabilities capabilities = new DesiredCapabilities(capabilitiesMap);
-        driver = new CustomAppiumDriver(appiumServerUrl, capabilities);
+        driver = new CustomAndroidDriver(appiumServerUrl, capabilities);
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
-        System.out.println(driver.getSessionId());
+        System.out.println("SessionId : "+driver.getSessionId());
 
         Thread.sleep(10000);
-
 
         By accountLogo = By.xpath(
                 "(//android.view.ViewGroup/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ImageView[contains(@resource-id, '0_resource_name_obfuscated')])[1]");
