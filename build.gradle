@@ -68,6 +68,10 @@ dependencies {
     testImplementation 'com.slack.api:slack-api-client:1.8.1'
     testImplementation 'org.testng:testng:7.1.0'
 
+    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-server
+    implementation 'org.seleniumhq.selenium:selenium-server:3.141.59'
+
+
 }
 
 group = 'Automation-libs'
@@ -112,6 +116,16 @@ task BaseJar(type: Jar) {
     include 'com/Drivers/*'
     destinationDirectory = file("$buildDir/jar")
     archiveName = 'Base.jar'
+    exclude 'META-INF/MANIFEST.MF'
+}
+
+//grid-capability-matcher-3.141.59.jar
+//./gradlew GridJar
+task GridJar(type: Jar) {
+    from sourceSets.main.output
+    include 'com/selenium/grid/matcher/*'
+    destinationDirectory = file("$buildDir/jar")
+    archiveName = 'grid-capability-matcher-3.141.59.jar'
     exclude 'META-INF/MANIFEST.MF'
 }
 
