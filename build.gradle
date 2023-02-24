@@ -18,6 +18,12 @@ def timestamp() {
 
 repositories {
 	mavenCentral()
+//            {
+//        System.setProperty('http.proxyHost', 'fastweb.int.bell.ca')
+//        System.setProperty('http.proxyPort', '8083')
+//        System.setProperty('https.proxyHost', 'fastweb.int.bell.ca')
+//        System.setProperty('https.proxyPort', '8083')
+//    }
     mavenLocal()
     google()
 }
@@ -69,7 +75,7 @@ dependencies {
     testImplementation 'org.testng:testng:7.1.0'
 
     // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-server
-    implementation 'org.seleniumhq.selenium:selenium-server:3.141.59'
+//    implementation 'org.seleniumhq.selenium:selenium-server:3.141.59'
 
 }
 

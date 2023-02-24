@@ -6,15 +6,21 @@ import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.PerformsTouchActions;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.SupportsContextSwitching;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
 import io.restassured.response.Response;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpStatus;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 
@@ -27,8 +33,10 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.Duration;
 import java.util.List;
 import java.util.*;
+import java.util.NoSuchElementException;
 
 public class BaseObjs<T> implements ITestBase {
 
@@ -142,6 +150,48 @@ public class BaseObjs<T> implements ITestBase {
         }
         return imgPath;
     }
+
+    public boolean isElementWithinScreen(By by) {
+        WebElement element = driver.findElement(by);
+        Point location = element.getLocation();
+        Dimension size = driver.manage().window().getSize();
+        int screenWidth = size.width;
+        int screenHeight = size.height;
+        int elementWidth = element.getSize().width;
+        int elementHeight = element.getSize().height;
+        int x = location.x;
+        int y = location.y;
+        return (x >= 0 && x + elementWidth <= screenWidth && y >= 0 && y + elementHeight <= screenHeight);
+    }
+
+    public void scrollDown(int duration) {
+        Dimension size = driver.manage().window().getSize();
+        int startX = size.width / 2;
+        int startY = (int) (size.height * 0.8);
+        int endY = (int) (size.height * 0.2);
+        TouchAction touchAction = new TouchAction((PerformsTouchActions) driver);
+        touchAction.press(PointOption.point(startX, startY))
+                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(duration)))
+                .moveTo(PointOption.point(startX, endY))
+                .release()
+                .perform();
+    }
+
+
+    public void scrollTillElementWithinScreen(By by, int maxScrolls) {
+        int scrolls = 0;
+        while (!isElementWithinScreen(by) && scrolls < maxScrolls) {
+            scrollDown(1000); // scroll down for 1 second
+            scrolls++;
+        }
+        if (scrolls == maxScrolls) {
+            //throw new NoSuchElementException("Element not found or not within screen dimensions after scrolling down " + maxScrolls + " times");
+        }
+    }
+
+
+
+
 
     /**
      * Creates logs into Log4j and extent-Report with Screen-shot
