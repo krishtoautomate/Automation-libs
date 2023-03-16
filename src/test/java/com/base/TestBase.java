@@ -62,7 +62,7 @@ public class TestBase {
          * Test info
          */
         String deviceName = "";
-//        String platformVersion = "";
+        String platformVersion = "";
         if (udid != null) {
             if ("Auto".equalsIgnoreCase(udid)) {
                 udid = driver.getCapabilities().getCapability("udid").toString();
@@ -72,11 +72,11 @@ public class TestBase {
             DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
             deviceName = deviceInfoReader.getString("name");
         }
-//        try {
-//            platformVersion = driver.getCapabilities().getCapability("platformVersion").toString();
-//        } catch (Exception e) {
-//            //ignore
-//        }
+        try {
+            platformVersion = driver.getCapabilities().getCapability("platformVersion").toString();
+        } catch (Exception e) {
+            //ignore
+        }
         udid = driver.getCapabilities().getCapability("udid").toString();
 
         try {
@@ -102,7 +102,7 @@ public class TestBase {
         String[][] data = {{"<b>TestCase : </b>", className}, {"<b>Device-Name : </b>", deviceName},
                 {"<b>UDID : </b>", udid},
                 {"<b>Platform : </b>", platForm},
-//                {"<b>OsVersion : </b>", platformVersion},
+                {"<b>OsVersion : </b>", platformVersion},
                 {"<b>Jira test-key : </b>",
                         "<a href=" + Constants.JIRA_URL + testKey + ">" + testKey + "</a>"}};
 
@@ -117,7 +117,7 @@ public class TestBase {
         if (driver != null) {
             try {
                 if (isAndroid) {
-                    driver.close();
+                    ((AndroidDriver) driver).closeApp();
                 }
 
                 if (isIos) {

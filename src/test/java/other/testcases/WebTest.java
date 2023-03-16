@@ -17,6 +17,9 @@ public class WebTest extends TestBaseWeb implements ITestBase {
     public void Web_Test(){
 //        driver.get("http://172.21.34.239:8001");
 
+//        ((HasAuthentication) driver).register(UsernameAndPassword.of("username", "pass"));
+
+
         try {
             driver.get("https://mybell.bell.ca/Login");
         } catch (Exception e) {

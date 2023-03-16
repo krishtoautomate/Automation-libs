@@ -28,12 +28,7 @@ public class TestFlight extends TestBase implements ITestBase {
     MobileActions mobileActions = new MobileActions(driver, test);
 
     // dismiss open prompt
-    try {
-      driver.switchTo().alert().dismiss();
-      utils.logmessage(Status.PASS, "dismiss alert");
-    } catch (Exception ign) {
-      // ignore
-    }
+    utils.dismissAlert();
 
     mobileActions.resetApp();
 

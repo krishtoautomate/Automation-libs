@@ -124,6 +124,13 @@ public class BaseObjs<T> implements ITestBase {
             } catch (Exception e) {
                 // ignore
             }
+
+            // dismiss open prompt
+            try {
+                driver.switchTo().alert().dismiss();
+            } catch (Exception ign) {
+                // ignore
+            }
         }
     }
 
