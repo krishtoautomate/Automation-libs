@@ -793,6 +793,30 @@
     "devicePort": 8399
   },
   {
+    "name": "iPhone 13",
+    "udid": "00008110-000A4D4E2228401E",
+    "platformName": "iOS",
+    "platformVersion": "16.2",
+    "colour": "Black",
+    "devicePort": 8400
+  },
+  {
+    "name": "iPhone 12 Pro",
+    "udid": "00008101-0006009C1451003A",
+    "platformName": "iOS",
+    "platformVersion": "16.2",
+    "colour": "Black",
+    "devicePort": 8401
+  },
+  {
+    "name": "iPhone SE",
+    "udid": "00008030-001A09420142402E",
+    "platformName": "iOS",
+    "platformVersion": "15.0",
+    "colour": "Black",
+    "devicePort": 8402
+  },
+  {
     "name": "Samsung S8",
     "udid": "988b9b304b4e4a374a",
     "platformName": "Android",
@@ -1711,5 +1735,21 @@
     "platformVersion": "12",
     "colour": "Black",
     "devicePort": 8516
+  },
+  {
+    "name": "samsung SM-F721W",
+    "udid": "R5CT80Z731H",
+    "platformName": "Android",
+    "platformVersion": "12",
+    "colour": "Black",
+    "devicePort": 8517
+  },
+  {
+    "name": "samsung SM-F721W",
+    "udid": "R5CT81ACWNL",
+    "platformName": "Android",
+    "platformVersion": "12",
+    "colour": "Black",
+    "devicePort": 8518
   }
 ]
