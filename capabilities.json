@@ -1,7 +1,7 @@
 {
 	"ANDROID": [
 		{
-			"platformName": "ANDROID",
+			"platformName": "Android",
 			"appium:automationName": "uiautomator2",
 			"autoLaunch": true,
 			"noReset": true,
