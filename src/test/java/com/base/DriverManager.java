@@ -5,7 +5,6 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import org.jetbrains.annotations.NotNull;
-import org.json.simple.parser.ParseException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -40,29 +39,36 @@ public class DriverManager {
     /*
     @platform = Web/Appium
      */
-    public static synchronized WebDriver getDriverInstance(@NotNull String platform) {
-        if (platform.equalsIgnoreCase("Web"))
-            return webDriverMap.get(Long.valueOf(Thread.currentThread().getId()));
-        else
-            return appiumDriverMap.get(Long.valueOf(Thread.currentThread().getId()));
+    public static synchronized WebDriver getWebDriverInstance() {
+        return webDriverMap.get(Long.valueOf(Thread.currentThread().getId()));
     }
 
-    /*
-    @platform = Web/Appium
-     */
-    public static synchronized void quit(@NotNull String platform) {
-        if (platform.equalsIgnoreCase("Web"))
-            getDriverInstance("Web").quit();
-        else
-            getDriverInstance("Appium").quit();
+    public static synchronized AppiumDriver getAppiumDriverInstance() {
+        return appiumDriverMap.get(Long.valueOf(Thread.currentThread().getId()));
     }
+
+//    public static synchronized WebDriver getDriverInstance(@NotNull String platform) {
+//        if (platform.equalsIgnoreCase("Web"))
+//            return webDriverMap.get(Long.valueOf(Thread.currentThread().getId()));
+//        else
+//            return appiumDriverMap.get(Long.valueOf(Thread.currentThread().getId()));
+//    }
+
+//    /*
+//    @platform = Web/Appium
+//     */
+//    public static synchronized void quit(@NotNull String platform) {
+//        if (platform.equalsIgnoreCase("Web"))
+//            getWebDriverInstance().quit();
+//        else
+//            getAppiumDriverInstance().quit();
+//    }
 
     /*
      @platform = Web/Appium
      */
-    protected synchronized void setDriver(String platform) throws IOException, ParseException {
+    protected synchronized void setDriver(String platform) throws IOException {
 
-//        String platform = (String) iTestContext.getAttribute("platform");
         if (platform.equalsIgnoreCase("Web")) {
 
             ITestResult iTestResult = Reporter.getCurrentTestResult();
@@ -105,7 +111,9 @@ public class DriverManager {
             }
             webDriverMap.put(Thread.currentThread().getId(), tlWebDriver.get());
 
-            getDriverInstance("Web").manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+            System.out.println("Session Id : " + ((RemoteWebDriver) tlWebDriver.get()).getSessionId());
+
+            tlWebDriver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
         }
 
@@ -141,10 +149,9 @@ public class DriverManager {
 
             appiumDriverMap.put(Thread.currentThread().getId(), tlAppiumDriver.get());
 
-            // System.out.println("Thread Id : "+ Thread.currentThread().getId());
-//            System.out.println("Session Id : "+ tlAppiumDriver.get().getSessionId());
+            System.out.println("Session Id : "+ tlAppiumDriver.get().getSessionId());
 
-            getDriverInstance("Appium").manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+            tlAppiumDriver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         }
     }
 

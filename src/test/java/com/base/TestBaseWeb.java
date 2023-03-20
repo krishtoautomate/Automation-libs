@@ -55,7 +55,7 @@ public class TestBaseWeb {
         // Set & Get ThreadLocal Driver with Browser
         iTestContext.setAttribute("platform", "Web");
         tlDriverFactory.setDriver("Web");
-        driver = DriverManager.getDriverInstance("Web");
+        driver = DriverManager.getWebDriverInstance();
 
         System.out.println("SessionId : " + ((RemoteWebDriver) driver).getSessionId());
 

@@ -46,7 +46,7 @@ public class TestListenerWeb extends TestListenerAdapter
         String testName = testResult.getMethod().getMethodName();
         String className = testResult.getTestClass().getName();
 
-        WebDriver driver = DriverManager.getDriverInstance("Web");
+        WebDriver driver = DriverManager.getWebDriverInstance();
         ExtentTest test = ExtentTestManager.getTest();
 
         if (driver != null) {

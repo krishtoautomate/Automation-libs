@@ -40,8 +40,7 @@ import java.util.NoSuchElementException;
 
 public class BaseObjs<T> implements ITestBase {
 
-    protected AppiumDriver driver;
-    protected WebDriver webDriver;
+    protected WebDriver driver;
     protected Logger log;
     protected ExtentTest test;
 
@@ -59,11 +58,10 @@ public class BaseObjs<T> implements ITestBase {
         mobileActions = new MobileActions(driver, test);
     }
 
-    protected BaseObjs(WebDriver webDriver, ExtentTest test) {
-        this.webDriver = webDriver;
+    protected BaseObjs(WebDriver driver, ExtentTest test) {
+        this.driver = driver;
         this.log = Logger.getLogger(this.getClass().getName());
         this.test = test;
-        mobileActions = new MobileActions(driver, test);
     }
 
     protected BaseObjs(ExtentTest test) {
@@ -118,7 +116,7 @@ public class BaseObjs<T> implements ITestBase {
             try {
                 HashMap<String, String> args = new HashMap<>();
                 args.put("action", "dismiss");
-                driver.executeScript("mobile: alert", args);
+                ((AppiumDriver) driver).executeScript("mobile: alert", args);
 
                 // driver.switchTo().alert().dismiss();
             } catch (Exception e) {
