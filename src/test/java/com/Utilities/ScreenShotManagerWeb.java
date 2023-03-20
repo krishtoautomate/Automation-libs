@@ -17,7 +17,7 @@ public class ScreenShotManagerWeb {
 
     public static synchronized String getScreenshot() {
 
-        WebDriver driver = DriverManager.getDriverInstance("Web");
+        WebDriver driver = DriverManager.getWebDriverInstance();
 
         File ScreenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 

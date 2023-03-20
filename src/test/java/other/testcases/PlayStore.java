@@ -36,21 +36,21 @@ public class PlayStore extends TestBase implements ITestBase {
       utils.logmessage(Status.PASS, "'Manage apps and device' link clicked");
     }
 
-    sleep(2);
+//    sleep(2);
 
     // 3.0 -
-    if (playstoreapp.verify_updates_refresh_btn()) {
+//    if (playstoreapp.verify_updates_refresh_btn()) {
 //      playstoreapp.get_updates_refresh_btn().click();
-      utils.logmessage(Status.PASS, "'updates refresh Button' is clicked");
-    }
+//      utils.logmessage(Status.PASS, "'updates refresh Button' is clicked");
+//    }
 
     // 4.0 - Click Update All button
     if (playstoreapp.verify_updateAll_btn()) {
       playstoreapp.get_updateAll_btn().click();
       sleep(3);
       utils.logmessage(Status.PASS, "'UPDATE ALL' button clicked");
+      sleep(120);
     }
-    sleep(120);
 
 
   }

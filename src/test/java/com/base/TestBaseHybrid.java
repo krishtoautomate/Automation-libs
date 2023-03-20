@@ -7,6 +7,7 @@ import com.Utilities.Constants;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -24,10 +25,8 @@ import java.util.Map;
 public class TestBaseHybrid {
 
     protected static Logger log;
-    protected WebDriver webDriver;
-    protected AppiumDriver driver;
-    protected AppiumDriverManager tlDriverFactoryApp = new AppiumDriverManager();
-    protected DriverManager tlDriverFactoryWeb = new DriverManager();
+    protected WebDriver driver;
+    protected DriverManager tlDriverFactory = new DriverManager();
     protected ExtentTest test;
     protected boolean isAndroid = false;
     protected boolean isIos = false;
@@ -50,36 +49,36 @@ public class TestBaseHybrid {
 
         String methodName = method.getName();
         String className = this.getClass().getName();
+        String deviceName = "NA";
+
+        tlDriverFactory.setDriver("Web");
+        driver = DriverManager.getWebDriverInstance();
 
         if (udid != null) {
             isAndroid = platForm.equalsIgnoreCase("Android");
             isIos = platForm.equalsIgnoreCase("iOS");
             GlobalMapper.setUdid(udid);
-            tlDriverFactoryApp.setDriver();
-            driver = AppiumDriverManager.getDriverInstance();
-        }
 
-        tlDriverFactoryWeb.setDriver("Web");
-        webDriver = DriverManager.getDriverInstance("Web");
+            tlDriverFactory.setDriver("Appium");
+            driver = DriverManager.getAppiumDriverInstance();
 
-        /*
-         * Test info
-         */
-        String deviceName = "";
-        if (udid != null) {
+
+            /*
+             * Test info
+             */
             if ("Auto".equalsIgnoreCase(udid)) {
-                udid = driver.getCapabilities().getCapability("udid").toString();
+                udid = ((AppiumDriver) driver).getCapabilities().getCapability("udid").toString();
             }
-            iTestContext.setAttribute("udid", udid);
 
             DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
             deviceName = deviceInfoReader.getString("name");
 
+            udid = ((AppiumDriver) driver).getCapabilities().getCapability("udid").toString();
 
-            udid = driver.getCapabilities().getCapability("udid").toString();
+            iTestContext.setAttribute("udid", udid);
 
             try {
-                isFrench = driver.getCapabilities().getCapability("language").toString().equalsIgnoreCase("fr");
+                isFrench = ((AppiumDriver) driver).getCapabilities().getCapability("language").toString().equalsIgnoreCase("fr");
             } catch (Exception e) {
                 isFrench = false;
             }
@@ -97,9 +96,9 @@ public class TestBaseHybrid {
         test.assignDevice(deviceName);
 
         String[][] data = {{"<b>TestCase : </b>", className},
-//                {"<b>Device-Name : </b>", deviceName},
-//                {"<b>UDID : </b>", udid},
-//                {"<b>Platform : </b>", platForm},
+                {"<b>Device-Name : </b>", deviceName},
+                {"<b>UDID : </b>", udid},
+                {"<b>Platform : </b>", platForm},
                 {"<b>Jira test-key : </b>",
                         "<a href=" + Constants.JIRA_URL + testKey + ">" + testKey + "</a>"}};
 
@@ -113,28 +112,30 @@ public class TestBaseHybrid {
     @Parameters({"udid"})
     public synchronized void After(@Optional String udid) {
 
-        if (webDriver != null) {
+        driver = DriverManager.getWebDriverInstance();
+        if (driver != null) {
             try {
-                webDriver.close();
+                driver.close();
             } catch (Exception ign) {
                 // ignore
             }
 
             try {
-                DriverManager.quit("Web");
+                driver.quit();
             } catch (Exception ign) {
                 // ignore
             }
         }
 
+        driver = DriverManager.getAppiumDriverInstance();
         if (driver != null) {
             try {
                 if (isAndroid) {
-                    driver.close();
+                    ((AndroidDriver) driver).closeApp();
                 }
 
                 if (isIos) {
-                    ((IOSDriver) driver).terminateApp(driver.getCapabilities().getCapability("bundleId").toString());
+                    ((IOSDriver) driver).terminateApp(((AppiumDriver) driver).getCapabilities().getCapability("bundleId").toString());
                 }
                 log.info("app close");
             } catch (Exception e) {
@@ -142,21 +143,22 @@ public class TestBaseHybrid {
             }
 
             try {
-                AppiumDriverManager.quit();
+                driver.quit();
                 log.info("driver quit - done");
             } catch (Exception e) {
                 // ignore
             }
-            ExtentTestManager.getTest().info("THE END");
-            log.info("THE END");
+        }
 
-            try {
-                ExtentTestManager.getTest().getExtent().flush();
-            } catch (Exception e) {
-                // ignore
-            } finally {
-                log.info(Constants.EXTENT_HTML_REPORT);
-            }
+        ExtentTestManager.getTest().info("THE END");
+        log.info("THE END");
+
+        try {
+            ExtentTestManager.getTest().getExtent().flush();
+        } catch (Exception e) {
+            // ignore
+        } finally {
+            log.info(Constants.EXTENT_HTML_REPORT);
         }
     }
 
@@ -165,7 +167,6 @@ public class TestBaseHybrid {
      */
     @AfterSuite(alwaysRun = true)
     public void endSuit() {
-
         try {
             ExtentTestManager.getTest().getExtent().flush(); // -----close extent-report
         } catch (Exception e) {
