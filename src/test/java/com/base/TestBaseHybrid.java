@@ -11,6 +11,7 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.Reporter;
@@ -54,6 +55,18 @@ public class TestBaseHybrid {
         tlDriverFactory.setDriver("Web");
         driver = DriverManager.getWebDriverInstance();
 
+        String sessionId = String.valueOf(((RemoteWebDriver) driver).getSessionId());
+
+        String[][] webTable = {
+                {"<b>TestCase : </b>", className},
+                {"<b>Browser : </b>", browser},
+                {"<b>SessionId : </b>", sessionId}
+        };
+
+        test = ExtentTestManager.startTest(methodName);
+
+        test.info(MarkupHelper.createTable(webTable));
+
         if (udid != null) {
             isAndroid = platForm.equalsIgnoreCase("Android");
             isIos = platForm.equalsIgnoreCase("iOS");
@@ -92,17 +105,16 @@ public class TestBaseHybrid {
         result.setAttribute("testKey", testKey);
 
         // Report Content
-        test = ExtentTestManager.startTest(methodName);
         test.assignDevice(deviceName);
 
-        String[][] data = {{"<b>TestCase : </b>", className},
+        String[][] mobileTable = {{"<b>TestCase : </b>", className},
                 {"<b>Device-Name : </b>", deviceName},
                 {"<b>UDID : </b>", udid},
                 {"<b>Platform : </b>", platForm},
                 {"<b>Jira test-key : </b>",
                         "<a href=" + Constants.JIRA_URL + testKey + ">" + testKey + "</a>"}};
 
-        test.info(MarkupHelper.createTable(data));
+        test.info(MarkupHelper.createTable(mobileTable));
 
         log.info("Test started : " + className);
     }
