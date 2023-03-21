@@ -19,8 +19,7 @@ public class TestFlightApp extends BaseObjs<TestFlightApp> {
     By all_btns = AppiumBy.iOSClassChain("**/XCUIElementTypeButton[`label IN {'UPDATE','INSTALL'}`]");
     By apps_h1 = LocatorBy.all(AppiumBy.iOSNsPredicateString("type == 'XCUIElementTypeStaticText' AND label == 'Apps'"));
 
-    By apps_back_btn = AppiumBy.iOSNsPredicateString(
-            "type=='XCUIElementTypeButton' AND name=='BackButton' AND label=='Apps'");
+    By apps_back_btn = AppiumBy.iOSClassChain("**/XCUIElementTypeNavigationBar/XCUIElementTypeButton[`visible =1`]");
 
     public TestFlightApp(AppiumDriver driver, ExtentTest test) {
         super(driver, test);
@@ -53,6 +52,10 @@ public class TestFlightApp extends BaseObjs<TestFlightApp> {
 
     public WebElement get_apps_h1() {
         return get_Element(apps_h1, "'Apps' title text");
+    }
+
+    public boolean verify_apps_h1() {
+        return isElementDisplayed(apps_h1);
     }
 
     @SuppressWarnings("unchecked")

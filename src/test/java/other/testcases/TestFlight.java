@@ -50,17 +50,19 @@ public class TestFlight extends TestBase implements ITestBase {
     }
 
     // for ipads
-    if (testFlightApp.verify_apps_back_btn()) {
+    if(!testFlightApp.verify_apps_h1()) {
+      if (testFlightApp.verify_apps_back_btn()) {
 
-      utils.getPageSource();
+        utils.getPageSource();
 
-      if (testFlightApp.verify_all_btns()) {
-        testFlightApp.get_all_btns().get(0).click();
-        utils.logmessage(Status.PASS,"UPDATE button clicked");
+        if (testFlightApp.verify_all_btns()) {
+          testFlightApp.get_all_btns().get(0).click();
+          utils.logmessage(Status.PASS, "UPDATE button clicked");
+        }
+
+        testFlightApp.get_apps_back_btn().click();
+        utils.logmessage(Status.PASS, "App back Button - is Clicked");
       }
-
-      testFlightApp.get_apps_back_btn().click();
-      utils.logmessage(Status.PASS, "App back Button - is Clicked");
     }
 
     sleep(4);
