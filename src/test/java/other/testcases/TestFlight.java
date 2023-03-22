@@ -111,9 +111,11 @@ public class TestFlight extends TestBase implements ITestBase {
       utils.getPageSource();
 
       // for ipads
-      if (testFlightApp.verify_apps_back_btn()) {
-        testFlightApp.get_apps_back_btn().click();
-        utils.logmessage(Status.PASS, "App back Button - is Clicked");
+      if(!testFlightApp.verify_apps_h1()) {
+        if (testFlightApp.verify_apps_back_btn()) {
+          testFlightApp.get_apps_back_btn().click();
+          utils.logmessage(Status.PASS, "App back Button - is Clicked");
+        }
       }
 
       utils.getPageSource();
