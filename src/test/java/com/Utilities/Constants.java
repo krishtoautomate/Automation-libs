@@ -1,6 +1,9 @@
 package com.Utilities;
 
 
+import org.openqa.selenium.PageLoadStrategy;
+import org.openqa.selenium.chrome.ChromeOptions;
+
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
@@ -79,5 +82,23 @@ public class Constants {
     } catch (UnknownHostException e) {
       return "Unknown Host";
     }
+  }
+
+
+  public static final ChromeOptions getChromeOptions() {
+
+    ChromeOptions options = new ChromeOptions();
+    options.addArguments("--start-maximized");
+    options.addArguments("--ignore-certificate-errors");
+    options.addArguments("--disable-popup-blocking");
+    options.addArguments("--incognito");
+    options.addArguments("user-agent=GomezAgent");
+    options.addArguments("disable-infobars");
+    options.addArguments("--remote-allow-origins=*");
+
+    options.setAcceptInsecureCerts(true);
+    options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+
+    return options;
   }
 }

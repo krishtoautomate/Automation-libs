@@ -57,7 +57,7 @@ public class TestBaseWeb {
         tlDriverFactory.setDriver("Web");
         driver = DriverManager.getWebDriverInstance();
 
-        System.out.println("SessionId : " + ((RemoteWebDriver) driver).getSessionId());
+//        System.out.println("SessionId : " + ((RemoteWebDriver) driver).getSessionId());
 
         // Create Test in extent-Report
         test = ExtentTestManager.startTest(methodName);
