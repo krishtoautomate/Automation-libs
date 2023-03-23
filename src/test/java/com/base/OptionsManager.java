@@ -1,6 +1,7 @@
 package com.base;
 
 
+import com.Utilities.Constants;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -24,6 +25,7 @@ public class OptionsManager {
 
     options.setAcceptInsecureCerts(true);
     options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+
     options.merge(capabilities);
 
     return options;

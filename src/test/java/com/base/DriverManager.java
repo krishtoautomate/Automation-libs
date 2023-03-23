@@ -1,5 +1,6 @@
 package com.base;
 
+import com.Utilities.Constants;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
@@ -84,14 +85,12 @@ public class DriverManager {
             if (platform == null)
                 return;
             if (browser.equalsIgnoreCase("chrome")) {
-//                iTestContext.setAttribute("platForm", "CHROME");
                 DesiredCapabilities capabilities = capabilitiesManager.setCapabilities("CHROME");
 
-                capabilities.setCapability("chrome.switches",
-                        Arrays.asList("--ignore-certificate-errors" + "," + "--web-security=false" + ","
-                                + "--ssl-protocol=any" + "," + "--ignore-ssl-errors=true"));
+                ChromeOptions options = Constants.getChromeOptions();
+                options.merge(capabilities);
 
-                ChromeOptions options = optionsManager.getChromeOptions(capabilities);
+                System.out.println("options : "+ options);
 
                 if ("localhost".equalsIgnoreCase(REMOTE_HOST)) {
                     tlWebDriver.set(new ChromeDriver(options));
