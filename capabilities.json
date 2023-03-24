@@ -29,8 +29,21 @@
 	],
 	"CHROME": [
 		{
-			"acceptInsecureCerts": true,
-			"browserName": "chrome"
+			"browserName": "chrome",
+			"browserVersion": "latest",
+			"platformName": "LINUX",
+			"acceptInsecureCerts": "true",
+			"goog:chromeOptions": {
+				"args": [
+					"--start-maximized",
+					"--ignore-certificate-errors",
+					"--disable-popup-blocking",
+					"--incognito",
+					"user-agent=GomezAgent",
+					"disable-infobars",
+					"--remote-allow-origins=*"],
+				"pageLoadStrategy": "normal"
+			}
 		}
 	]
 }
