@@ -6,11 +6,14 @@ import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.JsonFormatter;
 import com.aventstack.extentreports.reporter.configuration.ViewName;
 
+import java.util.Locale;
+
 public class ExtentManager {
 
   public static final ExtentReports extentReports = new ExtentReports();
 
   public synchronized static ExtentReports createExtentReports() {
+    Locale.setDefault(Locale.ENGLISH);
     JsonFormatter jsonReport = new JsonFormatter(Constants.EXTENT_JSON_REPORT);
     ExtentSparkReporter reporter = new ExtentSparkReporter(Constants.EXTENT_HTML_REPORT)
         .viewConfigurer()
@@ -30,5 +33,6 @@ public class ExtentManager {
 
     return extentReports;
   }
+
 
 }

@@ -87,8 +87,10 @@ public class DriverManager {
             if (browser.equalsIgnoreCase("chrome")) {
                 DesiredCapabilities capabilities = capabilitiesManager.setCapabilities("CHROME");
 
-                ChromeOptions options = Constants.getChromeOptions();
-                options.merge(capabilities);
+                OptionsManager OptionsManager = new OptionsManager();
+                ChromeOptions options = OptionsManager.getChromeOptions(capabilities);
+//                        Constants.getChromeOptions();
+//                options.merge(capabilities);
 
                 System.out.println("options : "+ options);
 
