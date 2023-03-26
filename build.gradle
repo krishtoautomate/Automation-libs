@@ -44,9 +44,7 @@ dependencies {
     testImplementation 'io.cucumber:cucumber-junit:7.2.3'
 
     testImplementation 'commons-io:commons-io:2.6'
-
-//    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
-    testImplementation 'com.google.code.gson:gson:2.8.9'
+    testImplementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.googlecode.json-simple:json-simple:1.1.1'
 
     implementation 'javax.mail:mail:1.4'
@@ -57,7 +55,7 @@ dependencies {
     
     testImplementation 'io.rest-assured:rest-assured:4.4.0'
    
-   	testImplementation 'com.aventstack:extentreports:5.0.9'
+   	testImplementation 'com.aventstack:extentreports:5.0.8'
    	testImplementation 'tech.grasshopper:pdfextentreporter:0.3'
 
     testImplementation 'com.google.guava:guava:21.0'
@@ -81,7 +79,7 @@ dependencies {
 
 group = 'Automation-libs'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+sourceCompatibility = '11'
 
 publishing {
     publications {

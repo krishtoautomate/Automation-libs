@@ -41,7 +41,8 @@ public class Constants {
       USER_DIR + "/src/main/resources/extent-config.xml";
   public static final String REPORT_DIR = OUTPUT_DIRECTORY + DATE_NOW + "/";
   public static final String EXTENT_HTML_REPORT = REPORT_DIR + "AUTOMATION_REPORT" + ".html";
-  public static final String EXTENT_JSON_REPORT = REPORT_DIR + "AUTOMATION_REPORT" + ".json";
+  public static final String EXTENT_FAILED_HTML_REPORT = REPORT_DIR + "AUTOMATION_FAILED_REPORT" + ".html";
+  public static final String EXTENT_JSON_REPORT = REPORT_DIR + TIME_NOW+"/AUTOMATION_REPORT" + ".json";
   public static final String EXTENT_PDF_REPORT = REPORT_DIR + "AUTOMATION_REPORT" + ".pdf";
   public static final String APPENDED_REPORT = REPORT_DIR + "appendedReports" + ".html";
   public static final String EMAIL_REPORT = REPORT_DIR + "EmailableReport" + ".html";
