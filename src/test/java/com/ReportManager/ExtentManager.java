@@ -2,6 +2,7 @@ package com.ReportManager;
 
 import com.Utilities.Constants;
 import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.JsonFormatter;
 import com.aventstack.extentreports.reporter.configuration.ViewName;
@@ -15,13 +16,20 @@ public class ExtentManager {
   public synchronized static ExtentReports createExtentReports() {
     Locale.setDefault(Locale.ENGLISH);
     JsonFormatter jsonReport = new JsonFormatter(Constants.EXTENT_JSON_REPORT);
-    ExtentSparkReporter reporter = new ExtentSparkReporter(Constants.EXTENT_HTML_REPORT)
+    ExtentSparkReporter report = new ExtentSparkReporter(Constants.EXTENT_HTML_REPORT)
         .viewConfigurer()
         .viewOrder().as(new ViewName[]{ViewName.TEST, ViewName.DEVICE, ViewName.AUTHOR,
             ViewName.CATEGORY, ViewName.EXCEPTION, ViewName.LOG, ViewName.DASHBOARD})
         .apply();
-    reporter.config().setReportName("Automation Report");
-    extentReports.attachReporter(reporter, jsonReport);
+    report.config().setReportName("Automation Report");
+
+    ExtentSparkReporter failedReport = new ExtentSparkReporter(Constants.EXTENT_FAILED_HTML_REPORT)
+            .filter()
+            .statusFilter()
+            .as(new Status[] { Status.FAIL })
+            .apply();
+
+    extentReports.attachReporter(report, jsonReport, failedReport);
 
 //    ExtentPDFReporter pdfReport = new ExtentPDFReporter(Constants.EXTENT_PDF_REPORT);
 //    extentReports.attachReporter(pdfReport);
@@ -33,6 +41,8 @@ public class ExtentManager {
 
     return extentReports;
   }
+
+
 
 
 }

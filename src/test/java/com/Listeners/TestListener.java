@@ -31,7 +31,7 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
 
     private static Logger log = Logger.getLogger(TestListener.class.getName());
 
-    Jira jiraReporter = new Jira();
+//    Jira jiraReporter = new Jira();
 
     @Override
     public void onTestStart(ITestResult testResult) {
@@ -90,7 +90,7 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
             // jiraReporter.setTestInfo("status", "PASS");
             // jiraReporter.setTestInfo("comment", testName+"("+platForm+")");
 
-            jiraReporter.addTest(testKey, start, finish, "PASS", testName );
+//            jiraReporter.addTest(testKey, start, finish, "PASS", testName );
         }
     }
 
@@ -153,11 +153,11 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
             // ignore
         }
 
-        if (testKey != null) {
-            String start = testResult.getAttribute("start").toString();
-            String finish = dateANDtime;
-            jiraReporter.addTest(testKey, start, finish, "FAIL", testName);
-        }
+//        if (testKey != null) {
+//            String start = testResult.getAttribute("start").toString();
+//            String finish = dateANDtime;
+//            jiraReporter.addTest(testKey, start, finish, "FAIL", testName);
+//        }
     }
 
     @Override
@@ -201,10 +201,10 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
         String excutionSummary = jobName + buildNo;
         String excutionDescription = buildUrl;
         String startDate = dateANDtime;
-        jiraReporter.setTestExecutionInfo("summary", excutionSummary);
-        jiraReporter.setTestExecutionInfo("testPlanKey", testPlanKey);// "MAEAUTO-311"
-        jiraReporter.setTestExecutionInfo("description", excutionDescription);
-        jiraReporter.setTestExecutionInfo("startDate", startDate);
+//        jiraReporter.setTestExecutionInfo("summary", excutionSummary);
+//        jiraReporter.setTestExecutionInfo("testPlanKey", testPlanKey);// "MAEAUTO-311"
+//        jiraReporter.setTestExecutionInfo("description", excutionDescription);
+//        jiraReporter.setTestExecutionInfo("startDate", startDate);
 
     }
 
@@ -226,10 +226,10 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
         sdf.setTimeZone(TimeZone.getTimeZone("EST"));
         String dateANDtime = sdf.format(date.getTime());
         String finishDate = dateANDtime;
-        jiraReporter.setTestExecutionInfo("finishDate", finishDate);
-        jiraReporter.addInfo();
-        jiraReporter.addTests();
-        jiraReporter.CreatejiraReport(Constants.JIRA_REPORT);
+//        jiraReporter.setTestExecutionInfo("finishDate", finishDate);
+//        jiraReporter.addInfo();
+//        jiraReporter.addTests();
+//        jiraReporter.CreatejiraReport(Constants.JIRA_REPORT);
 
     }
 
