@@ -12,6 +12,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
+import com.base.AppiumDriverManager;
 import com.base.Jira;
 import com.base.TestBase;
 import io.appium.java_client.AppiumDriver;
@@ -133,15 +134,14 @@ public class TestListenerRT extends TestBase
         String testName = testResult.getMethod().getMethodName();
         String className = testResult.getTestClass().getName();
 
-        Object testClass = testResult.getInstance();
-        AppiumDriver driver = tlDriverFactory.getDriverInstance();
+        AppiumDriver driver = AppiumDriverManager.getDriverInstance();
 //    Logger log = LoggerManager.getLogger();
         ExtentTest test = ExtentTestManager.getTest();
 
         if (driver != null) {
             log.error("Test failed : " + className + " : " + udid + "_" + deviceName);
             try {
-                ScreenShotManager screenShotManager = new ScreenShotManager();
+                ScreenShotManager screenShotManager = new ScreenShotManager(driver);
                 String ScreenShot = screenShotManager.getScreenshot();
                 test.fail("Failed Test case : " + testName + "\n" + testResult.getThrowable(),
                         MediaEntityBuilder.createScreenCaptureFromPath(ScreenShot).build());

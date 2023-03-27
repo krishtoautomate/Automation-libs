@@ -115,7 +115,7 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
         if (driver != null) {
             log.error("Test failed : " + testName + " : " + udid + "_" + deviceName);
             try {
-                ScreenShotManager screenShotManager = new ScreenShotManager();
+                ScreenShotManager screenShotManager = new ScreenShotManager(driver);
                 String ScreenShot = screenShotManager.getScreenshot();
 
                 test.fail("Failed Test case : " + testName + "\n" + testResult.getThrowable(),

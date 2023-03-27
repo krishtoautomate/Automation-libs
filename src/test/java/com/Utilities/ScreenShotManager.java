@@ -5,6 +5,8 @@ import io.appium.java_client.AppiumDriver;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,13 +14,23 @@ import java.util.UUID;
 
 public class ScreenShotManager {
 
+    WebDriver driver;
+
+    public ScreenShotManager(WebDriver driver){
+        this.driver = driver;
+    }
+
+    public ScreenShotManager(AppiumDriver driver){
+        this.driver = driver;
+    }
+
     private static Logger log = Logger.getLogger(ScreenShotManager.class.getName());
 
-    public static synchronized String getScreenshot() {
+    public synchronized String getScreenshot() {
 
-        AppiumDriver driver = AppiumDriverManager.getDriverInstance();
+//        AppiumDriver driver = AppiumDriverManager.getDriverInstance();
 
-        File ScreenShot = driver.getScreenshotAs(OutputType.FILE);
+        File ScreenShot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 
         UUID uuid = UUID.randomUUID();
 
