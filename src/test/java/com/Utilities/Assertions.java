@@ -2,6 +2,7 @@ package com.Utilities;
 
 import com.ReportManager.ExtentTestManager;
 import com.aventstack.extentreports.MediaEntityBuilder;
+import com.base.AppiumDriverManager;
 import com.base.TestBase;
 import org.apache.commons.lang3.StringUtils;
 import org.testng.Assert;
@@ -22,7 +23,7 @@ public class Assertions extends TestBase {
 
                 if (isScreenshot)
                     ExtentTestManager.getTest()
-                            .pass("Verification Success : '" + actual.trim() + "' Vs '" + expectedText + "'", MediaEntityBuilder.createScreenCaptureFromPath(ScreenShotManager.getScreenshot()).build());
+                            .pass("Verification Success : '" + actual.trim() + "' Vs '" + expectedText + "'", MediaEntityBuilder.createScreenCaptureFromPath(new ScreenShotManager(AppiumDriverManager.getDriverInstance()).getScreenshot()).build());
                 else
                     ExtentTestManager.getTest()
                             .pass("Verification Success : '" + actual.trim() + "' Vs '" + expected.trim() + "'");
@@ -33,7 +34,7 @@ public class Assertions extends TestBase {
         String message =
                 "Verification failed : Actual : '" + actual + "' \n " + "Expected : '" + expectedText + "'";
         ExtentTestManager.getTest()
-                .fail("<p style='color:red;'>" + message + "</p>", MediaEntityBuilder.createScreenCaptureFromPath(ScreenShotManager.getScreenshot()).build());
+                .fail("<p style='color:red;'>" + message + "</p>", MediaEntityBuilder.createScreenCaptureFromPath(new ScreenShotManager(AppiumDriverManager.getDriverInstance()).getScreenshot()).build());
         Assert.fail(message);
 
     }
@@ -54,14 +55,14 @@ public class Assertions extends TestBase {
 
         String message =
                 "Verification failed : 'Actual : " + actual + " \n " + "Expected : " + Expected + "'";
-        ExtentTestManager.getTest().warning(message, MediaEntityBuilder.createScreenCaptureFromPath(ScreenShotManager.getScreenshot()).build());
+        ExtentTestManager.getTest().warning(message, MediaEntityBuilder.createScreenCaptureFromPath(new ScreenShotManager(AppiumDriverManager.getDriverInstance()).getScreenshot()).build());
     }
 
     public static void softAssertTrue(boolean isTrue, String message) {
         if (isTrue) {
             ExtentTestManager.getTest().info(message);
         } else {
-            ExtentTestManager.getTest().fail(message, MediaEntityBuilder.createScreenCaptureFromPath(ScreenShotManager.getScreenshot()).build());
+            ExtentTestManager.getTest().fail(message, MediaEntityBuilder.createScreenCaptureFromPath(new ScreenShotManager(AppiumDriverManager.getDriverInstance()).getScreenshot()).build());
         }
     }
 
@@ -88,7 +89,7 @@ public class Assertions extends TestBase {
             String message =
                     "Verification failed : 'Actual : " + actualText + " \n " + "Expected : " + expectedText + "'";
             ExtentTestManager.getTest()
-                    .fail("<p style='color:red;'>" + message + "</p>", MediaEntityBuilder.createScreenCaptureFromPath(ScreenShotManager.getScreenshot()).build());
+                    .fail("<p style='color:red;'>" + message + "</p>", MediaEntityBuilder.createScreenCaptureFromPath(new ScreenShotManager(AppiumDriverManager.getDriverInstance()).getScreenshot()).build());
             Assert.fail(message);
         }
     }
@@ -98,7 +99,7 @@ public class Assertions extends TestBase {
             String message =
                     "Verification failed : 'Actual : " + actual + " \n " + "Expected : " + expected + "'";
             ExtentTestManager.getTest()
-                    .fail("<p style='color:red;'>" + message + "</p>", MediaEntityBuilder.createScreenCaptureFromPath(ScreenShotManager.getScreenshot()).build());
+                    .fail("<p style='color:red;'>" + message + "</p>", MediaEntityBuilder.createScreenCaptureFromPath(new ScreenShotManager(AppiumDriverManager.getDriverInstance()).getScreenshot()).build());
             Assert.fail(message);
         }
     }
@@ -108,14 +109,14 @@ public class Assertions extends TestBase {
             String message =
                     "Verification failed : 'Actual : " + actual + " \n " + "Expected : " + expected + "'";
             ExtentTestManager.getTest()
-                    .fail("<p style='color:red;'>" + message + "</p>", MediaEntityBuilder.createScreenCaptureFromPath(ScreenShotManager.getScreenshot()).build());
+                    .fail("<p style='color:red;'>" + message + "</p>", MediaEntityBuilder.createScreenCaptureFromPath(new ScreenShotManager(AppiumDriverManager.getDriverInstance()).getScreenshot()).build());
             Assert.fail(message);
         }
     }
 
     public static void fail(String message) {
         ExtentTestManager.getTest()
-                .fail(message, MediaEntityBuilder.createScreenCaptureFromPath(ScreenShotManager.getScreenshot()).build());
+                .fail(message, MediaEntityBuilder.createScreenCaptureFromPath(new ScreenShotManager(AppiumDriverManager.getDriverInstance()).getScreenshot()).build());
         Assert.fail(message);
     }
 }

@@ -33,6 +33,11 @@ public class TestFlight extends TestBase implements ITestBase {
 
         utils.dismissAlert();
 
+        if (testFlightApp.verify_notNow_btn()) {
+            testFlightApp.get_notNow_btn().click();
+            utils.logmessage(Status.PASS, "Not Now Button - is Clicked");
+        }
+
         if (!driver.getCapabilities().getCapability("bundleId")
                 .toString().contains("com.apple.TestFlight")) {
             mobileActions.activateApp("com.apple.TestFlight");
@@ -41,6 +46,11 @@ public class TestFlight extends TestBase implements ITestBase {
         if (testFlightApp.verify_tryAgain_btn()) {
             testFlightApp.get_tryAgain_btn().click();
             utils.logmessage(Status.PASS, "'Try Again' Button - is Clicked");
+        }
+
+        if (testFlightApp.verify_notNow_btn()) {
+            testFlightApp.get_notNow_btn().click();
+            utils.logmessage(Status.PASS, "Not Now Button - is Clicked");
         }
 
         if (testFlightApp.verify_continue_btn()) {
@@ -116,7 +126,6 @@ public class TestFlight extends TestBase implements ITestBase {
                     utils.logmessage(Status.PASS, "App back Button - is Clicked");
                 }
             }
-
             utils.getPageSource();
         }
     }

@@ -13,7 +13,10 @@ import java.util.List;
 public class TestFlightApp extends BaseObjs<TestFlightApp> {
 
     // TestFlight
-    By continue_btn = AppiumBy.iOSNsPredicateString("type == 'XCUIElementTypeButton' AND name IN {'Continue','Continue Button','Not Now'}");
+    By continue_btn = AppiumBy.iOSNsPredicateString("type == 'XCUIElementTypeButton' AND name IN {'Continue','Continue Button'}");
+
+    By notNow_btn = AppiumBy.iOSClassChain("**/XCUIElementTypeButton[`label == 'Not Now'`]");
+
     By tryAgain_btn = AppiumBy.iOSNsPredicateString("type == 'XCUIElementTypeButton' AND name=='Try Again'");
 
     By all_btns = AppiumBy.iOSClassChain("**/XCUIElementTypeButton[`label IN {'UPDATE','INSTALL'}`]");
@@ -33,6 +36,13 @@ public class TestFlightApp extends BaseObjs<TestFlightApp> {
         return get_Element(continue_btn, "continue' button");
     }
 
+    public boolean verify_notNow_btn(){
+        return isElementDisplayed(notNow_btn);
+    }
+
+    public WebElement get_notNow_btn(){
+        return get_Element(notNow_btn, "Now now button");
+    }
     public boolean verify_tryAgain_btn() {
         return isElementDisplayed(tryAgain_btn);
     }
