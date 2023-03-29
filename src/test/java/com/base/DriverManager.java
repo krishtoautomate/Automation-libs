@@ -37,6 +37,8 @@ public class DriverManager {
     private ThreadLocal<AppiumDriver> tlAppiumDriver = new ThreadLocal<>();
     private CapabilitiesManager capabilitiesManager = new CapabilitiesManager();
 
+    private AppiumDriverManager appiumDriverManager = new AppiumDriverManager();
+
     /*
     @platform = Web/Appium
      */
@@ -45,25 +47,9 @@ public class DriverManager {
     }
 
     public static synchronized AppiumDriver getAppiumDriverInstance() {
-        return appiumDriverMap.get(Long.valueOf(Thread.currentThread().getId()));
+        return AppiumDriverManager.getDriverInstance();
+//                appiumDriverMap.get(Long.valueOf(Thread.currentThread().getId()));
     }
-
-//    public static synchronized WebDriver getDriverInstance(@NotNull String platform) {
-//        if (platform.equalsIgnoreCase("Web"))
-//            return webDriverMap.get(Long.valueOf(Thread.currentThread().getId()));
-//        else
-//            return appiumDriverMap.get(Long.valueOf(Thread.currentThread().getId()));
-//    }
-
-//    /*
-//    @platform = Web/Appium
-//     */
-//    public static synchronized void quit(@NotNull String platform) {
-//        if (platform.equalsIgnoreCase("Web"))
-//            getWebDriverInstance().quit();
-//        else
-//            getAppiumDriverInstance().quit();
-//    }
 
     /*
      @platform = Web/Appium
@@ -76,8 +62,7 @@ public class DriverManager {
             Map<String, String> testParams =
                     iTestResult.getTestContext().getCurrentXmlTest().getAllParameters();
 
-            String browser = testParams.get("browser");
-            browser = browser == null ? testParams.get("platForm") : testParams.get("browser");
+            String browser = testParams.get("browser") ==null ? "chrome":testParams.get("browser");
 
             String REMOTE_HOST =
                     testParams.get("REMOTE_HOST_WEB") == null ? "localhost" : testParams.get("REMOTE_HOST_WEB");
@@ -120,39 +105,41 @@ public class DriverManager {
 
         if (platform.equalsIgnoreCase("Appium")) {
 
-            ITestResult iTestResult = Reporter.getCurrentTestResult();
-            Map<String, String> testParams =
-                    iTestResult.getTestContext().getCurrentXmlTest().getAllParameters();
+//            ITestResult iTestResult = Reporter.getCurrentTestResult();
+//            Map<String, String> testParams =
+//                    iTestResult.getTestContext().getCurrentXmlTest().getAllParameters();
+//
+//            String platForm = testParams.get("platForm");
+//            if (platForm == null)
+//                return;
+//
+//            String REMOTE_HOST =
+//                    testParams.get("REMOTE_HOST") == null ? "localhost" : testParams.get("REMOTE_HOST");
+//
+//            if (REMOTE_HOST.equalsIgnoreCase("localhost")) {
+//                AppiumService appiumService = new AppiumService();
+//                server = appiumService.AppiumServer();
+//                server.start();
+//                REMOTE_HOST = server.getUrl().toString();
+//            }
+//
+//            if ("Android".equalsIgnoreCase(platForm)) {
+////                iTestContext.setAttribute("platForm", "ANDROID");
+//                tlAppiumDriver.set(new AndroidDriver(new URL(REMOTE_HOST),
+//                        capabilitiesManager.setCapabilities("ANDROID")));
+//            } else if ("iOS".equalsIgnoreCase(platForm)) {
+////                iTestContext.setAttribute("platForm", "IOS");
+//                tlAppiumDriver.set(new IOSDriver(new URL(REMOTE_HOST),
+//                        capabilitiesManager.setCapabilities("IOS")));
+//            }
+//
+//            appiumDriverMap.put(Thread.currentThread().getId(), tlAppiumDriver.get());
+//
+//            System.out.println("Session Id : "+ tlAppiumDriver.get().getSessionId());
+//
+//            tlAppiumDriver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
-            String platForm = testParams.get("platForm");
-            if (platForm == null)
-                return;
-
-            String REMOTE_HOST =
-                    testParams.get("REMOTE_HOST") == null ? "localhost" : testParams.get("REMOTE_HOST");
-
-            if (REMOTE_HOST.equalsIgnoreCase("localhost")) {
-                AppiumService appiumService = new AppiumService();
-                server = appiumService.AppiumServer();
-                server.start();
-                REMOTE_HOST = server.getUrl().toString();
-            }
-
-            if ("Android".equalsIgnoreCase(platForm)) {
-//                iTestContext.setAttribute("platForm", "ANDROID");
-                tlAppiumDriver.set(new AndroidDriver(new URL(REMOTE_HOST),
-                        capabilitiesManager.setCapabilities("ANDROID")));
-            } else if ("iOS".equalsIgnoreCase(platForm)) {
-//                iTestContext.setAttribute("platForm", "IOS");
-                tlAppiumDriver.set(new IOSDriver(new URL(REMOTE_HOST),
-                        capabilitiesManager.setCapabilities("IOS")));
-            }
-
-            appiumDriverMap.put(Thread.currentThread().getId(), tlAppiumDriver.get());
-
-            System.out.println("Session Id : "+ tlAppiumDriver.get().getSessionId());
-
-            tlAppiumDriver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+            appiumDriverManager.setDriver();
         }
     }
 
