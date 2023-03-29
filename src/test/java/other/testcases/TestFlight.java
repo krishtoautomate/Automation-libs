@@ -128,5 +128,37 @@ public class TestFlight extends TestBase implements ITestBase {
             }
             utils.getPageSource();
         }
+
+
+//        ((IOSDriver)driver).activateApp("com.apple.mobilesafari");
+//
+//        sleep(5);
+//
+//        utils.logmessage(Status.PASS, "safari launched");
+//
+//
+//
+//        driver.getPageSource();
+//
+//        Set<String> contextNames = ((SupportsContextSwitching) driver).getContextHandles();
+//
+//        System.out.println("contextNames : "+ contextNames);
+//
+//        sleep(10);
+//
+//        contextNames = ((SupportsContextSwitching) driver).getContextHandles();
+//
+//        System.out.println("contextNames reload : "+ contextNames);
+//
+//        sleep(10);
+
+
+//        System.out.println("contextNames : "+ driver.executeScript("mobile:getContexts"));
+//
+//        sleep(10);
+//
+//        System.out.println("contextNames : "+ driver.executeScript("mobile:getContexts"));
+
+
     }
 }

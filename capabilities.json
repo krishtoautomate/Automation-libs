@@ -16,15 +16,20 @@
 	"IOS": [
 		{
 			"platformName": "iOS",
-			"automationName": "XCUITest",
-			"autoLaunch": true,
-			"fullReset": false,
-			"noReset": false,
-			"newCommandTimeout": 120,
-			"autoDismissAlerts": true,
-			"bundleId": "com.apple.TestFlight",
-			"wdaStartupRetries": 2,
-			"wdaStartupRetryInterval": 2000
+			"appium:platformVersion": "12.2",
+			"appium:automationName": "XCUITest",
+			"appium:autoLaunch": true,
+			"appium:fullReset": false,
+			"appium:noReset": false,
+			"appium:newCommandTimeout": 120,
+			"appium:autoDismissAlerts": false,
+			"appium:bundleId": "com.apple.TestFlight",
+			"appium:wdaStartupRetries": 2,
+			"appium:wdaStartupRetryInterval": 2000,
+			"appium:wdaLocalPort": 8500,
+			"appium:language": "en",
+			"appium:locale": "CA",
+			"appium:autoWebview": false
 		}
 	],
 	"CHROME": [

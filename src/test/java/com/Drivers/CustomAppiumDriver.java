@@ -108,14 +108,14 @@ public class CustomAppiumDriver extends AppiumDriver {
         element.click();
     }
 
-    public AppiumDriver getDriverInstance() {
-        return this;
-    }
-
     public void findElementAndTap(By by) {
         WebElement element = findElement(by);
         // Custom implementation for the tap() method
         actions().moveToElement(element).click().perform();
+    }
+
+    public AppiumDriver getDriverInstance() {
+        return this;
     }
 
     public Actions actions() {

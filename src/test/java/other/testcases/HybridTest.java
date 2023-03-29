@@ -20,20 +20,18 @@ public class HybridTest extends TestBaseHybrid implements ITestBase {
     @Test
     public void Hybrid_Test(){
 
-        driver = DriverManager.getWebDriverInstance();
-
-        driver.get("http://bqatautomation.bell.corp.bce.ca:8080/");
+        webDriver.get("http://bqatautomation.bell.corp.bce.ca:8080/");
 
         sleep(5);
 
-        test.pass("web-page loaded : "+driver.getCurrentUrl(), MediaEntityBuilder.createScreenCaptureFromPath(ScreenShotManagerWeb.getScreenshot()).build());
+        test.pass("web-page loaded : "+webDriver.getCurrentUrl(), MediaEntityBuilder.createScreenCaptureFromPath(ScreenShotManagerWeb.getScreenshot()).build());
 
-        PlayStoreApp playstoreapp = new PlayStoreApp(DriverManager.getAppiumDriverInstance(), test);
+        PlayStoreApp playstoreapp = new PlayStoreApp(appiumDriver, test);
 
 
         sleep(5);
 
-        String errorXML = driver.getPageSource();
+        String errorXML = appiumDriver.getPageSource();
         test.info(MarkupHelper.createCodeBlock(errorXML));
 
 
@@ -43,9 +41,7 @@ public class HybridTest extends TestBaseHybrid implements ITestBase {
 
         sleep(5);
 
-        driver = DriverManager.getAppiumDriverInstance();
-
-        errorXML = driver.getPageSource();
+        errorXML = appiumDriver.getPageSource();
         test.info(MarkupHelper.createCodeBlock(errorXML));
     }
 }
