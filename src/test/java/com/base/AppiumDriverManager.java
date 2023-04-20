@@ -41,10 +41,8 @@ public class AppiumDriverManager {
         ITestResult iTestResult = Reporter.getCurrentTestResult();
         Map<String, String> testParams =
                 iTestResult.getTestContext().getCurrentXmlTest().getAllParameters();
-//        iTestResult.getTestContext().getAttribute("udid");
 
         String platForm = testParams.get("platForm");
-//        String udid = testParams.get("udid");
         if (platForm == null)
             return;
 
@@ -67,7 +65,7 @@ public class AppiumDriverManager {
                         capabilitiesManager.setCapabilities("IOS")));
             }
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException(e.getMessage());
         }
 
         driverMap.put(Thread.currentThread().getId(), tlDriver.get());
