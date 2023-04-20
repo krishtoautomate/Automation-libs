@@ -65,7 +65,9 @@ public class AppiumDriverManager {
                         capabilitiesManager.setCapabilities("IOS")));
             }
         } catch (Exception e) {
-            throw new RuntimeException(e.getMessage());
+            System.out.println("LMessage : "+ e.getLocalizedMessage());
+            System.out.println("Message : "+ e.getMessage());
+            throw new RuntimeException(e);
         }
 
         driverMap.put(Thread.currentThread().getId(), tlDriver.get());
