@@ -47,14 +47,14 @@ public class TestBase {
     @BeforeMethod
     @Parameters({"udid", "platForm"})
     public synchronized void Before(@Optional String udid, @Optional String platForm,
-                                    ITestContext iTestContext, Method method) throws Exception {
+                                    ITestContext iTestContext, Method method) {
 
         String methodName = method.getName();
         String className = this.getClass().getName();
         isAndroid = platForm.equalsIgnoreCase("Android");
         isIos = platForm.equalsIgnoreCase("iOS");
         GlobalMapper.setUdid(udid);
-        iTestContext.setAttribute("udid",udid);
+        iTestContext.setAttribute("udid", udid);
         tlDriverFactory.setDriver();
         driver = AppiumDriverManager.getDriverInstance();
 

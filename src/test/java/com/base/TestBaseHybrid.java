@@ -26,12 +26,14 @@ import java.util.Map;
 public class TestBaseHybrid {
 
     protected static Logger log;
-    protected WebDriver driver;
+    protected AppiumDriver appiumDriver;
+    protected WebDriver webDriver;
     protected DriverManager tlDriverFactory = new DriverManager();
     protected ExtentTest test;
     protected boolean isAndroid = false;
     protected boolean isIos = false;
     protected boolean isFrench = false;
+    String sessionId;
 
     /**
      * Executed once before all the tests
@@ -46,16 +48,16 @@ public class TestBaseHybrid {
     @BeforeMethod
     @Parameters({"udid", "platForm", "browser"})
     public synchronized void Before(@Optional String udid, @Optional String platForm, @Optional String browser,
-                                    ITestContext iTestContext, Method method) throws Exception {
+                                    ITestContext iTestContext, Method method) {
 
         String methodName = method.getName();
         String className = this.getClass().getName();
         String deviceName = "NA";
 
         tlDriverFactory.setDriver("Web");
-        driver = DriverManager.getWebDriverInstance();
+        webDriver = DriverManager.getWebDriverInstance();
 
-        String sessionId = String.valueOf(((RemoteWebDriver) driver).getSessionId());
+        sessionId = String.valueOf(((RemoteWebDriver) webDriver).getSessionId());
 
         String[][] webTable = {
                 {"<b>TestCase : </b>", className},
@@ -73,25 +75,25 @@ public class TestBaseHybrid {
             GlobalMapper.setUdid(udid);
 
             tlDriverFactory.setDriver("Appium");
-            driver = DriverManager.getAppiumDriverInstance();
+            appiumDriver = DriverManager.getAppiumDriverInstance();
 
 
             /*
              * Test info
              */
             if ("Auto".equalsIgnoreCase(udid)) {
-                udid = ((AppiumDriver) driver).getCapabilities().getCapability("udid").toString();
+                udid = appiumDriver.getCapabilities().getCapability("udid").toString();
             }
 
             DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
             deviceName = deviceInfoReader.getString("name");
 
-            udid = ((AppiumDriver) driver).getCapabilities().getCapability("udid").toString();
+            udid = appiumDriver.getCapabilities().getCapability("udid").toString();
 
             iTestContext.setAttribute("udid", udid);
 
             try {
-                isFrench = ((AppiumDriver) driver).getCapabilities().getCapability("language").toString().equalsIgnoreCase("fr");
+                isFrench = appiumDriver.getCapabilities().getCapability("language").toString().equalsIgnoreCase("fr");
             } catch (Exception e) {
                 isFrench = false;
             }
@@ -124,30 +126,30 @@ public class TestBaseHybrid {
     @Parameters({"udid"})
     public synchronized void After(@Optional String udid) {
 
-        driver = DriverManager.getWebDriverInstance();
-        if (driver != null) {
+        webDriver = DriverManager.getWebDriverInstance();
+        if (webDriver != null) {
             try {
-                driver.close();
+                webDriver.close();
             } catch (Exception ign) {
                 // ignore
             }
 
             try {
-                driver.quit();
+                webDriver.quit();
             } catch (Exception ign) {
                 // ignore
             }
         }
 
-        driver = DriverManager.getAppiumDriverInstance();
-        if (driver != null) {
+        appiumDriver = DriverManager.getAppiumDriverInstance();
+        if (appiumDriver != null) {
             try {
                 if (isAndroid) {
-                    ((AndroidDriver) driver).closeApp();
+                    ((AndroidDriver) appiumDriver).closeApp();
                 }
 
                 if (isIos) {
-                    ((IOSDriver) driver).terminateApp(((AppiumDriver) driver).getCapabilities().getCapability("bundleId").toString());
+                    ((IOSDriver) appiumDriver).terminateApp(appiumDriver.getCapabilities().getCapability("bundleId").toString());
                 }
                 log.info("app close");
             } catch (Exception e) {
@@ -155,7 +157,7 @@ public class TestBaseHybrid {
             }
 
             try {
-                driver.quit();
+                appiumDriver.quit();
                 log.info("driver quit - done");
             } catch (Exception e) {
                 // ignore

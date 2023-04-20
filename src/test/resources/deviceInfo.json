@@ -1751,5 +1751,21 @@
     "platformVersion": "12",
     "colour": "Black",
     "devicePort": 8518
+  },
+  {
+    "name": "motorola moto g(6) play",
+    "udid": "ZL3222BTSG",
+    "platformName": "Android",
+    "platformVersion": "8.0.0",
+    "colour": "Black",
+    "devicePort": 8519
+  },
+  {
+    "name": "Google Pixel 4 XL",
+    "udid": "9B051FFBA007KA",
+    "platformName": "Android",
+    "platformVersion": "10.0",
+    "colour": "Black",
+    "devicePort": 8520
   }
 ]

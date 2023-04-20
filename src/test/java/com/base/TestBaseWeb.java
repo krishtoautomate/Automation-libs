@@ -7,18 +7,14 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import org.apache.log4j.Logger;
-import org.json.simple.parser.ParseException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.remote.SessionId;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.annotations.*;
 
-import java.io.IOException;
 import java.lang.reflect.Method;
-import java.net.MalformedURLException;
 import java.util.Map;
 
 /**
@@ -45,7 +41,7 @@ public class TestBaseWeb {
     @BeforeMethod(alwaysRun = true)
     @Parameters({"browser"})
     public synchronized void setupTest(@Optional String browser, ITestContext iTestContext,
-                                       Method method) throws IOException, ParseException {
+                                       Method method) {
 
         String className = this.getClass().getName();
         String methodName = method.getName();
