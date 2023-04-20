@@ -5,11 +5,9 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import org.openqa.selenium.remote.SessionId;
-import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 
-import java.io.IOException;
 import java.net.URL;
 import java.time.Duration;
 import java.util.Map;
@@ -38,7 +36,7 @@ public class AppiumDriverManager {
         return getDriverInstance().getSessionId();
     }
 
-    public synchronized void setDriver() throws IOException {
+    public synchronized void setDriver() {
 
         ITestResult iTestResult = Reporter.getCurrentTestResult();
         Map<String, String> testParams =
@@ -60,14 +58,16 @@ public class AppiumDriverManager {
             REMOTE_HOST = server.getUrl().toString();
         }
 
-        if ("Android".equalsIgnoreCase(platForm)) {
-//            iTestContext.setAttribute("platForm", "ANDROID");
-            tlDriver.set(new AndroidDriver(new URL(REMOTE_HOST),
-                    capabilitiesManager.setCapabilities("ANDROID")));
-        } else if ("iOS".equalsIgnoreCase(platForm)) {
-//            iTestContext.setAttribute("platForm", "IOS");
-            tlDriver.set(new IOSDriver(new URL(REMOTE_HOST),
-                    capabilitiesManager.setCapabilities("IOS")));
+        try {
+            if ("Android".equalsIgnoreCase(platForm)) {
+                tlDriver.set(new AndroidDriver(new URL(REMOTE_HOST),
+                        capabilitiesManager.setCapabilities("ANDROID")));
+            } else if ("iOS".equalsIgnoreCase(platForm)) {
+                tlDriver.set(new IOSDriver(new URL(REMOTE_HOST),
+                        capabilitiesManager.setCapabilities("IOS")));
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
 
         driverMap.put(Thread.currentThread().getId(), tlDriver.get());

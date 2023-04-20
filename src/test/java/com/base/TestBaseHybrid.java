@@ -48,7 +48,7 @@ public class TestBaseHybrid {
     @BeforeMethod
     @Parameters({"udid", "platForm", "browser"})
     public synchronized void Before(@Optional String udid, @Optional String platForm, @Optional String browser,
-                                    ITestContext iTestContext, Method method) throws Exception {
+                                    ITestContext iTestContext, Method method) {
 
         String methodName = method.getName();
         String className = this.getClass().getName();

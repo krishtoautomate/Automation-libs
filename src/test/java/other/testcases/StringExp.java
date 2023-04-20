@@ -16,9 +16,9 @@ public class StringExp {
 
     System.out.println(str.split(",")[0]);
 
-    // System.out.println(str.replaceAll("[a-zA-Z]|\\W|\\s+", ""));//50
+     System.out.println(str.replaceAll("[a-zA-Z]|\\W|\\s+", ""));//
 
-    // System.out.println(str.replaceAll("^[a-zA-Z$]|\\s+", ""));
+//     System.out.println(str.replaceAll("^[a-zA-Z$]|\\s+", ""));
 
     // int i = Integer.parseInt(str.replaceAll("[a-zA-Z$]|\\s+", ""));
 
