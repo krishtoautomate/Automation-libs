@@ -48,8 +48,8 @@ public class CapabilitiesManager {
     @SuppressWarnings("unchecked")
     public synchronized DesiredCapabilities setCapabilities(String platForm) {
 
-        int devicePort = 8100;
-        devicePort++;
+//        int devicePort = 8100;
+//        devicePort++;
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
@@ -74,14 +74,15 @@ public class CapabilitiesManager {
 
                     DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
                     deviceName = deviceInfoReader.getString("name");
-                    devicePort = deviceInfoReader.getInt("devicePort");
+//                    devicePort = deviceInfoReader.getInt("devicePort");
                     String platformVersion = deviceInfoReader.getString("platformVersion");
 
                     jObj.put("appium:" + MobileCapabilityType.PLATFORM_VERSION, platformVersion);
 
-                    jObj.put("Android".equalsIgnoreCase(platForm) ? "appium:systemPort" : "appium:wdaLocalPort", devicePort);
-                    jObj.put("deviceName", deviceName);
+//                    jObj.put("Android".equalsIgnoreCase(platForm) ? "appium:systemPort" : "appium:wdaLocalPort", devicePort);
+//                    jObj.put("deviceName", deviceName);
                 }
+                jObj.put("deviceName", deviceName);
 
                 //capabilities from TestNG.xml
                 String pCapabilities = testParams.get("capabilities");
