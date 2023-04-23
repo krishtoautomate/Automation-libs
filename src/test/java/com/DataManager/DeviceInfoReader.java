@@ -31,10 +31,10 @@ public class DeviceInfoReader {
   }
 
   public static void main(String[] args) {
-    DeviceInfoReader deviceInfoReader = new DeviceInfoReader(
-        "e0857ea6c266c485198cf77589ac858a2526dc01");
-    System.out.println(deviceInfoReader.getString("udid"));
-    System.out.println(deviceInfoReader.getInt("devicePort"));
+//    DeviceInfoReader deviceInfoReader = new DeviceInfoReader(
+//        "e0857ea6c266c485198cf77589ac858a2526dc01");
+//    System.out.println(deviceInfoReader.getString("udid"));
+//    System.out.println(deviceInfoReader.getInt("devicePort"));
   }
 
   public synchronized String getString(String key) {

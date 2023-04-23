@@ -55,7 +55,6 @@ public class TestBaseDeeplinks {
         /*
          * Test info
          */
-        String deviceName = "";
 //        String platformVersion = "";
         if (udid != null) {
             iTestContext.setAttribute("udid",udid);
@@ -67,15 +66,17 @@ public class TestBaseDeeplinks {
             }
             iTestContext.setAttribute("udid", udid);
 
-            DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
-            deviceName = deviceInfoReader.getString("name");
+//            DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
+//            deviceName = deviceInfoReader.getString("name");
 
             udid = driver.getCapabilities().getCapability("udid").toString();
+            String deviceName = driver.getCapabilities().getCapability("deviceName").toString();
+            String platformVersion = driver.getCapabilities().getCapability("platformVersion").toString();
 
             iTestContext.setAttribute("udid", udid);
 
 //            DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
-            String platformVersion = deviceInfoReader.getString("platformVersion");
+//            String platformVersion = deviceInfoReader.getString("platformVersion");
 
             // Report Content
             test = ExtentTestManager.startTest(methodName + "(" + platForm + ")")

@@ -85,8 +85,8 @@ public class TestBaseHybrid {
                 udid = appiumDriver.getCapabilities().getCapability("udid").toString();
             }
 
-            DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
-            deviceName = deviceInfoReader.getString("name");
+//            DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
+//            deviceName = deviceInfoReader.getString("name");
 
             udid = appiumDriver.getCapabilities().getCapability("udid").toString();
 
