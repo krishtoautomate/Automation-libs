@@ -58,27 +58,6 @@ public class TestBase {
         tlDriverFactory.setDriver();
         driver = AppiumDriverManager.getDriverInstance();
 
-        /*
-         * Test info
-         */
-        String deviceName = "";
-        String platformVersion = "";
-        if (udid != null) {
-            if ("Auto".equalsIgnoreCase(udid)) {
-                udid = driver.getCapabilities().getCapability("udid").toString();
-            }
-            iTestContext.setAttribute("udid", udid);
-
-//            DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
-//            deviceName = deviceInfoReader.getString("name");
-        }
-        try {
-            platformVersion = driver.getCapabilities().getCapability("platformVersion").toString();
-        } catch (Exception e) {
-            //ignore
-        }
-        udid = driver.getCapabilities().getCapability("udid").toString();
-
         try {
             isFrench = driver.getCapabilities().getCapability("language").toString().equalsIgnoreCase("fr");
         } catch (Exception e) {
@@ -97,10 +76,13 @@ public class TestBase {
         test = ExtentTestManager.startTest(methodName + "(" + platForm + ")");
 
         log.info("Test started : " + className);
+        String _udid = driver.getCapabilities().getCapability("udid").toString();
+        String deviceName = driver.getCapabilities().getCapability("deviceName").toString();
+        String platformVersion = driver.getCapabilities().getCapability("platformVersion").toString();
         test.assignDevice(deviceName);
 
         String[][] data = {{"<b>TestCase : </b>", className}, {"<b>Device-Name : </b>", deviceName},
-                {"<b>UDID : </b>", udid},
+                {"<b>UDID : </b>", _udid},
                 {"<b>Platform : </b>", platForm},
                 {"<b>OsVersion : </b>", platformVersion},
                 {"<b>Jira test-key : </b>",
