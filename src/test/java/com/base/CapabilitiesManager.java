@@ -3,7 +3,6 @@ package com.base;
  * Created by Krish on 21.07.2018.
  **/
 
-import com.DataManager.DeviceInfoReader;
 import com.Utilities.Constants;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.apache.log4j.Logger;
@@ -15,7 +14,6 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
@@ -26,7 +24,7 @@ import java.util.Map;
  */
 public class CapabilitiesManager {
 
-    static Map<Integer, JSONObject> capabilitiesMap = new HashMap<Integer, JSONObject>();
+    static Map<Long, JSONObject> capabilitiesMap = new HashMap<Long, JSONObject>();
     private static Logger log = Logger.getLogger(CapabilitiesManager.class.getName());
 
     public static synchronized DesiredCapabilities getCapabilities() {
@@ -57,7 +55,7 @@ public class CapabilitiesManager {
         Map<String, String> testParams =
                 iTestResult.getTestContext().getCurrentXmlTest().getAllParameters();
         String udid = GlobalMapper.getUdid();
-        String deviceName = "Android".equalsIgnoreCase(platForm) ? "Android Device" : "iPhone";
+//        String deviceName = "Android".equalsIgnoreCase(platForm) ? "Android Device" : "iPhone";
 
         try {
             //capabilities from capabilities.json
@@ -72,17 +70,17 @@ public class CapabilitiesManager {
                 if (udid != null) {
                     jObj.put("appium:" + MobileCapabilityType.UDID, udid.trim());
 
-                    DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
-                    deviceName = deviceInfoReader.getString("name");
+//                    DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
+//                    deviceName = deviceInfoReader.getString("name");
+
+//                    String platformVersion = deviceInfoReader.getString("platformVersion");
+//                    jObj.put("appium:" + MobileCapabilityType.PLATFORM_VERSION, platformVersion);
+
 //                    devicePort = deviceInfoReader.getInt("devicePort");
-                    String platformVersion = deviceInfoReader.getString("platformVersion");
-
-                    jObj.put("appium:" + MobileCapabilityType.PLATFORM_VERSION, platformVersion);
-
 //                    jObj.put("Android".equalsIgnoreCase(platForm) ? "appium:systemPort" : "appium:wdaLocalPort", devicePort);
 //                    jObj.put("deviceName", deviceName);
                 }
-                jObj.put("deviceName", deviceName);
+//                jObj.put("deviceName", deviceName);
 
                 //capabilities from TestNG.xml
                 String pCapabilities = testParams.get("capabilities");
@@ -119,7 +117,7 @@ public class CapabilitiesManager {
 //            //ignore
 //        }
 
-            capabilitiesMap.put((int) Thread.currentThread().getId(), jObj);
+            capabilitiesMap.put(Thread.currentThread().getId(), jObj);
 
             //add to capabilities
             System.out.println("capabilities : " + jObj.toJSONString());
