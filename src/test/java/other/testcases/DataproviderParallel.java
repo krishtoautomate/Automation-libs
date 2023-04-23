@@ -91,12 +91,15 @@ public class DataproviderParallel extends TestBaseDeeplinks implements ITestBase
             udid = driver.getCapabilities().getCapability("udid").toString();
         }
 
-        DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
-        String deviceName = deviceInfoReader.getString("name");
+//        DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
+//        String deviceName = deviceInfoReader.getString("name");
 
         udid = driver.getCapabilities().getCapability("udid").toString();
 
-        String platformVersion = deviceInfoReader.getString("platformVersion");
+//        String platformVersion = deviceInfoReader.getString("platformVersion");
+
+        String deviceName = driver.getCapabilities().getCapability("deviceName").toString();
+        String platformVersion = driver.getCapabilities().getCapability("platformVersion").toString();
 
         // Report Content
         test = ExtentTestManager.startTest(className)

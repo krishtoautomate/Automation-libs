@@ -64,8 +64,8 @@ public class TestListenerRT extends TestBase
         String udid = testParams.get("udid");
         String platForm = testParams.get("platForm");
 
-        DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
-        String deviceName = deviceInfoReader.getString("name");
+//        DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
+//        String deviceName = deviceInfoReader.getString("name");
 
         String buildNo = System.getenv("BUILD_NUMBER");
         String environment = System.getenv("ENVIRONMENT");
@@ -80,7 +80,7 @@ public class TestListenerRT extends TestBase
 
         // Categories
         test.assignCategory(platForm);
-        test.assignCategory(deviceName);
+//        test.assignCategory(deviceName);
         test.assignCategory("Passed");
 
         // DB update
@@ -88,8 +88,8 @@ public class TestListenerRT extends TestBase
         LocalDateTime now = LocalDateTime.now();
         String date_time = dtf.format(now);
 
-        reporter.report(date_time, "MVM", buildNo, environment, testName, deviceName, platForm, "PASS",
-                "");
+//        reporter.report(date_time, "MVM", buildNo, environment, testName, deviceName, platForm, "PASS",
+//                "");
 
         // Jira
         Date date = new Date();
@@ -125,8 +125,8 @@ public class TestListenerRT extends TestBase
         String udid = testParams.get("udid");
         String platForm = testParams.get("platForm");
 
-        DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
-        String deviceName = deviceInfoReader.getString("name");
+//        DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
+//        String deviceName = deviceInfoReader.getString("name");
 
         String buildNo = System.getenv("BUILD_NUMBER");
         String environment = System.getenv("ENVIRONMENT");
@@ -139,7 +139,7 @@ public class TestListenerRT extends TestBase
         ExtentTest test = ExtentTestManager.getTest();
 
         if (driver != null) {
-            log.error("Test failed : " + className + " : " + udid + "_" + deviceName);
+            log.error("Test failed : " + className + " : " + udid);
             try {
                 ScreenShotManager screenShotManager = new ScreenShotManager(driver);
                 String ScreenShot = screenShotManager.getScreenshot();
@@ -155,7 +155,7 @@ public class TestListenerRT extends TestBase
 
             // Categories
             test.assignCategory(platForm);
-            test.assignCategory(deviceName);
+//            test.assignCategory(deviceName);
             test.assignCategory("Failed");
 
             // DB
@@ -164,8 +164,8 @@ public class TestListenerRT extends TestBase
             String date_time = dtf.format(now);
 
             // Emailable Test Summary
-            reporter.report(date_time, "MVM", buildNo, environment, testName, deviceName, platForm,
-                    "FAIL", testResult.getThrowable().toString());
+//            reporter.report(date_time, "MVM", buildNo, environment, testName, deviceName, platForm,
+//                    "FAIL", testResult.getThrowable().toString());
 
         }
         // Jira
@@ -210,14 +210,14 @@ public class TestListenerRT extends TestBase
         String udid = testParams.get("udid");
         String className = testResult.getTestClass().getName();
 
-        DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
-        String deviceName = deviceInfoReader.getString("name");
+//        DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
+//        String deviceName = deviceInfoReader.getString("name");
         String p_Testdata = Reporter.getCurrentTestResult().getTestContext().getCurrentXmlTest().getAllParameters().get("p_Testdata");
         TestDataManager testData = new TestDataManager(p_Testdata);
-        AppiumDriver driver = tlDriverFactory.getDriverInstance();
+        AppiumDriver driver = AppiumDriverManager.getDriverInstance();
         int index = driver instanceof AndroidDriver ? 0 : 1;
 
-        log.warn("Test Skipped : " + className + " : " + udid + "_" + deviceName);
+        log.warn("Test Skipped : " + className + " : " + udid );
 
         ExtentTest test = ExtentTestManager.getTest();
         ExtentReports extent = ExtentTestManager.getTest().getExtent();

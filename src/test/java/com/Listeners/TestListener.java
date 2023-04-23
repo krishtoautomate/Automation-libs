@@ -103,14 +103,17 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
                 testResult.getTestContext().getCurrentXmlTest().getAllParameters();
         String udid = testParams.get("udid");
 
+
         System.getenv("BUILD_NUMBER");
         System.getenv("ENVIRONMENT");
         String testName = testResult.getMethod().getMethodName();
 
         AppiumDriver driver = AppiumDriverManager.getDriverInstance();
         ExtentTest test = ExtentTestManager.getTest();
-        DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
-        String deviceName = deviceInfoReader.getString("name");
+//        DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
+//        String deviceName = deviceInfoReader.getString("name");
+
+        String deviceName = driver.getCapabilities().getCapability("deviceName").toString();
 
         if (driver != null) {
             log.error("Test failed : " + testName + " : " + udid + "_" + deviceName);
@@ -168,12 +171,11 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
         Map<String, String> testParams =
                 testResult.getTestContext().getCurrentXmlTest().getAllParameters();
         String udid = testParams.get("udid");
-        DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
-        String deviceName = deviceInfoReader.getString("name");
+//        DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
+//        String deviceName = deviceInfoReader.getString("name");
 
 //    Logger log = LoggerManager.getLogger();
-        log.warn("Test Skipped : " + testResult.getMethod().getMethodName() + " : " + udid + "_"
-                + deviceName);
+        log.warn("Test Skipped : " + testResult.getMethod().getMethodName() + " : " + udid );
 
         try {
             ExtentReports extent = ExtentTestManager.getTest().getExtent();

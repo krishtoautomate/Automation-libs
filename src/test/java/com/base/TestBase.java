@@ -69,8 +69,8 @@ public class TestBase {
             }
             iTestContext.setAttribute("udid", udid);
 
-            DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
-            deviceName = deviceInfoReader.getString("name");
+//            DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
+//            deviceName = deviceInfoReader.getString("name");
         }
         try {
             platformVersion = driver.getCapabilities().getCapability("platformVersion").toString();
