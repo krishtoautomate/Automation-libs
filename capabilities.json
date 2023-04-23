@@ -16,7 +16,6 @@
 	"IOS": [
 		{
 			"platformName": "iOS",
-			"appium:platformVersion": "12.2",
 			"appium:automationName": "XCUITest",
 			"appium:autoLaunch": true,
 			"appium:fullReset": false,
@@ -26,10 +25,8 @@
 			"appium:bundleId": "com.apple.TestFlight",
 			"appium:wdaStartupRetries": 2,
 			"appium:wdaStartupRetryInterval": 2000,
-			"appium:wdaLocalPort": 8500,
 			"appium:language": "en",
-			"appium:locale": "CA",
-			"appium:autoWebview": false
+			"appium:locale": "CA"
 		}
 	],
 	"CHROME": [

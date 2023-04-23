@@ -21,7 +21,7 @@ public class AppiumDriverManager {
     private CapabilitiesManager capabilitiesManager = new CapabilitiesManager();
 
     public static synchronized AppiumDriver getDriverInstance() {
-        return driverMap.get(Long.valueOf(Thread.currentThread().getId()));
+        return driverMap.get(Thread.currentThread().getId());
     }
 
     public static synchronized void quit() {
@@ -66,7 +66,7 @@ public class AppiumDriverManager {
             }
         } catch (Exception e) {
 //            System.out.println("LMessage : "+ e.getLocalizedMessage());
-            System.out.println("Message : "+ e.getMessage());
+            System.out.println("Message : " + e.getMessage());
             throw new RuntimeException(e.getLocalizedMessage());
         }
 
