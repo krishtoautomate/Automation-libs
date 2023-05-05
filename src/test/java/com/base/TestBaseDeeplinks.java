@@ -104,16 +104,11 @@ public class TestBaseDeeplinks {
                     String bundleId = getIOSActiveAppInfo();
                     ((IOSDriver) driver)
                             .terminateApp(bundleId);
-//                    HashMap<String, String> args = new HashMap<>();
-//                    args.put("bundleId", driver.getCapabilities().getCapability("bundleId").toString());
-//                    driver.executeScript("mobile:terminateApp", args);
                 }
                 log.info("app close");
             } catch (Exception e) {
                 // ignore
             }
-            ExtentTestManager.getTest().info("THE END");
-            log.info("THE END");
 
             try {
                 AppiumDriverManager.quit();
@@ -122,8 +117,10 @@ public class TestBaseDeeplinks {
                 // ignore
             }
         }
+        log.info("THE END");
 
         try {
+            ExtentTestManager.getTest().info("THE END");
             ExtentTestManager.getTest().getExtent().flush(); // -----close extent-report
         } catch (Exception e) {
             // ignore

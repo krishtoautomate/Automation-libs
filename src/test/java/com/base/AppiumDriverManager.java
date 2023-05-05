@@ -26,7 +26,6 @@ public class AppiumDriverManager {
 
     public static synchronized void quit() {
         getDriverInstance().quit();
-
         if (server.isRunning()) {
             server.stop();
         }

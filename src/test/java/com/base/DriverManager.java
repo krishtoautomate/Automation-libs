@@ -4,6 +4,9 @@ import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestResult;
@@ -54,7 +57,9 @@ public class DriverManager {
             String browser = testParams.get("browser") == null ? "chrome" : testParams.get("browser");
 
             String REMOTE_HOST =
-                    testParams.get("REMOTE_HOST_WEB") == null ? "http://bqatautomation:4444/wd/hub" : testParams.get("REMOTE_HOST_WEB");
+                    testParams.get("REMOTE_HOST_WEB") == null ?
+                            testParams.get("REMOTE_HOST") :
+                            testParams.get("REMOTE_HOST_WEB");
 
             if (browser.equalsIgnoreCase("chrome")) {
                 DesiredCapabilities capabilities = capabilitiesManager.setCapabilities("CHROME");
@@ -67,6 +72,23 @@ public class DriverManager {
                 try {
                     if ("localhost".equalsIgnoreCase(REMOTE_HOST)) {
                         tlWebDriver.set(new ChromeDriver(options));
+                    } else {
+                        tlWebDriver.set(new RemoteWebDriver(new URL(REMOTE_HOST), options));
+                    }
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }else if (browser.equalsIgnoreCase("firefox")) {
+                DesiredCapabilities capabilities = capabilitiesManager.setCapabilities("FIREFOX");
+
+                OptionsManager optionsManager = new OptionsManager();
+                FirefoxOptions options = optionsManager.getFirefoxOptions(capabilities);
+
+                System.out.println("options : " + options);
+
+                try {
+                    if ("localhost".equalsIgnoreCase(REMOTE_HOST)) {
+                        tlWebDriver.set(new FirefoxDriver(options));
                     } else {
                         tlWebDriver.set(new RemoteWebDriver(new URL(REMOTE_HOST), options));
                     }

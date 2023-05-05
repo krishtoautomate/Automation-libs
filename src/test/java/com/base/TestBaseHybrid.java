@@ -1,6 +1,5 @@
 package com.base;
 
-import com.DataManager.DeviceInfoReader;
 import com.DataManager.TestDataManager;
 import com.ReportManager.ExtentTestManager;
 import com.Utilities.Constants;
@@ -52,7 +51,6 @@ public class TestBaseHybrid {
 
         String methodName = method.getName();
         String className = this.getClass().getName();
-        String deviceName = "NA";
 
         tlDriverFactory.setDriver("Web");
         webDriver = DriverManager.getWebDriverInstance();
@@ -69,26 +67,17 @@ public class TestBaseHybrid {
 
         test.info(MarkupHelper.createTable(webTable));
 
-        if (udid != null) {
+        if(platForm!=null) {
             isAndroid = platForm.equalsIgnoreCase("Android");
             isIos = platForm.equalsIgnoreCase("iOS");
             GlobalMapper.setUdid(udid);
-
             tlDriverFactory.setDriver("Appium");
             appiumDriver = DriverManager.getAppiumDriverInstance();
 
 
-            /*
-             * Test info
-             */
-            if ("Auto".equalsIgnoreCase(udid)) {
-                udid = appiumDriver.getCapabilities().getCapability("udid").toString();
-            }
-
-//            DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
-//            deviceName = deviceInfoReader.getString("name");
-
             udid = appiumDriver.getCapabilities().getCapability("udid").toString();
+            String deviceName = appiumDriver.getCapabilities().getCapability("deviceName").toString();
+            String platformVersion = appiumDriver.getCapabilities().getCapability("platformVersion").toString();//appium:platformVersion
 
             iTestContext.setAttribute("udid", udid);
 
@@ -97,26 +86,29 @@ public class TestBaseHybrid {
             } catch (Exception e) {
                 isFrench = false;
             }
+
+
+            Map<String, String> testParams = iTestContext.getCurrentXmlTest().getAllParameters();
+            String pTestData = testParams.get("p_Testdata");
+            TestDataManager testData = new TestDataManager(pTestData);
+            String testKey = "NA";
+            testKey = testData.get("testKey");testData.get("testKey");
+            ITestResult result = Reporter.getCurrentTestResult();
+            result.setAttribute("testKey", testKey);
+
+            // Report Content
+            test.assignDevice(deviceName);
+
+            String[][] mobileTable = {{"<b>TestCase : </b>", className},
+                    {"<b>Device-Name : </b>", deviceName},
+                    {"<b>UDID : </b>", udid},
+                    {"<b>Platform : </b>", platForm},
+                    {"<b>OsVersion : </b>", platformVersion},
+                    {"<b>Jira test-key : </b>",
+                            "<a href=" + Constants.JIRA_URL + testKey + ">" + testKey + "</a>"}};
+
+            test.info(MarkupHelper.createTable(mobileTable));
         }
-
-        Map<String, String> testParams = iTestContext.getCurrentXmlTest().getAllParameters();
-        String pTestData = testParams.get("p_Testdata");
-        TestDataManager testData = new TestDataManager(pTestData);
-        String testKey = testData.get("testKey");
-        ITestResult result = Reporter.getCurrentTestResult();
-        result.setAttribute("testKey", testKey);
-
-        // Report Content
-        test.assignDevice(deviceName);
-
-        String[][] mobileTable = {{"<b>TestCase : </b>", className},
-                {"<b>Device-Name : </b>", deviceName},
-                {"<b>UDID : </b>", udid},
-                {"<b>Platform : </b>", platForm},
-                {"<b>Jira test-key : </b>",
-                        "<a href=" + Constants.JIRA_URL + testKey + ">" + testKey + "</a>"}};
-
-        test.info(MarkupHelper.createTable(mobileTable));
 
         log.info("Test started : " + className);
     }
@@ -164,10 +156,10 @@ public class TestBaseHybrid {
             }
         }
 
-        ExtentTestManager.getTest().info("THE END");
         log.info("THE END");
 
         try {
+            ExtentTestManager.getTest().info("THE END");
             ExtentTestManager.getTest().getExtent().flush();
         } catch (Exception e) {
             // ignore

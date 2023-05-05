@@ -106,7 +106,10 @@ public class TestBaseWeb {
                 log.info(Constants.EXTENT_HTML_REPORT);
             }
         }
-        test.log(Status.INFO, "Test Completed : " + context.getCurrentXmlTest().getName());
+
+        if(test != null)
+            test.log(Status.INFO, "Test Completed : " + context.getCurrentXmlTest().getName());
+
     }
 
     @AfterSuite(alwaysRun = true)
