@@ -1,6 +1,5 @@
 package com.base;
 
-import com.DataManager.DeviceInfoReader;
 import com.DataManager.TestDataManager;
 import com.ReportManager.ExtentTestManager;
 import com.Utilities.Constants;
@@ -40,7 +39,6 @@ public class TestBase {
 
 
         log = Logger.getLogger(this.getClass().getName());
-
     }
 
     @SuppressWarnings("unchecked")
@@ -92,7 +90,7 @@ public class TestBase {
     }
 
 
-    @AfterMethod//(alwaysRun = true)
+    @AfterMethod(alwaysRun = true)
     @Parameters({"udid"})
     public synchronized void After(@Optional String udid) {
 
@@ -103,7 +101,8 @@ public class TestBase {
                 }
 
                 if (isIos) {
-                    ((IOSDriver) driver).terminateApp(driver.getCapabilities().getCapability("bundleId").toString());
+                    ((IOSDriver) driver).closeApp();
+//                            .terminateApp(driver.getCapabilities().getCapability("bundleId").toString());
                 }
                 log.info("app close");
             } catch (Exception e) {
@@ -116,10 +115,9 @@ public class TestBase {
             } catch (Exception e) {
                 // ignore
             }
-            ExtentTestManager.getTest().info("THE END");
-            log.info("THE END");
 
             try {
+                ExtentTestManager.getTest().info("THE END");
                 ExtentTestManager.getTest().getExtent().flush();
             } catch (Exception e) {
                 // ignore

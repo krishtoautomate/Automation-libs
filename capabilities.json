@@ -47,5 +47,12 @@
 				"pageLoadStrategy": "normal"
 			}
 		}
+	],
+	"FIREFOX": [
+		{
+			"browserName": "firefox",
+			"browserVersion": "latest",
+			"platformName": "LINUX"
+		}
 	]
 }

@@ -175,7 +175,10 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
 //        String deviceName = deviceInfoReader.getString("name");
 
 //    Logger log = LoggerManager.getLogger();
-        log.warn("Test Skipped : " + testResult.getMethod().getMethodName() + " : " + udid );
+        if(udid!=null)
+            log.warn("Test Skipped : " + testResult.getMethod().getMethodName() + " : " + udid );
+        else
+            log.warn("Test Skipped : " + testResult.getMethod().getMethodName());
 
         try {
             ExtentReports extent = ExtentTestManager.getTest().getExtent();

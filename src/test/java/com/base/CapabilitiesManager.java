@@ -39,15 +39,11 @@ public class CapabilitiesManager {
             }
             capabilities.setCapability(key.toString(), jObj.get(key));
         }
-
         return capabilities;
     }
 
     @SuppressWarnings("unchecked")
     public synchronized DesiredCapabilities setCapabilities(String platForm) {
-
-//        int devicePort = 8100;
-//        devicePort++;
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
@@ -55,7 +51,6 @@ public class CapabilitiesManager {
         Map<String, String> testParams =
                 iTestResult.getTestContext().getCurrentXmlTest().getAllParameters();
         String udid = GlobalMapper.getUdid();
-//        String deviceName = "Android".equalsIgnoreCase(platForm) ? "Android Device" : "iPhone";
 
         try {
             //capabilities from capabilities.json
@@ -69,18 +64,7 @@ public class CapabilitiesManager {
                 //UDID from TestNG parameter
                 if (udid != null) {
                     jObj.put("appium:" + MobileCapabilityType.UDID, udid.trim());
-
-//                    DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
-//                    deviceName = deviceInfoReader.getString("name");
-
-//                    String platformVersion = deviceInfoReader.getString("platformVersion");
-//                    jObj.put("appium:" + MobileCapabilityType.PLATFORM_VERSION, platformVersion);
-
-//                    devicePort = deviceInfoReader.getInt("devicePort");
-//                    jObj.put("Android".equalsIgnoreCase(platForm) ? "appium:systemPort" : "appium:wdaLocalPort", devicePort);
-//                    jObj.put("deviceName", deviceName);
                 }
-//                jObj.put("deviceName", deviceName);
 
                 //capabilities from TestNG.xml
                 String pCapabilities = testParams.get("capabilities");
@@ -130,7 +114,6 @@ public class CapabilitiesManager {
         } catch (IOException | ParseException | NullPointerException ex) {
             log.error("failed to set capabilities");
         }
-
         return capabilities;
     }
 
