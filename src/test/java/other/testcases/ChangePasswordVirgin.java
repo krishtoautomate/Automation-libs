@@ -15,7 +15,7 @@ import java.util.Scanner;
 import static io.restassured.RestAssured.given;
 
 
-public class ChangePassword {
+public class ChangePasswordVirgin {
 
     public static void main(String[] args) throws IOException, URISyntaxException,
             NoSuchAlgorithmException, KeyManagementException, InterruptedException {
@@ -44,12 +44,14 @@ public class ChangePassword {
 
             // Specify the base URL to the RESTful web service
             // RestAssured.baseURI = Constants.BASE_URI;
-            RestAssured.baseURI = "https://apigate.bell.ca/channelbellcaext";
-            // "https://api.virginplus.ca/channelvirginext";
+            RestAssured.baseURI =
+//                    "https://apigate.bell.ca/channelbellcaext";
+             "https://api.virginplus.ca/channelvirginext";
             // "https://apigate.bell.ca/channelbellcaext";
 
-            String Brand = "B";// "B" "V";
-            String applicationid = "MBM_IOS";// MVM_IOS
+            String Brand =
+             "V";
+            String applicationid = "MVM_IOS";
 
             try {
 

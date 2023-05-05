@@ -178,25 +178,29 @@ task GridJar(type: Jar) {
 }
 */
 allprojects { project ->
-    tasks.withType(Test) { testTask ->
-        afterSuite { desc, result ->
-            if (!desc.parent) { // will match the outermost suite
-                def output = "Results: ${result.resultType} (${result.testCount} tests, ${result.successfulTestCount} Passed, ${result.failedTestCount} Failures, ${result.skippedTestCount} Skipped)"
-                def startItem = '|  ', endItem = '  |'
-                def repeatLength = startItem.length() + output.length() + endItem.length()
-                println('\n' + ('-' * repeatLength) + '\n' + startItem + output + endItem + '\n' + ('-' * repeatLength))
+    tasks.withType(Test) {
+        testTask ->
+            afterTest { desc, result ->
+                logger.quiet "Executing test ${desc.name} [${desc.className}] with result: ${result.resultType} (${result.testCount} tests, ${result.successfulTestCount} Passed, ${result.failedTestCount} Failures, ${result.skippedTestCount} Skipped)"
             }
-            //println("Failed Test Count : " + result.failedTestCount)
-            if (result.failedTestCount < result.successfulTestCount) {
-                ignoreFailures = true
+            afterSuite { desc, result ->
+                if (!desc.parent) { // will match the outermost suite
+                    def output = "Results: ${result.resultType} (${result.testCount} tests, ${result.successfulTestCount} Passed, ${result.failedTestCount} Failures, ${result.skippedTestCount} Skipped)"
+                    def startItem = '|  ', endItem = '  |'
+                    def repeatLength = startItem.length() + output.length() + endItem.length()
+                    println('\n' + ('-' * repeatLength) + '\n' + startItem + output + endItem + '\n' + ('-' * repeatLength))
+                }
+                //println("Failed Test Count : " + result.failedTestCount)
+                if (result.failedTestCount < result.successfulTestCount) {
+                    ignoreFailures = true
 
-                println("failedTestCount : " + result.failedTestCount)
-            }else{
-                ignoreFailures = false
+                    println("failedTestCount : " + result.failedTestCount)
+                }else{
+                    ignoreFailures = false
 
-                println("failedTestCount : " + result.failedTestCount)
+                    println("failedTestCount : " + result.failedTestCount)
+                }
             }
-        }
     }
 }
 
