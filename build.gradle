@@ -181,7 +181,7 @@ allprojects { project ->
     tasks.withType(Test) {
         testTask ->
             afterTest { desc, result ->
-                logger.quiet "Executing test ${desc.name} [${desc.className}] with result: ${result.resultType} (${result.testCount} tests, ${result.successfulTestCount} Passed, ${result.failedTestCount} Failures, ${result.skippedTestCount} Skipped)"
+                println("Executing test ${desc.name} [${desc.className}] with result: ${result.resultType} (${result.testCount} tests, ${result.successfulTestCount} Passed, ${result.failedTestCount} Failures, ${result.skippedTestCount} Skipped)")
             }
             afterSuite { desc, result ->
                 if (!desc.parent) { // will match the outermost suite
