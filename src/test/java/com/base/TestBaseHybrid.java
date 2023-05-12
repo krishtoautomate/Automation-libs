@@ -115,8 +115,7 @@ public class TestBaseHybrid {
 
 
     @AfterMethod(alwaysRun = true)
-    @Parameters({"udid"})
-    public synchronized void After(@Optional String udid) {
+    public synchronized void After() {
 
         webDriver = DriverManager.getWebDriverInstance();
         if (webDriver != null) {
@@ -124,12 +123,12 @@ public class TestBaseHybrid {
                 webDriver.close();
             } catch (Exception ign) {
                 // ignore
-            }
-
-            try {
-                webDriver.quit();
-            } catch (Exception ign) {
-                // ignore
+            }finally {
+                try {
+                    DriverManager.getWebDriverInstance().quit();
+                } catch (Exception ign) {
+                    // ignore
+                }
             }
         }
 
@@ -149,7 +148,7 @@ public class TestBaseHybrid {
             }
 
             try {
-                appiumDriver.quit();
+                DriverManager.getAppiumDriverInstance().quit();
                 log.info("driver quit - done");
             } catch (Exception e) {
                 // ignore

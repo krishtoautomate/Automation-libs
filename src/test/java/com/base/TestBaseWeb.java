@@ -85,15 +85,16 @@ public class TestBaseWeb {
 
         log.info("AfterTest : " + context.getCurrentXmlTest().getName());
 
+        driver = DriverManager.getWebDriverInstance();
         if (driver != null) {
             try {
-                driver.close();
+                DriverManager.getWebDriverInstance().close();
             } catch (Exception ign) {
                 // ignore
             }
 
             try {
-                driver.quit();
+                DriverManager.getWebDriverInstance().quit();
             } catch (Exception ign) {
                 // ignore
             }

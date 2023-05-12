@@ -21,15 +21,19 @@ public class ExtentManager {
         .viewOrder().as(new ViewName[]{ViewName.TEST, ViewName.DEVICE, ViewName.AUTHOR,
             ViewName.CATEGORY, ViewName.EXCEPTION, ViewName.LOG, ViewName.DASHBOARD})
         .apply();
-    report.config().setReportName("Automation Report");
 
-    ExtentSparkReporter failedReport = new ExtentSparkReporter(Constants.EXTENT_FAILED_HTML_REPORT)
-            .filter()
-            .statusFilter()
-            .as(new Status[] { Status.FAIL })
-            .apply();
+    report.config()
+            .setOfflineMode(true);
+    report.config()
+            .setReportName("Automation Report");
 
-    extentReports.attachReporter(report, jsonReport, failedReport);
+//    ExtentSparkReporter failedReport = new ExtentSparkReporter(Constants.EXTENT_FAILED_HTML_REPORT)
+//            .filter()
+//            .statusFilter()
+//            .as(new Status[] { Status.FAIL })
+//            .apply();
+
+    extentReports.attachReporter(report, jsonReport);
 
 //    ExtentPDFReporter pdfReport = new ExtentPDFReporter(Constants.EXTENT_PDF_REPORT);
 //    extentReports.attachReporter(pdfReport);

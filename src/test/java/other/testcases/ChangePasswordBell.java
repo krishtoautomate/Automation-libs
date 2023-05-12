@@ -33,10 +33,11 @@ public class ChangePasswordBell {
             String[] parts = bup.split(",");
             // String mdn = parts[0].trim();
             String user = parts[0].trim();
-            String password = "Fibe1234$";// "Lucky1234$";// parts[1].trim();
+            String password = "Lucky1234$";//"Fibe1234$";// "Lucky1234$";// parts[1].trim();
+            String newPassword = "Ssqa1234$";//"Autobude1234$";
 
-            System.out.println("user : " + user);
-            System.out.println("password : " + password);
+            System.out.println("user : " + user + " , password : " + password);
+
             // Specify the proxy address
             RestAssured.useRelaxedHTTPSValidation();
 //       RestAssured.proxy("fastweb.int.bell.ca", 8083);
@@ -79,7 +80,7 @@ public class ChangePasswordBell {
 
                 Thread.sleep(2000);
 
-                String newPassword = "Autobude1234$";
+
                 given().header("Accept-Language", "EN-CA")
                         .header("brand", Brand)
                         .header("Content-Type", "application/json")
@@ -93,7 +94,7 @@ public class ChangePasswordBell {
                 // ignore
                 System.out.println("Failed: " + user + ":" + password);
 
-                System.out.println("----------"+e.getMessage());
+                System.out.println("----------" + e.getMessage());
             }
         }
 

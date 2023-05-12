@@ -13,7 +13,6 @@ import other.pages.LoginObjects;
 
 public class BellForceUpgradeAPI extends TestBaseAPI implements ITestBase {
 
-  String className = this.getClass().getName();
 
   String p_userid = "";
   String p_password = "";

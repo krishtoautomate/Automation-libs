@@ -30,16 +30,19 @@ public class ChangePasswordVirgin {
 
         for (String bup : list) {
 
-            String[] parts = bup.split(",");
+//            String[] parts = bup.split(",");
             // String mdn = parts[0].trim();
-            String user = parts[0].trim();
-            String password = "Fibe1234$";// "Lucky1234$";// parts[1].trim();
+            String user = bup.trim();// parts[0].trim();
+            String password = "Bqat123456";//"Fibe1234$";// "Lucky1234$";// parts[1].trim();
+            String newPassword = "Ssqa1234$";//"Ssqa1234$";//"Autobude1234$";
 
             System.out.println("user : " + user);
             System.out.println("password : " + password);
             // Specify the proxy address
             RestAssured.useRelaxedHTTPSValidation();
-//       RestAssured.proxy("fastweb.int.bell.ca", 8083);
+
+//            RestAssured.proxy("fastweb.int.bell.ca", 8083, "https");
+
 //       RestAssured.proxy("fastweb.int.bell.ca", 8083, "http");
 
             // Specify the base URL to the RESTful web service
@@ -51,7 +54,7 @@ public class ChangePasswordVirgin {
 
             String Brand =
              "V";
-            String applicationid = "MVM_IOS";
+            String applicationId = "MVM_IOS";
 
             try {
 
@@ -59,7 +62,7 @@ public class ChangePasswordVirgin {
                 Response response = given().relaxedHTTPSValidation().auth().basic(user, password)
                         .header("accept-language", "en-ca")
                         .header("brand", Brand)
-                        .header("applicationid", applicationid)
+                        .header("applicationid", applicationId)
                         .get(RestAssured.baseURI + "/Authentication/BUP");
 
                 System.out.println("status : " + response.getBody().path("status").toString()); // .asPrettyString().);
@@ -81,11 +84,11 @@ public class ChangePasswordVirgin {
 
                 Thread.sleep(2000);
 
-                String newPassword = "Autobude1234$";
+//                String newPassword = "Ssqa1234$";//"Autobude1234$";
                 given().header("Accept-Language", "EN-CA")
                         .header("brand", Brand)
                         .header("Content-Type", "application/json")
-                        .header("applicationid", applicationid)
+                        .header("applicationid", applicationId)
                         .body("{\r\n'CurrentKey' : '" + password + "',\r\n'NewKey' : '" + newPassword
                                 + "',\r\n'Username' : '" + user + "'\r\n}")
                         .cookies(response.cookies()).when()
