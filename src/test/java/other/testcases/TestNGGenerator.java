@@ -25,7 +25,7 @@ public class TestNGGenerator {
     XmlSuite mySuite = new XmlSuite();
     mySuite.setName("MySuite");
     mySuite.setParallel(XmlSuite.ParallelMode.TESTS);
-    mySuite.setThreadCount(10);
+    mySuite.setThreadCount(50);
 
     // Create an instance of XmlTest and assign a name for it.
     XmlTest myTest = new XmlTest(mySuite);

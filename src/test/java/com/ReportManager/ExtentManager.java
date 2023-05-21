@@ -22,6 +22,7 @@ public class ExtentManager {
             ViewName.CATEGORY, ViewName.EXCEPTION, ViewName.LOG, ViewName.DASHBOARD})
         .apply();
 
+    report.config().setOfflineMode(true);
     report.config()
             .setReportName("Automation Report");
 

@@ -80,7 +80,7 @@ public class TestNGListener extends TestListenerAdapter implements ISuiteListene
 
     mySuite.setName(suite.getName());
     mySuite.setParallel(XmlSuite.ParallelMode.TESTS);
-    mySuite.setThreadCount(45);
+    mySuite.setThreadCount(50);
 
 
   }
