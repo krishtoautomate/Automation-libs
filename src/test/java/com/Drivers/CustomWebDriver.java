@@ -22,7 +22,10 @@ import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.ImmutableCapabilities;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.internal.Require;
-import org.openqa.selenium.logging.*;
+import org.openqa.selenium.logging.LocalLogs;
+import org.openqa.selenium.logging.LoggingHandler;
+import org.openqa.selenium.logging.Logs;
+import org.openqa.selenium.logging.NeedsLocalLogs;
 import org.openqa.selenium.remote.*;
 import org.openqa.selenium.remote.http.ClientConfig;
 import org.openqa.selenium.remote.http.HttpClient;
@@ -36,8 +39,6 @@ import java.util.Collections;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import static org.openqa.selenium.remote.CapabilityType.LOGGING_PREFS;
 
 @Augmentable
 public class CustomWebDriver extends RemoteWebDriver {
@@ -135,19 +136,6 @@ public class CustomWebDriver extends RemoteWebDriver {
 
         ImmutableSet.Builder<String> builder = new ImmutableSet.Builder<>();
 
-        boolean isProfilingEnabled = capabilities.is(CapabilityType.ENABLE_PROFILING_CAPABILITY);
-        if (isProfilingEnabled) {
-            builder.add(LogType.PROFILER);
-        }
-
-        LoggingPreferences mergedLoggingPrefs = new LoggingPreferences();
-        mergedLoggingPrefs.addPreferences((LoggingPreferences) capabilities.getCapability(LOGGING_PREFS));
-
-        if (!mergedLoggingPrefs.getEnabledLogTypes().contains(LogType.CLIENT) ||
-                mergedLoggingPrefs.getLevel(LogType.CLIENT) != Level.OFF) {
-            builder.add(LogType.CLIENT);
-        }
-
         Set<String> logTypesToInclude = builder.build();
 
         LocalLogs performanceLogger = LocalLogs.getStoringLoggerInstance(logTypesToInclude);
@@ -158,5 +146,6 @@ public class CustomWebDriver extends RemoteWebDriver {
 
         return capabilities;
     }
+
 
 }

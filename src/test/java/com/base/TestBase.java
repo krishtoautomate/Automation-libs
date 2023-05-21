@@ -41,8 +41,8 @@ public class TestBase {
         log = Logger.getLogger(this.getClass().getName());
     }
 
-    @SuppressWarnings("unchecked")
-    @BeforeMethod
+
+    @BeforeMethod(alwaysRun = true)
     @Parameters({"udid", "platForm"})
     public synchronized void Before(@Optional String udid, @Optional String platForm,
                                     ITestContext iTestContext, Method method) {

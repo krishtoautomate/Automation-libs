@@ -9,6 +9,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.base.AppiumDriverManager;
 import com.base.Jira;
 import io.appium.java_client.AppiumDriver;
@@ -16,6 +17,8 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriverException;
 import org.testng.*;
 
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -224,6 +227,23 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
 //    if (buildNo != null) {
 //      reporter.writeResults(emailReport);
 //    }
+
+        ExtentSparkReporter spark = new ExtentSparkReporter(
+                Paths.get(Constants.EXTENT_HTML_REPORT).toFile());
+
+        ExtentReports extent = new ExtentReports();
+        try {
+            extent.createDomainFromJsonArchive(Constants.EXTENT_JSON_REPORT);
+
+            extent.attachReporter(spark);
+            extent.flush();
+
+        } catch (IOException e) {
+//            throw new CombinerException("Exception in creating merged JSON report.", e);
+            System.out.println("Exception in creating merged JSON report."+e);
+        }
+
+
 
         // Jira report
         Date date = new Date();

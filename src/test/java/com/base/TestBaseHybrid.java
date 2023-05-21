@@ -44,7 +44,7 @@ public class TestBaseHybrid {
         log = Logger.getLogger(this.getClass().getName());
     }
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     @Parameters({"udid", "platForm", "browser"})
     public synchronized void Before(@Optional String udid, @Optional String platForm, @Optional String browser,
                                     ITestContext iTestContext, Method method) {
