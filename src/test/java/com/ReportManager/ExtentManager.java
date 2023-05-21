@@ -23,8 +23,6 @@ public class ExtentManager {
         .apply();
 
     report.config()
-            .setOfflineMode(true);
-    report.config()
             .setReportName("Automation Report");
 
 //    ExtentSparkReporter failedReport = new ExtentSparkReporter(Constants.EXTENT_FAILED_HTML_REPORT)

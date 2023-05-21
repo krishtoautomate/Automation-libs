@@ -129,6 +129,25 @@ public class TestDataManager {
         return null;
     }
 
+    public synchronized String get(String className,int index, String key) {
+
+        try {
+            // read the json file
+            JSONObject jsonObject = (JSONObject) new JSONParser().parse(new FileReader(filePath));
+
+            // get an array from the JSON object
+            JSONArray jsonArray = (JSONArray) jsonObject.get(className);
+
+            JSONObject innerObj = (JSONObject) jsonArray.get(index);
+
+            return innerObj.get(key).toString();
+
+        } catch (IOException | ParseException | NullPointerException ex) {
+            log.error("Data file error to get : " + className + ":" + key);
+        }
+        return null;
+    }
+
     /*
     get global value without className/testName
    */
