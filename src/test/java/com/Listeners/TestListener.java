@@ -10,6 +10,7 @@ import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.aventstack.extentreports.reporter.configuration.ViewName;
 import com.base.AppiumDriverManager;
 import com.base.Jira;
 import io.appium.java_client.AppiumDriver;
@@ -228,8 +229,11 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
 //      reporter.writeResults(emailReport);
 //    }
 
-        ExtentSparkReporter spark = new ExtentSparkReporter(
-                Paths.get(Constants.EXTENT_HTML_REPORT).toFile());
+        ExtentSparkReporter spark = new ExtentSparkReporter(Constants.EXTENT_HTML_REPORT)
+                .viewConfigurer()
+                .viewOrder().as(new ViewName[]{ViewName.TEST, ViewName.DEVICE, ViewName.AUTHOR,
+                        ViewName.CATEGORY, ViewName.EXCEPTION, ViewName.LOG, ViewName.DASHBOARD})
+                .apply();
 
         ExtentReports extent = new ExtentReports();
         try {
