@@ -16,7 +16,7 @@ public class RunnerDemo {
     XmlSuite mySuite = new XmlSuite();
     mySuite.setName("MySuite");
     mySuite.setParallel(XmlSuite.ParallelMode.TESTS);
-    mySuite.setThreadCount(1);
+    mySuite.setThreadCount(50);
 
     /*
      * Test1
