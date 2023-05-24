@@ -108,7 +108,7 @@ public class TestBaseWeb {
             }
         }
 
-        if(test != null)
+        if (test != null)
             test.log(Status.INFO, "Test Completed : " + context.getCurrentXmlTest().getName());
 
     }

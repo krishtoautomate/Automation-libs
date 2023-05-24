@@ -1,21 +1,18 @@
 package com.base;
 
-import com.ReportManager.ExtentManager;
-import com.aventstack.extentreports.ExtentReports;
-
 import java.util.HashMap;
 import java.util.Map;
 
 public class GlobalMapper {
 
-  static Map<Long, String> udidMap = new HashMap<>();
+    static Map<Long, String> udidMap = new HashMap<>();
 
-  public static synchronized String getUdid() {
-    return udidMap.get(Long.valueOf(Thread.currentThread().getId()));
-  }
+    public static synchronized String getUdid() {
+        return udidMap.get(Long.valueOf(Thread.currentThread().getId()));
+    }
 
-  public static synchronized String setUdid(String udid) {
-    udidMap.put(Thread.currentThread().getId(), udid);
-    return udid;
-  }
+    public static synchronized String setUdid(String udid) {
+        udidMap.put(Thread.currentThread().getId(), udid);
+        return udid;
+    }
 }
