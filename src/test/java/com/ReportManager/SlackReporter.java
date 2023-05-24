@@ -61,7 +61,6 @@ public class SlackReporter {
       log.info(
           "Could not send failure details to slack channel due to: " + e.getLocalizedMessage());
     }
-
   }
 
   private SlackConfig get_Config() {

@@ -1,6 +1,7 @@
 package com.base;
 
 import com.DataManager.TestDataManager;
+import com.ReportManager.ExtentManager;
 import com.ReportManager.ExtentTestManager;
 import com.Utilities.Constants;
 import com.aventstack.extentreports.ExtentTest;
@@ -51,8 +52,9 @@ public class TestBase {
         String className = this.getClass().getName();
         isAndroid = platForm.equalsIgnoreCase("Android");
         isIos = platForm.equalsIgnoreCase("iOS");
-        GlobalMapper.setUdid(udid);
-        iTestContext.setAttribute("udid", udid);
+
+        if(udid!=null)
+            GlobalMapper.setUdid(udid);
         tlDriverFactory.setDriver();
         driver = AppiumDriverManager.getDriverInstance();
 
@@ -121,9 +123,10 @@ public class TestBase {
                 ExtentTestManager.getTest().getExtent().flush();
             } catch (Exception e) {
                 // ignore
-            } finally {
-                log.info(Constants.EXTENT_HTML_REPORT);
             }
+//            finally {
+//                log.info(Constants.EXTENT_HTML_REPORT);
+//            }
         }
     }
 
@@ -135,6 +138,8 @@ public class TestBase {
 
         try {
             ExtentTestManager.getTest().getExtent().flush(); // -----close extent-report
+
+            ExtentManager.createReportFromJson(Constants.EXTENT_JSON_REPORT,Constants.EXTENT_HTML_REPORT);
         } catch (Exception e) {
             // ignore
         } finally {

@@ -143,6 +143,8 @@ public class TestListenerRT extends TestBase
             try {
                 ScreenShotManager screenShotManager = new ScreenShotManager(driver);
                 String ScreenShot = screenShotManager.getScreenshot();
+
+                test.fail("Failed Test case : " + testName + "\n" + testResult.getThrowable());
                 test.fail("Failed Test case : " + testName + "\n" + testResult.getThrowable(),
                         MediaEntityBuilder.createScreenCaptureFromPath(ScreenShot).build());
 
