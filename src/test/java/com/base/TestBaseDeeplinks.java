@@ -1,6 +1,6 @@
 package com.base;
 
-import com.DataManager.DeviceInfoReader;
+import com.ReportManager.ExtentManager;
 import com.ReportManager.ExtentTestManager;
 import com.Utilities.Constants;
 import com.aventstack.extentreports.ExtentTest;
@@ -13,7 +13,6 @@ import org.testng.ITestContext;
 import org.testng.annotations.*;
 
 import java.lang.reflect.Method;
-import java.util.HashMap;
 
 /**
  * Created by Krish on 06.06.2018.
@@ -57,7 +56,7 @@ public class TestBaseDeeplinks {
          */
 //        String platformVersion = "";
         if (udid != null) {
-            iTestContext.setAttribute("udid",udid);
+            iTestContext.setAttribute("udid", udid);
             tlDriverFactory.setDriver();
             driver = AppiumDriverManager.getDriverInstance();
 
@@ -124,9 +123,10 @@ public class TestBaseDeeplinks {
             ExtentTestManager.getTest().getExtent().flush(); // -----close extent-report
         } catch (Exception e) {
             // ignore
-        } finally {
-            log.info(Constants.EXTENT_HTML_REPORT);
         }
+//        finally {
+//            log.info(Constants.EXTENT_HTML_REPORT);
+//        }
     }
 
     /**
@@ -137,6 +137,7 @@ public class TestBaseDeeplinks {
 
         try {
             ExtentTestManager.getTest().getExtent().flush(); // -----close extent-report
+            ExtentManager.createReportFromJson(Constants.EXTENT_JSON_REPORT, Constants.EXTENT_HTML_REPORT);
         } catch (Exception e) {
             // ignore
         } finally {

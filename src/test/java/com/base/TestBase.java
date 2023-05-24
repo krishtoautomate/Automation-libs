@@ -53,7 +53,7 @@ public class TestBase {
         isAndroid = platForm.equalsIgnoreCase("Android");
         isIos = platForm.equalsIgnoreCase("iOS");
 
-        if(udid!=null)
+        if (udid != null)
             GlobalMapper.setUdid(udid);
         tlDriverFactory.setDriver();
         driver = AppiumDriverManager.getDriverInstance();
@@ -139,7 +139,7 @@ public class TestBase {
         try {
             ExtentTestManager.getTest().getExtent().flush(); // -----close extent-report
 
-            ExtentManager.createReportFromJson(Constants.EXTENT_JSON_REPORT,Constants.EXTENT_HTML_REPORT);
+            ExtentManager.createReportFromJson(Constants.EXTENT_JSON_REPORT, Constants.EXTENT_HTML_REPORT);
         } catch (Exception e) {
             // ignore
         } finally {

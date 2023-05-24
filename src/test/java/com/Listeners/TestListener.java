@@ -263,6 +263,9 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
 //        jiraReporter.addTests();
 //        jiraReporter.CreatejiraReport(Constants.JIRA_REPORT);
 
+
+        ExtentManager.createReportFromJson(Constants.EXTENT_JSON_REPORT,Constants.EXTENT_HTML_REPORT);
+
     }
 
     @Override

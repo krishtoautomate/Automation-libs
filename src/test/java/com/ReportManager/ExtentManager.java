@@ -65,8 +65,7 @@ public class ExtentManager {
         } catch (IOException e) {
 //            throw new CombinerException("Exception in creating merged JSON report.", e);
             System.out.println("Exception in creating merged JSON report." + e);
-        }
-        finally {
+        } finally {
             System.out.println(Constants.EXTENT_HTML_REPORT);
         }
 

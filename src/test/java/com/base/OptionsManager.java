@@ -11,29 +11,29 @@ import org.openqa.selenium.remote.DesiredCapabilities;
  */
 public class OptionsManager {
 
-  // Get Chrome Options
-  public ChromeOptions getChromeOptions(DesiredCapabilities capabilities) {
+    // Get Chrome Options
+    public ChromeOptions getChromeOptions(DesiredCapabilities capabilities) {
 
-    ChromeOptions options = new ChromeOptions();
-    options.addArguments("--start-maximized");
-    options.addArguments("--ignore-certificate-errors");
-    options.addArguments("--disable-popup-blocking");
-    options.addArguments("--incognito");
-    options.addArguments("user-agent=GomezAgent");
-    options.addArguments("disable-infobars");
-    options.addArguments("--remote-allow-origins=*");
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--start-maximized");
+        options.addArguments("--ignore-certificate-errors");
+        options.addArguments("--disable-popup-blocking");
+        options.addArguments("--incognito");
+        options.addArguments("user-agent=GomezAgent");
+        options.addArguments("disable-infobars");
+        options.addArguments("--remote-allow-origins=*");
 
-    options.setAcceptInsecureCerts(true);
-    options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+        options.setAcceptInsecureCerts(true);
+        options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
 
-    options.merge(capabilities);
+        options.merge(capabilities);
 
-    return options;
-  }
+        return options;
+    }
 
-  public FirefoxOptions getFirefoxOptions(DesiredCapabilities capabilities) {
+    public FirefoxOptions getFirefoxOptions(DesiredCapabilities capabilities) {
 
-    FirefoxOptions options = new FirefoxOptions();
+        FirefoxOptions options = new FirefoxOptions();
 //    options.addArguments("--start-maximized");
 //    options.addArguments("--ignore-certificate-errors");
 //    options.addArguments("--disable-popup-blocking");
@@ -42,14 +42,14 @@ public class OptionsManager {
 //    options.addArguments("disable-infobars");
 //    options.addArguments("--remote-allow-origins=*");
 
-    options.addArguments("-private");
+        options.addArguments("-private");
 
-    options.setAcceptInsecureCerts(true);
-    options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+        options.setAcceptInsecureCerts(true);
+        options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
 
-    options.merge(capabilities);
+        options.merge(capabilities);
 
-    return options;
-  }
+        return options;
+    }
 
 }

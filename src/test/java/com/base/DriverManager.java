@@ -6,7 +6,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestResult;
@@ -78,7 +77,7 @@ public class DriverManager {
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
-            }else if (browser.equalsIgnoreCase("firefox")) {
+            } else if (browser.equalsIgnoreCase("firefox")) {
                 DesiredCapabilities capabilities = capabilitiesManager.setCapabilities("FIREFOX");
 
                 OptionsManager optionsManager = new OptionsManager();

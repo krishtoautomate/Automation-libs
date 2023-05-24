@@ -1,52 +1,52 @@
 package com.DataManager;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+
 public class JsonFileReader {
 
 
-  String filePath = "";
+    String filePath = "";
 
-  /*
-  @param jsonFile : Path to json file path
-   */
-  public JsonFileReader(String jsonFile) {
-    this.filePath = jsonFile;
-  }
-
-  public synchronized String getJsonValue(int index, String key)
-      throws IOException, ParseException {
-
-    Object obj = new JSONParser().parse(new FileReader(filePath));
-    JSONArray jsonArray = (JSONArray) obj;
-
-    String jsonValue = ((JSONObject) jsonArray.get(index)).get(key).toString();
-
-    return jsonValue;
-  }
-
-  public synchronized int getObjIndex(String key, String value) {
-
-    try {
-      FileReader fileReader = new FileReader(filePath);
-      ArrayList jArray = (JSONArray) new JSONParser().parse(fileReader);
-
-      for (int i = 0; i < jArray.size(); i++) {
-        if (((JSONObject) jArray.get(i)).get(key).toString().equals(value)) {
-          return i;
-        }
-      }
-    } catch (Exception e) {
-      // ignore
+    /*
+    @param jsonFile : Path to json file path
+     */
+    public JsonFileReader(String jsonFile) {
+        this.filePath = jsonFile;
     }
-    return 0;
-  }
+
+    public synchronized String getJsonValue(int index, String key)
+            throws IOException, ParseException {
+
+        Object obj = new JSONParser().parse(new FileReader(filePath));
+        JSONArray jsonArray = (JSONArray) obj;
+
+        String jsonValue = ((JSONObject) jsonArray.get(index)).get(key).toString();
+
+        return jsonValue;
+    }
+
+    public synchronized int getObjIndex(String key, String value) {
+
+        try {
+            FileReader fileReader = new FileReader(filePath);
+            ArrayList jArray = (JSONArray) new JSONParser().parse(fileReader);
+
+            for (int i = 0; i < jArray.size(); i++) {
+                if (((JSONObject) jArray.get(i)).get(key).toString().equals(value)) {
+                    return i;
+                }
+            }
+        } catch (Exception e) {
+            // ignore
+        }
+        return 0;
+    }
 
 }

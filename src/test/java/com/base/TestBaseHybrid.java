@@ -68,7 +68,7 @@ public class TestBaseHybrid {
 
         test.info(MarkupHelper.createTable(webTable));
 
-        if(platForm!=null) {
+        if (platForm != null) {
             isAndroid = platForm.equalsIgnoreCase("Android");
             isIos = platForm.equalsIgnoreCase("iOS");
             GlobalMapper.setUdid(udid);
@@ -93,7 +93,8 @@ public class TestBaseHybrid {
             String pTestData = testParams.get("p_Testdata");
             TestDataManager testData = new TestDataManager(pTestData);
             String testKey = "NA";
-            testKey = testData.get("testKey");testData.get("testKey");
+            testKey = testData.get("testKey");
+            testData.get("testKey");
             ITestResult result = Reporter.getCurrentTestResult();
             result.setAttribute("testKey", testKey);
 
@@ -124,7 +125,7 @@ public class TestBaseHybrid {
                 webDriver.close();
             } catch (Exception ign) {
                 // ignore
-            }finally {
+            } finally {
                 try {
                     DriverManager.getWebDriverInstance().quit();
                 } catch (Exception ign) {
@@ -177,7 +178,7 @@ public class TestBaseHybrid {
         try {
             ExtentTestManager.getTest().getExtent().flush(); // -----close extent-report
 
-            ExtentManager.createReportFromJson(Constants.EXTENT_JSON_REPORT,Constants.EXTENT_HTML_REPORT);
+            ExtentManager.createReportFromJson(Constants.EXTENT_JSON_REPORT, Constants.EXTENT_HTML_REPORT);
         } catch (Exception e) {
             // ignore
         } finally {
