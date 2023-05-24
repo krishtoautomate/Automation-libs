@@ -11,11 +11,11 @@ public class JsonReport {
     public static void main(String[] args) throws IOException {
 
         ExtentSparkReporter spark = new ExtentSparkReporter(
-                Paths.get("/Users/home/Automation/bqatautomation-mbm/test-output/05212023/", "AUTOMATION_FULL_REPORT.html").toFile());
+                Paths.get("/Users/home/Downloads/21.35.06.818/"+ "AUTOMATION_FULL_REPORT.html").toFile());
 
         ExtentReports extent = new ExtentReports();
         try {
-            extent.createDomainFromJsonArchive("/Users/home/Automation/bqatautomation-mbm/test-output/05212023/11.36.12.905/AUTOMATION_REPORT.json");
+            extent.createDomainFromJsonArchive("/Users/home/Downloads/21.35.06.818/AUTOMATION_REPORT.json");
         } catch (IOException e) {
 //            throw new CombinerException("Exception in creating merged JSON report.", e);
             System.out.println("Exception in creating merged JSON report."+e);
@@ -24,8 +24,5 @@ public class JsonReport {
         extent.attachReporter(spark);
         extent.flush();
     }
-
-
-
 
 }

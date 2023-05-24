@@ -1,6 +1,7 @@
 package com.base;
 
 import com.DataManager.TestDataManager;
+import com.ReportManager.ExtentManager;
 import com.ReportManager.ExtentTestManager;
 import com.Utilities.Constants;
 import com.aventstack.extentreports.ExtentTest;
@@ -162,9 +163,10 @@ public class TestBaseHybrid {
             ExtentTestManager.getTest().getExtent().flush();
         } catch (Exception e) {
             // ignore
-        } finally {
-            log.info(Constants.EXTENT_HTML_REPORT);
         }
+//        finally {
+//            log.info(Constants.EXTENT_HTML_REPORT);
+//        }
     }
 
     /**
@@ -174,6 +176,8 @@ public class TestBaseHybrid {
     public void endSuit() {
         try {
             ExtentTestManager.getTest().getExtent().flush(); // -----close extent-report
+
+            ExtentManager.createReportFromJson(Constants.EXTENT_JSON_REPORT,Constants.EXTENT_HTML_REPORT);
         } catch (Exception e) {
             // ignore
         } finally {

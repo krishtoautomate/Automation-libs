@@ -116,10 +116,12 @@ public class BaseObjsWeb<T> implements ITestBase {
             String imgPath = takeScreenshot();
 
             if (Status == Status.FAIL) {
+                test.fail(message);
                 test.fail(message, MediaEntityBuilder.createScreenCaptureFromPath(imgPath).build());
             } else if (Status == Status.INFO) {
                 test.info(message);
             } else {
+                test.pass(message);
                 test.pass(message, MediaEntityBuilder.createScreenCaptureFromPath(imgPath).build());
             }
         } catch (WebDriverException e) {
@@ -146,10 +148,12 @@ public class BaseObjsWeb<T> implements ITestBase {
             String imgPath = imageGraphicScreenshot(element);
 
             if (Status == Status.FAIL) {
+                test.fail(message);
                 test.fail(message, MediaEntityBuilder.createScreenCaptureFromPath(imgPath).build());
             } else if (Status == Status.INFO) {
                 test.info(message);
             } else {
+                test.pass(message);
                 test.pass(message, MediaEntityBuilder.createScreenCaptureFromPath(imgPath).build());
             }
         } catch (WebDriverException e) {

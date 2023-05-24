@@ -1,6 +1,7 @@
 package com.Listeners;
 
 import com.DataManager.DeviceInfoReader;
+import com.ReportManager.ExtentManager;
 import com.ReportManager.ExtentTestManager;
 import com.Utilities.Constants;
 import com.Utilities.ScreenShotManager;
@@ -165,6 +166,8 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
 //            String finish = dateANDtime;
 //            jiraReporter.addTest(testKey, start, finish, "FAIL", testName);
 //        }
+
+        ExtentManager.createReportFromJson(Constants.EXTENT_JSON_REPORT,Constants.EXTENT_HTML_REPORT);
     }
 
     @Override
