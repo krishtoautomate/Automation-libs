@@ -167,7 +167,7 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
 //            jiraReporter.addTest(testKey, start, finish, "FAIL", testName);
 //        }
 
-        ExtentManager.createReportFromJson(Constants.EXTENT_JSON_REPORT,Constants.EXTENT_HTML_REPORT);
+//        ExtentManager.createReportFromJson(Constants.EXTENT_JSON_REPORT,Constants.EXTENT_HTML_REPORT);
     }
 
     @Override
@@ -232,24 +232,6 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
 //      reporter.writeResults(emailReport);
 //    }
 
-        ExtentSparkReporter spark = new ExtentSparkReporter(Constants.EXTENT_HTML_REPORT)
-                .viewConfigurer()
-                .viewOrder().as(new ViewName[]{ViewName.TEST, ViewName.DEVICE, ViewName.AUTHOR,
-                        ViewName.CATEGORY, ViewName.EXCEPTION, ViewName.LOG, ViewName.DASHBOARD})
-                .apply();
-
-        ExtentReports extent = new ExtentReports();
-        try {
-            extent.createDomainFromJsonArchive(Constants.EXTENT_JSON_REPORT);
-
-            extent.attachReporter(spark);
-            extent.flush();
-
-        } catch (IOException e) {
-//            throw new CombinerException("Exception in creating merged JSON report.", e);
-            System.out.println("Exception in creating merged JSON report."+e);
-        }
-
 
 
         // Jira report
@@ -264,7 +246,7 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
 //        jiraReporter.CreatejiraReport(Constants.JIRA_REPORT);
 
 
-        ExtentManager.createReportFromJson(Constants.EXTENT_JSON_REPORT,Constants.EXTENT_HTML_REPORT);
+//        ExtentManager.createReportFromJson(Constants.EXTENT_JSON_REPORT,Constants.EXTENT_HTML_REPORT);
 
     }
 

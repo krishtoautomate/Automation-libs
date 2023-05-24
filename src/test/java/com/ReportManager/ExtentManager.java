@@ -17,24 +17,19 @@ public class ExtentManager {
 
         Locale.setDefault(Locale.ENGLISH);
         JsonFormatter jsonReport = new JsonFormatter(Constants.EXTENT_JSON_REPORT);
-//    ExtentSparkReporter report = new ExtentSparkReporter(Constants.EXTENT_HTML_REPORT)
-//        .viewConfigurer()
-//        .viewOrder().as(new ViewName[]{ViewName.TEST, ViewName.DEVICE, ViewName.AUTHOR,
-//            ViewName.CATEGORY, ViewName.EXCEPTION, ViewName.LOG, ViewName.DASHBOARD})
-//        .apply();
+        ExtentSparkReporter report = new ExtentSparkReporter(Constants.EXTENT_HTML_REPORT)
+                .viewConfigurer()
+                .viewOrder().as(new ViewName[]{ViewName.TEST, ViewName.DEVICE, ViewName.AUTHOR,
+                        ViewName.CATEGORY, ViewName.EXCEPTION, ViewName.LOG, ViewName.DASHBOARD})
+                .apply();
 
 //    report.config().setOfflineMode(true);
-//    report.config()
-//            .setReportName("Automation Report");
+        report.config()
+                .setReportName("Automation Report");
 
-//    ExtentSparkReporter failedReport = new ExtentSparkReporter(Constants.EXTENT_FAILED_HTML_REPORT)
-//            .filter()
-//            .statusFilter()
-//            .as(new Status[] { Status.FAIL })
-//            .apply();
 
-//    extentReports.attachReporter(report, jsonReport);
-        extentReports.attachReporter(jsonReport);
+        extentReports.attachReporter(report, jsonReport);
+//        extentReports.attachReporter(jsonReport);
 
 //    ExtentPDFReporter pdfReport = new ExtentPDFReporter(Constants.EXTENT_PDF_REPORT);
 //    extentReports.attachReporter(pdfReport);
@@ -62,6 +57,9 @@ public class ExtentManager {
 
         try {
             extent.createDomainFromJsonArchive(jsonReport);
+
+            extent.attachReporter(spark);
+            extent.flush();
         } catch (IOException e) {
 //            throw new CombinerException("Exception in creating merged JSON report.", e);
             System.out.println("Exception in creating merged JSON report." + e);
@@ -69,8 +67,7 @@ public class ExtentManager {
             System.out.println(Constants.EXTENT_HTML_REPORT);
         }
 
-        extent.attachReporter(spark);
-        extent.flush();
+
     }
 
 

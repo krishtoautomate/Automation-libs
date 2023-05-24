@@ -124,9 +124,9 @@ public class TestBaseDeeplinks {
         } catch (Exception e) {
             // ignore
         }
-//        finally {
-//            log.info(Constants.EXTENT_HTML_REPORT);
-//        }
+        finally {
+            log.info(Constants.EXTENT_HTML_REPORT);
+        }
     }
 
     /**
@@ -134,10 +134,8 @@ public class TestBaseDeeplinks {
      */
     @AfterSuite(alwaysRun = true)
     public void endSuit(ITestContext ctx) {
-
         try {
             ExtentTestManager.getTest().getExtent().flush(); // -----close extent-report
-            ExtentManager.createReportFromJson(Constants.EXTENT_JSON_REPORT, Constants.EXTENT_HTML_REPORT);
         } catch (Exception e) {
             // ignore
         } finally {
