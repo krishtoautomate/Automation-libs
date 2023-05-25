@@ -92,8 +92,7 @@ public class TestBase {
 
 
     @AfterMethod(alwaysRun = true)
-    @Parameters({"udid"})
-    public synchronized void After(@Optional String udid) {
+    public synchronized void After() {
 
         if (driver != null) {
             try {

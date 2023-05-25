@@ -16,8 +16,7 @@ public class RunnerWithListDevices {
   // private static Logger log = Logger.getLogger(Class.class.getName());
 
   @Test
-  public void testrunner() {
-    // TODO Auto-generated method stub
+  public void Runner_With_List_Devices() {
 
     /*
      * Common
@@ -41,16 +40,17 @@ public class RunnerWithListDevices {
      * Test1
      */
 
-    String update = System.getenv("UPDATE");
-
-    if (update == null || update.length() == 0) {
-      update = "All";
-    }
+//    String update = System.getenv("UPDATE");
+//
+//    if (update == null || update.length() == 0) {
+//      update = "All";
+//    }
 
     String udids = System.getenv("UDID");
+    System.out.println("udids:"+udids);
     String[] iosDeviceList = udids.split("\n");
 
-    if (update.equalsIgnoreCase("iOS") || update.equalsIgnoreCase("All")) {
+//    if (update.equalsIgnoreCase("iOS") || update.equalsIgnoreCase("All")) {
 
       // for (int i = 0; i < iosDeviceList.size(); i++) {
       int i = 0;
@@ -81,7 +81,7 @@ public class RunnerWithListDevices {
 
 
       }
-    }
+//    }
 
 //    /*
 //     * Test2
