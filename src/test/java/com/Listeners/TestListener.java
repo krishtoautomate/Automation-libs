@@ -187,12 +187,12 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
         else
             log.warn("Test Skipped : " + testResult.getMethod().getMethodName());
 
-        try {
-            ExtentReports extent = ExtentTestManager.getTest().getExtent();
-            extent.removeTest(ExtentTestManager.getTest());
-        } catch (Exception e) {
-            // ignore
-        }
+//        try {
+//            ExtentReports extent = ExtentTestManager.getTest().getExtent();
+//            extent.removeTest(ExtentTestManager.getTest());
+//        } catch (Exception e) {
+//            // ignore
+//        }
 
     }
 
