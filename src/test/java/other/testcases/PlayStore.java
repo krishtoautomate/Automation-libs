@@ -16,7 +16,7 @@ public class PlayStore extends TestBase implements ITestBase {
 
   @Test
   @Parameters({"udid"})
-  public void PlaystoreUpdateScript(@Optional String udid) {
+  public void Playstore_Update_Script(@Optional String udid) {
 
     test.getModel().setName(String.format("%s - %s", className, udid));
 

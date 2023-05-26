@@ -8,6 +8,7 @@ import com.Utilities.Utilities;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.base.AppiumDriverManager;
+import com.base.TestBase;
 import com.base.TestBaseDeeplinks;
 import com.opencsv.CSVReader;
 import org.json.simple.parser.ParseException;
@@ -23,18 +24,18 @@ import java.io.IOException;
 import java.util.*;
 
 
-public class DataproviderParallel extends TestBaseDeeplinks implements ITestBase {
+public class DataproviderParallel extends TestBase implements ITestBase {
 
     String className = this.getClass().getSimpleName();
 
     @Test(dataProvider = "DeepLinksDataProvider", groups = {"DeepLinks"})
-    public void PlaystoreUpdateScript(Map<String, String> data, ITestContext iTestContext) throws IOException, ParseException {
+    public void PlaystoreUpdateScript(Map<String, String> data, ITestContext iTestContext) {
 
         //---start
         String udid = data.get("udid");
         iTestContext.setAttribute("udid", udid);
         GlobalMapper.setUdid(udid);
-        DataProviderParallelHelper(data, iTestContext);
+//        DataProviderParallelHelper(data, iTestContext);
         //--end
 
         String p_testKey = isAndroid ? data.get("AndroidTestKey") : data.get("IOSTestKey");
@@ -76,7 +77,7 @@ public class DataproviderParallel extends TestBaseDeeplinks implements ITestBase
 //    sleep(120);
     }
 
-    public void DataProviderParallelHelper(Map<String, String> data,ITestContext iTestContext) throws IOException, ParseException {
+    public void DataProviderParallelHelper(Map<String, String> data,ITestContext iTestContext) {
         /*
          * Test info
          */
