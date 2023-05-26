@@ -40,10 +40,10 @@ public class TestBaseDeeplinks {
 
     }
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     @Parameters({"udid", "platForm"})
     public synchronized void BeforeMethod(@Optional String udid, @Optional String platForm,
-                                          ITestContext iTestContext, Method method) throws Exception {
+                                          ITestContext iTestContext, Method method) {
 
         String methodName = method.getName();
         String className = this.getClass().getName();
@@ -54,28 +54,16 @@ public class TestBaseDeeplinks {
         /*
          * Test info
          */
-//        String platformVersion = "";
         if (udid != null) {
             iTestContext.setAttribute("udid", udid);
             tlDriverFactory.setDriver();
             driver = AppiumDriverManager.getDriverInstance();
-
-            if ("Auto".equalsIgnoreCase(udid)) {
-                udid = driver.getCapabilities().getCapability("udid").toString();
-            }
-            iTestContext.setAttribute("udid", udid);
-
-//            DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
-//            deviceName = deviceInfoReader.getString("name");
 
             udid = driver.getCapabilities().getCapability("udid").toString();
             String deviceName = driver.getCapabilities().getCapability("deviceName").toString();
             String platformVersion = driver.getCapabilities().getCapability("platformVersion").toString();
 
             iTestContext.setAttribute("udid", udid);
-
-//            DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
-//            String platformVersion = deviceInfoReader.getString("platformVersion");
 
             // Report Content
             test = ExtentTestManager.startTest(methodName + "(" + platForm + ")")
