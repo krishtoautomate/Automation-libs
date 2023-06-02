@@ -57,6 +57,8 @@ public class TestBaseHybrid {
 
         sessionId = String.valueOf(((RemoteWebDriver) webDriver).getSessionId());
 
+        browser = ((RemoteWebDriver) webDriver).getCapabilities().getCapability("browserName").toString();
+
         String[][] webTable = {
                 {"<b>TestCase : </b>", className},
                 {"<b>Browser : </b>", browser},
@@ -160,7 +162,7 @@ public class TestBaseHybrid {
 
         try {
             ExtentTestManager.getTest().info("THE END");
-            ExtentTestManager.getTest().getExtent().flush();
+            ExtentTestManager.flush();
         } catch (Exception e) {
             // ignore
         } finally {
@@ -174,7 +176,7 @@ public class TestBaseHybrid {
     @AfterSuite(alwaysRun = true)
     public void endSuit() {
         try {
-            ExtentTestManager.getTest().getExtent().flush(); // -----close extent-report
+            ExtentTestManager.flush(); // -----close extent-report
         } catch (Exception e) {
             // ignore
         } finally {

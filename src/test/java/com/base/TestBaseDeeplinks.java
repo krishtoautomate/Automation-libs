@@ -1,6 +1,5 @@
 package com.base;
 
-import com.ReportManager.ExtentManager;
 import com.ReportManager.ExtentTestManager;
 import com.Utilities.Constants;
 import com.aventstack.extentreports.ExtentTest;
@@ -40,10 +39,11 @@ public class TestBaseDeeplinks {
 
     }
 
-    @BeforeMethod(alwaysRun = true)
+    @BeforeMethod(alwaysRun = true) //dataProvider="DeepLinksDataProvider")
     @Parameters({"udid", "platForm"})
-    public synchronized void BeforeMethod(@Optional String udid, @Optional String platForm,
-                                          ITestContext iTestContext, Method method) {
+    public synchronized void BeforeMethod
+            (@Optional String udid, @Optional String platForm,
+             ITestContext iTestContext, Method method) {
 
         String methodName = method.getName();
         String className = this.getClass().getName();
@@ -108,11 +108,10 @@ public class TestBaseDeeplinks {
 
         try {
             ExtentTestManager.getTest().info("THE END");
-            ExtentTestManager.getTest().getExtent().flush(); // -----close extent-report
+            ExtentTestManager.flush(); // -----close extent-report
         } catch (Exception e) {
             // ignore
-        }
-        finally {
+        } finally {
             log.info(Constants.EXTENT_HTML_REPORT);
         }
     }
@@ -123,7 +122,7 @@ public class TestBaseDeeplinks {
     @AfterSuite(alwaysRun = true)
     public void endSuit(ITestContext ctx) {
         try {
-            ExtentTestManager.getTest().getExtent().flush(); // -----close extent-report
+            ExtentTestManager.flush(); // -----close extent-report
         } catch (Exception e) {
             // ignore
         } finally {

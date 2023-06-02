@@ -100,7 +100,7 @@ public class TestBaseWeb {
             }
 
             try {
-                ExtentTestManager.getTest().getExtent().flush();
+                ExtentTestManager.flush();
             } catch (Exception ign) {
                 // ignore
             } finally {
@@ -116,7 +116,7 @@ public class TestBaseWeb {
     @AfterSuite(alwaysRun = true)
     public void endSuit() {
         try {
-            ExtentTestManager.getTest().getExtent().flush();
+            ExtentTestManager.flush();
         } catch (Exception e) {
             // ignore
         } finally {
