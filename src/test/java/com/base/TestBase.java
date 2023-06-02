@@ -118,7 +118,7 @@ public class TestBase {
 
             try {
                 ExtentTestManager.getTest().info("THE END");
-                ExtentTestManager.getTest().getExtent().flush();
+                ExtentTestManager.flush();
             } catch (Exception e) {
                 // ignore
             } finally {
@@ -133,7 +133,7 @@ public class TestBase {
     @AfterSuite(alwaysRun = true)
     public void endSuit() {
         try {
-            ExtentTestManager.getTest().getExtent().flush(); // -----close extent-report
+            ExtentTestManager.flush(); // -----close extent-report
         } catch (Exception e) {
             // ignore
         } finally {

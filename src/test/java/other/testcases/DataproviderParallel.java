@@ -1,17 +1,14 @@
 package other.testcases;
 
-import com.DataManager.DeviceInfoReader;
-import com.base.GlobalMapper;
 import com.ReportManager.ExtentTestManager;
 import com.Utilities.ITestBase;
 import com.Utilities.Utilities;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.base.AppiumDriverManager;
-import com.base.TestBase;
+import com.base.GlobalMapper;
 import com.base.TestBaseDeeplinks;
 import com.opencsv.CSVReader;
-import org.json.simple.parser.ParseException;
 import org.testng.ITestContext;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -24,7 +21,7 @@ import java.io.IOException;
 import java.util.*;
 
 
-public class DataproviderParallel extends TestBase implements ITestBase {
+public class DataproviderParallel extends TestBaseDeeplinks implements ITestBase {
 
     String className = this.getClass().getSimpleName();
 
@@ -32,17 +29,14 @@ public class DataproviderParallel extends TestBase implements ITestBase {
     public void PlaystoreUpdateScript(Map<String, String> data, ITestContext iTestContext) {
 
         //---start
-        String udid = data.get("udid");
-        iTestContext.setAttribute("udid", udid);
-        GlobalMapper.setUdid(udid);
-//        DataProviderParallelHelper(data, iTestContext);
+        setup(data);
         //--end
 
-        String p_testKey = isAndroid ? data.get("AndroidTestKey") : data.get("IOSTestKey");
+//        String p_testKey = isAndroid ? data.get("AndroidTestKey") : data.get("IOSTestKey");
 
-        log.info("TestKey : " + p_testKey);
+//        log.info("TestKey : " + p_testKey);
 
-        test.getModel().setName(String.format("%s", className));
+//        test.getModel().setName(String.format("%s", className));
 
         Utilities utils = new Utilities(driver, test);
         PlayStoreApp playstoreapp = new PlayStoreApp(driver, test);
@@ -77,28 +71,17 @@ public class DataproviderParallel extends TestBase implements ITestBase {
 //    sleep(120);
     }
 
-    public void DataProviderParallelHelper(Map<String, String> data,ITestContext iTestContext) {
+    public void setup(Map<String, String> data) {
         /*
          * Test info
          */
 
         String udid = data.get("udid");
         GlobalMapper.setUdid(udid);
-        iTestContext.setAttribute("udid",udid);
         tlDriverFactory.setDriver();
         driver = AppiumDriverManager.getDriverInstance();
 
-        if ("Auto".equalsIgnoreCase(udid)) {
-            udid = driver.getCapabilities().getCapability("udid").toString();
-        }
-
-//        DeviceInfoReader deviceInfoReader = new DeviceInfoReader(udid);
-//        String deviceName = deviceInfoReader.getString("name");
-
         udid = driver.getCapabilities().getCapability("udid").toString();
-
-//        String platformVersion = deviceInfoReader.getString("platformVersion");
-
         String deviceName = driver.getCapabilities().getCapability("deviceName").toString();
         String platformVersion = driver.getCapabilities().getCapability("platformVersion").toString();
 
@@ -112,6 +95,8 @@ public class DataproviderParallel extends TestBase implements ITestBase {
                 {"<b>OsVersion : </b>", platformVersion}};
 
         test.info(MarkupHelper.createTable(info));
+
+        test.getModel().setName(String.format("%s", className));
 
     }
 

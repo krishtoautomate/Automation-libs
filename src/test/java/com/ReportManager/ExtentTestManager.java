@@ -27,4 +27,8 @@ public class ExtentTestManager {
         return test;
     }
 
+    public static synchronized void flush() {
+        extent.flush();
+    }
+
 }

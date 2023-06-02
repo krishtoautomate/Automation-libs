@@ -23,17 +23,12 @@ public class ExtentManager {
                         ViewName.CATEGORY, ViewName.EXCEPTION, ViewName.LOG, ViewName.DASHBOARD})
                 .apply();
 
-//    report.config().setOfflineMode(true);
         report.config()
                 .setReportName("Automation Report");
 
+//        ExtentPDFReporter pdfReport = new ExtentPDFReporter(Constants.EXTENT_PDF_REPORT);
 
         extentReports.attachReporter(report, jsonReport);
-//        extentReports.attachReporter(jsonReport);
-
-//    ExtentPDFReporter pdfReport = new ExtentPDFReporter(Constants.EXTENT_PDF_REPORT);
-//    extentReports.attachReporter(pdfReport);
-//    pdfReport.config().setMediaFolders(new String[] {Constants.REPORT_DIR+"img"});
 
         extentReports.setSystemInfo("OS", Constants.HOST_OS);
         extentReports.setSystemInfo("HostIPAddress", Constants.HOST_IP_ADDRESS());

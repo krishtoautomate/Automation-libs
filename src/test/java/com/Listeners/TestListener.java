@@ -43,9 +43,20 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
         sdf.setTimeZone(TimeZone.getTimeZone("EST"));
-        String dateANDtime = sdf.format(date.getTime());
-        String start = dateANDtime;
-        testResult.setAttribute("start", start);
+        String dateTime = sdf.format(date.getTime());
+        testResult.setAttribute("start", dateTime);
+
+        try {
+            AppiumDriver driver = AppiumDriverManager.getDriverInstance();
+
+            if(driver!=null) {
+                String udid = driver.getCapabilities().getCapability("udid").toString();
+
+                log.info("udid : " + udid);
+            }
+        } catch (Exception e) {
+            //ignore
+        }
     }
 
     @Override
