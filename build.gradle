@@ -10,11 +10,18 @@ plugins {
     id 'java'
     id 'maven-publish'
     id 'groovy'
+    id 'io.qameta.allure' version '2.11.0'
+}
+
+allure {
+    autoconfigure = true
 }
 
 def timestamp() {
     return new Date().format('yyyy-MM-dd')
 }
+
+apply plugin: "io.qameta.allure-report"
 
 repositories {
 
@@ -124,19 +131,19 @@ task BaseJar(type: Jar) {
     include 'com/DataManager/*'
     include 'com/Drivers/*'
     destinationDirectory = file("$buildDir/jar")
-    archiveName = 'Base.jar'
+    //archiveName = 'Base.jar'
     exclude 'META-INF/MANIFEST.MF'
 }
 
 //grid-capability-matcher-3.141.59.jar
 //./gradlew GridJar
-task GridJar(type: Jar) {
-    from sourceSets.main.output
-    include 'com/selenium/grid/matcher/*'
-    destinationDirectory = file("$buildDir/jar")
-    archiveName = 'grid-capability-matcher-3.141.59.jar'
-    exclude 'META-INF/MANIFEST.MF'
-}
+//task GridJar(type: Jar) {
+//    from sourceSets.main.output
+//    include 'com/selenium/grid/matcher/*'
+//    destinationDirectory = file("$buildDir/jar")
+//    archiveName = 'grid-capability-matcher-3.141.59.jar'
+//    exclude 'META-INF/MANIFEST.MF'
+//}
 
 
 //gradle clean compiletestjava -PappPackage=BETA -PappActivity=activity -PbundleId=PROD

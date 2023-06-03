@@ -28,7 +28,7 @@ public class ExtentManager {
 
 //        ExtentPDFReporter pdfReport = new ExtentPDFReporter(Constants.EXTENT_PDF_REPORT);
 
-        extentReports.attachReporter(report, jsonReport);
+        extentReports.attachReporter(jsonReport);
 
         extentReports.setSystemInfo("OS", Constants.HOST_OS);
         extentReports.setSystemInfo("HostIPAddress", Constants.HOST_IP_ADDRESS());
@@ -59,7 +59,7 @@ public class ExtentManager {
 //            throw new CombinerException("Exception in creating merged JSON report.", e);
             System.out.println("Exception in creating merged JSON report." + e);
         } finally {
-            System.out.println(Constants.EXTENT_HTML_REPORT);
+            System.out.println("Report : "+Constants.EXTENT_HTML_REPORT);
         }
 
 

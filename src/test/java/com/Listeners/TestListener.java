@@ -15,7 +15,10 @@ import com.aventstack.extentreports.reporter.configuration.ViewName;
 import com.base.AppiumDriverManager;
 import com.base.Jira;
 import io.appium.java_client.AppiumDriver;
+import io.qameta.allure.Attachment;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriverException;
 import org.testng.*;
 
@@ -33,6 +36,16 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
 
     //extends TestListenerAdapter
 //  protected ReportBuilder reporter = new ReportBuilder();
+
+    private static String getTestMethodName(ITestResult iTestResult) {
+        return iTestResult.getMethod().getConstructorOrMethod().getName();
+    }
+
+    //Text attachments for Allure
+    @Attachment(value = "Page screenshot", type = "image/png")
+    public byte[] saveScreenshotPNG(AppiumDriver driver) {
+        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+    }
 
     private static Logger log = Logger.getLogger(TestListener.class.getName());
 
@@ -61,11 +74,11 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
 
     @Override
     public synchronized void onTestSuccess(ITestResult testResult) {
+
         /*
          * get device details
          */
-        Map<String, String> testParams =
-                testResult.getTestContext().getCurrentXmlTest().getAllParameters();
+        testResult.getTestContext().getCurrentXmlTest().getAllParameters();
 
         ExtentTest test = ExtentTestManager.getTest();
 
@@ -88,7 +101,7 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
         sdf.setTimeZone(TimeZone.getTimeZone("EST"));
-        String dateANDtime = sdf.format(date.getTime());
+        String dateTime = sdf.format(date.getTime());
 
         String testKey = null;
         try {
@@ -99,7 +112,7 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
 
         if (testKey != null) {
             String start = testResult.getAttribute("start").toString();
-            String finish = dateANDtime;
+            String finish = dateTime;
             // jiraReporter.setTestInfo("testKey", testKey);
             // jiraReporter.setTestInfo("start", start);
             // jiraReporter.setTestInfo("finish", finish);
@@ -133,7 +146,10 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
 
         if (driver != null) {
             log.error("Test failed : " + testName + " : " + udid + "_" + deviceName);
+
             try {
+                saveScreenshotPNG(driver);
+
                 ScreenShotManager screenShotManager = new ScreenShotManager(driver);
                 String ScreenShot = screenShotManager.getScreenshot();
 
@@ -163,7 +179,7 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
         sdf.setTimeZone(TimeZone.getTimeZone("EST"));
-        String dateANDtime = sdf.format(date.getTime());
+        String dateTime = sdf.format(date.getTime());
 
         String testKey = null;
         try {
@@ -257,7 +273,7 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
 //        jiraReporter.CreatejiraReport(Constants.JIRA_REPORT);
 
 
-//        ExtentManager.createReportFromJson(Constants.EXTENT_JSON_REPORT,Constants.EXTENT_HTML_REPORT);
+        ExtentManager.createReportFromJson(Constants.EXTENT_JSON_REPORT,Constants.EXTENT_HTML_REPORT);
 
     }
 

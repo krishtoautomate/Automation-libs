@@ -21,6 +21,9 @@ public class Constants {
   public static final String USER_DIR = System.getProperty("user.dir");
   public static final String TEST_RESOURCES = USER_DIR + "/src/test/resources/";
 
+  public static final String BUILD_NUMBER = System.getenv("BUILD_NUMBER");
+  public static final String SET_BUILD_NUMBER = BUILD_NUMBER != null ? BUILD_NUMBER + "/" : "";
+
   public static final String OUTPUT_DIRECTORY = USER_DIR + "/test-output/";
 
   public static final String DATE_NOW = new SimpleDateFormat("MMddyyyy").format(new Date());
@@ -42,7 +45,7 @@ public class Constants {
   public static final String REPORT_DIR = OUTPUT_DIRECTORY + DATE_NOW + "/";
   public static final String EXTENT_HTML_REPORT = REPORT_DIR + "AUTOMATION_REPORT" + ".html";
   public static final String EXTENT_FAILED_HTML_REPORT = REPORT_DIR + "AUTOMATION_FAILED_REPORT" + ".html";
-  public static final String EXTENT_JSON_REPORT = REPORT_DIR + TIME_NOW+"/AUTOMATION_REPORT" + ".json";
+  public static final String EXTENT_JSON_REPORT = REPORT_DIR + SET_BUILD_NUMBER+"/AUTOMATION_REPORT" + ".json";
   public static final String EXTENT_PDF_REPORT = REPORT_DIR + "AUTOMATION_REPORT" + ".pdf";
   public static final String APPENDED_REPORT = REPORT_DIR + "appendedReports" + ".html";
   public static final String EMAIL_REPORT = REPORT_DIR + "EmailableReport" + ".html";

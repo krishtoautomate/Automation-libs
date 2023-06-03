@@ -1,5 +1,6 @@
 package com.Utilities;
 
+import com.ReportManager.AllureHelper;
 import com.ReportManager.ExtentTestManager;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
@@ -13,6 +14,8 @@ import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.SupportsContextSwitching;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
+import io.qameta.allure.Attachment;
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -109,6 +112,7 @@ public class BaseObjs<T> implements ITestBase {
         return null;
     }
 
+    @Step("Dismiss any alerts appear on Screen")
     public void dismissAlert() {
         boolean isAndroid = driver instanceof AndroidDriver;
 
@@ -195,6 +199,10 @@ public class BaseObjs<T> implements ITestBase {
     }
 
 
+    @Attachment(value = "Page screenshot", type = "image/png")
+    public byte[] saveScreenshot(byte[] screenShot) {
+        return screenShot;
+    }
 
 
 
@@ -214,6 +222,7 @@ public class BaseObjs<T> implements ITestBase {
                 test.info(message);
             } else {
                 test.pass(message);
+                AllureHelper.logPass(message);
                 test.pass(message, MediaEntityBuilder.createScreenCaptureFromPath(imgPath).build());
             }
         } catch (WebDriverException e) {

@@ -121,8 +121,9 @@ public class TestBase {
                 ExtentTestManager.flush();
             } catch (Exception e) {
                 // ignore
-            } finally {
-                log.info(Constants.EXTENT_HTML_REPORT);
+            }
+            finally {
+//                log.info(Constants.EXTENT_HTML_REPORT);
             }
         }
     }
@@ -136,9 +137,10 @@ public class TestBase {
             ExtentTestManager.flush(); // -----close extent-report
         } catch (Exception e) {
             // ignore
-        } finally {
-            log.info(Constants.EXTENT_HTML_REPORT);
         }
+//        finally {
+//            log.info(Constants.EXTENT_HTML_REPORT);
+//        }
     }
 
 }
