@@ -1,11 +1,13 @@
 package other.testcases;
 
+import com.ReportManager.AllureHelper;
 import com.Utilities.Assertions;
 import com.Utilities.ITestBase;
 import com.Utilities.MobileActions;
 import com.Utilities.Utilities;
 import com.aventstack.extentreports.Status;
 import com.base.TestBase;
+import io.qameta.allure.Description;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 import other.pages.TestFlightApp;
@@ -18,6 +20,7 @@ public class TestFlight extends TestBase implements ITestBase {
 
 
     @Test//(retryAnalyzer = com.Listeners.RetryAnalyzer.class)
+    @Description("The Test updates apps from Testflight")
     public void TestFlightUpdateScript() {
 
         String udid = driver.getCapabilities().getCapability("udid").toString();

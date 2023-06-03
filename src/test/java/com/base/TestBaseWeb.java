@@ -103,9 +103,10 @@ public class TestBaseWeb {
                 ExtentTestManager.flush();
             } catch (Exception ign) {
                 // ignore
-            } finally {
-                log.info(Constants.EXTENT_HTML_REPORT);
             }
+//            finally {
+//                log.info(Constants.EXTENT_HTML_REPORT);
+//            }
         }
 
         if (test != null)
