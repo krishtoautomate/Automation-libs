@@ -28,7 +28,7 @@ public class ExtentManager {
 
 //        ExtentPDFReporter pdfReport = new ExtentPDFReporter(Constants.EXTENT_PDF_REPORT);
 
-        extentReports.attachReporter(jsonReport);
+        extentReports.attachReporter(report);
 
         extentReports.setSystemInfo("OS", Constants.HOST_OS);
         extentReports.setSystemInfo("HostIPAddress", Constants.HOST_IP_ADDRESS());
