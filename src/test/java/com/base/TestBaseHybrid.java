@@ -166,9 +166,9 @@ public class TestBaseHybrid {
         } catch (Exception e) {
             // ignore
         }
-        finally {
-            log.info(Constants.EXTENT_HTML_REPORT);
-        }
+//        finally {
+//            log.info(Constants.EXTENT_HTML_REPORT);
+//        }
     }
 
     /**
@@ -181,9 +181,9 @@ public class TestBaseHybrid {
         } catch (Exception e) {
             // ignore
         }
-        finally {
-            log.info(Constants.EXTENT_HTML_REPORT);
-        }
+//        finally {
+//            log.info(Constants.EXTENT_HTML_REPORT);
+//        }
     }
 
 }

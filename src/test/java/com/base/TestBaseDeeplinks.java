@@ -111,9 +111,10 @@ public class TestBaseDeeplinks {
             ExtentTestManager.flush(); // -----close extent-report
         } catch (Exception e) {
             // ignore
-        } finally {
-            log.info(Constants.EXTENT_HTML_REPORT);
         }
+//        finally {
+//            log.info(Constants.EXTENT_HTML_REPORT);
+//        }
     }
 
     /**
@@ -125,9 +126,10 @@ public class TestBaseDeeplinks {
             ExtentTestManager.flush(); // -----close extent-report
         } catch (Exception e) {
             // ignore
-        } finally {
-            log.info(Constants.EXTENT_HTML_REPORT);
         }
+//        finally {
+//            log.info(Constants.EXTENT_HTML_REPORT);
+//        }
     }
 
     public String getIOSActiveAppInfo() {
