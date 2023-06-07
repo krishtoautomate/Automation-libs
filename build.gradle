@@ -10,22 +10,15 @@ plugins {
     id 'java'
     id 'maven-publish'
     id 'groovy'
-    id 'io.qameta.allure' version '2.11.0'
-}
-
-allure {
-    autoconfigure = true
 }
 
 def timestamp() {
     return new Date().format('yyyy-MM-dd')
 }
 
-apply plugin: "io.qameta.allure-report"
-
 repositories {
 
-//    mavenLocal()
+    mavenLocal()
     google()
     mavenCentral()
     maven {
