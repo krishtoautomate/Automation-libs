@@ -122,9 +122,9 @@ public class TestBase {
             } catch (Exception e) {
                 // ignore
             }
-            finally {
+//            finally {
 //                log.info(Constants.EXTENT_HTML_REPORT);
-            }
+//            }
         }
     }
 

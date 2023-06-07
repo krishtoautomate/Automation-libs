@@ -140,7 +140,7 @@ public class BaseObjs<T> implements ITestBase {
 
         // Unique name to screen-shot
         UUID uuid = UUID.randomUUID();
-        String imgPath = "img/" + uuid.toString() + "(" + Constants.TIME_NOW + ")" + ".PNG";
+        String imgPath = "img/" + uuid + "(" + Constants.TIME_NOW + ")" + ".PNG";
 
         File ScreenShot = new File(Constants.NO_SCREENSHOTS_AVAILABLE);
         try {
@@ -222,7 +222,6 @@ public class BaseObjs<T> implements ITestBase {
                 test.info(message);
             } else {
                 test.pass(message);
-                AllureHelper.logPass(message);
                 test.pass(message, MediaEntityBuilder.createScreenCaptureFromPath(imgPath).build());
             }
         } catch (WebDriverException e) {

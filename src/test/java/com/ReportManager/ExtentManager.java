@@ -11,13 +11,14 @@ import java.util.Locale;
 
 public class ExtentManager {
 
-    public static final ExtentReports extentReports = new ExtentReports();
+    public static ExtentReports extentReports = new ExtentReports();
 
     public synchronized static ExtentReports createExtentReports() {
 
         Locale.setDefault(Locale.ENGLISH);
-        JsonFormatter jsonReport = new JsonFormatter(Constants.EXTENT_JSON_REPORT);
-        ExtentSparkReporter report = new ExtentSparkReporter(Constants.EXTENT_HTML_REPORT)
+//        JsonFormatter jsonReport = new JsonFormatter(Constants.EXTENT_JSON_REPORT);
+        String htmlReport = Constants.EXTENT_HTML_REPORT;
+        ExtentSparkReporter report = new ExtentSparkReporter(htmlReport)
                 .viewConfigurer()
                 .viewOrder().as(new ViewName[]{ViewName.TEST, ViewName.DEVICE, ViewName.AUTHOR,
                         ViewName.CATEGORY, ViewName.EXCEPTION, ViewName.LOG, ViewName.DASHBOARD})
@@ -28,13 +29,39 @@ public class ExtentManager {
 
 //        ExtentPDFReporter pdfReport = new ExtentPDFReporter(Constants.EXTENT_PDF_REPORT);
 
-        extentReports.attachReporter(jsonReport);
+        extentReports.attachReporter(report);
 
         extentReports.setSystemInfo("OS", Constants.HOST_OS);
         extentReports.setSystemInfo("HostIPAddress", Constants.HOST_IP_ADDRESS());
         extentReports.setSystemInfo("Host Name", Constants.HOST_NAME());
 
         return extentReports;
+    }
+
+    public synchronized static ExtentReports createExtentReports(String htmlReport) {
+
+        ExtentReports extentReport = new ExtentReports();
+
+        Locale.setDefault(Locale.ENGLISH);
+//        JsonFormatter jsonReport = new JsonFormatter(Constants.EXTENT_JSON_REPORT);
+        ExtentSparkReporter report = new ExtentSparkReporter(htmlReport)
+                .viewConfigurer()
+                .viewOrder().as(new ViewName[]{ViewName.TEST, ViewName.DEVICE, ViewName.AUTHOR,
+                        ViewName.CATEGORY, ViewName.EXCEPTION, ViewName.LOG, ViewName.DASHBOARD})
+                .apply();
+
+        report.config()
+                .setReportName("Automation Report");
+
+//        ExtentPDFReporter pdfReport = new ExtentPDFReporter(Constants.EXTENT_PDF_REPORT);
+
+        extentReport.attachReporter(report);
+
+        extentReport.setSystemInfo("OS", Constants.HOST_OS);
+        extentReport.setSystemInfo("HostIPAddress", Constants.HOST_IP_ADDRESS());
+        extentReport.setSystemInfo("Host Name", Constants.HOST_NAME());
+
+        return extentReport;
     }
 
     public static synchronized void createReportFromJson(String jsonReport, String htmlReport) {
@@ -61,8 +88,6 @@ public class ExtentManager {
         } finally {
             System.out.println("Report : "+Constants.EXTENT_HTML_REPORT);
         }
-
-
     }
 
 
