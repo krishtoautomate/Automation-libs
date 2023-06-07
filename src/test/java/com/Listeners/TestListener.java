@@ -15,7 +15,6 @@ import com.aventstack.extentreports.reporter.configuration.ViewName;
 import com.base.AppiumDriverManager;
 import com.base.Jira;
 import io.appium.java_client.AppiumDriver;
-import io.qameta.allure.Attachment;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -39,12 +38,6 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
 
     private static String getTestMethodName(ITestResult iTestResult) {
         return iTestResult.getMethod().getConstructorOrMethod().getName();
-    }
-
-    //Text attachments for Allure
-    @Attachment(value = "Page screenshot", type = "image/png")
-    public byte[] saveScreenshotPNG(AppiumDriver driver) {
-        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
 
     private static Logger log = Logger.getLogger(TestListener.class.getName());
@@ -148,7 +141,6 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
             log.error("Test failed : " + testName + " : " + udid + "_" + deviceName);
 
             try {
-                saveScreenshotPNG(driver);
 
                 ScreenShotManager screenShotManager = new ScreenShotManager(driver);
                 String ScreenShot = screenShotManager.getScreenshot();

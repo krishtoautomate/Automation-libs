@@ -17,7 +17,6 @@ import java.time.Duration;
 import java.util.HashMap;
 
 import io.appium.java_client.touch.offset.PointOption;
-import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.*;
@@ -159,7 +158,6 @@ public class MobileActions implements ITestBase {
   }
 
   @SuppressWarnings("unchecked")
-  @Step("Terminate app and start again")
   public void resetApp() {
     String bundleId = driver.getCapabilities().getCapability("bundleId").toString();
     if (isIOS) {

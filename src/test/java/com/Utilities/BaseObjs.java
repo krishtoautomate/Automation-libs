@@ -1,7 +1,5 @@
 package com.Utilities;
 
-import com.ReportManager.AllureHelper;
-import com.ReportManager.ExtentTestManager;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
@@ -11,20 +9,15 @@ import io.appium.java_client.PerformsTouchActions;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
-import io.appium.java_client.remote.SupportsContextSwitching;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
-import io.qameta.allure.Attachment;
-import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpStatus;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 
 import javax.imageio.ImageIO;
@@ -32,14 +25,9 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.List;
 import java.util.*;
-import java.util.NoSuchElementException;
 
 public class BaseObjs<T> implements ITestBase {
 
@@ -112,7 +100,6 @@ public class BaseObjs<T> implements ITestBase {
         return null;
     }
 
-    @Step("Dismiss any alerts appear on Screen")
     public void dismissAlert() {
         boolean isAndroid = driver instanceof AndroidDriver;
 
@@ -196,12 +183,6 @@ public class BaseObjs<T> implements ITestBase {
         if (scrolls == maxScrolls) {
             //throw new NoSuchElementException("Element not found or not within screen dimensions after scrolling down " + maxScrolls + " times");
         }
-    }
-
-
-    @Attachment(value = "Page screenshot", type = "image/png")
-    public byte[] saveScreenshot(byte[] screenShot) {
-        return screenShot;
     }
 
 
