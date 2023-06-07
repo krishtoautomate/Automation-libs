@@ -38,55 +38,51 @@ repositories {
     }
 
 }
+
+
 dependencies {
-
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    testImplementation files('libs/webdrivermanager.jar')
+    testImplementation files('libs/Base.jar')
 
-    testImplementation 'org.assertj:assertj-core:2.0.0'
+    testImplementation 'org.testng:testng:7.7.0'
+//    testImplementation 'org.assertj:assertj-core:2.0.0'
 
     testImplementation 'org.seleniumhq.selenium:selenium-java:4.9.1'
     testImplementation 'org.seleniumhq.selenium:selenium-support:4.9.1'
 
-    testImplementation 'io.appium:java-client:8.4.0'
-    
-    testImplementation 'io.cucumber:cucumber-java:7.3.1'
-    testImplementation 'io.cucumber:cucumber-testng:7.3.1'
-    testImplementation 'io.cucumber:cucumber-junit:7.2.3'
+    implementation 'io.appium:java-client:8.4.0'
 
-    testImplementation 'commons-io:commons-io:2.6'
-//    testImplementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'commons-io:commons-io:2.11.0'
+
+//    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+//    implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.googlecode.json-simple:json-simple:1.1.1'
 
     implementation 'javax.mail:mail:1.4'
-    implementation 'org.json:json:20160810'
-    implementation 'com.opencsv:opencsv:4.0'
+    implementation 'org.json:json:20230227'
+    implementation 'com.opencsv:opencsv:5.7.1'
     implementation 'com.jcraft:jsch:0.1.54'
     implementation 'org.bytedeco.javacpp-presets:tesseract:4.0.0-1.4.4'
-    
-    testImplementation 'io.rest-assured:rest-assured:4.4.0'
-   
-   	testImplementation 'com.aventstack:extentreports:5.0.8'
-   	testImplementation 'tech.grasshopper:pdfextentreporter:0.3'
 
-//    testImplementation 'com.google.guava:guava:21.0'
+    testImplementation 'io.rest-assured:rest-assured:5.3.0'
 
+    testImplementation 'com.aventstack:extentreports:5.0.9'
 
-    implementation 'org.apache.logging.log4j:log4j-core:2.13.3'
-    implementation 'org.apache.logging.log4j:log4j-api:2.13.3'
+//    implementation 'com.google.guava:guava:21.0'
+
+//    implementation 'org.apache.logging.log4j:log4j-core:2.13.3'
+//    implementation 'org.apache.logging.log4j:log4j-api:2.13.3'
     implementation 'log4j:log4j:1.2.17'
     implementation 'org.slf4j:slf4j-api:2.0.5'
     implementation 'org.slf4j:slf4j-jdk14:2.0.5'
-	
+
     testImplementation "com.oracle.ojdbc:ojdbc8:19.3.0.0"
-    
-    testImplementation 'com.slack.api:slack-api-client:1.8.1'
-    testImplementation 'org.testng:testng:7.1.0'
 
-    implementation 'io.qameta.allure:allure-testng:2.22.0'
 
-    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-server
-//    implementation 'org.seleniumhq.selenium:selenium-server:3.141.59'
+    testImplementation 'org.usb4java:usb4java-javax:1.2.0'
+
+    testImplementation 'com.slack.api:slack-api-client:1.28.0'
+
 
 }
 

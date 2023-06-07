@@ -64,31 +64,31 @@ public class ExtentManager {
         return extentReport;
     }
 
-//    public static synchronized void createReportFromJson(String jsonReport, String htmlReport) {
-//
-//        ExtentSparkReporter spark = new ExtentSparkReporter(htmlReport)
-//                .viewConfigurer()
-//                .viewOrder().as(new ViewName[]{ViewName.TEST, ViewName.DEVICE, ViewName.AUTHOR,
-//                        ViewName.CATEGORY, ViewName.EXCEPTION, ViewName.LOG, ViewName.DASHBOARD})
-//                .apply();
-//
-//        spark.config()
-//                .setReportName("Automation Report");
-//
-//        ExtentReports extent = new ExtentReports();
-//
-//        try {
-//            extent.createDomainFromJsonArchive(jsonReport);
-//
-//            extent.attachReporter(spark);
-//            extent.flush();
-//        } catch (IOException e) {
-////            throw new CombinerException("Exception in creating merged JSON report.", e);
-//            System.out.println("Exception in creating merged JSON report." + e);
-//        } finally {
-//            System.out.println("Report : "+Constants.EXTENT_HTML_REPORT);
-//        }
-//    }
+    public static synchronized void createReportFromJson(String jsonReport, String htmlReport) {
+
+        ExtentSparkReporter spark = new ExtentSparkReporter(htmlReport)
+                .viewConfigurer()
+                .viewOrder().as(new ViewName[]{ViewName.TEST, ViewName.DEVICE, ViewName.AUTHOR,
+                        ViewName.CATEGORY, ViewName.EXCEPTION, ViewName.LOG, ViewName.DASHBOARD})
+                .apply();
+
+        spark.config()
+                .setReportName("Automation Report");
+
+        ExtentReports extent = new ExtentReports();
+
+        try {
+            extent.createDomainFromJsonArchive(jsonReport);
+
+            extent.attachReporter(spark);
+            extent.flush();
+        } catch (IOException e) {
+//            throw new CombinerException("Exception in creating merged JSON report.", e);
+            System.out.println("Exception in creating merged JSON report." + e);
+        } finally {
+            System.out.println("Report : "+Constants.EXTENT_HTML_REPORT);
+        }
+    }
 
 
 }

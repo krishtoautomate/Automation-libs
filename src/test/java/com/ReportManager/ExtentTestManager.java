@@ -34,7 +34,7 @@ public class ExtentTestManager {
 
     public static synchronized ExtentTest startTest(String testName) {
         testCount++;
-        int testsPerReport =Constants.EXTENT_TEST_LIMIT;
+        int testsPerReport = Constants.EXTENT_TEST_LIMIT;
 //        if(testCount<testsPerReport)
 //            extentReports = ExtentManager.createExtentReports();//default
         if ((testCount - 1) % testsPerReport == 0) {
