@@ -1,4 +1,4 @@
-package com.deviceinformation.device;
+package com.Deviceinformation.device;
 
 public enum DeviceType {
   ANDROID,

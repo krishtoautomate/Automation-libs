@@ -1,13 +1,13 @@
-package com.deviceinformation;
+package com.Deviceinformation;
 
-import com.deviceinformation.device.DeviceFinder;
-import com.deviceinformation.device.DeviceFinderFactory;
-import com.deviceinformation.device.DeviceType;
-import com.deviceinformation.exception.DeviceNotFoundException;
-import com.deviceinformation.model.Android;
-import com.deviceinformation.model.Device;
-import com.deviceinformation.model.Ios;
-import com.deviceinformation.model.IosSimulator;
+import com.Deviceinformation.device.DeviceFinder;
+import com.Deviceinformation.device.DeviceFinderFactory;
+import com.Deviceinformation.device.DeviceType;
+import com.Deviceinformation.exception.DeviceNotFoundException;
+import com.Deviceinformation.model.Android;
+import com.Deviceinformation.model.Device;
+import com.Deviceinformation.model.Ios;
+import com.Deviceinformation.model.IosSimulator;
 import java.io.IOException;
 import java.util.List;
 import org.apache.commons.exec.OS;

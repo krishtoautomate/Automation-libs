@@ -1,4 +1,4 @@
-package com.deviceinformation.exception;
+package com.Deviceinformation.exception;
 
 @SuppressWarnings("serial")
 public class DeviceNotFoundException extends Exception {

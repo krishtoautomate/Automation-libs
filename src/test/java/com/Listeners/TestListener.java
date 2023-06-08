@@ -22,6 +22,7 @@ import org.openqa.selenium.WebDriverException;
 import org.testng.*;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -250,6 +251,10 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
 //    if (buildNo != null) {
 //      reporter.writeResults(emailReport);
 //    }
+
+
+        String[] json = {"/Users/home/Automation/BQATAutomation-libs/test-output/06082023/AUTOMATION_REPORT_1.json", "/Users/home/Automation/BQATAutomation-libs/test-output/06082023/AUTOMATION_REPORT_2.json"};
+        ExtentManager.createHTMLReportFromJsonReports(json, "/Users/home/Automation/BQATAutomation-libs/test-output/06082023/AUTOMATION_REPORT.html");
 
 
 

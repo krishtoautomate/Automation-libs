@@ -46,7 +46,7 @@ public class Constants {
   public static final String EXTENT_HTML_REPORT = REPORT_DIR + "AUTOMATION_REPORT" + ".html";
   public static final String EXTENT_HTML_CUSTOM_REPORT = REPORT_DIR + "AUTOMATION_REPORT" +"_INDEX"+ ".html";
   public static final String EXTENT_JSON_CUSTOM_REPORT = REPORT_DIR + "AUTOMATION_REPORT" +"_INDEX"+ ".json";
-  public static final int EXTENT_TEST_LIMIT = 150;
+  public static final int EXTENT_TEST_LIMIT = 2;
 
   public static final String EXTENT_FAILED_HTML_REPORT = REPORT_DIR + "AUTOMATION_FAILED_REPORT" + ".html";
   public static final String EXTENT_JSON_REPORT = REPORT_DIR + SET_BUILD_NUMBER+"/AUTOMATION_REPORT" + ".json";

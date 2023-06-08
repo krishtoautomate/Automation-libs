@@ -1,10 +1,10 @@
-package com.deviceinformation.device;
+package com.Deviceinformation.device;
 
 import com.Utilities.Constants;
-import com.deviceinformation.helper.JsonHelper;
-import com.deviceinformation.helper.ProcessHelper;
-import com.deviceinformation.model.DeviceInfoModel;
-import com.deviceinformation.model.Ios;
+import com.Deviceinformation.helper.JsonHelper;
+import com.Deviceinformation.helper.ProcessHelper;
+import com.Deviceinformation.model.DeviceInfoModel;
+import com.Deviceinformation.model.Ios;
 import com.google.gson.reflect.TypeToken;
 import java.io.BufferedReader;
 import java.io.IOException;

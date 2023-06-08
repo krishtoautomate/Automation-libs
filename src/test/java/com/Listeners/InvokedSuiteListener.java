@@ -1,12 +1,9 @@
 package com.Listeners;
 
-import com.ReportManager.LoggerManager;
-import com.base.Jira;
-import com.base.Log;
-import com.deviceinformation.DeviceInfo;
-import com.deviceinformation.DeviceInfoImpl;
-import com.deviceinformation.device.DeviceType;
-import com.deviceinformation.model.Device;
+import com.Deviceinformation.DeviceInfo;
+import com.Deviceinformation.DeviceInfoImpl;
+import com.Deviceinformation.device.DeviceType;
+import com.Deviceinformation.model.Device;
 import java.util.Iterator;
 import java.util.List;
 import org.apache.log4j.Logger;

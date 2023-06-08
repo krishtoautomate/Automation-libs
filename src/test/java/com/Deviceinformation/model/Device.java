@@ -1,4 +1,4 @@
-package com.deviceinformation.model;
+package com.Deviceinformation.model;
 
 public interface Device {
 
