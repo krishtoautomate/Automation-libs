@@ -38,24 +38,24 @@ public class ExtentManager {
         return extentReports;
     }
 
-    public synchronized static ExtentReports createExtentReports(String htmlReport) {
+    public synchronized static ExtentReports createExtentReports(String htmlReport, String jsonReport) {
 
         ExtentReports extentReport = new ExtentReports();
 
         Locale.setDefault(Locale.ENGLISH);
-//        JsonFormatter jsonReport = new JsonFormatter(Constants.EXTENT_JSON_REPORT);
-        ExtentSparkReporter report = new ExtentSparkReporter(htmlReport)
+        JsonFormatter jsonFormatter = new JsonFormatter(jsonReport);
+        ExtentSparkReporter extentSparkReporter = new ExtentSparkReporter(htmlReport)
                 .viewConfigurer()
                 .viewOrder().as(new ViewName[]{ViewName.TEST, ViewName.DEVICE, ViewName.AUTHOR,
                         ViewName.CATEGORY, ViewName.EXCEPTION, ViewName.LOG, ViewName.DASHBOARD})
                 .apply();
 
-        report.config()
+        extentSparkReporter.config()
                 .setReportName("Automation Report");
 
 //        ExtentPDFReporter pdfReport = new ExtentPDFReporter(Constants.EXTENT_PDF_REPORT);
 
-        extentReport.attachReporter(report);
+        extentReport.attachReporter(extentSparkReporter,jsonFormatter);
 
         extentReport.setSystemInfo("OS", Constants.HOST_OS);
         extentReport.setSystemInfo("HostIPAddress", Constants.HOST_IP_ADDRESS());
