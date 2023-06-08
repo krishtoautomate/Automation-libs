@@ -40,7 +40,8 @@ public class ExtentTestManager {
         if ((testCount - 1) % testsPerReport == 0) {
             reportIndex++;
             String htmlReport = Constants.EXTENT_HTML_CUSTOM_REPORT.replace("INDEX", String.valueOf(reportIndex));
-            extentReports = ExtentManager.createExtentReports(htmlReport);
+            String jsonReport = Constants.EXTENT_JSON_CUSTOM_REPORT.replace("INDEX", String.valueOf(reportIndex));
+            extentReports = ExtentManager.createExtentReports(htmlReport,jsonReport);
             System.out.println("Report : "+ htmlReport);
         }
         ExtentTest test = extentReports.createTest(testName);
