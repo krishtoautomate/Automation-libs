@@ -1,11 +1,11 @@
-package com.deviceinformation.device;
+package com.Deviceinformation.device;
 
-import com.deviceinformation.exception.DeviceNotFoundException;
-import com.deviceinformation.model.Android;
-import com.deviceinformation.model.Device;
-import com.deviceinformation.model.DeviceInfoModel;
-import com.deviceinformation.model.Ios;
-import com.deviceinformation.model.IosSimulator;
+import com.Deviceinformation.exception.DeviceNotFoundException;
+import com.Deviceinformation.model.Android;
+import com.Deviceinformation.model.Device;
+import com.Deviceinformation.model.DeviceInfoModel;
+import com.Deviceinformation.model.Ios;
+import com.Deviceinformation.model.IosSimulator;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;

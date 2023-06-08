@@ -1,8 +1,8 @@
-package com.deviceinformation.device;
+package com.Deviceinformation.device;
 
-import com.deviceinformation.exception.DeviceNotFoundException;
-import com.deviceinformation.model.Device;
-import com.deviceinformation.model.DeviceInfoModel;
+import com.Deviceinformation.exception.DeviceNotFoundException;
+import com.Deviceinformation.model.Device;
+import com.Deviceinformation.model.DeviceInfoModel;
 import java.io.IOException;
 import java.util.Map;
 

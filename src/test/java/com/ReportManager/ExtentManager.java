@@ -7,6 +7,7 @@ import com.aventstack.extentreports.reporter.JsonFormatter;
 import com.aventstack.extentreports.reporter.configuration.ViewName;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.Locale;
 
 public class ExtentManager {
@@ -64,7 +65,7 @@ public class ExtentManager {
         return extentReport;
     }
 
-    public static synchronized void createReportFromJson(String jsonReport, String htmlReport) {
+    public static synchronized void createHTMLReportFromJsonReports(String[] jsonReports, String htmlReport) {
 
         ExtentSparkReporter spark = new ExtentSparkReporter(htmlReport)
                 .viewConfigurer()
@@ -78,7 +79,9 @@ public class ExtentManager {
         ExtentReports extent = new ExtentReports();
 
         try {
-            extent.createDomainFromJsonArchive(jsonReport);
+            for(String jsonReport : jsonReports) {
+                extent.createDomainFromJsonArchive(jsonReport);
+            }
 
             extent.attachReporter(spark);
             extent.flush();

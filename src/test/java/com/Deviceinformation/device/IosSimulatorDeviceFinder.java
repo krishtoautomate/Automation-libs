@@ -1,10 +1,10 @@
-package com.deviceinformation.device;
+package com.Deviceinformation.device;
 
-import com.deviceinformation.exception.DeviceNotFoundException;
-import com.deviceinformation.helper.JsonHelper;
-import com.deviceinformation.helper.ProcessHelper;
-import com.deviceinformation.model.DeviceInfoModel;
-import com.deviceinformation.model.IosSimulator;
+import com.Deviceinformation.exception.DeviceNotFoundException;
+import com.Deviceinformation.helper.JsonHelper;
+import com.Deviceinformation.helper.ProcessHelper;
+import com.Deviceinformation.model.DeviceInfoModel;
+import com.Deviceinformation.model.IosSimulator;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
