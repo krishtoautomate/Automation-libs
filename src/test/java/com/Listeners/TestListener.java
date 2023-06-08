@@ -253,8 +253,8 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
 //    }
 
 
-        String[] json = {Constants.REPORT_DIR+"AUTOMATION_REPORT_1.json", Constants.REPORT_DIR+"AUTOMATION_REPORT_2.json"};
-        ExtentManager.createHTMLReportFromJsonReports(json, Constants.REPORT_DIR+"AUTOMATION_REPORT.html");
+//        String[] json = {Constants.REPORT_DIR+"AUTOMATION_REPORT_1.json", Constants.REPORT_DIR+"AUTOMATION_REPORT_2.json"};
+//        ExtentManager.createHTMLReportFromJsonReports(json, Constants.REPORT_DIR+"AUTOMATION_REPORT.html");
 
 
 
