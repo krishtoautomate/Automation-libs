@@ -8,6 +8,7 @@ import com.aventstack.extentreports.reporter.configuration.ViewName;
 
 import java.io.IOException;
 import java.lang.reflect.Array;
+import java.util.List;
 import java.util.Locale;
 
 public class ExtentManager {
@@ -65,7 +66,7 @@ public class ExtentManager {
         return extentReport;
     }
 
-    public static synchronized void createHTMLReportFromJsonReports(String[] jsonReports, String htmlReport) {
+    public static synchronized void createHTMLReportFromJsonReports(List<String> jsonReports, String htmlReport) {
 
         ExtentSparkReporter spark = new ExtentSparkReporter(htmlReport)
                 .viewConfigurer()

@@ -1,35 +1,24 @@
 package com.Listeners;
 
-import com.DataManager.DeviceInfoReader;
-import com.ReportManager.ExtentManager;
 import com.ReportManager.ExtentTestManager;
 import com.Utilities.Constants;
 import com.Utilities.ScreenShotManager;
-import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
-import com.aventstack.extentreports.reporter.ExtentSparkReporter;
-import com.aventstack.extentreports.reporter.configuration.ViewName;
 import com.base.AppiumDriverManager;
-import com.base.Jira;
 import io.appium.java_client.AppiumDriver;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriverException;
 import org.testng.*;
 
-import java.io.IOException;
-import java.lang.reflect.Array;
+import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.Map;
-import java.util.TimeZone;
+import java.util.*;
 
 public class TestListener extends TestListenerAdapter implements ISuiteListener, ITestListener,
         IInvokedMethodListener {
@@ -56,7 +45,7 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
         try {
             AppiumDriver driver = AppiumDriverManager.getDriverInstance();
 
-            if(driver!=null) {
+            if (driver != null) {
                 String udid = driver.getCapabilities().getCapability("udid").toString();
 
                 log.info("udid : " + udid);
@@ -202,8 +191,8 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
 //        String deviceName = deviceInfoReader.getString("name");
 
 //    Logger log = LoggerManager.getLogger();
-        if(udid!=null)
-            log.warn("Test Skipped : " + testResult.getMethod().getMethodName() + " : " + udid );
+        if (udid != null)
+            log.warn("Test Skipped : " + testResult.getMethod().getMethodName() + " : " + udid);
         else
             log.warn("Test Skipped : " + testResult.getMethod().getMethodName());
 
@@ -223,7 +212,7 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
         sdf.setTimeZone(TimeZone.getTimeZone("EST"));
-        String dateANDtime = sdf.format(date.getTime());
+        String dateTime = sdf.format(date.getTime());
 
         // Jira report
         String buildNo = System.getenv("BUILD_NUMBER");
@@ -232,7 +221,7 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
         String testPlanKey = System.getenv("TEST_PLAN_KEY");
         String excutionSummary = jobName + buildNo;
         String excutionDescription = buildUrl;
-        String startDate = dateANDtime;
+        String startDate = dateTime;
 //        jiraReporter.setTestExecutionInfo("summary", excutionSummary);
 //        jiraReporter.setTestExecutionInfo("testPlanKey", testPlanKey);// "MAEAUTO-311"
 //        jiraReporter.setTestExecutionInfo("description", excutionDescription);
@@ -253,25 +242,30 @@ public class TestListener extends TestListenerAdapter implements ISuiteListener,
 //    }
 
 
-//        String[] json = {Constants.REPORT_DIR+"AUTOMATION_REPORT_1.json", Constants.REPORT_DIR+"AUTOMATION_REPORT_2.json"};
-//        ExtentManager.createHTMLReportFromJsonReports(json, Constants.REPORT_DIR+"AUTOMATION_REPORT.html");
-
-
-
         // Jira report
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
         sdf.setTimeZone(TimeZone.getTimeZone("EST"));
-        String dateANDtime = sdf.format(date.getTime());
-        String finishDate = dateANDtime;
+        String dateTime = sdf.format(date.getTime());
+        String finishDate = dateTime;
 //        jiraReporter.setTestExecutionInfo("finishDate", finishDate);
 //        jiraReporter.addInfo();
 //        jiraReporter.addTests();
 //        jiraReporter.CreatejiraReport(Constants.JIRA_REPORT);
 
 
-//        ExtentManager.createReportFromJson(Constants.EXTENT_JSON_REPORT,Constants.EXTENT_HTML_REPORT);
-
+        String folderPath = Constants.REPORT_DIR; // Replace with the actual folder path
+        List<String> jsonFiles = new ArrayList<>();
+        try {
+            Files.walk(Paths.get(folderPath))
+                    .filter(Files::isRegularFile)
+                    .filter(path -> path.toString().endsWith(".json"))
+                    .forEach(path -> jsonFiles.add(path.toString()));
+            System.out.println(Arrays.deepToString(jsonFiles.toArray()));
+//            ExtentManager.createHTMLReportFromJsonReports(jsonFiles, Constants.EXTENT_HTML_REPORT);
+        } catch (Exception e) {
+            //ignore
+        }
     }
 
     @Override

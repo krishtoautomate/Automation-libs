@@ -215,8 +215,8 @@ test {
 	
     useTestNG(){
     
-        if (project.hasProperty('testNG')) { 
-        	suites 'src/test/resources/debugTestNG.xml' 
+        if (project.hasProperty('TestNG')) {
+        	suites 'src/test/resources/TestNG.xml'
         }
          suites ''+System.getProperty('testNGsuiteXmlFile')
         //suites 'src/test/resources/'+System.getProperty('testNGsuiteXmlFile')
