@@ -9,6 +9,11 @@ import org.apache.log4j.Logger;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Field;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Map;
+import java.util.TimeZone;
 
 public class Jira {
 
@@ -89,18 +94,18 @@ public class Jira {
         }
     }
 
-    // public static void main(String[] args) {
-    //
-    // // update status
-    // Jira jira = new Jira();
-    //
-    // Date date = new Date();
-    // SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
-    // sdf.setTimeZone(TimeZone.getTimeZone("EST"));
-    // String dateANDtime = sdf.format(date.getTime());
-    //
-    // jira.update_Test_Exec("MAEAUTO-8149", "MAEAUTO-350", "PASS", dateANDtime, dateANDtime);
-    // }
+    public static void main(String[] args) {
+
+        // update status
+        Jira jira = new Jira();
+
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
+        sdf.setTimeZone(TimeZone.getTimeZone("EST"));
+        String dateANDtime = sdf.format(date.getTime());
+
+        jira.update_Test_Exec("MAERT-25602", "MAEAUTO-276", "PASS", dateANDtime, dateANDtime);
+    }
 
     /*
     @type : add/remove
@@ -109,7 +114,9 @@ public class Jira {
         try {
             String jiraAuth = System.getenv("JIRA_AUTH");
             RestAssured.useRelaxedHTTPSValidation();
-            RestAssured.baseURI = "https://jira.bell.corp.bce.ca/rest/api/2/issue/" + testKey;
+            RestAssured.baseURI = "https://jira.bell.corp.bce.ca";
+            RestAssured.basePath = "/rest/api/2/issue/" + testKey;
+//            RestAssured.baseURI = "https://jira.bell.corp.bce.ca/rest/api/2/issue/" + testKey;
             RequestSpecification req = RestAssured.given();
             req.header("Content-Type", "application/json");
             req.header("Authorization", "Basic " + jiraAuth);
@@ -125,7 +132,9 @@ public class Jira {
         try {
             String jiraAuth = System.getenv("JIRA_AUTH");
             RestAssured.useRelaxedHTTPSValidation();
-            RestAssured.baseURI = "https://jira.bell.corp.bce.ca/rest/api/2/issue/" + testKey;
+            RestAssured.baseURI = "https://jira.bell.corp.bce.ca";
+            RestAssured.basePath = "/rest/api/2/issue/" + testKey;
+//            RestAssured.baseURI = "https://jira.bell.corp.bce.ca/rest/api/2/issue/" + testKey;
             RequestSpecification req = RestAssured.given();
             req.header("Content-Type", "application/json");
             req.header("Authorization", "Basic " + jiraAuth);
@@ -145,6 +154,12 @@ public class Jira {
     public void update_Test_Exec(String testExecutionKey, String testKey, String status, String start,
                                  String finish) {
         try {
+
+//            String testPlanKey = "MAERT-25397";
+//            String jiraAuth = "a3Jpc2gucGF2dWx1cjpBdXRvbWF0aW9uMjAyMiQ=";
+
+
+
             String testPlanKey = System.getenv("TEST_PLAN_KEY");
             String jiraAuth = System.getenv("JIRA_AUTH");
 
@@ -167,7 +182,9 @@ public class Jira {
 
             RestAssured.useRelaxedHTTPSValidation();
 
-            RestAssured.baseURI = "https://jira.bell.corp.bce.ca/rest/raven/1.0/import/execution";
+            RestAssured.baseURI = "https://jira.bell.corp.bce.ca";
+            RestAssured.basePath = "/rest/raven/1.0/import/execution";
+//            RestAssured.baseURI = "https://jira.bell.corp.bce.ca/rest/raven/1.0/import/execution";
             RequestSpecification req = RestAssured.given();
             req.header("Content-Type", "application/json");
             req.header("Authorization", "Basic " + jiraAuth);
@@ -210,7 +227,10 @@ public class Jira {
 
             RestAssured.useRelaxedHTTPSValidation();
 
-            RestAssured.baseURI = "https://jira.bell.corp.bce.ca/rest/api/2/issue";
+            RestAssured.baseURI = "https://jira.bell.corp.bce.ca";
+            RestAssured.basePath = "/rest/api/2/issue";
+
+//            RestAssured.baseURI = "https://jira.bell.corp.bce.ca/rest/api/2/issue";
             RequestSpecification req = RestAssured.given();
             req.header("Content-Type", "application/json");
             req.header("Authorization", "Basic " + jiraAuth);
@@ -221,6 +241,19 @@ public class Jira {
             log.info("JIRA execution creation failed due to: " + e.getLocalizedMessage());
         }
         return exec;
+    }
+
+    public static void setEnv(String key, String value) {
+        try {
+            Map<String, String> env = System.getenv();
+            Class<?> cl = env.getClass();
+            Field field = cl.getDeclaredField("m");
+            field.setAccessible(true);
+            Map<String, String> writableEnv = (Map<String, String>) field.get(env);
+            writableEnv.put(key, value);
+        } catch (Exception e) {
+            throw new IllegalStateException("Failed to set environment variable", e);
+        }
     }
 
 }

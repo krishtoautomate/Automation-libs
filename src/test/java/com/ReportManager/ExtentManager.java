@@ -52,6 +52,7 @@ public class ExtentManager {
                         ViewName.CATEGORY, ViewName.EXCEPTION, ViewName.LOG, ViewName.DASHBOARD})
                 .apply();
 
+        extentSparkReporter.config().setTimelineEnabled(false);
         extentSparkReporter.config()
                 .setReportName("Automation Report");
 
