@@ -111,6 +111,7 @@ public class TestFlight extends TestBase implements ITestBase {
                     utils.getPageSource();
 
                     all_btns.get(i).click();
+                    sleep(2);
                     utils.logmessage(Status.PASS, button + "- button clicked");
                 }
                 sleep(10);
@@ -128,6 +129,8 @@ public class TestFlight extends TestBase implements ITestBase {
             }
             utils.getPageSource();
         }
+
+        sleep(20);
 
 
 //        ((IOSDriver)driver).activateApp("com.apple.mobilesafari");

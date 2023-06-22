@@ -14,7 +14,6 @@ public class ExtentTestManager {
     static Map<ExtentTest, ExtentReports> extentReportMap = new HashMap<ExtentTest, ExtentReports>();
 //    static ExtentReports extent = ExtentManager.createExtentReports();
     static int testCount=0;
-    static int reportCount=0;
     static int reportIndex = 0;
 
     public static synchronized ExtentTest getTest() {

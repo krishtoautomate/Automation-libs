@@ -71,6 +71,15 @@ public class BaseObjs<T> implements ITestBase {
         return null;
     }
 
+    protected WebElement get_Element(By by, String elementDesc, String action) {
+        WebElement element = get_Element(by, elementDesc);
+        if (action.length() > 4) {
+            mobileActions.takeScreenshotAndDraw(by, action);
+//            report(Status.PASS, action, element);
+        }
+        return element;
+    }
+
     protected boolean isElementDisplayed(By by) {
         try {
 //      return new WebDriverWait(driver, 5)
@@ -244,21 +253,6 @@ public class BaseObjs<T> implements ITestBase {
                 test.pass(message);
             }
         }
-    }
-
-    protected WebElement get_Element(By locator, String elementDesc, String action) {
-        WebElement ele = null;
-        try {
-            ele = driver.findElement(locator);
-            if (action != null || ele != null || action.equalsIgnoreCase("NONE")) {
-                report(Status.PASS, action, ele);
-            }
-        } catch (Exception e) {
-            String errorMessage = elementDesc + " - Not found in " + this.getClass().getName();
-            logmessage(Status.FAIL, errorMessage);
-            Assert.fail(errorMessage);
-        }
-        return ele;
     }
 
     public synchronized String imageGraphicScreenshot(WebElement element) {

@@ -2,9 +2,11 @@ package com.Utilities;
 
 import com.ReportManager.ExtentTestManager;
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.base.Log;
 import com.google.common.collect.ImmutableList;
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.PerformsTouchActions;
 import io.appium.java_client.TouchAction;
@@ -13,17 +15,28 @@ import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.touch.offset.ElementOption;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.HashMap;
+import java.util.UUID;
 
 import io.appium.java_client.touch.offset.PointOption;
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.interactions.*;
 import org.openqa.selenium.interactions.PointerInput.Kind;
 import org.openqa.selenium.interactions.PointerInput.MouseButton;
 import org.openqa.selenium.interactions.PointerInput.Origin;
 import org.testng.Assert;
+
+import javax.imageio.ImageIO;
 
 public class MobileActions implements ITestBase {
 
@@ -58,6 +71,71 @@ public class MobileActions implements ITestBase {
       // ignore
     }
     return false;
+  }
+
+  public void takeScreenshotAndDraw(By by, String message) {
+    // Take screenshot
+    File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+    try {
+      BufferedImage image = ImageIO.read(srcFile);
+
+      // Get element location and size
+      WebElement element = driver.findElement(by);
+      Point location = element.getLocation();
+      Dimension size = element.getSize();
+
+      // Get screen size
+      Dimension screenSize = driver.manage().window().getSize();
+
+      // Calculate scaling and translation factors
+      double scaleX = (double) image.getWidth() / screenSize.width;
+      double scaleY = (double) image.getHeight() / screenSize.height;
+
+      // Adjust location for top status bar and navigation bar (iOS only)
+      int xOffset = 0;
+      int yOffset = 0;
+      if (isIOS) {
+        double translateX = -driver.findElement(AppiumBy.xpath("//XCUIElementTypeApplication")).getLocation().getX();
+        double translateY = -driver.findElement(AppiumBy.xpath("//XCUIElementTypeApplication")).getLocation().getY();
+
+        // Scale and translate element location and size
+        location = new Point((int) (location.x * scaleX + translateX), (int) (location.y * scaleY + translateY));
+        size = new Dimension((int) (size.width * scaleX), (int) (size.height * scaleY));
+
+        java.awt.Rectangle statusBarRect = new java.awt.Rectangle(0, 0, size.width, (int) (20 * scaleY));
+        java.awt.Rectangle navigationBarRect = new java.awt.Rectangle(0, (int) (20 * scaleY), size.width, (int) (44 * scaleY));
+        try {
+          if (image.getSubimage(location.x, location.y, 1, 1).getRGB(0, 0) != Color.BLACK.getRGB()) {
+            if (image.getSubimage(statusBarRect.x, statusBarRect.y, 1, 1).getRGB(0, 0) == Color.BLACK.getRGB()) {
+              yOffset += (int) (20 * scaleY);
+            }
+            if (image.getSubimage(navigationBarRect.x, navigationBarRect.y, 1, 1).getRGB(0, 0) == Color.BLACK.getRGB()) {
+              yOffset += (int) (44 * scaleY);
+            }
+          }
+        } catch (Exception e) {
+          //ignore
+        }
+      }
+
+      // Draw circle around element
+      Graphics2D graphics = image.createGraphics();
+      graphics.setColor(Color.RED);
+      graphics.setStroke(new BasicStroke((float) (3 * scaleX)));
+      graphics.drawRect(location.x, location.y + yOffset, size.width, size.height);
+      graphics.dispose();
+
+      // Save screenshot to file
+      ImageIO.write(image, "png", srcFile);
+      UUID uuid = UUID.randomUUID();
+      String imgPath = "img/" + uuid + "_" + ".PNG";
+      FileUtils.moveFile(srcFile, new File(Constants.SCREENSHOTS_DIRECTORY + imgPath));
+      test.pass(message);
+      test.pass(message, MediaEntityBuilder.createScreenCaptureFromPath(imgPath).build());
+    } catch (IOException e) {
+      //ignore
+    }
+    log.info(message);
   }
 
   /**
