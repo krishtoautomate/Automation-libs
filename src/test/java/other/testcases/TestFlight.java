@@ -66,6 +66,7 @@ public class TestFlight extends TestBase implements ITestBase {
 
                 if (testFlightApp.verify_all_btns()) {
                     testFlightApp.get_all_btns().get(0).click();
+                    sleep(5);
                     utils.logmessage(Status.PASS, "UPDATE button clicked");
                 }
 
@@ -74,7 +75,7 @@ public class TestFlight extends TestBase implements ITestBase {
             }
         }
 
-        sleep(4);
+        sleep(10);
         // Verify title
         Assertions.contains(testFlightApp.get_apps_h1().getText(), "Apps", true);
 
@@ -111,7 +112,7 @@ public class TestFlight extends TestBase implements ITestBase {
                     utils.getPageSource();
 
                     all_btns.get(i).click();
-                    sleep(2);
+                    sleep(5);
                     utils.logmessage(Status.PASS, button + "- button clicked");
                 }
                 sleep(10);
