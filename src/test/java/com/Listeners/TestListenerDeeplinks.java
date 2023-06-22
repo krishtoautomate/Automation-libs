@@ -1,39 +1,34 @@
 package com.Listeners;
 
-import com.DataManager.TestDataManager;
 import com.ReportManager.ExtentTestManager;
 import com.ReportManager.SlackReporter;
 import com.Utilities.Constants;
+import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.base.AppiumDriverManager;
-import com.base.DriverManager;
 import com.base.Jira;
 import io.appium.java_client.AppiumDriver;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.testng.*;
 
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.Map;
+import java.util.TimeZone;
 
-public class TestListenerRT extends TestListenerAdapter
+public class TestListenerDeeplinks extends TestListenerAdapter
         implements ISuiteListener, ITestListener, IInvokedMethodListener {
 
-    private static Logger log = Logger.getLogger(TestListenerRT.class.getName());
+    private static Logger log = Logger.getLogger(TestListenerDeeplinks.class.getName());
 
     private static String testExecutionKey = null;
     Jira jiraReporter = new Jira();
@@ -50,19 +45,6 @@ public class TestListenerRT extends TestListenerAdapter
             iTestResult.setAttribute("start", timeNow);
         } catch (Exception e) {
             // ignore
-        }
-
-        try {
-            AppiumDriver driver = AppiumDriverManager.getDriverInstance();
-
-            String udid = driver.getCapabilities().getCapability("udid").toString();
-
-//            String[] params = {"udid", udid};
-//            iTestResult.setParameters(params);
-
-            log.info("udid : " + udid);
-        } catch (Exception e) {
-            //ignore
         }
     }
 
@@ -86,23 +68,20 @@ public class TestListenerRT extends TestListenerAdapter
             sdf.setTimeZone(TimeZone.getTimeZone("EST"));
             String timeNow = sdf.format(date.getTime());
 
-            Map<String, String> testParams =
-                    testResult.getTestContext().getCurrentXmlTest().getAllParameters();
-            String p_Testdata = testParams.get("p_Testdata");
-            TestDataManager testData = new TestDataManager(p_Testdata);
-            String testKey = testData.get("testKey");
+            String testKey = null;
             try {
                 testKey = testResult.getAttribute("testKey").toString();
             } catch (Exception e) {
-                testKey = testData.get("testKey");
                 log.warn("testKey not found : " + className);
             }
+
+//            log.info("Test Pass : " + testKey);
 
             if (testKey != null) {
                 String start = testResult.getAttribute("start").toString();
                 String finish = timeNow;
                 if (testExecutionKey != null) {
-                    jiraReporter.update_Test_Exec(testExecutionKey, testKey.trim(), "PASS", start, finish);
+                    jiraReporter.update_Test_Exec(testExecutionKey, testKey, "PASS", start, finish);
                     log.info("Test execution " + testExecutionKey + " updated as PASS for test : " + testKey
                             + " : " + className);
                 }
@@ -120,90 +99,54 @@ public class TestListenerRT extends TestListenerAdapter
          */
         Map<String, String> testParams =
                 testResult.getTestContext().getCurrentXmlTest().getAllParameters();
-//        String udid = testParams.get("udid");
-        String p_Testdata = testParams.get("p_Testdata");
-        TestDataManager testData = new TestDataManager(p_Testdata);
+        String udid = testResult.getAttribute("udid").toString();
 
         String testName = testResult.getMethod().getMethodName();
         String className = testResult.getTestClass().getName();
 
+        try {
+            // String slackChannel = System.getenv("SLACK_CHANNEL");
 
-        // String slackChannel = System.getenv("SLACK_CHANNEL");
+            AppiumDriver driver = AppiumDriverManager.getDriverInstance();
 
-        AppiumDriver driver = AppiumDriverManager.getDriverInstance();
-        WebDriver webDriver = DriverManager.getWebDriverInstance();
+            ExtentTest test = ExtentTestManager.getTest();
 
+            if (driver != null) {
+                log.error("Test failed : " + className + " : " + udid);
 
-        ExtentTest test = ExtentTestManager.getTest();
+                try {
+                    // Unique name to screen-shot
+                    String imgPath = "img/" + className + "_" + ".PNG";
 
-        if (driver != null) {
-            String udid = driver.getCapabilities().getCapability("udid").toString();
-            log.error("Test failed : " + className + " : " + udid);
+                    File screenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 
-            try {
-                // Unique name to screen-shot
-                String imgPath = "img/" + className + "_" + ".PNG";
+                    FileUtils.moveFile(screenShot, new File(Constants.SCREENSHOTS_DIRECTORY + imgPath));
 
-                File screenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+                    test.fail("Failed Test case : " + testName + "\n" + testResult.getThrowable(),
+                            MediaEntityBuilder.createScreenCaptureFromPath(imgPath).build());
 
-                FileUtils.moveFile(screenShot, new File(Constants.SCREENSHOTS_DIRECTORY + imgPath));
-
-                test.fail("Failed details : " + testName + "\n" + testResult.getThrowable().getMessage());
-                test.fail("Failed Test case : " + testName + "\n" + testResult.getThrowable(),
-                        MediaEntityBuilder.createScreenCaptureFromPath(imgPath).build());
-
-            } catch (WebDriverException | IOException e) {
-                test.fail("Failed Test case : " + testName + "\n" + testResult.getThrowable());
-            }
-
-
-            try {
-                String errorXML = driver.getPageSource();
-                test.info(MarkupHelper.createCodeBlock(errorXML));
-
-                if (errorXML.contains("Technical issue") || errorXML.contains(" error")) {
-                    test.assignCategory("server errors");//Internal server error
+                } catch (WebDriverException | IOException e) {
+                    //test.fail("Failed Test case : " + testName + "\n" + testResult.getThrowable());
                 }
 
-                if (errorXML.contains("com.sec.android.app.launcher") || errorXML.contains("type=\"XCUIElementTypeApplication\" name=\" \")")) {
-                    test.assignCategory("Crash");
+                try {
+                    String errorXML = driver.getPageSource();
+                    test.info(MarkupHelper.createCodeBlock(errorXML));
+
+                    if (errorXML.contains("Technical issue") || errorXML.contains(" error")) {
+                        test.assignCategory("server errors");
+                    }
+
+                    if (errorXML.contains("com.sec.android.app.launcher") || errorXML.contains("type=\"XCUIElementTypeApplication\" name=\" \")")) {
+                        test.assignCategory("Crash");
+                    }
+                } catch (Exception ign) {
+                    log.info("Failed to get page source : " + "\n" + ign.getLocalizedMessage());
                 }
-            } catch (Exception ign) {
-//                test.assignCategory("Crash");
-                log.info("Failed to get page source : " + "\n" + ign.getLocalizedMessage());
             }
+        } catch (Exception e) {
+            log.info("Failed to get error details : " + "\n" + e.getLocalizedMessage());
         }
-
-        if (webDriver != null) {
-            log.error("Test failed : " + className);
-
-            try {
-                File ScreenShot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
-
-                UUID uuid = UUID.randomUUID();
-
-                String imgPath = "img/" + uuid + "_" + ".PNG";
-
-                File filePath = new File(Constants.SCREENSHOTS_DIRECTORY + imgPath);
-
-                FileUtils.moveFile(ScreenShot, filePath);
-
-                test.fail("Failed Test case : " + testName + "\n" + testResult.getThrowable(),
-                        MediaEntityBuilder.createScreenCaptureFromPath(imgPath).build());
-
-            } catch (Exception e) {
-                test.fail("Failed Test case : " + testName + "\n" + testResult.getThrowable());
-            }
-
-            try {
-                String errorXML = webDriver.getPageSource();
-                test.info(MarkupHelper.createCodeBlock(errorXML));
-            } catch (Exception ign) {
-                test.assignCategory("Crash");
-                log.info("Failed to get page source : " + "\n" + ign.getLocalizedMessage());
-            }
-        }
-
 
         try {
             // Jira
@@ -212,19 +155,19 @@ public class TestListenerRT extends TestListenerAdapter
             sdf.setTimeZone(TimeZone.getTimeZone("EST"));
             String dateANDtime = sdf.format(date.getTime());
 
-            String testKey = testData.get("testKey");
+            String testKey = "";
             try {
                 testKey = testResult.getAttribute("testKey").toString();
             } catch (Exception e) {
                 log.warn("testKey not found : " + className);
             }
-
+//            log.info("Test Fail : "+ testKey);
             if (testKey != null) {
                 String start = testResult.getAttribute("start").toString();
                 String finish = dateANDtime;
                 if (testExecutionKey != null) {
                     // JIRA
-                    jiraReporter.update_Test_Exec(testExecutionKey, testKey.trim(), "FAIL", start, finish);
+                    jiraReporter.update_Test_Exec(testExecutionKey, testKey, "FAIL", start, finish);
                     log.info("Test execution " + testExecutionKey + " updated as FAIL for test : " + testKey
                             + " : " + className);
                 }
@@ -235,14 +178,12 @@ public class TestListenerRT extends TestListenerAdapter
 
 
         // // Slack
-        // String message = "*" + className + "* : <"+Constants.JIRA_URL +
+        // String message = "*" + className + "* : <https://jira.bell.corp.bce.ca/browse/" +
         // testKey
         // + "|" + testKey + ">" + " failed due to `" + testResult.getThrowable() + "`";
         // slackReporter.send_Failure_Data_To_Channel(message, Constants.REPORT_DIR + ssPath,
         // slackChannel);
         // log.info("Failure info for " + testKey + " sent to slack channel #" + slackChannel);
-
-//        ExtentManager.createReportFromJson(Constants.EXTENT_JSON_REPORT, Constants.EXTENT_HTML_REPORT);
 
     }
 
@@ -251,39 +192,31 @@ public class TestListenerRT extends TestListenerAdapter
         /*
          * get device details
          */
-        Map<String, String> testParams =
-                testResult.getTestContext().getCurrentXmlTest().getAllParameters();
-//        String udid = testParams.get("udid");
+        String udid = testResult.getAttribute("udid").toString();
 
         String className = testResult.getTestClass().getName();
-        String testName = testResult.getName();
-        String p_Testdata = testParams.get("p_Testdata");
-        TestDataManager testData = new TestDataManager(p_Testdata);
 
-        log.warn("Test Skipped : " + className + "." + testName);
-
-//        try {
-////            ExtentTest test = ExtentTestManager.getTest();
-//            log.warn("Removing Skipped Test : " + testName);
-//            ExtentReports extent = ExtentTestManager.getTest().getExtent();
-//            extent.removeTest(testName);
-//            extent.flush();
-//        } catch (Exception e) {
-//            // ignore
-//        }
+        log.warn("Test Skipped : " + className + " : " + udid);
+        try {
+            ExtentTest test = ExtentTestManager.getTest();
+            ExtentReports extent = ExtentTestManager.getTest().getExtent();
+            extent.removeTest(test);
+        } catch (Exception e) {
+            // ignore
+        }
 
         try {
             // JIRA
-            String testKey = testData.get("testKey");
+            String testKey = "";
             try {
                 testKey = testResult.getAttribute("testKey").toString();
             } catch (Exception e) {
                 log.warn("testKey not found : " + className);
-                testKey = testData.get("testKey");
             }
+//            log.info("Test Skip : "+ testKey);
             if (testKey != null) {
                 if (testExecutionKey != null) {
-                    jiraReporter.update_Test_Exec(testExecutionKey, testKey.trim(), "TODO", "", "");
+                    jiraReporter.update_Test_Exec(testExecutionKey, testKey, "TODO", "", "");
                     System.out.println("----------------------------------------------------------------");
                     log.warn(
                             "Test execution " + testExecutionKey + " updated as TODO for test : " + testKey
@@ -305,14 +238,6 @@ public class TestListenerRT extends TestListenerAdapter
     public void onStart(ISuite suite) {
 
         try {
-            String jsonPath = suite.getParameter("p_Testdata");
-            (new JSONParser()).parse(new FileReader(jsonPath));
-        } catch (ParseException | NullPointerException | IOException e) {
-            log.error("Json data file error");
-            throw new RuntimeException("Json file error");
-        }
-
-        try {
             // Create Jira execution
             String buildNo = System.getenv("BUILD_NUMBER");
             String jobName = System.getenv("JOB_NAME");
@@ -329,20 +254,15 @@ public class TestListenerRT extends TestListenerAdapter
             String dateFolder = mdyFormat.format(myDate);
 
             String realTimeLink = "<" + jobUrl + "ws/test-output/" + dateFolder
-                    + "/" + buildNo + "/AUTOMATION_REPORT.html|Real Time Jenkins Report>";
+                    + "/AUTOMATION_REPORT.html|Real Time Jenkins Report>";
 
-//            String jiraAuth = System.getenv("JIRA_AUTH");
-//            System.out.println("jiraAuth : " + jiraAuth);
-            System.out.println("testPlanKey : " + testPlanKey);
-
-            if (testPlanKey != null) {
+            if (jobName != null && testPlanKey != null) {
                 // JIRA
                 testExecutionKey = testExecKey;
                 if (testExecutionKey == null) {
                     testExecutionKey =
-                            jiraReporter.create_Test_Exec(executionSummary, executionDescription, testPlanKey.trim());
+                            jiraReporter.create_Test_Exec(executionSummary, executionDescription, testPlanKey);
                 }
-                System.out.println("testExecutionKey : " + testExecutionKey);
 
                 // Slack
                 String message = Constants.SLACK_BRAND + " Mobility Run started at: <" + executionDescription
@@ -357,23 +277,9 @@ public class TestListenerRT extends TestListenerAdapter
     }
 
     @Override
-    public void onFinish(ITestContext context) {
-
-        Iterator<ITestResult> skippedTestCases = context.getSkippedTests().getAllResults().iterator();
-        while (skippedTestCases.hasNext()) {
-            ITestResult skippedTestCase = skippedTestCases.next();
-            ITestNGMethod method = skippedTestCase.getMethod();
-            if (context.getSkippedTests().getResults(method).size() > 0) {
-                log.info("Skipped Test :" + skippedTestCase.getTestClass().toString());
-//                skippedTestCases.remove();
-            }
-        }
-    }
-
-    @Override
     public void onFinish(ISuite suite) {
-
         try {
+
             System.getenv("BUILD_NUMBER");
             String buildUrl = System.getenv("BUILD_URL");
             String slackChannel = System.getenv("SLACK_CHANNEL");
@@ -389,25 +295,6 @@ public class TestListenerRT extends TestListenerAdapter
         } catch (Exception e) {
             // ignore
         }
-
-        String folderPath = Constants.REPORT_DIR; // Replace with the actual folder path
-//        List<String> jsonFiles = new ArrayList<>();
-        try {
-//            Files.walk(Paths.get(folderPath))
-//                    .filter(Files::isRegularFile)
-//                    .filter(path -> path.toString().endsWith(".html"))
-//                    .forEach(path -> jsonFiles.add(path.toString()));
-            Files.walk(Paths.get(folderPath))
-                    .filter(Files::isRegularFile)
-                    .filter(path -> path.toString().endsWith(".html"))
-                    .forEach(System.out::println);
-//            System.out.println(Arrays.deepToString(jsonFiles.toArray()));
-//            ExtentManager.createHTMLReportFromJsonReports(jsonFiles, Constants.EXTENT_HTML_REPORT);
-        } catch (Exception e) {
-            //ignore
-        }
-
-
     }
 
     @Override
@@ -419,15 +306,12 @@ public class TestListenerRT extends TestListenerAdapter
     @Override
     public void afterInvocation(IInvokedMethod method, ITestResult testResult) {
         // TODO Auto-generated method stub
-
-        // TODO Auto-generated method stub
 //        AppiumDriver driver = AppiumDriverManager.getDriverInstance();
 //
 //        String udid = driver.getCapabilities().getCapability("udid").toString();
 //
 //        log.info("udid : " + udid);
 
+
     }
-
-
 }

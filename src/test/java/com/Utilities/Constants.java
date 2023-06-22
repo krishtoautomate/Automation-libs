@@ -31,6 +31,8 @@ public class Constants {
 
   public static final String SCREENSHOTS_DIRECTORY = OUTPUT_DIRECTORY + "/" + DATE_NOW + "/img/";
 
+  public static final String SLACK_BRAND = ":boom:";
+
   public static final String NO_SCREENSHOTS_AVAILABLE =
       USER_DIR + "/src/test/resources/No_screenshot_available.jpg";
 
