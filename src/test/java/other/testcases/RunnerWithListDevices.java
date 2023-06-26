@@ -1,9 +1,5 @@
 package other.testcases;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.TestNG;
 import org.testng.annotations.Test;
@@ -11,34 +7,38 @@ import org.testng.xml.XmlClass;
 import org.testng.xml.XmlSuite;
 import org.testng.xml.XmlTest;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 public class RunnerWithListDevices {
 
-  // private static Logger log = Logger.getLogger(Class.class.getName());
+    // private static Logger log = Logger.getLogger(Class.class.getName());
 
-  @Test
-  public void Runner_With_List_Devices() {
+    @Test
+    public void Runner_With_List_Devices() {
 
-    /*
-     * Common
-     */
+        /*
+         * Common
+         */
 
-    Map<String, String> testParams =
-            Reporter.getCurrentTestResult().getTestContext().getCurrentXmlTest().getAllParameters();
+        Map<String, String> testParams =
+                Reporter.getCurrentTestResult().getTestContext().getCurrentXmlTest().getAllParameters();
 
-    String remoteHost =
-        testParams.get("REMOTE_HOST") != null ? testParams.get("REMOTE_HOST") : "localhost";
+        String remoteHost =
+                testParams.get("REMOTE_HOST") != null ? testParams.get("REMOTE_HOST") : "localhost";
 
-    // Create an instance of XML Suite and assign a name for it.
-    XmlSuite mySuite = new XmlSuite();
-    mySuite.setName("MySuite");
-    mySuite.setParallel(XmlSuite.ParallelMode.TESTS);
-    // mySuite.addListener("com.Listeners.InvokedSuiteListener");
+        // Create an instance of XML Suite and assign a name for it.
+        XmlSuite mySuite = new XmlSuite();
+        mySuite.setName("MySuite");
+        mySuite.setParallel(XmlSuite.ParallelMode.TESTS);
+        // mySuite.addListener("com.Listeners.InvokedSuiteListener");
 
-    List<XmlTest> myTests = new ArrayList<XmlTest>();
+        List<XmlTest> myTests = new ArrayList<XmlTest>();
 
-    /*
-     * Test1
-     */
+        /*
+         * Test1
+         */
 
 //    String update = System.getenv("UPDATE");
 //
@@ -46,41 +46,41 @@ public class RunnerWithListDevices {
 //      update = "All";
 //    }
 
-    String udids = System.getenv("UDID");
-    System.out.println("udids:"+udids);
-    String[] iosDeviceList = udids.split("\n");
+        String udids = System.getenv("UDID");
+//    System.out.println("udids:"+udids);
+        String[] iosDeviceList = udids.split("\n");
 
 //    if (update.equalsIgnoreCase("iOS") || update.equalsIgnoreCase("All")) {
 
-      // for (int i = 0; i < iosDeviceList.size(); i++) {
-      int i = 0;
-      for (String deviceId : iosDeviceList) {
-        i++;
+        // for (int i = 0; i < iosDeviceList.size(); i++) {
+        int i = 0;
+        for (String deviceId : iosDeviceList) {
+            i++;
 
-        // Create an instance of XmlTest and assign a name for it.
-        XmlTest iosTest = new XmlTest(mySuite);
+            // Create an instance of XmlTest and assign a name for it.
+            XmlTest iosTest = new XmlTest(mySuite);
 
-        // Test name
-        iosTest.setName("TestFlight_" + i);
+            // Test name
+            iosTest.setName("TestFlight_" + i);
 
-        // Test parameters
-        iosTest.addParameter("platForm", "IOS");
-        iosTest.addParameter("udid", deviceId.trim());
-        iosTest.addParameter("REMOTE_HOST", remoteHost);// "localhost"
+            // Test parameters
+            iosTest.addParameter("platForm", "IOS");
+            iosTest.addParameter("udid", deviceId.trim());
+            iosTest.addParameter("REMOTE_HOST", remoteHost);// "localhost"
 
-        // Create classes
-        List<XmlClass> myClasses = new ArrayList<XmlClass>();
-        myClasses.add(new XmlClass("other.testcases.TestFlight"));
+            // Create classes
+            List<XmlClass> myClasses = new ArrayList<XmlClass>();
+            myClasses.add(new XmlClass("other.testcases.TestFlight"));
 //        myClasses.add(new XmlClass("other.testcases.SetDisplayTimeout"));
 
-        // Add Classes
-        iosTest.setXmlClasses(myClasses);
+            // Add Classes
+            iosTest.setXmlClasses(myClasses);
 
-        // Add Test
-        myTests.add(iosTest);
+            // Add Test
+            myTests.add(iosTest);
 
 
-      }
+        }
 //    }
 
 //    /*
@@ -130,30 +130,30 @@ public class RunnerWithListDevices {
 //      }
 //    }
 
-    /*
-     * Common
-     */
-    // add the list of tests to your Suite.
-    mySuite.setTests(myTests);
-    mySuite.setThreadCount(50);
+        /*
+         * Common
+         */
+        // add the list of tests to your Suite.
+        mySuite.setTests(myTests);
+        mySuite.setThreadCount(50);
 
-    // Add the suite to the list of suites.
-    List<XmlSuite> mySuites = new ArrayList<XmlSuite>();
+        // Add the suite to the list of suites.
+        List<XmlSuite> mySuites = new ArrayList<XmlSuite>();
 
-    TestNG myTestNG = new TestNG();
+        TestNG myTestNG = new TestNG();
 
-    mySuite.setFileName("myTemp.xml");
+        mySuite.setFileName("myTemp.xml");
 //    mySuite.addListener("com.Listeners.InvokedSuiteListener");
-    mySuite.addListener("com.Listeners.TestListener");
+        mySuite.addListener("com.Listeners.TestListener");
 
-    mySuites.add(mySuite);
+        mySuites.add(mySuite);
 
-    myTestNG.setXmlSuites(mySuites);
+        myTestNG.setXmlSuites(mySuites);
 
-    System.out.println(mySuite.toXml());
+        System.out.println(mySuite.toXml());
 
-    myTestNG.run();
+        myTestNG.run();
 
-  }
+    }
 
 }
