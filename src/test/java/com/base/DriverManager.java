@@ -96,6 +96,7 @@ public class DriverManager {
                 }
             }
 
+            //map
             webDriverMap.put(Thread.currentThread().getId(), tlWebDriver.get());
 
             System.out.println("Session Id : " + ((RemoteWebDriver) tlWebDriver.get()).getSessionId());

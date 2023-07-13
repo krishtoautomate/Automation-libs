@@ -6,11 +6,8 @@ import com.Utilities.MobileActions;
 import com.Utilities.Utilities;
 import com.aventstack.extentreports.Status;
 import com.base.TestBase;
-import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 import other.pages.TestFlightApp;
-
-import java.util.List;
 
 public class TestFlight extends TestBase implements ITestBase {
 
@@ -61,77 +58,30 @@ public class TestFlight extends TestBase implements ITestBase {
         // for ipads
         if (!testFlightApp.verify_apps_h1()) {
             if (testFlightApp.verify_apps_back_btn()) {
-
-                utils.getPageSource();
-
-                if (testFlightApp.verify_all_btns()) {
-                    testFlightApp.get_all_btns().get(0).click();
-                    sleep(5);
-                    utils.logmessage(Status.PASS, "UPDATE button clicked");
-                }
-
                 testFlightApp.get_apps_back_btn().click();
-                utils.logmessage(Status.PASS, "App back Button - is Clicked");
+                utils.logmessage(Status.PASS, "back button - is Clicked");
             }
         }
 
-        sleep(10);
-        // Verify title
+        utils.getPageSource();
+
         Assertions.contains(testFlightApp.get_apps_h1().getText(), "Apps", true);
 
-        utils.getPageSource();
         if (testFlightApp.verify_all_btns()) {
+            String buttonText = testFlightApp.get_all_btns().get(0).getText();
+            testFlightApp.get_all_btns().get(0).click();
+            sleep(5);
+            utils.logmessage(Status.PASS, buttonText + " button clicked");
 
-            List<WebElement> all_btns = testFlightApp.get_all_btns();
-
-            try {
-                utils.logmessage(Status.PASS, "Total 'UPDATE' or 'INSTALL' buttons : " + all_btns.size());
-
-                for (int i = 0; i < all_btns.size(); i++) {
-                    String button = all_btns.get(i).getText();
-
-                    utils.getPageSource();
-
-                    all_btns.get(i).click();
-                    utils.logmessage(Status.PASS, button + "- button clicked");
-                }
-                sleep(10);
-            } catch (Exception e) {
-                log.info("No 'UPDATE' or 'INSTALL' buttons found");
-            }
-            utils.getPageSource();
-
-            all_btns = testFlightApp.get_all_btns();
-            utils.getPageSource();
-            try {
-                utils.logmessage(Status.PASS, "Total 'UPDATE' or 'INSTALL' buttons : " + all_btns.size());
-
-                for (int i = 0; i < all_btns.size(); i++) {
-                    String button = all_btns.get(i).getText();
-
-                    utils.getPageSource();
-
-                    all_btns.get(i).click();
-                    sleep(5);
-                    utils.logmessage(Status.PASS, button + "- button clicked");
-                }
-                sleep(10);
-            } catch (Exception e) {
-                log.info("No 'UPDATE' or 'INSTALL' buttons found");
-            }
-            utils.getPageSource();
-
-            // for ipads
             if (!testFlightApp.verify_apps_h1()) {
                 if (testFlightApp.verify_apps_back_btn()) {
                     testFlightApp.get_apps_back_btn().click();
-                    utils.logmessage(Status.PASS, "App back Button - is Clicked");
+                    utils.logmessage(Status.PASS, "back button - is Clicked");
                 }
             }
-            utils.getPageSource();
         }
 
-        sleep(20);
+        sleep(30);
 
 
 //        ((IOSDriver)driver).activateApp("com.apple.mobilesafari");
