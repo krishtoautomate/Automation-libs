@@ -81,6 +81,10 @@ public class TestFlight extends TestBase implements ITestBase {
             }
         }
 
+        sleep(10);
+
+        utils.getPageSource();
+
         sleep(30);
 
 
