@@ -31,8 +31,7 @@ public class TestFlight extends TestBase implements ITestBase {
         utils.dismissAlert();
 
         if (testFlightApp.verify_notNow_btn()) {
-            testFlightApp.get_notNow_btn().click();
-            utils.logmessage(Status.PASS, "Not Now Button - is Clicked");
+            testFlightApp.get_notNow_btn("Not Now Button - is Clicked").click();
         }
 
         if (!driver.getCapabilities().getCapability("bundleId")
@@ -46,20 +45,17 @@ public class TestFlight extends TestBase implements ITestBase {
         }
 
         if (testFlightApp.verify_notNow_btn()) {
-            testFlightApp.get_notNow_btn().click();
-            utils.logmessage(Status.PASS, "Not Now Button - is Clicked");
+            testFlightApp.get_notNow_btn("Not Now Button - is Clicked").click();
         }
 
         if (testFlightApp.verify_continue_btn()) {
-            testFlightApp.get_continue_btn().click();
-            utils.logmessage(Status.PASS, "Continue Button - is Clicked");
+            testFlightApp.get_continue_btn("Continue Button - is Clicked").click();
         }
 
         // for ipads
         if (!testFlightApp.verify_apps_h1()) {
             if (testFlightApp.verify_apps_back_btn()) {
-                testFlightApp.get_apps_back_btn().click();
-                utils.logmessage(Status.PASS, "back button - is Clicked");
+                testFlightApp.get_apps_back_btn("back button - is Clicked").click();
             }
         }
 
@@ -75,8 +71,7 @@ public class TestFlight extends TestBase implements ITestBase {
 
             if (!testFlightApp.verify_apps_h1()) {
                 if (testFlightApp.verify_apps_back_btn()) {
-                    testFlightApp.get_apps_back_btn().click();
-                    utils.logmessage(Status.PASS, "back button - is Clicked");
+                    testFlightApp.get_apps_back_btn("back button - is Clicked").click();
                 }
             }
         }

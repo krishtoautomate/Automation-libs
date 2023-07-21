@@ -22,7 +22,7 @@
 			"appium:noReset": false,
 			"appium:newCommandTimeout": 120,
 			"appium:autoDismissAlerts": false,
-			"appium:bundleId": "com.apple.TestFlight",
+			"appium:bundleId": "com.apple.Preferences",
 			"appium:wdaStartupRetries": 2,
 			"appium:wdaStartupRetryInterval": 2000,
 			"appium:language": "en",

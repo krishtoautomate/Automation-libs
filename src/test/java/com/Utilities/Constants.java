@@ -29,8 +29,6 @@ public class Constants {
   public static final String DATE_NOW = new SimpleDateFormat("MMddyyyy").format(new Date());
   public static final String TIME_NOW = new SimpleDateFormat("HH.mm.ss.SSS").format(new Date());
 
-  public static final String SCREENSHOTS_DIRECTORY = OUTPUT_DIRECTORY + "/" + DATE_NOW + "/img/";
-
   public static final String SLACK_BRAND = ":boom:";
 
   public static final String NO_SCREENSHOTS_AVAILABLE =
@@ -44,7 +42,7 @@ public class Constants {
 
   public static final String EXTENT_REPORT_CONFIG =
       USER_DIR + "/src/main/resources/extent-config.xml";
-  public static final String REPORT_DIR = OUTPUT_DIRECTORY + DATE_NOW + "/";
+  public static final String REPORT_DIR = OUTPUT_DIRECTORY + DATE_NOW + "/"+SET_BUILD_NUMBER;
   public static final String EXTENT_HTML_REPORT = REPORT_DIR + "AUTOMATION_REPORT" + ".html";
   public static final String EXTENT_HTML_CUSTOM_REPORT = REPORT_DIR + "AUTOMATION_REPORT" +"_INDEX"+ ".html";
   public static final String EXTENT_JSON_CUSTOM_REPORT = REPORT_DIR + "AUTOMATION_REPORT" +"_INDEX"+ ".json";

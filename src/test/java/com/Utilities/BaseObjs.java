@@ -132,30 +132,6 @@ public class BaseObjs<T> implements ITestBase {
         }
     }
 
-    public synchronized String takeScreenshot() {
-
-        // Unique name to screen-shot
-        UUID uuid = UUID.randomUUID();
-        String imgPath = "img/" + uuid + "(" + Constants.TIME_NOW + ")" + ".PNG";
-
-        File ScreenShot = new File(Constants.NO_SCREENSHOTS_AVAILABLE);
-        try {
-            ScreenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-
-            FileUtils.moveFile(ScreenShot, new File(Constants.REPORT_DIR + imgPath));
-
-        } catch (WebDriverException | IOException e) {
-            log.error("TakesScreenshot service failed!!!");
-
-            try {
-                FileUtils.copyFile(ScreenShot, new File(Constants.REPORT_DIR + imgPath));
-            } catch (IOException e1) {
-                // ignore
-            }
-        }
-        return imgPath;
-    }
-
     public boolean isElementWithinScreen(By by) {
         WebElement element = driver.findElement(by);
         Point location = element.getLocation();
@@ -203,7 +179,7 @@ public class BaseObjs<T> implements ITestBase {
     public synchronized void logmessage(Status Status, String message) {
         log.info(message);
         try {
-            String imgPath = takeScreenshot();
+            String imgPath = ScreenShotManager.getScreenshot(driver);
 
             if (Status == Status.FAIL) {
                 test.fail(message);
@@ -264,11 +240,11 @@ public class BaseObjs<T> implements ITestBase {
         int height = element.getRect().getHeight();
 
         UUID uuid = UUID.randomUUID();
-        String imgPath = "img/" + uuid + "_" + Constants.TIME_NOW + "_" + ".PNG";
+        String imgPath = ScreenShotManager.getScreenshot(driver);
 
         File ScreenShot = new File(Constants.NO_SCREENSHOTS_AVAILABLE);
         try {
-            ScreenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            ScreenShot = new File(imgPath);
 
             if (isAndroid) {
                 // Crop the entire page screenshot to get only element screenshot
@@ -287,7 +263,7 @@ public class BaseObjs<T> implements ITestBase {
             }
 
             // Copy the element screenshot to disk
-            FileUtils.moveFile(ScreenShot, new File(Constants.REPORT_DIR + imgPath));
+//            FileUtils.moveFile(ScreenShot, new File(Constants.REPORT_DIR + imgPath));
         } catch (Exception e) {
             log.error("TakesScreenshot service failed!!!");
 

@@ -3,6 +3,7 @@ package com.Listeners;
 import com.ReportManager.ExtentTestManager;
 import com.ReportManager.SlackReporter;
 import com.Utilities.Constants;
+import com.Utilities.ScreenShotManager;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
@@ -116,16 +117,12 @@ public class TestListenerDeeplinks extends TestListenerAdapter
 
                 try {
                     // Unique name to screen-shot
-                    String imgPath = "img/" + className + "_" + ".PNG";
-
-                    File screenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-
-                    FileUtils.moveFile(screenShot, new File(Constants.SCREENSHOTS_DIRECTORY + imgPath));
+                    String imgPath = ScreenShotManager.getScreenshot(driver);
 
                     test.fail("Failed Test case : " + testName + "\n" + testResult.getThrowable(),
                             MediaEntityBuilder.createScreenCaptureFromPath(imgPath).build());
 
-                } catch (WebDriverException | IOException e) {
+                } catch (Exception e) {
                     //test.fail("Failed Test case : " + testName + "\n" + testResult.getThrowable());
                 }
 

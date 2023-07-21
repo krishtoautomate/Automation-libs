@@ -2,16 +2,10 @@ package other.testcases;
 
 import com.Utilities.ITestBase;
 import com.Utilities.ScreenShotManager;
-import com.Utilities.ScreenShotManagerWeb;
-import com.Utilities.Utilities;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
-import com.base.AppiumDriverManager;
-import com.base.DriverManager;
 import com.base.TestBaseHybrid;
-import com.base.TestBaseWeb;
-import io.appium.java_client.AppiumDriver;
 import org.testng.annotations.Test;
 import other.pages.PlayStoreApp;
 
@@ -24,7 +18,9 @@ public class HybridTest extends TestBaseHybrid implements ITestBase {
 
         sleep(5);
 
-        test.pass("web-page loaded : "+webDriver.getCurrentUrl(), MediaEntityBuilder.createScreenCaptureFromPath(ScreenShotManagerWeb.getScreenshot()).build());
+        test.pass("web-page loaded : "+webDriver.getCurrentUrl(),
+                MediaEntityBuilder.createScreenCaptureFromPath(
+                        ScreenShotManager.getScreenshot(webDriver)).build());
 
         PlayStoreApp playstoreapp = new PlayStoreApp(appiumDriver, test);
 

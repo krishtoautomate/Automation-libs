@@ -1,14 +1,10 @@
 package other.testcases;
 
-import com.Utilities.BaseObjs;
 import com.Utilities.ITestBase;
-import com.Utilities.ScreenShotManagerWeb;
-import com.Utilities.Utilities;
+import com.Utilities.ScreenShotManager;
 import com.aventstack.extentreports.MediaEntityBuilder;
-import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.base.TestBaseWeb;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.Test;
 
 public class WebTest extends TestBaseWeb implements ITestBase {
@@ -23,12 +19,12 @@ public class WebTest extends TestBaseWeb implements ITestBase {
         try {
             driver.get("https://mybell.bell.ca/Login");
         } catch (Exception e) {
-            test.pass("web-page loaded : "+driver.getCurrentUrl(), MediaEntityBuilder.createScreenCaptureFromPath(ScreenShotManagerWeb.getScreenshot()).build());
+            test.pass("web-page loaded : "+driver.getCurrentUrl(), MediaEntityBuilder.createScreenCaptureFromPath(ScreenShotManager.getScreenshot(driver)).build());
         }
 
         sleep(10);
 
-        test.pass("web-page loaded : "+driver.getCurrentUrl(), MediaEntityBuilder.createScreenCaptureFromPath(ScreenShotManagerWeb.getScreenshot()).build());
+        test.pass("web-page loaded : "+driver.getCurrentUrl(), MediaEntityBuilder.createScreenCaptureFromPath(ScreenShotManager.getScreenshot(driver)).build());
 
 
         String errorXML = driver.getPageSource();

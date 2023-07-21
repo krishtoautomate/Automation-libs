@@ -22,7 +22,7 @@ public class TestFlightApp extends BaseObjs<TestFlightApp> {
     By all_btns = AppiumBy.iOSClassChain("**/XCUIElementTypeButton[`label IN {'UPDATE','INSTALL'}`]");
     By apps_h1 = LocatorBy.all(AppiumBy.iOSNsPredicateString("type == 'XCUIElementTypeStaticText' AND label == 'Apps'"));
 
-    By apps_back_btn = AppiumBy.iOSClassChain("**/XCUIElementTypeNavigationBar/XCUIElementTypeButton[`visible =1`]");
+    By apps_back_btn = AppiumBy.iOSClassChain("**/XCUIElementTypeNavigationBar/XCUIElementTypeButton[`visible=1`]");
 
     public TestFlightApp(AppiumDriver driver, ExtentTest test) {
         super(driver, test);
@@ -32,16 +32,16 @@ public class TestFlightApp extends BaseObjs<TestFlightApp> {
         return isElementDisplayed(continue_btn);
     }
 
-    public WebElement get_continue_btn() {
-        return get_Element(continue_btn, "continue' button");
+    public WebElement get_continue_btn(String action) {
+        return get_Element(continue_btn, "continue' button", action);
     }
 
     public boolean verify_notNow_btn(){
         return isElementDisplayed(notNow_btn);
     }
 
-    public WebElement get_notNow_btn(){
-        return get_Element(notNow_btn, "Now now button");
+    public WebElement get_notNow_btn(String action){
+        return get_Element(notNow_btn, "Now now button", action);
     }
     public boolean verify_tryAgain_btn() {
         return isElementDisplayed(tryAgain_btn);
@@ -56,8 +56,8 @@ public class TestFlightApp extends BaseObjs<TestFlightApp> {
         return isElementDisplayed(apps_back_btn);
     }
 
-    public WebElement get_apps_back_btn() {
-        return get_Element(apps_back_btn, "Back button");
+    public WebElement get_apps_back_btn(String action) {
+        return get_Element(apps_back_btn, "Back button", action);
     }
 
     public WebElement get_apps_h1() {
@@ -76,5 +76,4 @@ public class TestFlightApp extends BaseObjs<TestFlightApp> {
     public boolean verify_all_btns() {
         return isElementDisplayed(all_btns);
     }
-
 }

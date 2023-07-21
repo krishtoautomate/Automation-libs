@@ -2,6 +2,7 @@ package com.Listeners;
 
 import com.ReportManager.ExtentTestManager;
 import com.Utilities.Constants;
+import com.Utilities.ScreenShotManager;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
@@ -54,16 +55,12 @@ public class TestListenerWeb extends TestListenerAdapter
 
             try {
                 // Unique name to screen-shot
-                String imgPath = "img/" + className + "_" + Constants.TIME_NOW + "_" + ".PNG";
-
-                File screenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-
-                FileUtils.moveFile(screenShot, new File(Constants.REPORT_DIR + imgPath));
+                String imgPath = ScreenShotManager.getScreenshot(driver);
 
                 test.fail("Failed Test case : " + testName + "\n" + testResult.getThrowable(),
                         MediaEntityBuilder.createScreenCaptureFromPath(imgPath).build());
 
-            } catch (WebDriverException | IOException e) {
+            } catch (Exception e) {
                 test.fail("Failed Test case : " + testName + "\n" + e.getMessage());
             }
 

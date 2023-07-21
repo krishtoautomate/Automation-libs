@@ -14,21 +14,9 @@ import java.util.UUID;
 
 public class ScreenShotManager {
 
-    WebDriver driver;
-
-    public ScreenShotManager(WebDriver driver){
-        this.driver = driver;
-    }
-
-    public ScreenShotManager(AppiumDriver driver){
-        this.driver = driver;
-    }
-
     private static Logger log = Logger.getLogger(ScreenShotManager.class.getName());
 
-    public synchronized String getScreenshot() {
-
-//        AppiumDriver driver = AppiumDriverManager.getDriverInstance();
+    public static synchronized String getScreenshot(WebDriver driver) {
 
         File ScreenShot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 
