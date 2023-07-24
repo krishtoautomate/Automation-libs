@@ -6,7 +6,6 @@ package com.base;
 import com.Utilities.Constants;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.apache.log4j.Logger;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -56,8 +55,9 @@ public class CapabilitiesManager {
             //capabilities from capabilities.json
             JSONObject jsonObject =
                     (JSONObject) new JSONParser().parse(new FileReader(Constants.CAPABILITIES));
-            JSONArray jsonArray = (JSONArray) jsonObject.get(platForm.toUpperCase());
-            JSONObject jObj = (JSONObject) jsonArray.get(0);
+//            JSONArray jsonArray = (JSONArray) jsonObject.get(platForm.toUpperCase());
+//            JSONObject jObj = (JSONObject) jsonArray.get(0);
+            JSONObject jObj = (JSONObject) jsonObject.get(platForm.toUpperCase());
 
             if (platForm.equalsIgnoreCase("Android") || platForm.equalsIgnoreCase("iOS")) {
 
