@@ -124,7 +124,7 @@ task BaseJar(type: Jar) {
 }
 
 ext {
-    javaMainClass = "other.testcases.MergeJsonReport"
+    javaMainClass = "com.Others.MergeReports"
 }
 
 task runMergeReports(type: Exec) {
