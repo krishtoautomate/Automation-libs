@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MergeJsonReport {
@@ -15,10 +16,21 @@ public class MergeJsonReport {
 
 //        ExtentManager extentManager = new ExtentManager();
 
-        String folderPath = Constants.USER_DIR;
+        String folderPath = System.getenv("REPORT_PATH");
+//                Constants.USER_DIR;
 //                System.getenv("REPORT_PATH"); // Replace with the actual folder path
         List<String> jsonFiles = new ArrayList<>();
         try {
+
+                        Files.walk(Paths.get(folderPath))
+                    .filter(Files::isRegularFile)
+                                .filter(path -> path.toString().contains("_REPORT"))
+                                .filter(path -> path.toString().endsWith(".json"))
+                    .forEach(System.out::println);
+            System.out.println(Arrays.deepToString(jsonFiles.toArray()));
+            ExtentManager.createHTMLReportFromJsonReports(jsonFiles, Constants.EXTENT_HTML_REPORT);
+
+
             Files.walk(Paths.get(folderPath))
                     .filter(Files::isRegularFile)
                     .filter(path -> path.toString().contains("_REPORT"))
@@ -26,12 +38,6 @@ public class MergeJsonReport {
                     .forEach(path -> jsonFiles.add(path.toString()));
 
             ExtentManager.createHTMLReportFromJsonReports(jsonFiles,Constants.EXTENT_HTML_REPORT );
-//            Files.walk(Paths.get(folderPath))
-//                    .filter(Files::isRegularFile)
-//                    .filter(path -> path.toString().endsWith(".html"))
-//                    .forEach(System.out::println);
-//            System.out.println(Arrays.deepToString(jsonFiles.toArray()));
-//            ExtentManager.createHTMLReportFromJsonReports(jsonFiles, Constants.EXTENT_HTML_REPORT);
 
             System.out.println("merge Reports");
 
