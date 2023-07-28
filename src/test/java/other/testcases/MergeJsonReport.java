@@ -21,6 +21,7 @@ public class MergeJsonReport {
         try {
             Files.walk(Paths.get(folderPath))
                     .filter(Files::isRegularFile)
+                    .filter(path -> path.toString().contains("_REPORT"))
                     .filter(path -> path.toString().endsWith(".json"))
                     .forEach(path -> jsonFiles.add(path.toString()));
 
