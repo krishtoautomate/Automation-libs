@@ -28,7 +28,7 @@ public class MergeJsonReport {
                                 .filter(path -> path.toString().endsWith(".json"))
                     .forEach(System.out::println);
             System.out.println(Arrays.deepToString(jsonFiles.toArray()));
-            ExtentManager.createHTMLReportFromJsonReports(jsonFiles, Constants.EXTENT_HTML_REPORT);
+            ExtentManager.createHTMLReportFromJsonReports(jsonFiles, folderPath + "/AUTOMATION_REPORT" + ".html");
 
 
             Files.walk(Paths.get(folderPath))
@@ -37,9 +37,9 @@ public class MergeJsonReport {
                     .filter(path -> path.toString().endsWith(".json"))
                     .forEach(path -> jsonFiles.add(path.toString()));
 
-            ExtentManager.createHTMLReportFromJsonReports(jsonFiles,Constants.EXTENT_HTML_REPORT );
+            ExtentManager.createHTMLReportFromJsonReports(jsonFiles,folderPath + "/AUTOMATION_REPORT" + ".html");
 
-            System.out.println("merge Reports");
+            System.out.println("merge Report : "+ folderPath + "/AUTOMATION_REPORT" + ".html");
 
         } catch (Exception e) {
             //ignore
