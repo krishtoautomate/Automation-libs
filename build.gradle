@@ -38,7 +38,6 @@ dependencies {
     testImplementation files('libs/Base.jar')
 
     testImplementation 'org.testng:testng:7.7.0'
-//    testImplementation 'org.assertj:assertj-core:2.0.0'
 
     testImplementation 'org.seleniumhq.selenium:selenium-java:4.10.0'
     testImplementation 'org.seleniumhq.selenium:selenium-support:4.10.0'
@@ -47,8 +46,6 @@ dependencies {
 
     implementation 'commons-io:commons-io:2.11.0'
 
-//    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
-//    implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.googlecode.json-simple:json-simple:1.1.1'
 
     implementation 'javax.mail:mail:1.4'
@@ -61,10 +58,6 @@ dependencies {
 
     testImplementation 'com.aventstack:extentreports:5.0.9'
 
-//    implementation 'com.google.guava:guava:21.0'
-
-//    implementation 'org.apache.logging.log4j:log4j-core:2.13.3'
-//    implementation 'org.apache.logging.log4j:log4j-api:2.13.3'
     testImplementation 'log4j:log4j:1.2.17'
     testImplementation 'org.slf4j:slf4j-api:2.0.5'
     testImplementation 'org.slf4j:slf4j-jdk14:2.0.5'
@@ -130,16 +123,16 @@ task BaseJar(type: Jar) {
     exclude 'META-INF/MANIFEST.MF'
 }
 
-//grid-capability-matcher-3.141.59.jar
-//./gradlew GridJar
-//task GridJar(type: Jar) {
-//    from sourceSets.main.output
-//    include 'com/selenium/grid/matcher/*'
-//    destinationDirectory = file("$buildDir/jar")
-//    archiveName = 'grid-capability-matcher-3.141.59.jar'
-//    exclude 'META-INF/MANIFEST.MF'
-//}
+ext {
+    javaMainClass = "other.testcases.MergeJsonReport"
+}
 
+task runMergeReports(type: Exec) {
+    dependsOn build
+    group = "Execution"
+    description = "Run the main class with ExecTask"
+    commandLine "java", "-classpath", sourceSets.test.runtimeClasspath.getAsPath(), javaMainClass
+}
 
 //gradle clean compiletestjava -PappPackage=BETA -PappActivity=activity -PbundleId=PROD
 //task createCapability(type: Exec) {

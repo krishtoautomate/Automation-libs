@@ -11,8 +11,7 @@
 			"autoDismissAlerts": true,
 			"appium:appPackage": "com.android.vending",
 			"appium:appActivity": "com.android.vending.AssetBrowserActivity"
-		}
-	,
+		},
 	"IOS":
 		{
 			"platformName": "iOS",
@@ -27,8 +26,7 @@
 			"appium:wdaStartupRetryInterval": 2000,
 			"appium:language": "en",
 			"appium:locale": "CA"
-		}
-	,
+		},
 	"CHROME":
 		{
 			"browserName": "chrome",
@@ -46,8 +44,7 @@
 					"--remote-allow-origins=*"],
 				"pageLoadStrategy": "normal"
 			}
-		}
-	,
+		},
 	"FIREFOX":
 		{
 			"browserName": "firefox",

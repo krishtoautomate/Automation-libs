@@ -319,7 +319,7 @@ public class TestListenerRT extends TestListenerAdapter
             String dateFolder = mdyFormat.format(myDate);
 
             String realTimeLink = "<" + jobUrl + "ws/test-output/" + dateFolder
-                    + "/" + buildNo + "/AUTOMATION_REPORT.html|Real Time Jenkins Report>";
+                    + "/" + buildNo + "|Real Time Jenkins Report>";
 
 //            String jiraAuth = System.getenv("JIRA_AUTH");
 //            System.out.println("jiraAuth : " + jiraAuth);
