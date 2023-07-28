@@ -15,7 +15,8 @@ public class MergeJsonReport {
 
 //        ExtentManager extentManager = new ExtentManager();
 
-        String folderPath = System.getenv("REPORT_PATH"); // Replace with the actual folder path
+        String folderPath = Constants.USER_DIR;
+//                System.getenv("REPORT_PATH"); // Replace with the actual folder path
         List<String> jsonFiles = new ArrayList<>();
         try {
             Files.walk(Paths.get(folderPath))
@@ -30,8 +31,12 @@ public class MergeJsonReport {
 //                    .forEach(System.out::println);
 //            System.out.println(Arrays.deepToString(jsonFiles.toArray()));
 //            ExtentManager.createHTMLReportFromJsonReports(jsonFiles, Constants.EXTENT_HTML_REPORT);
+
+            System.out.println("merge Reports");
+
         } catch (Exception e) {
             //ignore
+            System.out.println("merge Reports : "+e.getMessage());
         }
 
 //
@@ -51,7 +56,7 @@ public class MergeJsonReport {
 //        extent.attachReporter(spark);
 //        extent.flush();
 
-        System.out.println("merge Reports");
+//        System.out.println("merge Reports");
     }
 
 
