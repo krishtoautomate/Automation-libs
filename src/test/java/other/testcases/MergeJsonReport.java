@@ -21,7 +21,7 @@ public class MergeJsonReport {
         try {
             Files.walk(Paths.get(folderPath))
                     .filter(Files::isRegularFile)
-                    .filter(path -> path.toString().endsWith(".html"))
+                    .filter(path -> path.toString().endsWith(".json"))
                     .forEach(path -> jsonFiles.add(path.toString()));
 
             ExtentManager.createHTMLReportFromJsonReports(jsonFiles,Constants.EXTENT_HTML_REPORT );
