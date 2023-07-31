@@ -28,7 +28,7 @@ public class MergeReports {
         ExtentReports extent = new ExtentReports();
         List<String> jsonFiles = new ArrayList<>();
         try {
-            Files.walk(Paths.get(Constants.USER_DIR))
+            Files.walk(Paths.get(Constants.REPORT_DIR))
                     .filter(Files::isRegularFile)
                     .filter(path -> path.toString().contains("_REPORT"))
                     .filter(path -> path.toString().endsWith(".json"))

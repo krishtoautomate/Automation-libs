@@ -23,10 +23,6 @@ repositories {
     mavenCentral()
     maven {
         url 'https://artifactory.bell.corp.bce.ca/ui/native/central-maven'
-//        credentials {
-//            username = ""
-//            password = ""
-//        }
         allowInsecureProtocol = true
     }
 
@@ -74,8 +70,6 @@ dependencies {
 
 group = 'Automation-libs'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
-targetCompatibility = "11"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_11
@@ -134,95 +128,17 @@ task runMergeReports(type: Exec) {
     commandLine "java", "-classpath", sourceSets.test.runtimeClasspath.getAsPath(), javaMainClass
 }
 
-//gradle clean compiletestjava -PappPackage=BETA -PappActivity=activity -PbundleId=PROD
-//task createCapability(type: Exec) {
-//tasks.create(name: 'createCapability') {
-/*
-    File capabilities = new File(projectDir, "capabilities.json"); //.mkdirs();
-    capabilities.write('{\n'+
-					'"ANDROID":\n'+
-					  '[\n'+
-					    '{\n'+
-						    '"platformName": "Android",\n'+
-						    '"platformVersion":"8.1.0",\n'+
-						    '"automationName":"uiautomator2",\n'+
-						    '"autoLaunch":true,\n'+
-							'"noReset":true,\n'+
-							'"fullReset":false,\n'+
-							'"newCommandTimeout":60,\n'+
-							'"androidInstallTimeout":150000,\n'+
-							'"autoDismissAlerts":true,\n'+
-						    '"appPackage":"'+findProperty('appPackage')+'",\n'+
-						    '"appActivity":"'+findProperty('appActivity')+'"\n'+
-						'}\n'+
-					  '],\n'+
-				'"IOS":\n'+
-				      '[\n'+
-				        '{\n'+
-						    '"platformName": "iOS",\n'+
-						    '"platformVersion": "12.2",\n'+
-						    '"automationName": "XCUITest",\n'+
-						    '"autoLaunch":true,\n'+
-						    '"fullReset":false,\n'+
-						    '"noReset":false,\n'+
-						    '"useNewWDA":true,\n'+
-							'"newCommandTimeout":60,\n'+
-							'"useJSONSource":true,\n'+
-							'"autoDismissAlerts":true,\n'+
-						    '"bundleId":"'+findProperty('bundleId')+'",\n'+
-						    '"waitForQuiescence":false,\n'+
-						    '"wdaStartupRetries":5,\n'+
-						    '"wdaStartupRetryInterval":1000\n'+
-						'}\n'+
-				      ']\n'+
-				'}');
-}
-*/
-allprojects { project ->
-    tasks.withType(Test) {
-        testTask ->
-            afterTest { desc, result ->
-                println("Executing test : ${desc.name} [${desc.className}] with result: ${result.resultType} (${result.testCount} tests, ${result.successfulTestCount} Passed, ${result.failedTestCount} Failures, ${result.skippedTestCount} Skipped)")
-            }
-            afterSuite { desc, result ->
-                if (!desc.parent) { // will match the outermost suite
-                    def output = "Results: ${result.resultType} (${result.testCount} tests, ${result.successfulTestCount} Passed, ${result.failedTestCount} Failures, ${result.skippedTestCount} Skipped)"
-                    def startItem = '|  ', endItem = '  |'
-                    def repeatLength = startItem.length() + output.length() + endItem.length()
-                    println('\n' + ('-' * repeatLength) + '\n' + startItem + output + endItem + '\n' + ('-' * repeatLength))
-                }
-                //println("Failed Test Count : " + result.failedTestCount)
-                if (result.failedTestCount < result.successfulTestCount) {
-                    ignoreFailures = true
-
-                    println("failedTestCount : " + result.failedTestCount)
-                }else{
-                    ignoreFailures = false
-
-                    println("failedTestCount : " + result.failedTestCount)
-                }
-            }
-    }
-}
-
 test {
-	testLogging {
-		events "passed", "skipped", "failed"
-	}
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+    testLogging.showStandardStreams = true
 
-	testLogging.showStandardStreams = true
-	
-    useTestNG(){
-    
-        if (project.hasProperty('TestNG')) {
-        	suites 'src/test/resources/TestNG.xml'
-        }
-         suites ''+System.getProperty('testNGsuiteXmlFile')
-        //suites 'src/test/resources/'+System.getProperty('testNGsuiteXmlFile')
-        //implimentation : gradle clean test -DtestNGsuiteXmlFile=src/test/resources/debugTestNG.xml
-        
-	    useDefaultListeners = true
+    useTestNG() {
+
+        suites '' + System.getProperty('testNGsuiteXmlFile')
+        useDefaultListeners = true
+
     }
     ext.workingDirectory = 'test-output/${timestamp()}'
-    
 }
