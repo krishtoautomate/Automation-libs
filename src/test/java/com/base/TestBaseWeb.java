@@ -72,7 +72,7 @@ public class TestBaseWeb {
                 {"<b>Browser : </b>", browser},
                 {"<b>SessionId : </b>", sessionId},
                 {"<b>Jira test-key : </b>",
-                        "<a href=" + Constants.JIRA_URL + testKey + ">" + testKey + "</a>"}
+                        "<a target=\"blank\" href=" + Constants.JIRA_URL + testKey + ">" + testKey +"</a>"}
         };
 
         test.info(MarkupHelper.createTable(data));

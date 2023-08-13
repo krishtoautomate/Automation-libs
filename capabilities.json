@@ -14,7 +14,7 @@
 		},
 	"IOS":
 		{
-			"platformName": "iOS",
+			"platformName": "IOS",
 			"appium:automationName": "XCUITest",
 			"appium:autoLaunch": true,
 			"appium:fullReset": false,

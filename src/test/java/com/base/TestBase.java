@@ -85,7 +85,10 @@ public class TestBase {
                 {"<b>Platform : </b>", platForm},
                 {"<b>OsVersion : </b>", platformVersion},
                 {"<b>Jira test-key : </b>",
-                        "<a href=" + Constants.JIRA_URL + testKey + ">" + testKey + "</a>"}};
+                        "<a target=\"blank\" href=" + Constants.JIRA_URL + testKey + ">" + testKey +"</a>"}
+        };
+
+
 
         test.info(MarkupHelper.createTable(data));
     }

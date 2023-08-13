@@ -13,23 +13,17 @@ import com.base.AppiumDriverManager;
 import com.base.DriverManager;
 import com.base.Jira;
 import io.appium.java_client.AppiumDriver;
-import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
 import org.testng.*;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.TimeZone;
 
 public class TestListenerRT extends TestListenerAdapter
         implements ISuiteListener, ITestListener, IInvokedMethodListener {
@@ -294,15 +288,16 @@ public class TestListenerRT extends TestListenerAdapter
     @Override
     public void onStart(ISuite suite) {
 
-        try {
-            String jsonPath = suite.getParameter("p_Testdata");
-            (new JSONParser()).parse(new FileReader(jsonPath));
-        } catch (ParseException | NullPointerException | IOException e) {
-            log.error("Json data file error");
-            throw new RuntimeException("Json file error");
-        }
+//        try {
+//            String jsonPath = suite.getParameter("p_Testdata");
+//            (new JSONParser()).parse(new FileReader(jsonPath));
+//        } catch (ParseException | NullPointerException | IOException e) {
+//            log.error("Json data file error");
+//            throw new RuntimeException("Json file error");
+//        }
 
         try {
+
             // Create Jira execution
             String buildNo = System.getenv("BUILD_NUMBER");
             String jobName = System.getenv("JOB_NAME");
@@ -321,29 +316,35 @@ public class TestListenerRT extends TestListenerAdapter
             String realTimeLink = "<" + jobUrl + "ws/test-output/" + dateFolder
                     + "/" + buildNo + "|Real Time Jenkins Report>";
 
-//            String jiraAuth = System.getenv("JIRA_AUTH");
-//            System.out.println("jiraAuth : " + jiraAuth);
-            System.out.println("testPlanKey : " + testPlanKey);
 
-            if (testPlanKey != null) {
-                // JIRA
-                testExecutionKey = testExecKey;
-                if (testExecutionKey == null) {
-                    testExecutionKey =
-                            jiraReporter.create_Test_Exec(executionSummary, executionDescription, testPlanKey.trim());
+            if (buildNo != null) {
+
+                //            String jiraAuth = System.getenv("JIRA_AUTH");
+                //            System.out.println("jiraAuth : " + jiraAuth);
+
+                System.out.println("testPlanKey : " + testPlanKey);
+
+                if (testPlanKey != null) {
+                    // JIRA
+                    testExecutionKey = testExecKey;
+                    if (testExecutionKey == null) {
+                        testExecutionKey =
+                                jiraReporter.create_Test_Exec(executionSummary, executionDescription, testPlanKey.trim());
+                    }
+                    System.out.println("testExecutionKey : " + testExecutionKey);
+
+                    // Slack
+                    String message = Constants.SLACK_BRAND + " Mobility Run started at: <" + executionDescription
+                            + "|" + executionSummary + ">" + "\n" + "Execution will be updated at "
+                            + "<" + Constants.JIRA_URL + testExecutionKey + "|" + testExecutionKey
+                            + ">" + "\n" + "Check " + realTimeLink + " for failure details";
+                    slackReporter.send_Message_To_Channel(message, slackChannel);
                 }
-                System.out.println("testExecutionKey : " + testExecutionKey);
-
-                // Slack
-                String message = Constants.SLACK_BRAND + " Mobility Run started at: <" + executionDescription
-                        + "|" + executionSummary + ">" + "\n" + "Execution will be updated at "
-                        + "<"+Constants.JIRA_URL + testExecutionKey + "|" + testExecutionKey
-                        + ">" + "\n" + "Check " + realTimeLink + " for failure details";
-                slackReporter.send_Message_To_Channel(message, slackChannel);
             }
         } catch (Exception e) {
             // ignore
         }
+
     }
 
     @Override
@@ -372,7 +373,7 @@ public class TestListenerRT extends TestListenerAdapter
                 // Slack
                 String message = Constants.SLACK_BRAND + " Mobility Run has finished. Complete  " + "<" + buildUrl
                         + "Automation_20HTML_20Report/|Jenkins Automation Report>"
-                        + " and <"+Constants.JIRA_URL + testExecutionKey
+                        + " and <" + Constants.JIRA_URL + testExecutionKey
                         + "|JIRA Test Execution> are now available";
                 slackReporter.send_Message_To_Channel(message, slackChannel);
             }

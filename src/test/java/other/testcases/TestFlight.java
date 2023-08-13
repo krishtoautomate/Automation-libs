@@ -61,6 +61,8 @@ public class TestFlight extends TestBase implements ITestBase {
 
         utils.getPageSource();
 
+        sleep(5);
+
         Assertions.contains(testFlightApp.get_apps_h1().getText(), "Apps", true);
 
         if (testFlightApp.verify_all_btns()) {

@@ -39,13 +39,12 @@ public class DriverManager {
 
     public static synchronized AppiumDriver getAppiumDriverInstance() {
         return AppiumDriverManager.getDriverInstance();
-//                appiumDriverMap.get(Long.valueOf(Thread.currentThread().getId()));
     }
 
     /*
      @platform = Web/Appium
      */
-    protected synchronized void setDriver(String platform) {
+    public synchronized void setDriver(String platform) {
 
         if (platform.equalsIgnoreCase("Web")) {
 

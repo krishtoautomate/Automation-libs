@@ -15,9 +15,9 @@ public class PlayStore extends TestBase implements ITestBase {
   String className = this.getClass().getSimpleName();
 
   @Test
-  @Parameters({"udid"})
-  public void Playstore_Update_Script(@Optional String udid) {
+  public void Playstore_Update_Script() {
 
+    String udid = driver.getCapabilities().getCapability("udid").toString();
     test.getModel().setName(String.format("%s - %s", className, udid));
 
     Utilities utils = new Utilities(driver, test);
@@ -47,9 +47,9 @@ public class PlayStore extends TestBase implements ITestBase {
     // 4.0 - Click Update All button
     if (playstoreapp.verify_updateAll_btn()) {
       playstoreapp.get_updateAll_btn().click();
-      sleep(3);
+      sleep(2);
       utils.logmessage(Status.PASS, "'UPDATE ALL' button clicked");
-      sleep(120);
+//      sleep(5);
     }
 
 

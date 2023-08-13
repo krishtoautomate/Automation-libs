@@ -45,6 +45,19 @@ public class TestListener extends TestListenerAdapter
         String start = dateANDtime;
 
         iTestResult.setAttribute("start", start);
+
+        try {
+            AppiumDriver driver = AppiumDriverManager.getDriverInstance();
+
+            String udid = driver.getCapabilities().getCapability("udid").toString();
+
+//            String[] params = {"udid", udid};
+//            iTestResult.setParameters(params);
+
+            log.info("udid : " + udid);
+        } catch (Exception e) {
+            //ignore
+        }
     }
 
     @Override
@@ -188,10 +201,10 @@ public class TestListener extends TestListenerAdapter
 
         log.warn("Test Skipped : " + className + " : " + udid);
 
-        ExtentTest test = ExtentTestManager.getTest();
-        ExtentReports extent = ExtentTestManager.getTest().getExtent();
-
         try {
+            ExtentTest test = ExtentTestManager.getTest();
+            ExtentReports extent = ExtentTestManager.getTest().getExtent();
+
             extent.removeTest(test);
         } catch (Exception e) {
             // ignore
