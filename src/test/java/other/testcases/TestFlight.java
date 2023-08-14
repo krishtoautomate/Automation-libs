@@ -6,6 +6,7 @@ import com.Utilities.MobileActions;
 import com.Utilities.Utilities;
 import com.aventstack.extentreports.Status;
 import com.base.TestBase;
+import com.google.common.collect.ImmutableMap;
 import org.testng.annotations.Test;
 import other.pages.TestFlightApp;
 
@@ -36,7 +37,8 @@ public class TestFlight extends TestBase implements ITestBase {
 
         if (!driver.getCapabilities().getCapability("bundleId")
                 .toString().contains("com.apple.TestFlight")) {
-            mobileActions.activateApp("com.apple.TestFlight");
+//            mobileActions.activateApp("com.apple.TestFlight");
+            driver.executeScript("mobile: launchApp", ImmutableMap.of("bundleId", "com.apple.TestFlight"));
         }
 
         if (testFlightApp.verify_tryAgain_btn()) {
@@ -61,7 +63,7 @@ public class TestFlight extends TestBase implements ITestBase {
 
         utils.getPageSource();
 
-        sleep(5);
+        sleep(2);
 
         Assertions.contains(testFlightApp.get_apps_h1().getText(), "Apps", true);
 
@@ -76,13 +78,10 @@ public class TestFlight extends TestBase implements ITestBase {
                     testFlightApp.get_apps_back_btn("back button - is Clicked").click();
                 }
             }
+            sleep(10);
         }
 
-        sleep(10);
-
         utils.getPageSource();
-
-        sleep(30);
 
 
 //        ((IOSDriver)driver).activateApp("com.apple.mobilesafari");
