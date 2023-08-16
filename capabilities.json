@@ -25,7 +25,8 @@
 			"appium:wdaStartupRetries": 1,
 			"appium:wdaStartupRetryInterval": 2000,
 			"appium:language": "en",
-			"appium:locale": "CA"
+			"appium:locale": "CA",
+			"automation:user": "Automation"
 		},
 	"CHROME":
 		{
