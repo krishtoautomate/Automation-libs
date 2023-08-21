@@ -79,4 +79,45 @@ public class AppiumDriverManager {
         getDriverInstance().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
     }
+
+    public synchronized void setBrowserDriver() {
+
+        ITestResult iTestResult = Reporter.getCurrentTestResult();
+        Map<String, String> testParams =
+                iTestResult.getTestContext().getCurrentXmlTest().getAllParameters();
+
+        String platForm = testParams.get("platForm");
+        if (platForm == null)
+            return;
+
+        String REMOTE_HOST =
+                testParams.get("REMOTE_HOST") == null ? "localhost" : testParams.get("REMOTE_HOST");
+
+        if (REMOTE_HOST.equalsIgnoreCase("localhost")) {
+            AppiumService appiumService = new AppiumService();
+            server = appiumService.AppiumServer();
+            server.start();
+            REMOTE_HOST = server.getUrl().toString();
+        }
+
+        try {
+            if ("Android".equalsIgnoreCase(platForm)) {
+                tlDriver.set(new AndroidDriver(new URL(REMOTE_HOST),
+                        capabilitiesManager.setCapabilities("ANDROID-BROWSER")));
+            } else if ("iOS".equalsIgnoreCase(platForm)) {
+                tlDriver.set(new IOSDriver(new URL(REMOTE_HOST),
+                        capabilitiesManager.setCapabilities("IOS-BROWSER")));
+            }
+        } catch (Exception e) {
+            log.error("Message : " + e.getMessage());
+            throw new RuntimeException(e.getLocalizedMessage());
+        }
+
+        driverMap.put(Thread.currentThread().getId(), tlDriver.get());
+
+        log.info("SessionId : " + tlDriver.get().getSessionId());
+
+        getDriverInstance().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+
+    }
 }

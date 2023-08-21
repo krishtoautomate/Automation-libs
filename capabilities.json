@@ -10,7 +10,8 @@
 			"androidInstallTimeout": 150000,
 			"autoDismissAlerts": true,
 			"appium:appPackage": "com.android.vending",
-			"appium:appActivity": "com.android.vending.AssetBrowserActivity"
+			"appium:appActivity": "com.android.vending.AssetBrowserActivity",
+			"automation:user": "Krish"
 		},
 	"IOS":
 		{
@@ -19,15 +20,27 @@
 			"appium:autoLaunch": true,
 			"appium:fullReset": false,
 			"appium:noReset": false,
-			"appium:newCommandTimeout": 120,
 			"appium:autoDismissAlerts": false,
 			"appium:bundleId": "com.apple.Preferences",
-			"appium:wdaStartupRetries": 1,
+			"appium:wdaStartupRetries": 3,
 			"appium:wdaStartupRetryInterval": 2000,
 			"appium:language": "en",
 			"appium:locale": "CA",
-			"automation:user": "Automation"
+			"automation:user": "Krish"
 		},
+	"IOS-BROWSER": {
+		"appium:bundleId": "com.apple.mobilesafari",
+		"appium:browserName": "Safari",
+		"platformName": "iOS",
+		"automationName": "XCUITest",
+		"appium:autoWebview": true
+	},
+	"ANDROID-BROWSER": {
+		"appium:browserName": "Chrome",
+		"platformName": "iOS",
+		"automationName": "XCUITest",
+		"appium:autoWebview": true
+	},
 	"CHROME":
 		{
 			"browserName": "chrome",
