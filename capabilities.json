@@ -29,17 +29,14 @@
 			"automation:user": "Krish"
 		},
 	"IOS-BROWSER": {
-		"appium:bundleId": "com.apple.mobilesafari",
 		"appium:browserName": "Safari",
 		"platformName": "iOS",
-		"automationName": "XCUITest",
-		"appium:autoWebview": true
+		"automationName": "XCUITest"
 	},
 	"ANDROID-BROWSER": {
 		"appium:browserName": "Chrome",
-		"platformName": "iOS",
-		"automationName": "XCUITest",
-		"appium:autoWebview": true
+		"platformName": "Android",
+		"automationName": "uiautomator2"
 	},
 	"CHROME":
 		{
