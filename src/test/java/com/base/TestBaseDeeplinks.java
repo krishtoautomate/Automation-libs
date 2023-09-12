@@ -21,7 +21,7 @@ public class TestBaseDeeplinks {
     protected static Logger log;
 
     protected AppiumDriver driver;
-    protected AppiumDriverManager tlDriverFactory = new AppiumDriverManager();
+    protected DriverManager driverManager = new DriverManager();
     protected ExtentTest test;
     protected boolean isAndroid = false;
     protected boolean isIos = false;
@@ -56,8 +56,8 @@ public class TestBaseDeeplinks {
          */
         if (udid != null) {
             iTestContext.setAttribute("udid", udid);
-            tlDriverFactory.setDriver();
-            driver = AppiumDriverManager.getDriverInstance();
+            driverManager.setDriver("Appium");
+            driver = DriverManager.getAppiumDriverInstance();
 
             udid = driver.getCapabilities().getCapability("udid").toString();
             String deviceName = driver.getCapabilities().getCapability("deviceName").toString();

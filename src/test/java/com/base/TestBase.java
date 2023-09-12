@@ -24,7 +24,7 @@ public class TestBase {
 
     protected static Logger log;
     protected AppiumDriver driver;
-    protected AppiumDriverManager tlDriverFactory = new AppiumDriverManager();
+    protected DriverManager driverManager = new DriverManager();
     protected ExtentTest test;
     protected boolean isAndroid = false;
     protected boolean isIos = false;
@@ -54,7 +54,8 @@ public class TestBase {
 
         if (udid != null)
             GlobalMapper.setUdid(udid);
-        tlDriverFactory.setDriver();
+        GlobalMapper.setTestName(className);
+        driverManager.setDriver("Appium");
         driver = AppiumDriverManager.getDriverInstance();
 
         try {
@@ -85,10 +86,8 @@ public class TestBase {
                 {"<b>Platform : </b>", platForm},
                 {"<b>OsVersion : </b>", platformVersion},
                 {"<b>Jira test-key : </b>",
-                        "<a target=\"blank\" href=" + Constants.JIRA_URL + testKey + ">" + testKey +"</a>"}
+                        "<a target=\"blank\" href=" + Constants.JIRA_URL + testKey + ">" + testKey + "</a>"}
         };
-
-
 
         test.info(MarkupHelper.createTable(data));
     }

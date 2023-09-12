@@ -50,6 +50,7 @@ public class CapabilitiesManager {
         Map<String, String> testParams =
                 iTestResult.getTestContext().getCurrentXmlTest().getAllParameters();
         String udid = GlobalMapper.getUdid();
+        String testName = GlobalMapper.getTestName();
 
         try {
             //capabilities from capabilities.json
@@ -101,6 +102,11 @@ public class CapabilitiesManager {
 //            //ignore
 //        }
 
+            if (testName != null) {
+//                "automation:testName": "testName"
+                jObj.put("auto:testName", testName);
+            }
+
             capabilitiesMap.put(Thread.currentThread().getId(), jObj);
 
             //add to capabilities
@@ -111,6 +117,7 @@ public class CapabilitiesManager {
                 }
                 capabilities.setCapability(key.toString(), jObj.get(key));
             }
+
         } catch (IOException | ParseException | NullPointerException ex) {
             log.error("failed to set capabilities");
         }

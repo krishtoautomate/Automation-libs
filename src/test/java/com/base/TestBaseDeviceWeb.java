@@ -24,7 +24,7 @@ public class TestBaseDeviceWeb {
 
     protected static Logger log;
     protected AppiumDriver driver;
-    protected AppiumDriverManager tlDriverFactory = new AppiumDriverManager();
+    protected DriverManager driverManager = new DriverManager();
     protected ExtentTest test;
     protected boolean isAndroid = false;
     protected boolean isIos = false;
@@ -54,8 +54,8 @@ public class TestBaseDeviceWeb {
 
         if (udid != null)
             GlobalMapper.setUdid(udid);
-        tlDriverFactory.setBrowserDriver();
-        driver = AppiumDriverManager.getDriverInstance();
+        driverManager.setDriver("Appium-Browser");
+        driver = DriverManager.getAppiumDriverInstance();
 
         try {
             isFrench = driver.getCapabilities().getCapability("language").toString().equalsIgnoreCase("fr");

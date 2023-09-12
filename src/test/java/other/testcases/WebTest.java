@@ -5,7 +5,11 @@ import com.Utilities.ScreenShotManager;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.base.TestBaseWeb;
+import org.testng.ITestResult;
+import org.testng.Reporter;
 import org.testng.annotations.Test;
+
+import java.util.Map;
 
 public class WebTest extends TestBaseWeb implements ITestBase {
 
@@ -15,6 +19,11 @@ public class WebTest extends TestBaseWeb implements ITestBase {
 
 //        ((HasAuthentication) driver).register(UsernameAndPassword.of("username", "pass"));
 
+        ITestResult iTestResult = Reporter.getCurrentTestResult();
+        Map<String, String> testParams =
+                iTestResult.getTestContext().getCurrentXmlTest().getAllParameters();
+        String browserName = testParams.get("browser");
+        test.getModel().setName(String.format("%s", browserName));
 
         try {
             driver.get("https://mybell.bell.ca/Login");
