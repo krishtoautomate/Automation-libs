@@ -68,7 +68,8 @@ public class AppiumDriverManager {
                         capabilitiesManager.setCapabilities("IOS")));
             }
         } catch (Exception e) {
-            log.error("Message : " + e.getMessage());
+//            log.error("Message : " + e.getMessage());
+            log.error("\u001B[31m" + e.getMessage() + "\u001B[0m");
             throw new RuntimeException(e.getLocalizedMessage());
         }
 
