@@ -19,14 +19,13 @@
 			"appium:automationName": "XCUITest",
 			"appium:autoLaunch": true,
 			"appium:fullReset": false,
-			"appium:noReset": false,
+			"appium:noReset": true,
 			"appium:autoDismissAlerts": false,
 			"appium:bundleId": "com.apple.Preferences",
 			"appium:wdaStartupRetries": 3,
 			"appium:wdaStartupRetryInterval": 2000,
 			"appium:language": "en",
 			"appium:locale": "CA",
-			"auto:user": "Krish",
 			"se:name": "Krish"
 		}
 		,

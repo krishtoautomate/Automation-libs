@@ -31,15 +31,12 @@ public class TestBaseDeeplinks {
      */
     @BeforeSuite(alwaysRun = true)
     public void setupSuit(ITestContext ctx) {
-
-//    String suiteName = ctx.getCurrentXmlTest().getSuite().getName();
-
         // Log4j
         log = Logger.getLogger(this.getClass().getName());
 
     }
 
-    @BeforeMethod(alwaysRun = true) //dataProvider="DeepLinksDataProvider")
+    @BeforeMethod(alwaysRun = true)
     @Parameters({"udid", "platForm"})
     public synchronized void BeforeMethod
             (@Optional String udid, @Optional String platForm,
@@ -71,12 +68,21 @@ public class TestBaseDeeplinks {
 
             log.info("Test started : " + className);
 
-            String[][] data = {{"<b>TestCase : </b>", className}, {"<b>Device : </b>", deviceName},
-                    {"<b>UDID : </b>", udid}, {"<b>Platform : </b>", platForm},
-                    {"<b>OsVersion : </b>", platformVersion}};
+            String[][] deviceDetails = {
+                    {"<b>Device-Name : </b>", deviceName},
+                    {"<b>UDID : </b>", udid},
+                    {"<b>Platform : </b>", platForm},
+                    {"<b>OsVersion : </b>", platformVersion}
+            };
 
-            test.info(MarkupHelper.createTable(data));
+            test.info(MarkupHelper.createTable(deviceDetails));
+
         }
+        String[][] testDetails = {{"<b>TestCase : </b>", className},
+                {"<b>TestName : </b>", methodName}
+        };
+
+        test.info(MarkupHelper.createTable(testDetails));
     }
 
     @AfterMethod(alwaysRun = true)

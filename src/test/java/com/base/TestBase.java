@@ -97,19 +97,18 @@ public class TestBase {
     public synchronized void After() {
 
         if (driver != null) {
-            try {
-                if (isAndroid) {
-                    ((AndroidDriver) driver).closeApp();
-                }
-
-                if (isIos) {
-                    ((IOSDriver) driver).closeApp();
-//                            .terminateApp(driver.getCapabilities().getCapability("bundleId").toString());
-                }
-                log.info("app close");
-            } catch (Exception e) {
-                // ignore
-            }
+//            try {
+//                if (isAndroid) {
+//                    ((AndroidDriver) driver).closeApp();
+//                }
+//
+//                if (isIos) {
+//                    ((IOSDriver) driver).terminateApp(driver.getCapabilities().getCapability("bundleId").toString());
+//                }
+//                log.info("app close");
+//            } catch (Exception e) {
+//                // ignore
+//            }
 
             try {
                 AppiumDriverManager.quit();
@@ -124,9 +123,6 @@ public class TestBase {
             } catch (Exception e) {
                 // ignore
             }
-//            finally {
-//                log.info(Constants.EXTENT_HTML_REPORT);
-//            }
         }
     }
 
@@ -140,9 +136,6 @@ public class TestBase {
         } catch (Exception e) {
             // ignore
         }
-//        finally {
-//            log.info(Constants.EXTENT_HTML_REPORT);
-//        }
     }
 
 }

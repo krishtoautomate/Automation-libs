@@ -27,7 +27,7 @@ public class TestBaseHybrid {
     protected static Logger log;
     protected AppiumDriver appiumDriver;
     protected WebDriver webDriver;
-    protected DriverManager tlDriverFactory = new DriverManager();
+    protected DriverManager driverManager = new DriverManager();
     protected ExtentTest test;
     protected boolean isAndroid = false;
     protected boolean isIos = false;
@@ -39,8 +39,6 @@ public class TestBaseHybrid {
      */
     @BeforeSuite(alwaysRun = true)
     public void setupSuit(ITestContext ctx) {
-//        String suiteName = ctx.getCurrentXmlTest().getSuite().getName();
-
         log = Logger.getLogger(this.getClass().getName());
     }
 
@@ -52,15 +50,14 @@ public class TestBaseHybrid {
         String methodName = method.getName();
         String className = this.getClass().getName();
 
-        tlDriverFactory.setDriver("Web");
+        driverManager.setDriver("Web");
         webDriver = DriverManager.getWebDriverInstance();
 
-        sessionId = String.valueOf(((RemoteWebDriver) webDriver).getSessionId());
+        sessionId = ((RemoteWebDriver) webDriver).getSessionId().toString();
 
         browser = ((RemoteWebDriver) webDriver).getCapabilities().getCapability("browserName").toString();
 
         String[][] webTable = {
-                {"<b>TestCase : </b>", className},
                 {"<b>Browser : </b>", browser},
                 {"<b>SessionId : </b>", sessionId}
         };
@@ -72,8 +69,9 @@ public class TestBaseHybrid {
         if (platForm != null) {
             isAndroid = platForm.equalsIgnoreCase("Android");
             isIos = platForm.equalsIgnoreCase("iOS");
-            GlobalMapper.setUdid(udid);
-            tlDriverFactory.setDriver("Appium");
+            if(udid!=null)
+                GlobalMapper.setUdid(udid);
+            driverManager.setDriver("Appium");
             appiumDriver = DriverManager.getAppiumDriverInstance();
 
 
@@ -89,7 +87,6 @@ public class TestBaseHybrid {
                 isFrench = false;
             }
 
-
             Map<String, String> testParams = iTestContext.getCurrentXmlTest().getAllParameters();
             String pTestData = testParams.get("p_Testdata");
             TestDataManager testData = new TestDataManager(pTestData);
@@ -102,21 +99,25 @@ public class TestBaseHybrid {
             // Report Content
             test.assignDevice(deviceName);
 
-            String[][] mobileTable = {{"<b>TestCase : </b>", className},
+            String[][] deviceDetails = {
                     {"<b>Device-Name : </b>", deviceName},
                     {"<b>UDID : </b>", udid},
                     {"<b>Platform : </b>", platForm},
-                    {"<b>OsVersion : </b>", platformVersion},
+                    {"<b>OsVersion : </b>", platformVersion}
+            };
+
+            test.info(MarkupHelper.createTable(deviceDetails));
+
+            String[][] testDetails = {{"<b>TestCase : </b>", className},
                     {"<b>Jira test-key : </b>",
                             "<a target=\"blank\" href=" + Constants.JIRA_URL + testKey + ">" + testKey +"</a>"}
             };
 
-            test.info(MarkupHelper.createTable(mobileTable));
+            test.info(MarkupHelper.createTable(testDetails));
         }
 
         log.info("Test started : " + className);
     }
-
 
     @AfterMethod(alwaysRun = true)
     public synchronized void After() {
