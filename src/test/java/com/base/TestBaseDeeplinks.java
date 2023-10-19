@@ -1,5 +1,6 @@
 package com.base;
 
+import com.DataManager.TestDataManager;
 import com.ReportManager.ExtentTestManager;
 import com.Utilities.Constants;
 import com.aventstack.extentreports.ExtentTest;
@@ -9,9 +10,12 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import org.apache.log4j.Logger;
 import org.testng.ITestContext;
+import org.testng.ITestResult;
+import org.testng.Reporter;
 import org.testng.annotations.*;
 
 import java.lang.reflect.Method;
+import java.util.Map;
 
 /**
  * Created by Krish on 06.06.2018.
@@ -19,135 +23,108 @@ import java.lang.reflect.Method;
 public class TestBaseDeeplinks {
 
     protected static Logger log;
-
     protected AppiumDriver driver;
     protected DriverManager driverManager = new DriverManager();
     protected ExtentTest test;
     protected boolean isAndroid = false;
     protected boolean isIos = false;
+    protected boolean isFrench = false;
 
     /**
      * Executed once before all the tests
      */
     @BeforeSuite(alwaysRun = true)
     public void setupSuit(ITestContext ctx) {
-        // Log4j
-        log = Logger.getLogger(this.getClass().getName());
+//        String suiteName = ctx.getCurrentXmlTest().getSuite().getName();
 
+
+        log = Logger.getLogger(this.getClass().getName());
     }
+
 
     @BeforeMethod(alwaysRun = true)
     @Parameters({"udid", "platForm"})
-    public synchronized void BeforeMethod
-            (@Optional String udid, @Optional String platForm,
-             ITestContext iTestContext, Method method) {
+    public synchronized void Before(@Optional String udid, @Optional String platForm,
+                                    ITestContext iTestContext, Method method) {
 
         String methodName = method.getName();
         String className = this.getClass().getName();
-
         isAndroid = platForm.equalsIgnoreCase("Android");
         isIos = platForm.equalsIgnoreCase("iOS");
 
-        /*
-         * Test info
-         */
         if (udid != null) {
-            iTestContext.setAttribute("udid", udid);
+            GlobalMapper.setUdid(udid);
+
+            GlobalMapper.setTestName(className);
             driverManager.setDriver("Appium");
-            driver = DriverManager.getAppiumDriverInstance();
+            driver = AppiumDriverManager.getDriverInstance();
 
-            udid = driver.getCapabilities().getCapability("udid").toString();
-            String deviceName = driver.getCapabilities().getCapability("deviceName").toString();
-            String platformVersion = driver.getCapabilities().getCapability("platformVersion").toString();
-
-            iTestContext.setAttribute("udid", udid);
-
-            // Report Content
-            test = ExtentTestManager.startTest(methodName + "(" + platForm + ")")
-                    .assignDevice(deviceName);
-
-            log.info("Test started : " + className);
-
-            String[][] deviceDetails = {
-                    {"<b>Device-Name : </b>", deviceName},
-                    {"<b>UDID : </b>", udid},
-                    {"<b>Platform : </b>", platForm},
-                    {"<b>OsVersion : </b>", platformVersion}
-            };
-
-            test.info(MarkupHelper.createTable(deviceDetails));
-
-        }
-        String[][] testDetails = {{"<b>TestCase : </b>", className},
-                {"<b>TestName : </b>", methodName}
-        };
-
-        test.info(MarkupHelper.createTable(testDetails));
-    }
-
-    @AfterMethod(alwaysRun = true)
-    public synchronized void AfterMethod(ITestContext testctx) {
-        driver = AppiumDriverManager.getDriverInstance();
-        if (driver != null) {
             try {
-                boolean isAndroid = driver instanceof AndroidDriver;
-                if (isAndroid) {
-                    ((AndroidDriver) driver).closeApp();
-                } else {
-                    String bundleId = getIOSActiveAppInfo();
-                    ((IOSDriver) driver)
-                            .terminateApp(bundleId);
-                }
-                log.info("app close");
+                isFrench = driver.getCapabilities().getCapability("language").toString().equalsIgnoreCase("fr");
             } catch (Exception e) {
-                // ignore
+                isFrench = false;
             }
 
+            Map<String, String> testParams = iTestContext.getCurrentXmlTest().getAllParameters();
+            String pTestData = testParams.get("p_Testdata");
+            TestDataManager testData = new TestDataManager(pTestData);
+            int index = driver instanceof AndroidDriver ? 0 : 1;
+            String testKey = testData.get(index, "testKey");
+            ITestResult result = Reporter.getCurrentTestResult();
+            result.setAttribute("testKey", testKey);
+
+            // Report Content
+            test = ExtentTestManager.startTest(methodName + "(" + platForm + ")");
+
+            log.info("Test started : " + className);
+            String _udid = driver.getCapabilities().getCapability("udid").toString();
+            String deviceName = driver.getCapabilities().getCapability("deviceName").toString();
+            String platformVersion = driver.getCapabilities().getCapability("platformVersion").toString();
+            test.assignDevice(deviceName);
+
+            String[][] data = {{"<b>TestCase : </b>", className}, {"<b>Device-Name : </b>", deviceName},
+                    {"<b>UDID : </b>", _udid},
+                    {"<b>Platform : </b>", platForm},
+                    {"<b>OsVersion : </b>", platformVersion},
+                    {"<b>Jira test-key : </b>",
+                            "<a target=\"blank\" href=" + Constants.JIRA_URL + testKey + ">" + testKey + "</a>"}
+            };
+
+            test.info(MarkupHelper.createTable(data));
+        }
+    }
+
+
+    @AfterMethod(alwaysRun = true)
+    public synchronized void After() {
+        driver = AppiumDriverManager.getDriverInstance();
+        if (driver != null) {
             try {
                 AppiumDriverManager.quit();
                 log.info("driver quit - done");
             } catch (Exception e) {
                 // ignore
             }
-        }
-        log.info("THE END");
 
-        try {
-            ExtentTestManager.getTest().info("THE END");
-            ExtentTestManager.flush(); // -----close extent-report
-        } catch (Exception e) {
-            // ignore
+            try {
+                ExtentTestManager.getTest().info("THE END");
+                ExtentTestManager.flush();
+            } catch (Exception e) {
+                // ignore
+            }
         }
-//        finally {
-//            log.info(Constants.EXTENT_HTML_REPORT);
-//        }
     }
 
     /**
      * Executed once after all the tests
      */
     @AfterSuite(alwaysRun = true)
-    public void endSuit(ITestContext ctx) {
+    public void endSuit() {
         try {
             ExtentTestManager.flush(); // -----close extent-report
         } catch (Exception e) {
             // ignore
         }
-//        finally {
-//            log.info(Constants.EXTENT_HTML_REPORT);
-//        }
-    }
-
-    public String getIOSActiveAppInfo() {
-        String activeApp = "";
-        try {
-            String jsonResponse = driver.executeScript("mobile:activeAppInfo").toString();
-            activeApp = (jsonResponse.split("bundleId=")[1]).replaceAll("}", "");
-        } catch (Exception e) {
-            //ignore
-        }
-        log.info("Active-app :" + activeApp);
-        return activeApp;
     }
 
 }

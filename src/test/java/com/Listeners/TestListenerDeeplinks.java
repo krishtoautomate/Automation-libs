@@ -98,9 +98,9 @@ public class TestListenerDeeplinks extends TestListenerAdapter
         /*
          * get device details
          */
-        Map<String, String> testParams =
-                testResult.getTestContext().getCurrentXmlTest().getAllParameters();
-        String udid = testResult.getAttribute("udid").toString();
+//        Map<String, String> testParams =
+//                testResult.getTestContext().getCurrentXmlTest().getAllParameters();
+        String udid = testResult.getTestContext().getAttribute("udid").toString();
 
         String testName = testResult.getMethod().getMethodName();
         String className = testResult.getTestClass().getName();
@@ -113,6 +113,9 @@ public class TestListenerDeeplinks extends TestListenerAdapter
             ExtentTest test = ExtentTestManager.getTest();
 
             if (driver != null) {
+
+                udid = driver.getCapabilities().getCapability("udid").toString();
+
                 log.error("Test failed : " + className + " : " + udid);
 
                 try {

@@ -295,4 +295,16 @@ public class BaseObjs<T> implements ITestBase {
         }
     }
 
+    public String getIOSActiveAppInfo() {
+        String activeApp = "";
+        try {
+            String jsonResponse = ((AppiumDriver) driver).executeScript("mobile:activeAppInfo").toString();
+            activeApp = (jsonResponse.split("bundleId=")[1]).replaceAll("}", "");
+        } catch (Exception e) {
+            //ignore
+        }
+        log.info("Active-app :" + activeApp);
+        return activeApp;
+    }
+
 }

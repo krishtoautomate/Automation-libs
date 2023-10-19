@@ -7,10 +7,13 @@ import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.base.AppiumDriverManager;
 import com.base.GlobalMapper;
+import com.base.TestBase;
 import com.base.TestBaseDeeplinks;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 import org.testng.ITestContext;
+import org.testng.ITestResult;
+import org.testng.Reporter;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import other.pages.PlayStoreApp;
@@ -27,7 +30,7 @@ public class DataproviderParallel extends TestBaseDeeplinks implements ITestBase
     String className = this.getClass().getSimpleName();
 
     @Test(dataProvider = "DeepLinksDataProvider", groups = {"DeepLinks"})
-    public void PlaystoreUpdateScript(Map<String, String> data, ITestContext iTestContext) {
+    public void PlaystoreUpdateScript(Map<String, String> data) {
 
         //---start
         setup(data);
@@ -83,6 +86,8 @@ public class DataproviderParallel extends TestBaseDeeplinks implements ITestBase
         driver = AppiumDriverManager.getDriverInstance();
 
         udid = driver.getCapabilities().getCapability("udid").toString();
+        ITestResult iTestResult = Reporter.getCurrentTestResult();
+        iTestResult.getTestContext().setAttribute("udid",udid);
         String deviceName = driver.getCapabilities().getCapability("deviceName").toString();
         String platformVersion = driver.getCapabilities().getCapability("platformVersion").toString();
 

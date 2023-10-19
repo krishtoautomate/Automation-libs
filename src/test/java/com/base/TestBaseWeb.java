@@ -65,7 +65,7 @@ public class TestBaseWeb {
         ITestResult result = Reporter.getCurrentTestResult();
         result.setAttribute("testKey", testKey);
         browser = browser == null ? testParams.get("platForm") : testParams.get("browser");
-        String sessionId = String.valueOf(((RemoteWebDriver) driver).getSessionId());
+        String sessionId = ((RemoteWebDriver) driver).getSessionId().toString();
 
         String[][] data = {
                 {"<b>TestCase : </b>", className},
@@ -104,9 +104,6 @@ public class TestBaseWeb {
             } catch (Exception ign) {
                 // ignore
             }
-//            finally {
-//                log.info(Constants.EXTENT_HTML_REPORT);
-//            }
         }
 
         if (test != null)
@@ -121,9 +118,6 @@ public class TestBaseWeb {
         } catch (Exception e) {
             // ignore
         }
-//        finally {
-//            log.info(Constants.EXTENT_HTML_REPORT);
-//        }
     }
 
 }
