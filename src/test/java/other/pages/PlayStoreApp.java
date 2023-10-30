@@ -4,8 +4,6 @@ import com.Utilities.BaseObjs;
 import com.aventstack.extentreports.ExtentTest;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileBy;
-import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 

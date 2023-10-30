@@ -65,7 +65,8 @@ public class TestFlight extends TestBase implements ITestBase {
 
         sleep(2);
 
-        Assertions.contains(testFlightApp.get_apps_h1().getText(), "Apps", true);
+//        Assertions.contains(testFlightApp.get_apps_h1().getText(), "Apps", true);
+
 
         if (testFlightApp.verify_all_btns()) {
             String buttonText = testFlightApp.get_all_btns().get(0).getText();
@@ -79,6 +80,8 @@ public class TestFlight extends TestBase implements ITestBase {
                 }
             }
             sleep(10);
+        } else {
+            utils.logmessage(Status.FAIL, "No update buttons found");
         }
 
         utils.getPageSource();

@@ -97,19 +97,6 @@ public class TestBase {
     public synchronized void After() {
 
         if (driver != null) {
-//            try {
-//                if (isAndroid) {
-//                    ((AndroidDriver) driver).closeApp();
-//                }
-//
-//                if (isIos) {
-//                    ((IOSDriver) driver).terminateApp(driver.getCapabilities().getCapability("bundleId").toString());
-//                }
-//                log.info("app close");
-//            } catch (Exception e) {
-//                // ignore
-//            }
-
             try {
                 AppiumDriverManager.quit();
                 log.info("driver quit - done");

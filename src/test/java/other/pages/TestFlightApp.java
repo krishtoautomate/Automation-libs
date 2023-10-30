@@ -19,10 +19,10 @@ public class TestFlightApp extends BaseObjs<TestFlightApp> {
 
     By tryAgain_btn = AppiumBy.iOSNsPredicateString("type == 'XCUIElementTypeButton' AND name=='Try Again'");
 
-    By all_btns = AppiumBy.iOSClassChain("**/XCUIElementTypeButton[`label IN {'UPDATE','INSTALL'}`]");
-    By apps_h1 = AppiumBy.iOSNsPredicateString("label == 'Apps' AND visible=1");
+    By all_btns = AppiumBy.iOSClassChain("**/XCUIElementTypeCell/**/XCUIElementTypeButton[`label IN {'UPDATE','INSTALL'}`]");
+    By apps_h1 = AppiumBy.iOSClassChain("**/XCUIElementTypeNavigationBar/XCUIElementTypeStaticText");
 
-    By apps_back_btn = AppiumBy.iOSClassChain("**/XCUIElementTypeNavigationBar/XCUIElementTypeButton[`name IN {'BackButton', 'ToggleSidebar'} AND visible=1`]");
+    By apps_back_btn = AppiumBy.iOSClassChain("**/XCUIElementTypeNavigationBar/XCUIElementTypeButton[`name IN {'BackButton', 'ToggleSidebar'}`]");
 
     public TestFlightApp(AppiumDriver driver, ExtentTest test) {
         super(driver, test);

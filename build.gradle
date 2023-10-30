@@ -35,19 +35,19 @@ dependencies {
 
     testImplementation 'org.testng:testng:7.7.0'
 
-    testImplementation 'org.seleniumhq.selenium:selenium-java:4.11.0'
-    testImplementation 'org.seleniumhq.selenium:selenium-support:4.11.0'
+    testImplementation 'org.seleniumhq.selenium:selenium-java:4.14.1'
+    testImplementation 'org.seleniumhq.selenium:selenium-support:4.14.1'
 
-    testImplementation 'io.appium:java-client:8.5.1'
+    testImplementation 'io.appium:java-client:9.0.0'
 
     implementation 'commons-io:commons-io:2.11.0'
 
     implementation 'com.googlecode.json-simple:json-simple:1.1.1'
 
-    implementation 'javax.mail:mail:1.4'
+    implementation 'javax.mail:mail:1.4.7'
     implementation 'org.json:json:20230227'
     implementation 'com.opencsv:opencsv:5.7.1'
-    implementation 'com.jcraft:jsch:0.1.54'
+    implementation 'com.jcraft:jsch:0.1.55'
     implementation 'org.bytedeco.javacpp-presets:tesseract:4.0.0-1.4.4'
 
     testImplementation 'io.rest-assured:rest-assured:5.3.0'
@@ -59,9 +59,6 @@ dependencies {
     testImplementation 'org.slf4j:slf4j-jdk14:2.0.5'
 
     testImplementation "com.oracle.ojdbc:ojdbc8:19.3.0.0"
-
-
-    testImplementation 'org.usb4java:usb4java-javax:1.2.0'
 
     testImplementation 'com.slack.api:slack-api-client:1.28.0'
 

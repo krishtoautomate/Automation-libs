@@ -4,7 +4,6 @@ package com.base;
  **/
 
 import com.Utilities.Constants;
-import io.appium.java_client.remote.MobileCapabilityType;
 import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -64,7 +63,7 @@ public class CapabilitiesManager {
 
                 //UDID from TestNG parameter
                 if (udid != null) {
-                    jObj.put("appium:" + MobileCapabilityType.UDID, udid.trim());
+                    jObj.put("appium:udid", udid.trim());
                 }
 
                 //capabilities from TestNG.xml
@@ -103,7 +102,6 @@ public class CapabilitiesManager {
 //        }
 
             if (testName != null) {
-//                "automation:testName": "testName"
                 jObj.put("auto:testName", testName);
             }
 

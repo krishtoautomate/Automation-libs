@@ -55,7 +55,6 @@ public class CustomIOSDriver extends CustomAppiumDriver implements
         HasDeviceTime,
         PullsFiles,
         InteractsWithApps,
-        SupportsLegacyAppManagement,
         HasAppStrings,
         PerformsTouchActions,
         HidesKeyboardWithKeyName,
@@ -237,7 +236,7 @@ public class CustomIOSDriver extends CustomAppiumDriver implements
     @Override
     public synchronized StringWebSocketClient getSyslogClient() {
         if (syslogClient == null) {
-            syslogClient = new StringWebSocketClient();
+//            syslogClient = new StringWebSocketClient();
         }
         return syslogClient;
     }

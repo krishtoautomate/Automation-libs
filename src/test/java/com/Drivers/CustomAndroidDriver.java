@@ -57,7 +57,6 @@ public class CustomAndroidDriver extends CustomAppiumDriver implements
         HasDeviceTime,
         PullsFiles,
         InteractsWithApps,
-        SupportsLegacyAppManagement,
         HasAppStrings,
         HasNetworkConnection,
         PushesFiles,
@@ -225,16 +224,6 @@ public class CustomAndroidDriver extends CustomAppiumDriver implements
     }
 
     /**
-     * Get test-coverage data.
-     *
-     * @param intent intent to broadcast.
-     * @param path   path to .ec file.
-     */
-    public void endTestCoverage(String intent, String path) {
-        CommandExecutionHelper.execute(this, endTestCoverageCommand(intent, path));
-    }
-
-    /**
      * Open the notification shade, on Android devices.
      */
     public void openNotifications() {
@@ -260,7 +249,7 @@ public class CustomAndroidDriver extends CustomAppiumDriver implements
     @Override
     public synchronized StringWebSocketClient getLogcatClient() {
         if (logcatClient == null) {
-            logcatClient = new StringWebSocketClient();
+//            logcatClient = new StringWebSocketClient();
         }
         return logcatClient;
     }

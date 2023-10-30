@@ -140,19 +140,6 @@ public class TestBaseHybrid {
         appiumDriver = DriverManager.getAppiumDriverInstance();
         if (appiumDriver != null) {
             try {
-                if (isAndroid) {
-                    ((AndroidDriver) appiumDriver).closeApp();
-                }
-
-                if (isIos) {
-                    ((IOSDriver) appiumDriver).terminateApp(appiumDriver.getCapabilities().getCapability("bundleId").toString());
-                }
-                log.info("app close");
-            } catch (Exception e) {
-                // ignore
-            }
-
-            try {
                 DriverManager.getAppiumDriverInstance().quit();
                 log.info("driver quit - done");
             } catch (Exception e) {

@@ -2,7 +2,6 @@ package other.testcases;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -34,7 +33,7 @@ public class MBM {
     DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
 
     desiredCapabilities.setCapability("deviceName", "Android");
-    desiredCapabilities.setCapability(MobileCapabilityType.UDID, "0B271FDD4003AS");// device id
+    desiredCapabilities.setCapability("udid", "0B271FDD4003AS");// device id
     // //adb devices
     // //
     // commnad
