@@ -12,3 +12,5 @@ Logger.log
 testng.xml
 /.gradle/
 /build/
+*.json
+capabilities.json

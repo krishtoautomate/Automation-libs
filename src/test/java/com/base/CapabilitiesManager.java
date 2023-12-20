@@ -4,6 +4,7 @@ package com.base;
  **/
 
 import com.Utilities.Constants;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -50,16 +51,23 @@ public class CapabilitiesManager {
                 iTestResult.getTestContext().getCurrentXmlTest().getAllParameters();
         String udid = GlobalMapper.getUdid();
         String testName = GlobalMapper.getTestName();
+        String _platform = testParams.get("platForm");
 
+//        try {
+        //capabilities from capabilities.json
+        JSONObject jsonObject;
         try {
-            //capabilities from capabilities.json
-            JSONObject jsonObject =
-                    (JSONObject) new JSONParser().parse(new FileReader(Constants.CAPABILITIES));
+            jsonObject = (JSONObject) new JSONParser().parse(new FileReader(Constants.CAPABILITIES));
+        } catch (IOException | ParseException e) {
+            throw new RuntimeException(e);
+        }
 //            JSONArray jsonArray = (JSONArray) jsonObject.get(platForm.toUpperCase());
 //            JSONObject jObj = (JSONObject) jsonArray.get(0);
-            JSONObject jObj = (JSONObject) jsonObject.get(platForm.toUpperCase());
+        JSONObject jObj = (JSONObject) jsonObject.get(platForm.toUpperCase());
 
-            if (platForm.equalsIgnoreCase("Android") || platForm.equalsIgnoreCase("iOS")) {
+        try {
+            if (_platform.equalsIgnoreCase("Android") | _platform.equalsIgnoreCase("iOS")
+                    | StringUtils.containsIgnoreCase("Android", platForm) | StringUtils.containsIgnoreCase("iOS", platForm)) {
 
                 //UDID from TestNG parameter
                 if (udid != null) {
@@ -84,8 +92,11 @@ public class CapabilitiesManager {
                     }
                 }
             }
+        } catch (Exception e) {
+            //throw new RuntimeException(e);
+        }
 
-            //capabilities from TestData
+        //capabilities from TestData
 //        try {
 //            String pTestData = testParams.get("p_Testdata");
 //            JSONObject jsonObject = (JSONObject) new JSONParser().parse(new FileReader(pTestData));
@@ -101,24 +112,24 @@ public class CapabilitiesManager {
 //            //ignore
 //        }
 
-            if (testName != null) {
-                jObj.put("auto:testName", testName);
-            }
-
-            capabilitiesMap.put(Thread.currentThread().getId(), jObj);
-
-            //add to capabilities
-            System.out.println("capabilities : " + jObj.toJSONString());
-            for (Object key : jObj.keySet()) {
-                if (key.toString().equalsIgnoreCase("platformVersion")) {
-                    continue;
-                }
-                capabilities.setCapability(key.toString(), jObj.get(key));
-            }
-
-        } catch (IOException | ParseException | NullPointerException ex) {
-            log.error("failed to set capabilities");
+        if (testName != null) {
+            jObj.put("auto:testName", testName);
         }
+
+        capabilitiesMap.put(Thread.currentThread().getId(), jObj);
+
+        //add to capabilities
+        System.out.println("capabilities : " + jObj.toJSONString());
+        for (Object key : jObj.keySet()) {
+            if (key.toString().equalsIgnoreCase("platformVersion")) {
+                continue;
+            }
+            capabilities.setCapability(key.toString(), jObj.get(key));
+        }
+
+//        } catch (IOException | ParseException | NullPointerException ex) {
+//            log.error("failed to set capabilities");
+//        }
         return capabilities;
     }
 

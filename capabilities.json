@@ -7,7 +7,6 @@
 			"noReset": true,
 			"fullReset": false,
 			"newCommandTimeout": 60,
-			"androidInstallTimeout": 150000,
 			"autoDismissAlerts": false,
 			"appium:appPackage": "com.android.vending",
 			"appium:appActivity": "com.android.vending.AssetBrowserActivity",
@@ -42,21 +41,8 @@
 	},
 	"CHROME":
 		{
-			"browserName": "chrome",
-			"browserVersion": "latest",
-			"platformName": "LINUX",
-			"acceptInsecureCerts": "true",
-			"goog:chromeOptions": {
-				"args": [
-					"--start-maximized",
-					"--ignore-certificate-errors",
-					"--disable-popup-blocking",
-					"--incognito",
-					"user-agent=GomezAgent",
-					"disable-infobars",
-					"--remote-allow-origins=*"],
-				"pageLoadStrategy": "normal"
-			}
+			"browserName": "chrome"
+
 		},
 	"FIREFOX":
 		{

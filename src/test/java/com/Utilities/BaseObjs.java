@@ -26,6 +26,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
+import java.time.Instant;
 import java.util.List;
 import java.util.*;
 
@@ -82,14 +83,6 @@ public class BaseObjs<T> implements ITestBase {
 
     protected boolean isElementDisplayed(By by) {
         try {
-//      return new WebDriverWait(driver, 5)
-//          .until(ExpectedConditions.presenceOfElementLocated(locator)).isDisplayed();
-
-//      new FluentWait(driver).withTimeout(Duration.ofSeconds(5))
-//    .pollingEvery(Duration.ofSeconds(1))
-//    .ignoring(NoSuchElementException.class)
-//          .ignoring(StaleElementReferenceException.class).until(ExpectedConditions.presenceOfElementLocated(by));
-
             return driver.findElement(by).isDisplayed();
         } catch (Exception e) {
             // ignore
@@ -239,7 +232,7 @@ public class BaseObjs<T> implements ITestBase {
         int width = element.getRect().getWidth();
         int height = element.getRect().getHeight();
 
-        UUID uuid = UUID.randomUUID();
+//        UUID uuid = UUID.randomUUID();
         String imgPath = ScreenShotManager.getScreenshot(driver);
 
         File ScreenShot = new File(Constants.NO_SCREENSHOTS_AVAILABLE);
@@ -277,23 +270,6 @@ public class BaseObjs<T> implements ITestBase {
         return imgPath;
     }
 
-    public void VERIFY_API_STATUS(Response response) {
-        if (response.getStatusCode() != HttpStatus.SC_OK) {
-            test.fail(MarkupHelper.createCodeBlock(response.getBody().asString()));
-            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
-        } else {
-            test.pass("RESPONSE STATUS_CODE : " + response.getStatusCode());
-        }
-    }
-
-    public void VERIFY_API_CONTAINS(Response response, String message) {
-        if ((response.getBody().asString().toLowerCase()).contains(message.toLowerCase()) == false) {
-            test.fail(MarkupHelper.createCodeBlock(response.prettyPrint()));
-            Assert.assertTrue(response.getBody().asString().contains(message));
-        } else {
-            test.pass("Verification - RESPONSE contains : " + message);
-        }
-    }
 
     public String getIOSActiveAppInfo() {
         String activeApp = "";
@@ -305,6 +281,17 @@ public class BaseObjs<T> implements ITestBase {
         }
         log.info("Active-app :" + activeApp);
         return activeApp;
+    }
+
+    public long navigationTime(String url) {
+        Instant start = Instant.now();
+        driver.get(url);
+        Instant finish = Instant.now();
+
+        long timeElapsed = Duration.between(start, finish).toMillis();
+        log.info(timeElapsed + " milliseconds");
+
+        return timeElapsed;
     }
 
 }

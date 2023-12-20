@@ -139,12 +139,12 @@ public class TestListenerRT extends TestListenerAdapter
                 // Unique name to screen-shot
                 String imgPath = ScreenShotManager.getScreenshot(driver);
 
-                test.fail("Failed details : " + testName + "\n" + testResult.getThrowable().getMessage());
-                test.fail("Failed Test case : " + testName + "\n" + testResult.getThrowable(),
+                test.fail("Failed details : " +  "\n" + testResult.getThrowable().getMessage());
+                test.fail("Failed Test case : " +  "\n" + testResult.getThrowable(),
                         MediaEntityBuilder.createScreenCaptureFromPath(imgPath).build());
 
             } catch (Exception e) {
-                test.fail("Failed Test case : " + testName + "\n" + testResult.getThrowable());
+                test.fail("Failed Test case : " + "\n" + testResult.getThrowable());
             }
 
 

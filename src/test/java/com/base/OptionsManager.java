@@ -22,6 +22,8 @@ public class OptionsManager {
         options.addArguments("user-agent=GomezAgent");
         options.addArguments("disable-infobars");
         options.addArguments("--remote-allow-origins=*");
+//        options.addArguments("--proxy-server=http://fastweb-on.bell.corp.bce.ca:80");//working
+//        options.addArguments("--proxy-server=http://fastweb.int.bell.ca:8083");
 
         options.setAcceptInsecureCerts(true);
         options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
