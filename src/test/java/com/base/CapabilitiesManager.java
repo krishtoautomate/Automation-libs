@@ -53,7 +53,7 @@ public class CapabilitiesManager {
         String testName = GlobalMapper.getTestName();
         String _platform = testParams.get("platForm");
 
-//        try {
+        try {
         //capabilities from capabilities.json
         JSONObject jsonObject;
         try {
@@ -61,8 +61,7 @@ public class CapabilitiesManager {
         } catch (IOException | ParseException e) {
             throw new RuntimeException(e);
         }
-//            JSONArray jsonArray = (JSONArray) jsonObject.get(platForm.toUpperCase());
-//            JSONObject jObj = (JSONObject) jsonArray.get(0);
+
         JSONObject jObj = (JSONObject) jsonObject.get(platForm.toUpperCase());
 
         try {
@@ -94,6 +93,7 @@ public class CapabilitiesManager {
             }
         } catch (Exception e) {
             //throw new RuntimeException(e);
+//            log.error("error in capabilities.json");
         }
 
         //capabilities from TestData
@@ -112,9 +112,8 @@ public class CapabilitiesManager {
 //            //ignore
 //        }
 
-        if (testName != null) {
+        if (testName != null)
             jObj.put("auto:testName", testName);
-        }
 
         capabilitiesMap.put(Thread.currentThread().getId(), jObj);
 
@@ -127,9 +126,10 @@ public class CapabilitiesManager {
             capabilities.setCapability(key.toString(), jObj.get(key));
         }
 
-//        } catch (IOException | ParseException | NullPointerException ex) {
+        } catch (Exception ex) {
 //            log.error("failed to set capabilities");
-//        }
+            log.error("error in capabilities.json");
+        }
         return capabilities;
     }
 

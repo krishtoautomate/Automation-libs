@@ -27,9 +27,11 @@ public class WebTest extends TestBaseWeb implements ITestBase {
 
         try {
 //            driver.get("https://bell.ca");
-        driver.get("https://www.virginplus.ca/en/home/index.html");
+//            driver.get("https://fesa-mybell.ids.int.bell.ca/Login");
+            driver.get("https://www.virginplus.ca/en/home/index.html");
+
         } catch (Exception e) {
-            driver.navigate().to("https://www.virginplus.ca/en/home/index.html");
+            driver.navigate().to("https://www.bell.ca/");
 //            test.pass("web-page loaded : "+driver.getCurrentUrl(), MediaEntityBuilder.createScreenCaptureFromPath(ScreenShotManager.getScreenshot(driver)).build());
         }
 

@@ -4,6 +4,8 @@ import com.Utilities.ITestBase;
 import com.Utilities.Utilities;
 import com.aventstack.extentreports.Status;
 import com.base.TestBase;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.connection.ConnectionState;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -24,6 +26,8 @@ public class PlayStore extends TestBase implements ITestBase {
     PlayStoreApp playstoreapp = new PlayStoreApp(driver, test);
 
     sleep(2);
+
+//    ((AndroidDriver)driver).setConnection(Connection.ALL);
 
     // 1.0 - Click navigate button
     playstoreapp.get_accountLogo().click();

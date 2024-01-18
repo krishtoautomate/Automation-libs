@@ -6,6 +6,7 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.SessionId;
 import org.testng.ITestResult;
 import org.testng.Reporter;
@@ -81,7 +82,7 @@ public class AppiumDriverManager {
 
     }
 
-    public synchronized void setBrowserDriver() {
+    public void setBrowserDriver() {
 
         ITestResult iTestResult = Reporter.getCurrentTestResult();
         Map<String, String> testParams =

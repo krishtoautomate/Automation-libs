@@ -9,8 +9,7 @@
 			"newCommandTimeout": 60,
 			"autoDismissAlerts": false,
 			"appium:appPackage": "com.android.vending",
-			"appium:appActivity": "com.android.vending.AssetBrowserActivity",
-			"automation:user": "Krish"
+			"appium:appActivity": "com.android.vending.AssetBrowserActivity"
 		},
 	"IOS":
 		{
@@ -25,8 +24,7 @@
 			"appium:wdaStartupRetryInterval": 2000,
 			"appium:simpleIsVisibleCheck":true,
 			"appium:language": "en",
-			"appium:locale": "CA",
-			"se:name": "Krish"
+			"appium:locale": "CA"
 		}
 		,
 	"IOS-BROWSER": {

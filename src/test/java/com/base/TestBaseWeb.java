@@ -6,6 +6,7 @@ import com.Utilities.Constants;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
+import io.appium.java_client.AppiumDriver;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -39,8 +40,8 @@ public class TestBaseWeb {
 
 
     @BeforeMethod(alwaysRun = true)
-    @Parameters({"browser"})
-    public synchronized void setupTest(@Optional String browser, ITestContext iTestContext,
+    @Parameters({"platForm", "browser"})
+    public synchronized void setupTest(@Optional String platForm, @Optional String browser, ITestContext iTestContext,
                                        Method method) {
 
         String className = this.getClass().getName();
@@ -50,8 +51,14 @@ public class TestBaseWeb {
 
         // Set & Get ThreadLocal Driver with Browser
         iTestContext.setAttribute("platform", "Web");
-        tlDriverFactory.setDriver("Web");
-        driver = DriverManager.getWebDriverInstance();
+
+        if("Desktop".equalsIgnoreCase(platForm)){
+            tlDriverFactory.setDriver("Web");
+            driver = DriverManager.getWebDriverInstance();
+        }else {
+            tlDriverFactory.setDriver("Appium-Browser");
+            driver = DriverManager.getAppiumDriverInstance();
+        }
 
 //        System.out.println("SessionId : " + ((RemoteWebDriver) driver).getSessionId());
 
