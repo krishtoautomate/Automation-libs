@@ -69,9 +69,9 @@ public class CapabilitiesManager {
                     | StringUtils.containsIgnoreCase("Android", platForm) | StringUtils.containsIgnoreCase("iOS", platForm)) {
 
                 //UDID from TestNG parameter
-                if (udid != null) {
+                if (udid != null)
                     jObj.put("appium:udid", udid.trim());
-                }
+
 
                 //capabilities from TestNG.xml
                 String pCapabilities = testParams.get("capabilities");

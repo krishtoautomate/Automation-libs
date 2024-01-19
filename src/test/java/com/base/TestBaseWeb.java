@@ -40,8 +40,8 @@ public class TestBaseWeb {
 
 
     @BeforeMethod(alwaysRun = true)
-    @Parameters({"platForm", "browser"})
-    public synchronized void setupTest(@Optional String platForm, @Optional String browser, ITestContext iTestContext,
+    @Parameters({"udid", "platForm", "browser"})
+    public synchronized void setupTest(@Optional String udid, @Optional String platForm, @Optional String browser, ITestContext iTestContext,
                                        Method method) {
 
         String className = this.getClass().getName();
@@ -56,6 +56,9 @@ public class TestBaseWeb {
             tlDriverFactory.setDriver("Web");
             driver = DriverManager.getWebDriverInstance();
         }else {
+            if (udid != null)
+                GlobalMapper.setUdid(udid);
+
             tlDriverFactory.setDriver("Appium-Browser");
             driver = DriverManager.getAppiumDriverInstance();
         }
@@ -88,20 +91,24 @@ public class TestBaseWeb {
     }
 
     @AfterMethod(alwaysRun = true)
-    public synchronized void tearDown(ITestContext context) {
+    @Parameters({"platForm"})
+    public synchronized void tearDown(@Optional String platForm, ITestContext context) {
 
         log.info("AfterTest : " + context.getCurrentXmlTest().getName());
 
-        driver = DriverManager.getWebDriverInstance();
+        if("Desktop".equalsIgnoreCase(platForm))
+            driver = DriverManager.getWebDriverInstance();
+        else
+            driver = DriverManager.getAppiumDriverInstance();
         if (driver != null) {
             try {
-                DriverManager.getWebDriverInstance().close();
+                driver.close();
             } catch (Exception ign) {
                 // ignore
             }
 
             try {
-                DriverManager.getWebDriverInstance().quit();
+                driver.quit();
             } catch (Exception ign) {
                 // ignore
             }
