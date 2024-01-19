@@ -28,6 +28,8 @@ import java.util.TimeZone;
 public class TestListenerRT extends TestListenerAdapter
         implements ISuiteListener, ITestListener, IInvokedMethodListener {
 
+    public WebDriver driver;
+
     private static Logger log = Logger.getLogger(TestListenerRT.class.getName());
 
     private static String testExecutionKey = null;
@@ -117,6 +119,7 @@ public class TestListenerRT extends TestListenerAdapter
                 testResult.getTestContext().getCurrentXmlTest().getAllParameters();
 //        String udid = testParams.get("udid");
         String p_Testdata = testParams.get("p_Testdata");
+        String platForm = testParams.get("platForm");
         TestDataManager testData = new TestDataManager(p_Testdata);
 
         String testName = testResult.getMethod().getMethodName();
@@ -125,15 +128,23 @@ public class TestListenerRT extends TestListenerAdapter
 
         // String slackChannel = System.getenv("SLACK_CHANNEL");
 
-        AppiumDriver driver = AppiumDriverManager.getDriverInstance();
-        WebDriver webDriver = DriverManager.getWebDriverInstance();
+//        AppiumDriver driver = AppiumDriverManager.getDriverInstance();
+//        WebDriver webDriver = DriverManager.getWebDriverInstance();
 
+        if(platForm!=null){
+            if("Desktop".equalsIgnoreCase(platForm))
+                driver = DriverManager.getWebDriverInstance();
+            else
+                driver = DriverManager.getAppiumDriverInstance();
+        }else{
+            driver = DriverManager.getWebDriverInstance();
+        }
 
         ExtentTest test = ExtentTestManager.getTest();
 
         if (driver != null) {
-            String udid = driver.getCapabilities().getCapability("udid").toString();
-            log.error("Test failed : " + className + " : " + udid);
+//            String udid = driver.getCapabilities().getCapability("udid").toString();
+            log.error("Test failed : " + className);
 
             try {
                 // Unique name to screen-shot
@@ -165,28 +176,28 @@ public class TestListenerRT extends TestListenerAdapter
             }
         }
 
-        if (webDriver != null) {
-            log.error("Test failed : " + className);
-
-            try {
-
-                String imgPath = ScreenShotManager.getScreenshot(driver);
-
-                test.fail("Failed Test case : " + testName + "\n" + testResult.getThrowable(),
-                        MediaEntityBuilder.createScreenCaptureFromPath(imgPath).build());
-
-            } catch (Exception e) {
-                test.fail("Failed Test case : " + testName + "\n" + testResult.getThrowable());
-            }
-
-            try {
-                String errorXML = webDriver.getPageSource();
-                test.info(MarkupHelper.createCodeBlock(errorXML));
-            } catch (Exception ign) {
-                test.assignCategory("Crash");
-                log.info("Failed to get page source : " + "\n" + ign.getLocalizedMessage());
-            }
-        }
+//        if (webDriver != null) {
+//            log.error("Test failed : " + className);
+//
+//            try {
+//
+//                String imgPath = ScreenShotManager.getScreenshot(driver);
+//
+//                test.fail("Failed Test case : " + testName + "\n" + testResult.getThrowable(),
+//                        MediaEntityBuilder.createScreenCaptureFromPath(imgPath).build());
+//
+//            } catch (Exception e) {
+//                test.fail("Failed Test case : " + testName + "\n" + testResult.getThrowable());
+//            }
+//
+//            try {
+//                String errorXML = webDriver.getPageSource();
+//                test.info(MarkupHelper.createCodeBlock(errorXML));
+//            } catch (Exception ign) {
+//                test.assignCategory("Crash");
+//                log.info("Failed to get page source : " + "\n" + ign.getLocalizedMessage());
+//            }
+//        }
 
 
         try {

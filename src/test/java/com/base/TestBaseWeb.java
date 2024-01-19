@@ -52,15 +52,20 @@ public class TestBaseWeb {
         // Set & Get ThreadLocal Driver with Browser
         iTestContext.setAttribute("platform", "Web");
 
-        if("Desktop".equalsIgnoreCase(platForm)){
+        if(platForm!=null){
+            if("Desktop".equalsIgnoreCase(platForm)){
+                tlDriverFactory.setDriver("Web");
+                driver = DriverManager.getWebDriverInstance();
+            }else {
+                if (udid != null)
+                    GlobalMapper.setUdid(udid);
+
+                tlDriverFactory.setDriver("Appium-Browser");
+                driver = DriverManager.getAppiumDriverInstance();
+            }
+        }else{
             tlDriverFactory.setDriver("Web");
             driver = DriverManager.getWebDriverInstance();
-        }else {
-            if (udid != null)
-                GlobalMapper.setUdid(udid);
-
-            tlDriverFactory.setDriver("Appium-Browser");
-            driver = DriverManager.getAppiumDriverInstance();
         }
 
 //        System.out.println("SessionId : " + ((RemoteWebDriver) driver).getSessionId());
@@ -96,10 +101,14 @@ public class TestBaseWeb {
 
         log.info("AfterTest : " + context.getCurrentXmlTest().getName());
 
-        if("Desktop".equalsIgnoreCase(platForm))
+        if(platForm!=null){
+            if("Desktop".equalsIgnoreCase(platForm))
+                driver = DriverManager.getWebDriverInstance();
+            else
+                driver = DriverManager.getAppiumDriverInstance();
+        }else{
             driver = DriverManager.getWebDriverInstance();
-        else
-            driver = DriverManager.getAppiumDriverInstance();
+        }
         if (driver != null) {
             try {
                 driver.close();
