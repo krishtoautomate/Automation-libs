@@ -27,6 +27,8 @@ public class CapabilitiesManager {
     static Map<Long, JSONObject> capabilitiesMap = new HashMap<Long, JSONObject>();
     private static Logger log = Logger.getLogger(CapabilitiesManager.class.getName());
 
+
+
     public static synchronized DesiredCapabilities getCapabilities() {
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
