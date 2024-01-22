@@ -6,6 +6,7 @@ package com.base;
 import com.Utilities.Constants;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
+import org.json.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -97,20 +98,20 @@ public class CapabilitiesManager {
         }
 
         //capabilities from TestData
-//        try {
-//            String pTestData = testParams.get("p_Testdata");
-//            JSONObject jsonObject = (JSONObject) new JSONParser().parse(new FileReader(pTestData));
-//            String className = iTestResult.getInstanceName();
-//            JSONArray jsonArray = (JSONArray) jsonObject.get(className);
-//            JSONObject jObj = (JSONObject) jsonArray.get(0);
-//            JSONObject jAObject = (JSONObject) jObj.get("capabilities");
-//
-//            jAObject.keySet().forEach(key -> {
-//                capabilities.setCapability(key.toString(), jAObject.get(key));
-//            });
-//        } catch (Exception e) {
-//            //ignore
-//        }
+        try {
+            String pTestData = testParams.get("p_Testdata");
+            JSONObject jObject = (JSONObject) new JSONParser().parse(new FileReader(pTestData));
+            String className = iTestResult.getInstanceName();
+            JSONArray jsonArray = (JSONArray) jObject.get(className);
+            JSONObject jObjt = (JSONObject) jsonArray.get(0);
+            JSONObject jAObject = (JSONObject) jObjt.get("capabilities");
+
+            jAObject.keySet().forEach(key -> {
+                jObj.put(key,  jAObject.get(key));
+            });
+        } catch (Exception e) {
+            //ignore
+        }
 
         if (testName != null)
             jObj.put("auto:testName", testName);
@@ -122,6 +123,17 @@ public class CapabilitiesManager {
         for (Object key : jObj.keySet()) {
             if (key.toString().equalsIgnoreCase("platformVersion")) {
                 continue;
+            }
+            if (_platform.equalsIgnoreCase("iOS") | StringUtils.containsIgnoreCase("iOS", platForm)) {
+                if (key.toString().equalsIgnoreCase("browserName")) {
+                    capabilities.setCapability("bundleId", "");
+                }
+            }
+            if (_platform.equalsIgnoreCase("Android") | StringUtils.containsIgnoreCase("Android", platForm)) {
+                if (key.toString().equalsIgnoreCase("browserName")) {
+                    capabilities.setCapability("appPackage", "");
+                    capabilities.setCapability("appActivity", "");
+                }
             }
             capabilities.setCapability(key.toString(), jObj.get(key));
         }
