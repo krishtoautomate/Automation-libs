@@ -62,7 +62,7 @@ dependencies {
 
     testImplementation 'com.slack.api:slack-api-client:1.28.0'
 
-    testImplementation 'net.lightbody.bmp:browsermob-core:2.1.5'
+//    testImplementation 'net.lightbody.bmp:browsermob-core:2.1.5'
 
 
 }
