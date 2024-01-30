@@ -92,6 +92,24 @@ public class TestBaseWeb {
 
         test.info(MarkupHelper.createTable(data));
 
+        try {
+            String _udid = ((AppiumDriver)driver).getCapabilities().getCapability("udid").toString();
+            String deviceName = ((AppiumDriver)driver).getCapabilities().getCapability("deviceName").toString();
+
+            if(_udid!=null){
+                String[][] data1 = {
+                        {"<b>deviceName : </b>", deviceName},
+                        {"<b>udid : </b>", _udid},
+                        {"<b>SessionId : </b>", sessionId}
+
+                };
+
+                test.info(MarkupHelper.createTable(data1));
+            }
+        } catch (Exception e) {
+            //ignore
+        }
+
         log.info("Test Started : " + className);
     }
 

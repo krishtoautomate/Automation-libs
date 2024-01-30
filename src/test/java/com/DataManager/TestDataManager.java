@@ -100,7 +100,9 @@ public class TestDataManager {
                     iTestResult.getTestContext().getCurrentXmlTest().getAllParameters();
             this.platformName = testParams.get("platForm");
             int index = "iOS".equalsIgnoreCase(platformName) ? 1 : 0;
-            JSONObject innerObj = (JSONObject) jsonArray.get(index);
+            JSONObject innerObj = (JSONObject) jsonArray.get(0);
+            if(jsonArray.size()>1)
+                innerObj = (JSONObject) jsonArray.get(index);
 
             return innerObj.get(key).toString();
 
