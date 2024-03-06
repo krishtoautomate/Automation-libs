@@ -1,5 +1,7 @@
 package com.base;
 
+import org.apache.log4j.Logger;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -23,6 +25,9 @@ public class WebDriverManager {
     private static ThreadLocal<WebDriver> tlWebDriver = new ThreadLocal<>();
 
     private CapabilitiesManager capabilitiesManager = new CapabilitiesManager();
+    private OptionsManager optionsManager = new OptionsManager();
+
+    private static Logger log = Logger.getLogger(WebDriverManager.class.getName());
 
 
     /*
@@ -40,16 +45,23 @@ public class WebDriverManager {
 
         String browser = testParams.get("browser") == null ? "chrome" : testParams.get("browser");
 
-        String REMOTE_HOST =
-                testParams.get("REMOTE_HOST_WEB") == null ?
-                        testParams.get("REMOTE_HOST") :
-                        testParams.get("REMOTE_HOST_WEB");
+        String REMOTE_HOST = testParams.get("REMOTE_HOST");
 
         if (browser.equalsIgnoreCase("chrome")) {
+
             DesiredCapabilities capabilities = capabilitiesManager.setCapabilities("CHROME");
 
-            OptionsManager OptionsManager = new OptionsManager();
-            ChromeOptions options = OptionsManager.getChromeOptions(capabilities);
+            ChromeOptions options = optionsManager.getChromeOptions();
+
+            //add capabilities to options
+            JSONObject jObject = new JSONObject(capabilities.toJson());
+            for (Object keyStr : jObject.keySet()) {
+                try {
+                    options.setCapability(keyStr.toString(), jObject.get(keyStr));
+                } catch (Exception e) {
+                    log.error("failed to add capabilities to options");
+                }
+            }
 
             System.out.println("options : " + options);
 

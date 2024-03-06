@@ -30,17 +30,33 @@
 	"IOS-BROWSER": {
 		"appium:browserName": "Safari",
 		"platformName": "iOS",
-		"automationName": "XCUITest"
+		"automationName": "XCUITest",
+		"se:name":  "Krish"
 	},
 	"ANDROID-BROWSER": {
 		"appium:browserName": "Chrome",
 		"platformName": "Android",
-		"automationName": "uiautomator2"
+		"automationName": "uiautomator2",
+		"se:name":  "Krish"
 	},
 	"CHROME":
 		{
-			"browserName": "chrome"
-
+			"browserName": "chrome",
+			"browserVersion": "120.0",
+			"se:name": "Krish",
+			"pageLoadStrategy": "normal",
+			"acceptInsecureCerts": true,
+			"se:name":  "Krish",
+			"goog:chromeOptions":
+				{
+					"args": ["--remote-allow-origins=*",
+						"--start-maximized",
+						"--ignore-certificate-errors",
+						"--incognito",
+						"user-agent=GomezAgent",
+						"disable-infobars"],
+					"extensions": []
+				}
 		},
 	"FIREFOX":
 		{

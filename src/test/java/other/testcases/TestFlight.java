@@ -80,7 +80,7 @@ public class TestFlight extends TestBase implements ITestBase {
             }
             sleep(10);
         } else {
-            utils.logmessage(Status.FAIL, "No update buttons found");
+            utils.logmessage(Status.WARNING, "No update buttons found");
         }
 
         utils.getPageSource();

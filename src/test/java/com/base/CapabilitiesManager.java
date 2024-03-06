@@ -56,7 +56,7 @@ public class CapabilitiesManager {
         String testName = GlobalMapper.getTestName();
         String _platform = testParams.get("platForm");
 
-        try {
+//        try {
         //capabilities from capabilities.json
         JSONObject jsonObject;
         try {
@@ -120,30 +120,42 @@ public class CapabilitiesManager {
 
         capabilitiesMap.put(Thread.currentThread().getId(), jObj);
 
-        //add to capabilities
-        System.out.println("capabilities : " + jObj.toJSONString());
-        for (Object key : jObj.keySet()) {
-            if (key.toString().equalsIgnoreCase("platformVersion")) {
-                continue;
-            }
-            if (_platform.equalsIgnoreCase("iOS") | StringUtils.containsIgnoreCase("iOS", platForm)) {
-                if (key.toString().equalsIgnoreCase("browserName")) {
-                    capabilities.setCapability("bundleId", "");
+        try {
+            //add to capabilities
+            System.out.println("capabilities : " + jObj.toJSONString());
+            for (Object key : jObj.keySet()) {
+                if(key.toString().equalsIgnoreCase("goog:chromeOptions")){
+                    continue;
                 }
-            }
-            if (_platform.equalsIgnoreCase("Android") | StringUtils.containsIgnoreCase("Android", platForm)) {
-                if (key.toString().equalsIgnoreCase("browserName")) {
-                    capabilities.setCapability("appPackage", "");
-                    capabilities.setCapability("appActivity", "");
-                }
-            }
-            capabilities.setCapability(key.toString(), jObj.get(key));
-        }
 
-        } catch (Exception ex) {
-//            log.error("failed to set capabilities");
+                if (key.toString().equalsIgnoreCase("platformVersion")) {
+                    continue;
+                }
+                try {
+                    if (_platform.equalsIgnoreCase("iOS") | StringUtils.containsIgnoreCase("iOS", platForm)) {
+                        if (key.toString().equalsIgnoreCase("browserName")) {
+                            capabilities.setCapability("bundleId", "");
+                        }
+                    }
+                } catch (Exception e) {
+                    //ignore
+                }
+                try {
+                    if (_platform.equalsIgnoreCase("Android") | StringUtils.containsIgnoreCase("Android", platForm)) {
+                        if (key.toString().equalsIgnoreCase("browserName")) {
+                            capabilities.setCapability("appPackage", "");
+                            capabilities.setCapability("appActivity", "");
+                        }
+                    }
+                } catch (Exception e) {
+                    //ignore
+                }
+                capabilities.setCapability(key.toString(), jObj.get(key));
+            }
+        } catch (Exception e) {
             log.error("error in capabilities.json");
         }
+
         return capabilities;
     }
 

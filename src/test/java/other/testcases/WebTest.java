@@ -15,7 +15,6 @@ public class WebTest extends TestBaseWeb implements ITestBase {
 
     @Test
     public void Web_Test(){
-//        driver.get("http://172.21.34.239:8001");
 
 //        ((HasAuthentication) driver).register(UsernameAndPassword.of("username", "pass"));
 
@@ -26,9 +25,9 @@ public class WebTest extends TestBaseWeb implements ITestBase {
         test.getModel().setName(String.format("%s", browserName));
 
         try {
-//            driver.get("https://bell.ca");
+            driver.get("https://bell.ca");
 //            driver.get("https://fesa-mybell.ids.int.bell.ca/Login");
-            driver.get("https://www.virginplus.ca/en/home/index.html");
+//            driver.get("https://www.virginplus.ca/en/home/index.html");
 
         } catch (Exception e) {
             driver.navigate().to("https://www.bell.ca/");
