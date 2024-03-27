@@ -20,7 +20,7 @@ public class ChangePasswordVirgin {
     public static void main(String[] args) throws IOException, URISyntaxException,
             NoSuchAlgorithmException, KeyManagementException, InterruptedException {
 
-        Scanner s = new Scanner(new File("/Users/home/Downloads/password.csv"));
+        Scanner s = new Scanner(new File("/Users/home/Downloads/VirginPasswords.csv"));
         ArrayList<String> list = new ArrayList<String>();
         while (s.hasNext()) {
             list.add(s.next());
@@ -34,26 +34,24 @@ public class ChangePasswordVirgin {
             // String mdn = parts[0].trim();
             String user = bup.trim();// parts[0].trim();
             String password = "Bqat123456";//"Fibe1234$";// "Lucky1234$";// parts[1].trim();
-            String newPassword = "Ssqa1234$";//"Ssqa1234$";//"Autobude1234$";
+            String newPassword = "Leo1234$";//"Ssqa1234$";//"Autobude1234$";
 
             System.out.println("user : " + user);
             System.out.println("password : " + password);
             // Specify the proxy address
             RestAssured.useRelaxedHTTPSValidation();
 
-//            RestAssured.proxy("fastweb.int.bell.ca", 8083, "https");
-
-//       RestAssured.proxy("fastweb.int.bell.ca", 8083, "http");
+//          RestAssured.proxy("fastweb.int.bell.ca", 8083, "https");
+//          RestAssured.proxy("fastweb.int.bell.ca", 8083, "http");
 
             // Specify the base URL to the RESTful web service
             // RestAssured.baseURI = Constants.BASE_URI;
             RestAssured.baseURI =
-//                    "https://apigate.bell.ca/channelbellcaext";
+//           "https://apigate.bell.ca/channelbellcaext";
              "https://api.virginplus.ca/channelvirginext";
             // "https://apigate.bell.ca/channelbellcaext";
 
-            String Brand =
-             "V";
+            String Brand = "V";
             String applicationId = "MVM_IOS";
 
             try {
@@ -69,22 +67,9 @@ public class ChangePasswordVirgin {
 
                 System.out.println("----------");
 
-                // String userId = response.path("userId").toString();
-                // Thread.sleep(5000);
-                //
-//         given().header("accept-language", "EN-CA").header("province", "ON").header("brand",
-//         Brand)
-//         .header("Accept", "*/*")
-//                 .header("Cache-Control", "no-cache")
-//         .header("Host", "api.virginmobile.ca")
-//                 .header("Accept-Encoding", "gzip, deflate")
-//         .header("Connection", "keep-alive").cookies(response.cookies()).when()
-//         .get(RestAssured.baseURI + "/UXP.Services/eCare/CustomerProfile/CustomerAccounts/"
-//         + userId + "/CustomerProfile?privilegeRequired=All");
 
                 Thread.sleep(2000);
 
-//                String newPassword = "Ssqa1234$";//"Autobude1234$";
                 given().header("Accept-Language", "EN-CA")
                         .header("brand", Brand)
                         .header("Content-Type", "application/json")

@@ -13,4 +13,6 @@ testng.xml
 /.gradle/
 /build/
 *.json
+*.csv
+.csv
 capabilities.json

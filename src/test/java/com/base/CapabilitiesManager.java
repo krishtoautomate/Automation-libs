@@ -131,8 +131,9 @@ public class CapabilitiesManager {
                 if (key.toString().equalsIgnoreCase("platformVersion")) {
                     continue;
                 }
+                //remove app capabilities for ios
                 try {
-                    if (_platform.equalsIgnoreCase("iOS") | StringUtils.containsIgnoreCase("iOS", platForm)) {
+                    if (StringUtils.containsIgnoreCase("iOS", platForm)) {
                         if (key.toString().equalsIgnoreCase("browserName")) {
                             capabilities.setCapability("bundleId", "");
                         }
@@ -140,9 +141,10 @@ public class CapabilitiesManager {
                 } catch (Exception e) {
                     //ignore
                 }
+                //remove app capabilities for Android
                 try {
-                    if (_platform.equalsIgnoreCase("Android") | StringUtils.containsIgnoreCase("Android", platForm)) {
-                        if (key.toString().equalsIgnoreCase("browserName")) {
+                    if (StringUtils.containsIgnoreCase("Android", platForm)) {
+                        if (key.toString().equalsIgnoreCase("browserName") | key.toString().equalsIgnoreCase("appium:browserName")) {
                             capabilities.setCapability("appPackage", "");
                             capabilities.setCapability("appActivity", "");
                         }

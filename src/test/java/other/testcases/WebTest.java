@@ -5,6 +5,8 @@ import com.Utilities.ScreenShotManager;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.base.TestBaseWeb;
+import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.annotations.Test;
@@ -18,10 +20,7 @@ public class WebTest extends TestBaseWeb implements ITestBase {
 
 //        ((HasAuthentication) driver).register(UsernameAndPassword.of("username", "pass"));
 
-        ITestResult iTestResult = Reporter.getCurrentTestResult();
-        Map<String, String> testParams =
-                iTestResult.getTestContext().getCurrentXmlTest().getAllParameters();
-        String browserName = testParams.get("browser");
+        String browserName = ((RemoteWebDriver) driver).getCapabilities().getBrowserName();
         test.getModel().setName(String.format("%s", browserName));
 
         try {
@@ -30,14 +29,17 @@ public class WebTest extends TestBaseWeb implements ITestBase {
 //            driver.get("https://www.virginplus.ca/en/home/index.html");
 
         } catch (Exception e) {
-            driver.navigate().to("https://www.bell.ca/");
+            driver.navigate().to("https://www.virginplus.ca/en/home/index.html");
 //            test.pass("web-page loaded : "+driver.getCurrentUrl(), MediaEntityBuilder.createScreenCaptureFromPath(ScreenShotManager.getScreenshot(driver)).build());
         }
+
+//        Capabilities caps = ((RemoteWebDriver) driver).getCapabilities();
+//        System.out.println(caps.getBrowserName());
+//        System.out.println(caps.getBrowserVersion());
 
         sleep(10);
 
         test.pass("web-page loaded : "+driver.getCurrentUrl(), MediaEntityBuilder.createScreenCaptureFromPath(ScreenShotManager.getScreenshot(driver)).build());
-
 
         String errorXML = driver.getPageSource();
 

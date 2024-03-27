@@ -8,6 +8,10 @@ import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import io.appium.java_client.AppiumDriver;
 import org.apache.log4j.Logger;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestContext;
@@ -15,6 +19,9 @@ import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.annotations.*;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.Map;
 
@@ -47,6 +54,21 @@ public class TestBaseWeb {
         String className = this.getClass().getName();
         String methodName = method.getName();
 
+        Map<String, String> testParams = iTestContext.getCurrentXmlTest().getAllParameters();
+        String pTestData = testParams.get("p_Testdata");
+        TestDataManager testData = new TestDataManager(pTestData);
+
+        try {
+            JSONObject jObject = (JSONObject) new JSONParser().parse(new FileReader(pTestData));
+            org.json.simple.JSONArray jsonArray = (org.json.simple.JSONArray) jObject.get(className);
+            int index = "iOS".equalsIgnoreCase(platForm) ? 1 : 0;
+            JSONObject jObjt = (JSONObject) jsonArray.get(index);
+            JSONObject jAObject = (JSONObject) jObjt.get("parameters");
+            platForm = jAObject.get("platForm").toString();
+        } catch (Exception e) {
+            //ignore
+        }
+
 //    log = LoggerManager.startLogger(className);
 
         // Set & Get ThreadLocal Driver with Browser
@@ -73,18 +95,18 @@ public class TestBaseWeb {
         // Create Test in extent-Report
         test = ExtentTestManager.startTest(methodName);
 
-        Map<String, String> testParams = iTestContext.getCurrentXmlTest().getAllParameters();
-        String pTestData = testParams.get("p_Testdata");
-        TestDataManager testData = new TestDataManager(pTestData);
         String testKey = testData.get("testKey");
         ITestResult result = Reporter.getCurrentTestResult();
         result.setAttribute("testKey", testKey);
-        browser = browser == null ? testParams.get("platForm") : testParams.get("browser");
+        Capabilities caps = ((RemoteWebDriver) driver).getCapabilities();
+        browser = caps.getBrowserName();
+        String browserVersion = caps.getBrowserVersion();
         String sessionId = ((RemoteWebDriver) driver).getSessionId().toString();
 
         String[][] data = {
                 {"<b>TestCase : </b>", className},
                 {"<b>Browser : </b>", browser},
+                {"<b>BrowserVersion : </b>", browserVersion},
                 {"<b>SessionId : </b>", sessionId},
                 {"<b>Jira test-key : </b>",
                         "<a target=\"blank\" href=" + Constants.JIRA_URL + testKey + ">" + testKey +"</a>"}
@@ -118,6 +140,22 @@ public class TestBaseWeb {
     public synchronized void tearDown(@Optional String platForm, ITestContext context) {
 
         log.info("AfterTest : " + context.getCurrentXmlTest().getName());
+
+        String className = this.getClass().getName();
+
+        Map<String, String> testParams = context.getCurrentXmlTest().getAllParameters();
+        String pTestData = testParams.get("p_Testdata");
+
+        try {
+            JSONObject jObject = (JSONObject) new JSONParser().parse(new FileReader(pTestData));
+            org.json.simple.JSONArray jsonArray = (org.json.simple.JSONArray) jObject.get(className);
+            int index = "iOS".equalsIgnoreCase(platForm) ? 1 : 0;
+            JSONObject jObjt = (JSONObject) jsonArray.get(index);
+            JSONObject jAObject = (JSONObject) jObjt.get("parameters");
+            platForm = jAObject.get("platForm").toString();
+        } catch (Exception e) {
+            //ignore
+        }
 
         if(platForm!=null){
             if("Desktop".equalsIgnoreCase(platForm))

@@ -42,7 +42,7 @@
 	"CHROME":
 		{
 			"browserName": "chrome",
-			"browserVersion": "120.0",
+			"browserVersion": "121.0",
 			"se:name": "Krish",
 			"pageLoadStrategy": "normal",
 			"acceptInsecureCerts": true,

@@ -20,27 +20,25 @@ public class ChangePasswordBell {
     public static void main(String[] args) throws IOException, URISyntaxException,
             NoSuchAlgorithmException, KeyManagementException, InterruptedException {
 
-        Scanner s = new Scanner(new File("/Users/home/Downloads/password.csv"));
+        Scanner s = new Scanner(new File("/Users/home/Downloads/BellPasswords.csv"));
         ArrayList<String> list = new ArrayList<String>();
         while (s.hasNext()) {
             list.add(s.next());
-
         }
         s.close();
 
         for (String bup : list) {
-
             String[] parts = bup.split(",");
             // String mdn = parts[0].trim();
             String user = parts[0].trim();
-            String password = "Lucky1234$";//"Fibe1234$";// "Lucky1234$";// parts[1].trim();
-            String newPassword = "Ssqa1234$";//"Autobude1234$";
+            String password = "Fibe1234$";//parts[1].trim();
+            String newPassword = "Leo1234$";//"Autobude1234$";
 
-            System.out.println("user : " + user + " , password : " + password);
+//            System.out.println("user : " + user + " , password : " + password);
 
             // Specify the proxy address
             RestAssured.useRelaxedHTTPSValidation();
-//       RestAssured.proxy("fastweb.int.bell.ca", 8083);
+//            RestAssured.proxy("fastweb.int.bell.ca", 8083);
 //       RestAssured.proxy("fastweb.int.bell.ca", 8083, "http");
 
             // Specify the base URL to the RESTful web service
@@ -53,33 +51,25 @@ public class ChangePasswordBell {
             String applicationid = "MBM_IOS";// MVM_IOS
 
             try {
-
-                Thread.sleep(5000);
+                Thread.sleep(3000);
                 Response response = given().relaxedHTTPSValidation().auth().basic(user, password)
                         .header("accept-language", "en-ca")
                         .header("brand", Brand)
                         .header("applicationid", applicationid)
                         .get(RestAssured.baseURI + "/Authentication/BUP");
 
-                System.out.println("status : " + response.getBody().path("status").toString()); // .asPrettyString().);
+//                System.out.println("status : " + response.getBody().path("status").toString()); // .asPrettyString().);
+
+                if(response.getBody().path("status").toString().equalsIgnoreCase("fail")){
+                    System.out.println("user : "+ user);
+                    continue;
+                }
 
                 System.out.println("----------");
 
-                // String userId = response.path("userId").toString();
-                // Thread.sleep(5000);
-                //
-//         given().header("accept-language", "EN-CA").header("province", "ON").header("brand",
-//         Brand)
-//         .header("Accept", "*/*")
-//                 .header("Cache-Control", "no-cache")
-//         .header("Host", "api.virginmobile.ca")
-//                 .header("Accept-Encoding", "gzip, deflate")
-//         .header("Connection", "keep-alive").cookies(response.cookies()).when()
-//         .get(RestAssured.baseURI + "/UXP.Services/eCare/CustomerProfile/CustomerAccounts/"
-//         + userId + "/CustomerProfile?privilegeRequired=All");
+
 
                 Thread.sleep(2000);
-
 
                 given().header("Accept-Language", "EN-CA")
                         .header("brand", Brand)
