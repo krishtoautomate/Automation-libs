@@ -15,4 +15,5 @@ testng.xml
 *.json
 *.csv
 .csv
+/.csv/
 capabilities.json

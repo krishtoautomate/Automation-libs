@@ -46,8 +46,8 @@ public class OptionsManager {
 
             // Print each Chrome Option Arg
             System.out.println("Chrome Options Args: "+ argsArray);
-            for (int i = 0; i < argsArray.size(); i++) {
-                chromeOptions.addArguments(argsArray.get(i).toString());
+            for (Object each : argsArray) {
+                chromeOptions.addArguments(each.toString());
             }
         } catch (Exception e) {
             log.error("failed to add Chrome Options Args");

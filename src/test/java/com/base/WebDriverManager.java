@@ -43,11 +43,12 @@ public class WebDriverManager {
         Map<String, String> testParams =
                 iTestResult.getTestContext().getCurrentXmlTest().getAllParameters();
 
-        String browser = testParams.get("browser") == null ? "chrome" : testParams.get("browser");
+        String browser = testParams.get("browser");
 
-        String REMOTE_HOST = testParams.get("REMOTE_HOST");
+        String REMOTE_HOST = testParams.get("REMOTE_HOST") == null ? "http://bqatautomation.bell.corp.bce.ca:5555" :
+                testParams.get("REMOTE_HOST");
 
-        if (browser.equalsIgnoreCase("chrome")) {
+        if (browser == null || browser.equalsIgnoreCase("chrome")) {
 
             DesiredCapabilities capabilities = capabilitiesManager.setCapabilities("CHROME");
 

@@ -42,14 +42,13 @@
 	"CHROME":
 		{
 			"browserName": "chrome",
-			"browserVersion": "121.0",
+			"browserVersion": "123.0",
 			"se:name": "Krish",
 			"pageLoadStrategy": "normal",
 			"acceptInsecureCerts": true,
-			"se:name":  "Krish",
 			"goog:chromeOptions":
 				{
-					"args": ["--remote-allow-origins=*",
+					"args": [
 						"--start-maximized",
 						"--ignore-certificate-errors",
 						"--incognito",

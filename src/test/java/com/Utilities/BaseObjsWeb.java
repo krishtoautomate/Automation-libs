@@ -5,7 +5,6 @@ import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import io.restassured.response.Response;
-import org.apache.commons.io.FileUtils;
 import org.apache.http.HttpStatus;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
@@ -15,9 +14,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
-import java.util.UUID;
 
 public class BaseObjsWeb<T> implements ITestBase {
 
@@ -89,7 +86,7 @@ public class BaseObjsWeb<T> implements ITestBase {
     public synchronized void logmessage(Status Status, String message) {
         log.info(message);
         try {
-            String imgPath = ScreenShotManager.getScreenshot(driver);
+            String imgPath = new ScreenshotManager(driver).getScreenshot();
 
             if (Status == Status.FAIL) {
                 test.fail(message);
@@ -166,7 +163,7 @@ public class BaseObjsWeb<T> implements ITestBase {
         int width = element.getRect().getWidth();
         int height = element.getRect().getHeight();
 
-        String imgPath = ScreenShotManager.getScreenshot(driver);
+        String imgPath = new ScreenshotManager(driver).getScreenshot();
 
         File ScreenShot = new File(Constants.NO_SCREENSHOTS_AVAILABLE);
         try {

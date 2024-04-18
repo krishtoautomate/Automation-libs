@@ -1,13 +1,10 @@
 package other.testcases;
 
 import com.Utilities.ITestBase;
-import com.Utilities.ScreenShotManager;
+import com.Utilities.ScreenshotManager;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
-import com.base.TestBase;
 import com.base.TestBaseDeviceWeb;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 
@@ -28,7 +25,7 @@ public class MobileBrowserTest extends TestBaseDeviceWeb implements ITestBase {
 
     driver.navigate().to("https://mybell.bell.ca/Login");
 
-    test.pass("web-page loaded : "+driver.getCurrentUrl(), MediaEntityBuilder.createScreenCaptureFromPath(ScreenShotManager.getScreenshot(driver)).build());
+    test.pass("web-page loaded : "+driver.getCurrentUrl(), MediaEntityBuilder.createScreenCaptureFromPath(new ScreenshotManager(driver).getScreenshot()).build());
 
     String errorXML = driver.getPageSource();
 

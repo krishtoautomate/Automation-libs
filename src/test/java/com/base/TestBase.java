@@ -22,7 +22,7 @@ import java.util.Map;
  */
 public class TestBase {
 
-    protected static Logger log;
+    protected static Logger log;// = Logger.getLogger(this.getClass().getName());;
     protected AppiumDriver driver;
     protected DriverManager driverManager = new DriverManager();
     protected ExtentTest test;
@@ -34,9 +34,8 @@ public class TestBase {
      * Executed once before all the tests
      */
     @BeforeSuite(alwaysRun = true)
-    public void setupSuit(ITestContext ctx) {
+    public void setupSuit() {
 //        String suiteName = ctx.getCurrentXmlTest().getSuite().getName();
-
 
         log = Logger.getLogger(this.getClass().getName());
     }
@@ -70,7 +69,8 @@ public class TestBase {
         int index = driver instanceof AndroidDriver ? 0 : 1;
         String testKey = testData.get(index, "testKey");
         ITestResult result = Reporter.getCurrentTestResult();
-        result.setAttribute("testKey", testKey);
+        if(testKey!=null)
+            result.setAttribute("testKey", testKey);
 
         // Report Content
         test = ExtentTestManager.startTest(methodName + "(" + platForm + ")");

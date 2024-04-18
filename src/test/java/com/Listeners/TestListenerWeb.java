@@ -1,24 +1,16 @@
 package com.Listeners;
 
 import com.ReportManager.ExtentTestManager;
-import com.Utilities.Constants;
-import com.Utilities.ScreenShotManager;
+import com.Utilities.ScreenshotManager;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.base.DriverManager;
-import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
 import org.testng.*;
-
-import java.io.File;
-import java.io.IOException;
 
 public class TestListenerWeb extends TestListenerAdapter
         implements ISuiteListener, ITestListener, IInvokedMethodListener {
@@ -55,7 +47,7 @@ public class TestListenerWeb extends TestListenerAdapter
 
             try {
                 // Unique name to screen-shot
-                String imgPath = ScreenShotManager.getScreenshot(driver);
+                String imgPath = new ScreenshotManager(driver).getScreenshot();
 
                 test.fail("Failed Test case : " + testName + "\n" + testResult.getThrowable(),
                         MediaEntityBuilder.createScreenCaptureFromPath(imgPath).build());

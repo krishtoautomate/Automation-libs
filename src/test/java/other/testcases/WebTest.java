@@ -1,45 +1,46 @@
 package other.testcases;
 
 import com.Utilities.ITestBase;
-import com.Utilities.ScreenShotManager;
-import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.base.TestBaseWeb;
-import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.testng.ITestResult;
-import org.testng.Reporter;
 import org.testng.annotations.Test;
 
-import java.util.Map;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 
 public class WebTest extends TestBaseWeb implements ITestBase {
 
     @Test
     public void Web_Test(){
 
-//        ((HasAuthentication) driver).register(UsernameAndPassword.of("username", "pass"));
-
         String browserName = ((RemoteWebDriver) driver).getCapabilities().getBrowserName();
         test.getModel().setName(String.format("%s", browserName));
 
-        try {
-            driver.get("https://bell.ca");
-//            driver.get("https://fesa-mybell.ids.int.bell.ca/Login");
-//            driver.get("https://www.virginplus.ca/en/home/index.html");
+        byte[] credDecoded = Base64.getDecoder().decode("a3Jpc2gucGF2dWx1cjpOZW9sb2FkZXIyODI3JA==");
+        String auth = new String(credDecoded, StandardCharsets.UTF_8);
+//        driver.get("https://"+auth+"@bca-csr-ui.int.bell.ca/eCareBellCa/BAT");
+//
+//        sleep(5);
 
-        } catch (Exception e) {
-            driver.navigate().to("https://www.virginplus.ca/en/home/index.html");
-//            test.pass("web-page loaded : "+driver.getCurrentUrl(), MediaEntityBuilder.createScreenCaptureFromPath(ScreenShotManager.getScreenshot(driver)).build());
-        }
+//        driver = new Augmenter().augment(driver);
 
-//        Capabilities caps = ((RemoteWebDriver) driver).getCapabilities();
-//        System.out.println(caps.getBrowserName());
-//        System.out.println(caps.getBrowserVersion());
+        //chrome dev tools
+        driver.get("https://www.google.com");
 
-        sleep(10);
+//        DevTools devTools = ((HasDevTools) driver).getDevTools();
+//        devTools.createSession();
 
-        test.pass("web-page loaded : "+driver.getCurrentUrl(), MediaEntityBuilder.createScreenCaptureFromPath(ScreenShotManager.getScreenshot(driver)).build());
+        //file upload POC
+//        driver.navigate().to("http://bqatautomation.bell.corp.bce.ca:9000/");
+//
+        sleep(5);
+//
+//        driver.findElement(By.tagName("input")).sendKeys("//files//Bell_Shop_NewCommerFlow_UnverifiedFormE2Evalidation.png");
+//
+//        sleep(5);
+//
+//        test.pass("web-page loaded : "+driver.getCurrentUrl(), MediaEntityBuilder.createScreenCaptureFromPath(new ScreenShotManager(driver).getScreenshot()).build());
 
         String errorXML = driver.getPageSource();
 
@@ -47,7 +48,5 @@ public class WebTest extends TestBaseWeb implements ITestBase {
 
         test.info(MarkupHelper.createCodeBlock(errorXML));
 
-//        utils.logmessage(Status.PASS, "Web page launched  : "+driver.getCurrentUrl());
-//        utils.getPageSource();
     }
 }

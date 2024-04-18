@@ -54,6 +54,7 @@ public class TestBaseDeviceWeb {
 
         if (udid != null)
             GlobalMapper.setUdid(udid);
+        GlobalMapper.setTestName(className);
         driverManager.setDriver("Appium-Browser");
         driver = DriverManager.getAppiumDriverInstance();
 

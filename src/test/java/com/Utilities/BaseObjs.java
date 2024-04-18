@@ -11,9 +11,7 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
-import io.restassured.response.Response;
 import org.apache.commons.io.FileUtils;
-import org.apache.http.HttpStatus;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.Dimension;
@@ -138,31 +136,6 @@ public class BaseObjs<T> implements ITestBase {
         return (x >= 0 && x + elementWidth <= screenWidth && y >= 0 && y + elementHeight <= screenHeight);
     }
 
-    public void scrollDown(int duration) {
-        Dimension size = driver.manage().window().getSize();
-        int startX = size.width / 2;
-        int startY = (int) (size.height * 0.8);
-        int endY = (int) (size.height * 0.2);
-        TouchAction touchAction = new TouchAction((PerformsTouchActions) driver);
-        touchAction.press(PointOption.point(startX, startY))
-                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(duration)))
-                .moveTo(PointOption.point(startX, endY))
-                .release()
-                .perform();
-    }
-
-
-    public void scrollTillElementWithinScreen(By by, int maxScrolls) {
-        int scrolls = 0;
-        while (!isElementWithinScreen(by) && scrolls < maxScrolls) {
-            scrollDown(1000); // scroll down for 1 second
-            scrolls++;
-        }
-        if (scrolls == maxScrolls) {
-            //throw new NoSuchElementException("Element not found or not within screen dimensions after scrolling down " + maxScrolls + " times");
-        }
-    }
-
 
 
     /**
@@ -172,7 +145,7 @@ public class BaseObjs<T> implements ITestBase {
     public synchronized void logmessage(Status Status, String message) {
         log.info(message);
         try {
-            String imgPath = ScreenShotManager.getScreenshot(driver);
+            String imgPath = new ScreenshotManager(driver).getScreenshot();
 
             if (Status == Status.FAIL) {
                 test.fail(message)
@@ -236,7 +209,7 @@ public class BaseObjs<T> implements ITestBase {
         int height = element.getRect().getHeight();
 
 //        UUID uuid = UUID.randomUUID();
-        String imgPath = ScreenShotManager.getScreenshot(driver);
+        String imgPath = new ScreenshotManager(driver).getScreenshot();
 
         File ScreenShot = new File(Constants.NO_SCREENSHOTS_AVAILABLE);
         try {

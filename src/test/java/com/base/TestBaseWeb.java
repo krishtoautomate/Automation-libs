@@ -69,8 +69,6 @@ public class TestBaseWeb {
             //ignore
         }
 
-//    log = LoggerManager.startLogger(className);
-
         // Set & Get ThreadLocal Driver with Browser
         iTestContext.setAttribute("platform", "Web");
 
@@ -90,9 +88,7 @@ public class TestBaseWeb {
             driver = DriverManager.getWebDriverInstance();
         }
 
-//        System.out.println("SessionId : " + ((RemoteWebDriver) driver).getSessionId());
-
-        // Create Test in extent-Report
+        // *** Create Test in extent-Report ***
         test = ExtentTestManager.startTest(methodName);
 
         String testKey = testData.get("testKey");

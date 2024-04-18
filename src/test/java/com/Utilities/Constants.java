@@ -93,20 +93,4 @@ public class Constants {
   }
 
 
-  public static final ChromeOptions getChromeOptions() {
-
-    ChromeOptions options = new ChromeOptions();
-    options.addArguments("--start-maximized");
-    options.addArguments("--ignore-certificate-errors");
-    options.addArguments("--disable-popup-blocking");
-    options.addArguments("--incognito");
-    options.addArguments("user-agent=GomezAgent");
-    options.addArguments("disable-infobars");
-    options.addArguments("--remote-allow-origins=*");
-
-    options.setAcceptInsecureCerts(true);
-    options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
-
-    return options;
-  }
 }

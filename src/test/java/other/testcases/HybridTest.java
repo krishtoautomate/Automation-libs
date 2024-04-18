@@ -1,7 +1,7 @@
 package other.testcases;
 
 import com.Utilities.ITestBase;
-import com.Utilities.ScreenShotManager;
+import com.Utilities.ScreenshotManager;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
@@ -25,7 +25,7 @@ public class HybridTest extends TestBaseHybrid implements ITestBase {
 
         test.pass("web-page loaded : "+webDriver.getCurrentUrl(),
                 MediaEntityBuilder.createScreenCaptureFromPath(
-                        ScreenShotManager.getScreenshot(webDriver)).build());
+                        new ScreenshotManager(webDriver).getScreenshot()).build());
 
         AppiumDriver appiumDriver = DriverManager.getAppiumDriverInstance();
 

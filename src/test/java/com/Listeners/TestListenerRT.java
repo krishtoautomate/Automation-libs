@@ -4,7 +4,7 @@ import com.DataManager.TestDataManager;
 import com.ReportManager.ExtentTestManager;
 import com.ReportManager.SlackReporter;
 import com.Utilities.Constants;
-import com.Utilities.ScreenShotManager;
+import com.Utilities.ScreenshotManager;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
@@ -28,11 +28,9 @@ import java.util.TimeZone;
 public class TestListenerRT extends TestListenerAdapter
         implements ISuiteListener, ITestListener, IInvokedMethodListener {
 
-    public WebDriver driver;
-
     private static Logger log = Logger.getLogger(TestListenerRT.class.getName());
-
     private static String testExecutionKey = null;
+    public WebDriver driver;
     Jira jiraReporter = new Jira();
     SlackReporter slackReporter = new SlackReporter();
 
@@ -118,9 +116,9 @@ public class TestListenerRT extends TestListenerAdapter
         Map<String, String> testParams =
                 testResult.getTestContext().getCurrentXmlTest().getAllParameters();
 //        String udid = testParams.get("udid");
-        String p_Testdata = testParams.get("p_Testdata");
-        String platForm = testParams.get("platForm");
-        TestDataManager testData = new TestDataManager(p_Testdata);
+//        String p_Testdata = testParams.get("p_Testdata");
+//        String platForm = testParams.get("platForm");
+//        TestDataManager testData = new TestDataManager(p_Testdata);
 
         String testName = testResult.getMethod().getMethodName();
         String className = testResult.getTestClass().getName();
@@ -131,14 +129,14 @@ public class TestListenerRT extends TestListenerAdapter
 //        AppiumDriver driver = AppiumDriverManager.getDriverInstance();
 //        WebDriver webDriver = DriverManager.getWebDriverInstance();
 
-        if(platForm!=null){
-            if("Desktop".equalsIgnoreCase(platForm))
-                driver = DriverManager.getWebDriverInstance();
-            else
-                driver = DriverManager.getAppiumDriverInstance();
-        }else{
-            driver = DriverManager.getWebDriverInstance();
-        }
+//        if(platForm!=null){
+//            if("Desktop".equalsIgnoreCase(platForm))
+//                driver = DriverManager.getWebDriverInstance();
+//            else
+//                driver = DriverManager.getAppiumDriverInstance();
+//        }else{
+//            driver = DriverManager.getWebDriverInstance();
+//        }
 
         ExtentTest test = ExtentTestManager.getTest();
 
@@ -148,7 +146,7 @@ public class TestListenerRT extends TestListenerAdapter
 
             try {
                 // Unique name to screen-shot
-                String imgPath = ScreenShotManager.getScreenshot(driver);
+                String imgPath = new ScreenshotManager(driver).getScreenshot();
 
                 test.fail("Failed details : " +  "\n" + testResult.getThrowable().getMessage());
                 test.fail("Failed Test case : " +  "\n" + testResult.getThrowable(),
@@ -181,7 +179,7 @@ public class TestListenerRT extends TestListenerAdapter
 //
 //            try {
 //
-//                String imgPath = ScreenShotManager.getScreenshot(driver);
+//                String imgPath = new ScreenShotManager(driver).getScreenshot();
 //
 //                test.fail("Failed Test case : " + testName + "\n" + testResult.getThrowable(),
 //                        MediaEntityBuilder.createScreenCaptureFromPath(imgPath).build());
@@ -207,23 +205,23 @@ public class TestListenerRT extends TestListenerAdapter
             sdf.setTimeZone(TimeZone.getTimeZone("EST"));
             String dateANDtime = sdf.format(date.getTime());
 
-            String testKey = testData.get("testKey");
-            try {
-                testKey = testResult.getAttribute("testKey").toString();
-            } catch (Exception e) {
-                log.warn("testKey not found : " + className);
-            }
-
-            if (testKey != null) {
-                String start = testResult.getAttribute("start").toString();
-                String finish = dateANDtime;
-                if (testExecutionKey != null) {
-                    // JIRA
-                    jiraReporter.update_Test_Exec(testExecutionKey, testKey.trim(), "FAIL", start, finish);
-                    log.info("Test execution " + testExecutionKey + " updated as FAIL for test : " + testKey
-                            + " : " + className);
-                }
-            }
+//            String testKey = testData.get("testKey");
+//            try {
+//                testKey = testResult.getAttribute("testKey").toString();
+//            } catch (Exception e) {
+//                log.warn("testKey not found : " + className);
+//            }
+//
+//            if (testKey != null) {
+//                String start = testResult.getAttribute("start").toString();
+//                String finish = dateANDtime;
+//                if (testExecutionKey != null) {
+//                    // JIRA
+//                    jiraReporter.update_Test_Exec(testExecutionKey, testKey.trim(), "FAIL", start, finish);
+//                    log.info("Test execution " + testExecutionKey + " updated as FAIL for test : " + testKey
+//                            + " : " + className);
+//                }
+//            }
         } catch (Exception e) {
             log.error("jira api error : " + e.getMessage());
         }

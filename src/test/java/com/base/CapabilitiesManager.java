@@ -3,6 +3,7 @@ package com.base;
  * Created by Krish on 21.07.2018.
  **/
 
+import com.DataManager.TestDataManager;
 import com.Utilities.Constants;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
@@ -54,69 +55,61 @@ public class CapabilitiesManager {
                 iTestResult.getTestContext().getCurrentXmlTest().getAllParameters();
         String udid = GlobalMapper.getUdid();
         String testName = GlobalMapper.getTestName();
-        String _platform = testParams.get("platForm");
 
 //        try {
-        //capabilities from capabilities.json
-        JSONObject jsonObject;
+        //** capabilities from capabilities.json
+        JSONObject jObj;
         try {
-            jsonObject = (JSONObject) new JSONParser().parse(new FileReader(Constants.CAPABILITIES));
-        } catch (IOException | ParseException e) {
+            JSONObject jsonObject = (JSONObject) new JSONParser().parse(new FileReader(Constants.CAPABILITIES));
+            jObj = (JSONObject) jsonObject.get(platForm.toUpperCase());
+        } catch (Exception e) {
+            log.error("capabilities.json file is missing!");
             throw new RuntimeException(e);
         }
 
-        JSONObject jObj = (JSONObject) jsonObject.get(platForm.toUpperCase());
+        if (testName != null)
+            jObj.put("auto:testName", testName);
+        if (udid != null)
+            jObj.put("appium:udid", udid.trim());
 
         try {
-            if (_platform.equalsIgnoreCase("Android") | _platform.equalsIgnoreCase("iOS")
-                    | StringUtils.containsIgnoreCase("Android", platForm) | StringUtils.containsIgnoreCase("iOS", platForm)) {
-
-                //UDID from TestNG parameter
-                if (udid != null)
-                    jObj.put("appium:udid", udid.trim());
-
-
-                //capabilities from TestNG.xml
+//            if (StringUtils.containsIgnoreCase(platForm, "Android") | StringUtils.containsIgnoreCase(platForm,"iOS")) {
+                //*** capabilities from TestNG.xml
                 String pCapabilities = testParams.get("capabilities");
                 if (pCapabilities != null) {
                     pCapabilities = pCapabilities.replaceAll("'", "\"");
-                    try {
-                        JSONObject jObject = (JSONObject) new JSONParser().parse(pCapabilities);
-                        for (Object keyStr : jObject.keySet()) {
-                            try {
-                                jObj.put(keyStr, jObject.get(keyStr));
-                            } catch (Exception e) {
-                                //ignore
-                            }
+                    JSONObject jObject = (JSONObject) new JSONParser().parse(pCapabilities);
+                    for (Object keyStr : jObject.keySet()) {
+                        try {
+                            jObj.put(keyStr, jObject.get(keyStr));
+                        } catch (Exception e) {
+                            //ignore
                         }
-                    } catch (ParseException e) {
-                        //ignore
                     }
                 }
-            }
+//            }
         } catch (Exception e) {
             //throw new RuntimeException(e);
-//            log.error("error in capabilities.json");
+            log.warn("no test capabilities found");
         }
 
-        //capabilities from TestData
+        //*** capabilities from TestData
         try {
             String pTestData = testParams.get("p_Testdata");
-            JSONObject jObject = (JSONObject) new JSONParser().parse(new FileReader(pTestData));
+            JSONObject jsObject = (JSONObject)(new JSONParser()).parse(new FileReader(pTestData));
             String className = iTestResult.getInstanceName();
-            JSONArray jsonArray = (JSONArray) jObject.get(className);
-            JSONObject jObjt = (JSONObject) jsonArray.get(0);
-            JSONObject jAObject = (JSONObject) jObjt.get("capabilities");
+            org.json.simple.JSONArray jsonArray = (org.json.simple.JSONArray)jsObject.get(className);
+            int index = "iOS".equalsIgnoreCase(platForm) ? 1 : 0;
+            JSONObject innerObj = (JSONObject)jsonArray.get(index);
+            JSONObject jAObject = (JSONObject) innerObj.get("capabilities");
 
             jAObject.keySet().forEach(key -> {
                 jObj.put(key,  jAObject.get(key));
             });
         } catch (Exception e) {
             //ignore
+            log.warn("no test data capabilities found");
         }
-
-        if (testName != null)
-            jObj.put("auto:testName", testName);
 
         capabilitiesMap.put(Thread.currentThread().getId(), jObj);
 

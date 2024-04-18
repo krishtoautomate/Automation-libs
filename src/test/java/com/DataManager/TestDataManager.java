@@ -112,6 +112,32 @@ public class TestDataManager {
         return null;
     }
 
+    public synchronized JSONObject getJson(String key) {
+
+        try {
+            // read the json file
+            JSONObject jsonObject = (JSONObject) new JSONParser().parse(new FileReader(filePath));
+
+            // get an array from the JSON object
+            JSONArray jsonArray = (JSONArray) jsonObject.get(className);
+
+            ITestResult iTestResult = Reporter.getCurrentTestResult();
+            Map<String, String> testParams =
+                    iTestResult.getTestContext().getCurrentXmlTest().getAllParameters();
+            this.platformName = testParams.get("platForm");
+            int index = "iOS".equalsIgnoreCase(platformName) ? 1 : 0;
+            JSONObject innerObj = (JSONObject) jsonArray.get(0);
+            if(jsonArray.size()>1)
+                innerObj = (JSONObject) jsonArray.get(index);
+
+            return (JSONObject) innerObj.get(key);
+
+        } catch (IOException | ParseException | NullPointerException ex) {
+            log.error("Data file error to get : " + className + ":" + key);
+        }
+        return null;
+    }
+
     public synchronized String get(String className, String key) {
 
         try {
