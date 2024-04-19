@@ -1,66 +1,63 @@
 {
-	"ANDROID":
-		{
-			"platformName": "Android",
-			"appium:automationName": "uiautomator2",
-			"autoLaunch": true,
-			"noReset": true,
-			"fullReset": false,
-			"newCommandTimeout": 60,
-			"autoDismissAlerts": false,
-			"appium:appPackage": "com.android.vending",
-			"appium:appActivity": "com.android.vending.AssetBrowserActivity"
-		},
-	"IOS":
-		{
-			"platformName": "IOS",
-			"appium:automationName": "XCUITest",
-			"appium:autoLaunch": true,
-			"appium:fullReset": false,
-			"appium:noReset": true,
-			"appium:autoDismissAlerts": false,
-			"appium:bundleId": "com.apple.Preferences",
-			"appium:wdaStartupRetries": 3,
-			"appium:wdaStartupRetryInterval": 2000,
-			"appium:simpleIsVisibleCheck":true,
-			"appium:language": "en",
-			"appium:locale": "CA"
-		}
-		,
-	"IOS-BROWSER": {
-		"appium:browserName": "Safari",
-		"platformName": "iOS",
-		"automationName": "XCUITest",
-		"se:name":  "Krish"
-	},
-	"ANDROID-BROWSER": {
-		"appium:browserName": "Chrome",
-		"platformName": "Android",
-		"automationName": "uiautomator2",
-		"se:name":  "Krish"
-	},
-	"CHROME":
-		{
-			"browserName": "chrome",
-			"browserVersion": "123.0",
-			"se:name": "Krish",
-			"pageLoadStrategy": "normal",
-			"acceptInsecureCerts": true,
-			"goog:chromeOptions":
-				{
-					"args": [
-						"--start-maximized",
-						"--ignore-certificate-errors",
-						"--incognito",
-						"user-agent=GomezAgent",
-						"disable-infobars"],
-					"extensions": []
-				}
-		},
-	"FIREFOX":
-		{
-			"browserName": "firefox",
-			"browserVersion": "latest",
-			"platformName": "LINUX"
-		}
+  "ANDROID": {
+    "platformName": "Android",
+    "appium:automationName": "uiautomator2",
+    "autoLaunch": true,
+    "noReset": true,
+    "fullReset": false,
+    "newCommandTimeout": 60,
+    "autoDismissAlerts": false,
+    "appium:appPackage": "com.android.vending",
+    "appium:appActivity": "com.android.vending.AssetBrowserActivity",
+    "se:name": "Krish"
+  },
+  "IOS": {
+    "platformName": "IOS",
+    "appium:automationName": "XCUITest",
+    "appium:autoLaunch": true,
+    "appium:fullReset": false,
+    "appium:noReset": true,
+    "appium:autoDismissAlerts": false,
+    "appium:bundleId": "com.apple.Preferences",
+    "appium:wdaStartupRetries": 3,
+    "appium:wdaStartupRetryInterval": 2000,
+    "appium:simpleIsVisibleCheck": true,
+    "appium:language": "en",
+    "appium:locale": "CA",
+    "se:name": "Krish"
+  },
+  "IOS-BROWSER": {
+    "appium:browserName": "Safari",
+    "platformName": "iOS",
+    "automationName": "XCUITest",
+    "se:name": "Krish"
+  },
+  "ANDROID-BROWSER": {
+    "appium:browserName": "Chrome",
+    "platformName": "Android",
+    "automationName": "uiautomator2",
+    "se:name": "Krish"
+  },
+  "CHROME": {
+    "browserName": "chrome",
+    "browserVersion": "123.0",
+    "se:name": "Krish",
+    "pageLoadStrategy": "normal",
+    "acceptInsecureCerts": true,
+    "goog:chromeOptions": {
+      "args": [
+        "--start-maximized",
+        "--ignore-certificate-errors",
+        "--incognito",
+        "user-agent=GomezAgent",
+        "disable-infobars"
+      ],
+      "extensions": []
+    }
+  },
+  "FIREFOX": {
+    "browserName": "firefox",
+    "browserVersion": "latest",
+    "platformName": "LINUX"
+  }
 }

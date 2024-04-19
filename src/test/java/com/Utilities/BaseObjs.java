@@ -11,6 +11,7 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
+import io.qameta.allure.Allure;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
@@ -21,6 +22,7 @@ import org.testng.Assert;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
@@ -150,14 +152,27 @@ public class BaseObjs<T> implements ITestBase {
             if (Status == Status.FAIL) {
                 test.fail(message)
                         .fail(message, MediaEntityBuilder.createScreenCaptureFromPath(imgPath).build());
-            }
-            if (Status == Status.WARNING) {
-                test.warning(message).warning(message, MediaEntityBuilder.createScreenCaptureFromPath(imgPath).build());
+//                Allure.step((message), (step ) -> {
+                    Allure.step(message, io.qameta.allure.model.Status.FAILED);
+                    Allure.addAttachment("screenshot", "image/png", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)), "png");
+//                });
+            } else if (Status == Status.WARNING) {
+                test.warning(message)
+                        .warning(message, MediaEntityBuilder.createScreenCaptureFromPath(imgPath).build());
+                Allure.step((message), (step ) -> {
+                    Allure.addAttachment("screenshot", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
+                });
             } else if (Status == Status.INFO) {
                 test.info(message);
+                Allure.step((message), (step ) -> {
+                    Allure.addAttachment("screenshot", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
+                });
             } else {
                 test.pass(message)
                         .pass(message, MediaEntityBuilder.createScreenCaptureFromPath(imgPath).build());
+                Allure.step((message), (step ) -> {
+                    Allure.addAttachment("screenshot", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
+                });
             }
         } catch (WebDriverException e) {
             if (Status == Status.FAIL) {
