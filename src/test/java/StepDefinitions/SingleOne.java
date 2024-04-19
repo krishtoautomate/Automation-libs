@@ -30,9 +30,16 @@ public class SingleOne {
     public void google_is_open_in_the_browser() {
         driver = DriverManager.getWebDriverInstance();
         driver.get("https://www.google.com/");
-        Allure.step("url launched : " + "https://www.google.com/");
-        Allure.addAttachment("screenshot", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
+
+        String message = "url launched : " + "https://www.google.com/";
+//        Allure.addAttachment("screenshot", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
+
+        Allure.step(message, (step) -> {
+            Allure.addAttachment("screenshot", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
+        });
     }
+
+
 
     @When("User searches for Test")
     public void user_searches_for_test() {

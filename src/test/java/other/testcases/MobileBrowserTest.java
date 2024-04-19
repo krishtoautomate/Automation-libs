@@ -19,28 +19,6 @@ import java.util.LinkedList;
 
 public class MobileBrowserTest extends TestBaseDeviceWeb implements ITestBase {
 
-  private static final String GLOBAL_PARAMETER = "global value";
-
-//  @Step("Step 1")
-//  public void step1() {
-//    subStep1();
-//    subStep2();
-//  }
-//
-//  @Step("Step 2")
-//  public void step2() {
-//    subStep1();
-//  }
-//
-//  @Step("Sub-step 1")
-//  public void subStep1() {
-//    // ...
-//  }
-//
-//  @Step("Sub-step 2")
-//  public void subStep2() {
-//    // ...
-//  }
   String className = this.getClass().getSimpleName();
 
   @Test
@@ -64,17 +42,13 @@ public class MobileBrowserTest extends TestBaseDeviceWeb implements ITestBase {
 
     test.info(MarkupHelper.createCodeBlock(errorXML));
 
-//    step1();
-//    step2();
-
-
-
   }
 
 //  @Step("{message}")
   public void log(final String message) {
     Allure.step(message, (step) -> {
-      screenshot();
+      Allure.addAttachment("screenshot", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
+//      screenshot();
     });
   }
 
