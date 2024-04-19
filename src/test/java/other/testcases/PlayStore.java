@@ -1,13 +1,8 @@
 package other.testcases;
 
 import com.Utilities.ITestBase;
-import com.Utilities.Utilities;
 import com.aventstack.extentreports.Status;
 import com.base.TestBase;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.connection.ConnectionState;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import other.pages.PlayStoreApp;
 
@@ -22,7 +17,6 @@ public class PlayStore extends TestBase implements ITestBase {
     String udid = driver.getCapabilities().getCapability("udid").toString();
     test.getModel().setName(String.format("%s - %s", className, udid));
 
-    Utilities utils = new Utilities(driver, test);
     PlayStoreApp playstoreapp = new PlayStoreApp(driver, test);
 
     sleep(2);
@@ -31,13 +25,13 @@ public class PlayStore extends TestBase implements ITestBase {
 
     // 1.0 - Click navigate button
     playstoreapp.get_accountLogo().click();
-    utils.logmessage(Status.PASS, "Right Account logo Button clicked");
+    playstoreapp.logmessage(Status.PASS, "Right Account logo Button clicked");
 
     sleep(2);
 
     if (playstoreapp.verify_manageAppsAndDevice_btn()) {
       playstoreapp.get_manageAppsAndDevice_btn().click();
-      utils.logmessage(Status.PASS, "'Manage apps and device' link clicked");
+      playstoreapp.logmessage(Status.PASS, "'Manage apps and device' link clicked");
     }
 
 //    sleep(2);
@@ -52,7 +46,7 @@ public class PlayStore extends TestBase implements ITestBase {
     if (playstoreapp.verify_updateAll_btn()) {
       playstoreapp.get_updateAll_btn().click();
       sleep(2);
-      utils.logmessage(Status.PASS, "'UPDATE ALL' button clicked");
+      playstoreapp.logmessage(Status.PASS, "'UPDATE ALL' button clicked");
 //      sleep(5);
     }
 

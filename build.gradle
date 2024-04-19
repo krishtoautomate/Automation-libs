@@ -26,6 +26,17 @@ repositories {
     }
 }
 
+// Define the version of AspectJ
+def aspectJVersion = "1.9.20.1"
+
+// Define configuration for AspectJ agent
+configurations {
+    agent {
+        canBeResolved = true
+        canBeConsumed = true
+    }
+}
+
 
 dependencies {
 
@@ -55,11 +66,11 @@ dependencies {
     testImplementation 'io.cucumber:cucumber-junit:7.8.0'
     testImplementation 'io.cucumber:cucumber-testng:7.8.0'
     // Import allure-bom to ensure correct versions of all the dependencies are used
-    testImplementation platform("io.qameta.allure:allure-bom:2.24.0")
+    testImplementation platform("io.qameta.allure:allure-bom:2.26.0")
     // Add necessary Allure dependencies to dependencies section
-    testImplementation "io.qameta.allure:allure-cucumber7-jvm"
-    testImplementation "io.qameta.allure:allure-testng"
-//    agent "org.aspectj:aspectjweaver:1.9.20.1"
+    testImplementation "io.qameta.allure:allure-cucumber7-jvm:2.26.0"
+    testImplementation "io.qameta.allure:allure-testng:2.26.0"
+    agent "org.aspectj:aspectjweaver:$aspectJVersion"
 }
 
 group = 'Automation-libs'
@@ -123,7 +134,8 @@ task runMergeReports(type: Exec) {
 }
 
 test {
-//    jvmArgs = [ "-javaagent:${configurations.agent.singleFile}" ]
+    jvmArgs = ["-javaagent:${configurations.agent.singleFile}"]
+//    println "${configurations.agent.singleFile}"
     testLogging {
         events "passed", "skipped", "failed"
     }

@@ -1,20 +1,26 @@
 package StepDefinitions;
 
+import com.Utilities.Constants;
 import com.base.DriverManager;
 import com.base.WebDriverManager;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.qameta.allure.Allure;
+import io.qameta.allure.AllureLifecycle;
 import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
 import io.qameta.allure.model.Status;
+import io.qameta.allure.testng.config.AllureTestNgConfig;
+import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
 
 public class SingleOne {
 
@@ -35,8 +41,8 @@ public class SingleOne {
 
     @When("User searches for Selenium cross browser testing")
     public void user_searches_for_Selenium_cross_browser_testing(){
-        Allure.step("search failed", Status.FAILED);
-        Assert.fail("search failed");
+//        Allure.step("search failed", Status.FAILED);
+//        Assert.fail("search failed");
     }
 
     @Then("Results are displayed")

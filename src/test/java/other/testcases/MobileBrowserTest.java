@@ -5,11 +5,42 @@ import com.Utilities.ScreenshotManager;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.base.TestBaseDeviceWeb;
+import io.qameta.allure.Allure;
+import io.qameta.allure.AllureLifecycle;
+import io.qameta.allure.Attachment;
+import io.qameta.allure.Step;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.testng.annotations.Test;
+
+import java.io.ByteArrayInputStream;
+import java.util.LinkedList;
 
 
 public class MobileBrowserTest extends TestBaseDeviceWeb implements ITestBase {
 
+  private static final String GLOBAL_PARAMETER = "global value";
+
+//  @Step("Step 1")
+//  public void step1() {
+//    subStep1();
+//    subStep2();
+//  }
+//
+//  @Step("Step 2")
+//  public void step2() {
+//    subStep1();
+//  }
+//
+//  @Step("Sub-step 1")
+//  public void subStep1() {
+//    // ...
+//  }
+//
+//  @Step("Sub-step 2")
+//  public void subStep2() {
+//    // ...
+//  }
   String className = this.getClass().getSimpleName();
 
   @Test
@@ -20,10 +51,12 @@ public class MobileBrowserTest extends TestBaseDeviceWeb implements ITestBase {
     test.getModel().setName(String.format("%s - %s", className, udid));
 
     driver.get("https://mybell.bell.ca/Login");
+    log("url launched :  https://mybell.bell.ca/Login");
 
     sleep(10);
 
-    driver.navigate().to("https://mybell.bell.ca/Login");
+    driver.navigate().to("https://www.virginplus.ca/en/home/index.html");
+    log("url launched : https://www.virginplus.ca/en/home/index.html");
 
     test.pass("web-page loaded : "+driver.getCurrentUrl(), MediaEntityBuilder.createScreenCaptureFromPath(new ScreenshotManager(driver).getScreenshot()).build());
 
@@ -31,6 +64,22 @@ public class MobileBrowserTest extends TestBaseDeviceWeb implements ITestBase {
 
     test.info(MarkupHelper.createCodeBlock(errorXML));
 
+//    step1();
+//    step2();
 
+
+
+  }
+
+//  @Step("{message}")
+  public void log(final String message) {
+    Allure.step(message, (step) -> {
+      screenshot();
+    });
+  }
+
+  @Attachment(value = "Screenshot", type = "image/png")
+  public byte[] screenshot() {
+    return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
   }
 }

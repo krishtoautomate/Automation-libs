@@ -2,12 +2,10 @@ package other.testcases;
 
 import com.ReportManager.ExtentTestManager;
 import com.Utilities.ITestBase;
-import com.Utilities.Utilities;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.base.AppiumDriverManager;
 import com.base.GlobalMapper;
-import com.base.TestBase;
 import com.base.TestBaseDeeplinks;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
@@ -42,20 +40,20 @@ public class DataproviderParallel extends TestBaseDeeplinks implements ITestBase
 
 //        test.getModel().setName(String.format("%s", className));
 
-        Utilities utils = new Utilities(driver, test);
+//        Utilities utils = new Utilities(driver, test);
         PlayStoreApp playstoreapp = new PlayStoreApp(driver, test);
 
         sleep(2);
 
         // 1.0 - Click navigate button
         playstoreapp.get_accountLogo().click();
-        utils.logmessage(Status.PASS, "Right Account logo Button clicked");
+        playstoreapp.logmessage(Status.PASS, "Right Account logo Button clicked");
 
         sleep(2);
 
         if (playstoreapp.verify_manageAppsAndDevice_btn()) {
             playstoreapp.get_manageAppsAndDevice_btn().click();
-            utils.logmessage(Status.PASS, "'Manage apps and device' link clicked");
+            playstoreapp.logmessage(Status.PASS, "'Manage apps and device' link clicked");
         }
 
         sleep(2);
@@ -63,14 +61,14 @@ public class DataproviderParallel extends TestBaseDeeplinks implements ITestBase
         // 3.0 -
         if (playstoreapp.verify_updates_refresh_btn()) {
 //      playstoreapp.get_updates_refresh_btn().click();
-            utils.logmessage(Status.PASS, "'updates refresh Button' is clicked");
+            playstoreapp.logmessage(Status.PASS, "'updates refresh Button' is clicked");
         }
 
         // 4.0 - Click Update All button
         if (playstoreapp.verify_updateAll_btn()) {
             playstoreapp.get_updateAll_btn().click();
             sleep(3);
-            utils.logmessage(Status.PASS, "'UPDATE ALL' button clicked");
+            playstoreapp.logmessage(Status.PASS, "'UPDATE ALL' button clicked");
         }
 //    sleep(120);
     }

@@ -1,5 +1,6 @@
 package com.Utilities;
 
+import io.qameta.allure.Attachment;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.OutputType;
@@ -36,6 +37,11 @@ public class ScreenshotManager {
             log.error("screen-shot service failed!!!");
         }
         return imgPath;
+    }
+
+    @Attachment(value = "Screenshot", type = "image/png")
+    public byte[] screenshot() {
+        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
 
 }

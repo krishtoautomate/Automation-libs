@@ -1,29 +1,14 @@
 package other.testcases;
 
-import com.ReportManager.ExtentTestManager;
 import com.Utilities.Constants;
-import com.Utilities.ITestBase;
-import com.Utilities.Utilities;
-import com.aventstack.extentreports.Status;
-import com.aventstack.extentreports.markuputils.MarkupHelper;
-import com.base.AppiumDriverManager;
-import com.base.GlobalMapper;
-import com.base.TestBaseDeeplinks;
 import com.opencsv.CSVReader;
-import com.opencsv.exceptions.CsvValidationException;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import org.testng.ITestContext;
-import org.testng.ITestResult;
-import org.testng.Reporter;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import other.pages.PlayStoreApp;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.*;
 
 import static io.restassured.RestAssured.given;
