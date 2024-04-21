@@ -152,10 +152,8 @@ public class BaseObjs<T> implements ITestBase {
             if (Status == Status.FAIL) {
                 test.fail(message)
                         .fail(message, MediaEntityBuilder.createScreenCaptureFromPath(imgPath).build());
-//                Allure.step((message), (step ) -> {
                     Allure.step(message, io.qameta.allure.model.Status.FAILED);
                     Allure.addAttachment("screenshot", "image/png", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)), "png");
-//                });
             } else if (Status == Status.WARNING) {
                 test.warning(message)
                         .warning(message, MediaEntityBuilder.createScreenCaptureFromPath(imgPath).build());

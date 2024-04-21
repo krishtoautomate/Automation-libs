@@ -10,6 +10,7 @@ plugins {
     id 'java'
     id 'maven-publish'
     id 'groovy'
+//    id 'io.qameta.allurereport' '2.11.2'
 }
 
 def timestamp() {
@@ -37,6 +38,12 @@ configurations {
     }
 }
 
+//allure {
+//    version = '2.26.0'
+//    autoconfigure = true
+//    aspectJweaver = true
+//}
+
 
 dependencies {
 
@@ -46,7 +53,7 @@ dependencies {
     testImplementation 'org.testng:testng:7.8.0'
     testImplementation 'org.seleniumhq.selenium:selenium-java:4.10.0'
     testImplementation 'org.seleniumhq.selenium:selenium-support:4.10.0'
-    testImplementation 'io.appium:java-client:8.5.1'
+    testImplementation 'io.appium:java-client:9.1.0'
     implementation 'commons-io:commons-io:2.11.0'
     implementation 'com.googlecode.json-simple:json-simple:1.1.1'
     implementation 'javax.mail:mail:1.4'
@@ -135,6 +142,7 @@ task runMergeReports(type: Exec) {
 
 test {
     jvmArgs = ["-javaagent:${configurations.agent.singleFile}"]
+//    -javaagent:/Users/home/.gradle/caches/modules-2/files-2.1/org.aspectj/aspectjweaver/1.9.20.1/33b0e41476658229933eec7134678cf336e66dd4/aspectjweaver-1.9.20.1.jar
 //    println "${configurations.agent.singleFile}"
     testLogging {
         events "passed", "skipped", "failed"

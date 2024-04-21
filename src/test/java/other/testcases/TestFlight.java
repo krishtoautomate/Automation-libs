@@ -5,20 +5,30 @@ import com.Utilities.MobileActions;
 import com.aventstack.extentreports.Status;
 import com.base.TestBase;
 import com.google.common.collect.ImmutableMap;
+import io.qameta.allure.*;
 import org.testng.annotations.Test;
 import other.pages.TestFlightApp;
+
+import static io.qameta.allure.SeverityLevel.CRITICAL;
 
 public class TestFlight extends TestBase implements ITestBase {
 
     String className = this.getClass().getSimpleName();
 
 
+//    @Issue("MAEAUTO-xyz")
+    @TmsLink( value="MAEAUTO-xyz")
+    @Description("This test updates apps from Testflight")
+    @Severity(CRITICAL)
+    @Owner("Krish")
+    @Epic("Testflight")
+    @Feature("update")
+    @Story("update iOS apps")
     @Test//(retryAnalyzer = com.Listeners.RetryAnalyzer.class)
     public void TestFlightUpdateScript() {
 
         String udid = driver.getCapabilities().getCapability("udid").toString();
         test.getModel().setName(String.format("%s - %s", className, udid));
-//        Utilities utils = new Utilities(driver, test);
         TestFlightApp testFlightApp = new TestFlightApp(driver, test);
         MobileActions mobileActions = new MobileActions(driver, test);
 
@@ -77,7 +87,7 @@ public class TestFlight extends TestBase implements ITestBase {
                     testFlightApp.get_apps_back_btn("back button - is Clicked").click();
                 }
             }
-            sleep(10);
+            sleep(5);
         } else {
             testFlightApp.logmessage(Status.WARNING, "No update buttons found");
         }
