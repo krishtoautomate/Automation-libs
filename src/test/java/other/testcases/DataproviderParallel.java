@@ -8,7 +8,6 @@ import com.base.AppiumDriverManager;
 import com.base.GlobalMapper;
 import com.base.TestBaseDeeplinks;
 import com.opencsv.CSVReader;
-import com.opencsv.exceptions.CsvValidationException;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.Reporter;
@@ -139,7 +138,7 @@ public class DataproviderParallel extends TestBaseDeeplinks implements ITestBase
         } catch (IOException e) {
             throw new RuntimeException(
                     "Could not read" + pathname + "file.\n" + e.getStackTrace().toString());
-        } catch (CsvValidationException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
         return list.iterator();

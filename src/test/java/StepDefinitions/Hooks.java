@@ -4,8 +4,10 @@ import com.DataManager.TestDataManager;
 import com.base.DriverManager;
 import com.base.GlobalMapper;
 import io.cucumber.java.After;
+import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
+import io.qameta.allure.Allure;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.openqa.selenium.OutputType;
@@ -15,6 +17,7 @@ import org.testng.ITestContext;
 import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
 
+import java.io.ByteArrayInputStream;
 import java.io.FileReader;
 import java.lang.reflect.Method;
 import java.util.Map;
@@ -97,5 +100,10 @@ public class Hooks {
 //    public void after(){
 //        System.out.println("This will be executed after case one and two");
 //    }
+
+    @AfterStep
+    public void afterStep() {
+        Allure.addAttachment("screenshot", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
+    }
 
 }

@@ -17,7 +17,7 @@ public class TestFlight extends TestBase implements ITestBase {
 
 
 //    @Issue("MAEAUTO-xyz")
-    @TmsLink( value="MAEAUTO-xyz")
+    @TmsLink("MAEAUTO-xyz")
     @Description("This test updates apps from Testflight")
     @Severity(CRITICAL)
     @Owner("Krish")
@@ -39,9 +39,8 @@ public class TestFlight extends TestBase implements ITestBase {
 
         testFlightApp.dismissAlert();
 
-        if (testFlightApp.verify_notNow_btn()) {
+        if (testFlightApp.verify_notNow_btn())
             testFlightApp.get_notNow_btn("Not Now Button - is Clicked").click();
-        }
 
         if (!driver.getCapabilities().getCapability("bundleId")
                 .toString().contains("com.apple.TestFlight")) {
@@ -54,19 +53,16 @@ public class TestFlight extends TestBase implements ITestBase {
             testFlightApp.logmessage(Status.PASS, "'Try Again' Button - is Clicked");
         }
 
-        if (testFlightApp.verify_notNow_btn()) {
+        if (testFlightApp.verify_notNow_btn())
             testFlightApp.get_notNow_btn("Not Now Button - is Clicked").click();
-        }
 
-        if (testFlightApp.verify_continue_btn()) {
+        if (testFlightApp.verify_continue_btn())
             testFlightApp.get_continue_btn("Continue Button - is Clicked").click();
-        }
 
         // for ipads
         if (!testFlightApp.verify_apps_h1()) {
-            if (testFlightApp.verify_apps_back_btn()) {
+            if (testFlightApp.verify_apps_back_btn())
                 testFlightApp.get_apps_back_btn("back button - is Clicked").click();
-            }
         }
 
         testFlightApp.getPageSource();
@@ -74,7 +70,6 @@ public class TestFlight extends TestBase implements ITestBase {
         sleep(2);
 
 //        Assertions.contains(testFlightApp.get_apps_h1().getText(), "Apps", true);
-
 
         if (testFlightApp.verify_all_btns()) {
             String buttonText = testFlightApp.get_all_btns().get(0).getText();

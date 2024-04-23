@@ -22,6 +22,7 @@ import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 import io.appium.java_client.touch.offset.PointOption;
@@ -40,13 +41,12 @@ import javax.imageio.ImageIO;
 
 public class MobileActions implements ITestBase {
 
+  boolean isAndroid = false;
+  boolean isIOS = false;
   private AppiumDriver driver;
   private WebDriver webDriver;
   private Logger log;
   private ExtentTest test;
-
-  boolean isAndroid = false;
-  boolean isIOS = false;
 
   public MobileActions(AppiumDriver driver,ExtentTest test) {
     this.driver = driver;
@@ -150,55 +150,50 @@ public class MobileActions implements ITestBase {
   }
 
   public void swipe(Direction dir, int... xSwipes) {
-    // Animation default time:
-    //  - Android: 300 ms
-    //  - iOS: 200 ms
-    // final value depends on your app and could be greater
 
     int xTimes = xSwipes.length > 0 ? xSwipes[0] : 1;
+    try {
+      // init screen variables
+      Dimension dims = driver.manage().window().getSize();
 
-//        final int PRESS_TIME = 500; // ms
+      int startX = dims.width / 2;
+      int startY = dims.height / 2;
+      int endX = dims.width / 2;
+      int endY = dims.height / 2;
 
-    int edgeBorder = 90; // better avoid edges
-    // init screen variables
-    Dimension dims = driver.manage().window().getSize();
-
-    PointOption pointOptionEnd = PointOption.point(dims.width / 4, edgeBorder);
-
-    // init start point = center of screen
-    PointOption pointOptionStart = PointOption.point(dims.width / 2, dims.height / 2);
-
-
-    switch (dir) {
-      case DOWN: // center of footer
-        pointOptionEnd = PointOption.point(dims.width / 2, dims.height - edgeBorder);
-        break;
-      case UP: // center of header
-        pointOptionEnd = PointOption.point(dims.width / 2, dims.height / 4);
-        break;
-      case LEFT: // center of left side
-        pointOptionEnd = PointOption.point(edgeBorder, dims.height / 2);
-        break;
-      case RIGHT: // center of right side
-        pointOptionEnd = PointOption.point(dims.width - edgeBorder, dims.height / 2);
-        break;
-      default:
-        log.error("swipe() - dir: '" + dir + "' NOT supported");
-    }
-
-    // execute swipe using TouchAction
-    for (int x = 0; x < xTimes; x++) {
-      try {
-        new TouchAction((PerformsTouchActions) driver)
-                .longPress(pointOptionStart)
-                // a bit more reliable when we add small wait
-                //                    .waitAction(WaitOptions.waitOptions(Duration.ofMillis(PRESS_TIME)))
-                .moveTo(pointOptionEnd)
-                .release()
-                .perform();
-      } catch (Exception e) {
-        log.error("swipeScreen(): TouchAction FAILED");
+      switch (dir) {
+        case DOWN: // center of footer
+          endY = (int) (dims.height * 0.7);
+          break;
+        case UP: // bottom of header
+          startY = (int) (dims.height / 1.4);
+          break;
+        case LEFT: // center of left side
+          endX = (int) (dims.width * 1.2);
+          break;
+        case RIGHT: // center of right side
+          startX = dims.width / 3;
+          break;
+        default:
+          log.error("swipe() - dir: '" + dir + "' NOT supported");
       }
+
+      // execute swipe using TouchAction
+      for (int x = 0; x < xTimes; x++) {
+
+        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+        Sequence scroll = new Sequence(finger, 0);
+        scroll.addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), startX, startY));
+        scroll.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+        scroll.addAction(finger.createPointerMove(Duration.ofMillis(500), PointerInput.Origin.viewport(), endX, endY));
+        scroll.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+        driver.perform(List.of(scroll));
+
+        sleep(2);
+
+      }
+    } catch (Exception e) {
+      log.error("failed to perform swipe actions");
     }
   }
 

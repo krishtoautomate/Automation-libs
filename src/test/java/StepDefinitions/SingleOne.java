@@ -48,8 +48,7 @@ public class SingleOne {
 
     @When("User searches for Selenium cross browser testing")
     public void user_searches_for_Selenium_cross_browser_testing(){
-//        Allure.step("search failed", Status.FAILED);
-//        Assert.fail("search failed");
+
     }
 
     @Then("Results are displayed")
