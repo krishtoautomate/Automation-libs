@@ -164,5 +164,5 @@ test {
         suites '' + System.getProperty('testNGsuiteXmlFile')
         useDefaultListeners = true
     }
-    ext.workingDirectory = 'test-output/${timestamp()}'
+    ext.workingDirectory = 'test-output'
 }
