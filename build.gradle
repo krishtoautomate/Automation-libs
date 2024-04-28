@@ -151,7 +151,8 @@ task runMergeReports(type: Exec) {
     commandLine "java", "-classpath", sourceSets.test.runtimeClasspath.getAsPath(), javaMainClass
 }
 
-test {
+//test {
+tasks.withType(Test) {
     jvmArgs = ["-javaagent:${configurations.agent.singleFile}"]
 //    -javaagent:/Users/home/.gradle/caches/modules-2/files-2.1/org.aspectj/aspectjweaver/1.9.20.1/33b0e41476658229933eec7134678cf336e66dd4/aspectjweaver-1.9.20.1.jar
 //    println "${configurations.agent.singleFile}"
