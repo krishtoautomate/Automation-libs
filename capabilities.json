@@ -24,7 +24,8 @@
     "appium:simpleIsVisibleCheck": true,
     "appium:language": "en",
     "appium:locale": "CA",
-    "se:name": "Krish"
+    "se:name": "Krish",
+    "appium:newCommandTimeout": 60
   },
   "IOS-BROWSER": {
     "appium:browserName": "Safari",
