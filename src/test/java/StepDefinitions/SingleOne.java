@@ -39,6 +39,11 @@ public class SingleOne {
         });
     }
 
+    @Given("open Google in the browser")
+    public void open_google_in_the_browser() {
+
+    }
+
 
 
     @When("User searches for Test")

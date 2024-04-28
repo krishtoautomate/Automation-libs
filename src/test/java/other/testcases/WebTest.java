@@ -28,6 +28,7 @@ public class WebTest extends TestBaseWeb implements ITestBase {
         //chrome dev tools
         driver.get("https://www.google.com");
 
+
 //        DevTools devTools = ((HasDevTools) driver).getDevTools();
 //        devTools.createSession();
 
