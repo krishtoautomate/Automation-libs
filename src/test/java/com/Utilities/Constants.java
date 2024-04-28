@@ -22,15 +22,15 @@ public class Constants {
   public static final String TEST_RESOURCES = USER_DIR + "/src/test/resources/";
 
   public static final String OUTPUT_DIRECTORY = USER_DIR + "/test-output/";
-  public static final String REPORT_DIR = OUTPUT_DIRECTORY + "extent-report/";
-  public static final String EXTENT_HTML_REPORT = REPORT_DIR + "AUTOMATION_REPORT" + ".html";
-  public static final String EXTENT_HTML_CUSTOM_REPORT = REPORT_DIR + "AUTOMATION_REPORT" +"_INDEX"+ ".html";
-  public static final String EXTENT_JSON_CUSTOM_REPORT = REPORT_DIR + "AUTOMATION_REPORT" +"_INDEX"+ ".json";
-  public static final String EXTENT_FAILED_HTML_REPORT = REPORT_DIR + "AUTOMATION_FAILED_REPORT" + ".html";
-  public static final String EXTENT_PDF_REPORT = REPORT_DIR + "AUTOMATION_REPORT" + ".pdf";
-  public static final String APPENDED_REPORT = REPORT_DIR + "appendedReports" + ".html";
-  public static final String EMAIL_REPORT = REPORT_DIR + "EmailableReport" + ".html";
-  public static final String JIRA_REPORT = REPORT_DIR + "jira-result.json";
+  public static final String EXTENT_REPORT_DIR = OUTPUT_DIRECTORY + "extent-report/";
+  public static final String EXTENT_HTML_REPORT = EXTENT_REPORT_DIR + "AUTOMATION_REPORT" + ".html";
+  public static final String EXTENT_HTML_CUSTOM_REPORT = EXTENT_REPORT_DIR + "AUTOMATION_REPORT" +"_INDEX"+ ".html";
+  public static final String EXTENT_JSON_CUSTOM_REPORT = EXTENT_REPORT_DIR + "AUTOMATION_REPORT" +"_INDEX"+ ".json";
+  public static final String EXTENT_FAILED_HTML_REPORT = EXTENT_REPORT_DIR + "AUTOMATION_FAILED_REPORT" + ".html";
+  public static final String EXTENT_PDF_REPORT = EXTENT_REPORT_DIR + "AUTOMATION_REPORT" + ".pdf";
+  public static final String APPENDED_REPORT = EXTENT_REPORT_DIR + "appendedReports" + ".html";
+  public static final String EMAIL_REPORT = EXTENT_REPORT_DIR + "EmailableReport" + ".html";
+  public static final String JIRA_REPORT = EXTENT_REPORT_DIR + "jira-result.json";
   public static final String DATE_NOW = new SimpleDateFormat("MMddyyyy").format(new Date());
   public static final String TIME_NOW = new SimpleDateFormat("HH.mm.ss.SSS").format(new Date());
   public static final String SLACK_BRAND = ":boom:";
@@ -44,7 +44,7 @@ public class Constants {
       USER_DIR + "/src/main/resources/extent-config.xml";
   public static final String BUILD_NUMBER = System.getenv("BUILD_NUMBER");
   public static final String SET_BUILD_NUMBER = BUILD_NUMBER != null ? BUILD_NUMBER + "/" : "";
-  public static final String EXTENT_JSON_REPORT = REPORT_DIR + SET_BUILD_NUMBER+"/AUTOMATION_REPORT" + ".json";
+  public static final String EXTENT_JSON_REPORT = EXTENT_REPORT_DIR + SET_BUILD_NUMBER+"/AUTOMATION_REPORT" + ".json";
   public static final int EXTENT_TEST_LIMIT = 150;
   public static final String CAPABILITIES = USER_DIR + "/capabilities.json";
   public static final String IOS_CAPABILITIES = USER_DIR + "/capabilities.json";

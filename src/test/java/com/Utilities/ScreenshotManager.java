@@ -30,7 +30,7 @@ public class ScreenshotManager {
         try {
             File screenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 
-            File filePath = new File(Constants.REPORT_DIR + imgPath);
+            File filePath = new File(Constants.EXTENT_REPORT_DIR + imgPath);
 
             FileUtils.moveFile(screenShot, filePath);
         } catch (Exception e) {

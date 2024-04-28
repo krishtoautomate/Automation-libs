@@ -390,7 +390,7 @@ public class TestListenerRT extends TestListenerAdapter
             // ignore
         }
 
-        String folderPath = Constants.REPORT_DIR; // Replace with the actual folder path
+        String folderPath = Constants.EXTENT_REPORT_DIR; // Replace with the actual folder path
 //        List<String> jsonFiles = new ArrayList<>();
         try {
 //            Files.walk(Paths.get(folderPath))

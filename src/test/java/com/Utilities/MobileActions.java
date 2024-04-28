@@ -129,7 +129,7 @@ public class MobileActions implements ITestBase {
       ImageIO.write(image, "png", srcFile);
       UUID uuid = UUID.randomUUID();
       String imgPath = "img/" + uuid + "_" + ".PNG";
-      FileUtils.moveFile(srcFile, new File(Constants.REPORT_DIR + imgPath));
+      FileUtils.moveFile(srcFile, new File(Constants.EXTENT_REPORT_DIR + imgPath));
       test.pass(message);
       test.pass(message, MediaEntityBuilder.createScreenCaptureFromPath(imgPath).build());
     } catch (IOException e) {

@@ -18,7 +18,7 @@ public class InvokedSuiteListener extends TestListenerAdapter implements ISuiteL
 
     @Override
     public void onFinish(ISuite suite) {
-        String folderPath = Constants.REPORT_DIR; // Replace with the actual folder path
+        String folderPath = Constants.EXTENT_REPORT_DIR; // Replace with the actual folder path
         List<String> jsonFiles = new ArrayList<>();
         try {
             Files.walk(Paths.get(folderPath))

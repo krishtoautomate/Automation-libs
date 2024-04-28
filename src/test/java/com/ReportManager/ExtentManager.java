@@ -107,7 +107,7 @@ public class ExtentManager {
         ExtentReports extent = new ExtentReports();
         List<String> jsonFiles = new ArrayList<>();
         try {
-            Files.walk(Paths.get(Constants.REPORT_DIR))
+            Files.walk(Paths.get(Constants.EXTENT_REPORT_DIR))
                     .filter(Files::isRegularFile)
                     .filter(path -> path.toString().contains("_REPORT"))
                     .filter(path -> path.toString().endsWith(".json"))

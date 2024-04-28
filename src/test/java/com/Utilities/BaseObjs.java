@@ -250,7 +250,7 @@ public class BaseObjs<T> implements ITestBase {
             log.error("TakesScreenshot service failed!!!");
 
             try {
-                FileUtils.copyFile(ScreenShot, new File(Constants.REPORT_DIR + imgPath));
+                FileUtils.copyFile(ScreenShot, new File(Constants.EXTENT_REPORT_DIR + imgPath));
             } catch (IOException e1) {
                 // ignore
             }
