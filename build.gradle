@@ -47,8 +47,8 @@ configurations {
 
 dependencies {
 
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    testImplementation files('libs/Base.jar')
+//    implementation fileTree(dir: 'libs', include: ['*.jar'])
+//    testImplementation files('libs/Base.jar')
 
     testImplementation 'org.testng:testng:7.8.0'
     testImplementation 'org.seleniumhq.selenium:selenium-java:4.19.1'
