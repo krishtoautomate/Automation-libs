@@ -55,7 +55,7 @@ dependencies {
     testImplementation 'org.seleniumhq.selenium:selenium-support:4.19.1'
     testImplementation 'io.appium:java-client:9.2.2'
     implementation 'commons-io:commons-io:2.11.0'
-    implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+    testImplementation 'com.googlecode.json-simple:json-simple:1.1.1'
     implementation 'javax.mail:mail:1.4'
     implementation 'org.json:json:20230227'
     implementation 'com.opencsv:opencsv:5.7.1'
