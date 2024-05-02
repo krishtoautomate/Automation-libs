@@ -1,6 +1,8 @@
 package other.testcases;
 
 import com.Utilities.ITestBase;
+import com.Utilities.ScreenshotManager;
+import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.base.TestBaseWeb;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -12,7 +14,7 @@ import java.util.Base64;
 public class WebTest extends TestBaseWeb implements ITestBase {
 
     @Test
-    public void Web_Test(){
+    public void Web_Test() {
 
         String browserName = ((RemoteWebDriver) driver).getCapabilities().getBrowserName();
         test.getModel().setName(String.format("%s", browserName));
@@ -27,21 +29,24 @@ public class WebTest extends TestBaseWeb implements ITestBase {
 
         //chrome dev tools
         driver.get("https://www.google.com");
-
+        test.pass("web-page loaded : " + driver.getCurrentUrl(), MediaEntityBuilder.createScreenCaptureFromPath(new ScreenshotManager(driver).getScreenshot()).build());
+        sleep(5);
 
 //        DevTools devTools = ((HasDevTools) driver).getDevTools();
 //        devTools.createSession();
 
         //file upload POC
-//        driver.navigate().to("http://bqatautomation.bell.corp.bce.ca:9000/");
-//
+        driver.navigate().to("https://www.bell.ca/");
         sleep(5);
-//
-//        driver.findElement(By.tagName("input")).sendKeys("//files//Bell_Shop_NewCommerFlow_UnverifiedFormE2Evalidation.png");
+        test.pass("web-page loaded : " + driver.getCurrentUrl(), MediaEntityBuilder.createScreenCaptureFromPath(new ScreenshotManager(driver).getScreenshot()).build());
 //
 //        sleep(5);
 //
-//        test.pass("web-page loaded : "+driver.getCurrentUrl(), MediaEntityBuilder.createScreenCaptureFromPath(new ScreenShotManager(driver).getScreenshot()).build());
+//        driver.findElement(By.tagName("input")).sendKeys("//files//Bell_Shop_NewCommerFlow_UnverifiedFormE2Evalidation.png");
+//
+//
+//
+
 
         String errorXML = driver.getPageSource();
 

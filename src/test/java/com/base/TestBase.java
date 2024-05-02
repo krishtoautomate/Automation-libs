@@ -7,7 +7,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.ios.IOSDriver;
+import io.qameta.allure.Allure;
 import org.apache.log4j.Logger;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
@@ -69,7 +69,7 @@ public class TestBase {
         int index = driver instanceof AndroidDriver ? 0 : 1;
         String testKey = testData.get(index, "testKey");
         ITestResult result = Reporter.getCurrentTestResult();
-        if(testKey!=null)
+        if (testKey != null)
             result.setAttribute("testKey", testKey);
 
         // Report Content
@@ -81,7 +81,8 @@ public class TestBase {
         String platformVersion = driver.getCapabilities().getCapability("platformVersion").toString();
         test.assignDevice(deviceName);
 
-        String[][] data = {{"<b>TestCase : </b>", className}, {"<b>Device-Name : </b>", deviceName},
+        String[][] data = {{"<b>TestCase : </b>", className},
+                {"<b>Device-Name : </b>", deviceName},
                 {"<b>UDID : </b>", _udid},
                 {"<b>Platform : </b>", platForm},
                 {"<b>OsVersion : </b>", platformVersion},
@@ -90,6 +91,12 @@ public class TestBase {
         };
 
         test.info(MarkupHelper.createTable(data));
+
+        Allure.step("Test started", (step) -> {
+            step.parameter("UDID", _udid);
+            step.parameter("deviceName", deviceName);
+            step.parameter("platformVersion", platformVersion);
+        });
     }
 
 

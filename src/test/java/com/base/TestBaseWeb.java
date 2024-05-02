@@ -7,10 +7,10 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import io.appium.java_client.AppiumDriver;
+import io.qameta.allure.Allure;
 import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -19,9 +19,7 @@ import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.annotations.*;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.Map;
 
@@ -72,18 +70,18 @@ public class TestBaseWeb {
         // Set & Get ThreadLocal Driver with Browser
         iTestContext.setAttribute("platform", "Web");
 
-        if(platForm!=null){
-            if("Desktop".equalsIgnoreCase(platForm)){
+        if (platForm != null) {
+            if ("Desktop".equalsIgnoreCase(platForm)) {
                 tlDriverFactory.setDriver("Web");
                 driver = DriverManager.getWebDriverInstance();
-            }else {
+            } else {
                 if (udid != null)
                     GlobalMapper.setUdid(udid);
 
                 tlDriverFactory.setDriver("Appium-Browser");
                 driver = DriverManager.getAppiumDriverInstance();
             }
-        }else{
+        } else {
             tlDriverFactory.setDriver("Web");
             driver = DriverManager.getWebDriverInstance();
         }
@@ -95,34 +93,47 @@ public class TestBaseWeb {
         ITestResult result = Reporter.getCurrentTestResult();
         result.setAttribute("testKey", testKey);
         Capabilities caps = ((RemoteWebDriver) driver).getCapabilities();
-        browser = caps.getBrowserName();
+        String _browser = caps.getBrowserName();
         String browserVersion = caps.getBrowserVersion();
         String sessionId = ((RemoteWebDriver) driver).getSessionId().toString();
 
         String[][] data = {
                 {"<b>TestCase : </b>", className},
-                {"<b>Browser : </b>", browser},
+                {"<b>Browser : </b>", _browser},
                 {"<b>BrowserVersion : </b>", browserVersion},
-                {"<b>SessionId : </b>", sessionId},
+                {"<b>Session-Id : </b>", sessionId},
                 {"<b>Jira test-key : </b>",
-                        "<a target=\"blank\" href=" + Constants.JIRA_URL + testKey + ">" + testKey +"</a>"}
+                        "<a target=\"blank\" href=" + Constants.JIRA_URL + testKey + ">" + testKey + "</a>"}
         };
 
         test.info(MarkupHelper.createTable(data));
+        Allure.step("Test started", (step) -> {
+            step.parameter("Browser", _browser);
+            step.parameter("BrowserVersion", browserVersion);
+            step.parameter("sessionId", sessionId);
+        });
 
         try {
-            String _udid = ((AppiumDriver)driver).getCapabilities().getCapability("udid").toString();
-            String deviceName = ((AppiumDriver)driver).getCapabilities().getCapability("deviceName").toString();
+            String _udid = ((AppiumDriver) driver).getCapabilities().getCapability("udid").toString();
+            String deviceName = ((AppiumDriver) driver).getCapabilities().getCapability("deviceName").toString();
+            String platformVersion = ((AppiumDriver) driver).getCapabilities().getCapability("platformVersion").toString();
 
-            if(_udid!=null){
+            if (_udid != null) {
                 String[][] data1 = {
                         {"<b>deviceName : </b>", deviceName},
                         {"<b>udid : </b>", _udid},
+                        {"<b>platformVersion : </b>", platformVersion},
                         {"<b>SessionId : </b>", sessionId}
 
                 };
 
                 test.info(MarkupHelper.createTable(data1));
+
+                Allure.step("Test started", (step) -> {
+                    step.parameter("UDID", _udid);
+                    step.parameter("deviceName", deviceName);
+                    step.parameter("platformVersion", platformVersion);
+                });
             }
         } catch (Exception e) {
             //ignore
@@ -153,12 +164,12 @@ public class TestBaseWeb {
             //ignore
         }
 
-        if(platForm!=null){
-            if("Desktop".equalsIgnoreCase(platForm))
+        if (platForm != null) {
+            if ("Desktop".equalsIgnoreCase(platForm))
                 driver = DriverManager.getWebDriverInstance();
             else
                 driver = DriverManager.getAppiumDriverInstance();
-        }else{
+        } else {
             driver = DriverManager.getWebDriverInstance();
         }
         if (driver != null) {
