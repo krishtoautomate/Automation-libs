@@ -7,19 +7,12 @@ import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.base.AppiumDriverManager;
 import com.base.GlobalMapper;
 import com.base.TestBaseDeeplinks;
-import com.opencsv.CSVReader;
-import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.Reporter;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import other.pages.PlayStoreApp;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.*;
+import java.util.Map;
 
 
 public class DataproviderParallel extends TestBaseDeeplinks implements ITestBase {
@@ -84,7 +77,7 @@ public class DataproviderParallel extends TestBaseDeeplinks implements ITestBase
 
         udid = driver.getCapabilities().getCapability("udid").toString();
         ITestResult iTestResult = Reporter.getCurrentTestResult();
-        iTestResult.getTestContext().setAttribute("udid",udid);
+        iTestResult.getTestContext().setAttribute("udid", udid);
         String deviceName = driver.getCapabilities().getCapability("deviceName").toString();
         String platformVersion = driver.getCapabilities().getCapability("platformVersion").toString();
 
@@ -104,43 +97,43 @@ public class DataproviderParallel extends TestBaseDeeplinks implements ITestBase
     }
 
     // ****Deep Link Data Provider *****
-    @DataProvider(parallel = true)
-    public synchronized Iterator<Object[]> DeepLinksDataProvider(ITestContext context) {
-        List<Object[]> list = new ArrayList<Object[]>();
-        String pathname = context.getCurrentXmlTest().getParameter("p_Testdata");
-
-        File file = new File(pathname);
-
-        try {
-            CSVReader reader = new CSVReader(new FileReader(file));
-            String[] keys = reader.readNext();
-            if (keys != null) {
-                String[] dataParts;
-                while ((dataParts = reader.readNext()) != null) {
-                    Map<String, String> testData = new HashMap<String, String>();
-                    for (int i = 0; i < keys.length; i++) {
-                        if (keys[i].equalsIgnoreCase("AndroidTestKey") || keys[i].equalsIgnoreCase("IOSTestKey")) {
-                            context.setAttribute("testKey", dataParts[i]);
-//                            log.info("Jira-TestKey : "+ keys[i] + ":"+dataParts[i]);
-                        }
-                        if (keys[i].equalsIgnoreCase("udid")) {
-                            context.setAttribute("udid", dataParts[i]);
-                        }
-                        testData.put(keys[i], dataParts[i]);
-                    }
-                    list.add(new Object[]{testData});
-                }
-            }
-            reader.close();
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(
-                    "File :" + pathname + " was not found. \n" + e.getStackTrace().toString());
-        } catch (IOException e) {
-            throw new RuntimeException(
-                    "Could not read" + pathname + "file.\n" + e.getStackTrace().toString());
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        return list.iterator();
-    }
+//    @DataProvider(parallel = true, name = "DeepLinksDataProvider")
+//    public synchronized Iterator<Object[]> DeepLinksDataProvider(ITestContext context) {
+//        List<Object[]> list = new ArrayList<Object[]>();
+//        String pathname = context.getCurrentXmlTest().getParameter("p_Testdata");
+//
+//        File file = new File(pathname);
+//
+//        try {
+//            CSVReader reader = new CSVReader(new FileReader(file));
+//            String[] keys = reader.readNext();
+//            if (keys != null) {
+//                String[] dataParts;
+//                while ((dataParts = reader.readNext()) != null) {
+//                    Map<String, String> testData = new HashMap<String, String>();
+//                    for (int i = 0; i < keys.length; i++) {
+//                        if (keys[i].equalsIgnoreCase("AndroidTestKey") || keys[i].equalsIgnoreCase("IOSTestKey")) {
+//                            context.setAttribute("testKey", dataParts[i]);
+////                            log.info("Jira-TestKey : "+ keys[i] + ":"+dataParts[i]);
+//                        }
+//                        if (keys[i].equalsIgnoreCase("udid")) {
+//                            context.setAttribute("udid", dataParts[i]);
+//                        }
+//                        testData.put(keys[i], dataParts[i]);
+//                    }
+//                    list.add(new Object[]{testData});
+//                }
+//            }
+//            reader.close();
+//        } catch (FileNotFoundException e) {
+//            throw new RuntimeException(
+//                    "File :" + pathname + " was not found. \n" + e.getStackTrace().toString());
+//        } catch (IOException e) {
+//            throw new RuntimeException(
+//                    "Could not read" + pathname + "file.\n" + e.getStackTrace().toString());
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
+//        return list.iterator();
+//    }
 }

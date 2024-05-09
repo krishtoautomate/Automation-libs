@@ -5,17 +5,22 @@ import com.ReportManager.ExtentTestManager;
 import com.Utilities.Constants;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
+import com.opencsv.CSVReader;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.ios.IOSDriver;
 import org.apache.log4j.Logger;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.Reporter;
+import org.testng.annotations.Optional;
 import org.testng.annotations.*;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.lang.reflect.Method;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Krish on 06.06.2018.
@@ -30,6 +35,12 @@ public class TestBaseDeeplinks {
     protected boolean isIos = false;
     protected boolean isFrench = false;
 
+//    @Factory(dataProvider = "DeepLinksDataProvider")
+//    public IInstanceInfo[] DataDrivenUsingFactories(String udid) {
+//        System.out.println(udid);
+//        return new IInstanceInfo[0];
+//    }
+
     /**
      * Executed once before all the tests
      */
@@ -40,7 +51,6 @@ public class TestBaseDeeplinks {
 
         log = Logger.getLogger(this.getClass().getName());
     }
-
 
     @BeforeMethod(alwaysRun = true)
     @Parameters({"udid", "platForm"})
@@ -94,7 +104,6 @@ public class TestBaseDeeplinks {
         }
     }
 
-
     @AfterMethod(alwaysRun = true)
     public synchronized void After() {
         driver = AppiumDriverManager.getDriverInstance();
@@ -125,6 +134,46 @@ public class TestBaseDeeplinks {
         } catch (Exception e) {
             // ignore
         }
+    }
+
+    @DataProvider(parallel = true, name = "DeepLinksDataProvider")
+    public synchronized Iterator<Object[]> DeepLinksDataProvider(ITestContext context) {
+        List<Object[]> list = new ArrayList<Object[]>();
+        String pathname = context.getCurrentXmlTest().getParameter("p_Testdata");
+
+        File file = new File(pathname);
+
+        try {
+            CSVReader reader = new CSVReader(new FileReader(file));
+            String[] keys = reader.readNext();
+            if (keys != null) {
+                String[] dataParts;
+                while ((dataParts = reader.readNext()) != null) {
+                    Map<String, String> testData = new HashMap<String, String>();
+                    for (int i = 0; i < keys.length; i++) {
+                        if (keys[i].equalsIgnoreCase("AndroidTestKey") || keys[i].equalsIgnoreCase("IOSTestKey")) {
+                            context.setAttribute("testKey", dataParts[i]);
+//                            log.info("Jira-TestKey : "+ keys[i] + ":"+dataParts[i]);
+                        }
+                        if (keys[i].equalsIgnoreCase("udid")) {
+                            context.setAttribute("udid", dataParts[i]);
+                        }
+                        testData.put(keys[i], dataParts[i]);
+                    }
+                    list.add(new Object[]{testData});
+                }
+            }
+            reader.close();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(
+                    "File :" + pathname + " was not found. \n" + e.getStackTrace().toString());
+        } catch (IOException e) {
+            throw new RuntimeException(
+                    "Could not read" + pathname + "file.\n" + e.getStackTrace().toString());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return list.iterator();
     }
 
 }
