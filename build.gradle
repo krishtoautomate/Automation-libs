@@ -8,10 +8,13 @@
 
 plugins {
     id 'java'
-    id 'maven-publish'
+//    id 'maven-publish'
     id 'groovy'
 //    id 'io.qameta.allurereport' '2.11.2'
+//    id 'com.jfrog.artifactory'
 }
+
+//apply plugin: 'com.jfrog.artifactory'
 
 def timestamp() {
     return new Date().format('yyyy-MM-dd')
@@ -21,10 +24,10 @@ repositories {
     mavenLocal()
     google()
     mavenCentral()
-    maven {
-        url 'https://artifactory.bell.corp.bce.ca/ui/native/central-maven'
-        allowInsecureProtocol = true
-    }
+//    maven {
+//        url 'https://artifactory.bell.corp.bce.ca/ui/native/central-maven'
+//        allowInsecureProtocol = true
+//    }
 }
 
 // Define the version of AspectJ
@@ -90,13 +93,13 @@ java.targetCompatibility = JavaVersion.VERSION_17
 //    targetCompatibility = JavaVersion.VERSION_11
 //}
 
-publishing {
-    publications {
-        maven(MavenPublication) {
-            from(components.java)
-        }
-    }
-}
+//publishing {
+//    publications {
+//        maven(MavenPublication) {
+//            from(components.java)
+//        }
+//    }
+//}
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
