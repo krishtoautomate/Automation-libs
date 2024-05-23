@@ -6,8 +6,6 @@ import com.Utilities.Constants;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.ios.IOSDriver;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -38,7 +36,7 @@ public class TestBaseHybrid {
      * Executed once before all the tests
      */
     @BeforeSuite(alwaysRun = true)
-    public void setupSuit(ITestContext ctx) {
+    public void setupSuit() {
         log = Logger.getLogger(this.getClass().getName());
     }
 
@@ -69,7 +67,7 @@ public class TestBaseHybrid {
         if (platForm != null) {
             isAndroid = platForm.equalsIgnoreCase("Android");
             isIos = platForm.equalsIgnoreCase("iOS");
-            if(udid!=null)
+            if (udid != null)
                 GlobalMapper.setUdid(udid);
             driverManager.setDriver("Appium");
             appiumDriver = DriverManager.getAppiumDriverInstance();
@@ -110,7 +108,7 @@ public class TestBaseHybrid {
 
             String[][] testDetails = {{"<b>TestCase : </b>", className},
                     {"<b>Jira test-key : </b>",
-                            "<a target=\"blank\" href=" + Constants.JIRA_URL + testKey + ">" + testKey +"</a>"}
+                            "<a target=\"blank\" href=" + Constants.JIRA_URL + testKey + ">" + testKey + "</a>"}
             };
 
             test.info(MarkupHelper.createTable(testDetails));

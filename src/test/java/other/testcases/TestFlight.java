@@ -16,7 +16,7 @@ public class TestFlight extends TestBase implements ITestBase {
     String className = this.getClass().getSimpleName();
 
 
-//    @Issue("MAEAUTO-xyz")
+    //    @Issue("MAEAUTO-xyz")
     @TmsLink("MAEAUTO-xyz")
     @Description("This test updates apps from Testflight")
     @Severity(CRITICAL)
@@ -74,7 +74,7 @@ public class TestFlight extends TestBase implements ITestBase {
         if (testFlightApp.verify_all_btns()) {
             String buttonText = testFlightApp.get_all_btns().get(0).getText();
             testFlightApp.get_all_btns().get(0).click();
-            sleep(5);
+            sleep(2);
             testFlightApp.logmessage(Status.PASS, buttonText + " button clicked");
 
             if (!testFlightApp.verify_apps_h1()) {
@@ -82,7 +82,7 @@ public class TestFlight extends TestBase implements ITestBase {
                     testFlightApp.get_apps_back_btn("back button - is Clicked").click();
                 }
             }
-            sleep(5);
+            sleep(2);
         } else {
             testFlightApp.logmessage(Status.WARNING, "No update buttons found");
         }

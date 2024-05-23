@@ -28,13 +28,14 @@ import java.util.Map;
  */
 public class TestBaseWeb {
 
-    public static Logger log;
+    public static Logger log = Logger.getLogger(TestBaseWeb.class.getName());
+    ;
     public WebDriver driver;
     protected DriverManager tlDriverFactory = new DriverManager();
     protected ExtentTest test;
 
     @BeforeSuite
-    public void setupSuit(ITestContext ctx) {
+    public void setupSuit() {
 
 //    String suiteName = ctx.getCurrentXmlTest().getSuite().getName();
 //

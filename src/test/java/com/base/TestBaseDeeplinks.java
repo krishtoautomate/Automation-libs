@@ -45,7 +45,7 @@ public class TestBaseDeeplinks {
      * Executed once before all the tests
      */
     @BeforeSuite(alwaysRun = true)
-    public void setupSuit(ITestContext ctx) {
+    public void setupSuit() {
 //        String suiteName = ctx.getCurrentXmlTest().getSuite().getName();
 
 

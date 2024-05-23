@@ -17,3 +17,4 @@ testng.xml
 .csv
 /.csv/
 capabilities.json
+.idea

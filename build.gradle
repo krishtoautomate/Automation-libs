@@ -32,6 +32,7 @@ repositories {
 
 // Define the version of AspectJ
 def aspectJVersion = "1.9.20.1"
+def cucumberVersion = "7.8.0"
 
 // Define configuration for AspectJ agent
 configurations {
@@ -53,10 +54,11 @@ dependencies {
 //    implementation fileTree(dir: 'libs', include: ['*.jar'])
 //    testImplementation files('libs/Base.jar')
 
-    testImplementation 'org.testng:testng:7.8.0'
+    testImplementation 'org.testng:testng:7.10.1'
     testImplementation 'org.seleniumhq.selenium:selenium-java:4.19.1'
     testImplementation 'org.seleniumhq.selenium:selenium-support:4.19.1'
     testImplementation 'io.appium:java-client:9.2.2'
+    testImplementation 'com.epam.healenium:healenium-web:3.2.5'
     implementation 'commons-io:commons-io:2.11.0'
     testImplementation 'com.googlecode.json-simple:json-simple:1.1.1'
     implementation 'javax.mail:mail:1.4'
@@ -68,13 +70,13 @@ dependencies {
     testImplementation 'com.aventstack:extentreports:5.0.9'
     testImplementation 'log4j:log4j:1.2.17'
     testImplementation 'org.slf4j:slf4j-api:2.0.5'
-    testImplementation 'org.slf4j:slf4j-jdk14:2.0.5'
+    testImplementation "org.slf4j:slf4j-jdk14:2.0.5"
     testImplementation "com.oracle.ojdbc:ojdbc8:19.3.0.0"
     testImplementation 'org.usb4java:usb4java-javax:1.2.0'
-    testImplementation 'com.slack.api:slack-api-client:1.28.0'
-    testImplementation 'io.cucumber:cucumber-java:7.8.0'
-    testImplementation 'io.cucumber:cucumber-junit:7.8.0'
-    testImplementation 'io.cucumber:cucumber-testng:7.8.0'
+    testImplementation "com.slack.api:slack-api-client:1.28.0"
+    testImplementation "io.cucumber:cucumber-java:$cucumberVersion"
+    testImplementation "io.cucumber:cucumber-junit:$cucumberVersion"
+    testImplementation "io.cucumber:cucumber-testng:$cucumberVersion"
     // Import allure-bom to ensure correct versions of all the dependencies are used
     testImplementation platform("io.qameta.allure:allure-bom:2.26.0")
     // Add necessary Allure dependencies to dependencies section
@@ -83,8 +85,8 @@ dependencies {
     agent "org.aspectj:aspectjweaver:$aspectJVersion"
 }
 
-group = 'Automation-libs'
-version = '0.0.1-SNAPSHOT'
+group = "Automation-libs"
+version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_17
 java.targetCompatibility = JavaVersion.VERSION_17
 
@@ -102,7 +104,7 @@ java.targetCompatibility = JavaVersion.VERSION_17
 //}
 
 tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
+    options.encoding = "UTF-8"
 
     gradle.projectsEvaluated {
         tasks.withType(JavaCompile) {

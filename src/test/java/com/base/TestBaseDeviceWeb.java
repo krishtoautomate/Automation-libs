@@ -7,7 +7,6 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.ios.IOSDriver;
 import org.apache.log4j.Logger;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
@@ -34,7 +33,7 @@ public class TestBaseDeviceWeb {
      * Executed once before all the tests
      */
     @BeforeSuite(alwaysRun = true)
-    public void setupSuit(ITestContext ctx) {
+    public void setupSuit() {
 //        String suiteName = ctx.getCurrentXmlTest().getSuite().getName();
 
 
@@ -86,9 +85,8 @@ public class TestBaseDeviceWeb {
                 {"<b>Platform : </b>", platForm},
                 {"<b>OsVersion : </b>", platformVersion},
                 {"<b>Jira test-key : </b>",
-                        "<a target=\"blank\" href=" + Constants.JIRA_URL + testKey + ">" + testKey +"</a>"}
+                        "<a target=\"blank\" href=" + Constants.JIRA_URL + testKey + ">" + testKey + "</a>"}
         };
-
 
 
         test.info(MarkupHelper.createTable(data));
