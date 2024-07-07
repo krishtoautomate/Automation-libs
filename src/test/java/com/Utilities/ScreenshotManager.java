@@ -6,7 +6,6 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
 
 import java.io.File;
 import java.util.UUID;
@@ -23,14 +22,21 @@ public class ScreenshotManager {
     public String getScreenshot() {
 
         UUID uuid = UUID.randomUUID();
-        UUID uuid1 = UUID.randomUUID();
+//        UUID uuid1 = UUID.randomUUID();
 
-        String imgPath = "img/" + uuid + uuid1 + ".PNG";
+        String imgPath = "img/" + uuid + ".png";
 
         try {
             File screenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 
             File filePath = new File(Constants.EXTENT_REPORT_DIR + imgPath);
+
+//            BufferedImage originalImage = ImageIO.read(screenShot);
+//            BufferedImage resizedImage = new BufferedImage(720, 1080, BufferedImage.TYPE_INT_RGB);
+//            Graphics2D graphics = resizedImage.createGraphics();
+//            graphics.drawImage(originalImage, 0, 0, 720, 1080, null);
+//            graphics.dispose();
+//            ImageIO.write(resizedImage, "PNG", screenShot);
 
             FileUtils.moveFile(screenShot, filePath);
         } catch (Exception e) {

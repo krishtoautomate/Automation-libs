@@ -82,8 +82,8 @@ public class ReadEmail {
 
         String host = "pop.yopmail.com";// change accordingly
         String mailStoreType = "pop3";
-        String username = "bqatautomation@yopmail.com";// change accordingly
-        String password = "12345678";// change accordingly
+        String username = "automation25@yopmail.com";// change accordingly
+        String password = "automation25@yopmail.com";// change accordingly
 
         check(host, mailStoreType, username, password);
 

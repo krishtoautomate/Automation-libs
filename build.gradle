@@ -20,19 +20,26 @@ def timestamp() {
     return new Date().format('yyyy-MM-dd')
 }
 
-repositories {
-    mavenLocal()
-    google()
-    mavenCentral()
+allprojects {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        google()
+
 //    maven {
 //        url 'https://artifactory.bell.corp.bce.ca/ui/native/central-maven'
 //        allowInsecureProtocol = true
 //    }
+    }
 }
 
 // Define the version of AspectJ
 def aspectJVersion = "1.9.20.1"
 def cucumberVersion = "7.8.0"
+def seleniumVersion = "4.22.0"
+def allureVersion = "2.26.0";
+def testNGVersion = "7.10.1";
+def appiumVersion = "9.2.2";
 
 // Define configuration for AspectJ agent
 configurations {
@@ -54,14 +61,14 @@ dependencies {
 //    implementation fileTree(dir: 'libs', include: ['*.jar'])
 //    testImplementation files('libs/Base.jar')
 
-    testImplementation 'org.testng:testng:7.10.1'
-    testImplementation 'org.seleniumhq.selenium:selenium-java:4.19.1'
-    testImplementation 'org.seleniumhq.selenium:selenium-support:4.19.1'
-    testImplementation 'io.appium:java-client:9.2.2'
+    testImplementation "org.testng:testng:$testNGVersion"
+    testImplementation "org.seleniumhq.selenium:selenium-java:$seleniumVersion"
+    testImplementation "org.seleniumhq.selenium:selenium-support:$seleniumVersion"
+    testImplementation "io.appium:java-client:$appiumVersion"
     testImplementation 'com.epam.healenium:healenium-web:3.2.5'
     implementation 'commons-io:commons-io:2.11.0'
     testImplementation 'com.googlecode.json-simple:json-simple:1.1.1'
-    implementation 'javax.mail:mail:1.4'
+    implementation 'javax.mail:mail:1.4.7'
     implementation 'org.json:json:20230227'
     implementation 'com.opencsv:opencsv:5.7.1'
     implementation 'com.jcraft:jsch:0.1.54'
@@ -78,10 +85,10 @@ dependencies {
     testImplementation "io.cucumber:cucumber-junit:$cucumberVersion"
     testImplementation "io.cucumber:cucumber-testng:$cucumberVersion"
     // Import allure-bom to ensure correct versions of all the dependencies are used
-    testImplementation platform("io.qameta.allure:allure-bom:2.26.0")
+    testImplementation platform("io.qameta.allure:allure-bom:$allureVersion")
     // Add necessary Allure dependencies to dependencies section
-    testImplementation "io.qameta.allure:allure-cucumber7-jvm:2.26.0"
-    testImplementation "io.qameta.allure:allure-testng:2.26.0"
+    testImplementation "io.qameta.allure:allure-cucumber7-jvm:$allureVersion"
+    testImplementation "io.qameta.allure:allure-testng:$allureVersion"
     agent "org.aspectj:aspectjweaver:$aspectJVersion"
 }
 

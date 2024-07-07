@@ -2,7 +2,6 @@ package other.testcases;
 
 import com.ReportManager.ExtentTestManager;
 import com.Utilities.ITestBase;
-import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.base.AppiumDriverManager;
 import com.base.GlobalMapper;
@@ -10,7 +9,6 @@ import com.base.TestBaseDeeplinks;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.annotations.Test;
-import other.pages.PlayStoreApp;
 
 import java.util.Map;
 
@@ -33,35 +31,35 @@ public class DataproviderParallel extends TestBaseDeeplinks implements ITestBase
 //        test.getModel().setName(String.format("%s", className));
 
 //        Utilities utils = new Utilities(driver, test);
-        PlayStoreApp playstoreapp = new PlayStoreApp(driver, test);
-
-        sleep(2);
-
-        // 1.0 - Click navigate button
-        playstoreapp.get_accountLogo().click();
-        playstoreapp.logmessage(Status.PASS, "Right Account logo Button clicked");
-
-        sleep(2);
-
-        if (playstoreapp.verify_manageAppsAndDevice_btn()) {
-            playstoreapp.get_manageAppsAndDevice_btn().click();
-            playstoreapp.logmessage(Status.PASS, "'Manage apps and device' link clicked");
-        }
-
-        sleep(2);
-
-        // 3.0 -
-        if (playstoreapp.verify_updates_refresh_btn()) {
-//      playstoreapp.get_updates_refresh_btn().click();
-            playstoreapp.logmessage(Status.PASS, "'updates refresh Button' is clicked");
-        }
-
-        // 4.0 - Click Update All button
-        if (playstoreapp.verify_updateAll_btn()) {
-            playstoreapp.get_updateAll_btn().click();
-            sleep(3);
-            playstoreapp.logmessage(Status.PASS, "'UPDATE ALL' button clicked");
-        }
+//        PlayStoreApp playstoreapp = new PlayStoreApp(driver, test);
+//
+//        sleep(2);
+//
+//        // 1.0 - Click navigate button
+//        playstoreapp.get_accountLogo().click();
+//        playstoreapp.logmessage(Status.PASS, "Right Account logo Button clicked");
+//
+//        sleep(2);
+//
+//        if (playstoreapp.verify_manageAppsAndDevice_btn()) {
+//            playstoreapp.get_manageAppsAndDevice_btn().click();
+//            playstoreapp.logmessage(Status.PASS, "'Manage apps and device' link clicked");
+//        }
+//
+//        sleep(2);
+//
+//        // 3.0 -
+//        if (playstoreapp.verify_updates_refresh_btn()) {
+////      playstoreapp.get_updates_refresh_btn().click();
+//            playstoreapp.logmessage(Status.PASS, "'updates refresh Button' is clicked");
+//        }
+//
+//        // 4.0 - Click Update All button
+//        if (playstoreapp.verify_updateAll_btn()) {
+//            playstoreapp.get_updateAll_btn().click();
+//            sleep(3);
+//            playstoreapp.logmessage(Status.PASS, "'UPDATE ALL' button clicked");
+//        }
 //    sleep(120);
     }
 
@@ -72,6 +70,10 @@ public class DataproviderParallel extends TestBaseDeeplinks implements ITestBase
 
         String udid = data.get("udid");
         GlobalMapper.setUdid(udid);
+
+        test = ExtentTestManager.startTest(className);
+
+
         driverManager.setDriver("Appium");
         driver = AppiumDriverManager.getDriverInstance();
 
@@ -82,8 +84,9 @@ public class DataproviderParallel extends TestBaseDeeplinks implements ITestBase
         String platformVersion = driver.getCapabilities().getCapability("platformVersion").toString();
 
         // Report Content
-        test = ExtentTestManager.startTest(className)
-                .assignDevice(deviceName);
+//        test = ExtentTestManager.startTest(className)
+//                .assignDevice(deviceName);
+        test.assignDevice(deviceName);
 
         log.info("Test Details : " + className);
         String[][] info = {{"<b>TestCase : </b>", className}, {"<b>Device : </b>", deviceName},

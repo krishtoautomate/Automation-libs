@@ -69,7 +69,9 @@ public class TestBaseDeviceWeb {
         int index = driver instanceof AndroidDriver ? 0 : 1;
         String testKey = testData.get(index, "testKey");
         ITestResult result = Reporter.getCurrentTestResult();
-        result.setAttribute("testKey", testKey);
+
+        if (testKey != null)
+            result.setAttribute("testKey", testKey);
 
         // Report Content
         test = ExtentTestManager.startTest(methodName + "(" + platForm + ")");
