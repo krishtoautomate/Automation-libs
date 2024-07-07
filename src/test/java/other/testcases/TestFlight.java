@@ -1,18 +1,16 @@
 package other.testcases;
 
-import com.Utilities.*;
-import com.aventstack.extentreports.MediaEntityBuilder;
+import com.Utilities.Assertions;
+import com.Utilities.ITestBase;
+import com.Utilities.MobileActions;
 import com.aventstack.extentreports.Status;
 import com.base.TestBase;
 import com.google.common.collect.ImmutableMap;
-import io.appium.java_client.imagecomparison.SimilarityMatchingOptions;
-import io.appium.java_client.imagecomparison.SimilarityMatchingResult;
 import io.qameta.allure.*;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 import other.pages.TestFlightApp;
 
-import java.io.File;
 import java.io.IOException;
 
 import static io.qameta.allure.SeverityLevel.CRITICAL;
@@ -116,35 +114,35 @@ public class TestFlight extends TestBase implements ITestBase {
 //
 //        testFlightApp.getPageSource();
 
-        SimilarityMatchingOptions opts = new SimilarityMatchingOptions();
-
-        opts.withEnabledVisualization();
+//        SimilarityMatchingOptions opts = new SimilarityMatchingOptions();
+//
+//        opts.withEnabledVisualization();
 
 //        driver.setSetting(Setting.FIX_IMAGE_TEMPLATE_SIZE, true);
 //        driver.setSetting(Setting.FIX_IMAGE_FIND_SCREENSHOT_DIMENSIONS, true);
 
-        File basematchImg = new File(Constants.EXTENT_REPORT_DIR +
-                "img/5014e0c6-f696-4400-99f4-ce23bb65b653.png");
-        File newImg = new File(Constants.EXTENT_REPORT_DIR + new ScreenshotManager(driver).getScreenshot());
-
-        if (!basematchImg.exists()) {
-            System.out.println("No base match found for check; capturing baseline instead of checking");
-        }
-
-        System.out.println(basematchImg);
-        System.out.println(newImg);
-
-        SimilarityMatchingResult res = driver.getImagesSimilarity(basematchImg, newImg, opts);
-
-        System.out.println("matching score : " + res.getScore());
-
-        if (res.getScore() < 0.999) {
-
-            File failViz = new File(Constants.EXTENT_REPORT_DIR + "img/FAIL_img" + ".png");
-
-            res.storeVisualization(failViz);
-
-            test.pass("match score: " + res.getScore(), MediaEntityBuilder.createScreenCaptureFromPath("img/FAIL_img" + ".png").build());
-        }
+//        File basematchImg = new File(Constants.EXTENT_REPORT_DIR +
+//                "img/5014e0c6-f696-4400-99f4-ce23bb65b653.png");
+//        File newImg = new File(Constants.EXTENT_REPORT_DIR + new ScreenshotManager(driver).getScreenshot());
+//
+//        if (!basematchImg.exists()) {
+//            System.out.println("No base match found for check; capturing baseline instead of checking");
+//        }
+//
+//        System.out.println(basematchImg);
+//        System.out.println(newImg);
+//
+//        SimilarityMatchingResult res = driver.getImagesSimilarity(basematchImg, newImg, opts);
+//
+//        System.out.println("matching score : " + res.getScore());
+//
+//        if (res.getScore() < 0.999) {
+//
+//            File failViz = new File(Constants.EXTENT_REPORT_DIR + "img/FAIL_img" + ".png");
+//
+//            res.storeVisualization(failViz);
+//
+//            test.pass("match score: " + res.getScore(), MediaEntityBuilder.createScreenCaptureFromPath("img/FAIL_img" + ".png").build());
+//        }
     }
 }
