@@ -24,7 +24,7 @@ public class TestFlightApp extends BaseObjs<TestFlightApp> {
     By tryAgain_btn = AppiumBy.iOSNsPredicateString("type == 'XCUIElementTypeButton' AND name=='Try Again'");
 
     By all_btns = AppiumBy.iOSClassChain("**/XCUIElementTypeButton");
-    By apps_h1 = AppiumBy.iOSClassChain("**/XCUIElementTypeNavigationBar/XCUIElementTypeStaticText");
+    By apps_h1 = AppiumBy.iOSClassChain("**/XCUIElementTypeStaticText[`label == 'Apps'`]");
 
     By apps_back_btn = AppiumBy.iOSClassChain("**/XCUIElementTypeNavigationBar/XCUIElementTypeButton[`name IN {'BackButton', 'ToggleSidebar'}`]");
 
