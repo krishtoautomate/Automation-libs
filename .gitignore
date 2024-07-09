@@ -6,7 +6,6 @@ build
 /test-output/
 *.log
 *.txt
-*.xml
 Logger.log
 *.DS_Store
 testng.xml
