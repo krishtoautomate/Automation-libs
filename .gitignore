@@ -12,6 +12,7 @@ Logger.log
 testng.xml
 /.gradle/
 /build/
+/target/
 *.json
 *.csv
 /*.csv/

@@ -21,7 +21,6 @@ public class SetDisplayTimeout extends TestBase implements ITestBase {
 
         settingsApp.logmessage(Status.PASS, "--Start--");
 
-        // Turn-OFF wifi
         mobileActions.activateApp("com.apple.Preferences");
         sleep(5);
         mobileActions.terminateApp("com.apple.Preferences");
@@ -34,14 +33,14 @@ public class SetDisplayTimeout extends TestBase implements ITestBase {
 
         mobileActions.swipe(MobileActions.Direction.UP);
 
-        if(settingsApp.verify_displayCell()) {
+        if (settingsApp.verify_displayCell()) {
             settingsApp.get_displayCell().click();
             settingsApp.logmessage(Status.PASS, "'Display & Brightness' button is clicked");
         }
 
         mobileActions.swipe(MobileActions.Direction.UP, 2);
 
-        if(settingsApp.verify_autoLockCell()) {
+        if (settingsApp.verify_autoLockCell()) {
             settingsApp.get_autoLockCell().click();
             settingsApp.logmessage(Status.PASS, "'Auto-Lock' button is clicked");
         }
