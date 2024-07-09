@@ -87,7 +87,7 @@ dependencies {
     // Import allure-bom to ensure correct versions of all the dependencies are used
     testImplementation platform("io.qameta.allure:allure-bom:$allureVersion")
     // Add necessary Allure dependencies to dependencies section
-    testImplementation "io.qameta.allure:allure-cucumber7-jvm:$allureVersion"
+//    testImplementation "io.qameta.allure:allure-cucumber7-jvm:$allureVersion"
     testImplementation "io.qameta.allure:allure-testng:$allureVersion"
     agent "org.aspectj:aspectjweaver:$aspectJVersion"
 }
