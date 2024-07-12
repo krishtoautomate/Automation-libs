@@ -9,18 +9,13 @@ import org.apache.log4j.Logger;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
 
 public class Jira {
 
+    static String JIRA_URL = "https://jira.bell.corp.bce.ca";
     private static Logger log = Logger.getLogger(Jira.class.getName());
-
-
     JsonObject info = new JsonObject();
     JsonObject textExecution = new JsonObject();
-    JsonArray tests = new JsonArray();
 //    String summary;
 //    String description;
 //    String revision;
@@ -34,8 +29,7 @@ public class Jira {
 //    String finish;
 //    String comment;
 //    String status;
-
-    static String JIRA_URL = "https://jira.bell.corp.bce.ca";
+    JsonArray tests = new JsonArray();
 
     /*
      * @param test execution details to set summary, description, revision, startDate, finishDate,
@@ -84,7 +78,7 @@ public class Jira {
     /*
      * Create jira report - default "test-output/jira-result.json"
      */
-    public void CreatejiraReport(String reportPath) {
+    public void createJiraReport(String reportPath) {
 
         try (FileWriter file = new FileWriter(reportPath)) {
             file.write(info.toString());

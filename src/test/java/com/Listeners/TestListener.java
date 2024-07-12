@@ -274,7 +274,7 @@ public class TestListener extends TestListenerAdapter
         }
         jiraReporter.addInfo();
         jiraReporter.addTests();
-        jiraReporter.CreatejiraReport(Constants.JIRA_REPORT);
+        jiraReporter.createJiraReport(Constants.JIRA_REPORT);
 
     }
 
