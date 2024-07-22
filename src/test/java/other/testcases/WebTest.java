@@ -50,9 +50,19 @@ public class WebTest extends TestBaseWeb implements ITestBase {
 //        driver = new Augmenter().augment(driver);
 
         //chrome dev tools
+        driver.get("file:///Downloads/index.html");
+
+        sleep(5);
+
+//        String hostName = ((RemoteWebDriver) driver).get
+//        String nodeUrl = (String) ((RemoteWebDriver) driver).getCapabilities().getCapability("webdriver.remote.sessionid");
+//        System.out.println(nodeUrl);
+
         driver.get("https://www.google.com");
         test.pass("web-page loaded : " + driver.getCurrentUrl(), MediaEntityBuilder.createScreenCaptureFromPath(new ScreenshotManager(driver).getScreenshot()).build());
         sleep(5);
+
+//        System.out.println(Runtime.getRuntime().exec("SE_NODE_HOST"));//SE_NODE_HOST
 
 //        driver.findElement(By.xpath("//*[@name='q']")).isDisplayed();
 //
@@ -76,9 +86,11 @@ public class WebTest extends TestBaseWeb implements ITestBase {
 
 //        String errorXML = driver.getPageSource();
 
-//        System.out.println("SessionId : " + ((RemoteWebDriver) driver).getSessionId());
+        System.out.println("SessionId : " + ((RemoteWebDriver) driver).getSessionId());
+
 
 //        test.info(MarkupHelper.createCodeBlock(errorXML));
+
 
     }
 }

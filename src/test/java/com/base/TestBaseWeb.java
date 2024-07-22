@@ -97,12 +97,14 @@ public class TestBaseWeb {
         String _browser = caps.getBrowserName();
         String browserVersion = caps.getBrowserVersion();
         String sessionId = ((RemoteWebDriver) driver).getSessionId().toString();
+        String nodeuri = new Gridgraphql().getNodeUri(sessionId);
 
         String[][] data = {
                 {"<b>TestCase : </b>", className},
                 {"<b>Browser : </b>", _browser},
                 {"<b>BrowserVersion : </b>", browserVersion},
                 {"<b>Session-Id : </b>", sessionId},
+                {"<b>node-uri : </b>", nodeuri},
                 {"<b>Jira test-key : </b>",
                         "<a target=\"blank\" href=" + Constants.JIRA_URL + testKey + ">" + testKey + "</a>"}
         };
