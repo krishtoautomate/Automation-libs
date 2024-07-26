@@ -22,6 +22,10 @@ import java.util.Map;
  */
 public class TestBase {
 
+    private static final String ANDROID = "Android";
+    private static final String IOS = "iOS";
+    private static final String APPIUM = "Appium";
+
     protected static Logger log;// = Logger.getLogger(this.getClass().getName());;
     protected AppiumDriver driver;
     protected DriverManager driverManager = new DriverManager();
@@ -35,8 +39,6 @@ public class TestBase {
      */
     @BeforeSuite(alwaysRun = true)
     public void setupSuit() {
-//        String suiteName = ctx.getCurrentXmlTest().getSuite().getName();
-
         log = Logger.getLogger(this.getClass().getName());
     }
 
@@ -48,13 +50,14 @@ public class TestBase {
 
         String methodName = method.getName();
         String className = this.getClass().getName();
-        isAndroid = platForm.equalsIgnoreCase("Android");
-        isIos = platForm.equalsIgnoreCase("iOS");
+        isAndroid = platForm.equalsIgnoreCase(ANDROID);
+        isIos = platForm.equalsIgnoreCase(IOS);
 
         if (udid != null)
             GlobalMapper.setUdid(udid);
         GlobalMapper.setTestName(className);
-        driverManager.setDriver("Appium");
+
+        driverManager.setDriver(APPIUM);
         driver = AppiumDriverManager.getDriverInstance();
 
         try {
@@ -98,8 +101,7 @@ public class TestBase {
             step.parameter("platformVersion", platformVersion);
         });
     }
-
-
+    
     @AfterMethod(alwaysRun = true)
     public synchronized void After() {
 

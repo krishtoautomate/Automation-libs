@@ -16,7 +16,7 @@ public class Jira {
     private static Logger log = Logger.getLogger(Jira.class.getName());
     JsonObject info = new JsonObject();
     JsonObject textExecution = new JsonObject();
-//    String summary;
+    //    String summary;
 //    String description;
 //    String revision;
 //    String startDate;
@@ -30,6 +30,19 @@ public class Jira {
 //    String comment;
 //    String status;
     JsonArray tests = new JsonArray();
+
+//    public static void main(String[] args) {
+//
+//        // update status
+//        Jira jira = new Jira();
+//
+//        Date date = new Date();
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
+//        sdf.setTimeZone(TimeZone.getTimeZone("EST"));
+//        String dateANDtime = sdf.format(date.getTime());
+//
+//        jira.update_Test_Exec("MAEAUTO-16746", "MAEAUTO-6930", "PASS", dateANDtime, dateANDtime);
+//    }
 
     /*
      * @param test execution details to set summary, description, revision, startDate, finishDate,
@@ -88,19 +101,6 @@ public class Jira {
         }
     }
 
-//    public static void main(String[] args) {
-//
-//        // update status
-//        Jira jira = new Jira();
-//
-//        Date date = new Date();
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
-//        sdf.setTimeZone(TimeZone.getTimeZone("EST"));
-//        String dateANDtime = sdf.format(date.getTime());
-//
-//        jira.update_Test_Exec("MAERT-25602", "MAEAUTO-276", "PASS", dateANDtime, dateANDtime);
-//    }
-
     /*
     @type : add/remove
      */
@@ -156,33 +156,33 @@ public class Jira {
             String testPlanKey = System.getenv("TEST_PLAN_KEY");
             String jiraAuth = System.getenv("JIRA_AUTH");
 
-            JsonObject _mainObj = new JsonObject();
-            JsonObject _testPlanKey = new JsonObject();
-            JsonObject _testKey_Status = new JsonObject();
+            JsonObject _testExecution = new JsonObject();
+            JsonObject _testPlan = new JsonObject();
+            JsonObject _test = new JsonObject();
             JsonArray _tests = new JsonArray();
 
-            _testPlanKey.addProperty("testPlanKey", testPlanKey);
-            _testKey_Status.addProperty("testKey", testKey);
-            _testKey_Status.addProperty("status", status);
-            _testKey_Status.addProperty("start", start);
-            _testKey_Status.addProperty("finish", finish);
-            _tests.add(_testKey_Status);
-            _mainObj.addProperty("testExecutionKey", testExecutionKey);
-            _mainObj.add("tests", _tests);
-            _mainObj.add("info", _testPlanKey);
-
-            String jsonBody = _mainObj.toString();
+            _testPlan.addProperty("testPlanKey", testPlanKey);
+            _test.addProperty("testKey", testKey);
+            _test.addProperty("status", status);
+            _test.addProperty("start", start);
+            _test.addProperty("finish", finish);
+            _tests.add(_test);
+            _testExecution.addProperty("testExecutionKey", testExecutionKey);
+            _testExecution.add("tests", _tests);
+            _testExecution.add("info", _testPlan);
 
             RestAssured.useRelaxedHTTPSValidation();
 
             RestAssured.baseURI = JIRA_URL;
             RestAssured.basePath = "/rest/raven/1.0/import/execution";
 //            RestAssured.baseURI = "https://jira.bell.corp.bce.ca/rest/raven/1.0/import/execution";
-            RequestSpecification req = RestAssured.given();
-            req.header("Content-Type", "application/json");
-            req.header("Authorization", "Basic " + jiraAuth);
-            req.body(jsonBody);
-            req.post();
+            Response response = RestAssured.given()
+                    .header("Content-Type", "application/json")
+                    .header("Authorization", "Basic " + jiraAuth)
+                    .body(_testExecution.toString())
+                    .post();
+            if (response.statusCode() != 200)
+                log.error("Jira error : " + response.getBody().asString());
         } catch (Exception e) {
             log.info("JIRA test case execution update failed for " + testKey + " due to: "
                     + e.getLocalizedMessage());

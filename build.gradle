@@ -65,7 +65,7 @@ dependencies {
     testImplementation "org.seleniumhq.selenium:selenium-java:$seleniumVersion"
     testImplementation "org.seleniumhq.selenium:selenium-support:$seleniumVersion"
     testImplementation "io.appium:java-client:$appiumVersion"
-    testImplementation 'com.epam.healenium:healenium-web:3.2.5'
+//    testImplementation 'com.epam.healenium:healenium-web:3.2.5'
     implementation 'commons-io:commons-io:2.11.0'
     testImplementation 'com.googlecode.json-simple:json-simple:1.1.1'
     implementation 'javax.mail:mail:1.4.7'
