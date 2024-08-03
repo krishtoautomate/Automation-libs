@@ -17,9 +17,8 @@ public class TestSafari {
 //        caps.setCapability("platformName", "Android");
 //        caps.setCapability("automationName", "uiautomator2");
 ////        caps.setCapability("platformVersion", "14");
-//        caps.setCapability("appPackage", "ca.bell.selfserve.mybellmobile");
-//        caps.setCapability("appActivity", "ca.bell.selfserve.mybellmobile.ui.splash.view.SplashActivity");
-////        caps.setCapability("appName", "MyBell");
+//        caps.setCapability("appPackage", "");
+//        caps.setCapability("appActivity", ".ui.splash.view.SplashActivity");
 //        caps.setCapability("noReset", false);
 //        caps.setCapability("appium:fullReset", false);
 ////        caps.setCapability("appium:udid", "1B221FDF6001L3");

@@ -56,9 +56,9 @@ public class Test {
 
         String host = "smtp.gmail.com";
         final String user = "krishpavulur@gmail.com";//change accordingly
-        final String password = "vglgzybjkfjekibl";//change accordingly
+        final String password = "";//change accordingly
 
-        String to = "krish.pavulur@bell.ca";//change accordingly
+        String to = "krishpavulur@gmail.com";//change accordingly
 
         //Get the session object
         Properties props = new Properties();

@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReportBuilder {
-    private static Logger log = Logger.getLogger(ReportBuilder.class.getName());
     public static List<Result> details;
+    private static Logger log = Logger.getLogger(ReportBuilder.class.getName());
     public final String resultPlaceholder = "<!-- INSERT_RESULTS -->";
     public final String templatePath = System.getProperty("user.dir") + "/" + "src/main/resources"
             + "/" + "ReportTemplate" + ".html";
@@ -39,7 +39,7 @@ public class ReportBuilder {
         Connection con = null;
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
-            String sbURL = "jdbc:oracle:thin:@//mtrlpqdc2ae-034.bell.corp.bce.ca:1521/MONITOR";
+            String sbURL = "jdbc:oracle:thin:@//:1521/MONITOR";
             con = DriverManager.getConnection(sbURL, "AUTOMATION_FEED", "iLUVr0b0tS");
 
             stmt = con.createStatement();
@@ -68,7 +68,7 @@ public class ReportBuilder {
                 if (dbConnected) {
 
                     stmt.executeQuery(
-                            "INSERT INTO BELLCA.AUTO_TBL_DATA(TEST_TIME ,TEST_BRAND ,TEST_BUILD , TEST_ENVIRONMENT ,TEST_CASE ,TEST_STATUS,TEST_PLATFORM, TEST_DEVICE) "
+                            "INSERT INTO AUTO_TBL_DATA(TEST_TIME ,TEST_BRAND ,TEST_BUILD , TEST_ENVIRONMENT ,TEST_CASE ,TEST_STATUS,TEST_PLATFORM, TEST_DEVICE) "
                                     + "VALUES " + "(" + "TO_TIMESTAMP('" + details.get(i).getLocalDateTime()
                                     + "','YYYY-MM-DD HH24:MI:SS')," + "'" + details.get(i).getTestBrand() + "'," + "'"
                                     + details.get(i).getBuildNo() + "'," + "'" + details.get(i).getTestEnvironment()

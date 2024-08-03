@@ -25,14 +25,14 @@ public class MobileBrowserTest extends TestBaseDeviceWeb implements ITestBase {
 
         test.getModel().setName(String.format("%s - %s", className, udid));
 
-        driver.get("https://mybell.bell.ca/Login");
-        log("url launched :  https://mybell.bell.ca/Login");
+        driver.get("https:///Login");
+        log("url launched :  https:///Login");
 
 
         sleep(10);
 
-        driver.navigate().to("https://www.virginplus.ca/en/home/index.html");
-        log("url launched : https://www.virginplus.ca/en/home/index.html");
+        driver.navigate().to("https://www..ca/en/home/index.html");
+        log("url launched : https://www..ca/en/home/index.html");
 
         test.pass("web-page loaded : " + driver.getCurrentUrl(), MediaEntityBuilder.createScreenCaptureFromPath(new ScreenshotManager(driver).getScreenshot()).build());
 

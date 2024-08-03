@@ -30,7 +30,7 @@ public class Test1 {
 //        options.addArguments("--no-sandbox", "--disable-dev-shm-usage");
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--proxy-server=http://fastweb.int.bell.ca:80");
+//        options.addArguments("--proxy-server=http://:80");
 
         options.setAcceptInsecureCerts(true);
         options.setPageLoadStrategy(PageLoadStrategy.NORMAL);

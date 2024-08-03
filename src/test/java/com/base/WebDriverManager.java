@@ -2,7 +2,6 @@ package com.base;
 
 import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.ParseException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -13,7 +12,6 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 
-import java.io.IOException;
 import java.net.URL;
 import java.time.Duration;
 import java.util.Map;
@@ -23,12 +21,9 @@ public class WebDriverManager {
 
     static Map<Long, WebDriver> webDriverMap = new ConcurrentHashMap<Long, WebDriver>();
     private static ThreadLocal<WebDriver> tlWebDriver = new ThreadLocal<>();
-
+    private static Logger log = Logger.getLogger(WebDriverManager.class.getName());
     private CapabilitiesManager capabilitiesManager = new CapabilitiesManager();
     private OptionsManager optionsManager = new OptionsManager();
-
-    private static Logger log = Logger.getLogger(WebDriverManager.class.getName());
-
 
     /*
     @driverType = Web/Appium
@@ -45,7 +40,7 @@ public class WebDriverManager {
 
         String browser = testParams.get("browser");
 
-        String REMOTE_HOST = testParams.get("REMOTE_HOST") == null ? "http://bqatautomation.bell.corp.bce.ca:5555" :
+        String REMOTE_HOST = testParams.get("REMOTE_HOST") == null ? "http://<host>:5555" :
                 testParams.get("REMOTE_HOST");
 
         if (browser == null || browser.equalsIgnoreCase("chrome")) {

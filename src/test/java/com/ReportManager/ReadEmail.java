@@ -15,7 +15,7 @@ public class ReadEmail {
             Properties properties = new Properties();
 
             // properties.put("proxySet", true);
-            // properties.put("socksProxyHost", "fastweb.int.bell.ca");
+            // properties.put("socksProxyHost", "");
             // properties.put("socksProxyPort", "8083");
 
             properties.put("mail.pop3.host", host);
@@ -23,7 +23,7 @@ public class ReadEmail {
             properties.put("mail.pop3.starttls.enable", "true");
 
 //       properties.setProperty("proxySet", "true");
-//      properties.setProperty("mail.pop3.socks.host", "fastweb.int.bell.ca");
+//      properties.setProperty("mail.pop3.socks.host", "");
 //      properties.setProperty("mail.pop3.socks.port", "8083");
 
             // mail.smtp.proxy.host
@@ -82,8 +82,8 @@ public class ReadEmail {
 
         String host = "pop.yopmail.com";// change accordingly
         String mailStoreType = "pop3";
-        String username = "automation25@yopmail.com";// change accordingly
-        String password = "automation25@yopmail.com";// change accordingly
+        String username = "auto@yopmail.com";// change accordingly
+        String password = "auto@yopmail.com";// change accordingly
 
         check(host, mailStoreType, username, password);
 

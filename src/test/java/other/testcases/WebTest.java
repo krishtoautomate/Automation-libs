@@ -42,8 +42,8 @@ public class WebTest extends TestBaseWeb implements ITestBase {
         String username = auth.split(":")[0];
         String password = auth.split(":")[1];
 //        ((HasAuthentication) driver).register(() -> new UsernameAndPassword(username, password));
-//        driver.get("https://bca-csr-ui.int.bell.ca/eCareBellCa/BAT");
-//        //        driver.get("https://"+auth+"@bca-csr-ui.int.bell.ca/eCareBellCa/BAT");
+//        driver.get("");
+//        //        driver.get("https://"+auth+"@url//BAT");
 //        test.pass("web-page with auth loaded : " + driver.getCurrentUrl(), MediaEntityBuilder.createScreenCaptureFromPath(new ScreenshotManager(driver).getScreenshot()).build());
 
 
@@ -72,19 +72,28 @@ public class WebTest extends TestBaseWeb implements ITestBase {
 //        devTools.createSession();
 
         //file upload POC
-//        driver.navigate().to("https://www.bell.ca/");
+//        driver.navigate().to("https://www.google.ca/");
 //        sleep(5);
 //        test.pass("web-page loaded : " + driver.getCurrentUrl(), MediaEntityBuilder.createScreenCaptureFromPath(new ScreenshotManager(driver).getScreenshot()).build());
 
 //        sleep(5);
 //
-//        driver.findElement(By.tagName("input")).sendKeys("//files//Bell_Shop_NewCommerFlow_UnverifiedFormE2Evalidation.png");
+//        driver.findElement(By.tagName("input")).sendKeys("//files//test.png");
 //
 //
 //
 
 
 //        String errorXML = driver.getPageSource();
+
+//        Either<WebDriverException, CreateSessionResponse> response =
+//                localNode.newSession(
+//                        new CreateSessionRequest(ImmutableSet.of(W3C), stereotype, ImmutableMap.of()));
+//        CreateSessionResponse sessionResponse = response.right();
+//        Capabilities capabilities = sessionResponse.getSession().getCapabilities();
+//        Object seContainerName = capabilities.getCapability("se:containerName");
+
+//        System.out.println(new DesiredCapabilities().getCapability("se:containerName"));
 
         System.out.println("SessionId : " + ((RemoteWebDriver) driver).getSessionId());
 

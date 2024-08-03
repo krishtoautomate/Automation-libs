@@ -12,7 +12,7 @@ import java.io.IOException;
 
 public class Jira {
 
-    static String JIRA_URL = "https://jira.bell.corp.bce.ca";
+    static String JIRA_URL = "https://<jira-url>";
     private static Logger log = Logger.getLogger(Jira.class.getName());
     JsonObject info = new JsonObject();
     JsonObject textExecution = new JsonObject();
@@ -108,9 +108,9 @@ public class Jira {
         try {
             String jiraAuth = System.getenv("JIRA_AUTH");
             RestAssured.useRelaxedHTTPSValidation();
-            RestAssured.baseURI = "https://jira.bell.corp.bce.ca";
+            RestAssured.baseURI = "https://<jira-url>";
             RestAssured.basePath = "/rest/api/2/issue/" + testKey;
-//            RestAssured.baseURI = "https://jira.bell.corp.bce.ca/rest/api/2/issue/" + testKey;
+//            RestAssured.baseURI = "https://<jira-url>/rest/api/2/issue/" + testKey;
             RequestSpecification req = RestAssured.given();
             req.header("Content-Type", "application/json");
             req.header("Authorization", "Basic " + jiraAuth);
@@ -128,7 +128,7 @@ public class Jira {
             RestAssured.useRelaxedHTTPSValidation();
             RestAssured.baseURI = JIRA_URL;
             RestAssured.basePath = "/rest/api/2/issue/" + testKey;
-//            RestAssured.baseURI = "https://jira.bell.corp.bce.ca/rest/api/2/issue/" + testKey;
+//            RestAssured.baseURI = "https://<jira-url>/rest/api/2/issue/" + testKey;
             RequestSpecification req = RestAssured.given();
             req.header("Content-Type", "application/json");
             req.header("Authorization", "Basic " + jiraAuth);
@@ -175,7 +175,7 @@ public class Jira {
 
             RestAssured.baseURI = JIRA_URL;
             RestAssured.basePath = "/rest/raven/1.0/import/execution";
-//            RestAssured.baseURI = "https://jira.bell.corp.bce.ca/rest/raven/1.0/import/execution";
+//            RestAssured.baseURI = "https://<jira-url>/rest/raven/1.0/import/execution";
             Response response = RestAssured.given()
                     .header("Content-Type", "application/json")
                     .header("Authorization", "Basic " + jiraAuth)
@@ -223,7 +223,7 @@ public class Jira {
             RestAssured.baseURI = JIRA_URL;
             RestAssured.basePath = "/rest/api/2/issue";
 
-//            RestAssured.baseURI = "https://jira.bell.corp.bce.ca/rest/api/2/issue";
+//            RestAssured.baseURI = "https://<jira-url>/rest/api/2/issue";
             RequestSpecification req = RestAssured.given();
             req.header("Content-Type", "application/json");
             req.header("Authorization", "Basic " + jiraAuth);

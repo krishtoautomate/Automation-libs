@@ -10,7 +10,7 @@ import static org.testng.Assert.assertEquals;
 
 public class TestExecutionListener implements ITestListener {
 
-    private String baseUrl = "https://gitlab.bell.corp.bce.ca/api/v4";
+    private String baseUrl = "https://<git-url>/api/v4";
     private String personalAccessToken = "mxKmoR48CJhr6XiXBgEH";
 
     @Override

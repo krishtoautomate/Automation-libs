@@ -24,13 +24,13 @@ public class SendEmailReport {
 
     public static void main(String[] args) throws IOException {
 
-        String to = "krish.pavulur@bell.ca";// change accordingly
+        String to = "krishpavulur@gmail.com";// change accordingly
         final String user = "";// change accordingly
-        final String password = "Bell1234";// change accordingly
+        final String password = "<password>";// change accordingly
 
         // 1) get the session object
         Properties properties = System.getProperties();
-        properties.setProperty("mail.smtp.host", "app-mail.bell.corp.bce.ca");
+        properties.setProperty("mail.smtp.host", "smtp");
         properties.setProperty("mail.smtp.socketFactory.port", "80");
         properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
         properties.put("mail.smtp.auth", "true");

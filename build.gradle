@@ -25,11 +25,6 @@ allprojects {
         mavenLocal()
         mavenCentral()
         google()
-
-//    maven {
-//        url 'https://artifactory.bell.corp.bce.ca/ui/native/central-maven'
-//        allowInsecureProtocol = true
-//    }
     }
 }
 

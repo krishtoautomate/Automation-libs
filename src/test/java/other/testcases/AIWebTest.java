@@ -16,7 +16,7 @@ public class AIWebTest {
         ChromeOptions chromeOptions = new ChromeOptions();
 //        chromeOptions.addArguments("--no-sandbox");
 //        chromeOptions.addArguments("--disable-dev-shm-usage");
-        RemoteWebDriver driver = new RemoteWebDriver(new URL("http://bqatautomation:8085"), chromeOptions);
+        RemoteWebDriver driver = new RemoteWebDriver(new URL("http://bautomation:8085"), chromeOptions);
 //        SelfHealingDriver driver = SelfHealingDriver.create(delegate);
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));

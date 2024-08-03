@@ -39,7 +39,7 @@ public class Constants {
     public static final String EMAIL_REPORT_TEMPLATE =
             USER_DIR + "/src/main/resources/ReportTemplate.html";
     public static final String DEEP_LINK_PATH = "DeepLinkFile.csv";
-    public static final String VOUCHER_FILE = "/Users/Shared/Data/Lucky/Lucky_Test_data/Vouchers.txt";
+    public static final String VOUCHER_FILE = "/Users/Shared/Data/Vouchers.txt";
     public static final String EXTENT_REPORT_CONFIG =
             USER_DIR + "/src/main/resources/extent-config.xml";
     public static final String BUILD_NUMBER = System.getenv("BUILD_NUMBER");
@@ -52,10 +52,10 @@ public class Constants {
     public static final String NODE_PATH = "/usr/local/bin/node";
     public static final String APPIUM_PATH = "/usr/local/bin/appium";
     public static final String ANDROID_HOME = "/usr/local/share/android-sdk/";
-    public static final String API_HOST = "api.luckymobile.ca";
+    public static final String API_HOST = "api.ca";
     public static final String DEVICE_INFO = USER_DIR + "/src/test/resources/deviceInfo.json";
-    public static final String JIRA_URL = "https://jira.bell.corp.bce.ca/browse/";
-    public static final String BASE_URI = "https://" + API_HOST + "/channelbellcaext";
+    public static final String JIRA_URL = "https://<jira-url>/browse/";
+    public static final String BASE_URI = "https://" + API_HOST + "/channelchannelcaext";
 
     public static final String PATH = "/usr/local/bin/";
     public static final String LANGUAGE = "EN-CA";

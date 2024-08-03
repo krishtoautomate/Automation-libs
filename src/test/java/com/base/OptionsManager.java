@@ -6,18 +6,13 @@ import org.apache.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import org.openqa.selenium.PageLoadStrategy;
-import org.openqa.selenium.Proxy;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import java.io.FileReader;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Map;
 
 /**
  * Created by Krish on 21.05.2018.
@@ -45,7 +40,7 @@ public class OptionsManager {
             JSONArray argsArray = (JSONArray) chromeOptionsObj.get("args");
 
             // Print each Chrome Option Arg
-            System.out.println("Chrome Options Args: "+ argsArray);
+            System.out.println("Chrome Options Args: " + argsArray);
             for (Object each : argsArray) {
                 chromeOptions.addArguments(each.toString());
             }
@@ -67,16 +62,16 @@ public class OptionsManager {
 //        options.addArguments("--host-resolver-rules=MAP analytics.tiktok.com 127.0.0.1");
 //        options.addArguments("--host-resolver-rules=Exclude analytics.tiktok.com 127.0.0.1");
 
-//        String proxyadd = "fastweb.int.bell.ca";
+//        String proxyadd = "";
 //        Proxy proxy = new Proxy();
-//        proxy.setSocksProxy("socks5h://fastweb.int.bell.ca:1080");
+//        proxy.setSocksProxy("socks5h://:1080");
 
 //        proxy.setHttpProxy(proxyadd);
 //        proxy.setSslProxy(proxyadd);
 //        options.setCapability("proxy", proxy);
 
-//        chromeOptions.addArguments("--proxy-server=http://fastweb.int.bell.ca:8083");//working
-//        options.addArguments("--proxy-server=http://fastweb.int.bell.ca:8083");
+//        chromeOptions.addArguments("--proxy-server=http://:8083");//working
+//        options.addArguments("--proxy-server=http://:8083");
 
 //        options.setAcceptInsecureCerts(true);//it is a capability
 //        options.setPageLoadStrategy(PageLoadStrategy.NORMAL);

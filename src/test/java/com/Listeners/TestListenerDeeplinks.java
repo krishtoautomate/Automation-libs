@@ -171,7 +171,7 @@ public class TestListenerDeeplinks extends TestListenerAdapter
 
 
         // // Slack
-        // String message = "*" + className + "* : <https://jira.bell.corp.bce.ca/browse/" +
+        // String message = "*" + className + "* : <https://<jira-url>/browse/" +
         // testKey
         // + "|" + testKey + ">" + " failed due to `" + testResult.getThrowable() + "`";
         // slackReporter.send_Failure_Data_To_Channel(message, Constants.REPORT_DIR + ssPath,
@@ -260,7 +260,7 @@ public class TestListenerDeeplinks extends TestListenerAdapter
                 // Slack
                 String message = Constants.SLACK_BRAND + " Mobility Run started at: <" + executionDescription
                         + "|" + executionSummary + ">" + "\n" + "Execution will be updated at "
-                        + "<"+Constants.JIRA_URL + testExecutionKey + "|" + testExecutionKey
+                        + "<" + Constants.JIRA_URL + testExecutionKey + "|" + testExecutionKey
                         + ">" + "\n" + "Check " + realTimeLink + " for failure details";
                 slackReporter.send_Message_To_Channel(message, slackChannel);
             }
@@ -281,7 +281,7 @@ public class TestListenerDeeplinks extends TestListenerAdapter
                 // Slack
                 String message = Constants.SLACK_BRAND + " Mobility Run has finished. Complete  " + "<" + buildUrl
                         + "Automation_20HTML_20Report/|Jenkins Automation Report>"
-                        + " and <"+Constants.JIRA_URL + testExecutionKey
+                        + " and <" + Constants.JIRA_URL + testExecutionKey
                         + "|JIRA Test Execution> are now available";
                 slackReporter.send_Message_To_Channel(message, slackChannel);
             }

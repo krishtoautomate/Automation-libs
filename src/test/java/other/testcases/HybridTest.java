@@ -15,15 +15,15 @@ import other.pages.PlayStoreApp;
 public class HybridTest extends TestBaseHybrid implements ITestBase {
 
     @Test
-    public void Hybrid_Test(){
+    public void Hybrid_Test() {
 
         WebDriver webDriver = DriverManager.getWebDriverInstance();
 
-        webDriver.get("http://bqatautomation.bell.corp.bce.ca:8080/");
+        webDriver.get("http://<host>:8080/");
 
         sleep(5);
 
-        test.pass("web-page loaded : "+webDriver.getCurrentUrl(),
+        test.pass("web-page loaded : " + webDriver.getCurrentUrl(),
                 MediaEntityBuilder.createScreenCaptureFromPath(
                         new ScreenshotManager(webDriver).getScreenshot()).build());
 

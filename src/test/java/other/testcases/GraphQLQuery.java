@@ -16,7 +16,7 @@ public class GraphQLQuery {
         // Set up the HTTP client and request
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://bqatautomation.bell.corp.bce.ca:5555/graphql"))
+                .uri(URI.create("http://<host>:5555/graphql"))
                 .header("Content-Type", "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString("{\"query\": \"" + query + "\"}"))
                 .build();
