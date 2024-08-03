@@ -1,0 +1,20 @@
+# Ignore Gradle project-specific cache directory
+.gradle
+bin
+# Ignore Gradle build output directory
+build
+/test-output/
+/src/**/*.xml
+*.log
+*.txt
+Logger.log
+*.DS_Store
+testng.xml
+/.gradle/
+/build/
+/target/
+*.json
+*.csv
+/*.csv/
+capabilities.json
+.idea
